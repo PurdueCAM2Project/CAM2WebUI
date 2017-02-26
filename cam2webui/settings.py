@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default', #the apps for oauth
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',  #added for oauth
+    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',  #added for oauth
 ]
 
 ROOT_URLCONF = 'cam2webui.urls'
@@ -65,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',  #added for oauth
+                'social.apps.django_app.context_processors.login_redirect',  #added for oauth
             ],
         },
     },
@@ -119,6 +124,15 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
+#This field provides backends of authentication for social websites
+AUTHENTICATION_BACKENDS = (
+    'social.backends.github.GithubOAuth2',
+    #'social.backends.twitter.TwitterOAuth',
+    #'social.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
@@ -137,3 +151,9 @@ STATICFILES_DIRS = (
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = '/test/home'
+SOCIAL_AUTH_GITHUB_KEY = 'c405a90f7771cc98b545'
+SOCIAL_AUTH_GITHUB_SECRET = '2cea7bde5df1871cc96e37fc450314efd2258919'
