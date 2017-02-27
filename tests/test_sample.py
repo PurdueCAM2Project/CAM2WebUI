@@ -13,4 +13,3 @@ def func(num):
 def test_two():
     """Test func"""
     assert func(3) == 4
-    assert func(2) == 5
