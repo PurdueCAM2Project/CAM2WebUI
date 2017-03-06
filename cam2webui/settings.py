@@ -125,8 +125,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_GITHUB_KEY = '9fc1b0638fbcf9a52e0f'
-SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET_KEY']
+SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']
+SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
 
 
 # Basic auth
