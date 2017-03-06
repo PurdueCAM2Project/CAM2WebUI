@@ -6,6 +6,6 @@ from django.shortcuts import render
 
 
 @login_required
-def home(request):
-    return render(request, 'app/home.html')
+def index(request):
+    return render(request, 'app/index.html')
 
