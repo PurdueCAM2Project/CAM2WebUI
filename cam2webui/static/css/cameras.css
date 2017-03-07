@@ -3,19 +3,6 @@ body {
   padding-bottom: 40px;
 }
 
-#map {
-    height: 500px;
-}
-
-.starter-template {
-  vertical-align: middle;
-  text-align: center; 
-}
-.starter-template .row {
-    margin-right: 0px;
-    margin-left: 0px;
-}
-
 h1 {
 	font-size: 200%;
 	margin-top: 15px;
@@ -28,60 +15,10 @@ h2 {
     margin-bottom: 10px;
 }
 
-
-.starter-template .col-xs-1, .col-sm-3, .col-md-2, .col-xs-12, .col-sm-6, .col-md-4, .col-xs-6 {
-	padding-right: 0px;
-    padding-left: 0px;
+#map {
+    height: 500px;
 }
-
-
-.featurette-divider-border {
-  margin: 10px 0;
-  border-top: 1px solid #fff;
-}
-
-.featurette-divider {
-  margin: 30px 0;
-  border-top: 1px solid #fff;
-}
-
-.marketing .col-lg-4 {
-  margin-bottom: 20px;
-  text-align: center;
-}
-.marketing h2 {
-  font-weight: normal;
-}
-.marketing .col-lg-4 p {
-  font-size: 20px;
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
 .lead {
 	color: #5a5a5a;
 	font-size: 17px;
-}
-
-.featurette-heading {
-  color: #ff6a00;
-  font-size: 35px;
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -1px;
-}
-
-.featurette-heading-title{
-  color: #ff6a00;
-  font-size: 40px;
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -1px;
-}
-
-.embed-responsive-item {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
 }
