@@ -22,7 +22,7 @@ def test_basicauth(client):
     client.defaults['HTTP_AUTHORIZATION'] = format_credentials(
         os.environ['BASICAUTH_USERNAME'], os.environ['BASICAUTH_PASSWORD'])
     response = client.get('', follow=True)
-    assert response.status_code == 404
+    assert response.status_code == 200
 
 def format_credentials(username, password):
     """Helper function for formatting credentials.
