@@ -24,8 +24,6 @@ def test_basicauth(client):
     response = client.get('', follow=True)
     assert response.status_code == 404
 
-    assert False
-
 def format_credentials(username, password):
     """Helper function for formatting credentials.
 
