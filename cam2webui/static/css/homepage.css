@@ -4,36 +4,30 @@ body {
 }
 
 h1 {
-    font-size: 200%;
-    margin-top: 15px;
-    margin-bottom: 5px;
+    font-weight:bold;
 }
 
-h2 {
-    font-size: 100%;
-    margin-top: 5px;
-    margin-bottom: 10px;
+img { 
+    height: 100%;
+    opacity: 0.6;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color:white;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
 }
 
 .splash {
+    position: relative;
+    height: 500px;
     vertical-align: middle;
     text-align: center;
-}
-
-.splash .row {
-    margin-right: 0px;
-    margin-left: 0px;
-}
-
-.splash .col-xs-1,
-.col-sm-3,
-.col-md-2,
-.col-xs-12,
-.col-sm-6,
-.col-md-4,
-.col-xs-6 {
-    padding-right: 0px;
-    padding-left: 0px;
+    overflow: hidden;
+    background-color: black
 }
 
 .divide-divider-border {
