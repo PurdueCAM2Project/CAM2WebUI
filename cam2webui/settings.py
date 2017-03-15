@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'app.middleware.basicauth.BasicAuthMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -128,6 +129,16 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/settings/'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/settings/'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+
+SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']
+SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
+
+
+# Basic auth
+# https://djangosnippets.org/snippets/2468/
+
+BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
+BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
 
 SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']
 SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
