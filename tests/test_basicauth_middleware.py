@@ -14,7 +14,6 @@ import base64
 def test_basicauth(client):
     """Tests staging server basic authentication."""
 
-    # return 401 with no credentials
     client.defaults['HTTP_AUTHORIZATION'] = format_credentials('username', 'password')
     response = client.get('', follow=True)
     assert response.status_code == 401
