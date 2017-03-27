@@ -47,10 +47,14 @@
   {% endblock %}
   {% block content %}{% endblock %}
   {% block footer %}
-  <footer>
-    <p class="pull-right hidden-xs"><a href="/">Back to top</a></p>
-    <p>© CAM² Research Group.   ·   <a href="">Privacy</a>   ·   <a href="">Terms of Use</a></p>
-  </footer>
+  <div class="container">
+    <hr class="divide-divider">
+    <footer>
+      <p class="pull-right hidden-xs"><a href="/">Back to top</a></p>
+      <p>© CAM² Research Group.   ·   <a href="">Privacy</a>   ·   <a href="">Terms of Use</a></p>
+    </footer>
+  </div>
+  
   {% endblock %}
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX8wC6a-doZFO77cz6yVXbM8qAsLfP1Ac&callback=initMap"></script>
   <script src="{% static "app/js/bootstrap.min.js" %}"></script>
