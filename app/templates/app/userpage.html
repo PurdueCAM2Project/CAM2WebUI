@@ -38,39 +38,11 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a data-toggle="collapse" href="#collapse1">Profile</a></li>
           <li><a href="../../app/templates/app/login.html">Logout</a></li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="profile">
-    <div class="container">
-      <div id="collapse1" class="panel-collapse collapse">
-        <div class="panel-body">
-          <form class="form-horizontal">
-            <div class="form-group">
-              <label class="control-label col-sm-2" for="email">Change Email:</label>
-              <div class="col-sm-3 col-xs-12">
-                <input type="email" class="form-control" id="email" placeholder="Enter email">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-sm-2" for="pwd">Change Password:</label>
-              <div class="col-sm-3 col-xs-12"> 
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-              </div>
-            </div>
-            <div class="form-group"> 
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Submit</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="container main-content">
     <h2 class="sub-header">Activity Log</h2>
     <table class="table table-striped">
@@ -104,6 +76,30 @@
         </tr>
       </tbody>
     </table>
+    <h2 class="sub-header">User Profile</h2>
+    <div class="container">
+      <div class="panel-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Change Email:</label>
+            <div class="col-sm-3 col-xs-12">
+              <input type="email" class="form-control" id="email" placeholder="Enter email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Change Password:</label>
+            <div class="col-sm-3 col-xs-12"> 
+              <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+            </div>
+          </div>
+          <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
     <hr class="divide-divider">
     <footer>
       <p class="pull-right hidden-xs"><a href="../../app/templates/app/homepage.html#">Back to top</a></p>
