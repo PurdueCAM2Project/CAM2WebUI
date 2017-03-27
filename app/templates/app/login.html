@@ -1,7 +1,12 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block title %}Login/Register{% endblock %}
-{% block csspath %}{% static "app/css/login.css " %}{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/bootstrap.min.css" %}">
+<link rel="stylesheet" href="{% static "app/css/font-awesome.min.css" %}">
+<link rel="stylesheet" href="{% static "app/css/bootstrap-social.css" %}">
+<link rel="stylesheet" href="{% static "app/css/login.css " %}">
+{% endblock %}
 {% block content %}
 <div class="top-content">
   <div class="inner-bg">
@@ -29,9 +34,11 @@
             </div>
           </div>
           <div class="social-login">
-            <h3 style="color:black;">...or login with:</h3>
+            <h3 style="color:black;">- or -</h3>
             <div class="social-login-buttons">
-              <a class="btn btn-link-1 btn-link-1-facebook" href="#"> <i class="fa fa-github"></i> Github </a>
+              <a class="btn btn-block btn-social btn-lg btn-github">
+                <span class="fa fa-github"></span>Sign in with Github
+              </a>
             </div>
           </div>
         </div>

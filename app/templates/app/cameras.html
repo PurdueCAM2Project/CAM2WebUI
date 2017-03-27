@@ -1,6 +1,9 @@
 {% extends "app/base.html" %}
 {% load static %}
-{% block csspath %}{% static "app/css/cameras.css " %}{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/bootstrap.min.css" %}">
+<link rel="stylesheet" href="{% static "app/css/cameras.css " %}">
+{% endblock %}
 {% block content %}
 <div class="container">
   <br>

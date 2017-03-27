@@ -9,8 +9,10 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>{% block title %}CAM²{% endblock %}</title>
+  {% block css %}
   <link rel="stylesheet" href="{% static "app/css/bootstrap.min.css" %}">
-  <link rel="stylesheet" href="{% block csspath %}{% static "app/css/index.css " %}{% endblock %}">
+  <link rel="stylesheet" href="{% static "app/css/index.css " %}">
+  {% endblock %}
 </head>
 
 <body>
