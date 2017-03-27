@@ -10,9 +10,11 @@ from django.shortcuts import render, redirect
 from social_django.models import UserSocialAuth
 
 
-@login_required
 def index(request):
     return render(request, 'app/index.html')
+
+def cameras(request):
+    return render(request, 'app/cameras.html')
 
 @login_required
 def settings(request):

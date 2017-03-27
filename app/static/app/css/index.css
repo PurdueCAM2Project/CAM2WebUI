@@ -1,39 +1,55 @@
+html {
+  overflow-y: scroll;
+}
+
 body {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #888;
+    line-height: 30px;
     padding-top: 50px;
     padding-bottom: 40px;
 }
 
-h1 {
-    font-size: 200%;
-    margin-top: 15px;
-    margin-bottom: 5px;
+
+a,
+a:hover,
+a:focus {
+    color: #19b9e7;
+    text-decoration: none;
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
 }
 
-h2 {
-    font-size: 100%;
-    margin-top: 5px;
-    margin-bottom: 10px;
+h1 {
+    font-weight:bold;
+}
+
+img { 
+    height: 100%;
+    opacity: 0.6;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color:white;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
 }
 
 .splash {
+    position: relative;
+    height: 500px;
     vertical-align: middle;
     text-align: center;
-}
-
-.splash .row {
-    margin-right: 0px;
-    margin-left: 0px;
-}
-
-.splash .col-xs-1,
-.col-sm-3,
-.col-md-2,
-.col-xs-12,
-.col-sm-6,
-.col-md-4,
-.col-xs-6 {
-    padding-right: 0px;
-    padding-left: 0px;
+    overflow: hidden;
+    background-color: black
 }
 
 .divide-divider-border {

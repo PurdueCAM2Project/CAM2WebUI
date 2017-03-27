@@ -14,14 +14,13 @@ import base64
 def test_basicauth(client):
     """Tests staging server basic authentication."""
 
-    # return 401 with no credentials
     client.defaults['HTTP_AUTHORIZATION'] = format_credentials('username', 'password')
-    response = client.get('', follow=True)
+    response = client.get('/settings/', follow=True)
     assert response.status_code == 401
 
     client.defaults['HTTP_AUTHORIZATION'] = format_credentials(
         os.environ['BASICAUTH_USERNAME'], os.environ['BASICAUTH_PASSWORD'])
-    response = client.get('', follow=True)
+    response = client.get('/settings/', follow=True)
     assert response.status_code == 200
 
 def format_credentials(username, password):
