@@ -10,7 +10,7 @@
   <meta name="author" content="">
   <title>{% block title %}CAM²{% endblock %}</title>
   <link rel="stylesheet" href="{% static "app/css/bootstrap.min.css" %}">
-  <link rel="stylesheet" href="{% static "{% block csspath %}app/css/index.css {% endblock %}" %}">
+  <link rel="stylesheet" href="{% block csspath %}{% static "app/css/index.css " %}{% endblock %}">
 </head>
 
 <body>
