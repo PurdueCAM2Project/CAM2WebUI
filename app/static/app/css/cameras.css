@@ -11,31 +11,31 @@ body {
 a,
 a:hover,
 a:focus {
-    color: #19b9e7;
-    text-decoration: none;
-    -o-transition: all .3s;
-    -moz-transition: all .3s;
-    -webkit-transition: all .3s;
-    -ms-transition: all .3s;
-    transition: all .3s;
+  color: #19b9e7;
+  text-decoration: none;
+  -o-transition: all .3s;
+  -moz-transition: all .3s;
+  -webkit-transition: all .3s;
+  -ms-transition: all .3s;
+  transition: all .3s;
 }
 
 h1 {
-	font-size: 200%;
-	margin-top: 15px;
-    margin-bottom: 5px;
+  font-size: 200%;
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 
 h2 {
-	font-size: 100%;
-	margin-top: 5px;
-    margin-bottom: 10px;
+  font-size: 100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 #map {
-    height: 500px;
+  height: 500px;
 }
 .lead {
-	color: #5a5a5a;
-	font-size: 17px;
+  color: #5a5a5a;
+  font-size: 17px;
 }
