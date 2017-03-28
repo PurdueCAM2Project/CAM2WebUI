@@ -1,0 +1,83 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}Login/Register{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/bootstrap.min.css" %}">
+<link rel="stylesheet" href="{% static "app/css/profile.css" %}">
+{% endblock %}
+{% block content %}
+<div class="container main-content">
+  <h2 class="sub-header">Activity Log</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Key</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>someone1</td>
+        <td>somekeys1</td>
+        <td>someaction1</td>
+      </tr>
+      <tr>
+        <td>someone2</td>
+        <td>somekeys2</td>
+        <td>someaction2</td>
+      </tr>
+      <tr>
+        <td>someone3</td>
+        <td>somekeys3</td>
+        <td>someaction3</td>
+      </tr>
+      <tr>
+        <td>someone4</td>
+        <td>somekeys4</td>
+        <td>someaction4</td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="sub-header">User Profile</h2>
+  <div class="container">
+    <div class="panel-body">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="email">Change Email:</label>
+          <div class="col-sm-3 col-xs-12">
+            <input type="email" class="form-control" id="email" placeholder="Enter email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="pwd">Change Password:</label>
+          <div class="col-sm-3 col-xs-12"> 
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+          </div>
+        </div>
+        <div class="form-group"> 
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <h2 class="sub-header">GitHub</h2>
+  {% if github_login %}
+    <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
+    {% if can_disconnect %}
+      <form method="post" action="{% url 'social:disconnect' 'github' %}">
+        {% csrf_token %}
+        <button type="submit">Disconnect from GitHub</button>
+      </form>
+    {% else %}
+      <button type="button" disabled>Disconnect from GitHub</button>
+      <p style="color: red">You must <a href="{% url 'password' %}">define a password</a> for your account before disconnecting from Github.</p>
+    {% endif %}
+  {% else %}
+    <a href="{% url 'social:begin' 'github' %}">Connect to GitHub</a>
+  {% endif %}
+</div>
+{% endblock %}

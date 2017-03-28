@@ -17,7 +17,7 @@ def cameras(request):
     return render(request, 'app/cameras.html')
 
 @login_required
-def settings(request):
+def profile(request):
     user = request.user
 
     try:
@@ -27,10 +27,10 @@ def settings(request):
 
     can_disconnect = user.has_usable_password()
 
-    return render(request, 'app/settings.html', {
+    return render(request, 'app/profile.html', {
         'github_login': github_login,
         'can_disconnect': can_disconnect
-    })
+        })
 
 @login_required
 def password(request):

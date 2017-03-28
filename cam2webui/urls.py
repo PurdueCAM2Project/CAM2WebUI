@@ -22,8 +22,8 @@ from app import views as app_views
 
 urlpatterns = [
     url(r'^$', app_views.index, name='index'),
-    url(r'^cameras/$', app_views.cameras, name="cameras"),
-    url(r'^settings/$', app_views.settings, name='settings'),
+    url(r'^cameras/$', app_views.cameras, name='cameras'),
+    url(r'^profile/$', app_views.profile, name='profile'),
     url(r'^settings/password/$', app_views.password, name='password'),
     url(r'^login/', auth_views.login, {'template_name': 'app/login.html'}, name='login'),
     url(r'^logout/', auth_views.logout, name='logout'),
