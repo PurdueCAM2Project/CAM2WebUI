@@ -19,6 +19,12 @@ def cameras(request):
 def team(request):
     return render(request, 'app/team.html')
 
+def privacy(request):
+    return render(request, 'app/privacy.html')
+
+def terms(request):
+    return render(request, 'app/terms.html')
+
 @login_required
 def profile(request):
     user = request.user
