@@ -1,7 +1,6 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static "app/css/bootstrap.min.css" %}">
 <link rel="stylesheet" href="{% static "app/css/cameras.css " %}">
 {% endblock %}
 {% block content %}
@@ -51,4 +50,8 @@
   <br>
   <div id="map"></div>
 </div>
+{% endblock %}
+{% block scripts %}
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX8wC6a-doZFO77cz6yVXbM8qAsLfP1Ac&callback=initMap"></script>
+  <script src="{% static "app/js/cameras.js" %}"></script>
 {% endblock %}

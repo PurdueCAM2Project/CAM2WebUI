@@ -1,5 +1,8 @@
 {% extends "app/base.html" %}
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/index.css" %}">
+{% endblock %}
 {% block content %}
 <div class="splash">
   <img src="{% static "/app/img/background.jpg" %}">
