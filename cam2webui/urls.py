@@ -23,6 +23,7 @@ from app import views as app_views
 urlpatterns = [
     url(r'^$', app_views.index, name='index'),
     url(r'^cameras/$', app_views.cameras, name='cameras'),
+    url(r'^team/$', app_views.team, name='team'),
     url(r'^profile/$', app_views.profile, name='profile'),
     url(r'^settings/password/$', app_views.password, name='password'),
     url(r'^login/', auth_views.login, {'template_name': 'app/login.html'}, name='login'),

@@ -16,6 +16,9 @@ def index(request):
 def cameras(request):
     return render(request, 'app/cameras.html')
 
+def team(request):
+    return render(request, 'app/team.html')
+
 @login_required
 def profile(request):
     user = request.user
