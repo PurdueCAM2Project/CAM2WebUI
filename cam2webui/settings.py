@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'social_django',
 ]
 
@@ -126,8 +127,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_LOGIN_ERROR_URL = '/settings/'
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/settings/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/profile/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/profile/'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']
@@ -139,9 +140,6 @@ SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
 
 BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
 BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
-
-SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']
-SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'

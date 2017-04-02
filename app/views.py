@@ -16,8 +16,17 @@ def index(request):
 def cameras(request):
     return render(request, 'app/cameras.html')
 
+def team(request):
+    return render(request, 'app/team.html')
+
+def privacy(request):
+    return render(request, 'app/privacy.html')
+
+def terms(request):
+    return render(request, 'app/terms.html')
+
 @login_required
-def settings(request):
+def profile(request):
     user = request.user
 
     try:
@@ -27,27 +36,29 @@ def settings(request):
 
     can_disconnect = user.has_usable_password()
 
-    return render(request, 'app/settings.html', {
-        'github_login': github_login,
-        'can_disconnect': can_disconnect
-    })
-
-@login_required
-def password(request):
-    if request.user.has_usable_password():
+    if can_disconnect:
         PasswordForm = PasswordChangeForm
     else:
         PasswordForm = AdminPasswordChangeForm
 
     if request.method == 'POST':
-        form = PasswordForm(request.user, request.POST)
+        form = PasswordForm(user, request.POST)
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
             messages.success(request, 'Your password was successfully updated!')
-            return redirect('password')
+            return redirect('profile')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordForm(request.user)
+
+    return render(request, 'app/profile.html', {
+        'github_login': github_login,
+        'can_disconnect': can_disconnect,
+        'form': form,
+        })
+
+@login_required
+def password(request):
     return render(request, 'app/password.html', {'form': form})

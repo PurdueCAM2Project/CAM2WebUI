@@ -1,0 +1,15 @@
+img {
+  width: 100%;
+  height: auto;
+}
+
+h2 {
+  color: #424242;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.divide-divider {
+  margin: 15px 0;
+  border-top: 1px solid #fff;
+}
