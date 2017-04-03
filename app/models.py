@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from simple_history.models import HistoricalRecords #need to do pip install django-simple-history
 
 
 class Profile(models.Model):
@@ -34,12 +35,12 @@ class User_Camera_Selection(models.Model):
         return self.user_obj.user.username + "'s camera selection"
 
     # associate to one User table
-    user_obj = models.ForeignKey(Profile, blank=True, null=True)
+    user_obj = models.OneToOneField(User, blank=True, null=True)
 
     # selection info
     number_of_selection = models.IntegerField(default=0)
     date_of_download = models.DateTimeField(auto_now_add=True)
-    generated_key_for_download = models.CharField(max_length=100, unique=True)
+    history = HistoricalRecords()
 
 #the details of each camera selected by the user
 class Camera_Detail(models.Model):
@@ -55,15 +56,8 @@ class Camera_Detail(models.Model):
 
     # camera information
     name = models.CharField(max_length=500, blank=True, null=True)
-    camera_key = models.CharField(max_length=100, unique=True)
-    description = models.CharField(max_length=500, blank=True, null=True)
     url = models.CharField(max_length=200)
     id = models.CharField(max_length=200)
     date_of_selection = models.DateTimeField(auto_now_add=True)
     frequency_of_selection = models.IntegerField(default=0)
-    is_ip_camera = models.BooleanField()
-    source = models.CharField(max_length=200, blank=True)
-    latitude = models.FloatField(null=True, blank=True)
-    longitude = models.FloatField(null=True, blank=True)
-    country = models.CharField(max_length=200, blank=True)
-    state = models.CharField(max_length=200, blank=True)
+    history = HistoricalRecords()
