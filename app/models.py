@@ -22,3 +22,36 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     """Updates the assocaited Profile object whenever a User is updated."""
     instance.profile.save()
+
+
+class CameraSelection(models.Model):
+    """represents a group of camera URLs"""
+
+    def __str__(self):
+        return self.name
+
+    user = models.ForeignKey(User)
+    date = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=30)  # TODO: Add default that looks at date
+    active = models.BooleanField(default=True)
+
+class CameraDetail(models.Model):
+    """the details of each camera selected by the user"""
+
+    def __str__(self):
+        return self.name
+
+    selection = models.ForeignKey(CameraSelection)
+    name = models.CharField(max_length=30)  # TODO: come up with default case
+    url = models.CharField(max_length=200)
+    cam_id = models.CharField(max_length=200)
+
+class SelectionDownload(models.Model):
+    """represents a single download of a selection"""
+
+    def __str__(self):
+        return self.selection  # TODO: Also return date and/or user
+
+    selection = models.ForeignKey(CameraSelection)
+    user = models.ForeignKey(User)
+    date = models.DateTimeField(auto_now_add=True)
