@@ -28,6 +28,12 @@ def terms(request):
 def acknowledgement(request):
     return render(request, 'app/ack.html')
 
+def contact(request):
+    return render(request, 'app/contact.html')
+
+def faqs(request):
+    return render(request, 'app/faq.html')
+
 @login_required
 def profile(request):
     user = request.user

@@ -1,89 +1,40 @@
-<html>
-
-<head>
-    <title>CAM&#178;</title>
-    <!--Metadata-->
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <!--Fonts-->
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet" />
-    <!--Basic javascript files-->
-    <script src="js/jquery.min.js "></script>
-    <script src="js/config.js "></script>
-    <script src="js/skel.min.js "></script>
-    <script language="javascript">
-        var STATIC_URL = "/static/";
-    </script>
-    <link rel="stylesheet" href="css/skel-noscript.css " />
-    <link rel="stylesheet" href="css/style.css " />
-    <link rel="stylesheet" href="css/style-desktop.css " />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-social.css" />
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="icon" type="image/png" href="img/photo.png "> </head>
-
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="/">CAM<sup>2</sup></a> </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/cameras/">Cameras</a></li>
-                    <li><a href="">Source Code</a></li>
-                    <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/team/">Team</a></li>
-                            <li><a href="">Publications</a></li>
-                            <li><a href="">Contact Us</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/login/">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!--Web Application Tutorial-->
-    <div class="wrapper wrapper-style2">
-        <article id="desktop_app" class="container small">
-            <header>
-                <h1>Frequency Asked Questions</h1> </header>
-            <br>
-            <div class="row narrow">
-                <div class="12u" style="text-align:left">
-                    <p><strong>Q: Where do you get the data?</strong>
-                        <br> A: Universities, governments, and some other web sites.</p>
-                    <p><strong>Q: What is the frame rate?</strong>
-                        <br> A: The frame rates, as well as the resolutions, vary based on the cameras.</p>
-                    <p><strong>Q: I have cameras. Can I add my cameras to your site?</strong>
-                        <br> A: Not yet. We will add that feature soon.</p>
-                    <p><strong>Q: What do you do with the data? Are you tracking where I go?</strong>
-                        <br> A: We do not intend to indentify any individual. Thus, we do not know where you are.</p>
-                    <p><strong>Q: If I register, what do you do my data (such as my email address)?</strong>
-                        <br> A: Please read the privacy policy.</p>
-                    <p><strong>Q: Will you send me any email?</strong>
-                        <br> A: We intend to keep the email traffic low.</p>
-                    <p><strong>Q: What do the cameras see?</strong>
-                        <br> A: Most cameras observe traffic or outdoor scenes.</p>
-                    <p><strong>Q: Are you recording all data continuously?</strong>
-                        <br> A: No.</p>
-                    <p><strong>Q: Do you retrieve data from password-protected cameras?</strong>
-                        <br>A: Only if the camera owner gives us the password. We will not guess the password of any camera.</p>
-                </div>
-            </div>
-        </article>
+{% extends "app/base.html" %} 
+{% load static %} 
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/skel-noscript.css" %}" />
+<link rel="stylesheet" href="{% static "app/css/style.css" %}" />
+<link rel="stylesheet" href="{% static "app/css/style-desktop.css" %}" /> 
+{% endblock %} 
+{% block content %}
+<!--Web Application Tutorial-->
+<div class="wrapper wrapper-style2">
+  <article id="desktop_app" class="container small">
+    <header>
+      <h1>Frequency Asked Questions</h1>
+    </header>
+    <br>
+    <div class="row narrow">
+      <div class="12u" style="text-align:left">
+        <p><strong>Q: Where do you get the data?</strong>
+          <br> A: Universities, governments, and some other web sites.</p>
+        <p><strong>Q: What is the frame rate?</strong>
+          <br> A: The frame rates, as well as the resolutions, vary based on the cameras.</p>
+        <p><strong>Q: I have cameras. Can I add my cameras to your site?</strong>
+          <br> A: Not yet. We will add that feature soon.</p>
+        <p><strong>Q: What do you do with the data? Are you tracking where I go?</strong>
+          <br> A: We do not intend to indentify any individual. Thus, we do not know where you are.</p>
+        <p><strong>Q: If I register, what do you do my data (such as my email address)?</strong>
+          <br> A: Please read the privacy policy.</p>
+        <p><strong>Q: Will you send me any email?</strong>
+          <br> A: We intend to keep the email traffic low.</p>
+        <p><strong>Q: What do the cameras see?</strong>
+          <br> A: Most cameras observe traffic or outdoor scenes.</p>
+        <p><strong>Q: Are you recording all data continuously?</strong>
+          <br> A: No.</p>
+        <p><strong>Q: Do you retrieve data from password-protected cameras?</strong>
+          <br>A: Only if the camera owner gives us the password. We will not guess the password of any camera.</p>
+      </div>
     </div>
-    <div class="container">
-        <hr class="divide-divider">
-        <footer>
-            <p class="pull-right hidden-xs"><a href="#">Back to top</a></p>
-            <p>© CAM² Research Group. · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms of Use</a></p>
-        </footer>
-    </div>
-</body>
-
-</html>
+  </article>
+</div>
+{% endblock %}
