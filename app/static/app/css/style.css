@@ -343,7 +343,7 @@ article:last-child
     -ms-transition: background-color .2s ease-in-out;
     transition: background-color .2s ease-in-out;
 }
-/*
+
 .button:before
 {
     content: '';
@@ -353,9 +353,9 @@ article:last-child
     top: 0;
     width: 100%;
     height: 100%;
-    background: url('images/bg.png');
+    /*background: url('images/bg.png');*/
 }
-*/
+
 
 .button:hover
 {
@@ -457,7 +457,7 @@ ul.social li
     transition: background-color .2s ease-in-out, top .2s ease-in-out;
     box-shadow: inset 0px 0px 0px 1px #282828, inset 0px 2px 1px 0px rgba(255,255,255,0.1);
 }
-/*
+
 ul.social li:before
 {
     content: '';
@@ -467,9 +467,9 @@ ul.social li:before
     top: 0;
     width: 100%;
     height: 100%;
-    background: url('images/bg.png');
+    /*background: url('images/bg.png');*/
 }
-*/
+
 ul.social li.twitter:hover				{ background-color: #2DAAE4; }
 ul.social li.facebook:hover				{ background-color: #3C5A98; }
 ul.social li.dribbble:hover				{ background-color: #C4376B; }
@@ -1008,13 +1008,13 @@ ul.social li a span
 /*********************************************************************************/
 /* Wrappers                                                                      */
 /*********************************************************************************/
-/*
+
 .wrapper
 {
-    background-image: url('images/bg.png');
+    /*background-image: url('images/bg.png');*/
     box-shadow: inset 0px 1px 0px 0px rgba(0,0,0,0.05), inset 0px 2px 3px 0px rgba(0,0,0,0.1);
 }
-*/
+
     /* No background wr */
     .wrapper#no_background 
     {
