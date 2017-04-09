@@ -25,6 +25,9 @@ def privacy(request):
 def terms(request):
     return render(request, 'app/terms.html')
 
+def acknowledgement(request):
+    return render(request, 'app/ack.html')
+
 @login_required
 def profile(request):
     user = request.user

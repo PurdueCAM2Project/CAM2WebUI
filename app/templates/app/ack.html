@@ -1,0 +1,90 @@
+{% extends "app/base.html" %} 
+{% load static %} 
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/skel-noscript.css" %}" />
+<link rel="stylesheet" href="{% static "app/css/style.css" %}" />
+<link rel="stylesheet" href="{% static "app/css/style-desktop.css" %}" /> 
+{% endblock %} 
+{% block content %}
+<div class="wrapper wrapper-style3" id="acknowledgements">
+  <header id="acknowledgements">
+    <h1>Acknowledgements</h1>
+    <p>We greatly appreciate the support from the following organizations.</p>
+  </header>
+  <!-- United States -->
+  <div class="container">
+    <div class="box box-style2 small">
+      <div class="row flush">
+        <header class="12u">
+          <h3>United States Department of Transportation</h3>
+        </header>
+      </div>
+      <div class="row flush">
+        <div class="3u">
+          <ul>
+            <li><a href="http://transportation.ky.gov/Pages/default.aspx">Kentucky</a></li>
+            <li><a href="http://www.dot.state.oh.us/districts/D02/TrafficCameras/Pages/default.aspx">Ohio</a></li>
+            <li><a href="http://www.cotrip.org/home.htm">Colorado</a></li>
+            <li><a href="http://www.nyc.gov/html/dot/html/home/home.shtml">New York City</a></li>
+            <li><a href="http://www.dot.wisconsin.gov/travel/">Wisconsin</a></li>
+            <li><a href="http://511.idaho.gov/">Idaho</a></li>
+            <li><a href="http://511ia.org/">Iowa</a></li>
+            <li><a href="http://www.511la.org/">Louisiana</a></li>
+          </ul>
+        </div>
+        <div class="3u">
+          <ul>
+            <li><a href="http://www.txdot.gov/">Texas</a></li>
+            <li><a href="https://mass511.com/">Massachusetts</a></li>
+            <li><a href="https://www.tripcheck.com">Oregon</a></li>
+            <li><a href="http://www.dot.state.mn.us/">Minnesota</a></li>
+            <li><a href="http://www.wsdot.wa.gov">Washington</a></li>
+            <li><a href="http://www.511maine.gov/">Maine</a></li>
+            <li><a href="http://www.nh.gov/dot/511/">New Hampshire</a></li>
+          </ul>
+        </div>
+        <div class="6u">
+          <a class="image image-border"><img src="{% static "app/img/us_acknow_highlightmap.png" %}"/></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Australia -->
+  <div class="container">
+    <div class="box box-style2">
+      <div class="row flush">
+        <header class="12u">
+          <h3>Australia Department of Transportation</h3>
+        </header>
+      </div>
+      <div class="row flush left-align">
+        <ul class="6u">
+          <li><a href="https://www.livetraffic.com/">New South Wales</a></li>
+        </ul>
+        <div class="6u">
+          <a class="image image-border"><img src="{% static "app/img/australia_acknow_highlightmap.png"  %}"/></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Canada -->
+  <div class="container">
+    <div class="box box-style3">
+      <div class="row flush">
+        <header class="12u">
+          <h3>Canada Department of Transportation</h3>
+        </header>
+      </div>
+      <div class="row flush">
+        <div class="6u">
+          <ul>
+            <li><a href="http://traffic.ottawa.ca/map/">Ottawa</a></li>
+          </ul>
+        </div>
+        <div class="6u">
+          <a class="image image-border"><img src="{% static "app/img/canada_acknow_highlightmap.png" %}"/></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
