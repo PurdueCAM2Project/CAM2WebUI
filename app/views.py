@@ -6,13 +6,26 @@ from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeFor
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.shortcuts import render, redirect
-
+from django.http import HttpResponse
 from social_django.models import UserSocialAuth
+from app.forms import*
+
+
 
 
 @login_required
 def index(request):
     return render(request, 'app/index.html')
+
+"""Connect the form"""
+def register_page(request):
+    if reguest.method == 'POST':
+    	form = RegistrationForm(request.POST)
+    	if form.is_valid():
+        	user = user.objects.create_user(username = form.cleaned_data['username'], password = form.cleaned_data['password1'], email = form.cleaned_data['Email'], location = form.cleaned_data['Location'], occuption = form.cleaned_data['Occuption'], organization = form.cleaned_data['Organization'])
+        	return HttpResponseRedirect('/')
+	
+
 
 @login_required
 def settings(request):
