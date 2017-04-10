@@ -137,9 +137,6 @@ SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
 # Basic auth
 # https://djangosnippets.org/snippets/2468/
 
-BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
-BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
-
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'index'
