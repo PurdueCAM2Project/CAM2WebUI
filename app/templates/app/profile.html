@@ -53,7 +53,7 @@
       <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Save changes</button>
+        <button class = "buttons button5" type="submit">Save changes</button>
       </form>
     </div>
     <h3 class="sub-header">GitHub</h3>
@@ -62,10 +62,10 @@
       {% if can_disconnect %}
         <form method="post" action="{% url 'social:disconnect' 'github' %}">
           {% csrf_token %}
-          <button type="submit">Disconnect from GitHub</button>
+          <button class = "buttons button5" type="submit">Disconnect from GitHub</button>
         </form>
       {% else %}
-        <button type="button" disabled>Disconnect from GitHub</button>
+        <button class = "buttons button5" type="button" disabled>Disconnect from GitHub</button>
         <p style="color: red">You must <a href="{% url 'password' %}">define a password</a> for your account before disconnecting from Github.</p>
       {% endif %}
     {% else %}
