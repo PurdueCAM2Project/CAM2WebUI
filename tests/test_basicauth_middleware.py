@@ -9,6 +9,7 @@ Run this test with pytest.
 """
 import os
 import base64
+import pytest
 
 
 @pytest.mark.skip(reason='feature not implemented in production')
