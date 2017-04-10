@@ -18,7 +18,7 @@ img {
 
 .splash {
   position: relative;
-  height: 500px;
+  height: 800px;
   vertical-align: middle;
   text-align: center;
   overflow: hidden;
@@ -43,4 +43,22 @@ img {
   margin-bottom: 5px;
   margin-right: 5px;
   margin-left: 5px;
+}
+
+.jumbotron {
+  background-image: url(../img/background.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.jumbotron-spacer {
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+}
+
+.jumbotron-background {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 0.5rem;
 }
