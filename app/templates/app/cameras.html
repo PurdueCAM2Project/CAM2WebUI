@@ -1,0 +1,57 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/cameras.css " %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-xs-4">
+      <form>
+        <div class="form-group">
+          <label for="sel1">Country (select one):</label>
+          <select class="form-control" id="sel1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="col-xs-4">
+      <form>
+        <div class="form-group">
+          <label for="sel1">States (select one):</label>
+          <select class="form-control" id="sel1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="col-xs-4">
+      <form>
+        <div class="form-group">
+          <label for="sel1">City (select one):</label>
+          <select class="form-control" id="sel1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br>
+  <div id="map"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX8wC6a-doZFO77cz6yVXbM8qAsLfP1Ac&callback=initMap"></script>
+  <script src="{% static "app/js/cameras.js" %}"></script>
+{% endblock %}
