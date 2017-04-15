@@ -1,40 +1,32 @@
 {% extends "app/base.html" %} 
 {% load static %} 
 {% block css %}
-<link rel="stylesheet" href="{% static "app/css/skel-noscript.css" %}" />
-<link rel="stylesheet" href="{% static "app/css/style.css" %}" />
-<link rel="stylesheet" href="{% static "app/css/style-desktop.css" %}" /> 
-{% endblock %} 
+<link rel="stylesheet" href="{% static "app/css/faq.css" %}">
+{% endblock %}
 {% block content %}
-<!--Web Application Tutorial-->
-<div class="wrapper wrapper-style2">
-  <article id="desktop_app" class="container small">
-    <header>
-      <h1>Frequency Asked Questions</h1>
-    </header>
-    <br>
-    <div class="row narrow">
-      <div class="12u" style="text-align:left">
-        <p><strong>Q: Where do you get the data?</strong>
-          <br> A: Universities, governments, and some other web sites.</p>
-        <p><strong>Q: What is the frame rate?</strong>
-          <br> A: The frame rates, as well as the resolutions, vary based on the cameras.</p>
-        <p><strong>Q: I have cameras. Can I add my cameras to your site?</strong>
-          <br> A: Not yet. We will add that feature soon.</p>
-        <p><strong>Q: What do you do with the data? Are you tracking where I go?</strong>
-          <br> A: We do not intend to indentify any individual. Thus, we do not know where you are.</p>
-        <p><strong>Q: If I register, what do you do my data (such as my email address)?</strong>
-          <br> A: Please read the privacy policy.</p>
-        <p><strong>Q: Will you send me any email?</strong>
-          <br> A: We intend to keep the email traffic low.</p>
-        <p><strong>Q: What do the cameras see?</strong>
-          <br> A: Most cameras observe traffic or outdoor scenes.</p>
-        <p><strong>Q: Are you recording all data continuously?</strong>
-          <br> A: No.</p>
-        <p><strong>Q: Do you retrieve data from password-protected cameras?</strong>
-          <br>A: Only if the camera owner gives us the password. We will not guess the password of any camera.</p>
-      </div>
-    </div>
-  </article>
+<div class="container">
+  <hr class="divide-divider">
+  <h1>Frequency Asked Questions</h1>
+  <hr class="divide-divider">
+  <dl>
+    <dt>Where do you get the data?</dt>
+    <dd>Universities, governments, and some other web sites.</dd>
+    <dt>What is the frame rate?</dt>
+    <dd>The frame rates, as well as the resolutions, vary based on the cameras.</dd>
+    <dt>I have cameras. Can I add my cameras to your site?</dt>
+    <dd>Not yet. We will add that feature soon.</dd>
+    <dt>What do you do with the data? Are you tracking where I go?</dt>
+    <dd>We do not intend to indentify any individual. Thus, we do not know where you are.</dd>
+    <dt>If I register, what do you do my data (such as my email address)?</dt>
+    <dd>Please read the privacy policy.</dd>
+    <dt>Will you send me any email?</dt>
+    <dd>We intend to keep the email traffic low.</dd>
+    <dt>What do the cameras see?</dt>
+    <dd>Most cameras observe traffic or outdoor scenes.</dd>
+    <dt>Are you recording all data continuously?</dt>
+    <dd>No.</dd>
+    <dt>Do you retrieve data from password-protected cameras?</dt>
+    <dd>Only if the camera owner gives us the password. We will not guess the password of any camera.</dd>
+  </dl>
 </div>
 {% endblock %}

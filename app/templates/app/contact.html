@@ -1,47 +1,25 @@
 {% extends "app/base.html" %} 
 {% load static %} 
 {% block css %}
-<link rel="stylesheet" href="{% static "app/css/skel-noscript.css" %}" />
-<link rel="stylesheet" href="{% static "app/css/style.css" %}" />
-<link rel="stylesheet" href="{% static "app/css/style-desktop.css" %}" /> 
+<link rel="stylesheet" href="{% static "app/css/contact.css" %}" />
 {% endblock %} 
 {% block content %}
-<div class="wrapper wrapper-style4">
-  <article id="contact" class="container small">
-    <header>
-      <h2>Interested in the project? Contact us!</h2>
-    </header>
-    <div>
-      <div class="row">
-        <div class="12u">
-          <form method="post" action="/contact">
-            <input type='hidden' name='csrfmiddlewaretoken' value='WxhOaVe17HDr23lJaoP1HC4CjkeG2hNz' />
-            <div>
-              <div class="row half">
-                <div class="6u">
-                  <input id="id_name" name="name" placeholder="Name" type="text" /> </div>
-                <div class="6u">
-                  <input id="id_email" name="email" placeholder="Email" type="text" /> </div>
-              </div>
-              <div class="row half">
-                <div class="12u">
-                  <input id="id_subject" name="subject" placeholder="Subject" type="text" /> </div>
-              </div>
-              <div class="row half">
-                <div class="12u">
-                  <textarea cols="40" id="id_message" name="message" placeholder="Message" rows="10"> </textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="12u">
-                  <p></p>
-                  <input type="submit" class="button form-button-submit" value="Submit" /> </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+<div class="container">
+  <hr class="divide-divider">
+  <div class="center">Contact Us </div>
+  <hr class="divide-divider">
+  <form id="contact-us" method="post" action="#">
+    <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+      <input type="text" name="name" id="name" required="required" class="form" placeholder="Name" />
+      <input type="email" name="mail" id="mail" required="required" class="form" placeholder="Email" />
+      <input type="text" name="subject" id="subject" required="required" class="form" placeholder="Subject" /> </div>
+    <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
+      <textarea name="message" id="message" class="form textarea" placeholder="Message"></textarea>
     </div>
-  </article>
+    <div class="relative fullwidth col-xs-12">
+      <button type="submit" id="submit" name="submit" class="form-btn semibold">Send Message</button>
+    </div>
+    <div class="clear"></div>
+  </form>
 </div>
 {% endblock %}
