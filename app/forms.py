@@ -1,4 +1,4 @@
-from django.contrib.auth.forms.UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django import forms
@@ -56,23 +56,23 @@ class UserCreateForm(UserCreationForm):
 
 
 
-class PasswordChangeForm(SetPasswordForm):
-    """forms that allow user to change password by enter the old password"""
-    error_message = dict(SetPasswordForm.error_messages, **{
-        'password_incorrect': _("wrong password input."),
-    })
-    old_password = forms.CharField(label=_("Old password"),
-                                   widget=forms.PasswordInput)
-
-    def clean_old_password(self):
-        """Validates that the old_password field is correct."""
-        old_password = self.cleaned_data["old_password"]
-        if not self.user.check_password(old_password):
-            raise forms.ValidationError(
-                self.error_messages['password_incorrect'],
-                code='password_incorrect',
-            )
-        return old_password
+# class PasswordChangeForm(SetPasswordForm):
+#     """forms that allow user to change password by enter the old password"""
+#     error_message = dict(SetPasswordForm.error_messages, **{
+#         'password_incorrect': _("wrong password input."),
+#     })
+#     old_password = forms.CharField(label=_("Old password"),
+#                                    widget=forms.PasswordInput)
+#
+#     def clean_old_password(self):
+#         """Validates that the old_password field is correct."""
+#         old_password = self.cleaned_data["old_password"]
+#         if not self.user.check_password(old_password):
+#             raise forms.ValidationError(
+#                 self.error_messages['password_incorrect'],
+#                 code='password_incorrect',
+#             )
+#         return old_password
 
 	
 
