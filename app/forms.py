@@ -1,10 +1,12 @@
+from django.contrib.auth.forms.UserCreationForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django import forms
+from collections import OrderedDict
 import re
 
 
-class RegistrationForm(forms.ModelForm):
+class UserCreateForm(UserCreationForm):
 
     """Initialize the form."""
     username = forms.CharField(label = 'Username', max_length = 30)
@@ -15,6 +17,20 @@ class RegistrationForm(forms.ModelForm):
     occuption = forms.CharField(label = 'Occuption', max_length = 100)
     organization = forms.CharField(label = 'Organization', max_length = 100)
 
+    class Meta:
+	model = User
+	fields = ("username","email","password1","password2","location","occuption","organization")
+
+
+    """Save the user infor"""
+    def save(self,commit=True):
+	user = super(UserCreationForm,self).save(commit=False)
+	user.set_password(self.cleaned_data["password1"])
+	if commit:
+	    user.save()
+	return user
+
+    
     """Check to see the user enterd the right password"""
     def clean_password2(self):
         if 'password1' in self.cleaned_data:
@@ -40,7 +56,25 @@ class RegistrationForm(forms.ModelForm):
 
 
 
+class PasswordChangeForm(SetPasswordForm):
+    """forms that allow user to change password by enter the old password"""
+    error_message = dict(SetPasswordForm.error_messages, **{
+        'password_incorrect': _("wrong password input."),
+    })
+    old_password = forms.CharField(label=_("Old password"),
+                                   widget=forms.PasswordInput)
 
+    def clean_old_password(self):
+        """Validates that the old_password field is correct."""
+        old_password = self.cleaned_data["old_password"]
+        if not self.user.check_password(old_password):
+            raise forms.ValidationError(
+                self.error_messages['password_incorrect'],
+                code='password_incorrect',
+            )
+        return old_password
+
+	
 
 
 
