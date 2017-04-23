@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+
+
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
@@ -9,6 +11,15 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from social_django.models import UserSocialAuth
 from app.forms import*
+
+
+
+
+# Imports for contact me page
+from django.core.mail import EmailMessage
+from django.shortcuts import redirect
+from django.template import Context
+from django.template.loader import get_template
 
 
 
@@ -42,6 +53,46 @@ def settings(request):
         'github_login': github_login,
         'can_disconnect': can_disconnect
     })
+
+
+def contact(request):
+    from_class = ContactForm
+
+    if request.method == 'POST':
+	form = form_class(data=request.POST)
+
+        if form.is_valid():
+	    contact_name = request.POST.get('contact_name','')
+	    contact_email = request.POST.get('contact_email','')
+            subject = request.POST.get('subject','')
+            message = request.POST.get('message','')
+            template = get_template('contact_template.txt')
+            context = Context({
+               'contact_name' : contact_name,
+               'contact_email': contact_email,
+               'subject'      : subject,
+               'message'      : message,
+            })
+            content = template.render(context)
+
+            email = EmailMessage(
+               "a new message from user",
+               content,
+               "Your website" + '',
+               ['zzf718@gmail.com']
+               headers = {'user email': contact_email }
+            )
+            email.send()
+            return redirect('contact')                  
+	
+    return reder(request, 'contact.html', {'form': from_class,})
+
+
+
+
+
+
+
 
 @login_required
 def password(request):
