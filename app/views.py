@@ -56,36 +56,36 @@ def settings(request):
 
 
 def contact(request):
-    from_class = ContactForm
+    form_class = ContactForm
 
     if request.method == 'POST':
-	form = form_class(data=request.POST)
+	    form = form_class(data=request.POST)
 
         if form.is_valid():
-	    contact_name = request.POST.get('contact_name','')
-	    contact_email = request.POST.get('contact_email','')
+	        name = request.POST.get('name','')
+	        email = request.POST.get('email','')
             subject = request.POST.get('subject','')
             message = request.POST.get('message','')
             template = get_template('contact_template.txt')
             context = Context({
-               'contact_name' : contact_name,
-               'contact_email': contact_email,
-               'subject'      : subject,
-               'message'      : message,
+               'name': name,
+               'email': email,
+               'subject': subject,
+               'message': message,
             })
             content = template.render(context)
 
-            email = EmailMessage(
+            emails = EmailMessage(
                "a new message from user",
                content,
-               "Your website" + '',
-               ['zzf718@gmail.com']
-               headers = {'user email': contact_email }
+               "Website name" + '',
+               ['zzf718@gmail.com'],
+               headers = {'user email': email }
             )
-            email.send()
+            emails.send()
             return redirect('contact')                  
 	
-    return reder(request, 'contact.html', {'form': from_class,})
+    return render(request, 'contact.html', {'form': form_class,})
 
 
 
