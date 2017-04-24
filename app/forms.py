@@ -53,7 +53,11 @@ class UserCreateForm(UserCreationForm):
 	raise forms.ValidationError('Username is already taken.')
 
 
-
+class ContactForm(forms.Form):
+     contact_name = forms.CharField(required=True,max_length = 30)
+     contact_email=forms.EmailField(required=True,max_length = 100)
+     subject = forms.CharField(required=True,max_length = 100)
+     message = forms.CharField(required=True,widget=forms.Textarea)
 
 
 # class PasswordChangeForm(SetPasswordForm):
