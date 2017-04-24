@@ -24,11 +24,11 @@ class UserCreateForm(UserCreationForm):
 
     """Save the user infor"""
     def save(self,commit=True):
-	user = super(UserCreationForm,self).save(commit=False)
-	user.set_password(self.cleaned_data["password1"])
-	if commit:
-	    user.save()
-	return user
+	    user = super(UserCreationForm,self).save(commit=False)
+	    user.set_password(self.cleaned_data["password1"])
+	    if commit:
+	        user.save()
+	    return user
 
     
     """Check to see the user enterd the right password"""
