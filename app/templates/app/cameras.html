@@ -52,6 +52,10 @@
 </div>
 {% endblock %}
 {% block scripts %}
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX8wC6a-doZFO77cz6yVXbM8qAsLfP1Ac&callback=initMap"></script>
+  <script src="{% static "app/js/camPos.json" %}"></script>
   <script src="{% static "app/js/cameras.js" %}"></script>
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=initMap"></script>
+  
 {% endblock %}
