@@ -55,3 +55,8 @@ a.devbanner:focus {
   color: #fff;
   background-color: #0269c2;
 }
+
+.main-content {
+  position: relative;
+  margin-top: 50px;
+}
