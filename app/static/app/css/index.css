@@ -4,7 +4,7 @@ h1 {
 
 img { 
   height: 100%;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .center {
@@ -43,4 +43,10 @@ img {
   margin-bottom: 5px;
   margin-right: 5px;
   margin-left: 5px;
+}
+
+a.buttontext,
+a.buttontext:hover,
+a.buttontext:focus {
+  color: white;
 }
