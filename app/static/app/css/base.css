@@ -34,8 +34,29 @@ a:focus {
 }
 
 .embed-responsive-item {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
+  margin: 5px;
+}
+
+.devbanner {
+  display: block;
+  padding: 10px 20px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  background-color: #0275d8;
+}
+
+a.devbanner {
+  color: #fff;
+}
+
+a.devbanner:hover,
+a.devbanner:focus {
+  color: #fff;
+  background-color: #0269c2;
+}
+
+.main-content {
+  position: relative;
+  margin-top: 50px;
 }

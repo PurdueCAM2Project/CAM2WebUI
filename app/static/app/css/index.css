@@ -4,7 +4,7 @@ h1 {
 
 img { 
   height: 100%;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .center {
@@ -18,7 +18,7 @@ img {
 
 .splash {
   position: relative;
-  height: 800px;
+  height: 500px;
   vertical-align: middle;
   text-align: center;
   overflow: hidden;
@@ -45,20 +45,8 @@ img {
   margin-left: 5px;
 }
 
-.jumbotron {
-  background-image: url(../img/background.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.jumbotron-spacer {
-  min-height: 500px;
-  display: flex;
-  align-items: center;
-}
-
-.jumbotron-background {
-  background: rgba(16, 16, 16, 0.9);
-  border-radius: 0.5rem;
+a.buttontext,
+a.buttontext:hover,
+a.buttontext:focus {
+  color: white;
 }

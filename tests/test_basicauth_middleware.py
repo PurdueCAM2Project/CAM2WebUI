@@ -9,10 +9,8 @@ Run this test with pytest.
 """
 import os
 import base64
-import pytest
 
 
-@pytest.mark.skip(reason='feature not implemented in production')
 def test_basicauth(client):
     """Tests staging server basic authentication."""
 
