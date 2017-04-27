@@ -27,8 +27,11 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
-
+# Allow all host headers
+ALLOWED_HOSTS = [
+    'www.cam2project.net',
+    'cam2webui.herokuapp.com',
+]
 
 # Application definition
 
@@ -154,11 +157,6 @@ DATABASES['default'].update(db_from_env)
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Allow all host headers
-ALLOWED_HOSTS = [
-    'www.cam2project.net',
-    'cam2webui.herokuapp.com',
-]
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
