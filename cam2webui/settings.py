@@ -29,6 +29,7 @@ DEBUG = False
 
 # Allow all host headers
 ALLOWED_HOSTS = [
+    'cam2project.net',
     'www.cam2project.net',
     'cam2webui.herokuapp.com',
 ]
