@@ -28,6 +28,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 DEBUG = True
 
 # Allow all host headers
+# NOTE: The value '*' is required by Heroku.
 ALLOWED_HOSTS = ['*']
 
 # Application definition
