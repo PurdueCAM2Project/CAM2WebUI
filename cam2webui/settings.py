@@ -28,11 +28,8 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 DEBUG = False
 
 # Allow all host headers
-ALLOWED_HOSTS = [
-    'cam2project.net',
-    'www.cam2project.net',
-    'cam2webui.herokuapp.com',
-]
+# NOTE: The value '*' is required by Heroku.
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
