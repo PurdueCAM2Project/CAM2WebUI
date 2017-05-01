@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
     'cam2project.net',
     'www.cam2project.net',
     'cam2webui.herokuapp.com',
+    'cam2webui-staging.herokuapp.com'
 ]
 
 # Application definition
