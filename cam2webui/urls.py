@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^$', app_views.index, name='index'),
     url(r'^settings/$', app_views.settings, name='settings'),
     url(r'^settings/password/$', app_views.password, name='password'),
+    url(r'^contact/$', app_views.contact, name='contact'),
     url(r'^login/', auth_views.login, {'template_name': 'app/login.html'}, name='login'),
     url(r'^logout/', auth_views.logout, name='logout'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),

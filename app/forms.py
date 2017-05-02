@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Contact
 from django import forms
 from collections import OrderedDict
 import re
@@ -52,12 +52,15 @@ class UserCreateForm(UserCreationForm):
 	    return Username
 	raise forms.ValidationError('Username is already taken.')
 
-
-class ContactForm(forms.Form):
-     name = forms.CharField(required=True,max_length = 30)
-     email = forms.EmailField(required=True,max_length = 100)
-     subject = forms.CharField(required=True,max_length = 100)
-     message = forms.CharField(required=True,widget=forms.Textarea)
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = [
+            "name",
+            "subject",
+            "email",
+            "message",
+        ]
 
 
 # class PasswordChangeForm(SetPasswordForm):

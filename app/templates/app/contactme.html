@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Me</title>
+</head>
+<body>
+    <h1>Contact Me</h1>
+    <form role="form" action="" method="post">
+        {% csrf_token %}
+        {{ contactform.as_p }}
+        <button type="submit">Submit</button>
+         {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+        <li>{% if message.tags %} {% endif %}>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </form>
+</body>
+</html>

@@ -11,7 +11,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from social_django.models import UserSocialAuth
 from app.forms import*
-
+from .forms import ContactForm
+from .models import Contact
+from django.core.mail import send_mail
 
 
 
@@ -55,37 +57,33 @@ def settings(request):
     })
 
 
+@login_required
 def contact(request):
-    form_class = ContactForm
-
     if request.method == 'POST':
-	    form = form_class(data=request.POST)
-
-        if form.is_valid():
-	        name = request.POST.get('name','')
-	        email = request.POST.get('email','')
-            subject = request.POST.get('subject','')
-            message = request.POST.get('message','')
-            template = get_template('contact_template.txt')
-            context = Context({
-               'name': name,
-               'email': email,
-               'subject': subject,
-               'message': message,
-            })
-            content = template.render(context)
-
-            emails = EmailMessage(
-               "a new message from user",
-               content,
-               "Website name" + '',
-               ['zzf718@gmail.com'],
-               headers = {'user email': email }
+        contactform = ContactForm(request.POST)
+        if contactform.is_valid():
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            subject = request.POST.get('subject')
+            message = request.POST.get('message')
+            newcontact = Contact(name=name, email=email, subject=subject, message=message)
+            newcontact.save()
+            send_mail(
+                'New Contact Submit',
+                'Name: '+name+ ' Subject: '+subject+ ' email: '+email+ ' message: '+message,
+                'from@example.com', #need a email address to send the email
+                ['to@example.com'], #need a email address to receive the email
+                fail_silently=False,
             )
-            emails.send()
-            return redirect('contact')                  
-	
-    return render(request, 'contact.html', {'form': form_class,})
+            messages.success(request, 'Submit successful!!!')
+        else:
+            messages.error(request, 'Error while submitting')
+
+    else:
+        contactform = ContactForm()
+
+    context = {'contactform': contactform}
+    return render(request, 'app/contactme.html', context)
 
 
 

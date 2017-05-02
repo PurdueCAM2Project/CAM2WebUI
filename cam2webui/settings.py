@@ -173,9 +173,9 @@ STATICFILES_DIRS = (
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 #set up the email settings
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'testing@example.com' #need a public email address to send
+EMAIL_BACKEND ='django.core.mail.backends.console.EmailBackend' #need to change to 'django.core.mail.backends.smtp.EmailBackend' when have email domain ready
+DEFAULT_FROM_EMAIL = '' #need a email account
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
-EMAIL_PORT = 1025
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
