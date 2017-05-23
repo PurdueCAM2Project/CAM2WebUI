@@ -104,6 +104,7 @@ p {
 
 .form-bottom form textarea {
   height: 100px;
+  width: 100%;
 }
 
 .form-bottom form button.btn {
