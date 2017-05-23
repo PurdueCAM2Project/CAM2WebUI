@@ -50,7 +50,7 @@ def register(request):
             login(request, user)
             return redirect('index')
     else:
-        form = UserCreationForm()
+        form = RegistrationForm()
     return render(request, 'app/register.html', {'form': form})
 
 @login_required
