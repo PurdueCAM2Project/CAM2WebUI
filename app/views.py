@@ -44,7 +44,6 @@ def contact(request):
 def faqs(request):
     return render(request, 'app/faq.html')
 
-<<<<<<< HEAD
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -59,7 +58,7 @@ def login(request):
         form = LoginForm()
         print(form)
         return render(request, 'app/login.html', {'form': form})
-=======
+
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -73,7 +72,6 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'app/register.html', {'form': form})
->>>>>>> 6239aa6c58eff0c1b0400ff60c307aa24f1f93a5
 
 @login_required
 def profile(request):
