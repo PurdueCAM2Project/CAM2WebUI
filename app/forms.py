@@ -8,11 +8,15 @@ class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
     email = forms.EmailField(max_length=254)
-    organization = forms.CharField(max_length=150, required=False)
+    organization = forms.CharField(label='Organization (Optional)', max_length=150, required=False)
+    title = forms.CharField(label='Title (Optional)', max_length=150, required=False)
+    country = forms.CharField(label='Country (Optional)', max_length=150, required=False)
+    how_do_you_know= forms.CharField(widget=forms.Textarea, label='Please tell us how you heard about the CAM² System. (Optional)',
+                                     max_length=500, required=False)
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'organization', 'email', 'password1', 'password2',)
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'organization', 'title', 'country', 'how_do_you_know')
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label="Username", widget=forms.TextInput(attrs={'class' : 'loginput'}),required=True)
