@@ -9,16 +9,12 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from social_django.models import UserSocialAuth
-<<<<<<< HEAD
-from django.contrib.auth import authenticate, login
-from .forms import LoginForm
-=======
-#register
+
+
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from app.forms import RegistrationForm
+from app.forms import RegistrationForm, LoginForm
 
->>>>>>> 6239aa6c58eff0c1b0400ff60c307aa24f1f93a5
 
 def index(request):
     return render(request, 'app/index.html')
