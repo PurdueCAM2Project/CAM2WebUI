@@ -5,11 +5,20 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
+
 from django.shortcuts import render, redirect
 
 from social_django.models import UserSocialAuth
+<<<<<<< HEAD
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
+=======
+#register
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from app.forms import RegistrationForm
+
+>>>>>>> 6239aa6c58eff0c1b0400ff60c307aa24f1f93a5
 
 def index(request):
     return render(request, 'app/index.html')
@@ -35,6 +44,7 @@ def contact(request):
 def faqs(request):
     return render(request, 'app/faq.html')
 
+<<<<<<< HEAD
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -49,6 +59,21 @@ def login(request):
         form = LoginForm()
         print(form)
         return render(request, 'app/login.html', {'form': form})
+=======
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('index')
+    else:
+        form = UserCreationForm()
+    return render(request, 'app/register.html', {'form': form})
+>>>>>>> 6239aa6c58eff0c1b0400ff60c307aa24f1f93a5
 
 @login_required
 def profile(request):

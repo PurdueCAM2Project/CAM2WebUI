@@ -30,8 +30,13 @@ urlpatterns = [
     url(r'^faqs/$', app_views.faqs, name='faqs'),
     url(r'^terms/$', app_views.terms, name='terms'),
     url(r'^profile/$', app_views.profile, name='profile'),
+<<<<<<< HEAD
     url(r'^login/', app_views.login, name='login'),
 	url(r'^register/', auth_views.login, {'template_name': 'app/register.html'}, name='register'),
+=======
+    url(r'^login/', auth_views.login, {'template_name': 'app/login.html'}, name='login'),
+	url(r'^register/', app_views.register, name='register'),
+>>>>>>> 6239aa6c58eff0c1b0400ff60c307aa24f1f93a5
     url(r'^logout/', auth_views.logout, name='logout'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^admin/', admin.site.urls),
