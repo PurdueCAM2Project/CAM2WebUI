@@ -43,8 +43,13 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/login/">Login</a></li>
-          <li><a href="/register/">Register</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="/profile/">Profile</a></li>
+                <li><a href="/logout/">Logout</a></li>
+            {% else %}
+                <li><a href="/login/">Login</a></li>
+                <li><a href="/register/">Register</a></li>
+            {% endif %}
         </ul>
       </div>
     </div>

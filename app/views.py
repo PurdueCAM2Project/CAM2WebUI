@@ -11,8 +11,9 @@ from django.shortcuts import render, redirect
 from social_django.models import UserSocialAuth
 
 
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+#from django.contrib.auth.forms import UserCreationForm
 from app.forms import RegistrationForm, LoginForm
 
 
@@ -63,7 +64,8 @@ def register(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
-            return redirect('login')
+            auth_login(request, user)
+            return redirect('index')
     else:
         form = RegistrationForm()
     return render(request, 'app/register.html', {'form': form})
