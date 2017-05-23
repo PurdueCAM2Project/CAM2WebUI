@@ -8,7 +8,7 @@ class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
     email = forms.EmailField(max_length=254)
-    organization = forms.CharField(max_length=150, required=False, help_text='Optional')
+    organization = forms.CharField(max_length=150, required=False)
 
     class Meta:
         model = User
