@@ -9,10 +9,11 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from social_django.models import UserSocialAuth
-#register
+
+
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from app.forms import RegistrationForm
+from app.forms import RegistrationForm, LoginForm
 
 
 def index(request):
@@ -38,6 +39,21 @@ def contact(request):
 
 def faqs(request):
     return render(request, 'app/faq.html')
+
+def login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+        else:
+            print("invalid form")
+
+        return render(request, 'app/profile.html')
+    else:
+        form = LoginForm()
+        print(form)
+        return render(request, 'app/login.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':
