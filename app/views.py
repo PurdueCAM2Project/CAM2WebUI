@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 
 from social_django.models import UserSocialAuth
 
-
+from cam2webui import urls
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 #from django.contrib.auth.forms import UserCreationForm
