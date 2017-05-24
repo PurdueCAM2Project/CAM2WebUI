@@ -175,3 +175,13 @@ STATICFILES_DIRS = (
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+"""
+#Email system
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'duanwenzhong2015'
+EMAIL_HOST_PASSWORD = 'mys3cr3tp4ssw0rd'
+EMAIL_USE_TLS = True
+"""
