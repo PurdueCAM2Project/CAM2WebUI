@@ -28,7 +28,16 @@
                 
               <form method="post">
                  {% csrf_token %}
-                 {% for field in form %}
+                 {% for field in form1 %}
+                   <p>
+                     {{ field.label_tag }}<br>
+                     {{ field }}
+                     {% for error in field.errors %}
+                       <p style="color: red">{{ error }}</p>
+                     {% endfor %}
+                   </p>
+                 {% endfor %}
+                 {% for field in form2 %}
                    <p>
                      {{ field.label_tag }}<br>
                      {{ field }}
