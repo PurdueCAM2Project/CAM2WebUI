@@ -22,27 +22,28 @@
             <div class="form-bottom">
               <form role="form" action="" method="post" class="login-form">
                 {% csrf_token %}
-
                 {% for field in form %}
                   <p>
                   {{ field.label_tag }}<br>
                   {{ field }}
-                  {% for error in field.errors %}
-                    <p style="color: red">{{ error }}</p>
-                  {% endfor %}
                   <p>
                 {% endfor %}
                 <button type="submit" class="btn">Sign in</button>
+                {% if form.non_field_errors %}
+                  <ul class='form-errors'>
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
               </form>
-
-
             </div>
           </div>
           <div class="social-login">
             <h4 style="color:black;text-align:center;">- or -</h4>
             <div class="social-login-buttons">
               <a class="btn btn-block btn-social btn-lg btn-github" href="{% url 'social:begin' 'github' %}">
-                <span class="fa fa-github"></span>Sign in with Github
+                <span class="fa fa-github"></span>Sign in with Github(Under Development)
               </a>
             </div>
           </div>

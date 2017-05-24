@@ -64,7 +64,7 @@ def register(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
-            auth_login(request, user)
+            auth_login(request, user)#should always be true, just check
             return redirect('index')
     else:
         form = RegistrationForm()
@@ -93,8 +93,6 @@ def profile(request):
             update_session_auth_hash(request, form.user)
             messages.success(request, 'Your password was successfully updated!')
             return redirect('profile')
-        else:
-            messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordForm(request.user)
 
@@ -103,7 +101,8 @@ def profile(request):
         'can_disconnect': can_disconnect,
         'form': form,
         })
-
+"""
 @login_required
 def password(request):
     return render(request, 'app/password.html', {'form': form})
+"""
