@@ -10,11 +10,11 @@ from django.shortcuts import render, redirect
 
 from social_django.models import UserSocialAuth
 
-
+from cam2webui import urls
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 #from django.contrib.auth.forms import UserCreationForm
-from app.forms import RegistrationForm, LoginForm
+from app.forms import RegistrationForm, AdditionalForm, LoginForm
 
 
 def index(request):
@@ -53,22 +53,26 @@ def login(request):
         return render(request, 'app/profile.html')
     else:
         form = LoginForm()
-        print(form)
         return render(request, 'app/login.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
+        form1 = RegistrationForm(request.POST)
+        form2 = AdditionalForm(request.POST)
+        if form1.is_valid() and form2.is_valid():
+            model1 = form1.save()
+            model2 = form2.save(commit=False)
+            model2.user = model1
+            model2.save()
+            username = form1.cleaned_data.get('username')
+            raw_password = form1.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
-            auth_login(request, user)
+            auth_login(request, user)#should always be true, just check
             return redirect('index')
     else:
-        form = RegistrationForm()
-    return render(request, 'app/register.html', {'form': form})
+        form1 = RegistrationForm()
+        form2 = AdditionalForm()
+    return render(request, 'app/register.html', {'form1': form1, 'form2': form2})
 
 @login_required
 def profile(request):
@@ -93,8 +97,6 @@ def profile(request):
             update_session_auth_hash(request, form.user)
             messages.success(request, 'Your password was successfully updated!')
             return redirect('profile')
-        else:
-            messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordForm(request.user)
 
@@ -103,7 +105,8 @@ def profile(request):
         'can_disconnect': can_disconnect,
         'form': form,
         })
-
+"""
 @login_required
 def password(request):
     return render(request, 'app/password.html', {'form': form})
+"""
