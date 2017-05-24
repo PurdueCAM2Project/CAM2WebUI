@@ -5,9 +5,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
+
 from django.shortcuts import render, redirect
 
 from social_django.models import UserSocialAuth
+
+
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+#from django.contrib.auth.forms import UserCreationForm
+from app.forms import RegistrationForm, LoginForm
 
 
 def index(request):
@@ -33,6 +40,35 @@ def contact(request):
 
 def faqs(request):
     return render(request, 'app/faq.html')
+
+def login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+        else:
+            print("invalid form")
+
+        return render(request, 'app/profile.html')
+    else:
+        form = LoginForm()
+        print(form)
+        return render(request, 'app/login.html', {'form': form})
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            auth_login(request, user)
+            return redirect('index')
+    else:
+        form = RegistrationForm()
+    return render(request, 'app/register.html', {'form': form})
 
 @login_required
 def profile(request):
