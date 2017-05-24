@@ -59,8 +59,11 @@ def register(request):
     if request.method == 'POST':
         form1 = RegistrationForm(request.POST)
         form2 = AdditionalForm(request.POST)
-        if form1.is_valid():
-            form1.save()
+        if form1.is_valid() and form2.is_valid():
+            model1 = form1.save()
+            model2 = form2.save(commit=False)
+            model2.user = model1
+            model2.save()
             username = form1.cleaned_data.get('username')
             raw_password = form1.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)

@@ -23,7 +23,7 @@ class RegistrationForm(UserCreationForm):
 class AdditionalForm(forms.ModelForm):
     class Meta:
         model = RegisterUser
-        fields = ('department', 'organization', 'title', 'country', 'about')
+        exclude = ('user', )
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label="Username", widget=forms.TextInput(attrs={'class' : 'loginput'}),required=True)
