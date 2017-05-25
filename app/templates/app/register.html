@@ -28,6 +28,7 @@
                 
               <form method="post">
                  {% csrf_token %}
+                 <div class="col-sm-5">
                  {% for field in form1 %}
                    <p>
                      {{ field.label_tag }}<br>
@@ -37,6 +38,8 @@
                      {% endfor %}
                    </p>
                  {% endfor %}
+                 </div>
+                 <div class="col-sm-offset-1 col-sm-5">
                  {% for field in form2 %}
                    <p>
                      {{ field.label_tag }}<br>
@@ -46,7 +49,8 @@
                      {% endfor %}
                    </p>
                  {% endfor %}
-                 <button type="submit" class="btn">Sign me up!</button>
+                 </div>
+                 <button type="submit" class="btn">Sign Up</button>
               </form>
             </div>
           </div>

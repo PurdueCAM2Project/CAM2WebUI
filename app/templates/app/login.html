@@ -5,6 +5,7 @@
 {% block css %}
 <link rel="stylesheet" href="{% static "app/css/login.css " %}">
 {% endblock %}
+
 {% block content %}
 <div class="top-content">
   <div class="inner-bg">
@@ -46,6 +47,9 @@
                 <span class="fa fa-github"></span>Sign in with Github(Under Development)
               </a>
             </div>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <a href="#" onclick="signOut();">Sign out</a>
+
           </div>
         </div>
       </div>
@@ -53,3 +57,5 @@
   </div>
 </div>
 {% endblock %}
+
+
