@@ -6,7 +6,6 @@ from django.contrib import messages
 
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
-from social_core.pipeline import user
 
 from social_django.models import UserSocialAuth
 
@@ -15,7 +14,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm
 from django.contrib.auth.models import User
-
+import time
 
 def index(request):
     return render(request, 'app/index.html')
@@ -73,7 +72,11 @@ def email_confirmation_sent(request):
 def email_confirmation_invalid(request):
     return render(request, 'app/email_confirmation_invalid.html')
 
+def account_activated(request):
+    return render(request, 'app/account_activated.html')
+
 def activate(request, uidb64, token):
+    """Followed tutorial: https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html"""
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
@@ -84,8 +87,8 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.registeruser.email_confirmed = True
         user.save()
-        login(request, user)
-        return redirect('index')
+        login(request, user, backend="django.contrib.auth.backends.ModelBackend")
+        return redirect('account_activated')
     else:
         return render(request, 'email_confirmation_invalid.html')
 
@@ -121,3 +124,7 @@ def profile(request):
         'can_disconnect': can_disconnect,
         'form': form,
         })
+
+@login_required
+def password(request):
+    return render(request, 'app/password.html', {'form': form})
