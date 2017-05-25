@@ -7,38 +7,7 @@
 {% endblock %}
 {% block content %}
 <div class="container main-content">
-  <h2 class="sub-header">Activity Log</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Key</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>someone1</td>
-        <td>somekeys1</td>
-        <td>someaction1</td>
-      </tr>
-      <tr>
-        <td>someone2</td>
-        <td>somekeys2</td>
-        <td>someaction2</td>
-      </tr>
-      <tr>
-        <td>someone3</td>
-        <td>somekeys3</td>
-        <td>someaction3</td>
-      </tr>
-      <tr>
-        <td>someone4</td>
-        <td>somekeys4</td>
-        <td>someaction4</td>
-      </tr>
-    </tbody>
-  </table>
+
   <h2 class="sub-header">User Information</h2>
   <div class="container">
     <h3 class="sub-header">Email</h3>
@@ -74,24 +43,18 @@
              {% endfor %}
            </p>
         {% endfor %}
-        <button type="submit">Save changes</button>
+        <button class="btn" type="submit">Save changes</button>
       </form>
       {% endif %}
     </div>
-    <h3 class="sub-header">GitHub(Under Development)</h3>
     {% if github_login %}
+    <h3 class="sub-header">GitHub(Under Development)</h3> 
       <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
-      {% if can_disconnect %}
-        <form method="post" action="{% url 'social:disconnect' 'github' %}">
-          {% csrf_token %}
-          <button type="submit">Disconnect from GitHub</button>
-        </form>
-      {% else %}
-        <button type="button" disabled>Disconnect from GitHub</button>
-        <p style="color: red">You must <a href="{% url 'password' %}">define a password</a> for your account before disconnecting from Github.</p>
-      {% endif %}
-    {% else %}
-      <a href="{% url 'social:begin' 'github' %}">Connect to GitHub</a>
+      <div class="social-login-buttons" style="width:30%">
+        <a class="btn btn-block btn-social btn-github" href="/logout">
+          <span class="fa fa-github"></span>Log out Github
+        </a>
+      </div>     
     {% endif %}
   </div>
 </div>
