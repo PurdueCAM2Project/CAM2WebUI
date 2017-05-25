@@ -5,6 +5,7 @@
 {% block css %}
 <link rel="stylesheet" href="{% static "app/css/login.css " %}">
 {% endblock %}
+
 {% block content %}
 <div class="top-content">
   <div class="inner-bg">
@@ -43,9 +44,12 @@
             <h4 style="color:black;text-align:center;">- or -</h4>
             <div class="social-login-buttons">
               <a class="btn btn-block btn-social btn-lg btn-github" href="{% url 'social:begin' 'github' %}">
-                <span class="fa fa-github"></span>Sign in with Github(Under Development)
+                <span class="fa fa-github"></span>Sign in with Github
               </a>
             </div>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <a href="#" onclick="signOut();">Sign out</a>
+
           </div>
         </div>
       </div>
@@ -53,3 +57,5 @@
   </div>
 </div>
 {% endblock %}
+
+
