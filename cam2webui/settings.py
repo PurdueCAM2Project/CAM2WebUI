@@ -176,9 +176,9 @@ STATICFILES_DIRS = (
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-"""
 #Email system
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+"""
 EMAIL_HOST = 'gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'duanwenzhong2015'

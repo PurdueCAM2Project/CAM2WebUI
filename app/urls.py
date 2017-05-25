@@ -12,9 +12,13 @@ urlpatterns = [
     url(r'^faqs/$', app_views.faqs, name='faqs'),
     url(r'^terms/$', app_views.terms, name='terms'),
     url(r'^profile/$', app_views.profile, name='profile'),
-    #url(r'^login/', app_views.login, name='login'),
     url(r'^login/$', auth_views.login, {'template_name': 'app/login.html'}, name='login'),
 	url(r'^register/$', app_views.register, name='register'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}),
     url(r'^oauth/', include('social_django.urls', namespace='social')),#don't add $ after oauth/
+    url(r'^email_confirmation_sent/$', app_views.email_confirmation_sent, name='email_confirmation_sent'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        app_views.activate, name='activate'),
+    url(r'^email_confirmation_invalid/$', app_views.email_confirmation_invalid, name='email_confirmation_invalid'),
+
 ]
