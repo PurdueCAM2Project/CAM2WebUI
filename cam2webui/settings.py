@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'cam2webui.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': os.environ['DB_ENGINE'],
-        'NAME': os.environ['DB_NAME'],                      
+        'NAME': os.environ['DB_NAME'],
         'USER': os.environ['DB_USER'],
         'PASSWORD': os.environ['DB_PASS'],
         'HOST': os.environ['DB_HOST'],
@@ -150,6 +150,10 @@ BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'index'
+
+# Google API KEY and Auth
+GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
+GOOGLE_CLIENT_ID = os.environ['GOOGLE_CLIENT_ID']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
