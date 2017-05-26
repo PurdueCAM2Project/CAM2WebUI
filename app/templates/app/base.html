@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="{% static "app/css/font-awesome.min.css" %}">
   <link rel="stylesheet" href="{% static "app/css/bootstrap-social.css" %}">
   <link rel="stylesheet" href="{% static "app/css/base.css " %}">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="294339896954-gouidbgcpu2cktb5v42qdkelu1d0a9ks.apps.googleusercontent.com">
   {% block css %}
   {% endblock %}
 </head>
@@ -68,6 +70,8 @@
   {% endblock %}
   <script src="{% static "app/js/jquery-3.2.0.min.js" %}"></script>
   <script src="{% static "app/js/bootstrap.min.js" %}"></script>
+  <script src="{% static "app/js/google_login.js" %}"></script>
+
   {% block scripts %}
   {% endblock %}
 </body>

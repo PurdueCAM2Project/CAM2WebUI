@@ -1,0 +1,39 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}Account Successfully Activated{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/login.css" %}">
+{% endblock %}
+{% block content %}
+<div class="top-content">
+  <div class="inner-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <div class="form-box">
+            <div class="form-top">
+              <div class="form-top-left">
+                <h4>Account Successfully Activated</h4>
+              </div>
+              <div class="form-top-right"> <i class="fa fa-key"></i> </div>
+            </div>
+            <div class="form-bottom">
+                <p>Congratulations! your account has been successfully activated!</p>
+                <p>The website will automatically go back to home page in 5 seconds.</p>
+                <p><a style="color: deepskyblue" href="/">Click here if there's no response</a></p>
+                <script>
+                    function redirect(){
+                       window.location.href = "/";
+                    }
+                    setTimeout(redirect, 5000);
+                </script>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
