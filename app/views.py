@@ -104,12 +104,29 @@ def profile(request):
         github_login = user.social_auth.get(provider='github')
     except UserSocialAuth.DoesNotExist:
         github_login = None
-    if github_login:        
-        return render(request, 'app/profile.html', {
-            'github_login': github_login,
-        })
+    #if github_login:
+    """
+    can_disconnect = user.has_usable_password()
+
+    if can_disconnect:
+        PasswordForm = PasswordChangeForm
     else:
-        return redirect('index')
+        PasswordForm = AdminPasswordChangeForm
+    """
+    form = PasswordChangeForm(request.user)
+    if request.method == 'POST':
+        form = PasswordChangeForm(user, request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('profile')        
+    return render(request, 'app/profile.html', {
+        'github_login': github_login,
+        'form':form
+    })
+    #else:
+        #return redirect('index')
 
 
 @login_required

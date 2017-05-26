@@ -17,7 +17,7 @@ class RegistrationForm(UserCreationForm):
 class AdditionalForm(forms.ModelForm):
     class Meta:
         model = RegisterUser
-        exclude = ('user', )
+        exclude = ('user', 'email_confirmed')
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label="Username", widget=forms.TextInput(attrs={'class' : 'loginput'}),required=True)

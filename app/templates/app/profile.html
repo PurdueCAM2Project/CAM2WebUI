@@ -10,10 +10,12 @@
 
   <h2 class="sub-header">User Information</h2>
   <div class="container">
-    <h3 class="sub-header">Email</h3>
-    <div class="panel-body">
-      <p>Current email: <strong>{{ user.email }}</strong></p>
-    </div>
+    {% if user.email %}
+      <h3 class="sub-header">Email</h3>
+      <div class="panel-body">
+        <p>Current email: <strong>{{ user.email }}</strong></p>
+      </div>
+    {% endif %}
     <h3 class="sub-header">Change Password</h3>
       {% if messages %}
       <ul class="messages">
