@@ -133,8 +133,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_LOGIN_ERROR_URL = '/profile/'
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/profile/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/register/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/oauthinfo/'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']
@@ -176,12 +176,11 @@ STATICFILES_DIRS = (
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-"""
 #Email system
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'gmail.com'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'duanwenzhong2015'
-EMAIL_HOST_PASSWORD = 'mys3cr3tp4ssw0rd'
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_USE_TLS = True
-"""

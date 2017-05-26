@@ -105,13 +105,17 @@ p {
 .form-bottom form textarea {
   height: 100px;
   width: 100%;
+  border-radius: 5px;
+  border-style:hidden;
 }
 
 .form-bottom form button.btn {
   width: 100%;
+  height:120%;
   background-color: #444;
   color:#fff;
   margin-top: 20px;
+  font-weight: 700
 }
 
 .form-bottom form .input-error {
@@ -135,6 +139,9 @@ p {
 
 input {
   width:100%;
+  border-radius: 5px;
+  border-style:hidden;
+  padding:7px;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {}

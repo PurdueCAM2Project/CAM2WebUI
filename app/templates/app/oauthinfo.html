@@ -18,8 +18,7 @@
 
             <div class="form-top">
               <div class="form-top-left">
-                <h3>Sign up now</h3>
-                <p>Enter your registration information</p>
+                <p>Enter your addtional information</p>
               </div>
               <div class="form-top-right"> <i class="fa fa-pencil"></i> </div>
             </div>
@@ -27,19 +26,8 @@
               <div class="form-bottom">
                 
               <form method="post">
-                 {% csrf_token %}
-                 <div class="col-sm-5">
-                 {% for field in form1 %}
-                   <p>
-                     {{ field.label_tag }}<br>
-                     {{ field }}
-                     {% for error in field.errors %}
-                       <p style="color: red">{{ error }}</p>
-                     {% endfor %}
-                   </p>
-                 {% endfor %}
-                 </div>
-                 <div class="col-sm-offset-1 col-sm-5">
+                 {% csrf_token %}                 
+                 <div class="col-sm-offset-3 col-sm-6">
                  {% for field in form2 %}
                    <p>
                      {{ field.label_tag }}<br>
@@ -50,7 +38,7 @@
                    </p>
                  {% endfor %}
                  </div>
-                 <button type="submit" class="btn">Sign Up</button>
+                 <button type="submit" class="btn">Continue</button>
               </form>
             </div>
           </div>
