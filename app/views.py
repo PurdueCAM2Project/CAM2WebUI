@@ -132,3 +132,22 @@ def profile(request):
 @login_required
 def password(request):
     return render(request, 'app/password.html', {'form': form})
+
+
+def oauthinfo(request):
+    if request.method == 'POST':
+        return redirect('index')
+
+    else:
+        user = request.user
+        if user.is_active:
+            return redirect('index')            
+        else:
+            try:
+                github_login = user.social_auth.get(provider='github')
+            except UserSocialAuth.DoesNotExist:
+                github_login = None
+
+            form2 = AdditionalForm()
+
+            return render(request, 'app/oauthinfo.html', {'form2': form2})

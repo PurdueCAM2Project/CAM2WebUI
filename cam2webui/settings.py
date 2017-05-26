@@ -133,8 +133,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_LOGIN_ERROR_URL = '/profile/'
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/profile/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/register/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/oauthinfo/'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']

@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^profile/$', app_views.profile, name='profile'),
     url(r'^login/$', auth_views.login, {'template_name': 'app/login.html'}, name='login'),
 	url(r'^register/$', app_views.register, name='register'),
+    url(r'^oauthinfo/$', app_views.oauthinfo, name='more info'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}),
     url(r'^oauth/', include('social_django.urls', namespace='social')),#don't add $ after oauth/
     url(r'^email_confirmation_sent/$', app_views.email_confirmation_sent, name='email_confirmation_sent'),
