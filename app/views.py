@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
-
+from django.conf import settings
 from django.shortcuts import render, redirect
 
 from social_django.models import UserSocialAuth
@@ -21,6 +21,8 @@ def index(request):
     return render(request, 'app/index.html')
 
 def cameras(request):
+    context = {'google_api_key': settings.GOOGLE_API_KEY,
+               'google_client_id': settings.GOOGLE_CLIENT_ID}
     return render(request, 'app/cameras.html')
 
 def team(request):
