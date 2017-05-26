@@ -42,6 +42,12 @@ def contact(request):
 def faqs(request):
     return render(request, 'app/faq.html')
 
+def history(request):
+    return render(request, 'app/history.html')
+
+def publications(request):
+    return render(request, 'app/publications.html')
+
 def register(request):
     if request.method == 'POST':
         form1 = RegistrationForm(request.POST)
@@ -122,7 +128,7 @@ def profile(request):
             form.save()
             update_session_auth_hash(request, form.user)
             messages.success(request, 'Your password was successfully updated!')
-            return redirect('profile')        
+            return redirect('profile')
     return render(request, 'app/profile.html', {
         'github_login': github_login,
         'form':form
@@ -142,7 +148,7 @@ def oauthinfo(request):
     else:
         user = request.user
         if user.is_active:
-            return redirect('index')            
+            return redirect('index')
         else:
             try:
                 github_login = user.social_auth.get(provider='github')

@@ -5,15 +5,11 @@ dl {
   padding: 0;
 }
 
-dt:before {
-  content: 'Q: ';
-}
-
 dd:before {
-  content: 'A: ';
+  content: ' -- ';
 }
 
-dt {
+dt {  
   color: #424242;
   font-size: 1.1em;
   padding-top: 10px;
@@ -27,4 +23,8 @@ dd {
 
 h1 {
   color: #212121;
+}
+
+.divide-divider {
+  margin: 15px 0;
 }
