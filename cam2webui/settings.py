@@ -25,9 +25,13 @@ BASE_DIR =  os.path.dirname(PROJECT_ROOT)
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'cam2porject.net',
+    'localhost',
+    '127.0.0.1',
+]
 ADMINS = [('Yutong', 'huang_yutong@outlook.com')]
 
 # Application definition
@@ -45,7 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'app.middleware.basicauth.BasicAuthMiddleware',
+#    'app.middleware.basicauth.BasicAuthMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -170,8 +174,8 @@ SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
 # Basic auth
 # https://djangosnippets.org/snippets/2468/
 
-BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
-BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
+#BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
+#BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
@@ -199,3 +203,4 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Release settings
 SECURE_BROWSER_XSS_FILTER = True
+SESSION_COOKIE_SECURE = True
