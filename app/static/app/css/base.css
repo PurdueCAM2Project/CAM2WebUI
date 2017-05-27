@@ -6,7 +6,7 @@ body {
   font-family: 'Arial', 'sans-serif';
   font-size: 16px;
   font-weight: 300;
-  color: white;
+  color: #444;
   line-height: 30px;
   padding-top: 50px;
   padding-bottom: 40px;
@@ -14,6 +14,14 @@ body {
 
 h2 {
   font-weight: normal;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-inverse .navbar-brand {
+  color: white;
 }
 
 a,
