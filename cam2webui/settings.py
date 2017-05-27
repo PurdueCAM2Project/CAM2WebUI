@@ -28,7 +28,8 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'cam2porject.net',
+    'www.cam2porject.net',
+    'cam2webui.herokuapp.com',
     'localhost',
     '127.0.0.1',
 ]
