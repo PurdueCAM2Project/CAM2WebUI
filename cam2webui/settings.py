@@ -25,7 +25,7 @@ BASE_DIR =  os.path.dirname(PROJECT_ROOT)
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'www.cam2project.net',
@@ -191,11 +191,11 @@ GOOGLE_CLIENT_ID = os.environ['GOOGLE_CLIENT_ID']
 #Email system
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.ecn.purdue.edu'
+EMAIL_PORT = 465
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
-EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
 
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
