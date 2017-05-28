@@ -60,7 +60,7 @@ def register(request):
             model2.user = model1
             model2.save()
             current_site = get_current_site(request)
-            subject = 'Activate Your MySite Account'
+            subject = 'Activate Your CAM2 Account'
             message = render_to_string('app/confirmation_email.html', {
                 'user': model1,
                 'domain': current_site.domain,
