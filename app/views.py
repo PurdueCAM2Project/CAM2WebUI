@@ -67,7 +67,7 @@ def register(request):
                 'uid': urlsafe_base64_encode(force_bytes(model1.pk)),
                 'token': account_activation_token.make_token(model1),
             })
-            model1.email_user(subject, message)
+            #model1.email_user(subject, message)
             return redirect('email_confirmation_sent')
     else:
         form1 = RegistrationForm()
