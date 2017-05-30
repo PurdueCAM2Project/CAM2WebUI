@@ -1,0 +1,13 @@
+h1, p, li {
+  color: #212121;
+}
+
+li.paper {
+  line-height: 1.5;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
+
+.divide-divider {
+  margin: 15px 0;
+}
