@@ -26,6 +26,10 @@ class AddTestCase(LiveServerTestCase):
 		#self.display.start()
 		self.selenium = webdriver.Chrome()
 		super(AddTestCase, self).setUp()
+		self.port = self.live_server_url.split(":")[2]
+		self.username = os.environ['BASICAUTH_USERNAME']
+		self.password = os.environ['BASICAUTH_PASSWORD']
+
 		
 	def tearDown(self):
 		#self.selenium.quit()
@@ -42,15 +46,23 @@ class AddTestCase(LiveServerTestCase):
 
 	# Test if page title is Cam2
 
-	def test_title(self):
+	def test_mainpage_connection(self):
 		browser = self.selenium
-		port = self.live_server_url.split(":")[2]
-
-		username = os.environ['BASICAUTH_USERNAME']
-		password = os.environ['BASICAUTH_PASSWORD']
-
-		url = 'http://' + username + ':' + password + '@localhost:' + port + '/'
-		print(url)
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/'
 		browser.get(url)
-		
 		assert 'CAM²' in browser.title
+
+	# test if login/register page title is Login	
+
+	def test_login_page_connection(self):
+		browser = self.selenium
+		
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'
+		browser.get(url)
+		assert 'Login' in browser.title
+
+	def test_register_page_connection(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
+		browser.get(url)
+		assert 'Register' in browser.title
