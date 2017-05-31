@@ -25,7 +25,7 @@ BASE_DIR =  os.path.dirname(PROJECT_ROOT)
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'www.cam2project.net',
@@ -200,10 +200,7 @@ EMAIL_USE_SSL = True
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-
 # Release settings
-SECURE_PROXY_SSL_HEADER = True
 SECURE_SSL_REDIRECT = True
 SECURE_BROWSER_XSS_FILTER = True
 SESSION_COOKIE_SECURE = True
