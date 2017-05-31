@@ -1,0 +1,49 @@
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: 'Arial', 'sans-serif';
+  font-size: 16px;
+  font-weight: 300;
+  color: #444;
+  line-height: 30px;
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+
+h2 {
+  font-weight: normal;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-inverse .navbar-brand {
+  color: white;
+}
+
+a,
+a:hover,
+a:focus {
+  color: #19b9e7;
+  text-decoration: none;
+  -o-transition: all .3s;
+  -moz-transition: all .3s;
+  -webkit-transition: all .3s;
+  -ms-transition: all .3s;
+  transition: all .3s;
+}
+
+.divide-divider {
+  margin: 30px 0;
+  border-top: 1px solid #fff;
+}
+
+.embed-responsive-item {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
