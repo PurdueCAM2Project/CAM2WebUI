@@ -54,7 +54,7 @@ def register(request):
         form2 = AdditionalForm(request.POST)
         if form1.is_valid() and form2.is_valid():
             model1 = form1.save(commit=False)
-            model1.is_active = False
+            model1.is_active = True
             model1.save()
             model2 = form2.save(commit=False)
             model2.user = model1
