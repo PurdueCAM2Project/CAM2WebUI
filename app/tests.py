@@ -31,6 +31,5 @@ class AddTestCase(LiveServerTestCase):
 	def test_one(self):
 		pass
 
-
 		
 
