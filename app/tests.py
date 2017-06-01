@@ -52,23 +52,20 @@ class AddTestCase(LiveServerTestCase):
 
 	# Test if page title is Cam2
 
-	def test_mainpage_connection(self):
+	def test_connection(self):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/'
 		browser.get(url)
 		assert 'CAM²' in browser.title
 
-	# test if login/register page title is Login	
+		# test if login page title is Login	
 
-	def test_login_page_connection(self):
-		browser = self.selenium
-		
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'
 		browser.get(url)
 		assert 'Login' in browser.title
 
-	def test_register_page_connection(self):
-		browser = self.selenium
+		# test if register page title is Login	
+
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
 		browser.get(url)
 		assert 'Register' in browser.title
@@ -83,7 +80,10 @@ class AddTestCase(LiveServerTestCase):
 		else:
 			pass
 
-	def test_Login_Register(self):
+
+	# Test login and register locally. Generate long random strings for username and password, test if jump to redirect page
+
+	def test_Login_Register_1(self):
 		browser = self.selenium		
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
 		browser.get(url)
@@ -137,27 +137,25 @@ class AddTestCase(LiveServerTestCase):
 		    )
 		)
 
-		
 
-	"""
-	def testLogin(self):
-		browser = self.selenium		
-		url = 'http://tang184:G00d1uck@localhost:8000/login'
+	def test_Login_Register_2(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'
+
 		browser.get(url)
-
 		x = browser.find_element_by_name('username')  # Find the search box
-		x.send_keys('admin')
+		x.send_keys('wrongusername')
 		y = browser.find_element_by_name('password')
-		y.send_keys('G00d1uck')
+		y.send_keys('wrongpassword')
 		browser.find_element_by_name('submitbutton').click()
 
-		WebDriverWait(browser, 20).until(
-		    EC.text_to_be_present_in_element(
-		        (By.ID, 'someprofile'),
-		        'admin\'s Profile'
-		    )
-		)
-	"""
+		error = browser.find_element(By.ID,value="loginerror")
+
+		assert error.get_attribute("innerHTML") == 'Please enter a correct username and password. Note that both fields may be case-sensitive.'
+
+		
+
+	
 
 
 
