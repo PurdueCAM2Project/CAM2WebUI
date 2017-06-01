@@ -16,6 +16,8 @@ from django.db.utils import OperationalError
 import os
 import base64
 import uuid
+import string
+import random
 
 # test
 
@@ -26,21 +28,21 @@ class AddTestCase(LiveServerTestCase):
 
 
 	def setUp(self):
-		self.display = Display(visible=0, size=(1000, 1200))
-		self.display.start()
+		#self.display = Display(visible=0, size=(1000, 1200))
+		#self.display.start()
 		self.selenium = webdriver.Chrome()
 		super(AddTestCase, self).setUp()
 		self.port = self.live_server_url.split(":")[2]
 		self.username = os.environ['BASICAUTH_USERNAME']
 		self.password = os.environ['BASICAUTH_PASSWORD']
-		self.test_username = str(uuid.uuid4())
-		self.test_password = str(uuid.uuid4())
+		self.test_username = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+		self.test_password = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
 
 		
 	def tearDown(self):
 		self.selenium.quit()
 		super(AddTestCase, self).tearDown()
-		self.display.stop()
+		#self.display.stop()
 		return
 
 
@@ -98,7 +100,7 @@ class AddTestCase(LiveServerTestCase):
 		ln.send_keys('Case')
 
 		email = browser.find_element_by_name('email')
-		email.send_keys('agc123@yeah.net')
+		email.send_keys('test@case.net')
 
 
 		p = browser.find_element_by_name('password1')
@@ -153,9 +155,38 @@ class AddTestCase(LiveServerTestCase):
 
 		assert error.get_attribute("innerHTML") == 'Please enter a correct username and password. Note that both fields may be case-sensitive.'
 
-		
-
 	
+
+	def test_Login_Register_3(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
+		browser.get(url)
+
+		un = browser.find_element_by_name('username')
+		un.send_keys(self.test_username)
+
+		fn = browser.find_element_by_name('first_name')
+		fn.send_keys('Test')
+
+		ln = browser.find_element_by_name('last_name')
+		ln.send_keys('Case')
+
+		email = browser.find_element_by_name('email')
+		email.send_keys('test@case.net')
+
+
+		p = browser.find_element_by_name('password1')
+		cp = browser.find_element_by_name('password2')
+
+		p.send_keys(self.test_password)
+		cp.send_keys(self.test_password + '123')
+
+		browser.find_element_by_name('registerbutton').click()
+
+
+		error = browser.find_element(By.ID,value="registererror")
+
+		assert error.get_attribute("innerHTML") == 'The two password fields didn\'t match.'
 
 
 
