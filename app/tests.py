@@ -5,13 +5,14 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.utils import is_url_connectable
 
 from pyvirtualdisplay import Display
 from django.test import LiveServerTestCase
 
 from django.db import connections
 from django.db.utils import OperationalError
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
 
 import os
 import base64
@@ -272,6 +273,19 @@ class AddTestCase(LiveServerTestCase):
 		error = browser.find_element(By.ID,value="registererror")
 
 		assert error.get_attribute("innerHTML") == 'A user with that username already exists.'
+
+
+	def test_url_validate(self):
+		url = URLValidator()
+		try:
+			url('https://engineering.purdue.edu/HELPS/Publications/papers/2016CloudcomB.pdf')
+			url('https://engineering.purdue.edu/HELPS/Publications/papers/2016IEEEHST1.pdf')
+			url('https://engineering.purdue.edu/HELPS/Publications/papers/2016IEEEHSTNPD.pdf')
+			url('https://engineering.purdue.edu/HELPS/Publications/papers/KohLuEI2016.pdf')
+			url('https://engineering.purdue.edu/HELPS/Publications/papers/CCBD2015Kaseb.pdf')
+		except ValidationError as e:			
+			print(e)
+			assert False
 
 
 
