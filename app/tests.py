@@ -190,4 +190,89 @@ class AddTestCase(LiveServerTestCase):
 
 
 
+	def test_Login_Register_4(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
+		browser.get(url)
+
+		un = browser.find_element_by_name('username')
+		un.send_keys(self.test_username)
+
+		fn = browser.find_element_by_name('first_name')
+		fn.send_keys('Test')
+
+		ln = browser.find_element_by_name('last_name')
+		ln.send_keys('Case')
+
+		email = browser.find_element_by_name('email')
+		email.send_keys('test@case')
+
+
+		p = browser.find_element_by_name('password1')
+		cp = browser.find_element_by_name('password2')
+
+		p.send_keys(self.test_password)
+		cp.send_keys(self.test_password)
+
+		browser.find_element_by_name('registerbutton').click()
+
+		error = browser.find_element(By.ID,value="registererror")
+
+		assert error.get_attribute("innerHTML") == 'Enter a valid email address.'
+
+
+
+	def test_Login_Register_5(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
+		browser.get(url)
+
+		un = browser.find_element_by_name('username')
+		un.send_keys(self.test_username)
+
+		fn = browser.find_element_by_name('first_name')
+		fn.send_keys('Test')
+
+		ln = browser.find_element_by_name('last_name')
+		ln.send_keys('Case')
+
+		email = browser.find_element_by_name('email')
+		email.send_keys('test@case.net')
+
+		p = browser.find_element_by_name('password1')
+		cp = browser.find_element_by_name('password2')
+
+		p.send_keys(self.test_password)
+		cp.send_keys(self.test_password)
+
+		browser.find_element_by_name('registerbutton').click()
+
+		browser.get(url)
+
+		un = browser.find_element_by_name('username')
+		un.send_keys(self.test_username)
+
+		fn = browser.find_element_by_name('first_name')
+		fn.send_keys('Test')
+
+		ln = browser.find_element_by_name('last_name')
+		ln.send_keys('Case')
+
+		email = browser.find_element_by_name('email')
+		email.send_keys('test@case.net')
+
+		p = browser.find_element_by_name('password1')
+		cp = browser.find_element_by_name('password2')
+
+		p.send_keys(self.test_password)
+		cp.send_keys(self.test_password)
+
+		browser.find_element_by_name('registerbutton').click()
+
+		error = browser.find_element(By.ID,value="registererror")
+
+		assert error.get_attribute("innerHTML") == 'A user with that username already exists.'
+
+
+
 
