@@ -1,6 +1,6 @@
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import login, update_session_auth_hash
 from django.contrib import messages
 from django.conf import settings
@@ -14,7 +14,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm
 from django.contrib.auth.models import User
-import time
+from django.core.mail import mail_admins
 
 def index(request):
     return render(request, 'app/index.html')
@@ -60,14 +60,22 @@ def register(request):
             model2.user = model1
             model2.save()
             current_site = get_current_site(request)
-            subject = 'Activate Your MySite Account'
+            subject = 'Activate Your CAM2 Account'
             message = render_to_string('app/confirmation_email.html', {
                 'user': model1,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(model1.pk)),
                 'token': account_activation_token.make_token(model1),
             })
-            #model1.email_user(subject, message)
+            model1.email_user(subject, message)
+            """
+            admin_subject = 'New User Registered'
+            admin_message = render_to_string('app/new_user_email_to_admin.html', {
+                'user': model1,
+                'optional': model2,
+            })
+            mail_admins(admin_subject, admin_message)
+            """
             return redirect('email_confirmation_sent')
     else:
         form1 = RegistrationForm()
@@ -95,6 +103,14 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.registeruser.email_confirmed = True
         user.save()
+
+        admin_subject = 'New User Registered'
+        admin_message = render_to_string('app/new_user_email_to_admin.html', {
+            'user': user,
+            'optional': user,
+        })
+        mail_admins(admin_subject, admin_message)
+
         login(request, user, backend="django.contrib.auth.backends.ModelBackend")
         return redirect('account_activated')
     else:
