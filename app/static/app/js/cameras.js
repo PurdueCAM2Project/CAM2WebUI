@@ -1,4 +1,7 @@
 function initialize() {
+    var tableId = "1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
+    var locationColumn = "col1";
+
     google.maps.visualRefresh = true;
     var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
       (navigator.userAgent.match(/(iPod|iPhone|iPad|BlackBerry|Windows Phone|iemobile)/));
@@ -19,15 +22,29 @@ function initialize() {
       map: map,
       heatmap: { enabled: false },
       query: {
-        select: "col1",
-        from: "1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg",
-        where: ""
-      },
+        select: locationColumn,
+        from: tableId
+       },
       options: {
         styleId: 2,
         templateId: 2
       }
     });
+
+    google.maps.event.addDomListener(document.getElementById('country'),
+        'change', function() {
+            updateMap_Country(layer, tableId, locationColumn);
+        });
+
+    google.maps.event.addDomListener(document.getElementById('state'),
+        'change', function() {
+            updateMap_State(layer, tableId, locationColumn);
+        });
+
+    google.maps.event.addDomListener(document.getElementById('city'),
+        'change', function() {
+            updateMap_City(layer, tableId, locationColumn);
+        });
 
     if (isMobile) {
       var legend = document.getElementById('googft-legend');
@@ -46,3 +63,16 @@ function initialize() {
       }
     }
   }
+
+function updateMap_Country(layer, tableId, locationColumn) {
+    var country = document.getElementById('country').value;
+    layer.setOptions({
+        query: {
+            select: locationColumn,
+            from: tableId,
+            where: "col5 = '" + country + "'"
+            }
+        });
+
+}
+google.maps.event.addDomListener(window, 'load', initialize);
