@@ -73,6 +73,27 @@ function updateMap_Country(layer, tableId, locationColumn) {
             where: "col5 = '" + country + "'"
             }
         });
+}
 
+function updateMap_State(layer, tableId, locationColumn) {
+    var state = document.getElementById('state').value;
+    layer.setOptions({
+        query: {
+            select: locationColumn,
+            from: tableId,
+            where: "col4 = '" + state + "'"
+        }
+    });
+}
+
+function updateMap_City(layer, tableId, locationColumn) {
+    var city = document.getElementById('city').value;
+    layer.setOptions({
+        query: {
+            select: locationColumn,
+            from: tableId,
+            where: "col3 = '" + city + "'"
+        }
+    });
 }
 google.maps.event.addDomListener(window, 'load', initialize);
