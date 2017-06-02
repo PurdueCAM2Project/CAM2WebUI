@@ -34,7 +34,7 @@ class AddTestCase(LiveServerTestCase):
 	def setUp(self):
 		#self.display = Display(visible=0, size=(1000, 1200))
 		#self.display.start()
-		self.selenium = webdriver.Chrome(port=8080)
+		self.selenium = webdriver.Chrome()
 		super(AddTestCase, self).setUp()
 		self.port = self.live_server_url.split(":")[2]
 		self.username = os.environ['BASICAUTH_USERNAME']
