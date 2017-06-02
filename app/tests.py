@@ -14,6 +14,9 @@ from django.db.utils import OperationalError
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 
+from django.test.testcases import LiveServerThread
+
+
 import os
 import base64
 import uuid
@@ -31,7 +34,7 @@ class AddTestCase(LiveServerTestCase):
 	def setUp(self):
 		#self.display = Display(visible=0, size=(1000, 1200))
 		#self.display.start()
-		self.selenium = webdriver.Chrome()
+		self.selenium = webdriver.Chrome(port=8080)
 		super(AddTestCase, self).setUp()
 		self.port = self.live_server_url.split(":")[2]
 		self.username = os.environ['BASICAUTH_USERNAME']
@@ -286,6 +289,36 @@ class AddTestCase(LiveServerTestCase):
 		except ValidationError as e:			
 			print(e)
 			assert False
+
+	"""
+	def test_Login_Register_6(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'
+
+		browser.get(url)
+		
+		browser.find_element(By.ID,value="github_login").click()
+
+
+		un = browser.find_element_by_name('login')
+		un.send_keys('something')
+
+		pw = browser.find_element_by_name('password')
+		pw.send_keys('somepassword')
+
+		browser.find_element_by_name('commit').click()
+
+
+		WebDriverWait(browser, 5).until(
+		    EC.text_to_be_present_in_element(
+		        (By.ID, 'someprofile'),
+		        'tang184\'s profile'
+		    )
+		)
+	"""
+	
+
+
 
 
 
