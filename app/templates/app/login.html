@@ -47,8 +47,14 @@
                 <span class="fa fa-github"></span>Sign in with Github
               </a>
             </div>
+            <!--
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
-            <a href="#" onclick="signOut();">Sign out</a>
+            <a href="#" onclick="signOut();">Sign out</a> -->
+            <li>
+               <a href="{% url 'social:begin' 'google-oauth2' %}">
+                Login with Google
+               </a>
+            </li>
 
           </div>
         </div>
