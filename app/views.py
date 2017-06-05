@@ -1,6 +1,7 @@
+import os
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import login, update_session_auth_hash
 from django.contrib import messages
 from django.conf import settings
@@ -14,7 +15,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm
 from django.contrib.auth.models import User
-import time
+from django.core.mail import mail_admins
 
 def index(request):
     return render(request, 'app/index.html')
@@ -54,7 +55,7 @@ def register(request):
         form2 = AdditionalForm(request.POST)
         if form1.is_valid() and form2.is_valid():
             model1 = form1.save(commit=False)
-            model1.is_active = False
+            model1.is_active = True
             model1.save()
             model2 = form2.save(commit=False)
             model2.user = model1
@@ -68,6 +69,14 @@ def register(request):
                 'token': account_activation_token.make_token(model1),
             })
             model1.email_user(subject, message)
+
+            admin_subject = 'New User Registered'
+            admin_message = render_to_string('app/new_user_email_to_admin.html', {
+                'user': model1,
+                'optional': model2,
+            })
+            mail_admins(admin_subject, admin_message)
+
             return redirect('email_confirmation_sent')
     else:
         form1 = RegistrationForm()
@@ -95,6 +104,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.registeruser.email_confirmed = True
         user.save()
+
         login(request, user, backend="django.contrib.auth.backends.ModelBackend")
         return redirect('account_activated')
     else:

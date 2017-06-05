@@ -2,6 +2,9 @@
 db.sqlite3
 .idea/
 
+# Django collect static folders
+cam2webui/static/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

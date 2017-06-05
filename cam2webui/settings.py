@@ -17,6 +17,8 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR =  os.path.dirname(PROJECT_ROOT)
+import sys
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,14 +28,9 @@ BASE_DIR =  os.path.dirname(PROJECT_ROOT)
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [
-    'www.cam2project.net',
-    'cam2webui.herokuapp.com',
-    'localhost',
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = ['*']
 ADMINS = [('Yutong', 'huang_yutong@outlook.com')]
 
 # Application definition
@@ -51,7 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-#    'app.middleware.basicauth.BasicAuthMiddleware',
+    'app.middleware.basicauth.BasicAuthMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -128,7 +125,6 @@ DATABASES = {
 }
 # Update database configuration with $DATABASE_URL.
 DATABASE_URL = os.environ["DATABASE_URL"]
-
 if 'test' in sys.argv:
     DATABASES = {
         'default': {
@@ -171,6 +167,7 @@ USE_TZ = True
 # http://python-social-auth.readthedocs.io/en/latest/configuration/
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -185,8 +182,8 @@ SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
 # Basic auth
 # https://djangosnippets.org/snippets/2468/
 
-#BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
-#BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
+BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
+BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
@@ -195,23 +192,25 @@ LOGIN_REDIRECT_URL = 'index'
 
 # Google API KEY and Auth
 GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
-GOOGLE_CLIENT_ID = os.environ['GOOGLE_CLIENT_ID']
 
 
 #Email system
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.ecn.purdue.edu'
-EMAIL_PORT = 465
+EMAIL_HOST = os.environ['EMAIL_HOST']
+EMAIL_PORT = os.environ['EMAIL_PORT']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_USE_SSL = True
-
-
+SERVER_EMAIL = os.environ['EMAIL_HOST_USER']
+DEFAULT_FROM_EMAIL = os.environ['EMAIL_HOST_USER']
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Release settings
 SECURE_BROWSER_XSS_FILTER = True
-#SESSION_COOKIE_SECURE = True
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['GOOGLE_LOGIN_KEY']
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['GOOGLE_LOGIN_SECRET']

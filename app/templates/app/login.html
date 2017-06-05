@@ -27,28 +27,34 @@
                   <p>
                   {{ field.label_tag }}<br>
                   {{ field }}
-                  <p>
+                  </p>
                 {% endfor %}
-                <button type="submit" class="btn">Sign in</button>
+                <button type="submit" name="submitbutton" class="btn">Sign in</button>
                 {% if form.non_field_errors %}
                   <ul class='form-errors'>
                     {% for error in form.non_field_errors %}
-                        <li>{{ error }}</li>
+                        <li id="loginerror">{{ error }}</li>
                     {% endfor %}
                   </ul>
                 {% endif %}
               </form>
             </div>
           </div>
-          <div class="social-login hidden">
+          <div class="social-login">
             <h4 style="color:black;text-align:center;">- or -</h4>
             <div class="social-login-buttons">
-              <a class="btn btn-block btn-social btn-lg btn-github" href="{% url 'social:begin' 'github' %}">
+              <a class="btn btn-block btn-social btn-lg btn-github" id="github_login" href="{% url 'social:begin' 'github' %}">
                 <span class="fa fa-github"></span>Sign in with Github
               </a>
             </div>
-            <div class="g-signin2 hidden" data-onsuccess="onSignIn"></div>
-            <a class="hidden" href="#" onclick="signOut();">Sign out</a>
+            <!--
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <a href="#" onclick="signOut();">Sign out</a> -->
+            <li>
+               <a href="{% url 'social:begin' 'google-oauth2' %}">
+                Login with Google
+               </a>
+            </li>
 
           </div>
         </div>

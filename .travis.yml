@@ -1,11 +1,34 @@
 language: python
 python:
 - '3.6'
+
+dist: trusty
+
+
+before_install:
+  - sudo apt-get install xvfb
+  - sudo apt-get install -y libappindicator1 fonts-liberation
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i google-chrome*.deb
+
+before_script:
+  # google chrome standalone driver
+  - wget https://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+  - sudo mv chromedriver /usr/bin
+  - sudo chmod a+x /usr/bin/chromedriver
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+
 install:
 - pip install -r requirements.txt
 - python manage.py collectstatic --noinput
-script: pytest
+
+script: python manage.py test app
+
+
 cache: pip
+
 notifications:
   slack:
     secure: iGDu26rpYK6k4AGGh5YBilBOkvZEVBVNE6xH/pC8Y/1nDm14nRHkNIJ3JSlv4hDUKrhiYesIPja/u/ZX8sWlA+BW6BlykO0726HYQ5Ii/udh3OiZmNXBv/IDI45xfe6zf5bMxZzb+WhUVgcdN64Yr2z+qM3y9nmH2mc8yH/ci8u12mKB9i/NoDduvlfCqF74qfmMw5dHFTXsUKeazale3NvY2ZxZsil+D1lF6EZ3LaddBjkESxfFVdG8JgbD0zOD+B59Xxz21R/F9+2eWNiPOwayHt5D0hESiWyjFhQ0J0Ft1WhZ90jo/shkj0/05BKbMVFMEwsdLhTZXNy1LeMqA8y5LIyVM818GApxYsQ2HvGe1dKDWTxXD9k2n3/io8iRC8ZFBPdaZE1hQnKc3dDtkh1CP7ehxo2otFZA9TF0Oj7h081XeqBtjhSVxNVjhzuLwfVgFlXexm63i4xh5bRwkpppZdmjZD1vCPZHZnJyh4s1ESkcsiJ1PS4jyoMe81/zQ76qXdFi5eTCaApkP2t5CBjbFeUaCUus8MS+WyRScK340bF4KHzbkHgE3H+lAkI8O7LgK6Pe+QQLchz6UdwIA8S5/o7L1xLa/VMJ/RXnkLNsJHzX9Q391OhDcvJQi8WxCuZdMCgmA8sXSat/J6v551HRxh4Z0t18sR0p/6+yquw=
