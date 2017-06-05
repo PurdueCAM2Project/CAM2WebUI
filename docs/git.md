@@ -1,5 +1,5 @@
 # [Guide] Git and GitHub
-Joseph Sweeney edited this page on Mar 22 · 1 revision
+Joseph Sweeney edited this page on Mar 22
 
 ___
 

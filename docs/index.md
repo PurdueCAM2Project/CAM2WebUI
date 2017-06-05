@@ -4,11 +4,11 @@ Welcome to the CAM2WebUI wiki!
 
 [Git and GitHub](https://purduecam2project.github.io/CAM2WebUI/git)
 
-[Viewing the Website Locally](https://github.com/PurdueCAM2Project/CAM2WebUI/wiki/%5BGuide%5D-Viewing-the-Website-Locally)
+[Viewing the Website Locally](https://purduecam2project.github.io/CAM2WebUI/localsite)
 
-[Heroku](https://github.com/PurdueCAM2Project/CAM2WebUI/wiki/%5BGuide%5D-Heroku)
+[Heroku](https://purduecam2project.github.io/CAM2WebUI/heroku)
 
-[virtualenv](https://github.com/PurdueCAM2Project/CAM2WebUI/wiki/%5BGuide%5D-virtualenv)
+[virtualenv](https://purduecam2project.github.io/CAM2WebUI/virtualenv)
 
 [Html templates content modification](https://github.com/PurdueCAM2Project/CAM2WebUI/wiki/%5BGuide%5D-Html-templates-content-modification)
 
