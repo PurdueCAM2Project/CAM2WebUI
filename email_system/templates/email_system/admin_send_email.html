@@ -1,0 +1,65 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}Login{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/login.css " %}">
+{% endblock %}
+
+{% block content %}
+<div class="top-content">
+  <div class="inner-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <div class="form-box">
+            <div class="form-top">
+              <div class="form-top-left">
+                <h3>Email users</h3>
+                {% if messages %}
+                  <ul class="messages">
+                      {% for message in messages %}
+                      <li style="color: red"{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                      {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+              <div class="form-top-right"> <i class="fa fa-key"></i> </div>
+            </div>
+            <div class="form-bottom">
+              <form role="form" action="" method="post" class="mail-form">
+                {% csrf_token %}
+              </form>
+              <form role="form" action="" method="post" class="mail-form">
+                {% csrf_token %}
+                {% for field in form1 %}
+                  <p>
+                  {{ field.label_tag }}<br>
+                  {{ field }}
+                  </p>
+                {% endfor %}
+                {% for field in form2 %}
+                  <p>
+                  {{ field.label_tag }}<br>
+                  {{ field }}
+                  </p>
+                {% endfor %}
+                <button type="submit" name="submitbutton" class="btn">Send</button>
+                {% if form.non_field_errors %}
+                  <ul class='form-errors'>
+                    {% for error in form.non_field_errors %}
+                        <li id="emailerror">{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
