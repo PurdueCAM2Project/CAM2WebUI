@@ -33,6 +33,7 @@ function initialize() {
 
     google.maps.event.addDomListener(document.getElementById('country'),
         'change', function() {
+            console.log("kjldfjklsdfakl;dsa");
             updateMap_Country(layer, tableId, locationColumn);
         });
 
@@ -65,35 +66,64 @@ function initialize() {
   }
 
 function updateMap_Country(layer, tableId, locationColumn) {
-    var country = document.getElementById('country').value;
-    layer.setOptions({
-        query: {
-            select: locationColumn,
-            from: tableId,
-            where: "col5 = '" + country + "'"
+    var selected = document.getElementById('country');
+    var country = selected.value;
+    var country_name = selected.options[selected.selectedIndex].text;
+    if(selected.selectedIndex > 0) {
+        var geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode( {'address' : country_name}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                layer.setOptions({
+                    center: results[0].geometry.location
+                });
             }
         });
+
+        layer.setOptions({
+            query: {
+                select: locationColumn,
+                from: tableId,
+                where: "col5 = '" + country + "'"
+            }
+        });
+    }
+    else{
+        layer.setOptions({
+            query: {
+                select: locationColumn,
+                from: tableId,
+
+                where: "col5 = '" + GB + "'"
+            }
+        });
+    }
 }
 
 function updateMap_State(layer, tableId, locationColumn) {
     var state = document.getElementById('state').value;
-    layer.setOptions({
-        query: {
-            select: locationColumn,
-            from: tableId,
-            where: "col4 = '" + state + "'"
-        }
-    });
+    if(state) {
+        layer.setOptions({
+            query: {
+                select: locationColumn,
+                from: tableId,
+                where: "col4 = '" + state + "'"
+            }
+        });
+    }
 }
 
 function updateMap_City(layer, tableId, locationColumn) {
     var city = document.getElementById('city').value;
-    layer.setOptions({
-        query: {
-            select: locationColumn,
-            from: tableId,
-            where: "col3 = '" + city + "'"
-        }
-    });
+    if (city) {
+        layer.setOptions({
+            query: {
+                select: locationColumn,
+                from: tableId,
+                where: "col3 = '" + city + "'"
+            }
+        });
+    }
 }
+
 google.maps.event.addDomListener(window, 'load', initialize);
