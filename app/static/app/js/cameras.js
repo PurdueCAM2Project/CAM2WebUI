@@ -33,7 +33,6 @@ function initialize() {
 
     google.maps.event.addDomListener(document.getElementById('country'),
         'change', function() {
-            console.log("kjldfjklsdfakl;dsa");
             updateMap_Country(layer, tableId, locationColumn);
         });
 
@@ -69,6 +68,7 @@ function updateMap_Country(layer, tableId, locationColumn) {
     var selected = document.getElementById('country');
     var country = selected.value;
     var country_name = selected.options[selected.selectedIndex].text;
+    //console.log(selected.selectedIndex);
     if(selected.selectedIndex > 0) {
         var geocoder = new google.maps.Geocoder();
 
@@ -89,12 +89,11 @@ function updateMap_Country(layer, tableId, locationColumn) {
         });
     }
     else{
+        //console.log("happening");
         layer.setOptions({
             query: {
                 select: locationColumn,
-                from: tableId,
-
-                where: "col5 = '" + GB + "'"
+                from: tableId
             }
         });
     }
