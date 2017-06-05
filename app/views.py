@@ -21,8 +21,8 @@ def index(request):
     return render(request, 'app/index.html')
 
 def cameras(request):
-    context = {'google_api_key': settings.GOOGLE_API_KEY,
-               'google_client_id': settings.GOOGLE_CLIENT_ID}
+#    context = {'google_api_key': settings.GOOGLE_API_KEY,
+#               'google_client_id': settings.GOOGLE_CLIENT_ID}
     return render(request, 'app/cameras.html')
 
 def team(request):
