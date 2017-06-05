@@ -191,7 +191,6 @@ LOGIN_REDIRECT_URL = 'index'
 
 # Google API KEY and Auth
 GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
-GOOGLE_CLIENT_ID = os.environ['GOOGLE_CLIENT_ID']
 
 
 #Email system
@@ -202,8 +201,8 @@ EMAIL_PORT = os.environ['EMAIL_PORT']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_USE_SSL = True
-
-
+SERVER_EMAIL = os.environ['EMAIL_HOST_USER']
+DEFAULT_FROM_EMAIL = os.environ['EMAIL_HOST_USER']
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 #SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 

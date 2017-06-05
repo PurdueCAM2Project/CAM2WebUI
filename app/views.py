@@ -1,3 +1,4 @@
+import os
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -68,14 +69,14 @@ def register(request):
                 'token': account_activation_token.make_token(model1),
             })
             model1.email_user(subject, message)
-            """
+
             admin_subject = 'New User Registered'
             admin_message = render_to_string('app/new_user_email_to_admin.html', {
                 'user': model1,
                 'optional': model2,
             })
             mail_admins(admin_subject, admin_message)
-            """
+
             return redirect('email_confirmation_sent')
     else:
         form1 = RegistrationForm()
@@ -103,13 +104,6 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.registeruser.email_confirmed = True
         user.save()
-
-        admin_subject = 'New User Registered'
-        admin_message = render_to_string('app/new_user_email_to_admin.html', {
-            'user': user,
-            'optional': user,
-        })
-        mail_admins(admin_subject, admin_message)
 
         login(request, user, backend="django.contrib.auth.backends.ModelBackend")
         return redirect('account_activated')
