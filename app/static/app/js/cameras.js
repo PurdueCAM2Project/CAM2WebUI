@@ -33,7 +33,7 @@ function initialize() {
 
     google.maps.event.addDomListener(document.getElementById('country'),
         'change', function() {
-            updateMap_Country(layer, tableId, locationColumn);
+            updateMap_Country(layer, tableId, locationColumn, map);
         });
 
     google.maps.event.addDomListener(document.getElementById('state'),
@@ -64,20 +64,19 @@ function initialize() {
     }
   }
 
-function updateMap_Country(layer, tableId, locationColumn) {
+function updateMap_Country(layer, tableId, locationColumn, map) {
     var selected = document.getElementById('country');
     var country = selected.value;
     var country_name = selected.options[selected.selectedIndex].text;
     //console.log(selected.selectedIndex);
     if(selected.selectedIndex > 0) {
         var geocoder = new google.maps.Geocoder();
-
+        //console.log("yeah???");
         geocoder.geocode( {'address' : country_name}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                layer.setOptions({
-                    center: results[0].geometry.location
-                });
-            }
+            //console.log("yeah!!!");
+            while (status != google.maps.GeocoderStatus.OK) {}
+                ///console.log("yeah!!!!!!!!!!!!!!!!!");
+            map.setCenter(results[0].geometry.location);
         });
 
         layer.setOptions({
@@ -89,7 +88,8 @@ function updateMap_Country(layer, tableId, locationColumn) {
         });
     }
     else{
-        //console.log("happening");
+        map.setCenter(new google.maps.LatLng(40.363489, -98.832955));
+        map.setZoom(4);
         layer.setOptions({
             query: {
                 select: locationColumn,
