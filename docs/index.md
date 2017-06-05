@@ -12,6 +12,8 @@ Welcome to the CAM2WebUI wiki!
 
 [Html templates content modification](https://github.com/PurdueCAM2Project/CAM2WebUI/wiki/%5BGuide%5D-Html-templates-content-modification)
 
+[Set up selenium test environment](https://purduecam2project.github.io/CAM2WebUI/selenium)
+
 ### Documentation
 [User Login and Logout](https://github.com/PurdueCAM2Project/CAM2WebUI/wiki/User-Login-and-Logout)
 
