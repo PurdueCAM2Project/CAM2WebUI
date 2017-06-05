@@ -2,7 +2,7 @@ Welcome to the CAM2WebUI wiki!
 ### Setup
 [Code Style](https://github.com/PurdueCAM2Project/CAM2WebUI/wiki/%5BGuide%5D-Code-Style)
 
-[Git and GitHub](https://github.com/PurdueCAM2Project/CAM2WebUI/wiki/%5BGuide%5D-Git-and-GitHub)
+[Git and GitHub](https://purduecam2project.github.io/CAM2WebUI/git)
 
 [Viewing the Website Locally](https://github.com/PurdueCAM2Project/CAM2WebUI/wiki/%5BGuide%5D-Viewing-the-Website-Locally)
 
