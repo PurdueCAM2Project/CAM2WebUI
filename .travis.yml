@@ -7,10 +7,6 @@ dist: trusty
 
 before_install:
   - sudo apt-get install xvfb
-  - sudo apt-get install -y libappindicator1 fonts-liberation
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome*.deb
-
 before_script:
   # google chrome standalone driver
   - wget https://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
