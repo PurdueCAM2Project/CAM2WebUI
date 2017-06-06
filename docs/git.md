@@ -1,3 +1,8 @@
+# [Guide] Git and GitHub
+Joseph Sweeney edited this page on Mar 22
+
+___
+
 This page will walk you through the best practices for using Git and GitHub for CAM<sup>2</sup> front-end development.
 
 ## Table of Contents
