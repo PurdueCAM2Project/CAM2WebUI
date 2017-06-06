@@ -13,3 +13,9 @@ class RegisterUser(models.Model):
     about= models.TextField(verbose_name='About(Optional)', max_length=500, blank=True, null=True)
     email_confirmed = models.BooleanField(default=False)
 
+
+
+class faqs(models.Model):
+	questions = models.CharField(max_length=200)
+	answer = models.CharField(max_length=500)
+

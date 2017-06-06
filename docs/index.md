@@ -14,6 +14,9 @@ Welcome to the CAM2WebUI wiki!
 
 [Set up selenium test environment](https://purduecam2project.github.io/CAM2WebUI/selenium)
 
+[Django Selenium test](https://purduecam2project.github.io/CAM2WebUI/test)
+
+
 ### Documentation
 [User Login and Logout](https://github.com/PurdueCAM2Project/CAM2WebUI/wiki/User-Login-and-Logout)
 
