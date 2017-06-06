@@ -16,6 +16,7 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
+from .models import FAQs
 
 def index(request):
     return render(request, 'app/index.html')
@@ -41,7 +42,9 @@ def contact(request):
     return render(request, 'app/contact.html')
 
 def faqs(request):
-    return render(request, 'app/faq.html')
+    question_list = FAQs.object.order_by('question')
+    context = {'question_list': question_list}
+    return render(request, 'app/faq.html', context)
 
 def history(request):
     return render(request, 'app/history.html')
@@ -109,10 +112,6 @@ def activate(request, uidb64, token):
         return redirect('account_activated')
     else:
         return render(request, 'email_confirmation_invalid.html')
-
-
-def faqs(request):
-    return render(request, 'app/faq.html')
 
 @login_required
 def profile(request):

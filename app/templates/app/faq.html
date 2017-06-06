@@ -27,6 +27,10 @@
     <dd>No.</dd>
     <dt>Do you retrieve data from password-protected cameras?</dt>
     <dd>Only if the camera owner gives us the password. We will not guess the password of any camera.</dd>
+    {% for entry in question_list %}
+      <dt>{{ entry.question }}</dt>
+      <dd>{{ entry.answer }}</dd>
+    {% endfor %}
   </dl>
 </div>
 {% endblock %}
