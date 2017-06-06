@@ -1,5 +1,6 @@
 # [Guide] Set up selenium test environment
-Juncheng Tang edited this page on Mar 22
+
+Juncheng Tang edited this page on Jun 5
 
 ___
 
@@ -65,5 +66,6 @@ sudo apt-get install xvfb
 ***
 Congratulations, you have successfully built the selenium test environment. In the next guide, you will learn about how to create selenium tests and what are the test files.
 
-Next Step: 
+Next guide: [Django Selenium test](https://purduecam2project.github.io/CAM2WebUI/test)
+
 ***
