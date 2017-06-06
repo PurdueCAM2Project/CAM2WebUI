@@ -42,7 +42,7 @@ def contact(request):
     return render(request, 'app/contact.html')
 
 def faqs(request):
-    question_list = FAQs.object.order_by('question')
+    question_list = FAQs.objects.order_by('question')
     context = {'question_list': question_list}
     return render(request, 'app/faq.html', context)
 
