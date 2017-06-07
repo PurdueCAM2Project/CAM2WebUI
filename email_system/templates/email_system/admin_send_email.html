@@ -1,7 +1,7 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% load widget_tweaks %}
-{% block title %}Login{% endblock %}
+{% block title %}Email Users{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{% static "app/css/login.css " %}">
 {% endblock %}
@@ -32,10 +32,13 @@
               </form>
               <form role="form" action="" method="post" class="mail-form">
                 {% csrf_token %}
-                {% for field in form1 %}
+                {% for field in form %}
                    <p>
                      {{ field.label_tag }}<br>
                      {{ field }}
+                     {% if field.help_text %}
+                       <p style="color: grey">{{ field.help_text }}</p>
+                     {% endif %}
                      {% for error in field.errors %}
                        <p id="emailerror" style="color: red">{{ error }}</p>
                      {% endfor %}
