@@ -4,10 +4,10 @@ Juncheng Tang edited this page on Jun 6
 
 ___
 
-***
 Selenium test environment is in the previous guide [Set up selenium test environment](https://purduecam2project.github.io/CAM2WebUI/selenium). If you haven't done that, click on the link and finish building up selenium environment first.
 
-***
+___
+
 
 This page will walk you through some guides on writing django selenium testcases.
 
