@@ -16,3 +16,28 @@ class RegisterUser(models.Model):
 class FAQs(models.Model):
     question = models.CharField(max_length=200)
     answer = models.CharField(max_length=500)
+
+class History(models.Model):
+    month = models.PositiveIntegerField()
+    year = models.PositiveIntegerField()
+    event = models.CharField(max_length=500)
+
+class Publication(models.Model):
+    paperinfo = models.CharField(max_length=500)
+    paperlink = models.CharField(max_length=300)
+
+class Team(models.Model):
+    teamimg = models.CharField(max_length=300)
+
+class Leader(models.Model):
+    leaderimg = models.CharField(max_length=300)
+    leadertitle = models.CharField(max_length=50)
+    leadername = models.CharField(max_length=50)
+    leaderpagelink = models.CharField(max_length=300)
+
+class CurrentMember(models.Model):
+    currentmemberimg = models.CharField(max_length=300)
+    currentmembername = models.CharField(max_length=50)
+
+class OldMember(models.Model):
+    oldmembername = models.CharField(max_length=50)
