@@ -32,8 +32,8 @@ class AddTestCase(LiveServerTestCase):
 
 
 	def setUp(self):
-		self.display = Display(visible=0, size=(1000, 1200))
-		self.display.start()
+		#self.display = Display(visible=0, size=(1000, 1200))
+		#self.display.start()
 		self.selenium = webdriver.Chrome()
 		super(AddTestCase, self).setUp()
 		self.port = self.live_server_url.split(":")[2]
@@ -46,7 +46,7 @@ class AddTestCase(LiveServerTestCase):
 	def tearDown(self):
 		self.selenium.quit()
 		super(AddTestCase, self).tearDown()
-		self.display.stop()
+		#self.display.stop()
 		return
 
 
@@ -75,6 +75,23 @@ class AddTestCase(LiveServerTestCase):
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
 		browser.get(url)
 		assert 'Register' in browser.title
+
+
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
+		browser.get(url)
+		assert 'Cameras' in browser.title
+
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/team'
+		browser.get(url)
+		assert 'Team' in browser.title
+
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/history'
+		browser.get(url)
+		assert 'History' in browser.title
+
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/contact'
+		browser.get(url)
+		assert 'Contact us' in browser.title
 
 
 	def test_db_conneciton(self):
