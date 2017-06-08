@@ -14,7 +14,6 @@ Welcome to the CAM2WebUI wiki!
 
 [Set up selenium test environment](https://purduecam2project.github.io/CAM2WebUI/selenium)
 
-[Django Selenium test](https://purduecam2project.github.io/CAM2WebUI/test)
 
 
 ### Documentation
@@ -22,3 +21,6 @@ Welcome to the CAM2WebUI wiki!
 
 [User Registration](https://github.com/PurdueCAM2Project/CAM2WebUI/wiki/User-Registration)
 
+[Django Selenium test](https://purduecam2project.github.io/CAM2WebUI/test)
+
+[Third party login](https://purduecam2project.github.io/CAM2WebUI/oauth)
