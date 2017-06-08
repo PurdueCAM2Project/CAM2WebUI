@@ -93,6 +93,10 @@ class AddTestCase(LiveServerTestCase):
 		browser.get(url)
 		assert 'Contact us' in browser.title
 
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/publications'
+		browser.get(url)
+		assert 'Publications' in browser.title
+
 
 	def test_db_conneciton(self):
 		db_conn = connections['default']
