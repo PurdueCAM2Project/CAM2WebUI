@@ -5,9 +5,14 @@ class MultiEmailField(forms.Field):
     def to_python(self, value):
         if not value:
             return []
-        value = value.replace(' ','') #remove space
+        value = value.replace(' ', '') #remove space
+        value = value.replace('(\'\',)', '')
         value = value.replace(';', ',')
-        if value.endswith(',') or value.endswith(';'):
+        value = value.replace('(', '')
+        value = value.replace(')', '')
+        value = value.replace('\'', '')
+        print(value)
+        while value.endswith(',') or value.endswith(';'):
             value = value[:-1] #remove the last ',' or ';'
 
         return value.split(',')
@@ -20,7 +25,7 @@ class MultiEmailField(forms.Field):
             validate_email(email)
 
 class MailForm(forms.Form):
-    email = MultiEmailField(required=False, help_text='Split email by " ,  " or " ; "')
+    email = MultiEmailField(required=False, help_text='Split email by " ,  " or " ; ", or copy paste from right. "(\'  \')" will be ignored.')
     email_all_users = forms.BooleanField(required=False)
     subject = forms.CharField(max_length=255)
     message = forms.CharField(widget=forms.Textarea)
