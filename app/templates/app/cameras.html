@@ -11,8 +11,8 @@
       <form>
         <div class="form-group">
           <label for="country">Country (select one):</label>
-          <select class="form-control" id="country" onchange="drawTable();">
-            <option value="" selected="selected">All</option>
+          <select class="form-control" id="country">
+            <option value="" selected="selected"> - All - </option>
             <option value="USA">United States</option>
             <option value="AF">Afghanistan</option>
             <option value="AX">Åland Islands</option>
@@ -270,12 +270,7 @@
       <form>
         <div class="form-group">
           <label for="state">States (select one):</label>
-          <select class="form-control" id="state">
-            <option></option>
-            <option>IN</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
+          <select class="form-control" id="state"></select>
         </div>
       </form>
     </div>
@@ -283,13 +278,7 @@
       <form>
         <div class="form-group">
           <label for="city">City (select one):</label>
-          <!--//<button class="form-control" id="city"> display-->
-          <select class="form-control" id="city">
-            <option value=null></option>
-            <option>West Lafayette</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
+          <select class="form-control" id="city"></select>
         </div>
       </form>
     </div>
@@ -310,47 +299,49 @@
 
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script type="text/javascript">
-      google.load('visualization', '1', { packages: ['table'] });
-      function drawTable() {
-          // Construct query
-          var query = "SELECT 'City' " +
-              "FROM 1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
-          var country = document.getElementById('country').value;
-          if (country) {
-              query += " WHERE 'Nation' = '" + country + "' ";
-          }
-          query += " group by 'City'";
+//      google.load('visualization', '1', { packages: ['table'] });
+//      function drawTable() {
+//          // Construct query
+//          var query = "SELECT 'City' " +
+//              "FROM 1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
+//          var country = document.getElementById('country').value;
+//          if (country) {
+//              query += " WHERE 'Nation' = '" + country + "' ";
+//          }
+//          query += " group by 'City'";
+//
+//          var queryText = encodeURIComponent(query);
+//          var gvizQuery = new google.visualization.Query(
+//              'http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
+//          // Send query and draw table with data in response
+//
+//          gvizQuery.send(function (response) {
+//              var numRows = response.getDataTable().getNumberOfRows();
+//              var numCols = response.getDataTable().getNumberOfColumns();
+//
+//              var ftdata = ['<table><thead><tr>'];
+//              for (var i = 0; i < numCols; i++) {
+//                  var columnTitle = response.getDataTable().getColumnLabel(i);
+//                  ftdata.push('<th>' + columnTitle + '</th>');
+//              }
+//              ftdata.push('</tr></thead><tbody>');
+//
+//              for (var i = 0; i < numRows; i++) {
+//                  ftdata.push('<tr>');
+//                  for (var j = 0; j < numCols; j++) {
+//                      var rowValue = response.getDataTable().getValue(i, j);
+//                      ftdata.push('<td>' + rowValue + '</td>');
+//                  }
+//                  ftdata.push('</tr>');
+//              }
+//              ftdata.push('</tbody></table>');
+//              document.getElementById('ft-data').innerHTML = ftdata.join('');
+//          });
+//      }
+//
+//      google.setOnLoadCallback(drawTable);
+google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
 
-          var queryText = encodeURIComponent(query);
-          var gvizQuery = new google.visualization.Query(
-              'http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
-          // Send query and draw table with data in response
-
-          gvizQuery.send(function (response) {
-              var numRows = response.getDataTable().getNumberOfRows();
-              var numCols = response.getDataTable().getNumberOfColumns();
-
-              var ftdata = ['<table><thead><tr>'];
-              for (var i = 0; i < numCols; i++) {
-                  var columnTitle = response.getDataTable().getColumnLabel(i);
-                  ftdata.push('<th>' + columnTitle + '</th>');
-              }
-              ftdata.push('</tr></thead><tbody>');
-
-              for (var i = 0; i < numRows; i++) {
-                  ftdata.push('<tr>');
-                  for (var j = 0; j < numCols; j++) {
-                      var rowValue = response.getDataTable().getValue(i, j);
-                      ftdata.push('<td>' + rowValue + '</td>');
-                  }
-                  ftdata.push('</tr>');
-              }
-              ftdata.push('</tbody></table>');
-              document.getElementById('ft-data').innerHTML = ftdata.join('');
-          });
-      }
-
-      google.setOnLoadCallback(drawTable);
   </script>
 
 {% endblock %}
