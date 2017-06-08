@@ -1,3 +1,4 @@
+import os
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -15,13 +16,14 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
+from .models import FAQs
 
 def index(request):
     return render(request, 'app/index.html')
 
 def cameras(request):
-    context = {'google_api_key': settings.GOOGLE_API_KEY,
-               'google_client_id': settings.GOOGLE_CLIENT_ID}
+#    context = {'google_api_key': settings.GOOGLE_API_KEY,
+#               'google_client_id': settings.GOOGLE_CLIENT_ID}
     return render(request, 'app/cameras.html')
 
 def team(request):
@@ -40,7 +42,9 @@ def contact(request):
     return render(request, 'app/contact.html')
 
 def faqs(request):
-    return render(request, 'app/faq.html')
+    question_list = FAQs.objects.order_by('question')
+    context = {'question_list': question_list}
+    return render(request, 'app/faq.html', context)
 
 def history(request):
     return render(request, 'app/history.html')
@@ -68,14 +72,14 @@ def register(request):
                 'token': account_activation_token.make_token(model1),
             })
             model1.email_user(subject, message)
-            """
+
             admin_subject = 'New User Registered'
             admin_message = render_to_string('app/new_user_email_to_admin.html', {
                 'user': model1,
                 'optional': model2,
             })
             mail_admins(admin_subject, admin_message)
-            """
+
             return redirect('email_confirmation_sent')
     else:
         form1 = RegistrationForm()
@@ -104,21 +108,10 @@ def activate(request, uidb64, token):
         user.registeruser.email_confirmed = True
         user.save()
 
-        admin_subject = 'New User Registered'
-        admin_message = render_to_string('app/new_user_email_to_admin.html', {
-            'user': user,
-            'optional': user,
-        })
-        mail_admins(admin_subject, admin_message)
-
         login(request, user, backend="django.contrib.auth.backends.ModelBackend")
         return redirect('account_activated')
     else:
         return render(request, 'email_confirmation_invalid.html')
-
-
-def faqs(request):
-    return render(request, 'app/faq.html')
 
 @login_required
 def profile(request):
