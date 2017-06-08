@@ -32,8 +32,8 @@ class AddTestCase(LiveServerTestCase):
 
 
 	def setUp(self):
-		#self.display = Display(visible=0, size=(1000, 1200))
-		#self.display.start()
+		self.display = Display(visible=0, size=(1000, 1200))
+		self.display.start()
 		self.selenium = webdriver.Chrome()
 		super(AddTestCase, self).setUp()
 		self.port = self.live_server_url.split(":")[2]
@@ -46,7 +46,7 @@ class AddTestCase(LiveServerTestCase):
 	def tearDown(self):
 		self.selenium.quit()
 		super(AddTestCase, self).tearDown()
-		#self.display.stop()
+		self.display.stop()
 		return
 
 
