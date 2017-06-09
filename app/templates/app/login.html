@@ -46,15 +46,10 @@
               <a class="btn btn-block btn-social btn-lg btn-github" id="github_login" href="{% url 'social:begin' 'github' %}">
                 <span class="fa fa-github"></span>Sign in with Github
               </a>
+              <a class="btn btn-block btn-social btn-lg btn-google" href="{% url 'social:begin' 'google-oauth2' %}">
+                <span class="fa fa-google"></span> Login with Google
+              </a>
             </div>
-            <!--
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
-            <a href="#" onclick="signOut();">Sign out</a> -->
-            <li>
-               <a href="{% url 'social:begin' 'google-oauth2' %}">
-                Login with Google
-               </a>
-            </li>
 
           </div>
         </div>
