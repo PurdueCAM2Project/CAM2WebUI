@@ -6,7 +6,7 @@ class MultiEmailField(forms.Field):
         if not value:
             return []
         value = value.replace(' ', '') #remove space
-        value = value.replace('(\'\',)', '')
+        value = value.replace('None,', '')
         value = value.replace(';', ',')
         value = value.replace('(', '')
         value = value.replace(')', '')
