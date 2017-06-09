@@ -10,6 +10,7 @@
   <div class="center">Contact Us </div>
   <hr class="divide-divider">
   <form id="contact-us" method="post" action="#">
+    {% csrf_token %}
     <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
       <input type="text" name="name" id="name" required="required" class="form" placeholder="Name" />
       <input type="email" name="mail" id="mail" required="required" class="form" placeholder="Email" />
