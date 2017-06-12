@@ -3,6 +3,7 @@
 {% load static %}
 {% block css %}
 <link rel="stylesheet" href="{% static "app/css/cameras.css " %}">
+<link rel="stylesheet" href="{% static "app/css/select2.min.css " %}">
 {% endblock %}
 {% block content %}
 <div class="container">
@@ -295,8 +296,15 @@
 {% block scripts %}
   <script async defer type="text/javascript" src="https://maps.google.com/maps/api/js?v=3&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=initialize"></script>
   <script src="{% static "app/js/cameras.js" %}"></script>
+  <script src="{% static "app/js/select2.min.js" %}"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script type="text/javascript">
   google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
+  </script>
+  <script type="text/javascript">
+    $("#country").select2();
+    $("#state").select2();
+    $("#city").select2();
+    //console.log("hello world")
   </script>
 {% endblock %}
