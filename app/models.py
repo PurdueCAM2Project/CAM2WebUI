@@ -24,7 +24,7 @@ class History(models.Model):
 
 class Publication(models.Model):
     paperinfo = models.CharField(max_length=500)
-    paperlink = models.CharField(max_length=300)
+    paperlink = models.CharField(max_length=300, blank=True, null=True)
 
 class Team(models.Model):
     teamimg = models.CharField(max_length=300)
