@@ -2,18 +2,19 @@ var tableId = "1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
 var locationColumn = "col1";
 
 function initialize() {
-    //createSidebar();
-    //google.setOnLoadCallback(getCityNames);
     google.maps.visualRefresh = true;
+
     var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
         (navigator.userAgent.match(/(iPod|iPhone|iPad|BlackBerry|Windows Phone|iemobile)/));
     if (isMobile) {
         var viewport = document.querySelector("meta[name=viewport]");
         viewport.setAttribute('content', 'initial-scale=1.0, user-scalable=no');
     }
+
     var mapDiv = document.getElementById('mapCanvas');
-    //mapDiv.style.width = isMobile ? '100%' : '500px';
-    //mapDiv.style.height = isMobile ? '100%' : '300px';
+    mapDiv.style.width = isMobile ? '100%' : '500px';
+    mapDiv.style.height = isMobile ? '100%' : '300px';
+
     var map = new google.maps.Map(mapDiv, {
         center: new google.maps.LatLng(40.363489, -98.832955),
         zoom: 4,
@@ -33,21 +34,6 @@ function initialize() {
         }
     });
 
-    google.maps.event.addDomListener(document.getElementById('country'),
-        'change', function() {
-            updateMap_Country(layer, tableId, locationColumn, map);
-        });
-
-    google.maps.event.addDomListener(document.getElementById('state'),
-        'change', function() {
-            updateMap_State(layer, tableId, locationColumn);
-        });
-
-    google.maps.event.addDomListener(document.getElementById('city'),
-        'change', function() {
-            updateMap_City(layer, tableId, locationColumn);
-        });
-
     if (isMobile) {
       var legend = document.getElementById('googft-legend');
       var legendOpenButton = document.getElementById('googft-legend-open');
@@ -64,6 +50,21 @@ function initialize() {
         legendOpenButton.style.display = 'block';
       }
     }
+
+    google.maps.event.addDomListener(document.getElementById('country'),
+        'change', function() {
+            updateMap_Country(layer, tableId, locationColumn, map);
+        });
+
+    google.maps.event.addDomListener(document.getElementById('state'),
+        'change', function() {
+            updateMap_State(layer, tableId, locationColumn);
+        });
+
+    google.maps.event.addDomListener(document.getElementById('city'),
+        'change', function() {
+            updateMap_City(layer, tableId, locationColumn);
+        });
 
     google.maps.event.addDomListener(window, 'load', initialize);
   }
