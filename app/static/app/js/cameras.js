@@ -33,20 +33,17 @@ function initialize() {
         }
     });
 
-    google.maps.event.addDomListener(document.getElementById('country'),
-        'change', function() {
+    google.maps.event.addDomListener($("#country").on("change", function() {
             updateMap_Country(layer, tableId, locationColumn, map);
-        });
+        }));
 
-    google.maps.event.addDomListener(document.getElementById('state'),
-        'change', function() {
+    google.maps.event.addDomListener($("#state").on("change", function() {
             updateMap_State(layer, tableId, locationColumn);
-        });
+        }));
 
-    google.maps.event.addDomListener(document.getElementById('city'),
-        'change', function() {
+    google.maps.event.addDomListener($("#city").on("change", function() {
             updateMap_City(layer, tableId, locationColumn);
-        });
+        }));
 
     if (isMobile) {
       var legend = document.getElementById('googft-legend');
@@ -83,7 +80,7 @@ function updateMap_Country(layer, tableId, locationColumn, map) {
         geocoder.geocode( {'address' : country_name}, function(results, status) {
             //console.log("yeah!!!");
             while (status != google.maps.GeocoderStatus.OK) {}
-                ///console.log("yeah!!!!!!!!!!!!!!!!!");
+                //console.log("yeah!!!!!!!!!!!!!!!!!");
             map.setCenter(results[0].geometry.location);
             map.setZoom(4);
         });

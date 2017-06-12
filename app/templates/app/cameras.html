@@ -299,10 +299,7 @@
   <script src="{% static "app/js/cameras.js" %}"></script>
   <script src="{% static "app/js/select2.min.js" %}"></script>
 
-  <script type="text/javascript">
-    $("#country").select2();
-    $("#state").select2();
-  </script>
+
 
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script type="text/javascript">
@@ -349,5 +346,11 @@
 //      google.setOnLoadCallback(drawTable);
 google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
 
+  </script>
+  <script type="text/javascript">
+    $("#country").select2();
+    $("#state").select2();
+    $("#city").select2();
+    //console.log("hello world")
   </script>
 {% endblock %}
