@@ -139,13 +139,15 @@ function updateMap_State(layer, tableId, locationColumn) {
 function updateMap_City(layer, tableId, locationColumn) {
     var city = document.getElementById('city').value;
     var state = document.getElementById('state').value;
+    var country = document.getElementById('country').value;
+
     if (city) {
         if (state) {
             layer.setOptions({
                 query: {
                     select: locationColumn,
                     from: tableId,
-                    where: "col4 = '" + state + "' AND  " +"col3 = '" + city + "'"
+                    where: "col4 = '" + state + "' AND  " + "col3 = '" + city + "'"
                 }
             });
         }
@@ -154,7 +156,7 @@ function updateMap_City(layer, tableId, locationColumn) {
                 query: {
                     select: locationColumn,
                     from: tableId,
-                    where: "col3 = '" + city + "'"
+                    where: "col5 = '" + country + "' AND  " + "col3 = '" + city + "'"
                 }
             });
         }
@@ -173,7 +175,7 @@ function updateMap_City(layer, tableId, locationColumn) {
             query: {
                 select: locationColumn,
                 from: tableId,
-                where: "col5 = '" + document.getElementById('country').value + "'"
+                where: "col5 = '" + country + "'"
             }
         });
     }
