@@ -16,7 +16,7 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
-from .models import FAQs
+from .models import FAQ
 
 def index(request):
     return render(request, 'app/index.html')
@@ -42,7 +42,7 @@ def contact(request):
     return render(request, 'app/contact.html')
 
 def faqs(request):
-    question_list = FAQs.objects.order_by('question')
+    question_list = FAQ.objects.order_by('question')
     context = {'question_list': question_list}
     return render(request, 'app/faq.html', context)
 

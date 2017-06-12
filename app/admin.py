@@ -1,9 +1,17 @@
 from django.contrib import admin
 
-from .models import FAQs
 # Register your models here.
+from .models import FAQ
+from .models import History
+from .models import Publication
+from .models import Team
+from .models import Leader
+from .models import CurrentMember
+from .models import OldMember
 
-admin.site.register(FAQs)
+
+
+admin.site.register(FAQ)
 admin.site.register(History)
 admin.site.register(Publication)
 admin.site.register(Team)
