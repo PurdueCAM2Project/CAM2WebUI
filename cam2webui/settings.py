@@ -36,6 +36,7 @@ ADMINS = [('Yutong', 'huang_yutong@outlook.com')]
 # Application definition
 
 INSTALLED_APPS = [
+    'email_system',
     'app.apps.AppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
