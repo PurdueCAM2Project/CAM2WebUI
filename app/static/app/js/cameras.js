@@ -12,8 +12,8 @@ function initialize() {
     }
 
     var mapDiv = document.getElementById('mapCanvas');
-    mapDiv.style.width = isMobile ? '100%' : '500px';
-    mapDiv.style.height = isMobile ? '100%' : '300px';
+    // mapDiv.style.width = isMobile ? '100%' : '500px';
+    // mapDiv.style.height = isMobile ? '100%' : '300px';
 
     var map = new google.maps.Map(mapDiv, {
         center: new google.maps.LatLng(40.363489, -98.832955),
@@ -77,18 +77,16 @@ function updateMap_Country(layer, tableId, locationColumn, map) {
     var selected = document.getElementById('country');
     var country = selected.value;
     var country_name = selected.options[selected.selectedIndex].text;
-    //console.log(selected.selectedIndex);
+
     if(selected.selectedIndex > 0) {
         var geocoder = new google.maps.Geocoder();
-        //console.log("yeah???");
         geocoder.geocode( {'address' : country_name}, function(results, status) {
-            //console.log("yeah!!!");
             while (status != google.maps.GeocoderStatus.OK) {}
                 ///console.log("yeah!!!!!!!!!!!!!!!!!");
             map.setCenter(results[0].geometry.location);
-            map.setZoom(4);
+            map.fitBounds(results[0].geometry.viewport);
         });
-
+        
         layer.setOptions({
             query: {
                 select: locationColumn,
@@ -186,8 +184,9 @@ function getCityNamesbyState() {
     // set the query using the parameters
 
     var FT_Query_CityName = "SELECT 'City' " +
-        "FROM 1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
+        "FROM " + tableId;
     var country = document.getElementById('state').value;
+
     if (country) {
         FT_Query_CityName += " WHERE 'State' = '" + country + "' ";
     }
@@ -195,6 +194,7 @@ function getCityNamesbyState() {
 
     var queryText = encodeURIComponent(FT_Query_CityName);
     var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
+
     //set the callback function
     query.send(createCityDropdown);
 }
@@ -204,7 +204,7 @@ function getCityNames() {
     // set the query using the parameters
 
     var FT_Query_CityName = "SELECT 'City' " +
-        "FROM 1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
+        "FROM " + tableId;
     var country = document.getElementById('country').value;
     if (country) {
         FT_Query_CityName += " WHERE 'Nation' = '" + country + "' ";
@@ -255,7 +255,7 @@ function getStateNames(country) {
     else {
         document.getElementById('city').isDisabled = true;
         var FT_Query_StateName = "SELECT 'State' " +
-            "FROM 1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
+            "FROM " + tableId;
         var country = document.getElementById('country').value;
         if (country) {
             FT_Query_StateName += " WHERE 'Nation' = '" + country + "' ";
