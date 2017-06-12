@@ -15,7 +15,8 @@ before_script:
 install:
 - pip install -r requirements.txt
 - python manage.py collectstatic --noinput
-script: python manage.py test app
+script:
+- python manage.py test app
 cache: pip
 notifications:
   slack:
@@ -28,6 +29,7 @@ deploy:
     secure: d+T/Jrl1k7YyjF0oQL/sl0gXLfhHD3f3Eq5+1WzAA+8quzpMvrwU9xyt9PRa86el/eEvXq0esVo46mfLFT9Jm61CpFD21a6qeLs11jJzv9Z2jhaGqZtSMx7G/pOOwNN2hVPGixiFEueB0HlLXu736wgMIqijDzKgYtvRdzHsTGUpHue9ajYxXh3Xu6K5bMH5ICENj75foXZBWJflmlkiG1tAKdUHzJSElQH5/Qgy44cbw1RswHkn9yiIyBFrqnHX+7jqBfzaTCkeHMu0NFzwDGTVanvH1O16gHvY6v0YG6KG2xCsRYbZp/ncmIwmUA1iwVLOISxLDyZf3zlmkT1eubuoCiHdEQ1541dpdJj17JzwVm4eBjv7AdUPws4bSN+rBEyM4WxHf2dSiv4630coZTgekMxG3Z25w98kcgWwGvO4A0l5lPxNYrrc3NHvdHaMGuX8WUIb94DjT5WCXLJU9KI16KNO7YMvRnD6+jvjgi0xCUucLZR5+UEpk19y3THyu2jqs7xPQzUidAfhttkUbJYtUaAnvxIGeNJgm6buZRXhuBfLfi38MKW+ucsbpR8/ORws0gilzkkp0ik74h/xy62fFVupAaTJlYpgPj/RV80xwfPTi7r3rXMAJqrNsSqIOrAvFgq0DM46nMicvwp/jHDW5liec7ZBaLHeEukmW3g=
   app:
     master: cam2webui-staging
+    release: cam2webui
 after_deploy:
-- "pg:reset DATABASE_URL"
+- "python manage.py makemigrations"
 - "python manage.py migrate"

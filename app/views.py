@@ -16,7 +16,13 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
-from .models import FAQs
+from .models import FAQ
+from .models import History
+from .models import Publication
+from .models import Team
+from .models import Leader
+from .models import CurrentMember
+from .models import OldMember
 
 def index(request):
     return render(request, 'app/index.html')
@@ -42,15 +48,19 @@ def contact(request):
     return render(request, 'app/contact.html')
 
 def faqs(request):
-    question_list = FAQs.objects.order_by('question')
+    question_list = FAQ.objects.reverse()
     context = {'question_list': question_list}
     return render(request, 'app/faq.html', context)
 
 def history(request):
-    return render(request, 'app/history.html')
+    history_list = History.objects.order_by('-year', '-month')
+    context = {'history_list': history_list}
+    return render(request, 'app/history.html', context)
 
 def publications(request):
-    return render(request, 'app/publications.html')
+    publication_list = Publication.objects.reverse()
+    context = {'publication_list': publication_list}
+    return render(request, 'app/publications.html', context)
 
 def register(request):
     if request.method == 'POST':
