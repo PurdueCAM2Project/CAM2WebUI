@@ -149,17 +149,24 @@ function updateMap_State(layer, tableId, locationColumn) {
 }
 
 function updateMap_City(layer, tableId, locationColumn) {
-    var city = document.getElementById('city').value;
+    var city = $("#city").select2('val');
+    //console.log(city);
     var state = document.getElementById('state').value;
     var country = document.getElementById('country').value;
 
     if (city) {
         if (state) {
+            var t = '(';
+            for (var i = city.length - 1; i > 0; i--) {
+                t += "'" + city[i] + "'" + ','
+            }
+            t += "'" + city[0] + "'" + ')'
+            console.log(t);
             layer.setOptions({
                 query: {
                     select: locationColumn,
                     from: tableId,
-                    where: "col4 = '" + state + "' AND  " + "col3 = '" + city + "'"
+                    where: "col4 = '" + state + "' AND  " + "col3 IN " + t
                 }
             });
         }
@@ -198,11 +205,13 @@ function getCityNamesbyState() {
     // set the query using the parameters
 
     var FT_Query_CityName = "SELECT 'City' " +
+
         "FROM " + tableId;
     var country = document.getElementById('state').value;
 
     if (country) {
         FT_Query_CityName += " WHERE 'State' = '" + country + "' ";
+
     }
     FT_Query_CityName += " group by 'City'";
 
