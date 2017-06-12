@@ -201,8 +201,8 @@ function getCityNamesbyState() {
 
 function getCityNames() {
     document.getElementById('city').isDisabled = false;
-    // set the query using the parameters
 
+    // set the query using the parameters
     var FT_Query_CityName = "SELECT 'City' " +
         "FROM " + tableId;
     var country = document.getElementById('country').value;
@@ -213,6 +213,7 @@ function getCityNames() {
 
     var queryText = encodeURIComponent(FT_Query_CityName);
     var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
+
     //set the callback function
     query.send(createCityDropdown);
 }
@@ -241,7 +242,6 @@ function createCityDropdown(response) {
     countryNameDropdown += '<option value="" selected="selected"> - All - <\/option>';
     for (countryName in countryNames) {
         countryNameDropdown += "<option value='"+countryName+"'>"+countryName+"</option>"
-//    document.getElementById('country_list').innerHTML += countryName+"<br>";
     }
     countryNameDropdown += "</select>"
     document.getElementById('city').innerHTML = countryNameDropdown;
@@ -264,6 +264,7 @@ function getStateNames(country) {
 
         var queryText = encodeURIComponent(FT_Query_StateName);
         var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
+
         //set the callback function
         query.send(createStateDropdown);
     }
@@ -280,6 +281,7 @@ function createStateDropdown(response) {
     }
     //for more information on the response object, see the documentation
     //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
+
     numRows = response.getDataTable().getNumberOfRows();
     numCols = response.getDataTable().getNumberOfColumns();
 
@@ -293,7 +295,6 @@ function createStateDropdown(response) {
     countryNameDropdown += '<option value="" selected="selected"> - All - <\/option>';
     for (countryName in countryNames) {
         countryNameDropdown += "<option value='"+countryName+"'>"+countryName+"</option>"
-//    document.getElementById('country_list').innerHTML += countryName+"<br>";
     }
     countryNameDropdown += "</select>"
     document.getElementById('state').innerHTML = countryNameDropdown;
