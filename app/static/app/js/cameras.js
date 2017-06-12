@@ -145,7 +145,7 @@ function updateMap_City(layer, tableId, locationColumn) {
                 query: {
                     select: locationColumn,
                     from: tableId,
-                    where: "col3 = '" + city + "'"
+                    where: "col4 = '" + state + "' AND  " +"col3 = '" + city + "'"
                 }
             });
         }
