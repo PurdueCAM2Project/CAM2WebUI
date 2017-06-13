@@ -3,6 +3,7 @@
 {% load static %}
 {% block css %}
 <link rel="stylesheet" href="{% static "app/css/cameras.css " %}">
+<link rel="stylesheet" href="{% static "app/css/select2.min.css " %}">
 {% endblock %}
 {% block content %}
 <div class="container">
@@ -278,69 +279,27 @@
     <div class="col-xs-4">
       <form>
         <div class="form-group">
-          <label for="city">City (select one):</label>
-          <select class="form-control" id="city"></select>
+          <label for="city">City (select one or multiple ones):</label>
+          <select class="form-control" id="city" multiple="multiple" style="height: 28px"></select>
         </div>
       </form>
     </div>
-
   </div>
   <br>
   <div id="mapCanvas"></div></div>
-  <div id="FTquery2"></div>
-  <div id="sidebar" style="width:300px;height:600px; overflow:auto"></div>
-  <div id="dropdown_menu"></div>
-  <div id="ft-data"></div>
-
 {% endblock %}
 {% block scripts %}
   <script async defer type="text/javascript" src="https://maps.google.com/maps/api/js?v=3&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=initialize"></script>
   <script src="{% static "app/js/cameras.js" %}"></script>
-
+  <script src="{% static "app/js/select2.min.js" %}"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script type="text/javascript">
-//      google.load('visualization', '1', { packages: ['table'] });
-//      function drawTable() {
-//          // Construct query
-//          var query = "SELECT 'City' " +
-//              "FROM 1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
-//          var country = document.getElementById('country').value;
-//          if (country) {
-//              query += " WHERE 'Nation' = '" + country + "' ";
-//          }
-//          query += " group by 'City'";
-//
-//          var queryText = encodeURIComponent(query);
-//          var gvizQuery = new google.visualization.Query(
-//              'http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
-//          // Send query and draw table with data in response
-//
-//          gvizQuery.send(function (response) {
-//              var numRows = response.getDataTable().getNumberOfRows();
-//              var numCols = response.getDataTable().getNumberOfColumns();
-//
-//              var ftdata = ['<table><thead><tr>'];
-//              for (var i = 0; i < numCols; i++) {
-//                  var columnTitle = response.getDataTable().getColumnLabel(i);
-//                  ftdata.push('<th>' + columnTitle + '</th>');
-//              }
-//              ftdata.push('</tr></thead><tbody>');
-//
-//              for (var i = 0; i < numRows; i++) {
-//                  ftdata.push('<tr>');
-//                  for (var j = 0; j < numCols; j++) {
-//                      var rowValue = response.getDataTable().getValue(i, j);
-//                      ftdata.push('<td>' + rowValue + '</td>');
-//                  }
-//                  ftdata.push('</tr>');
-//              }
-//              ftdata.push('</tbody></table>');
-//              document.getElementById('ft-data').innerHTML = ftdata.join('');
-//          });
-//      }
-//
-//      google.setOnLoadCallback(drawTable);
-google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
-
+  google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
+  </script>
+  <script type="text/javascript">
+    $("#country").select2();
+    $("#state").select2();
+    $("#city").select2();
+    //console.log("hello world")
   </script>
 {% endblock %}
