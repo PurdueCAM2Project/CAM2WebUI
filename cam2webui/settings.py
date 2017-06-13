@@ -133,8 +133,12 @@ if 'test' in sys.argv:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+    GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_TEST_PRIVATE_KEY']
+
 else:
     DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+    GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
+
 
 
 # Password validation
@@ -164,7 +168,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
 
 
 # Django social authentication

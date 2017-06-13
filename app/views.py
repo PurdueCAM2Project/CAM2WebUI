@@ -1,6 +1,7 @@
 import os
 import json
 import urllib
+import sys
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -107,10 +108,24 @@ def register(request):
                 return redirect('email_confirmation_sent')
             else:
                 messages.error(request, 'Invalid reCAPTCHA. Please try again.')
+                if 'test' in sys.argv:
+                    sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
+                else:
+                    sitekey = os.environ['RECAPTCHA_SITE_KEY']
+        else:
+            if 'test' in sys.argv:
+                sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
+            else:
+                sitekey = os.environ['RECAPTCHA_SITE_KEY']
     else:
         form1 = RegistrationForm()
         form2 = AdditionalForm()
-    return render(request, 'app/register.html', {'form1': form1, 'form2': form2})
+        if 'test' in sys.argv:
+            sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
+        else:
+            sitekey = os.environ['RECAPTCHA_SITE_KEY']
+
+    return render(request, 'app/register.html', {'form1': form1, 'form2': form2, 'sitekey': sitekey})
 
 def email_confirmation_sent(request):
     return render(request, 'app/email_confirmation_sent.html')
