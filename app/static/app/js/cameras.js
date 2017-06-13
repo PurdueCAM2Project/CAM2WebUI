@@ -79,7 +79,53 @@ function initialize() {
         });
 
     google.maps.event.addDomListener(window, 'load', initialize);
+
+
+    //initAutoComplete(tableId);
+    google.maps.event.addDomListener(document.getElementById('go'), 'click',
+        function() {
+            var store = document.getElementById('store').value;
+
+            if (store) {
+                store = store.replace(/'/g, '\\\'');
+                var where = "'City' CONTAINS IGNORING CASE '" +
+                    store + "'";
+
+                layer.setOptions({
+                    query: {
+                        select: locationColumn,
+                        from: tableId,
+                        where: where
+                    }
+                });
+            }
+        });
   }
+
+// function initAutoComplete(tableId) {
+//     // Retrieve the unique store names using GROUP BY workaround.
+//     var queryText = encodeURIComponent(
+//         "SELECT 'City', COUNT() " +
+//         'FROM ' + tableId + " GROUP BY 'City'");
+//     var query = new google.visualization.Query(
+//         'http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+//
+//     query.send(function(response) {
+//         var numRows = response.getDataTable().getNumberOfRows();
+//
+//         // Create the list of results for display of autocomplete.
+//         var results = [];
+//         for (var i = 0; i < numRows; i++) {
+//             results.push(response.getDataTable().getValue(i, 0));
+//         }
+//
+//         // Use the results to create the autocomplete options.
+//         $('#store').autocomplete({
+//             source: results,
+//             minLength: 2
+//         });
+//     });
+// }
 
 function updateMap_Country(layer, tableId, locationColumn, map) {
 
