@@ -1,4 +1,7 @@
 import os
+import json
+import urllib
+import sys
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -67,34 +70,62 @@ def register(request):
         form1 = RegistrationForm(request.POST)
         form2 = AdditionalForm(request.POST)
         if form1.is_valid() and form2.is_valid():
-            model1 = form1.save(commit=False)
-            model1.is_active = True
-            model1.save()
-            model2 = form2.save(commit=False)
-            model2.user = model1
-            model2.save()
-            current_site = get_current_site(request)
-            subject = 'Activate Your CAM2 Account'
-            message = render_to_string('app/confirmation_email.html', {
-                'user': model1,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(model1.pk)),
-                'token': account_activation_token.make_token(model1),
-            })
-            model1.email_user(subject, message)
 
-            admin_subject = 'New User Registered'
-            admin_message = render_to_string('app/new_user_email_to_admin.html', {
-                'user': model1,
-                'optional': model2,
-            })
-            mail_admins(admin_subject, admin_message)
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            values = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_response
+            }
+            data = urllib.parse.urlencode(values).encode()
+            req =  urllib.request.Request(url, data=data)
+            response = urllib.request.urlopen(req)
+            result = json.loads(response.read().decode())
+            if result['success']:
+                model1 = form1.save(commit=False)
+                model1.is_active = True
+                model1.save()
+                model2 = form2.save(commit=False)
+                model2.user = model1
+                model2.save()
+                current_site = get_current_site(request)
+                subject = 'Activate Your CAM2 Account'
+                message = render_to_string('app/confirmation_email.html', {
+                    'user': model1,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(model1.pk)),
+                    'token': account_activation_token.make_token(model1),
+                })
+                model1.email_user(subject, message)
 
-            return redirect('email_confirmation_sent')
+                admin_subject = 'New User Registered'
+                admin_message = render_to_string('app/new_user_email_to_admin.html', {
+                    'user': model1,
+                    'optional': model2,
+                })
+                mail_admins(admin_subject, admin_message)
+
+                return redirect('email_confirmation_sent')
+            else:
+                messages.error(request, 'Invalid reCAPTCHA. Please try again.')
+                if 'test' in sys.argv:
+                    sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
+                else:
+                    sitekey = os.environ['RECAPTCHA_SITE_KEY']
+        else:
+            if 'test' in sys.argv:
+                sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
+            else:
+                sitekey = os.environ['RECAPTCHA_SITE_KEY']
     else:
         form1 = RegistrationForm()
         form2 = AdditionalForm()
-    return render(request, 'app/register.html', {'form1': form1, 'form2': form2})
+        if 'test' in sys.argv:
+            sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
+        else:
+            sitekey = os.environ['RECAPTCHA_SITE_KEY']
+
+    return render(request, 'app/register.html', {'form1': form1, 'form2': form2, 'sitekey': sitekey})
 
 def email_confirmation_sent(request):
     return render(request, 'app/email_confirmation_sent.html')
