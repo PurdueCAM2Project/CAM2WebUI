@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm #username, password
 from django.contrib.auth.models import User
 from .models import RegisterUser
+from captcha.fields import ReCaptchaField
+
 
 class RegistrationForm(UserCreationForm):
     #To add more imformation, simply define below and add it to fields
@@ -18,6 +20,9 @@ class AdditionalForm(forms.ModelForm):
     class Meta:
         model = RegisterUser
         exclude = ('user', 'email_confirmed')
+
+class FormWithCaptcha(forms.Form):
+    captcha = ReCaptchaField()
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label="Username", widget=forms.TextInput(attrs={'class' : 'loginput'}),required=True)

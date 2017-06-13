@@ -164,6 +164,9 @@ USE_L10N = True
 USE_TZ = True
 
 
+GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
+
+
 # Django social authentication
 # http://python-social-auth.readthedocs.io/en/latest/configuration/
 AUTHENTICATION_BACKENDS = (

@@ -1,4 +1,6 @@
 import os
+import json
+import urllib
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -13,7 +15,7 @@ from social_django.models import UserSocialAuth
 from django.utils.encoding import force_text, force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .tokens import account_activation_token
-from .forms import RegistrationForm, AdditionalForm
+from .forms import RegistrationForm, AdditionalForm, FormWithCaptcha
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
 from .models import FAQ
@@ -67,30 +69,44 @@ def register(request):
         form1 = RegistrationForm(request.POST)
         form2 = AdditionalForm(request.POST)
         if form1.is_valid() and form2.is_valid():
-            model1 = form1.save(commit=False)
-            model1.is_active = True
-            model1.save()
-            model2 = form2.save(commit=False)
-            model2.user = model1
-            model2.save()
-            current_site = get_current_site(request)
-            subject = 'Activate Your CAM2 Account'
-            message = render_to_string('app/confirmation_email.html', {
-                'user': model1,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(model1.pk)),
-                'token': account_activation_token.make_token(model1),
-            })
-            model1.email_user(subject, message)
 
-            admin_subject = 'New User Registered'
-            admin_message = render_to_string('app/new_user_email_to_admin.html', {
-                'user': model1,
-                'optional': model2,
-            })
-            mail_admins(admin_subject, admin_message)
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            values = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_response
+            }
+            data = urllib.parse.urlencode(values).encode()
+            req =  urllib.request.Request(url, data=data)
+            response = urllib.request.urlopen(req)
+            result = json.loads(response.read().decode())
+            if result['success']:
+                model1 = form1.save(commit=False)
+                model1.is_active = True
+                model1.save()
+                model2 = form2.save(commit=False)
+                model2.user = model1
+                model2.save()
+                current_site = get_current_site(request)
+                subject = 'Activate Your CAM2 Account'
+                message = render_to_string('app/confirmation_email.html', {
+                    'user': model1,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(model1.pk)),
+                    'token': account_activation_token.make_token(model1),
+                })
+                model1.email_user(subject, message)
 
-            return redirect('email_confirmation_sent')
+                admin_subject = 'New User Registered'
+                admin_message = render_to_string('app/new_user_email_to_admin.html', {
+                    'user': model1,
+                    'optional': model2,
+                })
+                mail_admins(admin_subject, admin_message)
+
+                return redirect('email_confirmation_sent')
+            else:
+                messages.error(request, 'Invalid reCAPTCHA. Please try again.')
     else:
         form1 = RegistrationForm()
         form2 = AdditionalForm()

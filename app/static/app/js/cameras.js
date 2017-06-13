@@ -208,10 +208,10 @@ function getCityNamesbyState() {
     var FT_Query_CityName = "SELECT 'City' " +
 
         "FROM " + tableId;
-    var country = document.getElementById('state').value;
+    var state = document.getElementById('state').value;
 
     if (country) {
-        FT_Query_CityName += " WHERE 'State' = '" + country + "' ";
+        FT_Query_CityName += " WHERE 'State' = '" + state + "' ";
 
     }
     FT_Query_CityName += " group by 'City'";
