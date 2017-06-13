@@ -36,7 +36,17 @@ def cameras(request):
     return render(request, 'app/cameras.html')
 
 def team(request):
-    return render(request, 'app/team.html')
+    team_list = Team.objects.reverse()
+    leader_list = Leader.objects.reverse()
+    curmember_list = CurrentMember.objects.order_by("currentmembername")
+    oldmember_list = OldMember.objects.order_by("oldmembername")
+    context = {
+                "team_list": team_list,
+                "leader_list": leader_list,
+                "curmember_list": curmember_list,
+                "oldmember_list": oldmember_list
+              }
+    return render(request, 'app/team.html', context)
 
 def privacy(request):
     return render(request, 'app/privacy.html')

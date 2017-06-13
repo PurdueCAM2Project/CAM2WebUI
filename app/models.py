@@ -14,30 +14,44 @@ class RegisterUser(models.Model):
     email_confirmed = models.BooleanField(default=False)
 
 class FAQ(models.Model):
-    question = models.CharField(max_length=200)
-    answer = models.CharField(max_length=500)
+    question = models.CharField(verbose_name='FAQ question', max_length=200)
+    answer = models.CharField(verbose_name='FAQ answer', max_length=500)
+    def __str__(self):
+        return "{0}".format(self.question)
 
 class History(models.Model):
     month = models.PositiveIntegerField()
     year = models.PositiveIntegerField()
-    event = models.CharField(max_length=500)
+    event = models.CharField(verbose_name='History Details', max_length=500)
+    def __str__(self):
+        event = self.event[:50] if len(self.event) > 50 else self.event
+        return "{0}/{1} {2}...".format(self.month, self.year, event)
 
 class Publication(models.Model):
-    paperinfo = models.CharField(max_length=500)
-    paperlink = models.CharField(max_length=300, blank=True, null=True)
+    paperinfo = models.CharField(verbose_name='Publication Details', max_length=500)
+    paperlink = models.CharField(verbose_name='Publication Paper Link (Optional)', max_length=300, blank=True, null=True)
+    def __str__(self):
+        paperinfo = self.paperinfo[:100] if len(self.paperinfo) > 100 else self.paperinfo
+        return "{0}...".format(paperinfo)
 
 class Team(models.Model):
-    teamimg = models.CharField(max_length=300)
+    teamimg = models.CharField(verbose_name='Team Image', max_length=300)
 
 class Leader(models.Model):
-    leaderimg = models.CharField(max_length=300)
-    leadertitle = models.CharField(max_length=50)
-    leadername = models.CharField(max_length=50)
-    leaderpagelink = models.CharField(max_length=300)
+    leaderimg = models.CharField(verbose_name='Leader Image', max_length=300)
+    leadertitle = models.CharField(verbose_name='Leader Title', max_length=50)
+    leadername = models.CharField(verbose_name='Leader Name', max_length=50)
+    leaderpagelink = models.CharField(verbose_name='Leader Page Link (Optional)', max_length=300, blank=True, null=True)
+    def __str__(self):
+        return "{0}".format(self.leadername)
 
 class CurrentMember(models.Model):
-    currentmemberimg = models.CharField(max_length=300)
-    currentmembername = models.CharField(max_length=50)
+    currentmemberimg = models.CharField(verbose_name='Current Member Image', max_length=300)
+    currentmembername = models.CharField(verbose_name='Current Member Name', max_length=50)
+    def __str__(self):
+        return "{0}".format(self.currentmembername)
 
 class OldMember(models.Model):
-    oldmembername = models.CharField(max_length=50)
+    oldmembername = models.CharField(verbose_name='Old Member Name', max_length=50)
+    def __str__(self):
+        return "{0}".format(self.oldmembername)
