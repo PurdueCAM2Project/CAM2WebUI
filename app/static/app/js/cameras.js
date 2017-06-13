@@ -150,18 +150,19 @@ function updateMap_State(layer, tableId, locationColumn) {
 
 function updateMap_City(layer, tableId, locationColumn) {
     var city = $("#city").select2('val');
-    //console.log(city);
+    console.log(city);
     var state = document.getElementById('state').value;
     var country = document.getElementById('country').value;
 
     if (city) {
+        var t = '(';
+        for (var i = city.length - 1; i > 0; i--) {
+            t += "'" + city[i] + "'" + ','
+        }
+        t += "'" + city[0] + "'" + ')'
+        console.log(t);
+
         if (state) {
-            var t = '(';
-            for (var i = city.length - 1; i > 0; i--) {
-                t += "'" + city[i] + "'" + ','
-            }
-            t += "'" + city[0] + "'" + ')'
-            console.log(t);
             layer.setOptions({
                 query: {
                     select: locationColumn,
@@ -175,7 +176,7 @@ function updateMap_City(layer, tableId, locationColumn) {
                 query: {
                     select: locationColumn,
                     from: tableId,
-                    where: "col5 = '" + country + "' AND  " + "col3 = '" + city + "'"
+                    where: "col5 = '" + country + "' AND  " + "col3 IN " + t
                 }
             });
         }
