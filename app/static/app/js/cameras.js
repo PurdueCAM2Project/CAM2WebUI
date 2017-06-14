@@ -102,30 +102,34 @@ function initialize() {
         });
   }
 
-// function initAutoComplete(tableId) {
-//     // Retrieve the unique store names using GROUP BY workaround.
-//     var queryText = encodeURIComponent(
-//         "SELECT 'City', COUNT() " +
-//         'FROM ' + tableId + " GROUP BY 'City'");
-//     var query = new google.visualization.Query(
-//         'http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
-//
-//     query.send(function(response) {
-//         var numRows = response.getDataTable().getNumberOfRows();
-//
-//         // Create the list of results for display of autocomplete.
-//         var results = [];
-//         for (var i = 0; i < numRows; i++) {
-//             results.push(response.getDataTable().getValue(i, 0));
-//         }
-//
-//         // Use the results to create the autocomplete options.
-//         $('#store').autocomplete({
-//             source: results,
-//             minLength: 2
-//         });
-//     });
-// }
+function initAutoComplete(tableId) {
+
+    console.log("1111");
+    // Retrieve the unique store names using GROUP BY workaround.
+    var queryText = encodeURIComponent(
+        "SELECT 'City', COUNT() " +
+        'FROM ' + tableId + " GROUP BY 'City'");
+    var query = new google.visualization.Query(
+        'http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+
+    query.send(function(response) {
+        var numRows = response.getDataTable().getNumberOfRows();
+
+        // Create the list of results for display of autocomplete.
+        var results = [];
+        for (var i = 0; i < numRows; i++) {
+            results.push(response.getDataTable().getValue(i, 0));
+        }
+        console.log("222222");
+        // Use the results to create the autocomplete options.
+        $('#store').autocomplete({
+            source: results,
+            minLength: 2
+        });
+    });
+
+    console.log("3333");
+}
 
 function updateMap_Country(layer, tableId, locationColumn, map) {
 
