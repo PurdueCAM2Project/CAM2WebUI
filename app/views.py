@@ -19,13 +19,7 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
-from .models import FAQ
-from .models import History
-from .models import Publication
-from .models import Team
-from .models import Leader
-from .models import CurrentMember
-from .models import OldMember
+from .models import FAQ, History, Publication, Team, Leader, CurrentMember, OldMember
 
 def index(request):
     return render(request, 'app/index.html')
