@@ -80,7 +80,7 @@ def main():
                     'mimeType' : 'application/vnd.google-apps.fusiontable',
                     'parents': os.environ['PARENT_DIR_ID']
                     }
-    media = MediaFileUpload('files/cameraLocations.csv',
+    media = MediaFileUpload('../../cameraLocations.csv',
                             mimetype='text/csv',
                             resumable=True)
     file = service.files().create(body=file_metadata,
@@ -92,7 +92,7 @@ def main():
     file_metadata = { 'name' : 'cameraLocations',
                     'mimeType' : 'application/vnd.google-apps.fusiontable',
                     }
-    media = MediaFileUpload('files/cameraLocations.csv',
+    media = MediaFileUpload('../../cameraLocations.csv',
                             mimetype='text/csv',
                             resumable=True)
     file = service.files().update(body=file_metadata,
