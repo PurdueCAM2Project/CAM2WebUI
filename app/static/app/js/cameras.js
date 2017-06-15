@@ -278,19 +278,9 @@ function getCityNamesbyState() {
 
 function getCityNames() {
     document.getElementById('city').isDisabled = false;
-
-    // set the query using the parameters
-    var FT_Query_CityName = "SELECT 'City' " +
-        "FROM " + tableId;
-    var country = document.getElementById('country').value;
-    if (country) {
-        FT_Query_CityName += " WHERE 'Nation' = '" + country + "' ";
-    }
-    FT_Query_CityName += " group by 'City'";
-
-    var queryText = encodeURIComponent(FT_Query_CityName);
     region = 'city';
-    var query = new google.visualization.Query(queryUrlHead + queryText + queryUrlTail + "populate_dropdown");
+
+    var query = new google.visualization.Query(queryUrlHead + get_querytext('City') + queryUrlTail + "populate_dropdown");
 
     //set the callback function
     query.send();
@@ -312,10 +302,10 @@ function getStateNames(country) {
         FT_Query_StateName += " group by 'State'";
 
         var queryText = encodeURIComponent(FT_Query_StateName);
-        var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
+        var query = new google.visualization.Query(queryUrlHead + queryText + queryUrlTail + "populate_dropdown");
 
         //set the callback function
-        query.send(createStateDropdown);
+        query.send();
     }
 }
 
@@ -347,6 +337,23 @@ function createStateDropdown(response) {
     }
     countryNameDropdown += "</select>"
     document.getElementById('state').innerHTML = countryNameDropdown;
+}
+
+function get_querytext(data){
+    // set the query using the parameters
+    var FT_Query = "SELECT '" + data + "' " +
+        "FROM " + tableId;
+    var state = document.getElementById('state').value;
+    var country = document.getElementById('country').value;
+    if(state){
+        FT_Query += " WHERE 'State' = '" + state + "' ";
+    }
+    else if (country) {
+        FT_Query += " WHERE 'Nation' = '" + country + "' ";
+    }
+    FT_Query += " group by '" + data + "'";
+
+    return encodeURIComponent(FT_Query);
 }
 
 function populate_dropdown(response) {
