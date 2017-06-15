@@ -237,28 +237,6 @@ function updateMap_City(layer, tableId, locationColumn) {
     }
 }
 
-function getCityNamesbyState() {
-    document.getElementById('city').isDisabled = false;
-    // set the query using the parameters
-
-    var FT_Query_CityName = "SELECT 'City' " +
-
-        "FROM " + tableId;
-    var state = document.getElementById('state').value;
-
-    if (country) {
-        FT_Query_CityName += " WHERE 'State' = '" + state + "' ";
-
-    }
-    FT_Query_CityName += " group by 'City'";
-
-    var queryText = encodeURIComponent(FT_Query_CityName);
-    //var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
-    var query =
-    //set the callback function
-    query.send(createCityDropdown);
-}
-
 function getCityNames() {
     document.getElementById('city').isDisabled = false;
     region = 'city';
