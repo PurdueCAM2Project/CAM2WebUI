@@ -1,5 +1,7 @@
 var tableId = "1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
 var locationColumn = "col1";
+var queryUrlHead = 'https://www.googleapis.com/fusiontables/v1/query?sql=';
+var queryUrlTail = '&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=';//'handler'
 
 function initialize() {
     google.maps.visualRefresh = true;
@@ -267,8 +269,8 @@ function getCityNamesbyState() {
     FT_Query_CityName += " group by 'City'";
 
     var queryText = encodeURIComponent(FT_Query_CityName);
-    var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
-
+    //var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
+    var query =
     //set the callback function
     query.send(createCityDropdown);
 }
@@ -286,39 +288,45 @@ function getCityNames() {
     FT_Query_CityName += " group by 'City'";
 
     var queryText = encodeURIComponent(FT_Query_CityName);
-    var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
+    //var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
+    console.log(queryText);
+    var query = new google.visualization.Query(queryUrlHead + queryText + queryUrlTail + "createCityDropdown");
 
     //set the callback function
-    query.send(createCityDropdown);
+    query.send();
 }
 
-function createCityDropdown(response) {
-    if (!response) {
-        alert('no response');
-        return;
-    }
-    if (response.isError()) {
-        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-        return;
-    }
-    //for more information on the response object, see the documentation
-    //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
-    numRows = response.getDataTable().getNumberOfRows();
-    numCols = response.getDataTable().getNumberOfColumns();
+ function createCityDropdown(response) {
+    // if (!response) {
+    //     alert('no response');
+    //     return;
+    // }
+    // if (response.isError()) {
+    //     alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+    //     return;
+    // }
 
-    var countryNames = {};
-    for (var i = 0; i < numRows; i++) {
-        var countryName = response.getDataTable().getValue(i,0);
-        // countryName = countryName.substring(0,countryName.indexOf('('));
-        countryNames[countryName] = countryName;
+    for (var i in response) {
+        console.log(i);
     }
-    var countryNameDropdown = "<select name='country_select' onchange='handleSelected(this)'>"
-    countryNameDropdown += '<option value="" selected="selected"> - All - <\/option>';
-    for (countryName in countryNames) {
-        countryNameDropdown += "<option value='"+countryName+"'>"+countryName+"</option>"
-    }
-    countryNameDropdown += "</select>"
-    document.getElementById('city').innerHTML = countryNameDropdown;
+    // //for more information on the response object, see the documentation
+    // //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
+    // numRows = response.getDataTable().getNumberOfRows();
+    // numCols = response.getDataTable().getNumberOfColumns();
+    //
+    // var countryNames = {};
+    // for (var i = 0; i < numRows; i++) {
+    //     var countryName = response.getDataTable().getValue(i,0);
+    //     // countryName = countryName.substring(0,countryName.indexOf('('));
+    //     countryNames[countryName] = countryName;
+    // }
+    // var countryNameDropdown = "<select name='country_select' onchange='handleSelected(this)'>"
+    // countryNameDropdown += '<option value="" selected="selected"> - All - <\/option>';
+    // for (countryName in countryNames) {
+    //     countryNameDropdown += "<option value='"+countryName+"'>"+countryName+"</option>"
+    // }
+    // countryNameDropdown += "</select>"
+    // document.getElementById('city').innerHTML = countryNameDropdown;
 }
 
 function getStateNames(country) {
