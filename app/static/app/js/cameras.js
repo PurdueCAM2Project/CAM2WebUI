@@ -288,8 +288,6 @@ function getCityNames() {
     FT_Query_CityName += " group by 'City'";
 
     var queryText = encodeURIComponent(FT_Query_CityName);
-    //var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
-    console.log(queryText);
     var query = new google.visualization.Query(queryUrlHead + queryText + queryUrlTail + "createCityDropdown");
 
     //set the callback function
@@ -297,37 +295,26 @@ function getCityNames() {
 }
 
  function createCityDropdown(response) {
-    // if (!response) {
-    //     alert('no response');
-    //     return;
-    // }
-    // if (response.isError()) {
-    //     alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-    //     return;
-    // }
+    if (!response.rows) {
+        return;
+    }
 
-    // for (var i in response.rows) {
-    //     console.log(response.rows[i][0]);
-    // }
-    //for more information on the response object, see the documentation
-    //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
     numRows = response.rows.length;
-    //numCols = response.getDataTable().getNumberOfColumns();
 
-    var countryNames = {};
+    var Names = {};
     for (var i = 0; i < numRows; i++) {
-        var countryName = response.rows[i][0];
-        // countryName = countryName.substring(0,countryName.indexOf('('));
-        countryNames[countryName] = countryName;
+        var name = response.rows[i][0];
+        Names[name] = name;
     }
-     console.log(countryNames);
-    var countryNameDropdown = "<select name='country_select' onchange='handleSelected(this)'>"
-    countryNameDropdown += '<option value="" selected="selected"> - All - <\/option>';
-    for (countryName in countryNames) {
-        countryNameDropdown += "<option value='"+countryName+"'>"+countryName+"</option>"
+
+    var dropdown = "<select name='data_select' onchange='handleSelected(this)'>"
+    dropdown += '<option value="" selected="selected"> - All - <\/option>';
+    for (name in Names) {
+        dropdown += "<option value='"+name+"'>"+name+"</option>"
     }
-    countryNameDropdown += "</select>"
-    document.getElementById('city').innerHTML = countryNameDropdown;
+    dropdown += "</select>"
+
+    document.getElementById('city').innerHTML = dropdown;
 }
 
 function getStateNames(country) {
