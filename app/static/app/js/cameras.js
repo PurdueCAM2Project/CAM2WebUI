@@ -1,7 +1,7 @@
 var tableId = "1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
 var locationColumn = "col1";
 var queryUrlHead = 'https://www.googleapis.com/fusiontables/v1/query?sql=';
-var queryUrlTail = '&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=';//'handler'
+var queryUrlTail = '&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=';
 var region = '';
 
 function initialize() {
@@ -15,8 +15,6 @@ function initialize() {
     }
 
     var mapDiv = document.getElementById('mapCanvas');
-    // mapDiv.style.width = isMobile ? '100%' : '500px';
-    // mapDiv.style.height = isMobile ? '100%' : '300px';
 
     var map = new google.maps.Map(mapDiv, {
         center: new google.maps.LatLng(40.363489, -98.832955),
@@ -65,21 +63,6 @@ function initialize() {
         legendOpenButton.style.display = 'block';
       }
     }
-
-    google.maps.event.addDomListener(document.getElementById('country'),
-        'change', function() {
-            updateMap_Country(layer, tableId, locationColumn, map);
-        });
-
-    google.maps.event.addDomListener(document.getElementById('state'),
-        'change', function() {
-            updateMap_State(layer, tableId, locationColumn);
-        });
-
-    google.maps.event.addDomListener(document.getElementById('city'),
-        'change', function() {
-            updateMap_City(layer, tableId, locationColumn);
-        });
 
     google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -186,7 +169,7 @@ function updateMap_State(layer, tableId, locationColumn) {
                 where: "col4 = '" + state + "'"
             }
         });
-        getCityNamesbyState();
+        getCityNames();//byState();
     }
     else{
         document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
@@ -203,7 +186,7 @@ function updateMap_State(layer, tableId, locationColumn) {
 
 function updateMap_City(layer, tableId, locationColumn) {
     var city = $("#city").select2('val');
-    console.log(city);
+    //console.log(city);
     var state = document.getElementById('state').value;
     var country = document.getElementById('country').value;
 
@@ -214,7 +197,7 @@ function updateMap_City(layer, tableId, locationColumn) {
         }
         t += "'" + city[0] + "'" + ')'
         console.log(t);
-
+        console.log(t.length);
         if (state) {
             layer.setOptions({
                 query: {
@@ -279,20 +262,19 @@ function getCityNamesbyState() {
 function getCityNames() {
     document.getElementById('city').isDisabled = false;
     region = 'city';
-
     var query = new google.visualization.Query(queryUrlHead + get_querytext('City') + queryUrlTail + "populate_dropdown");
-
-    //set the callback function
     query.send();
 }
 
 function getStateNames(country) {
     // set the query using the parameters
     if(country != "USA" && country != "CA"){
+        console.log("country != USA && country != CA");
         getCityNames();
     }
     else {
         document.getElementById('city').isDisabled = true;
+        region = 'state';
         var FT_Query_StateName = "SELECT 'State' " +
             "FROM " + tableId;
         var country = document.getElementById('country').value;
@@ -375,6 +357,6 @@ function populate_dropdown(response) {
         dropdown_list += "<option value='"+name+"'>"+name+"</option>"
     }
     dropdown_list += "</select>"
-
+    alert(region);
     document.getElementById(region).innerHTML = dropdown_list;
 }
