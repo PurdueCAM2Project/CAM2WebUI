@@ -147,9 +147,8 @@ function updateMap_City(layer, tableId, locationColumn) {
             t += "'" + city[i] + "'" + ','
         }
         t += "'" + city[0] + "'" + ')'
-        console.log(t);
+
         if (t != "('')" && t != "('undefined')") {
-            console.log("here");
             if (state) {
                 layer.setOptions({
                     query: {
@@ -190,17 +189,19 @@ function updateMap_City(layer, tableId, locationColumn) {
     }
 
     else{
-        layer.setOptions({
-            query: {
-                select: locationColumn,
-                from: tableId,
-                where: "col5 = '" + country + "'"
-            }
-        });
+        updateMap_resetToCountry(layer);
     }
 }
 
-
+function updateMap_resetToCountry(layer){
+    layer.setOptions({
+        query: {
+            select: locationColumn,
+            from: tableId,
+            where: "col5 = '" + country + "'"
+        }
+    });
+}
 
 function getCityNames() {
     document.getElementById('city').isDisabled = false;
