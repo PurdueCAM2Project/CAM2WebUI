@@ -17,8 +17,8 @@ except ImportError:
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/drive-python-quickstart.json
 SCOPES = 'https://www.googleapis.com/auth/drive'
-CLIENT_SECRET_FILE = '../../client_s.json'
-APPLICATION_NAME = 'Test CAM'
+CLIENT_SECRET_FILE = '../../client_secret.json'
+APPLICATION_NAME = 'CAM2 Drive API'
 
 
 def get_credentials():
@@ -65,7 +65,7 @@ def main():
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('drive', 'v3', http=http)
-
+    """
     items = getfiles(service)
     if not items:
         print('No files found.')
@@ -73,17 +73,34 @@ def main():
         print('Files:')
         for item in items:
             print('{0} ({1})'.format(item['name'], item['id']))
+    """
 
-
-    file_metadata = { 'name' : 'photo.jpg' }
-    media = MediaFileUpload('files/photo.jpg',
-                            mimetype='image/jpeg')
+    """
+    file_metadata = { 'name' : 'cameraLocations',
+                    'mimeType' : 'application/vnd.google-apps.fusiontable',
+                    'parents': os.environ['PARENT_DIR_ID']
+                    }
+    media = MediaFileUpload('files/cameraLocations.csv',
+                            mimetype='text/csv',
+                            resumable=True)
     file = service.files().create(body=file_metadata,
                                         media_body=media,
                                         fields='id').execute()
-    print ('File ID: %s' % file.get('id'))
-
-
+    print ('Successful create File ID: %s' % file.get('id'))
+    
+    """
+    file_metadata = { 'name' : 'cameraLocations',
+                    'mimeType' : 'application/vnd.google-apps.fusiontable',
+                    }
+    media = MediaFileUpload('files/cameraLocations.csv',
+                            mimetype='text/csv',
+                            resumable=True)
+    file = service.files().update(body=file_metadata,
+                                        fileId=os.environ['SPREADSHEET_ID'],
+                                        media_body=media,
+                                        fields='id').execute()
+    print ('Successful update File ID: %s' % file.get('id'))
+    
 
 if __name__ == '__main__':
     main()
