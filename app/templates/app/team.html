@@ -6,12 +6,14 @@
 {% endblock %}
 {% block content %}
 <div class="container main-content">
+  
   <hr class="divide-divider">
   <h2>The Team</h2>
   {% for team in team_list %}
     <img src="{{ team.teamimg }}" alt="team image">
   {% endfor %}
   <hr class="divide-divider">
+  
   {% if leader_list is not None %}
     <h2>Team Administrator</h2>
     {% for leader in leader_list %}
@@ -36,17 +38,17 @@
       {% endif %}
     {% endfor %}
   {% endif %}
-  <hr class="divide-divider">
   
   {% if leader_list is not None %}
+    <hr class="divide-divider">
     <h2>Current Members</h2>
     {% for member in curmember_list %}
       {% if forloop.counter0|divisibleby:"6" %}
         <div class="row">
       {% endif %}
         <div class="col-md-2 col-sm-4 col-xs-6">
-          <img src="{{ member.currentmemberimg }}" alt="{{ member.currentmembername }}">
-          <h4>{{ member.currentmembername }}</h4>
+          <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
+          <h4>{{ member.membername }}</h4>
         </div>
       {% if forloop.counter|divisibleby:"6" or forloop.last %}
         </div>
@@ -58,48 +60,15 @@
     {% endfor %}
   {% endif %}
   
-  <hr class="divide-divider">
-  <h2>Former Members</h2>
-  <div class="row">
-    <div class="col-xs-4">
-      <ul class="list-group">
-        <li class="list-group-item">He Li</li>
-        <li class="list-group-item">Anthony Fennell</li>
-        <li class="list-group-item">Zhenming Zhang</li>
-        <li class="list-group-item">Zaiwei Zhang</li>
-        <li class="list-group-item">Jiaju Yue</li>
-        <li class="list-group-item">Huanyi Guo</li>
-        <li class="list-group-item">Jeanne Deng</li>
-        <li class="list-group-item">Zhenming Zhao</li>
-        <li class="list-group-item">Anthony Kang</li>
-      </ul>
-    </div>
-    <div class="col-xs-4">
-      <ul class="list-group">
-        <li class="list-group-item">Qingshuang Chen</li>
-        <li class="list-group-item">Yuhao Chen</li>
-        <li class="list-group-item">Borui Chen</li>
-        <li class="list-group-item">Sriram Rangaramanujan</li>
-        <li class="list-group-item">James Tay</li>
-        <li class="list-group-item">Kyle McNulty</li>
-        <li class="list-group-item">Seth Bontrager</li>
-        <li class="list-group-item">Pranjit Kalita</li>
-        <li class="list-group-item">Subhav Ramachandran</li>
-      </ul>
-    </div>
-    <div class="col-xs-4">
-      <ul class="list-group">
-        <li class="list-group-item">Lucas Neumann</li>
-        <li class="list-group-item">Ahmed Kaseb</li>
-        <li class="list-group-item">Youngsol Koh</li>
-        <li class="list-group-item">Everett Berry</li>
-        <li class="list-group-item">Erik Rozolis</li>
-        <li class="list-group-item">Bolun Zhang</li>
-        <li class="list-group-item">Andrew Green</li>
-        <li class="list-group-item">Yukun An</li>
-        <li class="list-group-item">Daniel Dilger</li>
-      </ul>
-    </div>
-  </div>
+  {% if oldmember_list is not None and oldmember_list|length != 0 %}
+    <hr class="divide-divider">
+    <h2>Former Members</h2>
+    <ul class="list-group row">
+          {% for member in oldmember_list %}
+              <li class="list-group-item col-xs-12 col-sm-6 col-md-4">{{ member.membername }}</li>
+          {% endfor %}
+    </ul>
+  {% endif %}
+  
 </div>
 {% endblock %}
