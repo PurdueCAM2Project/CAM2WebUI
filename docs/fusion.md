@@ -1,4 +1,4 @@
-This page will walk you through some guides on synchronizing google fusion table. If you have not finished the document [Upload and Create Fusion Table](https://github.com/PurdueCAM2Project/CAM2WebUI/wiki/Upload-and-Create-Google-Fusion-Table), finish that first and continue to this document.
+This page will walk you through some guides on synchronizing google fusion table. If you have not finished the document [Upload and Create Fusion Table](https://purduecam2project.github.io/CAM2WebUI/drive), finish that first and continue to this document.
 
 
 ## Add the script to the spreadsheet

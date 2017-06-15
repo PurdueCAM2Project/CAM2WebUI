@@ -126,3 +126,5 @@ _______________
 
 
 Now we have successfully create our fusion table in the google drive. However, it is not bonded with the spreadsheet in the drive so if spreadsheet is updated, it will not be updated. In the next document, we will write a function to sync fusion table as soon as google spread sheet is uploaded. 
+
+Next Document: [Synchronize Google Fusion Table](https://purduecam2project.github.io/CAM2WebUI/fusion)
