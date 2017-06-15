@@ -306,27 +306,28 @@ function getCityNames() {
     //     return;
     // }
 
-    for (var i in response) {
-        console.log(i);
+    // for (var i in response.rows) {
+    //     console.log(response.rows[i][0]);
+    // }
+    //for more information on the response object, see the documentation
+    //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
+    numRows = response.rows.length;
+    //numCols = response.getDataTable().getNumberOfColumns();
+
+    var countryNames = {};
+    for (var i = 0; i < numRows; i++) {
+        var countryName = response.rows[i][0];
+        // countryName = countryName.substring(0,countryName.indexOf('('));
+        countryNames[countryName] = countryName;
     }
-    // //for more information on the response object, see the documentation
-    // //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
-    // numRows = response.getDataTable().getNumberOfRows();
-    // numCols = response.getDataTable().getNumberOfColumns();
-    //
-    // var countryNames = {};
-    // for (var i = 0; i < numRows; i++) {
-    //     var countryName = response.getDataTable().getValue(i,0);
-    //     // countryName = countryName.substring(0,countryName.indexOf('('));
-    //     countryNames[countryName] = countryName;
-    // }
-    // var countryNameDropdown = "<select name='country_select' onchange='handleSelected(this)'>"
-    // countryNameDropdown += '<option value="" selected="selected"> - All - <\/option>';
-    // for (countryName in countryNames) {
-    //     countryNameDropdown += "<option value='"+countryName+"'>"+countryName+"</option>"
-    // }
-    // countryNameDropdown += "</select>"
-    // document.getElementById('city').innerHTML = countryNameDropdown;
+     console.log(countryNames);
+    var countryNameDropdown = "<select name='country_select' onchange='handleSelected(this)'>"
+    countryNameDropdown += '<option value="" selected="selected"> - All - <\/option>';
+    for (countryName in countryNames) {
+        countryNameDropdown += "<option value='"+countryName+"'>"+countryName+"</option>"
+    }
+    countryNameDropdown += "</select>"
+    document.getElementById('city').innerHTML = countryNameDropdown;
 }
 
 function getStateNames(country) {
