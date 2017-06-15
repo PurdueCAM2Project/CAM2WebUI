@@ -19,7 +19,7 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
-from .models import FAQ, History, Publication, Team, Leader, CurrentMember, OldMember
+from .models import FAQ, History, Publication, Team, Leader, Member
 
 def index(request):
     return render(request, 'app/index.html')
@@ -32,11 +32,8 @@ def cameras(request):
 def team(request):
     team_list = Team.objects.reverse()
     leader_list = Leader.objects.reverse()
-    curmember_list = CurrentMember.objects.order_by("currentmembername")
-    oldmember_list = OldMember.objects.order_by("oldmembername")
-    if oldmember_list is not None and len(oldmember_list) != 0:
-        division_step = int((len(oldmember_list) + 2) / 3)
-        oldmember_list = [oldmember_list[i:i + division_step] for i in range(0, len(oldmember_list), division_step)]
+    curmember_list = Member.objects.filter(iscurrentmember=True).order_by("membername")
+    oldmember_list = Member.objects.filter(iscurrentmember=False).order_by("membername")
     context = {
                 "team_list": team_list,
                 "leader_list": leader_list,
