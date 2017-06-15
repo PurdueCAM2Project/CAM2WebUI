@@ -269,36 +269,6 @@ function getStateNames(country) {
     }
 }
 
-function createStateDropdown(response) {
-    if (!response) {
-        alert('no response');
-        return;
-    }
-    if (response.isError()) {
-        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-        return;
-    }
-    //for more information on the response object, see the documentation
-    //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
-
-    numRows = response.getDataTable().getNumberOfRows();
-    numCols = response.getDataTable().getNumberOfColumns();
-
-    var countryNames = {};
-    for (var i = 0; i < numRows; i++) {
-        var countryName = response.getDataTable().getValue(i,0);
-        // countryName = countryName.substring(0,countryName.indexOf('('));
-        countryNames[countryName] = countryName;
-    }
-    var countryNameDropdown = "<select name='country_select' onchange='handleSelected(this)'>"
-    countryNameDropdown += '<option value="" selected="selected"> - All - <\/option>';
-    for (countryName in countryNames) {
-        countryNameDropdown += "<option value='"+countryName+"'>"+countryName+"</option>"
-    }
-    countryNameDropdown += "</select>"
-    document.getElementById('state').innerHTML = countryNameDropdown;
-}
-
 function get_querytext(data){
     // set the query using the parameters
     var FT_Query = "SELECT '" + data + "' " +
