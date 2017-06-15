@@ -189,19 +189,16 @@ function updateMap_City(layer, tableId, locationColumn) {
     }
 
     else{
-        updateMap_resetToCountry(layer);
+        layer.setOptions({
+            query: {
+                select: locationColumn,
+                from: tableId,
+                where: "col5 = '" + country + "'"
+            }
+        });
     }
 }
 
-function updateMap_resetToCountry(layer){
-    layer.setOptions({
-        query: {
-            select: locationColumn,
-            from: tableId,
-            where: "col5 = '" + country + "'"
-        }
-    });
-}
 
 function getCityNames() {
     document.getElementById('city').isDisabled = false;
