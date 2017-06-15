@@ -40,6 +40,9 @@ def team(request):
     leader_list = Leader.objects.reverse()
     curmember_list = CurrentMember.objects.order_by("currentmembername")
     oldmember_list = OldMember.objects.order_by("oldmembername")
+    if oldmember_list is not None and len(oldmember_list) != 0:
+        division_step = int((len(oldmember_list) + 2) / 3)
+        oldmember_list = [oldmember_list[i:i + division_step] for i in range(0, len(oldmember_list), division_step)]
     context = {
                 "team_list": team_list,
                 "leader_list": leader_list,

@@ -59,6 +59,28 @@
   {% endif %}
   
   <hr class="divide-divider">
+  {% if oldmember_list is not None %}
+  <h2>Former Members</h2>
+  <div class="row">
+    <div class="col-xs-4">
+      <ul class="list-group">
+        {% for member_column in oldmember_list %}
+          {% for member in member_column %}
+            <li class="list-group-item">{{ member.oldmembername }}</li>
+          {% endfor %}
+          {% if not forloop.last %}
+              </ul>
+            </div>
+            <div class="col-xs-4">
+              <ul class="list-group">
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+  
+  
   <h2>Former Members</h2>
   <div class="row">
     <div class="col-xs-4">
