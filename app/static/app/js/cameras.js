@@ -1,3 +1,6 @@
+//to fix: state selected is NULL
+//to fix: reloading all cities
+
 var tableId = "1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
 var locationColumn = "col1";
 var queryUrlHead = 'https://www.googleapis.com/fusiontables/v1/query?sql=';
@@ -169,7 +172,7 @@ function updateMap_State(layer, tableId, locationColumn) {
                 where: "col4 = '" + state + "'"
             }
         });
-        getCityNames();//byState();
+        getCityNames();
     }
     else{
         document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
@@ -246,11 +249,13 @@ function getCityNames() {
 
 function getStateNames(country) {
     // set the query using the parameters
-    if(country != "USA" && country != "CA"){
+    if(country != "USA"){// && country != "CA")
         console.log("country != USA && country != CA");
+        document.getElementById('state').isDisabled = true;
         getCityNames();
     }
     else {
+        document.getElementById('state').isDisabled = false;
         document.getElementById('city').isDisabled = true;
         region = 'state';
         var FT_Query_StateName = "SELECT 'State' " +
