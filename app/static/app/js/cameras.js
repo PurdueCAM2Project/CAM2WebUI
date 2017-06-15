@@ -1,5 +1,3 @@
-//to fix: reloading all cities
-
 var tableId = "1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
 var locationColumn = "col1";
 var queryUrlHead = 'https://www.googleapis.com/fusiontables/v1/query?sql=';
@@ -68,56 +66,7 @@ function initialize() {
 
     google.maps.event.addDomListener(window, 'load', initialize);
 
-
-    //initAutoComplete(tableId);
-    google.maps.event.addDomListener(document.getElementById('go'), 'click',
-        function() {
-            var store = document.getElementById('store').value;
-
-            if (store) {
-                store = store.replace(/'/g, '\\\'');
-                var where = "'City' CONTAINS IGNORING CASE '" +
-                    store + "'";
-
-                layer.setOptions({
-                    query: {
-                        select: locationColumn,
-                        from: tableId,
-                        where: where
-                    }
-                });
-            }
-        });
   }
-
-function initAutoComplete(tableId) {
-
-    console.log("1111");
-    // Retrieve the unique store names using GROUP BY workaround.
-    var queryText = encodeURIComponent(
-        "SELECT 'City', COUNT() " +
-        'FROM ' + tableId + " GROUP BY 'City'");
-    var query = new google.visualization.Query(
-        'http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
-
-    query.send(function(response) {
-        var numRows = response.getDataTable().getNumberOfRows();
-
-        // Create the list of results for display of autocomplete.
-        var results = [];
-        for (var i = 0; i < numRows; i++) {
-            results.push(response.getDataTable().getValue(i, 0));
-        }
-        console.log("222222");
-        // Use the results to create the autocomplete options.
-        $('#store').autocomplete({
-            source: results,
-            minLength: 2
-        });
-    });
-
-    console.log("3333");
-}
 
 function updateMap_Country(layer, tableId, locationColumn, map) {
 
@@ -198,8 +147,9 @@ function updateMap_City(layer, tableId, locationColumn) {
             t += "'" + city[i] + "'" + ','
         }
         t += "'" + city[0] + "'" + ')'
-
+        console.log(t);
         if (t != "('')" && t != "('undefined')") {
+            console.log("here");
             if (state) {
                 layer.setOptions({
                     query: {
@@ -226,9 +176,19 @@ function updateMap_City(layer, tableId, locationColumn) {
                     from: tableId,
                     where: "col4 = '" + state + "'"
                 }
+                });
+            }
+        else{
+            layer.setOptions({
+                query: {
+                    select: locationColumn,
+                    from: tableId,
+                    where: "col5 = '" + country + "'"
+                }
             });
         }
     }
+
     else{
         layer.setOptions({
             query: {
@@ -239,6 +199,8 @@ function updateMap_City(layer, tableId, locationColumn) {
         });
     }
 }
+
+
 
 function getCityNames() {
     document.getElementById('city').isDisabled = false;
