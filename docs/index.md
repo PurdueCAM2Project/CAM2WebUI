@@ -24,3 +24,7 @@ Welcome to the CAM2WebUI wiki!
 [Django Selenium test](https://purduecam2project.github.io/CAM2WebUI/test)
 
 [Third party login](https://purduecam2project.github.io/CAM2WebUI/oauth)
+
+[Upload and Create Google Fusion Table](https://purduecam2project.github.io/CAM2WebUI/drive)
+
+[Synchronize Google Fusion Table](https://purduecam2project.github.io/CAM2WebUI/fusion)
