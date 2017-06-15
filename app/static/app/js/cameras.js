@@ -2,6 +2,7 @@ var tableId = "1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
 var locationColumn = "col1";
 var queryUrlHead = 'https://www.googleapis.com/fusiontables/v1/query?sql=';
 var queryUrlTail = '&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=';//'handler'
+var region = '';
 
 function initialize() {
     google.maps.visualRefresh = true;
@@ -288,33 +289,11 @@ function getCityNames() {
     FT_Query_CityName += " group by 'City'";
 
     var queryText = encodeURIComponent(FT_Query_CityName);
-    var query = new google.visualization.Query(queryUrlHead + queryText + queryUrlTail + "createCityDropdown");
+    region = 'city';
+    var query = new google.visualization.Query(queryUrlHead + queryText + queryUrlTail + "populate_dropdown");
 
     //set the callback function
     query.send();
-}
-
- function createCityDropdown(response) {
-    if (!response.rows) {
-        return;
-    }
-
-    numRows = response.rows.length;
-
-    var Names = {};
-    for (var i = 0; i < numRows; i++) {
-        var name = response.rows[i][0];
-        Names[name] = name;
-    }
-
-    var dropdown = "<select name='data_select' onchange='handleSelected(this)'>"
-    dropdown += '<option value="" selected="selected"> - All - <\/option>';
-    for (name in Names) {
-        dropdown += "<option value='"+name+"'>"+name+"</option>"
-    }
-    dropdown += "</select>"
-
-    document.getElementById('city').innerHTML = dropdown;
 }
 
 function getStateNames(country) {
@@ -370,3 +349,25 @@ function createStateDropdown(response) {
     document.getElementById('state').innerHTML = countryNameDropdown;
 }
 
+function populate_dropdown(response) {
+    if (!response.rows) {
+        return;
+    }
+
+    numRows = response.rows.length;
+
+    var Names = {};
+    for (var i = 0; i < numRows; i++) {
+        var name = response.rows[i][0];
+        Names[name] = name;
+    }
+
+    var dropdown_list = "<select name='data_select' onchange='handleSelected(this)'>"
+    dropdown_list += '<option value="" selected="selected"> - All - <\/option>';
+    for (name in Names) {
+        dropdown_list += "<option value='"+name+"'>"+name+"</option>"
+    }
+    dropdown_list += "</select>"
+
+    document.getElementById(region).innerHTML = dropdown_list;
+}
