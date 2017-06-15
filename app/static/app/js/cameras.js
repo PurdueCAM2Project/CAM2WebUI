@@ -1,4 +1,3 @@
-//to fix: state selected is NULL
 //to fix: reloading all cities
 
 var tableId = "1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
@@ -164,7 +163,7 @@ function updateMap_Country(layer, tableId, locationColumn, map) {
 
 function updateMap_State(layer, tableId, locationColumn) {
     var state = document.getElementById('state').value;
-    if(state) {
+    if(state && state != "NULL") {
         layer.setOptions({
             query: {
                 select: locationColumn,
@@ -199,35 +198,36 @@ function updateMap_City(layer, tableId, locationColumn) {
             t += "'" + city[i] + "'" + ','
         }
         t += "'" + city[0] + "'" + ')'
-        console.log(t);
-        console.log(t.length);
-        if (state) {
-            layer.setOptions({
-                query: {
-                    select: locationColumn,
-                    from: tableId,
-                    where: "col4 = '" + state + "' AND  " + "col3 IN " + t
-                }
-            });
-        }
-        else {
-            layer.setOptions({
-                query: {
-                    select: locationColumn,
-                    from: tableId,
-                    where: "col5 = '" + country + "' AND  " + "col3 IN " + t
-                }
-            });
-        }
-    }
-    else if(state) {
-        layer.setOptions({
-            query: {
-                select: locationColumn,
-                from: tableId,
-                where: "col4 = '" + state + "'"
+
+        if (t != "('')" && t != "('undefined')") {
+            if (state) {
+                layer.setOptions({
+                    query: {
+                        select: locationColumn,
+                        from: tableId,
+                        where: "col4 = '" + state + "' AND  " + "col3 IN " + t
+                    }
+                });
             }
-        });
+            else {
+                layer.setOptions({
+                    query: {
+                        select: locationColumn,
+                        from: tableId,
+                        where: "col5 = '" + country + "' AND  " + "col3 IN " + t
+                    }
+                });
+            }
+        }
+        else if (state) {
+            layer.setOptions({
+                query: {
+                    select: locationColumn,
+                    from: tableId,
+                    where: "col4 = '" + state + "'"
+                }
+            });
+        }
     }
     else{
         layer.setOptions({
@@ -310,6 +310,6 @@ function populate_dropdown(response) {
         dropdown_list += "<option value='"+name+"'>"+name+"</option>"
     }
     dropdown_list += "</select>"
-    alert(region);
+    //alert(region);
     document.getElementById(region).innerHTML = dropdown_list;
 }
