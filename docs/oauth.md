@@ -185,14 +185,20 @@ On the same page left side, choose 'library', in Social APIs column choose Googl
 
 ```
 
-<li>
-<a href="{% url 'social:begin' 'github' %}">Login with Github</a>
+<div class="social-login">
+<h4 style="color:black;text-align:center;">- or -</h4>
+<div class="social-login-buttons">
+  <a class="btn btn-block btn-social btn-lg btn-github" id="github_login" href="xxx">
+    <span class="fa fa-github"></span>Sign in with Github
+  </a>
+  <a class="btn btn-block btn-social btn-lg btn-google" href="xxx">
+    <span class="fa fa-google"></span> Login with Google
+  </a>
+</div>
 
-<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
-</li>
-
-Now you can try to login with github and google!
+</div>
 
 ```
 
+Now you can try to login with github and google!
 
