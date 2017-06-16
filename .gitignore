@@ -5,6 +5,11 @@ db.sqlite3
 # Django collect static folders
 cam2webui/static/
 
+# Sphinx docs build temp folders
+docs/_build/
+docs/_static/
+docs/_templates/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
