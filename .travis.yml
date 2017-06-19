@@ -34,3 +34,4 @@ deploy:
 after_deploy:
 - "python manage.py makemigrations"
 - "python manage.py migrate"
+
