@@ -7,7 +7,11 @@
 //--------------------------------------------------------------------------------------------------------------
 
 //tableId - unique id of database fusions table
-//locationColumn - column containing latitude information for camera
+//col1 - column containing latitude information for camera
+//col2 - column containing longitude information for camera
+//col3 - city column
+//col4 - state column
+//col5 - nation column
 var tableId = "1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
 var locationColumn = "col1";
 
@@ -64,7 +68,8 @@ function initialize() {
 
     //country, state and city are names for html select tags for the corresponding dropdown menus on html webpage
     //layer - to update data layer from fusion tables according to user requests
-
+    //to understand the code in updateMap* functions - to understand how the map is updated
+    //https://developers.google.com/fusiontables/docs/samples/change_query
     google.maps.event.addDomListener($("#country").on("change", function() {
             updateMap_Country(layer, map);
         }));
@@ -97,6 +102,7 @@ function initialize() {
     google.maps.event.addDomListener(window, 'load', initialize);
   }
 
+//to update map when a country is selected
 function updateMap_Country(layer, map) {
 
     //intialise state and city drop down menus to NULL values when no country is selected
@@ -127,6 +133,7 @@ function updateMap_Country(layer, map) {
             }
         });
     }
+    //else recenter on world
     else{
         map.setCenter(new google.maps.LatLng(40.363489, -98.832955));
         map.setZoom(2);
@@ -145,7 +152,9 @@ function updateMap_Country(layer, map) {
     }
 }
 
+//to update map when a state is selected
 function updateMap_State(layer) {
+    //parse data from drop down menu to format a string in the required format for a SQL query
     var state = $("#state").select2('val');
     var s = '(';
     for (var i = state.length - 1; i > 0; i--) {
@@ -153,6 +162,8 @@ function updateMap_State(layer) {
     }
     s += "'" + state[0] + "'" + ')'
 
+    //if a state other than NULL state is selected then populate markers for cameras only in that state
+    //otherwise populate markers for cameras only in thae selected country
     if(state && state != "NULL") {
         layer.setOptions({
             query: {
@@ -173,12 +184,13 @@ function updateMap_State(layer) {
             }
         });
     }
-
 }
 
+//to update map when a city is selected
 function updateMap_City(layer) {
     var city = $("#city").select2('val');
-    //console.log(city);
+
+    //parse data from drop down menu to format a string in the required format for a SQL query
     var state = $("#state").select2('val');
     var s = '(';
     for (var i = state.length - 1; i > 0; i--) {
@@ -188,16 +200,18 @@ function updateMap_City(layer) {
 
     var country = document.getElementById('country').value;
 
+    //if atleast one country has been selected
     if (city) {
+        //parse data from drop down menu to format a string in the required format for a SQL query
         var t = '(';
         for (var i = city.length - 1; i > 0; i--) {
             t += "'" + city[i] + "'" + ','
         }
         t += "'" + city[0] + "'" + ')'
 
+        //if atleast one city has been selected
         if (t != "('')" && t != "('undefined')") {
             if (state.length > 1 || state[0] != "") {
-                //console.log("happening ", state, state.length > 0, state[0] != "");
                 layer.setOptions({
                     query: {
                         select: locationColumn,
@@ -248,7 +262,7 @@ function updateMap_City(layer) {
 }
 
 
-//This function 1) updates region and 2)queries fusion tables
+//This function 1) updates region and 2) queries fusion tables
 function getCityNames() {
     document.getElementById('city').isDisabled = false;
     region = 'city';
@@ -315,11 +329,14 @@ function get_querytext(data){
     return encodeURIComponent(FT_Query);
 }
 
+//function to populate dropdown menus
 function populate_dropdown(response) {
+    //if the returned JSON object doesn't have a rows keys then it means that an error has occurred
     if (!response.rows) {
         return;
     }
 
+    //number of data items to populate
     numRows = response.rows.length;
 
     var Names = {};
@@ -334,6 +351,5 @@ function populate_dropdown(response) {
         dropdown_list += "<option value='"+name+"'>"+name+"</option>"
     }
     dropdown_list += "</select>"
-    //alert(region);
     document.getElementById(region).innerHTML = dropdown_list;
 }
