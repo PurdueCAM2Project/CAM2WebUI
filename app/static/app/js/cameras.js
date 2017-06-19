@@ -71,36 +71,36 @@ function initialize() {
     //to understand the code in updateMap* functions - to understand how the map is updated
     //https://developers.google.com/fusiontables/docs/samples/change_query
     google.maps.event.addDomListener($("#country").on("change", function() {
-            updateMap_Country(layer, map);
-        }));
+        updateMap_Country(layer, map);
+    }));
 
     google.maps.event.addDomListener($("#state").on("change", function() {
-            updateMap_State(layer);
-        }));
+        updateMap_State(layer);
+    }));
 
     google.maps.event.addDomListener($("#city").on("change", function() {
-            updateMap_City(layer);
-        }));
+        updateMap_City(layer);
+    }));
 
     if (isMobile) {
-      var legend = document.getElementById('googft-legend');
-      var legendOpenButton = document.getElementById('googft-legend-open');
-      var legendCloseButton = document.getElementById('googft-legend-close');
-      legend.style.display = 'none';
-      legendOpenButton.style.display = 'block';
-      legendCloseButton.style.display = 'block';
-      legendOpenButton.onclick = function() {
-        legend.style.display = 'block';
-        legendOpenButton.style.display = 'none';
-      }
-      legendCloseButton.onclick = function() {
+        var legend = document.getElementById('googft-legend');
+        var legendOpenButton = document.getElementById('googft-legend-open');
+        var legendCloseButton = document.getElementById('googft-legend-close');
         legend.style.display = 'none';
         legendOpenButton.style.display = 'block';
-      }
+        legendCloseButton.style.display = 'block';
+        legendOpenButton.onclick = function() {
+            legend.style.display = 'block';
+            legendOpenButton.style.display = 'none';
+        }
+        legendCloseButton.onclick = function() {
+            legend.style.display = 'none';
+            legendOpenButton.style.display = 'block';
+        }
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
-  }
+}
 
 //to update map when a country is selected
 function updateMap_Country(layer, map) {
@@ -124,7 +124,7 @@ function updateMap_Country(layer, map) {
             map.setCenter(results[0].geometry.location);
             map.fitBounds(results[0].geometry.viewport);
         });
-        
+
         layer.setOptions({
             query: {
                 select: locationColumn,
@@ -238,8 +238,8 @@ function updateMap_City(layer) {
                     from: tableId,
                     where: "col4 IN " + s
                 }
-                });
-            }
+            });
+        }
         else{
             layer.setOptions({
                 query: {
