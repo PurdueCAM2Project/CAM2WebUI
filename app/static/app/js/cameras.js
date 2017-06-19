@@ -1,10 +1,37 @@
+//Javascript code to display camera database on map
+//Authors: Deeptanshu Malik, Juncheng Tang
+
+//functions named updateMap_* are used to update the map based on form inputs from webpage
+//functions named get* are used to query data from fusion tables
+//function populate_dropdown is used to parse data from JSON object obtained by queries sent from get* functions
+//--------------------------------------------------------------------------------------------------------------
+
+//tableId - unique id of database fusions table
+//locationColumn - column containing latitude information for camera
 var tableId = "1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
 var locationColumn = "col1";
-var queryUrlHead = 'https://www.googleapis.com/fusiontables/v1/query?sql=';
+
+//Data is obtained from fusion tables by SQL queries
+//These queries are sent using HTTP GET requests and a JSON object is returned by fusion tables
+//Each query has 3 parts - a url head, the SQL query(encoded as a URL string) and the query tail
+//The link below can be referred to understand this further
+//https://stackoverflow.com/questions/21497573/fusion-tables-calling-the-api-from-a-browser-using-javascript-uncaught-typee/21511325#21511325
+
+//Note: the callback function's name must be appended as a string to queryTail
+//The callback function will be a method to parse the returned JSON object
+
+var queryUrlHead = 'https://www.googleapis.com/fusiontables/v2/query?sql=';
 var queryUrlTail = '&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=';
+
+//a global variable to track whether state or city data is to be queried from database fusiontable
 var region = '';
 
+//This function is called every time the cameras webpage is loaded
+//It initializes a map, overlays a "layer" of data from fusiontables (camera markers) on the map
+//and uses DOM properties to track user actions on the webpage
 function initialize() {
+
+    //the code below to initialize map and populate markers on map is obtained using the 'publish' tool from fusiontables
     google.maps.visualRefresh = true;
 
     var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
@@ -35,16 +62,20 @@ function initialize() {
         }
     });
 
+    //country, state and city are names for html select tags for the corresponding dropdown menus on html webpage
+    //
+    //layer - to update data layer from fusion tables according to user requests
+
     google.maps.event.addDomListener($("#country").on("change", function() {
-            updateMap_Country(layer, tableId, locationColumn, map);
+            updateMap_Country(layer, map);
         }));
 
     google.maps.event.addDomListener($("#state").on("change", function() {
-            updateMap_State(layer, tableId, locationColumn);
+            updateMap_State(layer);
         }));
 
     google.maps.event.addDomListener($("#city").on("change", function() {
-            updateMap_City(layer, tableId, locationColumn);
+            updateMap_City(layer);
         }));
 
     if (isMobile) {
@@ -65,11 +96,11 @@ function initialize() {
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
-
   }
 
-function updateMap_Country(layer, tableId, locationColumn, map) {
+function updateMap_Country(layer, map) {
 
+    //intialise state and city drop down menus to NULL values when no country is selected
     document.getElementById('state').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
     document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
 
@@ -77,11 +108,14 @@ function updateMap_Country(layer, tableId, locationColumn, map) {
     var country = selected.value;
     var country_name = selected.options[selected.selectedIndex].text;
 
+    //if an option other than All is selected from the country dropdown menu then
+    //recenter map and zoom in on selected country
+    //to do so send a geocoding request - as explained below
+    //https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?csw=1
     if(selected.selectedIndex > 0) {
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode( {'address' : country_name}, function(results, status) {
             while (status != google.maps.GeocoderStatus.OK) {}
-                //console.log("yeah!!!!!!!!!!!!!!!!!");
             map.setCenter(results[0].geometry.location);
             map.fitBounds(results[0].geometry.viewport);
         });
@@ -105,12 +139,14 @@ function updateMap_Country(layer, tableId, locationColumn, map) {
         });
     }
 
+    //if a country has been selected from the dropdown menu then
+    //query database for camera data in its states and city data
     if(country) {
         getStateNames(country);
     }
 }
 
-function updateMap_State(layer, tableId, locationColumn) {
+function updateMap_State(layer) {
     var state = $("#state").select2('val');
     var s = '(';
     for (var i = state.length - 1; i > 0; i--) {
@@ -141,7 +177,7 @@ function updateMap_State(layer, tableId, locationColumn) {
 
 }
 
-function updateMap_City(layer, tableId, locationColumn) {
+function updateMap_City(layer) {
     var city = $("#city").select2('val');
     //console.log(city);
     var state = $("#state").select2('val');
@@ -210,6 +246,8 @@ function updateMap_City(layer, tableId, locationColumn) {
         });
     }
 }
+
+
 
 
 function getCityNames() {
