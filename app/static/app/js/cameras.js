@@ -111,13 +111,19 @@ function updateMap_Country(layer, tableId, locationColumn, map) {
 }
 
 function updateMap_State(layer, tableId, locationColumn) {
-    var state = document.getElementById('state').value;
+    var state = $("#state").select2('val');
+    var s = '(';
+    for (var i = state.length - 1; i > 0; i--) {
+        s += "'" + state[i] + "'" + ','
+    }
+    s += "'" + state[0] + "'" + ')'
+
     if(state && state != "NULL") {
         layer.setOptions({
             query: {
                 select: locationColumn,
                 from: tableId,
-                where: "col4 = '" + state + "'"
+                where: "col4 IN " + s
             }
         });
         getCityNames();
@@ -138,7 +144,13 @@ function updateMap_State(layer, tableId, locationColumn) {
 function updateMap_City(layer, tableId, locationColumn) {
     var city = $("#city").select2('val');
     //console.log(city);
-    var state = document.getElementById('state').value;
+    var state = $("#state").select2('val');
+    var s = '(';
+    for (var i = state.length - 1; i > 0; i--) {
+        s += "'" + state[i] + "'" + ','
+    }
+    s += "'" + state[0] + "'" + ')'
+
     var country = document.getElementById('country').value;
 
     if (city) {
@@ -154,7 +166,7 @@ function updateMap_City(layer, tableId, locationColumn) {
                     query: {
                         select: locationColumn,
                         from: tableId,
-                        where: "col4 = '" + state + "' AND  " + "col3 IN " + t
+                        where: "col4 IN " + s + " AND  " + "col3 IN " + t
                     }
                 });
             }
@@ -238,10 +250,17 @@ function get_querytext(data){
     // set the query using the parameters
     var FT_Query = "SELECT '" + data + "' " +
         "FROM " + tableId;
-    var state = document.getElementById('state').value;
+    var state = $("#state").select2('val');
+    var s = '(';
+    for (var i = state.length - 1; i > 0; i--) {
+        s += "'" + state[i] + "'" + ','
+    }
+    s += "'" + state[0] + "'" + ')'
+
     var country = document.getElementById('country').value;
     if(state){
-        FT_Query += " WHERE 'State' = '" + state + "' ";
+        FT_Query += " WHERE 'State' IN " + s;
+        console.log(FT_Query);
     }
     else if (country) {
         FT_Query += " WHERE 'Nation' = '" + country + "' ";
