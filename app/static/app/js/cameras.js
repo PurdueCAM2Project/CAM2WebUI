@@ -1,5 +1,8 @@
 var tableId = "1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
 var locationColumn = "col1";
+var queryUrlHead = 'https://www.googleapis.com/fusiontables/v1/query?sql=';
+var queryUrlTail = '&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=';
+var region = '';
 
 function initialize() {
     google.maps.visualRefresh = true;
@@ -12,8 +15,6 @@ function initialize() {
     }
 
     var mapDiv = document.getElementById('mapCanvas');
-    // mapDiv.style.width = isMobile ? '100%' : '500px';
-    // mapDiv.style.height = isMobile ? '100%' : '300px';
 
     var map = new google.maps.Map(mapDiv, {
         center: new google.maps.LatLng(40.363489, -98.832955),
@@ -63,22 +64,8 @@ function initialize() {
       }
     }
 
-    google.maps.event.addDomListener(document.getElementById('country'),
-        'change', function() {
-            updateMap_Country(layer, tableId, locationColumn, map);
-        });
-
-    google.maps.event.addDomListener(document.getElementById('state'),
-        'change', function() {
-            updateMap_State(layer, tableId, locationColumn);
-        });
-
-    google.maps.event.addDomListener(document.getElementById('city'),
-        'change', function() {
-            updateMap_City(layer, tableId, locationColumn);
-        });
-
     google.maps.event.addDomListener(window, 'load', initialize);
+
   }
 
 function updateMap_Country(layer, tableId, locationColumn, map) {
@@ -124,16 +111,22 @@ function updateMap_Country(layer, tableId, locationColumn, map) {
 }
 
 function updateMap_State(layer, tableId, locationColumn) {
-    var state = document.getElementById('state').value;
-    if(state) {
+    var state = $("#state").select2('val');
+    var s = '(';
+    for (var i = state.length - 1; i > 0; i--) {
+        s += "'" + state[i] + "'" + ','
+    }
+    s += "'" + state[0] + "'" + ')'
+
+    if(state && state != "NULL") {
         layer.setOptions({
             query: {
                 select: locationColumn,
                 from: tableId,
-                where: "col4 = '" + state + "'"
+                where: "col4 IN " + s
             }
         });
-        getCityNamesbyState();
+        getCityNames();
     }
     else{
         document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
@@ -150,8 +143,14 @@ function updateMap_State(layer, tableId, locationColumn) {
 
 function updateMap_City(layer, tableId, locationColumn) {
     var city = $("#city").select2('val');
-    console.log(city);
-    var state = document.getElementById('state').value;
+    //console.log(city);
+    var state = $("#state").select2('val');
+    var s = '(';
+    for (var i = state.length - 1; i > 0; i--) {
+        s += "'" + state[i] + "'" + ','
+    }
+    s += "'" + state[0] + "'" + ')'
+
     var country = document.getElementById('country').value;
 
     if (city) {
@@ -160,36 +159,47 @@ function updateMap_City(layer, tableId, locationColumn) {
             t += "'" + city[i] + "'" + ','
         }
         t += "'" + city[0] + "'" + ')'
-        console.log(t);
 
-        if (state) {
-            layer.setOptions({
-                query: {
-                    select: locationColumn,
-                    from: tableId,
-                    where: "col4 = '" + state + "' AND  " + "col3 IN " + t
-                }
-            });
-        }
-        else {
-            layer.setOptions({
-                query: {
-                    select: locationColumn,
-                    from: tableId,
-                    where: "col5 = '" + country + "' AND  " + "col3 IN " + t
-                }
-            });
-        }
-    }
-    else if(state) {
-        layer.setOptions({
-            query: {
-                select: locationColumn,
-                from: tableId,
-                where: "col4 = '" + state + "'"
+        if (t != "('')" && t != "('undefined')") {
+            if (state) {
+                layer.setOptions({
+                    query: {
+                        select: locationColumn,
+                        from: tableId,
+                        where: "col4 IN " + s + " AND  " + "col3 IN " + t
+                    }
+                });
             }
-        });
+            else {
+                layer.setOptions({
+                    query: {
+                        select: locationColumn,
+                        from: tableId,
+                        where: "col5 = '" + country + "' AND  " + "col3 IN " + t
+                    }
+                });
+            }
+        }
+        else if (state) {
+            layer.setOptions({
+                query: {
+                    select: locationColumn,
+                    from: tableId,
+                    where: "col4 = '" + state + "'"
+                }
+                });
+            }
+        else{
+            layer.setOptions({
+                query: {
+                    select: locationColumn,
+                    from: tableId,
+                    where: "col5 = '" + country + "'"
+                }
+            });
+        }
     }
+
     else{
         layer.setOptions({
             query: {
@@ -201,83 +211,25 @@ function updateMap_City(layer, tableId, locationColumn) {
     }
 }
 
-function getCityNamesbyState() {
-    document.getElementById('city').isDisabled = false;
-    // set the query using the parameters
-
-    var FT_Query_CityName = "SELECT 'City' " +
-
-        "FROM " + tableId;
-    var state = document.getElementById('state').value;
-
-    if (country) {
-        FT_Query_CityName += " WHERE 'State' = '" + state + "' ";
-
-    }
-    FT_Query_CityName += " group by 'City'";
-
-    var queryText = encodeURIComponent(FT_Query_CityName);
-    var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
-
-    //set the callback function
-    query.send(createCityDropdown);
-}
 
 function getCityNames() {
     document.getElementById('city').isDisabled = false;
-
-    // set the query using the parameters
-    var FT_Query_CityName = "SELECT 'City' " +
-        "FROM " + tableId;
-    var country = document.getElementById('country').value;
-    if (country) {
-        FT_Query_CityName += " WHERE 'Nation' = '" + country + "' ";
-    }
-    FT_Query_CityName += " group by 'City'";
-
-    var queryText = encodeURIComponent(FT_Query_CityName);
-    var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
-
-    //set the callback function
-    query.send(createCityDropdown);
-}
-
-function createCityDropdown(response) {
-    if (!response) {
-        alert('no response');
-        return;
-    }
-    if (response.isError()) {
-        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-        return;
-    }
-    //for more information on the response object, see the documentation
-    //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
-    numRows = response.getDataTable().getNumberOfRows();
-    numCols = response.getDataTable().getNumberOfColumns();
-
-    var countryNames = {};
-    for (var i = 0; i < numRows; i++) {
-        var countryName = response.getDataTable().getValue(i,0);
-        // countryName = countryName.substring(0,countryName.indexOf('('));
-        countryNames[countryName] = countryName;
-    }
-    var countryNameDropdown = "<select name='country_select' onchange='handleSelected(this)'>"
-    countryNameDropdown += '<option value="" selected="selected"> - All - <\/option>';
-    for (countryName in countryNames) {
-        countryNameDropdown += "<option value='"+countryName+"'>"+countryName+"</option>"
-    }
-    countryNameDropdown += "</select>"
-    document.getElementById('city').innerHTML = countryNameDropdown;
+    region = 'city';
+    var query = new google.visualization.Query(queryUrlHead + get_querytext('City') + queryUrlTail + "populate_dropdown");
+    query.send();
 }
 
 function getStateNames(country) {
     // set the query using the parameters
-    if(country != "USA" && country != "CA"){
+    if(country != "USA"){// && country != "CA")
+        console.log("country != USA && country != CA");
+        document.getElementById('state').isDisabled = true;
         getCityNames();
     }
     else {
+        document.getElementById('state').isDisabled = false;
         document.getElementById('city').isDisabled = true;
+        region = 'state';
         var FT_Query_StateName = "SELECT 'State' " +
             "FROM " + tableId;
         var country = document.getElementById('country').value;
@@ -287,40 +239,56 @@ function getStateNames(country) {
         FT_Query_StateName += " group by 'State'";
 
         var queryText = encodeURIComponent(FT_Query_StateName);
-        var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
+        var query = new google.visualization.Query(queryUrlHead + queryText + queryUrlTail + "populate_dropdown");
 
         //set the callback function
-        query.send(createStateDropdown);
+        query.send();
     }
 }
 
-function createStateDropdown(response) {
-    if (!response) {
-        alert('no response');
+function get_querytext(data){
+    // set the query using the parameters
+    var FT_Query = "SELECT '" + data + "' " +
+        "FROM " + tableId;
+    var state = $("#state").select2('val');
+    var s = '(';
+    for (var i = state.length - 1; i > 0; i--) {
+        s += "'" + state[i] + "'" + ','
+    }
+    s += "'" + state[0] + "'" + ')'
+
+    var country = document.getElementById('country').value;
+    if(state){
+        FT_Query += " WHERE 'State' IN " + s;
+        console.log(FT_Query);
+    }
+    else if (country) {
+        FT_Query += " WHERE 'Nation' = '" + country + "' ";
+    }
+    FT_Query += " group by '" + data + "'";
+
+    return encodeURIComponent(FT_Query);
+}
+
+function populate_dropdown(response) {
+    if (!response.rows) {
         return;
     }
-    if (response.isError()) {
-        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-        return;
-    }
-    //for more information on the response object, see the documentation
-    //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
 
-    numRows = response.getDataTable().getNumberOfRows();
-    numCols = response.getDataTable().getNumberOfColumns();
+    numRows = response.rows.length;
 
-    var countryNames = {};
+    var Names = {};
     for (var i = 0; i < numRows; i++) {
-        var countryName = response.getDataTable().getValue(i,0);
-        // countryName = countryName.substring(0,countryName.indexOf('('));
-        countryNames[countryName] = countryName;
+        var name = response.rows[i][0];
+        Names[name] = name;
     }
-    var countryNameDropdown = "<select name='country_select' onchange='handleSelected(this)'>"
-    countryNameDropdown += '<option value="" selected="selected"> - All - <\/option>';
-    for (countryName in countryNames) {
-        countryNameDropdown += "<option value='"+countryName+"'>"+countryName+"</option>"
-    }
-    countryNameDropdown += "</select>"
-    document.getElementById('state').innerHTML = countryNameDropdown;
-}
 
+    var dropdown_list = "<select name='data_select' onchange='handleSelected(this)'>"
+    dropdown_list += '<option value="" selected="selected"> - All - <\/option>';
+    for (name in Names) {
+        dropdown_list += "<option value='"+name+"'>"+name+"</option>"
+    }
+    dropdown_list += "</select>"
+    //alert(region);
+    document.getElementById(region).innerHTML = dropdown_list;
+}
