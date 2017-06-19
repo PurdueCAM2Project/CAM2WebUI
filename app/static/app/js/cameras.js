@@ -63,7 +63,6 @@ function initialize() {
     });
 
     //country, state and city are names for html select tags for the corresponding dropdown menus on html webpage
-    //
     //layer - to update data layer from fusion tables according to user requests
 
     google.maps.event.addDomListener($("#country").on("change", function() {
@@ -249,8 +248,7 @@ function updateMap_City(layer) {
 }
 
 
-
-
+//This function 1) updates region and 2)queries fusion tables
 function getCityNames() {
     document.getElementById('city').isDisabled = false;
     region = 'city';
@@ -258,6 +256,10 @@ function getCityNames() {
     query.send();
 }
 
+//This function
+// if USA is the selected country
+// 1) updates region and 2)queries fusion tables
+// else it calls the getCityNames functions
 function getStateNames(country) {
     // set the query using the parameters
     if(country != "USA"){
@@ -271,9 +273,7 @@ function getStateNames(country) {
         var FT_Query_StateName = "SELECT 'State' " +
             "FROM " + tableId;
         var country = document.getElementById('country').value;
-        if (country) {
-            FT_Query_StateName += " WHERE 'Nation' = '" + country + "' ";
-        }
+        FT_Query_StateName += " WHERE 'Nation' = '" + country + "' ";
         FT_Query_StateName += " group by 'State'";
 
         var queryText = encodeURIComponent(FT_Query_StateName);
@@ -284,6 +284,12 @@ function getStateNames(country) {
     }
 }
 
+
+//query fusiontables database using SQL
+//set the query from html form as explained here:
+//https://developers.google.com/fusiontables/docs/v2/using#queryData
+//Tip: use fusiontables website and set filter conitions on data using its user friendly interface
+//then use 'publish' tool to see the correct query and thus, understand how to code it
 function get_querytext(data){
     // set the query using the parameters
     var FT_Query = "SELECT '" + data + "' " +
