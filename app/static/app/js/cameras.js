@@ -197,7 +197,8 @@ function updateMap_City(layer) {
         t += "'" + city[0] + "'" + ')'
 
         if (t != "('')" && t != "('undefined')") {
-            if (state) {
+            if (state.length > 1 || state[0] != "") {
+                //console.log("happening ", state, state.length > 0, state[0] != "");
                 layer.setOptions({
                     query: {
                         select: locationColumn,
@@ -216,7 +217,7 @@ function updateMap_City(layer) {
                 });
             }
         }
-        else if (state) {
+        else if (state.length > 1 || state[0] != "") {
             layer.setOptions({
                 query: {
                     select: locationColumn,
@@ -259,8 +260,7 @@ function getCityNames() {
 
 function getStateNames(country) {
     // set the query using the parameters
-    if(country != "USA"){// && country != "CA")
-        console.log("country != USA && country != CA");
+    if(country != "USA"){
         document.getElementById('state').isDisabled = true;
         getCityNames();
     }
@@ -296,9 +296,10 @@ function get_querytext(data){
     s += "'" + state[0] + "'" + ')'
 
     var country = document.getElementById('country').value;
-    if(state){
+    if(state && s != "('')"){
         FT_Query += " WHERE 'State' IN " + s;
         console.log(FT_Query);
+        console.log(state.value != (''));
     }
     else if (country) {
         FT_Query += " WHERE 'Nation' = '" + country + "' ";
