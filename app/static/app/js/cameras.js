@@ -164,7 +164,7 @@ function updateMap_State(layer) {
 
     //if a state other than NULL state is selected then populate markers for cameras only in that state
     //otherwise populate markers for cameras only in thae selected country
-    if(state && state != "NULL") {
+    if(state && state != "NULL" && (state.length > 1 || state[0] != "")) {
         layer.setOptions({
             query: {
                 select: locationColumn,
@@ -231,11 +231,12 @@ function updateMap_City(layer) {
             }
         }
         else if (state.length > 1 || state[0] != "") {
+            //console.log("happening");
             layer.setOptions({
                 query: {
                     select: locationColumn,
                     from: tableId,
-                    where: "col4 = '" + state + "'"
+                    where: "col4 IN " + s
                 }
                 });
             }
