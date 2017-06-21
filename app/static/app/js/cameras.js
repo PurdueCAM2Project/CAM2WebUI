@@ -369,10 +369,11 @@ function get_querytext(data){
         //console.log(state.value != (('undefined')''));
     }
     else if (country) {
-        if (state.length > 0) {
-            co += "'" + country[0] + "'" + ')'
+        if (state.length > 0 || country[0] != "USA") {
+            co += "'" + country[0] + "'" + ')';
             FT_Query += " WHERE 'Nation' IN " + co;
         } else {
+            //console.log(state.length)
             co = '(';
             for (var i = country.length - 1; i > 1; i--) {
                 co += "'" + country[i] + "'" + ','
@@ -406,7 +407,7 @@ function populate_dropdown(response) {
     }
 
     var dropdown_list = "<select name='data_select' onchange='handleSelected(this)'>"
-    //dropdown_list += '<option value="" selected="selected"> - All - <\/option>';
+    dropdown_list += '<option value="" selected="selected"> - All - <\/option>';
     for (name in Names) {
         dropdown_list += "<option value='"+name+"'>"+name+"</option>"
     }
