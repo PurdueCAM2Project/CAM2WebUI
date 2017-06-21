@@ -9,7 +9,7 @@
 <div class="container">
   <br>
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-12 col-sm-4">
       <form>
         <div class="form-group">
           <label for="country">Country (select one):</label>
@@ -268,25 +268,26 @@
         </div>
       </form>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-12 col-sm-4">
       <form>
         <div class="form-group">
-          <label for="state">States (select one):</label>
+          <label for="state">States (select one or multiple):</label>
           <select class="form-control" id="state" multiple="multiple" style="height: 28px"></select>
         </div>
       </form>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-12 col-sm-4">
       <form>
         <div class="form-group">
-          <label for="city">City (select one or multiple ones):</label>
+          <label for="city">City (select one or multiple):</label>
           <select class="form-control" id="city" multiple="multiple" style="height: 28px"></select>
         </div>
       </form>
     </div>
   </div>
   <br>
-  <div id="mapCanvas"></div></div>
+  <div id="mapCanvas"></div>
+</div>
 
 {% endblock %}
 {% block scripts %}
