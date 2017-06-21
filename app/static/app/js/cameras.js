@@ -106,18 +106,27 @@ function initialize() {
 function updateMap_Country(layer, map) {
 
     //intialise state and city drop down menus to NULL values when no country is selected
-    document.getElementById('state').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
-    document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
+    //document.getElementById('state').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
+    //document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
 
     var selected = document.getElementById('country');
-    var country = selected.value;
-    var country_name = selected.options[selected.selectedIndex].text;
+    var country = $("#country").select2('val');
 
+    var co = '(';
+    for (var i = country.length - 1; i > 0; i--) {
+        co += "'" + country[i] + "'" + ','
+    }
+    co += "'" + country[0] + "'" + ')'
+    if (country.length > 0) {
+        var country_name = $("#country").select2('data')[0].text;
+    }
+    
+    //console.log(country_name)
     //if an option other than All is selected from the country dropdown menu then
     //recenter map and zoom in on selected country
     //to do so send a geocoding request - as explained below
     //https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?csw=1
-    if(selected.selectedIndex > 0) {
+    if(country.length == 1) {
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode( {'address' : country_name}, function(results, status) {
             while (status != google.maps.GeocoderStatus.OK) {}
@@ -129,7 +138,7 @@ function updateMap_Country(layer, map) {
             query: {
                 select: locationColumn,
                 from: tableId,
-                where: "col5 = '" + country + "'"
+                where: "col5 IN " + co
             }
         });
     }
@@ -140,7 +149,8 @@ function updateMap_Country(layer, map) {
         layer.setOptions({
             query: {
                 select: locationColumn,
-                from: tableId
+                from: tableId,
+                where: "col5 IN " + co
             }
         });
     }
@@ -164,6 +174,7 @@ function updateMap_State(layer) {
 
     //if a state other than NULL state is selected then populate markers for cameras only in that state
     //otherwise populate markers for cameras only in thae selected country
+    console.log(state);
     if(state && state != "NULL") {
         layer.setOptions({
             query: {
@@ -175,12 +186,20 @@ function updateMap_State(layer) {
         getCityNames();
     }
     else{
-        document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
+        //document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
+        var country = $("#country").select2('val');
+
+        var co = '(';
+        for (var i = country.length - 1; i > 0; i--) {
+            co += "'" + country[i] + "'" + ','
+        }
+        co += "'" + country[0] + "'" + ')'
+
         layer.setOptions({
             query: {
                 select: locationColumn,
                 from: tableId,
-                where: "col5 = '" + document.getElementById('country').value + "'"
+                where: "col5 IN " + co
             }
         });
     }
@@ -198,7 +217,13 @@ function updateMap_City(layer) {
     }
     s += "'" + state[0] + "'" + ')'
 
-    var country = document.getElementById('country').value;
+    var country = $("#country").select2('val');
+
+    var co = '(';
+    for (var i = country.length - 1; i > 0; i--) {
+        co += "'" + country[i] + "'" + ','
+    }
+    co += "'" + country[0] + "'" + ')'
 
     //if atleast one country has been selected
     if (city) {
@@ -211,7 +236,8 @@ function updateMap_City(layer) {
 
         //if atleast one city has been selected
         if (t != "('')" && t != "('undefined')") {
-            if (state.length > 1 || state[0] != "") {
+            //console.log(state.length)
+            if (state.length >= 1) {
                 layer.setOptions({
                     query: {
                         select: locationColumn,
@@ -225,17 +251,17 @@ function updateMap_City(layer) {
                     query: {
                         select: locationColumn,
                         from: tableId,
-                        where: "col5 = '" + country + "' AND  " + "col3 IN " + t
+                        where: "col5 IN" + co + " AND  " + "col3 IN " + t
                     }
                 });
             }
         }
-        else if (state.length > 1 || state[0] != "") {
+        else if (state.length >= 1 || state[0] != "") {
             layer.setOptions({
                 query: {
                     select: locationColumn,
                     from: tableId,
-                    where: "col4 = '" + state + "'"
+                    where: "col4 IN " + s
                 }
                 });
             }
@@ -244,7 +270,7 @@ function updateMap_City(layer) {
                 query: {
                     select: locationColumn,
                     from: tableId,
-                    where: "col5 = '" + country + "'"
+                    where: "col5 IN " + co
                 }
             });
         }
@@ -255,7 +281,7 @@ function updateMap_City(layer) {
             query: {
                 select: locationColumn,
                 from: tableId,
-                where: "col5 = '" + country + "'"
+                where: "col5 IN " + co
             }
         });
     }
@@ -276,25 +302,38 @@ function getCityNames() {
 // else it calls the getCityNames functions
 function getStateNames(country) {
     // set the query using the parameters
-    if(country != "USA"){
-        document.getElementById('state').isDisabled = true;
-        getCityNames();
-    }
-    else {
+    //console.log(country)
+    if (country[0] == "USA"){
+        
+        //console.log("hello world")
         document.getElementById('state').isDisabled = false;
         document.getElementById('city').isDisabled = true;
         region = 'state';
         var FT_Query_StateName = "SELECT 'State' " +
             "FROM " + tableId;
-        var country = document.getElementById('country').value;
-        FT_Query_StateName += " WHERE 'Nation' = '" + country + "' ";
+
+        var country = $("#country").select2('data');
+
+        var co = '(';
+        for (var i = country.length - 1; i > 0; i--) {
+            co += "'" + country[i].text + "'" + ','
+        }
+        co += "'" + country[0].text + "'" + ')'
+
+        FT_Query_StateName += " WHERE 'Nation' = 'USA'";
         FT_Query_StateName += " group by 'State'";
 
         var queryText = encodeURIComponent(FT_Query_StateName);
         var query = new google.visualization.Query(queryUrlHead + queryText + queryUrlTail + "populate_dropdown");
-
+        //console.log(queryText);
         //set the callback function
         query.send();
+    }
+    else {
+        document.getElementById('state').isDisabled = true;
+        getCityNames();
+
+        
     }
 }
 
@@ -315,16 +354,38 @@ function get_querytext(data){
     }
     s += "'" + state[0] + "'" + ')'
 
-    var country = document.getElementById('country').value;
-    if(state && s != "('')"){
+    var country = $("#country").select2('val');
+
+    var co = '(';
+    for (var i = country.length - 1; i > 0; i--) {
+        co += "'" + country[i] + "'" + ','
+    }
+    
+
+    //console.log(s)
+    if(state.length > 0 && s != "('undefined')"){
         FT_Query += " WHERE 'State' IN " + s;
-        console.log(FT_Query);
-        console.log(state.value != (''));
+        //console.log(FT_Query);
+        //console.log(state.value != (('undefined')''));
     }
     else if (country) {
-        FT_Query += " WHERE 'Nation' = '" + country + "' ";
+        if (state.length > 0 || country[0] != "USA") {
+            co += "'" + country[0] + "'" + ')';
+            FT_Query += " WHERE 'Nation' IN " + co;
+        } else {
+            //console.log(state.length)
+            co = '(';
+            for (var i = country.length - 1; i > 1; i--) {
+                co += "'" + country[i] + "'" + ','
+            }
+            co += "'" + country[1] + "'" + ')'
+            FT_Query += " WHERE 'Nation' IN " + co;
+        }
+        
     }
     FT_Query += " group by '" + data + "'";
+
+    //console.log(FT_Query);
 
     return encodeURIComponent(FT_Query);
 }
