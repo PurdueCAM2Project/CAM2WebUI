@@ -117,8 +117,10 @@ function updateMap_Country(layer, map) {
         co += "'" + country[i] + "'" + ','
     }
     co += "'" + country[0] + "'" + ')'
-
-    var country_name = $("#country").select2('data')[0].text;
+    if (country.length > 0) {
+        var country_name = $("#country").select2('data')[0].text;
+    }
+    
     //console.log(country_name)
     //if an option other than All is selected from the country dropdown menu then
     //recenter map and zoom in on selected country
@@ -185,13 +187,13 @@ function updateMap_State(layer) {
     }
     else{
         //document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
-        var country = $("#country").select2('data');
+        var country = $("#country").select2('val');
 
         var co = '(';
         for (var i = country.length - 1; i > 0; i--) {
-            co += "'" + country[i].text + "'" + ','
+            co += "'" + country[i] + "'" + ','
         }
-        co += "'" + country[0].text + "'" + ')'
+        co += "'" + country[0] + "'" + ')'
 
         layer.setOptions({
             query: {
@@ -234,7 +236,8 @@ function updateMap_City(layer) {
 
         //if atleast one city has been selected
         if (t != "('')" && t != "('undefined')") {
-            if (state.length > 1 || state[0] != "") {
+            //console.log(state.length)
+            if (state.length >= 1) {
                 layer.setOptions({
                     query: {
                         select: locationColumn,
@@ -253,7 +256,7 @@ function updateMap_City(layer) {
                 });
             }
         }
-        else if (state.length > 1 || state[0] != "") {
+        else if (state.length >= 1 || state[0] != "") {
             layer.setOptions({
                 query: {
                     select: locationColumn,
@@ -358,10 +361,11 @@ function get_querytext(data){
     }
     co += "'" + country[0] + "'" + ')'
 
-    if(state && s != "('')"){
+    //console.log(s)
+    if(state.length > 0 && s != "('undefined')"){
         FT_Query += " WHERE 'State' IN " + s;
         //console.log(FT_Query);
-        //console.log(state.value != (''));
+        //console.log(state.value != (('undefined')''));
     }
     else if (country) {
         FT_Query += " WHERE 'Nation' IN " + co;
