@@ -302,9 +302,10 @@ function getCityNames() {
 // else it calls the getCityNames functions
 function getStateNames(country) {
     // set the query using the parameters
-    if("USA" in country){
+    //console.log(country)
+    if (country[0] == "USA"){
         
-
+        //console.log("hello world")
         document.getElementById('state').isDisabled = false;
         document.getElementById('city').isDisabled = true;
         region = 'state';
@@ -319,7 +320,7 @@ function getStateNames(country) {
         }
         co += "'" + country[0].text + "'" + ')'
 
-        FT_Query_StateName += " WHERE 'Nation' IN" + co;
+        FT_Query_StateName += " WHERE 'Nation' = 'USA'";
         FT_Query_StateName += " group by 'State'";
 
         var queryText = encodeURIComponent(FT_Query_StateName);
@@ -359,7 +360,7 @@ function get_querytext(data){
     for (var i = country.length - 1; i > 0; i--) {
         co += "'" + country[i] + "'" + ','
     }
-    co += "'" + country[0] + "'" + ')'
+    
 
     //console.log(s)
     if(state.length > 0 && s != "('undefined')"){
@@ -368,7 +369,18 @@ function get_querytext(data){
         //console.log(state.value != (('undefined')''));
     }
     else if (country) {
-        FT_Query += " WHERE 'Nation' IN " + co;
+        if (state.length > 0) {
+            co += "'" + country[0] + "'" + ')'
+            FT_Query += " WHERE 'Nation' IN " + co;
+        } else {
+            co = '(';
+            for (var i = country.length - 1; i > 1; i--) {
+                co += "'" + country[i] + "'" + ','
+            }
+            co += "'" + country[1] + "'" + ')'
+            FT_Query += " WHERE 'Nation' IN " + co;
+        }
+        
     }
     FT_Query += " group by '" + data + "'";
 
