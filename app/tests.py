@@ -372,7 +372,7 @@ class AddTestCase(LiveServerTestCase):
 		browser.implicitly_wait(10)
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")
-		print (len(city_options))
+		#print (len(city_options))
 		assert (len(city_options) >= 60)
 
 
@@ -387,7 +387,7 @@ class AddTestCase(LiveServerTestCase):
 		for option in country_options:
 			if (option.get_attribute("value") == "USA"):
 				option.click()				
-				break
+				#break
 			#print("Value is: %s" % option.get_attribute("value"))
 		
 		browser.implicitly_wait(10)
@@ -403,8 +403,38 @@ class AddTestCase(LiveServerTestCase):
 		browser.implicitly_wait(10)
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")
-		print (len(city_options))
+		#print (len(city_options))
 		assert (len(city_options) >= 500)
+
+
+	def test_camera_disable_state(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
+		browser.get(url)
+		browser.implicitly_wait(5)
+		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+		element = browser.find_element_by_xpath("//select[@id='country']")
+		country_options = element.find_elements_by_tag_name("option")
+		for option in country_options:
+			if (option.get_attribute("value") == "DE"):
+				option.click()				
+				break
+			#print("Value is: %s" % option.get_attribute("value"))
+		
+		browser.implicitly_wait(10)
+
+		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+		element = browser.find_element_by_xpath("//select[@id='state']")
+		state_options = element.find_elements_by_tag_name("option")
+
+		#print(len(state_options))
+		assert (len(state_options) == 1)
+
+		element = browser.find_element_by_xpath("//select[@id='city']")
+		city_options = element.find_elements_by_tag_name("option")
+		#print(len(city_options))
+		assert (len(city_options) >= 3000)
+
 
 
 	def test_camera_disable_city(self):
@@ -427,7 +457,7 @@ class AddTestCase(LiveServerTestCase):
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")
 
-		print(len(city_options))
+		#print(len(city_options))
 		assert (len(city_options) == 1)
 
 		
