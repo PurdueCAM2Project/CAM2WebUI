@@ -375,35 +375,65 @@ class AddTestCase(LiveServerTestCase):
 		print (len(city_options))
 		assert (len(city_options) >= 60)
 
-		
 
-
-	"""
-	def test_Login_Register_6(self):
+	def test_camera_state_multiple_states(self):
 		browser = self.selenium
-		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'
-
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
+		browser.implicitly_wait(5)
+		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+		element = browser.find_element_by_xpath("//select[@id='country']")
+		country_options = element.find_elements_by_tag_name("option")
+		for option in country_options:
+			if (option.get_attribute("value") == "USA"):
+				option.click()				
+				break
+			#print("Value is: %s" % option.get_attribute("value"))
 		
-		browser.find_element(By.ID,value="github_login").click()
+		browser.implicitly_wait(10)
+
+		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+		element = browser.find_element_by_xpath("//select[@id='state']")
+		state_options = element.find_elements_by_tag_name("option")
+
+		for option in state_options:
+			if (option.get_attribute("value") == "IN" or option.get_attribute("value") == "CA"):
+				option.click()				
+
+		browser.implicitly_wait(10)
+		element = browser.find_element_by_xpath("//select[@id='city']")
+		city_options = element.find_elements_by_tag_name("option")
+		print (len(city_options))
+		assert (len(city_options) >= 500)
 
 
-		un = browser.find_element_by_name('login')
-		un.send_keys('something')
+	def test_camera_disable_city(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
+		browser.get(url)
+		browser.implicitly_wait(5)
+		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+		element = browser.find_element_by_xpath("//select[@id='country']")
+		country_options = element.find_elements_by_tag_name("option")
+		for option in country_options:
+			if (option.get_attribute("value") == "USA"):
+				option.click()				
+				break
+			#print("Value is: %s" % option.get_attribute("value"))
+		
+		browser.implicitly_wait(10)
 
-		pw = browser.find_element_by_name('password')
-		pw.send_keys('somepassword')
+		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+		element = browser.find_element_by_xpath("//select[@id='city']")
+		city_options = element.find_elements_by_tag_name("option")
 
-		browser.find_element_by_name('commit').click()
+		print(len(city_options))
+		assert (len(city_options) == 1)
+
+		
 
 
-		WebDriverWait(browser, 5).until(
-		    EC.text_to_be_present_in_element(
-		        (By.ID, 'someprofile'),
-		        'tang184\'s profile'
-		    )
-		)
-	"""
+
 	
 
 
