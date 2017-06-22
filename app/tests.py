@@ -56,7 +56,7 @@ class AddTestCase(LiveServerTestCase):
 	def test_one(self):
 		pass
 
-
+	"""
 	# Test if page title is Cam2
 
 	def test_connection(self):
@@ -311,13 +311,13 @@ class AddTestCase(LiveServerTestCase):
 		except ValidationError as e:			
 			print(e)
 			assert False
-
+	"""
 	
 	def test_camera_basic(self):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
-
+		browser.implicitly_wait(10)
 		element = browser.find_element_by_xpath("//select[@id='country']")
 		country_options = element.find_elements_by_tag_name("option")
 		for option in country_options:
@@ -331,11 +331,11 @@ class AddTestCase(LiveServerTestCase):
 		"""
 		browser.implicitly_wait(10)
 
-		element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='state']")
 		state_options = element.find_elements_by_tag_name("option")
 
-		#print(len(state_options))
+		print(len(state_options))
 		assert (len(state_options) >= 50)
 
 
