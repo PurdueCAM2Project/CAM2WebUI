@@ -9,11 +9,11 @@
 <div class="container">
   <br>
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-12 col-lg-4">
       <form>
         <div class="form-group">
-          <label for="country">Country (select one):</label>
-          <select class="form-control" id="country" multiple="multiple" style="height: 28px">
+          <label class="control-label" for="country" align="left">Country (select one):</label>
+          <select class="form-control" id="country">
             <!--<option value="" selected="selected"> - All - </option>-->
             <option value="USA">United States</option>
             <option value="AF">Afghanistan</option>
@@ -268,25 +268,26 @@
         </div>
       </form>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-12 col-lg-4">
       <form>
         <div class="form-group">
-          <label for="state">States (select one):</label>
-          <select class="form-control" id="state" multiple="multiple" style="height: 28px"></select>
+          <label class="control-label" for="state" align="left">States (select one or multiple):</label>
+          <select class="form-control" id="state" multiple="multiple" style="height: 28px;"></select>
         </div>
       </form>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-12 col-lg-4">
       <form>
-        <div class="form-group">
-          <label for="city">City (select one or multiple ones):</label>
-          <select class="form-control" id="city" multiple="multiple" style="height: 28px"></select>
+        <div class="form-group" >
+          <label class="control-label" for="city" align="left">City (select one or multiple):</label>
+          <select class="form-control" id="city" multiple="multiple" style="height: 28px;"></select>
         </div>
       </form>
     </div>
   </div>
   <br>
-  <div id="mapCanvas"></div></div>
+  <div id="mapCanvas"></div>
+</div>
 
 {% endblock %}
 {% block scripts %}
