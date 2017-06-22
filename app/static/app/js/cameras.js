@@ -34,6 +34,9 @@ var region = '';
 //It initializes a map, overlays a "layer" of data from fusiontables (camera markers) on the map
 //and uses DOM properties to track user actions on the webpage
 
+
+console.log("Hellllllo worrrrrrld")
+
 window.initialize = function() {
 
     //the code below to initialize map and populate markers on map is obtained using the 'publish' tool from fusiontables

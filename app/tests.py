@@ -5,6 +5,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities    
+
 
 from pyvirtualdisplay import Display
 from django.test import LiveServerTestCase
@@ -42,6 +44,8 @@ class AddTestCase(LiveServerTestCase):
 		self.password = os.environ['BASICAUTH_PASSWORD']
 		self.test_username = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
 		self.test_password = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+		d = DesiredCapabilities.CHROME
+		d['loggingPrefs'] = { 'browser':'ALL' }
 
 		
 	def tearDown(self):
