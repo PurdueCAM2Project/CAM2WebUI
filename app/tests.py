@@ -325,10 +325,10 @@ class AddTestCase(LiveServerTestCase):
 				option.click()				
 				break
 			#print("Value is: %s" % option.get_attribute("value"))
-		"""
+		
 		for entry in browser.get_log('browser'):
 			print (entry)
-		"""
+		
 		browser.implicitly_wait(10)
 
 		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
