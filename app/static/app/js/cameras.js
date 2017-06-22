@@ -103,7 +103,7 @@ window.initialize = function() {
       }
     }
 
-    google.maps.event.addDomListener(window, 'load', initialize);
+    //google.maps.event.addDomListener(window, 'load', initialize);
   }
 
 //to update map when a country is selected

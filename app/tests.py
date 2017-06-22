@@ -37,15 +37,16 @@ class AddTestCase(LiveServerTestCase):
 	def setUp(self):
 		#self.display = Display(visible=0, size=(1000, 1200))
 		#self.display.start()
-		self.selenium = webdriver.Chrome()
+		d = DesiredCapabilities.CHROME
+		d['loggingPrefs'] = { 'browser':'ALL' }
+		self.selenium = webdriver.Chrome(desired_capabilities=d)
 		super(AddTestCase, self).setUp()
 		self.port = self.live_server_url.split(":")[2]
 		self.username = os.environ['BASICAUTH_USERNAME']
 		self.password = os.environ['BASICAUTH_PASSWORD']
 		self.test_username = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
 		self.test_password = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
-		d = DesiredCapabilities.CHROME
-		d['loggingPrefs'] = { 'browser':'ALL' }
+		
 
 		
 	def tearDown(self):
@@ -322,6 +323,7 @@ class AddTestCase(LiveServerTestCase):
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
 		browser.implicitly_wait(10)
+		element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='country']")
 		country_options = element.find_elements_by_tag_name("option")
 		for option in country_options:
@@ -330,17 +332,17 @@ class AddTestCase(LiveServerTestCase):
 				break
 			#print("Value is: %s" % option.get_attribute("value"))
 		
-		for entry in browser.get_log('browser'):
-			print (entry)
-		
 		browser.implicitly_wait(10)
 
-		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+		element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='state']")
 		state_options = element.find_elements_by_tag_name("option")
 
 		print(len(state_options))
 		assert (len(state_options) >= 50)
+
+		for entry in browser.get_log('browser'):
+			print (entry)
 
 
 	"""
