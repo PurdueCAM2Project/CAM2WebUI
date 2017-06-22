@@ -323,7 +323,7 @@ class AddTestCase(LiveServerTestCase):
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
 		browser.implicitly_wait(10)
-		element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='country']")
 		country_options = element.find_elements_by_tag_name("option")
 		for option in country_options:
@@ -334,7 +334,7 @@ class AddTestCase(LiveServerTestCase):
 		
 		browser.implicitly_wait(10)
 
-		element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='state']")
 		state_options = element.find_elements_by_tag_name("option")
 
