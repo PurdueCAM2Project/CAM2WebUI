@@ -280,18 +280,14 @@ function getStateNames(country) {
 //Tip: use fusiontables website and set filter conitions on data using its user friendly interface
 //then use 'publish' tool to see the correct query and thus, understand how to code it
 function get_querytext(data){
+    var country = document.getElementById('country').value;
+    var state = getdata_dropdown("#state");
+
     // set the query using the parameters
     var FT_Query = "SELECT '" + data + "' " + "FROM " + tableId;
-    var state = $("#state").select2('val');
-    var s = '(';
-    for (var i = state.length - 1; i > 0; i--) {
-        s += "'" + state[i] + "'" + ','
-    }
-    s += "'" + state[0] + "'" + ')'
 
-    var country = document.getElementById('country').value;
-    if(state && s != "('')"){
-        FT_Query += " WHERE 'State' IN " + s;
+    if(state != "('')"){
+        FT_Query += " WHERE 'State' IN " + state;
         console.log(FT_Query);
         console.log(state.value != (''));
     }
