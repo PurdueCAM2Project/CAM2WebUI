@@ -100,12 +100,27 @@ function initialize() {
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
+
+    //To make map responsive to changing window size
+    //https://stackoverflow.com/questions/6910847/get-boundaries-longitude-and-latitude-from-current-zoom-google-maps
+    // google.maps.event.addDomListener(window, 'resize', function() {
+    //     console.log("happenignngngn");
+    //     setMapCenterandBounds(map);
+    // });
   }
 
+function setMapCenterandBounds(map){
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode( {'address' : 'USA'}, function(results, status) {
+        while (status != google.maps.GeocoderStatus.OK) {}
+        map.setCenter(results[0].geometry.location);
+        map.fitBounds(results[0].geometry.viewport);
+    });
+}
 //to update map when a country is selected
 function updateMap_Country(layer, map) {
 
-    //intialise state and city drop down menus to NULL values when no country is selected
+    //initialise state and city drop down menus to NULL values when no country is selected
     document.getElementById('state').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
     document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
 
@@ -306,8 +321,7 @@ function getStateNames(country) {
 //then use 'publish' tool to see the correct query and thus, understand how to code it
 function get_querytext(data){
     // set the query using the parameters
-    var FT_Query = "SELECT '" + data + "' " +
-        "FROM " + tableId;
+    var FT_Query = "SELECT '" + data + "' " + "FROM " + tableId;
     var state = $("#state").select2('val');
     var s = '(';
     for (var i = state.length - 1; i > 0; i--) {
@@ -327,6 +341,16 @@ function get_querytext(data){
     FT_Query += " group by '" + data + "'";
 
     return encodeURIComponent(FT_Query);
+}
+
+function updateLayer(column, data){
+    layer.setOptions({
+        query: {
+            select: locationColumn,
+            from: tableId,
+            where: column + " = '" + data + "'"
+        }
+    });
 }
 
 //function to populate dropdown menus
