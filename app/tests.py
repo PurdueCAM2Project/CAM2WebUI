@@ -18,7 +18,7 @@ from django.core.exceptions import ValidationError
 
 from django.test.testcases import LiveServerThread
 
-
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 import os
 import base64
@@ -31,7 +31,7 @@ import random
 # Create your tests here
 
 
-class AddTestCase(LiveServerTestCase):
+class AddTestCase(StaticLiveServerTestCase):
 
 
 	def setUp(self):
@@ -58,7 +58,8 @@ class AddTestCase(LiveServerTestCase):
 
 	# test whether testcase works
 	
-	def test_one(self):
+	def test_a_one(self):
+		print("start first test")
 		pass
 
 	"""
@@ -319,6 +320,7 @@ class AddTestCase(LiveServerTestCase):
 	"""
 	
 	def test_camera_state(self):
+		print("start usa state test")
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
@@ -338,7 +340,7 @@ class AddTestCase(LiveServerTestCase):
 		element = browser.find_element_by_xpath("//select[@id='state']")
 		state_options = element.find_elements_by_tag_name("option")
 
-		print(len(state_options))
+		#print(len(state_options))
 		assert (len(state_options) >= 50)
 		"""
 		for entry in browser.get_log('browser'):
@@ -346,6 +348,7 @@ class AddTestCase(LiveServerTestCase):
 		"""
 
 	def test_camera_state_city(self):
+		print("start usa state city test")
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
@@ -377,6 +380,7 @@ class AddTestCase(LiveServerTestCase):
 
 
 	def test_camera_state_multiple_states(self):
+		print("start usa multiple states test")
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
@@ -408,6 +412,7 @@ class AddTestCase(LiveServerTestCase):
 
 
 	def test_camera_disable_state(self):
+		print("start german no states with cities")
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
@@ -438,6 +443,7 @@ class AddTestCase(LiveServerTestCase):
 
 
 	def test_camera_disable_city(self):
+		print("start usa no state with city test")
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
