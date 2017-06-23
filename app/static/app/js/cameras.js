@@ -201,7 +201,9 @@ function updateMap_State(layer) {
     }
 }
 
-//to update map when a city is selected
+//this funciton formulates and passes queries to updateLayer function based on form inputs on cameras webpage
+//See this link for API documentation: https://developers.google.com/fusiontables/docs/v2/using#queryData
+//See this link for example: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateMap_City(layer) {
     var city = $("#city").select2('val');
 
@@ -227,58 +229,29 @@ function updateMap_City(layer) {
         //if atleast one city has been selected
         if (t != "('')" && t != "('undefined')") {
             if (state.length > 1 || state[0] != "") {
-                layer.setOptions({
-                    query: {
-                        select: locationColumn,
-                        from: tableId,
-                        where: "col4 IN " + s + " AND  " + "col3 IN " + t
-                    }
-                });
+                updateLayer(layer, "col4 IN " + s + " AND  " + "col3 IN " + t);
             }
             else {
-                layer.setOptions({
-                    query: {
-                        select: locationColumn,
-                        from: tableId,
-                        where: "col5 = '" + country + "' AND  " + "col3 IN " + t
-                    }
-                });
+                updateLayer(layer, "col5 = '" + country + "' AND  " + "col3 IN " + t);
             }
         }
         else if (state.length > 1 || state[0] != "") {
-            layer.setOptions({
-                query: {
-                    select: locationColumn,
-                    from: tableId,
-                    where: "col4 = '" + state + "'"
-                }
-                });
+            updateLayer(layer, "col4 = '" + state + "'");
             }
         else{
-            layer.setOptions({
-                query: {
-                    select: locationColumn,
-                    from: tableId,
-                    where: "col5 = '" + country + "'"
-                }
-            });
+            updateLayer(layer, "col5 = '" + country + "'");
         }
     }
 
     else{
-        layer.setOptions({
-            query: {
-                select: locationColumn,
-                from: tableId,
-                where: "col5 = '" + country + "'"
-            }
-        });
+        updateLayer(layer, "col5 = '" + country + "'");
     }
 }
 
 //layer -> fusion tables layer on map to update
 //filtering_condition -> a SQL like query to obtained filtered data from fusiontables
-//
+//See this link for API documentation: https://developers.google.com/fusiontables/docs/v2/using#queryData
+//See this link for example: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateLayer(layer, filtering_condition){
     layer.setOptions({
         query: {
@@ -288,7 +261,6 @@ function updateLayer(layer, filtering_condition){
         }
     });
 }
-
 
 //This function 1) updates region and 2) queries fusion tables
 function getCityNames() {
