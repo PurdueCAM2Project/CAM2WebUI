@@ -187,44 +187,25 @@ function updateMap_State(layer) {
 //See this link for API documentation of formulating query: https://developers.google.com/fusiontables/docs/v2/using#queryData
 //See this link for example of how to query fusion table: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateMap_City(layer) {
-    var city = $("#city").select2('val');
-
-    //parse data from drop down menu to format a string in the required format for a SQL query
-    var state = $("#state").select2('val');
-    var s = '(';
-    for (var i = state.length - 1; i > 0; i--) {
-        s += "'" + state[i] + "'" + ','
-    }
-    s += "'" + state[0] + "'" + ')'
 
     var country = document.getElementById('country').value;
+    var city = getdata_dropdown("#city");
+    var state = getdata_dropdown("#state");
 
-    //if atleast one country has been selected
-    if (city) {
-        //parse data from drop down menu to format a string in the required format for a SQL query
-        var t = '(';
-        for (var i = city.length - 1; i > 0; i--) {
-            t += "'" + city[i] + "'" + ','
+    //if atleast one city has been selected
+    //if atleast one state has been selected
+    if (city != "('')" && city != "('undefined')") {
+        //if atleast one state has been selected
+        if (state != "('')" && state != "('undefined')") {
+            updateLayer(layer, "col4 IN " + state + " AND  " + "col3 IN " + city);
         }
-        t += "'" + city[0] + "'" + ')'
-
-        //if atleast one city has been selected
-        if (t != "('')" && t != "('undefined')") {
-            if (state.length > 1 || state[0] != "") {
-                updateLayer(layer, "col4 IN " + s + " AND  " + "col3 IN " + t);
-            }
-            else {
-                updateLayer(layer, "col5 = '" + country + "' AND  " + "col3 IN " + t);
-            }
-        }
-        else if (state.length > 1 || state[0] != "") {
-            updateLayer(layer, "col4 = '" + state + "'");
-            }
-        else{
-            updateLayer(layer, "col5 = '" + country + "'");
+        else {
+            updateLayer(layer, "col5 = '" + country + "' AND  " + "col3 IN " + city);
         }
     }
-
+    else if (state != "('')" && state != "('undefined')") {
+        updateLayer(layer, "col4 = '" + state + "'");
+        }
     else{
         updateLayer(layer, "col5 = '" + country + "'");
     }
@@ -252,6 +233,8 @@ function getdata_dropdown(dropdown_name){
         data += "'" + data_array[i] + "'" + ','
     }
     data += "'" + data_array[0] + "'" + ')'
+
+    return data;
 }
 
 //This function 1) updates region and 2) queries fusion tables
