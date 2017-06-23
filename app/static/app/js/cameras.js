@@ -276,6 +276,19 @@ function updateMap_City(layer) {
     }
 }
 
+//layer -> fusion tables layer on map to update
+//filtering_condition -> a SQL like query to obtained filtered data from fusiontables
+//
+function updateLayer(layer, filtering_condition){
+    layer.setOptions({
+        query: {
+            select: locationColumn,
+            from: tableId,
+            where: filtering_condition
+        }
+    });
+}
+
 
 //This function 1) updates region and 2) queries fusion tables
 function getCityNames() {
@@ -341,16 +354,6 @@ function get_querytext(data){
     FT_Query += " group by '" + data + "'";
 
     return encodeURIComponent(FT_Query);
-}
-
-function updateLayer(column, data){
-    layer.setOptions({
-        query: {
-            select: locationColumn,
-            from: tableId,
-            where: column + " = '" + data + "'"
-        }
-    });
 }
 
 //function to populate dropdown menus
