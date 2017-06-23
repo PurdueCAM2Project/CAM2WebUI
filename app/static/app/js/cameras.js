@@ -100,23 +100,7 @@ function initialize() {
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
-
-    //To make map responsive to changing window size
-    //https://stackoverflow.com/questions/6910847/get-boundaries-longitude-and-latitude-from-current-zoom-google-maps
-    // google.maps.event.addDomListener(window, 'resize', function() {
-    //     console.log("happenignngngn");
-    //     setMapCenterandBounds(map);
-    // });
   }
-
-function setMapCenterandBounds(map){
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode( {'address' : 'USA'}, function(results, status) {
-        while (status != google.maps.GeocoderStatus.OK) {}
-        map.setCenter(results[0].geometry.location);
-        map.fitBounds(results[0].geometry.viewport);
-    });
-}
 
 //this funciton formulates and passes queries to updateLayer function based on form inputs on cameras webpage
 //See this link for API documentation of formulating query: https://developers.google.com/fusiontables/docs/v2/using#queryData
@@ -165,16 +149,11 @@ function updateMap_Country(layer, map) {
 function updateMap_State(layer) {
     //parse data from drop down menu to format a string in the required format for a SQL query
     var state = $("#state").select2('val');
-    var s = '(';
-    for (var i = state.length - 1; i > 0; i--) {
-        s += "'" + state[i] + "'" + ','
-    }
-    s += "'" + state[0] + "'" + ')'
 
     //if a state other than NULL state is selected then populate markers for cameras only in that state
     //otherwise populate markers for cameras only in thae selected country
     if(state && state != "NULL") {
-        updateLayer(layer, "col4 IN " + s);
+        updateLayer(layer, "col4 IN " + getdata_dropdown("#state"));
         getCityNames();
     }
     else{
@@ -259,13 +238,7 @@ function getStateNames(country) {
         document.getElementById('state').isDisabled = false;
         document.getElementById('city').isDisabled = true;
         region = 'state';
-        // var FT_Query_StateName = "SELECT 'State' " +
-        //     "FROM " + tableId;
-        // var country = document.getElementById('country').value;
-        // FT_Query_StateName += " WHERE 'Nation' = '" + country + "' ";
-        // FT_Query_StateName += " group by 'State'";
-        //
-        // var queryText = encodeURIComponent(FT_Query_StateName);
+
         var queryText = get_querytext('State');
         var query = new google.visualization.Query(queryUrlHead + queryText + queryUrlTail + "populate_dropdown");
 
@@ -273,7 +246,6 @@ function getStateNames(country) {
         query.send();
     }
 }
-
 
 //query fusiontables database using SQL
 //set the query from html form as explained here:
