@@ -117,7 +117,10 @@ function setMapCenterandBounds(map){
         map.fitBounds(results[0].geometry.viewport);
     });
 }
-//to update map when a country is selected
+
+//this funciton formulates and passes queries to updateLayer function based on form inputs on cameras webpage
+//See this link for API documentation of formulating query: https://developers.google.com/fusiontables/docs/v2/using#queryData
+//See this link for example of how to query fusion table: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateMap_Country(layer, map) {
 
     //initialise state and city drop down menus to NULL values when no country is selected
@@ -140,24 +143,13 @@ function updateMap_Country(layer, map) {
             map.fitBounds(results[0].geometry.viewport);
         });
         
-        layer.setOptions({
-            query: {
-                select: locationColumn,
-                from: tableId,
-                where: "col5 = '" + country + "'"
-            }
-        });
+        updateLayer(layer, "col5 = '" + country + "'");
     }
     //else recenter on world
     else{
         map.setCenter(new google.maps.LatLng(40.363489, -98.832955));
         map.setZoom(2);
-        layer.setOptions({
-            query: {
-                select: locationColumn,
-                from: tableId
-            }
-        });
+        updateLayer(layer, "");
     }
 
     //if a country has been selected from the dropdown menu then
@@ -183,25 +175,11 @@ function updateMap_State(layer) {
     //otherwise populate markers for cameras only in thae selected country
     if(state && state != "NULL") {
         updateLayer(layer, "col4 IN " + s);
-        // layer.setOptions({
-        //     query: {
-        //         select: locationColumn,
-        //         from: tableId,
-        //         where: "col4 IN " + s
-        //     }
-        // });
         getCityNames();
     }
     else{
         document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
         updateLayer(layer, "col5 = '" + document.getElementById('country').value + "'");
-        // layer.setOptions({
-        //     query: {
-        //         select: locationColumn,
-        //         from: tableId,
-        //         where: "col5 = '" + document.getElementById('country').value + "'"
-        //     }
-        // });
     }
 }
 
@@ -264,6 +242,16 @@ function updateLayer(layer, filtering_condition){
             where: filtering_condition
         }
     });
+}
+
+//parse data from drop down menu to format a string in the required format for a SQL query
+function getdata_dropdown(dropdown_name){
+    var data_array = $(dropdown_name).select2('val');
+    var data = '(';
+    for (var i = data_array.length - 1; i > 0; i--) {
+        data += "'" + data_array[i] + "'" + ','
+    }
+    data += "'" + data_array[0] + "'" + ')'
 }
 
 //This function 1) updates region and 2) queries fusion tables
