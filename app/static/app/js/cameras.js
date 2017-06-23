@@ -259,13 +259,14 @@ function getStateNames(country) {
         document.getElementById('state').isDisabled = false;
         document.getElementById('city').isDisabled = true;
         region = 'state';
-        var FT_Query_StateName = "SELECT 'State' " +
-            "FROM " + tableId;
-        var country = document.getElementById('country').value;
-        FT_Query_StateName += " WHERE 'Nation' = '" + country + "' ";
-        FT_Query_StateName += " group by 'State'";
-
-        var queryText = encodeURIComponent(FT_Query_StateName);
+        // var FT_Query_StateName = "SELECT 'State' " +
+        //     "FROM " + tableId;
+        // var country = document.getElementById('country').value;
+        // FT_Query_StateName += " WHERE 'Nation' = '" + country + "' ";
+        // FT_Query_StateName += " group by 'State'";
+        //
+        // var queryText = encodeURIComponent(FT_Query_StateName);
+        var queryText = get_querytext('State');
         var query = new google.visualization.Query(queryUrlHead + queryText + queryUrlTail + "populate_dropdown");
 
         //set the callback function
