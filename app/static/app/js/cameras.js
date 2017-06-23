@@ -167,7 +167,9 @@ function updateMap_Country(layer, map) {
     }
 }
 
-//to update map when a state is selected
+//this funciton formulates and passes queries to updateLayer function based on form inputs on cameras webpage
+//See this link for API documentation of formulating query: https://developers.google.com/fusiontables/docs/v2/using#queryData
+//See this link for example of how to query fusion table: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateMap_State(layer) {
     //parse data from drop down menu to format a string in the required format for a SQL query
     var state = $("#state").select2('val');
@@ -180,30 +182,32 @@ function updateMap_State(layer) {
     //if a state other than NULL state is selected then populate markers for cameras only in that state
     //otherwise populate markers for cameras only in thae selected country
     if(state && state != "NULL") {
-        layer.setOptions({
-            query: {
-                select: locationColumn,
-                from: tableId,
-                where: "col4 IN " + s
-            }
-        });
+        updateLayer(layer, "col4 IN " + s);
+        // layer.setOptions({
+        //     query: {
+        //         select: locationColumn,
+        //         from: tableId,
+        //         where: "col4 IN " + s
+        //     }
+        // });
         getCityNames();
     }
     else{
         document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
-        layer.setOptions({
-            query: {
-                select: locationColumn,
-                from: tableId,
-                where: "col5 = '" + document.getElementById('country').value + "'"
-            }
-        });
+        updateLayer(layer, "col5 = '" + document.getElementById('country').value + "'");
+        // layer.setOptions({
+        //     query: {
+        //         select: locationColumn,
+        //         from: tableId,
+        //         where: "col5 = '" + document.getElementById('country').value + "'"
+        //     }
+        // });
     }
 }
 
 //this funciton formulates and passes queries to updateLayer function based on form inputs on cameras webpage
-//See this link for API documentation: https://developers.google.com/fusiontables/docs/v2/using#queryData
-//See this link for example: https://developers.google.com/fusiontables/docs/samples/change_query
+//See this link for API documentation of formulating query: https://developers.google.com/fusiontables/docs/v2/using#queryData
+//See this link for example of how to query fusion table: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateMap_City(layer) {
     var city = $("#city").select2('val');
 
@@ -250,8 +254,8 @@ function updateMap_City(layer) {
 
 //layer -> fusion tables layer on map to update
 //filtering_condition -> a SQL like query to obtained filtered data from fusiontables
-//See this link for API documentation: https://developers.google.com/fusiontables/docs/v2/using#queryData
-//See this link for example: https://developers.google.com/fusiontables/docs/samples/change_query
+//See this link for API documentation of formulating query: https://developers.google.com/fusiontables/docs/v2/using#queryData
+//See this link for example of how to query fusion table: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateLayer(layer, filtering_condition){
     layer.setOptions({
         query: {
