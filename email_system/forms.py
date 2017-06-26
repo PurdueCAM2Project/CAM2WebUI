@@ -5,7 +5,9 @@ class MultiEmailField(forms.Field):
     def to_python(self, value):
         if not value:
             return []
-        value = value.replace(' ', '') #remove space
+        #Modify the input so that email can be split by , and ;
+        #For copying and pasting email address from the list, None, () \ will be removed.
+        value = value.replace(' ', '')
         value = value.replace('None,', '')
         value = value.replace(';', ',')
         value = value.replace('(', '')
