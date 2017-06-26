@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from app.validators import validateURL, validateEmail,validateMonth, validateYear, validateName #
+from app.validators import validateURL, validateEmail,validateMonth, validateYear, validateName 
 
 
 class RegisterUser(models.Model):
@@ -46,7 +46,7 @@ class Team(models.Model):
 
 class Leader(models.Model):
     leaderimg = models.CharField(verbose_name='Leader Image', max_length=300, validators=[validateURL])
-    leadertitle = models.CharField(verbose_name='Leader Title', max_length=50, validators=[validateName])
+    leadertitle = models.CharField(verbose_name='Leader Title', max_length=50)
     leadername = models.CharField(verbose_name='Leader Name', max_length=50, validators=[validateName])
     leaderpagelink = models.CharField(verbose_name='Leader Page Link (Optional)', max_length=300, blank=True, null=True, validators=[validateURL])
     def __str__(self):

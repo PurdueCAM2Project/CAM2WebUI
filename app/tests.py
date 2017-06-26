@@ -15,7 +15,7 @@ from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 
 from django.test.testcases import LiveServerThread
-
+from django.contrib.auth.models import User
 
 import os
 import base64
@@ -34,13 +34,18 @@ class AddTestCase(LiveServerTestCase):
 	def setUp(self):
 		#self.display = Display(visible=0, size=(1000, 1200))
 		#self.display.start()
+		User.objects.create_superuser(
+			username='admin',
+			password='admin',
+			email='admin@example.com'
+		)
 		self.selenium = webdriver.Chrome()
 		super(AddTestCase, self).setUp()
 		self.port = self.live_server_url.split(":")[2]
 		self.username = os.environ['BASICAUTH_USERNAME']
 		self.password = os.environ['BASICAUTH_PASSWORD']
-		self.test_username = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
-		self.test_password = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+		self.test_username = 'test_username'
+		self.test_password = 'test_password'
 
 		
 	def tearDown(self):
@@ -337,8 +342,38 @@ class AddTestCase(LiveServerTestCase):
 		    )
 		)
 	"""
-	
+	def test_Login_Register_6(self):
+		#log in the admin account
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/admin/'
 
+		browser.get(url)
+		un = browser.find_element_by_name('username')
+		un.send_keys("admin")
+		pw = browser.find_element_by_name('password')
+		pw.send_keys("admin")
+		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/form[@id='login-form']/div[@class='submit-row']/input[@value='Log in']").click()
+		currentUrl = browser.current_url
+		#Test the validation for history
+		browser.find_element_by_xpath("//div[@id='container']/div[2]/div[@id='content-main']//tbody/tr[@class='model-history']/td").click()
+		browser.find_element_by_name('month').send_keys("13")
+		browser.find_element_by_name('year').send_keys("2019")
+		browser.find_element_by_name('_save').click()
+		error1 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[1]/ul/li")
+		error2 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[2]/ul/li")
+		assert error1.get_attribute("innerHTML") == 'The maximum value is 12'
+		assert error2.get_attribute("innerHTML") == 'The maximum value is 2017'
+		#Test the validation for leader
+		browser.get(currentUrl)
+		browser.find_element_by_xpath("//div[@id='container']/div[2]/div[@id='content-main']//tbody/tr[@class='model-leader']/td").click()
+		browser.find_element_by_name('leaderimg').send_keys("a.com")
+		browser.find_element_by_name('leadername').send_keys("Harvey K. J")
+		browser.find_element_by_name('leaderpagelink').send_keys("abcd???")
+		browser.find_element_by_name('_save').click()
+		error3 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[1]/ul/li")
+		error4 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[3]/ul/li")
+		error5 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[4]/ul/li")
+		assert error3.get_attribute("innerHTML") == 'Invalid URL for this field'
 
 
 
