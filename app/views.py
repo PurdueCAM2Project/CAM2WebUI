@@ -87,11 +87,13 @@ def register(request):
             result = json.loads(response.read().decode())
             if result['success']:
                 model1 = form1.save(commit=False)
-                model1.is_active = True
+                model1.is_active = True #Set true for testing without email.
                 model1.save()
                 model2 = form2.save(commit=False)
                 model2.user = model1
                 model2.save()
+                
+                #Email user
                 current_site = get_current_site(request)
                 subject = 'Activate Your CAM2 Account'
                 message = render_to_string('app/confirmation_email.html', {
@@ -101,7 +103,8 @@ def register(request):
                     'token': account_activation_token.make_token(model1),
                 })
                 model1.email_user(subject, message)
-
+                
+                #Email admin
                 admin_subject = 'New User Registered'
                 admin_message = render_to_string('app/new_user_email_to_admin.html', {
                     'user': model1,
