@@ -1,3 +1,5 @@
+Django version 1.10.5
+***
 ## Goal
 Email user to confirm registration and notify administrator after user registered.
 ## Approach
