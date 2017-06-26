@@ -1,7 +1,9 @@
-Goal: Email user to confirm registration and notify administrator after user registered.
-Approach: Followed this [tutorial](https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html)
-After the code of register, add the following to email user and admin:
+## Goal
+Email user to confirm registration and notify administrator after user registered.
+## Approach
+Followed this [tutorial](https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html)
 
+After the code of register, add the following to email user and admin:
 Under `model1 = form1.save(commit=False)`, add
     model1.is_active = False #Will be set True after users confirm their email.
 so that the account will be inactive until users confirm their email.
