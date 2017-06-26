@@ -8,21 +8,22 @@ from email_system.forms import MailForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.mail import send_mass_mail, send_mail
 
-#@staff_member_required
+@staff_member_required
 def admin_send_email(request):
-    email_table = (User.objects.values('email'))
-    users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined')
+    email_table = (User.objects.values('email')) #Obtaining a list of users' emails outside users info table for easy copying and pasting.
+    users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined') #Obtaining a list of info required from user
     if request.method == 'POST':
         form = MailForm(request.POST)
         if form.is_valid():
+            #email specific users
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             email = form.cleaned_data['email']
-            email_all_users = form.cleaned_data['email_all_users']
-            current_site = get_current_site(request)
-            all_users = User.objects.all()
+            email_all_users = form.cleaned_data['email_all_users']#option for email all users
+            current_site = get_current_site(request)#will be used in templates
+            all_users = User.objects.all() #For iteration of email all users
             try:
-                if email_all_users:
+                if email_all_users: #if ture, send email to all users
                     mass_email = []
                     for user in all_users:
                         username = user.username
@@ -38,12 +39,12 @@ def admin_send_email(request):
                             [user.email],
                         ))
                     send_mass_mail(mass_email)
-                else:
+                else: #if email_all_users is not true, send email to address that the admin typed in
                     send_mail(subject,message,EMAIL_HOST_USER,email)
 
-                messages.success(request, 'Email successfully sent.')
+                messages.success(request, 'Email successfully sent.')#success message
             except:
-                messages.error(request, 'Email sent failed.')
+                messages.error(request, 'Email sent failed.')#error message
 
             return redirect('admin_send_email')
         else:
