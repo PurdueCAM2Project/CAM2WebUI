@@ -20,10 +20,11 @@ def admin_send_email(request):
             message = form.cleaned_data['message']
             email = form.cleaned_data['email']
             email_all_users = form.cleaned_data['email_all_users']#option for email all users
-            current_site = get_current_site(request)#will be used in templates
-            all_users = User.objects.all() #For iteration of email all users
+            
             try:
                 if email_all_users: #if ture, send email to all users
+                    current_site = get_current_site(request)#will be used in templates
+                    all_users = User.objects.all() #For iteration of email all users
                     mass_email = []
                     for user in all_users:
                         username = user.username
