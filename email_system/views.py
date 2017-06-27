@@ -59,11 +59,12 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            #get info from form
             name = form.cleaned_data['name']
             from_email = form.cleaned_data['from_email']
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
-
+            #add info to email template
             content = render_to_string('email_system/contact_email_template.html', {
                 'name': name,
                 'from_email': from_email,
