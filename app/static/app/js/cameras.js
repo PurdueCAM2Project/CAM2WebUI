@@ -109,7 +109,7 @@ function updateMap_Country(layer, map) {
     //intialise state and city drop down menus to NULL values when no country is selected
     var country = getdata_dropdown("#country");
     var countrylist = $("#country").select2('val');
-    console.log(countrylist);
+
     //if an option other than All is selected from the country dropdown menu then
     //recenter map and zoom in on selected country
     //to do so send a geocoding request - as explained below
@@ -134,47 +134,23 @@ function updateMap_Country(layer, map) {
     }
 }
 
-function center_on_world(map){
-    map.setCenter(new google.maps.LatLng(40.363489, -98.832955));
-    map.setZoom(2);
-}
-
-//using geocoder to center map on country selected
-function center_on_place(place_name, map){
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({'address': place_name}, function (results, status) {
-        while (status != google.maps.GeocoderStatus.OK) {}
-        map.setCenter(results[0].geometry.location);
-        map.fitBounds(results[0].geometry.viewport);
-    });
-}
-
 //this funciton formulates and passes queries to updateLayer function based on form inputs on cameras webpage
 //See this link for API documentation of formulating query: https://developers.google.com/fusiontables/docs/v2/using#queryData
 //See this link for example of how to query fusion table: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateMap_State(layer) {
     //parse data from drop down menu to format a string in the required format for a SQL query
-    var state = $("#state").select2('val');
+    var state = getdata_dropdown("#state");
 
     //if a state other than NULL state is selected then populate markers for cameras only in that state
-    //otherwise populate markers for cameras only in thae selected country
-    console.log(state);
-    if(state && state != "NULL") {
-        updateLayer(layer, "col4 IN " + getdata_dropdown("#state"));
+    //otherwise populate markers for cameras only in the selected country
+    if(state != "('')" && state != "('undefined')") {
+        updateLayer(layer, "col4 IN " + state);
         getCityNames();
     }
     else{
-        //document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
-        var country = $("#country").select2('val');
-
-        var co = '(';
-        for (var i = country.length - 1; i > 0; i--) {
-            co += "'" + country[i] + "'" + ','
-        }
-        co += "'" + country[0] + "'" + ')'
-
         document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
-        updateLayer(layer, "col5 IN " + co);
+        var country = getdata_dropdown("#country");
+        updateLayer(layer, "col5 IN " + country);
     }
 }
 
@@ -186,7 +162,6 @@ function updateMap_City(layer) {
     var state = getdata_dropdown("#state");
     var country = getdata_dropdown("#country");
 
-    console.log(city, state, country);
     //if atleast one city has been selected
 
     if (city != "('')" && city != "('undefined')") {
@@ -217,6 +192,21 @@ function updateLayer(layer, filtering_condition){
     });
 }
 
+function center_on_world(map){
+    map.setCenter(new google.maps.LatLng(40.363489, -98.832955));
+    map.setZoom(2);
+}
+
+//using geocoder to center map on country selected
+function center_on_place(place_name, map){
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({'address': place_name}, function (results, status) {
+        while (status != google.maps.GeocoderStatus.OK) {}
+        map.setCenter(results[0].geometry.location);
+        map.fitBounds(results[0].geometry.viewport);
+    });
+}
+
 //parse data from drop down menu to format a string in the required format for a SQL query
 function getdata_dropdown(dropdown_name){
     var data_array = $(dropdown_name).select2('val');
@@ -243,7 +233,7 @@ function getCityNames() {
 // else it calls the getCityNames functions
 function getStateNames() {
     // set the query using the parameters
-    //console.log(country)
+
     var country = getdata_dropdown("#country");
     var countrylist = $("#country").select2('val');
     if ($.inArray( "USA", countrylist ) != -1){
@@ -283,8 +273,6 @@ function get_querytext(data){
         FT_Query += " WHERE 'Nation' IN " + country;
 
     FT_Query += " group by '" + data + "'";
-
-    console.log(FT_Query);
 
     return encodeURIComponent(FT_Query);
 }
