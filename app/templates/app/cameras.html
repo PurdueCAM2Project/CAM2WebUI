@@ -12,8 +12,9 @@
     <div class="col-xs-12 col-lg-4">
       <form>
         <div class="form-group">
-          <label class="control-label" for="country" align="left" >Country (select one):</label>
-          <select class="form-control" id="country" multiple="multiple" style="height: 28px">
+            <label class="control-label" for="country" align="left">Country (select one or multiple):</label>
+            <select class="form-control" id="country" multiple="multiple" style="height: 28px;">
+
             <!--<option value="" selected="selected"> - All - </option>-->
             <option value="USA">United States</option>
             <option value="AF">Afghanistan</option>
@@ -285,12 +286,13 @@
       </form>
     </div>
   </div>
-  <br>
+  <br></br>
   <div id="mapCanvas"></div>
 </div>
 
 {% endblock %}
 {% block scripts %}
+<<<<<<< HEAD
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 
 <script src="{% static "app/js/cameras.js" %}"></script>
@@ -308,6 +310,18 @@
     google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
 </script>
 <script type="text/javascript">
+=======
+<script src="{% static "app/js/cameras.js" %}"></script>
+  <script src="{% static "app/js/select2.min.js" %}"></script>
+  <script async defer type="text/javascript" src="https://maps.google.com/maps/api/js?v=3&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=initialize"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+  google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
+  </script>
+  <script type="text/javascript">
+>>>>>>> origin/master
     $("#country").select2();
     $("#state").select2();
     $("#city").select2();

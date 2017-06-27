@@ -106,16 +106,21 @@ window.initialize = function() {
 //See this link for API documentation of formulating query: https://developers.google.com/fusiontables/docs/v2/using#queryData
 //See this link for example of how to query fusion table: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateMap_Country(layer, map) {
-    //initialise state and city drop down menus to NULL values when no country is selected
-    document.getElementById('state').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
-    document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
 
+    //intialise state and city drop down menus to NULL values when no country is selected
+    var selected = document.getElementById('country');
     var country = $("#country").select2('val');
-    var co = getdata_dropdown("#country");
+
+    var co = '(';
+    for (var i = country.length - 1; i > 0; i--) {
+        co += "'" + country[i] + "'" + ','
+    }
+    co += "'" + country[0] + "'" + ')'
     if (country.length > 0) {
         var country_name = $("#country").select2('data')[0].text;
     }
-
+    
+    //console.log(country_name)
     //if an option other than All is selected from the country dropdown menu then
     //recenter map and zoom in on selected country
     //to do so send a geocoding request - as explained below
@@ -127,8 +132,7 @@ function updateMap_Country(layer, map) {
             map.setCenter(results[0].geometry.location);
             map.fitBounds(results[0].geometry.viewport);
         });
-
-        updateLayer(layer, "col5 = '" + co + "'");
+        updateLayer(layer, "col5 IN " + co);
     }
     //else recenter on world
     else{
@@ -153,13 +157,23 @@ function updateMap_State(layer) {
 
     //if a state other than NULL state is selected then populate markers for cameras only in that state
     //otherwise populate markers for cameras only in thae selected country
+    console.log(state);
     if(state && state != "NULL") {
         updateLayer(layer, "col4 IN " + getdata_dropdown("#state"));
         getCityNames();
     }
     else{
+        //document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
+        var country = $("#country").select2('val');
+
+        var co = '(';
+        for (var i = country.length - 1; i > 0; i--) {
+            co += "'" + country[i] + "'" + ','
+        }
+        co += "'" + country[0] + "'" + ')'
+
         document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
-        updateLayer(layer, "col5 = '" + getdata_dropdown("#country") + "'");
+        updateLayer(layer, "col5 IN " + co);
     }
 }
 
@@ -168,7 +182,14 @@ function updateMap_State(layer) {
 //See this link for example of how to query fusion table: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateMap_City(layer) {
 
-    var country = document.getElementById('country').value;
+    var country = $("#country").select2('val');
+
+    var co = '(';
+    for (var i = country.length - 1; i > 0; i--) {
+        co += "'" + country[i] + "'" + ','
+    }
+    co += "'" + country[0] + "'" + ')'
+    //var country = document.getElementById('country').value;
     var city = getdata_dropdown("#city");
     var state = getdata_dropdown("#state");
 
@@ -180,14 +201,11 @@ function updateMap_City(layer) {
             updateLayer(layer, "col4 IN " + state + " AND  " + "col3 IN " + city);
         }
         else {
-            updateLayer(layer, "col5 = '" + country + "' AND  " + "col3 IN " + city);
+            updateLayer(layer, "col5 IN" + co + " AND  " + "col3 IN " + city);
         }
     }
-    else if (state != "('')" && state != "('undefined')") {
-        updateLayer(layer, "col4 = '" + state + "'");
-    }
     else{
-        updateLayer(layer, "col5 = '" + country + "'");
+        updateLayer(layer, "col5 IN " + co);
     }
 }
 
@@ -231,20 +249,23 @@ function getCityNames() {
 // else it calls the getCityNames functions
 function getStateNames(country) {
     // set the query using the parameters
-    if(country != "USA"){
-        document.getElementById('state').isDisabled = true;
-        getCityNames();
-    }
-    else {
+    //console.log(country)
+    if (country[0] == "USA"){
+        //console.log("hello world")
         document.getElementById('state').isDisabled = false;
         document.getElementById('city').isDisabled = true;
         region = 'state';
-
         var queryText = get_querytext('State');
         var query = new google.visualization.Query(queryUrlHead + queryText + queryUrlTail + "populate_dropdown");
-
+        //console.log(queryText);
         //set the callback function
         query.send();
+    }
+    else {
+        document.getElementById('state').isDisabled = true;
+        getCityNames();
+
+        
     }
 }
 
@@ -254,9 +275,14 @@ function getStateNames(country) {
 //Tip: use fusiontables website and set filter conitions on data using its user friendly interface
 //then use 'publish' tool to see the correct query and thus, understand how to code it
 function get_querytext(data){
-    var country = document.getElementById('country').value;
+    //var country = document.getElementById('country').value;
     var state = getdata_dropdown("#state");
+    var country = $("#country").select2('val');
 
+    var co = '(';
+    for (var i = country.length - 1; i > 0; i--) {
+        co += "'" + country[i] + "'" + ','
+    }
     // set the query using the parameters
     var FT_Query = "SELECT '" + data + "' " + "FROM " + tableId;
 
@@ -266,9 +292,23 @@ function get_querytext(data){
         console.log(state.value != (''));
     }
     else if (country) {
-        FT_Query += " WHERE 'Nation' = '" + country + "' ";
+        if (state.length > 0 || country[0] != "USA") {
+            co += "'" + country[0] + "'" + ')';
+            FT_Query += " WHERE 'Nation' IN " + co;
+        } else {
+            //console.log(state.length)
+            co = '(';
+            for (var i = country.length - 1; i > 1; i--) {
+                co += "'" + country[i] + "'" + ','
+            }
+            co += "'" + country[1] + "'" + ')'
+            FT_Query += " WHERE 'Nation' IN " + co;
+        }
+        
     }
     FT_Query += " group by '" + data + "'";
+
+    //console.log(FT_Query);
 
     return encodeURIComponent(FT_Query);
 }
