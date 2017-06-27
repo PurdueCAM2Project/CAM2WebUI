@@ -1,4 +1,4 @@
-Django version 1.10.5
+Django version 1.11.1
 ***
 ## Goal
 Allow admin to send email to specific users or all users.
