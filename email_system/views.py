@@ -71,7 +71,7 @@ def contact(request):
                 'message': message,
             })
             try:
-                send_mail(subject, content, from_email, [EMAIL_HOST_USER])
+                send_mail(subject, content, from_email, [EMAIL_HOST_USER])#email admin
             except:
                 messages.error(request, 'Email sent failed.')  # error message
 
