@@ -33,7 +33,7 @@ var region = '';
 //This function is called every time the cameras webpage is loaded
 //It initializes a map, overlays a "layer" of data from fusiontables (camera markers) on the map
 //and uses DOM properties to track user actions on the webpage
-function initialize() {
+window.initialize = function() {
 
     //the code below to initialize map and populate markers on map is obtained using the 'publish' tool from fusiontables
     google.maps.visualRefresh = true;
@@ -71,63 +71,64 @@ function initialize() {
     //to understand the code in updateMap* functions - to understand how the map is updated
     //https://developers.google.com/fusiontables/docs/samples/change_query
     google.maps.event.addDomListener($("#country").on("change", function() {
-            updateMap_Country(layer, map);
-        }));
+        updateMap_Country(layer, map);
+    }));
 
     google.maps.event.addDomListener($("#state").on("change", function() {
-            updateMap_State(layer);
-        }));
+        updateMap_State(layer);
+    }));
 
     google.maps.event.addDomListener($("#city").on("change", function() {
-            updateMap_City(layer);
-        }));
+        updateMap_City(layer);
+    }));
 
     if (isMobile) {
-      var legend = document.getElementById('googft-legend');
-      var legendOpenButton = document.getElementById('googft-legend-open');
-      var legendCloseButton = document.getElementById('googft-legend-close');
-      legend.style.display = 'none';
-      legendOpenButton.style.display = 'block';
-      legendCloseButton.style.display = 'block';
-      legendOpenButton.onclick = function() {
-        legend.style.display = 'block';
-        legendOpenButton.style.display = 'none';
-      }
-      legendCloseButton.onclick = function() {
+        var legend = document.getElementById('googft-legend');
+        var legendOpenButton = document.getElementById('googft-legend-open');
+        var legendCloseButton = document.getElementById('googft-legend-close');
         legend.style.display = 'none';
         legendOpenButton.style.display = 'block';
-      }
+        legendCloseButton.style.display = 'block';
+        legendOpenButton.onclick = function() {
+            legend.style.display = 'block';
+            legendOpenButton.style.display = 'none';
+        }
+        legendCloseButton.onclick = function() {
+            legend.style.display = 'none';
+            legendOpenButton.style.display = 'block';
+        }
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
-  }
+}
 
 //this funciton formulates and passes queries to updateLayer function based on form inputs on cameras webpage
 //See this link for API documentation of formulating query: https://developers.google.com/fusiontables/docs/v2/using#queryData
 //See this link for example of how to query fusion table: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateMap_Country(layer, map) {
-
     //initialise state and city drop down menus to NULL values when no country is selected
     document.getElementById('state').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
     document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
 
-    var selected = document.getElementById('country');
-    var country = selected.value;
-    var country_name = selected.options[selected.selectedIndex].text;
+    var country = $("#country").select2('val');
+    var co = getdata_dropdown("#country");
+    if (country.length > 0) {
+        var country_name = $("#country").select2('data')[0].text;
+    }
 
     //if an option other than All is selected from the country dropdown menu then
     //recenter map and zoom in on selected country
     //to do so send a geocoding request - as explained below
     //https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?csw=1
-    if(selected.selectedIndex > 0) {
+    if(country.length == 1) {
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode( {'address' : country_name}, function(results, status) {
             while (status != google.maps.GeocoderStatus.OK) {}
             map.setCenter(results[0].geometry.location);
             map.fitBounds(results[0].geometry.viewport);
         });
-        
-        updateLayer(layer, "col5 = '" + country + "'");
+
+        updateLayer(layer, "col5 = '" + co + "'");
     }
     //else recenter on world
     else{
@@ -158,7 +159,7 @@ function updateMap_State(layer) {
     }
     else{
         document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
-        updateLayer(layer, "col5 = '" + document.getElementById('country').value + "'");
+        updateLayer(layer, "col5 = '" + getdata_dropdown("#country") + "'");
     }
 }
 
@@ -184,7 +185,7 @@ function updateMap_City(layer) {
     }
     else if (state != "('')" && state != "('undefined')") {
         updateLayer(layer, "col4 = '" + state + "'");
-        }
+    }
     else{
         updateLayer(layer, "col5 = '" + country + "'");
     }
