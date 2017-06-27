@@ -120,79 +120,83 @@ and add this two list in `return render()` in the end:
      return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': users, 'email_table': email_table})
 
 *** 
-Template 
+In the template, a for loop is used to display fields in the MailForm (Subject, email, message etc.), and seperate email of users from other info of users for easy copying and pasting.
+  
 `admin_send_email.html`
-{% block content %}
-<div class="top-content">
-  <div class="inner-bg">
-    <div class="container">
-      <div class="row">
-        <h3>Email Users</h3>
-      </div>
-        {% if messages %}
-        <ul style="color: red" class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-      <div class="form-bottom">
-      <form method="post">
-        {% csrf_token %}
-        {% for field in form %}
-
-            {{ field.label_tag }}<br>
-            {{ field }}<br>
-            {% if field.help_text %}
-                <p style="color: grey">{{ field.help_text }}</p>
+    {% block content %}
+    <div class="top-content">
+      <div class="inner-bg">
+        <div class="container">
+          <div class="row">
+            <h3>Email Users</h3>
+          </div>
+            {% if messages %}
+            <ul style="color: red" class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
             {% endif %}
-            {% for error in field.errors %}
-                <p id="emailerror" style="color: red">{{ error }}</p>
-            {% endfor %}
+          <div class="form-bottom">
+          <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
 
-        {% endfor %}
-        <button type="submit" name="sendemail" class="btn">Send</button>
-        <br>
-        <br>
-
-        <div class="col-sm-3">
-        <table cellspacing="2" style="width:100%; float: left">
-            <tr><th>Email</th></tr>
-            {% for email in email_table %}
-            <tr>
-                {% if email.email%}
-                    <td>{{ email.email }},</td>
-                {% else %}
-                    <td>None,</td>
+                {{ field.label_tag }}<br>
+                {{ field }}<br>
+                {% if field.help_text %}
+                    <p style="color: grey">{{ field.help_text }}</p>
                 {% endif %}
-            </tr>
-            {% endfor %}
-        </table>
-        </div>
-        <div class="col-sm-9">
-        <table style="width:100%; float: left">
-        <tr>
-            <th>Username</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Date Joined</th>
-        </tr>
+                {% for error in field.errors %}
+                    <p id="emailerror" style="color: red">{{ error }}</p>
+                {% endfor %}
 
-        {% for user in users %}
+            {% endfor %}
+            <button type="submit" name="sendemail" class="btn">Send</button>
+            <br>
+            <br>
+
+            <div class="col-sm-3">
+            <table cellspacing="2" style="width:100%; float: left">
+                <tr><th>Email</th></tr>
+                {% for email in email_table %}
+                <tr>
+                    {% if email.email%}
+                        <td>{{ email.email }},</td>
+                    {% else %}
+                        <td>None,</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+            </div>
+            <div class="col-sm-9">
+            <table style="width:100%; float: left">
             <tr>
-            {% for field in user %}
-                <td>{{ field }}</td>
-            {% endfor %}
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date Joined</th>
             </tr>
-        {% endfor %}
 
-        </table>
+            {% for user in users %}
+                <tr>
+                {% for field in user %}
+                    <td>{{ field }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+
+            </table>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
-  </div>
-</div>
-</div>
-{% endblock %}
-
+    </div>
+    {% endblock %}
+***
+Future improvements:
+  
+Order the user info table by different aspect(date registered, name, etc.)
 
