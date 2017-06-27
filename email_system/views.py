@@ -58,25 +58,24 @@ def admin_send_email(request):
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
-        print('1')
         if form.is_valid():
-
             name = form.cleaned_data['name']
             from_email = form.cleaned_data['from_email']
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
-            print('name')
 
             content = render_to_string('email_system/contact_email_template.html', {
                 'name': name,
                 'from_email': from_email,
                 'message': message,
             })
-            send_mail(subject, content, from_email, [EMAIL_HOST_USER])
+            try:
+                send_mail(subject, content, from_email, [EMAIL_HOST_USER])
+            except:
+                messages.error(request, 'Email sent failed.')  # error message
 
             return redirect('email_sent')
     else:
-        print('3')
         form = ContactForm()
     return render(request, "email_system/contact.html", {'form': form})
 
