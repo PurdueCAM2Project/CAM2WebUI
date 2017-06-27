@@ -184,11 +184,11 @@ function updateMap_State(layer) {
 function updateMap_City(layer) {
     var city = getdata_dropdown("#city");
     var state = getdata_dropdown("#state");
+    var country = getdata_dropdown("#country");
 
-    //var country = getdata_dropdown("#country");
     console.log(city, state, country);
     //if atleast one city has been selected
-    //if atleast one state has been selected
+
     if (city != "('')" && city != "('undefined')") {
         //if atleast one state has been selected
         if (state != "('')" && state != "('undefined')") {
@@ -277,9 +277,9 @@ function get_querytext(data){
     // set the query using the parameters
     var FT_Query = "SELECT '" + data + "' " + "FROM " + tableId;
 
-    if(state != "('undefined')")
+    if(state != "('undefined')" && state != "('')")
         FT_Query += " WHERE 'State' IN " + state;
-    else if (country != "('undefined')")
+    else if (country != "('undefined')" && country != "('')")
         FT_Query += " WHERE 'Nation' IN " + country;
 
     FT_Query += " group by '" + data + "'";
