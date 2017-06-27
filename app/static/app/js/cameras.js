@@ -106,45 +106,35 @@ window.initialize = function() {
 //See this link for API documentation of formulating query: https://developers.google.com/fusiontables/docs/v2/using#queryData
 //See this link for example of how to query fusion table: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateMap_Country(layer, map) {
-
     //intialise state and city drop down menus to NULL values when no country is selected
-    var selected = document.getElementById('country');
-    var country = $("#country").select2('val');
+    var country = getdata_dropdown("#country");
 
-    var co = '(';
-    for (var i = country.length - 1; i > 0; i--) {
-        co += "'" + country[i] + "'" + ','
-    }
-    co += "'" + country[0] + "'" + ')'
-    if (country.length > 0) {
-        var country_name = $("#country").select2('data')[0].text;
-    }
-    
-    //console.log(country_name)
     //if an option other than All is selected from the country dropdown menu then
     //recenter map and zoom in on selected country
     //to do so send a geocoding request - as explained below
     //https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?csw=1
-    if(country.length == 1) {
+    if(country != "('undefined')") {
         var geocoder = new google.maps.Geocoder();
+        var country_name = $("#country").select2('data')[0].text;
+
         geocoder.geocode( {'address' : country_name}, function(results, status) {
             while (status != google.maps.GeocoderStatus.OK) {}
             map.setCenter(results[0].geometry.location);
             map.fitBounds(results[0].geometry.viewport);
         });
-        updateLayer(layer, "col5 IN " + co);
+
+        updateLayer(layer, "col5 IN " + country);
+
+        //if a country has been selected from the dropdown menu then
+        //query database for camera data in its states and city data
+        getStateNames(country);
     }
+
     //else recenter on world
     else{
         map.setCenter(new google.maps.LatLng(40.363489, -98.832955));
         map.setZoom(2);
         updateLayer(layer, "");
-    }
-
-    //if a country has been selected from the dropdown menu then
-    //query database for camera data in its states and city data
-    if(country) {
-        getStateNames(country);
     }
 }
 
