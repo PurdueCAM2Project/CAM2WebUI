@@ -125,7 +125,7 @@ function updateMap_Country(layer, map) {
 
         //if a country has been selected from the dropdown menu then
         //query database for camera data in its states and city data
-        getStateNames(country);
+        getStateNames();
     }
     //else recenter on world
     else{
@@ -182,18 +182,11 @@ function updateMap_State(layer) {
 //See this link for API documentation of formulating query: https://developers.google.com/fusiontables/docs/v2/using#queryData
 //See this link for example of how to query fusion table: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateMap_City(layer) {
-
-    var country = $("#country").select2('val');
-
-    var co = '(';
-    for (var i = country.length - 1; i > 0; i--) {
-        co += "'" + country[i] + "'" + ','
-    }
-    co += "'" + country[0] + "'" + ')'
-    //var country = document.getElementById('country').value;
     var city = getdata_dropdown("#city");
     var state = getdata_dropdown("#state");
 
+    //var country = getdata_dropdown("#country");
+    console.log(city, state, country);
     //if atleast one city has been selected
     //if atleast one state has been selected
     if (city != "('')" && city != "('undefined')") {
@@ -202,11 +195,11 @@ function updateMap_City(layer) {
             updateLayer(layer, "col4 IN " + state + " AND  " + "col3 IN " + city);
         }
         else {
-            updateLayer(layer, "col5 IN" + co + " AND  " + "col3 IN " + city);
+            updateLayer(layer, "col5 IN" + country + " AND  " + "col3 IN " + city);
         }
     }
     else{
-        updateLayer(layer, "col5 IN " + co);
+        updateLayer(layer, "col5 IN " + country);
     }
 }
 
@@ -248,24 +241,25 @@ function getCityNames() {
 // if USA is the selected country
 // 1) updates region and 2)queries fusion tables
 // else it calls the getCityNames functions
-function getStateNames(country) {
+function getStateNames() {
     // set the query using the parameters
     //console.log(country)
-    if (country[0] == "USA"){
-        //console.log("hello world")
+    var country = getdata_dropdown("#country");
+    var countrylist = $("#country").select2('val');
+    if ($.inArray( "USA", countrylist ) != -1){
+
         document.getElementById('state').isDisabled = false;
         document.getElementById('city').isDisabled = true;
         region = 'state';
         var queryText = get_querytext('State');
         var query = new google.visualization.Query(queryUrlHead + queryText + queryUrlTail + "populate_dropdown");
-        //console.log(queryText);
+
         //set the callback function
         query.send();
     }
     else {
         document.getElementById('state').isDisabled = true;
         getCityNames();
-
         
     }
 }
