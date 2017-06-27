@@ -272,38 +272,19 @@ function getStateNames() {
 function get_querytext(data){
     //var country = document.getElementById('country').value;
     var state = getdata_dropdown("#state");
-    var country = $("#country").select2('val');
+    var country = getdata_dropdown("#country");
 
-    var co = '(';
-    for (var i = country.length - 1; i > 0; i--) {
-        co += "'" + country[i] + "'" + ','
-    }
     // set the query using the parameters
     var FT_Query = "SELECT '" + data + "' " + "FROM " + tableId;
 
-    if(state != "('')"){
+    if(state != "('undefined')")
         FT_Query += " WHERE 'State' IN " + state;
-        console.log(FT_Query);
-        console.log(state.value != (''));
-    }
-    else if (country) {
-        if (state.length > 0 || country[0] != "USA") {
-            co += "'" + country[0] + "'" + ')';
-            FT_Query += " WHERE 'Nation' IN " + co;
-        } else {
-            //console.log(state.length)
-            co = '(';
-            for (var i = country.length - 1; i > 1; i--) {
-                co += "'" + country[i] + "'" + ','
-            }
-            co += "'" + country[1] + "'" + ')'
-            FT_Query += " WHERE 'Nation' IN " + co;
-        }
-        
-    }
+    else if (country != "('undefined')")
+        FT_Query += " WHERE 'Nation' IN " + country;
+
     FT_Query += " group by '" + data + "'";
 
-    //console.log(FT_Query);
+    console.log(FT_Query);
 
     return encodeURIComponent(FT_Query);
 }
