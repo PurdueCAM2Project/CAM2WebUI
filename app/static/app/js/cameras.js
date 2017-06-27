@@ -108,22 +108,22 @@ window.initialize = function() {
 function updateMap_Country(layer, map) {
     //intialise state and city drop down menus to NULL values when no country is selected
     var country = getdata_dropdown("#country");
+    var countrylist = $("#country").select2('val');
 
     //if an option other than All is selected from the country dropdown menu then
     //recenter map and zoom in on selected country
     //to do so send a geocoding request - as explained below
     //https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?csw=1
-    if(country != "('undefined')") {
-        var geocoder = new google.maps.Geocoder();
-        var country_name = $("#country").select2('data')[0].text;
-
-        geocoder.geocode( {'address' : country_name}, function(results, status) {
-            while (status != google.maps.GeocoderStatus.OK) {}
-            map.setCenter(results[0].geometry.location);
-            map.fitBounds(results[0].geometry.viewport);
-        });
-
+    if(country  != "('undefined')") {
         updateLayer(layer, "col5 IN " + country);
+
+        //if only one country then recenter on it
+        if(countrylist.length == 1) {
+            center_on_place(country, map);
+        }
+        else{
+            center_on_world(map);
+        }
 
         //if a country has been selected from the dropdown menu then
         //query database for camera data in its states and city data
@@ -132,10 +132,24 @@ function updateMap_Country(layer, map) {
 
     //else recenter on world
     else{
-        map.setCenter(new google.maps.LatLng(40.363489, -98.832955));
-        map.setZoom(2);
         updateLayer(layer, "");
+        recenter_on_world(map);
     }
+}
+
+
+function center_on_world(map){
+    map.setCenter(new google.maps.LatLng(40.363489, -98.832955));
+    map.setZoom(2);
+}
+
+function center_on_place(place_name, map){
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({'address': place_name}, function (results, status) {
+        while (status != google.maps.GeocoderStatus.OK) {}
+        map.setCenter(results[0].geometry.location);
+        map.fitBounds(results[0].geometry.viewport);
+    });
 }
 
 //this funciton formulates and passes queries to updateLayer function based on form inputs on cameras webpage
