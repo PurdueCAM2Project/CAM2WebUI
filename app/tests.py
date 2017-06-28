@@ -37,8 +37,8 @@ class AddTestCase(StaticLiveServerTestCase):
 
 
 	def setUp(self):
-		#self.display = Display(visible=0, size=(1000, 1200))
-		#self.display.start()
+		self.display = Display(visible=0, size=(1000, 1200))
+		self.display.start()
 		d = DesiredCapabilities.CHROME
 		d['loggingPrefs'] = { 'browser':'ALL' }
 		self.selenium = webdriver.Chrome(desired_capabilities=d)
@@ -58,7 +58,7 @@ class AddTestCase(StaticLiveServerTestCase):
 	def tearDown(self):
 		self.selenium.quit()
 		super(AddTestCase, self).tearDown()
-		#self.display.stop()
+		self.display.stop()
 		return
 
 
@@ -68,7 +68,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		print("start first test")
 		pass
 
-	"""
+	
 	# Test if page title is Cam2
 
 	def test_connection(self):
@@ -323,7 +323,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		except ValidationError as e:			
 			print(e)
 			assert False
-	"""
+	
 	
 	def test_camera_state(self):
 		print("start usa state test")
@@ -496,13 +496,8 @@ class AddTestCase(StaticLiveServerTestCase):
 			assert (len(city_options) == 1)
 
 
-		WebDriverWait(browser, 5).until(
-		    EC.text_to_be_present_in_element(
-		        (By.ID, 'someprofile'),
-		        'tang184\'s profile'
-		    )
-		)
-	"""
+		
+	
 	def test_Login_Register_6(self):
 		#log in the admin account
 		browser = self.selenium
