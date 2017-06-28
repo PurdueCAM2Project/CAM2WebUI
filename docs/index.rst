@@ -7,14 +7,23 @@ Welcome to PurdueCAM2Project/CAM2WebUI's documentation!
 =======================================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :glob:
+   :caption: Basic Setup
+   
+   basicSetup/*
 
 
+.. toctree::
+   :glob:
+   :caption: Implementation Details
+   
+   implementationDetail/*
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. toctree::
+   :glob:
+   :caption: Basic Setup
+   
+   test/*
+   
+  

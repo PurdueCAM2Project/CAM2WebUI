@@ -20,6 +20,9 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+from recommonmark.parser import CommonMarkParser
+from recommonmark.transform import AutoStructify
+import sphinx_rtd_theme
 
 
 # -- General configuration ------------------------------------------------
@@ -39,8 +42,7 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-# source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ['.rst', '.md']
 
 # The master toctree document.
 master_doc = 'index'
@@ -49,6 +51,8 @@ master_doc = 'index'
 project = 'PurdueCAM2Project/CAM2WebUI'
 copyright = '2017, Purdue CAM2 Project Developers'
 author = 'Purdue CAM2 Project Developers'
+
+github_doc_root = 'https://purduecam2project.github.io/CAM2WebUI/'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -83,13 +87,17 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = "sphinx_rtd_theme"
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+html_theme_options = {
+    'display_version': False,
+    'navigation_depth': 3,
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -153,5 +161,18 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 
+
+# -- Options for Markdown support -------------------------------------------
+source_parsers = {
+    '.md': CommonMarkParser,
+}
+
+# app setup hook
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+        #'url_resolver': lambda url: github_doc_root + url,
+        'enable_eval_rst': True,
+    }, True)
+    app.add_transform(AutoStructify)
 
 
