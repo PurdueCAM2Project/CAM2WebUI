@@ -117,9 +117,11 @@ function updateMap_Country(layer, map) {
     if(country  != "('undefined')") {
         updateLayer(layer, "col5 IN " + country);
 
+        var countryname = $("#country").select2('data')[0].text;
+
         //if only one country then recenter on it
         if(countrylist.length == 1)
-            center_on_place(country, map);
+            center_on_place(countryname, map);
         else
             center_on_world(map);
 
@@ -250,7 +252,7 @@ function getStateNames() {
     else {
         document.getElementById('state').isDisabled = true;
         getCityNames();
-        
+
     }
 }
 
@@ -294,7 +296,6 @@ function populate_dropdown(response) {
     }
 
     var dropdown_list = "<select name='data_select' onchange='handleSelected(this)'>"
-    dropdown_list += '<option value="" selected="selected"> - All - <\/option>';
     for (name in Names) {
         dropdown_list += "<option value='"+name+"'>"+name+"</option>"
     }
