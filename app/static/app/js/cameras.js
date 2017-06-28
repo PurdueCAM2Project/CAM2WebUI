@@ -33,6 +33,7 @@ var region = '';
 //This function is called every time the cameras webpage is loaded
 //It initializes a map, overlays a "layer" of data from fusiontables (camera markers) on the map
 //and uses DOM properties to track user actions on the webpage
+
 window.initialize = function() {
 
     //the code below to initialize map and populate markers on map is obtained using the 'publish' tool from fusiontables
@@ -98,6 +99,7 @@ window.initialize = function() {
             legendOpenButton.style.display = 'block';
         }
     }
+
 
     google.maps.event.addDomListener(window, 'load', initialize);
 }
