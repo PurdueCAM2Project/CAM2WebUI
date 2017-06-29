@@ -1,3 +1,4 @@
+# Email Confirmation
 Django version 1.10.5
 ***
 ## Goal
@@ -7,12 +8,15 @@ Followed this [tutorial](https://simpleisbetterthancomplex.com/tutorial/2017/02/
 
 After the code of register, add the following to email user and admin:
 Under `model1 = form1.save(commit=False)`, add
+  
     model1.is_active = False #Will be set True after users confirm their email.
+      
 so that the account will be inactive until users confirm their email.
 
 And the body of email user and admin is the following:
   
 We will use a template to email users, and the template will have username, a link to confirm adn activate user's account, and some content.
+  
     #Email user
     current_site = get_current_site(request) #will be used in website signiture
     subject = 'Activate Your CAM2 Account'
@@ -25,6 +29,7 @@ We will use a template to email users, and the template will have username, a li
     model1.email_user(subject, message)
 
 We will use a Django function mail_admins to notify admin when a user is registered.
+  
     #Email admin
     admin_subject = 'New User Registered'
     admin_message = render_to_string('app/new_user_email_to_admin.html', {
@@ -34,11 +39,13 @@ We will use a Django function mail_admins to notify admin when a user is registe
     mail_admins(admin_subject, admin_message)
 
 And redirect the page to a page that tells user the confirmation email has been sent:
+  
     return redirect('email_confirmation_sent')
     
     
 The `token` in email template will be randomly generated based on user's information.
 Create a new file called `tokens.py` and add the following:
+  
     from django.contrib.auth.tokens import PasswordResetTokenGenerator
     from django.utils import six
 
@@ -53,11 +60,13 @@ Create a new file called `tokens.py` and add the following:
     
 In addition, we need links for confirmation and successful activation:
 go to `urls.py` and add:
+  
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         app_views.activate, name='activate'),
     url(r'^account_activated/$', app_views.account_activated, name='account_activated'),
 
 Now we will work on the activation function. In `views.py`:
+  
     def activate(request, uidb64, token):
         try: #Get user
             uid = force_text(urlsafe_base64_decode(uidb64))
@@ -81,7 +90,8 @@ We will get the user based on the link and activate user if the user exist. The 
   
 ### Related Templates
 The web page that user is redirected to after they register:
-email_confirmation_sent.html:
+>email_confirmation_sent.html:
+  
     {% block content %}
       <h4 id="emailconfirm">Email confirmation sent</h4>
       <p>We have sent an account confirmation to your email. <br>
@@ -91,8 +101,10 @@ email_confirmation_sent.html:
     {% endblock %}
     
 Template for the confirmation email sent to user:
-  {% autoescape off %}
-  Hi {{ user.username }},
+>confirmation_email.html:
+  
+    {% autoescape off %}
+    Hi {{ user.username }},
 
       Welcome to CAM2!
       Please click on the link below to confirm your registration:
@@ -101,13 +113,15 @@ Template for the confirmation email sent to user:
       If you did not sign up for CAM2 website, it might be somebody else that mistakenly use your email for registration.
       We are very sorry for the inconvenience!
 
-  Sincerely,
-  CAM2
-  http://{{ domain }}
-  {% endautoescape %}
+    Sincerely,
+    CAM2
+    http://{{ domain }}
+    {% endautoescape %}
+  
 The variables inside `{{ }}` must match what we defined in `render_to_string` in `views.py`.
 
 The web page when user open the link in confirmation email:
+  
     {% block content %}
       <h4>Account Successfully Activated</h4>
       <p>Congratulations! your account has been successfully activated!</p>
