@@ -1,7 +1,18 @@
+# Sending Email from Admin
 Django version 1.11.1
 ***
 ## Goal
 Allow admin to send email to specific users or all users.
+  
+To send email to specific users, the email box will accept the following input, spaces will be ignored:
+  
+    11@a.com
+    11@a.com,12@b.com,
+    11@a.com;12@b.com
+    11@a.com;12@b.com;
+  
+Or copying and pasting from the user info table.
+
 
 ## Approach
 Create a new app calld `email_system`
@@ -23,6 +34,7 @@ In `forms.py':
 Since we want to send email to more than one address, we need to define a field that accepts multiple email addresses.
   
 Before `Mailform`, add:
+  
     class MultiEmailField(forms.Field):
         def to_python(self, value):
             if not value:
@@ -50,6 +62,7 @@ Before `Mailform`, add:
 The MultiEmailField will accept a list of email addresses that is split by `,` or `;` aas well as a list copy and paste from the user info table that we will create later.
   
 Now go to `views.py`:
+  
     def admin_send_email(request):
         if request.method == 'POST':
             form = MailForm(request.POST)
@@ -100,6 +113,7 @@ There are two ways of sending email: send_mail and send_mass_mail. send_mass_mai
 And the outcome is different. If we send_mass_email by attach every email to a list and send them together, the "to" part of the email will only show one email address, but if we use send_mail with a email list, the "to" part will show all the receivers.
   
 We also used a template here for email_all_users since it is nice to have signiture for an official email:
+  
     Hi {{ username }},
     {{ message }}
 
@@ -112,13 +126,15 @@ We also used a template here for email_all_users since it is nice to have signit
 For the convenience of administrator, it is good to have a table of all users' info.
 To obtain them, we will use `objects.values` and `objects.values_list`. The `objects.values` will collect the names of each aspact of info, however, `objects.values_list` will only contain the info itself.
   
-Right after `def admin_send_email(request):` and before `if request.method == 'POST':`, add:
+Right after `def admin_send_email(request):` and before `if request.method == 'POST':`, add the following to get user info:
+  
     email_table = (User.objects.values('email')) #Obtaining a list of users' emails outside users info table for easy copying and pasting.
     users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined') #Obtaining a list of info required from user
     
-and add this two list in `return render()` in the end:
+and add this two lists in `return render()` in the end:
+  
      return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': users, 'email_table': email_table})
-
+  
 *** 
 In the template, a for loop is used to display fields in the MailForm (Subject, email, message etc.), and seperate email of users from other info of users for easy copying and pasting.
   
@@ -199,4 +215,6 @@ In the template, a for loop is used to display fields in the MailForm (Subject, 
 Future improvements:
   
 Order the user info table by different aspect(date registered, name, etc.)
+  
+Since send_mail will show all the recipient in the email, it might be better to use the same approach as send_mass_mail (appending each indivicual email and send them one by one).
 
