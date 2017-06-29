@@ -12,7 +12,7 @@
 //col3 - city column
 //col4 - state column
 //col5 - nation column
-var tableId = "1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg";
+var tableId = "14rDkO77Vkn2_wKZSSTEGHACwcFyTzLiPWrAw17jj";
 var locationColumn = "col1";
 
 //Data is obtained from fusion tables by SQL queries
