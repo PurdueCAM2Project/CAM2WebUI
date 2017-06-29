@@ -214,8 +214,8 @@ In the template, a for loop is used to display fields in the MailForm (Subject, 
     </div>
     </div>
     {% endblock %}
-***
-Future improvements:
+
+### Future improvements:
   
 Order the user info table by different aspect(date registered, name, etc.)
   
