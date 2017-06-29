@@ -10,10 +10,11 @@ To send email to specific users, the email box will accept the following input, 
     11@a.com,12@b.com,
     11@a.com;12@b.com
     11@a.com;12@b.com;
-  
+    
 Or copying and pasting from the user info table.
-
-
+  
+    tang184@purdue.edu,huang637@purdue.edu,tang184@purdue.edu,None,11@qa.com,
+  
 ## Approach
 Create a new app calld `email_system`
   
@@ -22,6 +23,7 @@ Create a view for the email page. To make sure only admin can use this, we need 
 First we use a form to obtain the subject, message and email:
   
 In `forms.py':
+  
     from django import forms
     from django.core.validators import validate_email
     
@@ -139,6 +141,7 @@ and add this two lists in `return render()` in the end:
 In the template, a for loop is used to display fields in the MailForm (Subject, email, message etc.), and seperate email of users from other info of users for easy copying and pasting.
   
 `admin_send_email.html`
+  
     {% block content %}
     <div class="top-content">
       <div class="inner-bg">
