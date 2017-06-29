@@ -100,7 +100,6 @@ window.initialize = function() {
         }
     }
 
-
     google.maps.event.addDomListener(window, 'load', initialize);
 }
 
@@ -109,6 +108,7 @@ window.initialize = function() {
 //See this link for example of how to query fusion table: https://developers.google.com/fusiontables/docs/samples/change_query
 function updateMap_Country(layer, map) {
     //intialise state and city drop down menus to NULL values when no country is selected
+
     var country = getdata_dropdown("#country");
     var countrylist = $("#country").select2('val');
 
@@ -117,10 +117,10 @@ function updateMap_Country(layer, map) {
     //to do so send a geocoding request - as explained below
     //https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?csw=1
     if(country  != "('undefined')") {
-        updateLayer(layer, "col5 IN " + country);
+        updateLayer(layer, "'Nation' IN " + country);
 
         var countryname = $("#country").select2('data')[0].text;
-
+        console.log(countryname, countrylist,  countrylist.length);
         //if only one country then recenter on it
         if(countrylist.length == 1)
             center_on_place(countryname, map);
@@ -133,6 +133,8 @@ function updateMap_Country(layer, map) {
     }
     //else recenter on world
     else{
+        set_dropdown_null("state");
+        set_dropdown_null("city");;
         updateLayer(layer, "");
         center_on_world(map);
     }
@@ -152,7 +154,7 @@ function updateMap_State(layer) {
         getCityNames();
     }
     else{
-        document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
+        set_dropdown_null("city");
         var country = getdata_dropdown("#country");
         updateLayer(layer, "'Nation' IN " + country);
     }
@@ -180,6 +182,10 @@ function updateMap_City(layer) {
     else{
         updateLayer(layer, "'Nation' IN " + country);
     }
+}
+
+function set_dropdown_null(dropdown_name){
+    $("#" + dropdown_name).select2('val', '[]');
 }
 
 //layer -> fusion tables layer on map to update
@@ -277,6 +283,8 @@ function get_querytext(data){
         FT_Query += " WHERE 'Nation' IN " + country;
 
     FT_Query += " group by '" + data + "'";
+
+    console.log(FT_Query);
 
     return encodeURIComponent(FT_Query);
 }
