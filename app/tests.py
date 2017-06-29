@@ -89,7 +89,7 @@ class AddTestCase(LiveServerTestCase):
 		browser.get(url)
 		assert 'History' in browser.title
 
-		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/contact'
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/email/contact'
 		browser.get(url)
 		assert 'Contact us' in browser.title
 
