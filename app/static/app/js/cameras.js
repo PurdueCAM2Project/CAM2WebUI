@@ -148,13 +148,13 @@ function updateMap_State(layer) {
     //if a state other than NULL state is selected then populate markers for cameras only in that state
     //otherwise populate markers for cameras only in the selected country
     if(state != "('')" && state != "('undefined')") {
-        updateLayer(layer, "col4 IN " + state);
+        updateLayer(layer, "'State' IN " + state);
         getCityNames();
     }
     else{
         document.getElementById('city').innerHTML = '<option value="" selected="selected"> - All - <\/option>';
         var country = getdata_dropdown("#country");
-        updateLayer(layer, "col5 IN " + country);
+        updateLayer(layer, "'Nation' IN " + country);
     }
 }
 
@@ -171,14 +171,14 @@ function updateMap_City(layer) {
     if (city != "('')" && city != "('undefined')") {
         //if atleast one state has been selected
         if (state != "('')" && state != "('undefined')") {
-            updateLayer(layer, "col4 IN " + state + " AND  " + "col3 IN " + city);
+            updateLayer(layer, "'State' IN " + state + " AND  " + "'City' IN " + city);
         }
         else {
-            updateLayer(layer, "col5 IN" + country + " AND  " + "col3 IN " + city);
+            updateLayer(layer, "'Nation' IN" + country + " AND  " + "'City' IN " + city);
         }
     }
     else{
-        updateLayer(layer, "col5 IN " + country);
+        updateLayer(layer, "'Nation' IN " + country);
     }
 }
 
