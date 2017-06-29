@@ -11,7 +11,7 @@ To send email to specific users, the email box will accept the following input, 
     11@a.com;12@b.com
     11@a.com;12@b.com;
     
-Or copying and pasting from the user info table.
+Or copying and pasting from the user info table, if a user does not have confirmed email, then the None will be ignored.
   
     tang184@purdue.edu,huang637@purdue.edu,tang184@purdue.edu,None,11@qa.com,
   
