@@ -582,7 +582,8 @@ MIT License
               fromx: self.fromx,
               fromy: self.fromy,
               tox: self.tox,
-              toy: self.toy
+              toy: self.toy,
+              color: self.options.color
             });
             break;
           case 'circle':
@@ -642,6 +643,10 @@ MIT License
           height: 50
         });
       }
+    },
+    getallbox: function(event) {
+      var self = this;
+      return self.images;
     },
     getbox: function(event) {
       var self = this;
@@ -791,7 +796,16 @@ MIT License
         throw new Error('No annotate initialized for: #' + $(this).attr(
           'id'));
       }
-    } else if (options === 'get') {
+    } else if (options === 'getall') {
+      if ($annotate) {
+        //$annotate.exportImage(cmdOption, callback);
+        var s = $annotate.getallbox(this);
+        callback(s);
+      } else {
+        throw new Error('No annotate initialized for: #' + $(this).attr(
+          'id'));
+      }
+    } else if (options === 'getcurrent') {
       if ($annotate) {
         //$annotate.exportImage(cmdOption, callback);
         var s = $annotate.getbox(this);

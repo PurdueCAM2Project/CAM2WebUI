@@ -32,8 +32,14 @@ $(document).ready(function(){
 		}
 	});
 
+	$(".submit-all-images").click(function(event) {
+		$('#myCanvas').annotate("getall", null, function(d) {
+			console.log(d);
+		});
+	});
+
 	$(".submit-image").click(function(event) {
-		$('#myCanvas').annotate("get", null, function(d) {
+		$('#myCanvas').annotate("getcurrent", null, function(d) {
 			console.log(d);
 		});
 	});

@@ -7,17 +7,30 @@
 {% endblock %}
 {% block content %}
 
-<div class="main-content">
+<div class="container">
 
 <div class="my-image-selector">
 	<button class="push-new-image">Push a new image!</button>
 	<button class="submit-image">Submit Current Image</button>
+	<button class="submit-all-images">Submit All Images</button>
 
 	</div>
+	<div class="row">
+	<div class="col-sm-8">
 
 	<div style="margin-top:50px;">
 		<div id="myCanvas" style="position:relative"></div>
 	</div>
+	</div>
+	<div class="col-sm-4">
+	<ul class="nav nav-pills nav-stacked" style="margin-top:50px;">
+	  <li class="active"><a href="#">Human</a></li>
+	  <li><a href="#">Car</a></li>
+	  <li><a href="#">Street Sign</a></li>
+	</ul>
+	</div>
+	</div>
+
 </div>
 {% endblock %}
 
