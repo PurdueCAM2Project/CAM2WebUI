@@ -28,8 +28,9 @@ GitHub is a website that hosts Git repositories. You are currently using it righ
 | `git pull`                      | Pull your branch to the remote repository                                                     |
 | `git remote prune origin`       | Delete any local branches that were deleted in the remote repository                          |
 
-<p id="advice">[1] Always check what files change before add or commit to prevent add unnecessary files</p>
-<p id="threestates">[2] For Github commit workflow, see <a href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics#_the_three_states">The Three Stages</a></p>
+<a id="advice"></a>[1] Always check `git status` before add or commit to prevent adding unwanted files. `git add .` is not a good practice
+
+<a id="threestates"></a>[2] For Git commit workflow, see <a href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics#_the_three_states">The Three Stages</a>
 
 ## Managing branches
 
