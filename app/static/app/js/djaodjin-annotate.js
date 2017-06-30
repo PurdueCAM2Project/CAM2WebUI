@@ -4,7 +4,7 @@ Copyright (c) 2015, Djaodjin Inc.
 MIT License
 */
 /* global document jQuery Image window:true*/
-
+//console.log("hello world");
 (function($) {
   'use strict';
   /**
@@ -39,6 +39,7 @@ MIT License
   Annotate.prototype = {
     init: function() {
       var self = this;
+      //console.log(self);
       self.linewidth = self.options.linewidth;
       self.fontsize = self.options.fontsize;
       self.$el.addClass('annotate-container');
@@ -312,10 +313,10 @@ MIT License
       self.img.onload = function() {
         if ((self.options.width && self.options.height) !== undefined ||
           (self.options.width && self.options.height) !== 0) {
-          self.currentWidth = this.width;
-          self.currentHeight = this.height;
-          self.selectImageSize.width = this.width;
-          self.selectImageSize.height = this.height;
+          self.currentWidth = self.options.width;
+          self.currentHeight = self.options.height;
+          self.selectImageSize.width = self.options.width;
+          self.selectImageSize.height = self.options.height;
         } else {
           self.currentWidth = self.options.width;
           self.currentHeight = self.options.height;
@@ -642,6 +643,10 @@ MIT License
         });
       }
     },
+    getbox: function(event) {
+      var self = this;
+      return self.storedElement;
+    },
     annotateleave: function(event) {
       var self = this;
       if (self.clicked) {
@@ -782,6 +787,15 @@ MIT License
     } else if (options === 'export') {
       if ($annotate) {
         $annotate.exportImage(cmdOption, callback);
+      } else {
+        throw new Error('No annotate initialized for: #' + $(this).attr(
+          'id'));
+      }
+    } else if (options === 'get') {
+      if ($annotate) {
+        //$annotate.exportImage(cmdOption, callback);
+        var s = $annotate.getbox(this);
+        callback(s);
       } else {
         throw new Error('No annotate initialized for: #' + $(this).attr(
           'id'));

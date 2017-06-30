@@ -2,7 +2,6 @@
 {% block title %}CAM²{% endblock %}
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static "app/css/index.css" %}">
 <link rel="stylesheet" href="{% static "app/css/annotate.css" %}">
 
 {% endblock %}
@@ -12,11 +11,11 @@
 
 <div class="my-image-selector">
 	<button class="push-new-image">Push a new image!</button>
-	<button class="export-image">Export image</button>
+	<button class="submit-image">Submit Current Image</button>
 
 	</div>
 
-	<div style="margin-top:50px">
+	<div style="margin-top:50px;">
 		<div id="myCanvas" style="position:relative"></div>
 	</div>
 </div>
@@ -28,40 +27,8 @@
 
 <script src="{% static "app/js/djaodjin-annotate.js" %}"></script>
 
+<script src="{% static "app/js/label.js" %}"></script>
 
-<script>
-		$(document).ready(function(){
-			var counter = 0;
-			$('#myCanvas').on("annotate-image-added", function(event, id, path){
-				$(".my-image-selector").append("<label><input type=\"radio\" name=\"image-selector\" class=\"annotate-image-select\" value=\"" + path + "\" checked id=\"" + id + "\"><img src=\"" + path + "\" width=\"35\" height=\"35\"></label>");
-			});
-			$('#myCanvas').annotate({
-				color: 'blue',
-				bootstrap: true,
-				images: ['https://www.w3schools.com/css/trolltunga.jpg'],
-				onExport: function(image){
-					if ($("#exported-image").length > 0){
-						$("#exported-image").remove();
-					}
-					$("body").append("<img src=\"" + image + "\" id=\"exported-image\">");
-				}
-			});
 
-			$(".push-new-image").click(function(event) {
-				if (counter === 0){
-					$('#myCanvas').annotate("push", "https://www.smashingmagazine.com/wp-content/uploads/2015/06/10-dithering-opt.jpg");
-					counter += 1;
-				}else{
-					$('#myCanvas').annotate("push", {id:"unique_identifier", path:"images/test.jpg"});
-				}
-			});
-
-			$(".export-image").click(function(event) {
-				$('#myCanvas').annotate("export", {type: "image/jpeg", quality: 0.2},function(d){
-					console.log(d);
-				});
-			});
-		});
-	</script>
 
 {% endblock %}
