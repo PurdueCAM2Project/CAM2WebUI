@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from cam2webui.settings import EMAIL_HOST_USER
-from email_system.forms import MailForm
+from email_system.forms import MailForm, ContactForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.mail import send_mass_mail, send_mail
 
@@ -53,3 +53,32 @@ def admin_send_email(request):
     else:
         form = MailForm()
     return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': users, 'email_table': email_table})
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            #get info from form
+            name = form.cleaned_data['name']
+            from_email = form.cleaned_data['from_email']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            #add info to email template
+            content = render_to_string('email_system/contact_email_template.html', {
+                'name': name,
+                'from_email': from_email,
+                'message': message,
+            })
+            try:
+                send_mail(subject, content, from_email, [EMAIL_HOST_USER])#email admin
+            except:
+                messages.error(request, 'Email sent failed.')  # error message
+
+            return redirect('email_sent')
+    else:
+        form = ContactForm()
+    return render(request, "email_system/contact.html", {'form': form})
+
+def email_sent(request):
+    return render(request, 'email_system/email_sent.html')
