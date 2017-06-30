@@ -1,11 +1,24 @@
-# [Guide] Viewing the Website Locally
+# Viewing the Website Locally
 
-Joseph Sweeney edited this page on Mar 27
+There are three steps to viewing the website locally.
 
-___
+## Virtualenv Setup (if you only have python 3.6 in your machine, you can skip this step)
 
+To simplify Python dependencies, use `virtualenv`. This tool can be install with `pip`:
+```bash
+pip install virtualenv
+```
 
-After cloning the repository, there are three steps to viewing the website locally.
+A virtual environment named `venv` already exists in the root project directory. To activate it:
+```bash
+source venv/bin/activate
+```
+
+Your `bash` prompt will now begin with `(venv)`. To deactivate virtualenv:
+
+```bash
+deactivate
+```
 
 ## Configuring Python virtual environment
 
