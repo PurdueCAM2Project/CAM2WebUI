@@ -2,4 +2,4 @@ from django.shortcuts import render
 
 # Create your views here.
 def index(request):
-    return render(request, 'app/label.html')
+    return render(request, 'labelimg/label.html')
