@@ -10,8 +10,8 @@ from django.core.mail import send_mass_mail, send_mail
 
 #@staff_member_required
 def admin_send_email(request):
-    email_table = (User.objects.values('email')) #Obtaining a list of users' emails outside users info table for easy copying and pasting.
-    users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined') #Obtaining a list of info required from user
+    email_table = (User.objects.values('email').order_by('date_joined')) #Obtaining a list of users' emails outside users info table for easy copying and pasting.
+    users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined').order_by('date_joined') #Obtaining a list of info required from user
     if request.method == 'POST':
         form = MailForm(request.POST)
         if form.is_valid():
