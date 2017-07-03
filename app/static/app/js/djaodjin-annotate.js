@@ -377,11 +377,11 @@ MIT License
       // clear each stored line
       for (var i = 0; i < self.storedElement.length; i++) {
         var element = self.storedElement[i];
-
+        console.log(element.color)
         switch (element.type) {
           case 'rectangle':
             self.drawRectangle(self.baseContext, element.fromx, element.fromy,
-              element.tox, element.toy);
+              element.tox, element.toy, element.color);
             break;
           case 'arrow':
             self.drawArrow(self.baseContext, element.fromx, element.fromy,
@@ -413,14 +413,14 @@ MIT License
       // Clear Canvas
       self.drawingCanvas.width = self.drawingCanvas.width;
     },
-    drawRectangle: function(context, x, y, w, h) {
+    drawRectangle: function(context, x, y, w, h, c) {
       var self = this;
       context.beginPath();
       context.rect(x, y, w, h);
       context.fillStyle = 'transparent';
       context.fill();
       context.lineWidth = self.linewidth;
-      context.strokeStyle = self.options.color;
+      context.strokeStyle = c;
       context.stroke();
     },
     drawCircle: function(context, x1, y1, x2, y2) {
@@ -652,6 +652,11 @@ MIT License
       var self = this;
       return self.storedElement;
     },
+    changecolor: function(event, cmdOption) {
+      var self = this;
+      this.options.color = cmdOption
+      return cmdOption;
+    },
     annotateleave: function(event) {
       var self = this;
       if (self.clicked) {
@@ -677,7 +682,7 @@ MIT License
           self.toy = (pageY - offset.top) * self.compensationWidthRate -
             self.fromy;
           self.drawRectangle(self.drawingContext, self.fromx, self.fromy,
-            self.tox, self.toy);
+            self.tox, self.toy, self.options.color);
           break;
         case 'arrow':
           self.clear();
@@ -809,6 +814,15 @@ MIT License
       if ($annotate) {
         //$annotate.exportImage(cmdOption, callback);
         var s = $annotate.getbox(this);
+        callback(s);
+      } else {
+        throw new Error('No annotate initialized for: #' + $(this).attr(
+          'id'));
+      }
+    } else if (options === 'changecolor') {
+      if ($annotate) {
+        //$annotate.exportImage(cmdOption, callback);
+        var s = $annotate.changecolor(this, cmdOption);
         callback(s);
       } else {
         throw new Error('No annotate initialized for: #' + $(this).attr(

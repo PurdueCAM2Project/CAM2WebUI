@@ -1,12 +1,16 @@
 $(document).ready(function(){
 	var counter = 0;
+
+	var isactive = $("#human");
+
+	var current_color = 'red'
 	$('#myCanvas').on("annotate-image-added", function(event, id, path){
 		$(".my-image-selector").append("<label><input type=\"radio\" name=\"image-selector\" class=\"annotate-image-select\" value=\"" + path + "\" checked id=\"" + id + "\"><img src=\"" + path + "\" width=\"35\" height=\"35\"></label>");
 	});
 	var options = {
 		width: "640",          // Width of canvas
   		height: "400",         // Height of canvas
-		color: 'red',
+		color: current_color,
 		bootstrap: true,
 		images: ['https://www.w3schools.com/css/trolltunga.jpg'],
 		onExport: function(image){
@@ -40,6 +44,36 @@ $(document).ready(function(){
 
 	$(".submit-image").click(function(event) {
 		$('#myCanvas').annotate("getcurrent", null, function(d) {
+			console.log(d);
+		});
+	});
+
+	
+
+	$("#human").on('click', function() {
+		isactive.removeClass('active');
+		isactive = $("#human");
+		isactive.addClass('active');
+		$('#myCanvas').annotate("changecolor", 'red', function(d) {
+			console.log(d);
+		});
+	});
+
+	$("#car").on('click', function() {
+		//console.log("car");
+		isactive.removeClass('active');
+		isactive = $("#car");
+		isactive.addClass('active');
+		$('#myCanvas').annotate("changecolor", 'blue', function(d) {
+			console.log(d);
+		});
+	});
+
+	$("#sign").on('click', function() {
+		isactive.removeClass('active');
+		isactive = $("#sign");
+		isactive.addClass('active');
+		$('#myCanvas').annotate("changecolor", 'green', function(d) {
 			console.log(d);
 		});
 	});
