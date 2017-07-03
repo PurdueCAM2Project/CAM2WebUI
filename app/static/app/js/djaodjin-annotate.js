@@ -87,28 +87,7 @@ MIT License
           ' data-toggle="tooltip" data-placement="top"' +
           ' title="Draw an rectangle">' +
           '<i class="glyphicon glyphicon-unchecked"></i>' +
-          '</label><label class="btn btn-primary">' +
-          '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="circle"' +
-          ' data-toggle="tooltip"' +
-          'data-placement="top" title="Write some text">' +
-          '<i class="glyphicon glyphicon-copyright-mark"></i>' +
-          '</label><label class="btn btn-primary">' +
-          '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="text"' +
-          ' data-toggle="tooltip"' +
-          'data-placement="top" title="Write some text">' +
-          '<i class="glyphicon glyphicon-font"></i></label>' +
-          '<label class="btn btn-primary">' +
-          '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="arrow"' +
-          ' data-toggle="tooltip" data-placement="top" title="Draw an arrow">' +
-          '<i class="glyphicon glyphicon-arrow-up"></i></label>' +
-          '<label class="btn btn-primary">' +
-          '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="pen"' +
-          ' data-toggle="tooltip" data-placement="top" title="Pen Tool">' +
-          '<i class="glyphicon glyphicon-pencil"></i></label>' +
+          '</label>' +
           '</div><button type="button" id="redoaction"' +
           ' title="Redo the last undone annotation"' +
           'class="btn btn-primary ' + classPosition2 + ' annotate-redo">' +
@@ -383,27 +362,6 @@ MIT License
             self.drawRectangle(self.baseContext, element.fromx, element.fromy,
               element.tox, element.toy, element.color);
             break;
-          case 'arrow':
-            self.drawArrow(self.baseContext, element.fromx, element.fromy,
-              element.tox, element.toy);
-            break;
-          case 'pen':
-            for (var b = 0; b < element.points.length - 1; b++) {
-              var fromx = element.points[b][0];
-              var fromy = element.points[b][1];
-              var tox = element.points[b + 1][0];
-              var toy = element.points[b + 1][1];
-              self.drawPen(self.baseContext, fromx, fromy, tox, toy);
-            }
-            break;
-          case 'text':
-            self.drawText(self.baseContext, element.text, element.fromx,
-              element.fromy, element.maxwidth);
-            break;
-          case 'circle':
-            self.drawCircle(self.baseContext, element.fromx, element.fromy,
-              element.tox, element.toy);
-            break;
           default:
         }
       }
@@ -423,96 +381,8 @@ MIT License
       context.strokeStyle = c;
       context.stroke();
     },
-    drawCircle: function(context, x1, y1, x2, y2) {
-      var radiusX = (x2 - x1) * 0.5;
-      var radiusY = (y2 - y1) * 0.5;
-      var centerX = x1 + radiusX;
-      var centerY = y1 + radiusY;
-      var step = 0.05;
-      var a = step;
-      var pi2 = Math.PI * 2 - step;
-      var self = this;
-      context.beginPath();
-      context.moveTo(centerX + radiusX * Math.cos(0), centerY + radiusY *
-        Math.sin(0));
-      for (; a < pi2; a += step) {
-        context.lineTo(centerX + radiusX * Math.cos(a), centerY + radiusY *
-          Math.sin(a));
-      }
-      context.lineWidth = self.linewidth;
-      context.strokeStyle = self.options.color;
-      context.closePath();
-      context.stroke();
-    },
-    drawArrow: function(context, x, y, w, h) {
-      var self = this;
-      var angle = Math.atan2(h - y, w - x);
-      context.beginPath();
-      context.lineWidth = self.linewidth;
-      context.moveTo(x, y);
-      context.lineTo(w, h);
-      context.moveTo(w - self.linewidth * 5 * Math.cos(angle + Math.PI /
-        6), h - self.linewidth * 5 * Math.sin(angle + Math.PI / 6));
-      context.lineTo(w, h);
-      context.lineTo(w - self.linewidth * 5 * Math.cos(angle - Math.PI /
-        6), h - self.linewidth * 5 * Math.sin(angle - Math.PI / 6));
-      context.strokeStyle = self.options.color;
-      context.stroke();
-    },
-    drawPen: function(context, fromx, fromy, tox, toy) {
-      var self = this;
-      context.lineWidth = self.linewidth;
-      context.moveTo(fromx, fromy);
-      context.lineTo(tox, toy);
-      context.strokeStyle = self.options.color;
-      context.stroke();
-    },
-    wrapText: function(drawingContext, text, x, y, maxWidth, lineHeight) {
-      var lines = text.split('\n');
-      for (var i = 0; i < lines.length; i++) {
-        var words = lines[i].split(' ');
-        var line = '';
-        for (var n = 0; n < words.length; n++) {
-          var testLine = line + words[n] + ' ';
-          var metrics = drawingContext.measureText(testLine);
-          var testWidth = metrics.width;
-          if (testWidth > maxWidth && n > 0) {
-            drawingContext.fillText(line, x, y);
-            line = words[n] + ' ';
-            y += lineHeight;
-          } else {
-            line = testLine;
-          }
-        }
-        drawingContext.fillText(line, x, y + i * lineHeight);
-      }
-    },
-    drawText: function(context, text, x, y, maxWidth) {
-      var self = this;
-      context.font = self.fontsize + ' sans-serif';
-      context.textBaseline = 'top';
-      context.fillStyle = self.options.color;
-      self.wrapText(context, text, x + 3, y + 4, maxWidth, 25);
-    },
-    pushText: function() {
-      var self = this;
-      var text = self.$textbox.val();
-      self.$textbox.val('').hide();
-      if (text) {
-        self.storedElement.push({
-          type: 'text',
-          text: text,
-          fromx: self.fromx,
-          fromy: self.fromy,
-          maxwidth: self.tox
-        });
-        if (self.storedUndo.length > 0) {
-          self.storedUndo = [];
-        }
-      }
-      self.checkUndoRedo();
-      self.redraw();
-    },
+    
+    
     // Events
     selectTool: function(element) {
       var self = this;
@@ -586,48 +456,6 @@ MIT License
               color: self.options.color
             });
             break;
-          case 'circle':
-            self.storedElement.push({
-              type: 'circle',
-              fromx: self.fromx,
-              fromy: self.fromy,
-              tox: self.tox,
-              toy: self.toy
-            });
-            break;
-          case 'arrow':
-            self.storedElement.push({
-              type: 'arrow',
-              fromx: self.fromx,
-              fromy: self.fromy,
-              tox: self.tox,
-              toy: self.toy
-            });
-            break;
-          case 'text':
-            self.$textbox.css({
-              left: self.fromxText + 2,
-              top: self.fromyText,
-              width: self.tox - 12,
-              height: self.toy
-            });
-            break;
-          case 'pen':
-            self.storedElement.push({
-              type: 'pen',
-              points: self.points
-            });
-            for (var i = 0; i < self.points.length - 1; i++) {
-              self.fromx = self.points[i][0];
-              self.fromy = self.points[i][1];
-              self.tox = self.points[i + 1][0];
-              self.toy = self.points[i + 1][1];
-              self.drawPen(self.baseContext, self.fromx, self.fromy, self
-                .tox,
-                self.toy);
-            }
-            self.points = [];
-            break;
           default:
         }
         if (self.storedUndo.length > 0) {
@@ -683,45 +511,6 @@ MIT License
             self.fromy;
           self.drawRectangle(self.drawingContext, self.fromx, self.fromy,
             self.tox, self.toy, self.options.color);
-          break;
-        case 'arrow':
-          self.clear();
-          self.tox = (pageX - offset.left) * self.compensationWidthRate;
-          self.toy = (pageY - offset.top) * self.compensationWidthRate;
-          self.drawArrow(self.drawingContext, self.fromx, self.fromy,
-            self.tox,
-            self.toy);
-          break;
-        case 'pen':
-          self.tox = (pageX - offset.left) * self.compensationWidthRate;
-          self.toy = (pageY - offset.top) * self.compensationWidthRate;
-          self.fromx = self.points[self.points.length - 1][0];
-          self.fromy = self.points[self.points.length - 1][1];
-          self.points.push([
-            self.tox,
-            self.toy
-          ]);
-          self.drawPen(self.drawingContext, self.fromx, self.fromy, self.tox,
-            self.toy);
-          break;
-        case 'text':
-          self.clear();
-          self.tox = (pageX - self.fromxText) * self.compensationWidthRate;
-          self.toy = (pageY - self.fromyText) * self.compensationWidthRate;
-          self.$textbox.css({
-            left: self.fromxText + 2,
-            top: self.fromyText,
-            width: self.tox - 12,
-            height: self.toy
-          });
-          break;
-        case 'circle':
-          self.clear();
-          self.tox = (pageX - offset.left) * self.compensationWidthRate;
-          self.toy = (pageY - offset.top) * self.compensationWidthRate;
-          self.drawCircle(self.drawingContext, self.fromx, self.fromy,
-            self
-            .tox, self.toy);
           break;
         default:
       }

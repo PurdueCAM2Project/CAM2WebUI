@@ -12,7 +12,7 @@ $(document).ready(function(){
   		height: "400",         // Height of canvas
 		color: current_color,
 		bootstrap: true,
-		images: ['https://www.w3schools.com/css/trolltunga.jpg'],
+		images: ['ftp://128.46.75.58/WD1/2016%20Olympics/01_August_Mon/161_2016-08-01_15-27-17-440411.png'],
 		onExport: function(image){
 			if ($("#exported-image").length > 0){
 				$("#exported-image").remove();
