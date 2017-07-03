@@ -3,14 +3,16 @@ $(document).ready(function(){
 
 	var isactive = $("#human");
 
-	var current_color = 'red'
 	$('#myCanvas').on("annotate-image-added", function(event, id, path){
-		$(".my-image-selector").append("<label><input type=\"radio\" name=\"image-selector\" class=\"annotate-image-select\" value=\"" + path + "\" checked id=\"" + id + "\"><img src=\"" + path + "\" width=\"35\" height=\"35\"></label>");
+		$(".my-image-selector").append("<label id=\"" + id + "\"><input type=\"radio\" name=\"image-selector\" class=\"annotate-image-select\" value=\"" + path + "\" checked id=\"" + id + "\"><img src=\"" + path + "\" width=\"35\" height=\"35\"></label>");
+	});
+	$('#myCanvas').on("annotate-image-remove", function(event, id, path){
+		$(".my-image-selector").remove('label#feedback');
 	});
 	var options = {
 		width: "640",          // Width of canvas
   		height: "400",         // Height of canvas
-		color: current_color,
+		color: 'red',
 		bootstrap: true,
 		images: ['ftp://128.46.75.58/WD1/2016%20Olympics/01_August_Mon/161_2016-08-01_15-27-17-440411.png'],
 		onExport: function(image){
@@ -49,7 +51,6 @@ $(document).ready(function(){
 	});
 
 	
-
 	$("#human").on('click', function() {
 		isactive.removeClass('active');
 		isactive = $("#human");

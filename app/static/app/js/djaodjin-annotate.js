@@ -93,24 +93,6 @@ MIT License
           'class="btn btn-primary ' + classPosition2 + ' annotate-redo">' +
           '<i class="glyphicon glyphicon-arrow-right"></i></button>' +
           '</div>';
-      } else {
-        self.$tool = '<div id="" style="display:inline-block">' +
-          '<button id="undoaction">UNDO</button>';
-        if (self.options.unselectTool) {
-          self.$tool += '<input type="radio" name="' + self.toolOptionId +
-            '" data-tool="null">NO TOOL SELECTED';
-        }
-        self.$tool += '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="rectangle" checked>RECTANGLE' +
-          '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="circle">CIRCLE<input type="radio" name="' +
-          self.toolOptionId + '" data-tool="text"> TEXT' +
-          '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="arrow">ARROW<input type="radio" name="' +
-          self.toolOptionId + '" data-tool="pen">PEN' +
-          '<button id="redoaction"' +
-          'title="Redo the last undone annotation">REDO</button>' +
-          '</div>';
       }
       self.$tool = $(self.$tool);
       $('.annotate-container').append(self.$tool);
