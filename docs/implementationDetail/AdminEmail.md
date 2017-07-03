@@ -218,6 +218,5 @@ In the template, a for loop is used to display fields in the MailForm (Subject, 
 ### Future improvements:
   
 Order the user info table by different aspect(date registered, name, etc.)
-  
-Since send_mail will show all the recipient in the email, it might be better to use the same approach as send_mass_mail (appending each indivicual email and send them one by one).
+
 
