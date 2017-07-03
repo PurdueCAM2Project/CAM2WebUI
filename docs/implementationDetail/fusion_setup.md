@@ -11,7 +11,8 @@
    * Merge two or three tables to generate a single visualization that includes both sets of data
       * This is very relevant for this project - different camera databases can be merged seamlessly because they all have columns of unique camera IDs.
    * We can turn location tables into maps
-      * This is the primary reason we started using fusion tables in our project - the cameras data base consists of latitudanal and longitudanal position data for a camera, i.e., location data, and this allows very efficient rendering of our camera location markers on a google map
+      * This is the primary reason we started using fusion tables in our project - the cameras data base consists of latitudanal and longitudanal position data for a camera, i.e., location data, and this allows very efficient rendering of our camera location markers on a google map.
+   * Excellent API documentation and stackoverflow support community
  
 ### Creating fusion tables
 <i> Note: once you complete step X, geocoding will start automatically - <u> cancel it </u>. Only 10,000 data items (less than 10% of our camera database as of July 3, 2017) can be geocoded for free in a 24 hours period. Geocoding is not required to create markers for camera locations on a map however it is required for other features described later in this document and hence, the geocoding quota must not be exhausted. </i>
