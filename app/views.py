@@ -19,7 +19,8 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
-from .models import FAQ, History, Publication, Team, Leader, Member
+from .models import FAQ, History, Publication, Team, Leader, Member, RegisterUser
+
 
 def index(request):
     return render(request, 'app/index.html')
@@ -73,6 +74,8 @@ def register(request):
     if request.method == 'POST':
         form1 = RegistrationForm(request.POST)
         form2 = AdditionalForm(request.POST)
+
+
         if form1.is_valid() and form2.is_valid():
 
             recaptcha_response = request.POST.get('g-recaptcha-response')
@@ -103,14 +106,6 @@ def register(request):
                     'token': account_activation_token.make_token(model1),
                 })
                 model1.email_user(subject, message)
-                
-                #Email admin
-                admin_subject = 'New User Registered'
-                admin_message = render_to_string('app/new_user_email_to_admin.html', {
-                    'user': model1,
-                    'optional': model2,
-                })
-                mail_admins(admin_subject, admin_message)
 
                 return redirect('email_confirmation_sent')
             else:
@@ -156,8 +151,16 @@ def activate(request, uidb64, token):
         user.registeruser.email_confirmed = True
         user.save()
 
+        optional = RegisterUser.objects.get(user=user) #get optional info of user
+
+        #email admin
+        admin_subject = 'New User Registered'
+        admin_message = render_to_string('app/new_user_email_to_admin.html', {
+            'user': user,
+            'optional': optional,
+        })
+        mail_admins(admin_subject, admin_message)
         login(request, user, backend="django.contrib.auth.backends.ModelBackend")
-        
         return redirect('account_activated')
     else:
         return render(request, 'email_confirmation_invalid.html')

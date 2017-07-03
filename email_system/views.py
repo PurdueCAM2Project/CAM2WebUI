@@ -27,18 +27,19 @@ def admin_send_email(request):
                     all_users = User.objects.all() #For iteration of "email all users"
                     mass_email = []
                     for user in all_users:
-                        username = user.username #will be used in template
-                        template = render_to_string('email_system/admin_send_email_template.html', {
-                            'username': username,
-                            'message': message,
-                            'domain': current_site.domain,
-                        })
-                        mass_email.append((
-                            subject,
-                            template,
-                            EMAIL_HOST_USER,
-                            [user.email],
-                        ))
+                        if user.is_active:
+                            username = user.username #will be used in template
+                            template = render_to_string('email_system/admin_send_email_template.html', {
+                                'username': username,
+                                'message': message,
+                                'domain': current_site.domain,
+                            })
+                            mass_email.append((
+                                subject,
+                                template,
+                                EMAIL_HOST_USER,
+                                [user.email],
+                            ))
                     send_mass_mail(mass_email, fail_silently=False)
                 else: #if email_all_users is False, send email to address that the admin typed in
                     mass_email = []
