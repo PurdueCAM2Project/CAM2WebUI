@@ -1,11 +1,11 @@
-#human .active li{
-   color: red !important;
+.nav-pills>li.active#human>a{
+   background-color: red !important;
 }
 
-#car .active li{
-   color: blue !important;
+.nav-pills>li.active#car>a{
+   background-color: blue !important;
 }
 
-#sign .active li{
-   color: green !important;
+.nav-pills>li.active#sign>a{
+   background-color: green !important;
 }
