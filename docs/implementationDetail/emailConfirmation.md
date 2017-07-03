@@ -137,7 +137,4 @@ The web page when user open the link in confirmation email:
     
 The function in script makes sure that the website will be redirected to the home page after 5 seconds.
 
-### Improvements in the future: 
-  
-Email admin after user confirm their email, which requires the function to be present in function `activate`
 
