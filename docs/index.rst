@@ -22,7 +22,7 @@ Welcome to PurdueCAM2Project/CAM2WebUI's documentation!
 
 .. toctree::
    :glob:
-   :caption: Basic Setup
+   :caption: Test Setup
    
    test/*
    
