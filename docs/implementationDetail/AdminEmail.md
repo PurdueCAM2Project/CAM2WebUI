@@ -8,6 +8,7 @@ Create a view for the email page. To make sure only admin can use this, we need 
   
 First we use a form to obtain the subject, message and email:
   
+
 In `forms.py`:
 ```
     from django import forms
@@ -51,6 +52,7 @@ Before `Mailform`, add:
 The MultiEmailField will accept a list of email addresses that is split by `,` or `;` aas well as a list copy and paste from the user info table that we will create later.
   
 Now go to `views.py`:
+
 ```
     def admin_send_email(request):
         if request.method == 'POST':
@@ -102,6 +104,7 @@ There are two ways of sending email: send_mail and send_mass_mail. send_mass_mai
 And the outcome is different. If we send_mass_email by attach every email to a list and send them together, the "to" part of the email will only show one email address, but if we use send_mail with a email list, the "to" part will show all the receivers.
   
 We also used a template here for email_all_users since it is nice to have signiture for an official email:
+
 ```
     Hi {{ username }},
     {{ message }}
@@ -115,17 +118,20 @@ We also used a template here for email_all_users since it is nice to have signit
 For the convenience of administrator, it is good to have a table of all users' info.
 To obtain them, we will use `objects.values` and `objects.values_list`. The `objects.values` will collect the names of each aspact of info, however, `objects.values_list` will only contain the info itself.
   
-Right after `def admin_send_email(request):` and before `if request.method == 'POST':`, add:
+Right after `def admin_send_email(request):` and before `if request.method == 'POST':`, add the following to get user info:
+  
     email_table = (User.objects.values('email')) #Obtaining a list of users' emails outside users info table for easy copying and pasting.
     users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined') #Obtaining a list of info required from user
     
-and add this two list in `return render()` in the end:
+and add this two lists in `return render()` in the end:
+  
      return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': users, 'email_table': email_table})
-
+  
 *** 
 In the template, a for loop is used to display fields in the MailForm (Subject, email, message etc.), and seperate email of users from other info of users for easy copying and pasting.
   
 `admin_send_email.html`
+
 ```
     {% block content %}
     <div class="top-content">
@@ -204,4 +210,5 @@ In the template, a for loop is used to display fields in the MailForm (Subject, 
 ## Future improvements
   
 Order the user info table by different aspect(date registered, name, etc.)
+
 
