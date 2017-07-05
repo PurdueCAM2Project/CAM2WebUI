@@ -427,6 +427,8 @@ MIT License
     },
     annotatestop: function() {
       var self = this;
+      //console.log(this.img.height);
+      //console.log(this.img.width);
       self.clicked = false;
       if (self.toy !== null && self.tox !== null) {
         switch (self.options.type) {
@@ -463,6 +465,10 @@ MIT License
     getbox: function(event) {
       var self = this;
       return self.storedElement;
+    },
+    getoriginal: function(event) {
+      var self = this;
+      return self.img;
     },
     getcurrentid: function(event) {
       var self = this;
@@ -592,7 +598,8 @@ MIT License
         //$annotate.exportImage(cmdOption, callback);
         var s = $annotate.getbox(this);
         var id = $annotate.getcurrentid(this);
-        callback(s, id);
+        var origin = $annotate.getoriginal(this);
+        callback(s, id, origin.height, origin.width);
       } else {
         throw new Error('No annotate initialized for: #' + $(this).attr(
           'id'));

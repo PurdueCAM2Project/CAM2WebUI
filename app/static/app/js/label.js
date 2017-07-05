@@ -45,13 +45,12 @@ $(document).ready(function(){
 	});
 
 	$(".submit-image").click(function(event) {
-		$('#myCanvas').annotate("getcurrent", null, function(d, id) {
+		$('#myCanvas').annotate("getcurrent", null, function(d, id, height, width) {
 			console.log(d);
 			//console.log(id);
-
 			var an = [];
 
-			for (var i = d.length - 1; i >= 0; i--) {
+			for (var i = 0; i < d.length; i++) {
 				var name;
 				if (d[i].color === 'red') {
 					name = 'human';
@@ -68,19 +67,19 @@ $(document).ready(function(){
 				var ymin;
 				var ymax;
 				if (d[i].tox < 0) {
-					var xmin = d[i].fromx + d[i].tox;
-					var xmax = d[i].fromx;
+					var xmin = (d[i].fromx + d[i].tox) * width / 640;
+					var xmax = d[i].fromx * width / 640;
 				} else {
-					var xmin = d[i].fromx;
-					var xmax = d[i].fromx + d[i].tox;
+					var xmin = d[i].fromx * width / 640;
+					var xmax = (d[i].fromx + d[i].tox) * width / 640;
 				}
 
 				if (d[i].toy < 0) {
-					var ymin = d[i].fromy + d[i].toy;
-					var ymax = d[i].fromy;
+					var ymin = (d[i].fromy + d[i].toy) * height / 400;
+					var ymax = d[i].fromy * height / 400;
 				} else {
-					var ymin = d[i].fromy;
-					var ymax = d[i].fromy + d[i].toy;
+					var ymin = d[i].fromy * height / 400;
+					var ymax = (d[i].fromy + d[i].toy) * height / 400;
 				}
 
 				var obj = {
@@ -108,8 +107,8 @@ $(document).ready(function(){
 						"database": "database"
 					},
 				"size": {
-						"width": 640,
-						"height": 480,
+						"width": width,
+						"height": height,
 						"depth": 0,
 					},
 				"segmented": 0,
