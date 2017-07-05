@@ -30,9 +30,10 @@ The fusion table will have the same visibility as the host google drive folder w
 In the example below [this](https://fusiontables.google.com/DataSource?docid=1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg#rows:id=1) table is used.
 
 1. Use filter button located on top left of fusion table![](https://github.com/PurdueCAM2Project/CAM2WebUI/blob/adddocumentation_fusiontables/docs/static/images_for_docs/filter%20button.png)
-2. Filter data using column values.![]
-(https://github.com/PurdueCAM2Project/CAM2WebUI/blob/adddocumentation_fusiontables/docs/static/images_for_docs/filter%20by%20columns.png)
-3. Multiple filters can be applied - all filter conditions are logically ANDed.![]()https://github.com/PurdueCAM2Project/CAM2WebUI/blob/adddocumentation_fusiontables/docs/static/images_for_docs/can%20apply%20multiple%20filters.png
+
+2. Filter data using column values.![](https://github.com/PurdueCAM2Project/CAM2WebUI/blob/adddocumentation_fusiontables/docs/static/images_for_docs/filter%20by%20columns.png)
+
+3. Multiple filters can be applied - all filter conditions are logically ANDed.![](https://github.com/PurdueCAM2Project/CAM2WebUI/blob/adddocumentation_fusiontables/docs/static/images_for_docs/can%20apply%20multiple%20filters.png)
 ![](https://github.com/PurdueCAM2Project/CAM2WebUI/blob/adddocumentation_fusiontables/docs/static/images_for_docs/filter%20conditions%20are%20logically%20ANDed.png)
 
 
