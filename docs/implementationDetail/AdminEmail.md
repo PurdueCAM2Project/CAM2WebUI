@@ -1,16 +1,15 @@
-Django version 1.11.1
-***
-## Goal
+# Administrator Send Email
 Allow admin to send email to specific users or all users.
 
-## Approach
-Create a new app calld `email_system`
+## Set Up a new django app
+Create a new app called `email_system`
   
 Create a view for the email page. To make sure only admin can use this, we need to add a django decorator `@staff_member_required` before aour function.
   
 First we use a form to obtain the subject, message and email:
   
-In `forms.py':
+In `forms.py`:
+```
     from django import forms
     from django.core.validators import validate_email
     
@@ -19,10 +18,11 @@ In `forms.py':
         email_all_users = forms.BooleanField(required=False)
         subject = forms.CharField(max_length=255)
         message = forms.CharField(widget=forms.Textarea)
-        
+```     
 Since we want to send email to more than one address, we need to define a field that accepts multiple email addresses.
   
 Before `Mailform`, add:
+```
     class MultiEmailField(forms.Field):
         def to_python(self, value):
             if not value:
@@ -47,9 +47,11 @@ Before `Mailform`, add:
             super(MultiEmailField, self).validate(value)
             for email in value:
                 validate_email(email)
+```
 The MultiEmailField will accept a list of email addresses that is split by `,` or `;` aas well as a list copy and paste from the user info table that we will create later.
   
 Now go to `views.py`:
+```
     def admin_send_email(request):
         if request.method == 'POST':
             form = MailForm(request.POST)
@@ -94,12 +96,13 @@ Now go to `views.py`:
         else:
             form = MailForm()
         return render(request, 'email_system/admin_send_email.html', {'form': form})
-        
+```     
 There are two ways of sending email: send_mail and send_mass_mail. send_mass_mail will not close the channel of sending email after each email es sent, so it is slightly faster when sending email to a lot of people.
   
 And the outcome is different. If we send_mass_email by attach every email to a list and send them together, the "to" part of the email will only show one email address, but if we use send_mail with a email list, the "to" part will show all the receivers.
   
 We also used a template here for email_all_users since it is nice to have signiture for an official email:
+```
     Hi {{ username }},
     {{ message }}
 
@@ -108,7 +111,7 @@ We also used a template here for email_all_users since it is nice to have signit
     Sincerely,
     CAM2
     http://{{ domain }}
-
+```
 For the convenience of administrator, it is good to have a table of all users' info.
 To obtain them, we will use `objects.values` and `objects.values_list`. The `objects.values` will collect the names of each aspact of info, however, `objects.values_list` will only contain the info itself.
   
@@ -123,6 +126,7 @@ and add this two list in `return render()` in the end:
 In the template, a for loop is used to display fields in the MailForm (Subject, email, message etc.), and seperate email of users from other info of users for easy copying and pasting.
   
 `admin_send_email.html`
+```
     {% block content %}
     <div class="top-content">
       <div class="inner-bg">
@@ -195,8 +199,9 @@ In the template, a for loop is used to display fields in the MailForm (Subject, 
     </div>
     </div>
     {% endblock %}
-***
-Future improvements:
+```
+
+## Future improvements
   
 Order the user info table by different aspect(date registered, name, etc.)
 
