@@ -24,9 +24,7 @@ Before uploading creating fusion tables it is recommended that the tabulated dat
 ![image](https://drive.google.com/open?id=0Bx6vDx1hyDf0N3drYm4wTFlvQ0k)
 The fusion table will have the same visibility as the host google drive folder where it is stored. BY default, it's the google drive folder that was open when when the table was created.
 
-
-
-<i> Note: once your fusion table will start  geocoding will start automatically - <u> cancel it </u>. Only 10,000 data items (less than 10% of our camera database as of July 3, 2017) can be geocoded for free in a 24 hours period. Geocoding is not required to create markers for camera locations on a map however it is required for other features described later in this document and hence, the geocoding quota must not be exhausted. </i>
+<i> Note: if your fusion table contains location data, geocoding will start automatically - <u> cancel it </u>. Only 10,000 data items (less than 10% of our camera database as of July 3, 2017) can be geocoded for free in a 24 hours period. Geocoding is not required to create markers for camera locations on a map, however, it is required for other features described later in this document and hence, the geocoding quota must not be exhausted. </i>
 
 ### Filtering data in fusion tables
 
