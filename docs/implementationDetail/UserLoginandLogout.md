@@ -1,3 +1,4 @@
+# User Login and Logout
 Django version 1.10.5
 ***
 We are using login and logout views written by Django, imported from django.contrib.auth.view.Login, this view does basic authentication such as verify username and password when users logging in.
