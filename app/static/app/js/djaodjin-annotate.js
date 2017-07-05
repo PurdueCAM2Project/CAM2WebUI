@@ -338,7 +338,6 @@ MIT License
       // clear each stored line
       for (var i = 0; i < self.storedElement.length; i++) {
         var element = self.storedElement[i];
-        console.log(element.color)
         switch (element.type) {
           case 'rectangle':
             self.drawRectangle(self.baseContext, element.fromx, element.fromy,
@@ -461,6 +460,10 @@ MIT License
     getbox: function(event) {
       var self = this;
       return self.storedElement;
+    },
+    getcurrentid: function(event) {
+      var self = this;
+      return self.selectedImage;
     },
     changecolor: function(event, cmdOption) {
       var self = this;
@@ -585,7 +588,8 @@ MIT License
       if ($annotate) {
         //$annotate.exportImage(cmdOption, callback);
         var s = $annotate.getbox(this);
-        callback(s);
+        var id = $annotate.getcurrentid(this);
+        callback(s, id);
       } else {
         throw new Error('No annotate initialized for: #' + $(this).attr(
           'id'));

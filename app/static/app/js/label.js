@@ -45,8 +45,9 @@ $(document).ready(function(){
 	});
 
 	$(".submit-image").click(function(event) {
-		$('#myCanvas').annotate("getcurrent", null, function(d) {
+		$('#myCanvas').annotate("getcurrent", null, function(d, id) {
 			console.log(d);
+			console.log(id);
 		});
 	});
 
@@ -56,7 +57,7 @@ $(document).ready(function(){
 		isactive = $("#human");
 		isactive.addClass('active');
 		$('#myCanvas').annotate("changecolor", 'red', function(d) {
-			console.log(d);
+			//console.log(d);
 		});
 	});
 
@@ -66,7 +67,7 @@ $(document).ready(function(){
 		isactive = $("#car");
 		isactive.addClass('active');
 		$('#myCanvas').annotate("changecolor", 'blue', function(d) {
-			console.log(d);
+			//console.log(d);
 		});
 	});
 
@@ -75,7 +76,7 @@ $(document).ready(function(){
 		isactive = $("#sign");
 		isactive.addClass('active');
 		$('#myCanvas').annotate("changecolor", 'green', function(d) {
-			console.log(d);
+			//console.log(d);
 		});
 	});
 });
