@@ -242,6 +242,9 @@ MIT License
         image.path
       ]);
     },
+    removecurrentImage: function(callback) {
+      // todo
+    },
     initBackgroundImages: function() {
       var self = this;
       $.each(self.options.images, function(index, image) {
