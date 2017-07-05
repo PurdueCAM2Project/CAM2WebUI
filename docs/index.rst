@@ -17,7 +17,13 @@ Welcome to PurdueCAM2Project/CAM2WebUI's documentation!
    :glob:
    :caption: Implementation Details
    
-   implementationDetail/*
+   implementationDetail/AdminEmail.md
+   implementationDetail/emailConfirmation.md
+   implementationDetail/UserRegistration.md
+   implementationDetail/UserLoginandLogout.md
+   implementationDetail/oauth.md
+   implementationDetail/drive.md
+   implementationDetail/fusion.md
 
 
 .. toctree::

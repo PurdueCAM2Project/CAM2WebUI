@@ -1,6 +1,6 @@
-===========================
-Viewing the Website Locally
-===========================
+=======================
+Viewing Website Locally
+=======================
 
 There are four steps to viewing the website locally.
 
