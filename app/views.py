@@ -51,8 +51,8 @@ def terms(request):
 def acknowledgement(request):
     return render(request, 'app/ack.html')
 
-def contact(request):
-    return render(request, 'app/contact.html')
+#def contact(request):
+#    return render(request, 'app/contact.html')
 
 def faqs(request):
     question_list = FAQ.objects.reverse()
