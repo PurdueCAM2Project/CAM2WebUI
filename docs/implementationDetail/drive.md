@@ -1,9 +1,6 @@
-# Upload and Create Google Fusion Table
-Juncheng Tang edited this page on Jun 15
+# Google Drive Files Upload
 
-___
-
-This page will walk through the 'dgrive' app which is used to update the fusion table on google drive with google drive api. 
+This page will walk through the 'gdrive' app which is used to update the fusion table on google drive with google drive api. 
 
 ## Enable Google API
 
@@ -122,9 +119,7 @@ Since our file is ended with csv, so if we upload that CSV file to google drive,
 In google drive, click on new button, and choose "more" option to see if Google Fusion Table already exists in the google drive app. If not, then click on "Connect more apps". Find Google Fusion Table in the apps and add that into the google drive app. Then create new Google Fusion Table, and choose import it from spreadsheet. Then we can create our fusion table in google drive.
 
 
-_______________
+## Next Step
 
+Now we have successfully create our fusion table in the google drive. However, it is not bonded with the spreadsheet in the drive so if spreadsheet is updated, it will not be updated. In the [Synchronize Google Fusion Table](https://purduecam2project.github.io/CAM2WebUI/implementationDetail/fusion.html), we will write a function to trigger fusion table syncing as soon as google spreadsheet is uploaded. 
 
-Now we have successfully create our fusion table in the google drive. However, it is not bonded with the spreadsheet in the drive so if spreadsheet is updated, it will not be updated. In the next document, we will write a function to sync fusion table as soon as google spread sheet is uploaded. 
-
-Next Document: [Synchronize Google Fusion Table](https://purduecam2project.github.io/CAM2WebUI/fusion)

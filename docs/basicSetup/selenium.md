@@ -1,16 +1,8 @@
-# [Guide] Set up selenium test environment
-
-Juncheng Tang edited this page on Jun 5
-
-___
-
-This page will walk you through some guides on building the selenium test environment.
-
-## Install Selenium 
+# Selenium Test Environment
 
 Selenium automates browsers. It is for automating web applications for testing purposes. More details of selenium web driver can be found at [Selenium HQ](http://www.seleniumhq.org/)
 
-### Download Python Selenium Webdriver
+## Download Python Selenium
 
 If you have pip on your system, you can simply install or upgrade the Python bindings:
 
@@ -27,7 +19,7 @@ python setup.py install
 Note: both of the methods described above install selenium as a system-wide package That will require administrative/root access to their machine. 
 
 
-### Download Firefox/Chrome driver
+## Download Firefox/Chrome driver
 
 Selenium requires a driver to interface with the chosen browser. Firefox, for example, requires geckodriver, which needs to be installed before the selenium can run.
 
@@ -53,7 +45,7 @@ sudo mv chromedriver /usr/bin
 sudo chmod a+x /usr/bin/chromedriver
 ```
 
-### Install X virtual framebuffer(xvfb)
+## Install X virtual framebuffer(xvfb)
 
 Xvfb (short for X virtual framebuffer) is an in-memory display server for UNIX-like operating system (e.g., Linux). It enables you to run graphical applications without a display (e.g., browser tests on a CI server) while also having the ability to take screenshots.
 
@@ -63,9 +55,6 @@ You can simply install xvfb using command
 sudo apt-get install xvfb
 ```
 
-***
-Congratulations, you have successfully built the selenium test environment. In the next guide, you will learn about how to create selenium tests and what are the test files.
+## Ready to Write Selenium Test
 
-Next guide: [Django Selenium test](https://purduecam2project.github.io/CAM2WebUI/test)
-
-***
+Congratulations, you have successfully built the selenium test environment. In this [guide](https://purduecam2project.github.io/CAM2WebUI/test/test.html), you will learn about how to create selenium tests and what are the test files. 
