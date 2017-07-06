@@ -30,10 +30,10 @@ $(document).ready(function(){
 
 	$(".push-new-image").click(function(event) {
 		if (counter === 0){
-			$('#myCanvas').annotate("push", "https://www.smashingmagazine.com/wp-content/uploads/2015/06/10-dithering-opt.jpg");
+			$('#myCanvas').annotate("push", {id:"unique_identifier", path: "ftp://128.46.75.58/WD1/2016%20Olympics/01_August_Mon/100_2016-08-01_15-27-14-530185.png"});
 			counter += 1;
 		}else{
-			$('#myCanvas').annotate("push", {id:"unique_identifier", path:"http://i.imgur.com/RRUe0Mo.png"});
+			$('#myCanvas').annotate("push", {id:"unique_identifier", path:"ftp://128.46.75.58/WD1/2016%20Olympics/01_August_Mon/101_2016-08-01_13-44-05-736267.png"});
 			
 		}
 	});

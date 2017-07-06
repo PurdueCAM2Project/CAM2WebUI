@@ -207,40 +207,66 @@ MIT License
       var self = this;
       var id = null;
       var path = null;
+      var img = this.img;
+      var height;
+      var width;
+      //console.log(newImage);
+      //console.log(this.image);
+      
+
+      function findHHandWW() {
+        height = this.height;
+        width = this.width;
+        if (id === '' || typeof id === 'undefined' || self.selectBackgroundImage(
+          id)) {
+          id = self.generateId(10);
+          while (self.selectBackgroundImage(id)) {
+            id = self.generateId(10);
+          }
+        }
+        var image = {
+          id: id,
+          height: height,
+          width: width,
+          path: path,
+          storedUndo: [],
+          storedElement: []
+        };
+        self.images.push(image);
+        if (set) {
+          self.setBackgroundImage(image);
+        }
+        if (callback) {
+          callback({
+            id: image.id,
+            path: image.path
+          });
+        }
+        self.$el.trigger('annotate-image-added', [
+          image.id,
+          image.path
+        ]);
+        return true;
+      }
+      
       if (typeof newImage === 'object') {
         id = newImage.id;
         path = newImage.path;
+        img = new Image();
+        img.name = path;
+        img.onload = findHHandWW;
+        img.src = path;
       } else {
         id = newImage;
         path = newImage;
+        img = new Image();
+        img.name = path;
+        img.onload = findHHandWW;
+        img.src = path;
       }
-      if (id === '' || typeof id === 'undefined' || self.selectBackgroundImage(
-          id)) {
-        id = self.generateId(10);
-        while (self.selectBackgroundImage(id)) {
-          id = self.generateId(10);
-        }
-      }
-      var image = {
-        id: id,
-        path: path,
-        storedUndo: [],
-        storedElement: []
-      };
-      self.images.push(image);
-      if (set) {
-        self.setBackgroundImage(image);
-      }
-      if (callback) {
-        callback({
-          id: image.id,
-          path: image.path
-        });
-      }
-      self.$el.trigger('annotate-image-added', [
-        image.id,
-        image.path
-      ]);
+
+
+      
     },
     removecurrentImage: function(callback) {
       // todo
@@ -410,20 +436,7 @@ MIT License
       self.fromy = (pageY - offset.top) * self.compensationWidthRate;
       self.fromxText = pageX;
       self.fromyText = pageY;
-      if (self.options.type === 'text') {
-        self.$textbox.css({
-          left: self.fromxText + 2,
-          top: self.fromyText,
-          width: 0,
-          height: 0
-        }).show();
-      }
-      if (self.options.type === 'pen') {
-        self.points.push([
-          self.fromx,
-          self.fromy
-        ]);
-      }
+      
     },
     annotatestop: function() {
       var self = this;
@@ -449,13 +462,6 @@ MIT License
         }
         self.checkUndoRedo();
         self.redraw();
-      } else if (self.options.type === 'text') {
-        self.$textbox.css({
-          left: self.fromxText + 2,
-          top: self.fromyText,
-          width: 100,
-          height: 50
-        });
       }
     },
     getallbox: function(event) {
