@@ -38,9 +38,63 @@ $(document).ready(function(){
 		}
 	});
 
+
+	function objectinfo(d, height, width) {
+		var an = [];
+
+		for (var i = 0; i < d.length; i++) {
+			var name;
+			if (d[i].color === 'red') {
+				name = 'human';
+			} else if (d[i].color === 'blue') {
+				name = 'vehicle';
+			} else if (d[i].color === 'green') {
+				name = 'street sign'
+			}
+			var pose = 'Unspecified';
+			var truncated = 0;
+			var difficult = 0;
+			var xmin;
+			var xmax;
+			var ymin;
+			var ymax;
+			if (d[i].tox < 0) {
+				var xmin = (d[i].fromx + d[i].tox) * width / 640;
+				var xmax = d[i].fromx * width / 640;
+			} else {
+				var xmin = d[i].fromx * width / 640;
+				var xmax = (d[i].fromx + d[i].tox) * width / 640;
+			}
+
+			if (d[i].toy < 0) {
+				var ymin = (d[i].fromy + d[i].toy) * height / 400;
+				var ymax = d[i].fromy * height / 400;
+			} else {
+				var ymin = d[i].fromy * height / 400;
+				var ymax = (d[i].fromy + d[i].toy) * height / 400;
+			}
+
+			var obj = {
+				"name": name,
+				"pose": pose,
+				"truncated": truncated,
+				"difficult": difficult,
+				"bndbox": {
+					"xmin": xmin,
+					"xmax": xmax,
+					"ymin": ymin,
+					"ymax": ymax
+				}
+			}
+			an.push(obj);
+			return an;
+		}
+	}
+
 	$(".submit-all-images").click(function(event) {
 		$('#myCanvas').annotate("getall", null, function(d) {
 			console.log(d);
+			alert("successful");
 		});		
 	});
 
@@ -48,56 +102,7 @@ $(document).ready(function(){
 		$('#myCanvas').annotate("getcurrent", null, function(d, id, height, width) {
 			console.log(d);
 			//console.log(id);
-			var an = [];
-
-			for (var i = 0; i < d.length; i++) {
-				var name;
-				if (d[i].color === 'red') {
-					name = 'human';
-				} else if (d[i].color === 'blue') {
-					name = 'vehicle';
-				} else if (d[i].color === 'green') {
-					name = 'street sign'
-				}
-				var pose = 'Unspecified';
-				var truncated = 0;
-				var difficult = 0;
-				var xmin;
-				var xmax;
-				var ymin;
-				var ymax;
-				if (d[i].tox < 0) {
-					var xmin = (d[i].fromx + d[i].tox) * width / 640;
-					var xmax = d[i].fromx * width / 640;
-				} else {
-					var xmin = d[i].fromx * width / 640;
-					var xmax = (d[i].fromx + d[i].tox) * width / 640;
-				}
-
-				if (d[i].toy < 0) {
-					var ymin = (d[i].fromy + d[i].toy) * height / 400;
-					var ymax = d[i].fromy * height / 400;
-				} else {
-					var ymin = d[i].fromy * height / 400;
-					var ymax = (d[i].fromy + d[i].toy) * height / 400;
-				}
-
-				var obj = {
-					"name": name,
-					"pose": pose,
-					"truncated": truncated,
-					"difficult": difficult,
-					"bndbox": {
-						"xmin": xmin,
-						"xmax": xmax,
-						"ymin": ymin,
-						"ymax": ymax
-					}
-				}
-
-				an.push(obj);
-
-			}
+			an = objectinfo(d, height, width);
 
 			var o = {"annotation": 
 				{"folder": "folder", 
@@ -119,6 +124,8 @@ $(document).ready(function(){
 
 			var x2js = new X2JS();
 			console.log(x2js.json2xml_str(o));
+
+			alert("successful");
 
 		});
 	});
