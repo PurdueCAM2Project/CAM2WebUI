@@ -57,4 +57,6 @@ See this post: https://developers.google.com/fusiontables/docs/samples/change_qu
 
 ### Customizing markers' info windows
 
-By default the ma
+By default the markers on the maps have preformatted info window layout: it consists of pairs of all column names and column data for that row on seperate lines. However, the layout of info windows can be customized to a great extent using CSS.
+
+See this post https://support.google.com/fusiontables/answer/1244603?hl=en
