@@ -39,13 +39,20 @@ In the example below [this](https://fusiontables.google.com/DataSource?docid=1Xs
 ![](https://github.com/PurdueCAM2Project/CAM2WebUI/blob/adddocumentation_fusiontables/docs/static/images_for_docs/can%20apply%20multiple%20filters.png)
 ![](https://github.com/PurdueCAM2Project/CAM2WebUI/blob/adddocumentation_fusiontables/docs/static/images_for_docs/filter%20conditions%20are%20logically%20ANDed.png)
 
+### Getting HTML and Javascript code for map obtained from location data
+In our example, we have used a fusion table with location data and consequently, obtained a 'Map of Latitudes'.
 
-### Integrating fusion tables with your webpage
-
-
+1. Navigate to 'Map of Latitudes'.
+![](https://github.com/PurdueCAM2Project/CAM2WebUI/blob/adddocumentation_fusiontables/docs/static/images_for_docs/Map%20of%20Latitudes%20Page.png)
+2. Tools -> Publish -> Get HTML and Javascript -> happy copying and pasting :)
+![](https://github.com/PurdueCAM2Project/CAM2WebUI/blob/adddocumentation_fusiontables/docs/static/images_for_docs/Getting%20html%20and%20javascript%20code%20using%20Publish%20tool.png)
 
 ### Querying data from fusion tables using Javascript
+See this post: https://developers.google.com/fusiontables/docs/samples/change_query
+
+<i> Tip: To understand how to write the query in code - apply the exact filter condition you are trying to code on the fusion table and then see the string displayed on the the right side of the 'Filter' button: </i>
+ ![](https://github.com/PurdueCAM2Project/CAM2WebUI/blob/adddocumentation_fusiontables/docs/static/images_for_docs/filter%20conditions%20are%20logically%20ANDed.png)
 
 ### Customizing markers' info windows
 
-
+By default the ma
