@@ -1,4 +1,4 @@
-#Google Fusion Tables
+# Google Fusion Tables
 
 This documentation has been created to aid in the use of Google Fusion Tables in the CAM2 project and therefore, this is not an exhaustive documentation of all features of Google Fusion Tables, that can be found [here](https://developers.google.com/fusiontables/), but only of those features that are relevant/useful for this project.
 
