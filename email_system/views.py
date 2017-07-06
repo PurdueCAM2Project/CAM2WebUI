@@ -12,6 +12,7 @@ from django.core.mail import send_mass_mail, send_mail
 def admin_send_email(request):
     email_table = (User.objects.values('email').order_by('date_joined')) #Obtaining a list of users' emails outside users info table for easy copying and pasting.
     users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined').order_by('date_joined') #Obtaining a list of info required from user
+    email_selected = request.session['email_selected'] #obtain email_selected from session
     if request.method == 'POST':
         form = MailForm(request.POST)
         if form.is_valid():
@@ -68,7 +69,7 @@ def admin_send_email(request):
             messages.error(request, 'Email sent failed.')
     else:
         form = MailForm()
-    return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': users, 'email_table': email_table})
+    return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': users, 'email_table': email_table, 'email_selected': email_selected,})
 
 
 def contact(request):

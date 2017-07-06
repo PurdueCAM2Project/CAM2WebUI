@@ -10,6 +10,7 @@
   <div class="inner-bg">
     <div class="container">
       <div class="row">
+          <a style="color: blue" href="/admin/user/">Go back to User administration</a>
         <h3>Email Users</h3>
       </div>
         {% if messages %}
@@ -23,9 +24,13 @@
       <form method="post">
         {% csrf_token %}
         {% for field in form %}
-
-            {{ field.label_tag }}<br>
-            {{ field }}<br>
+            {% if field is form.email %}
+                {{ field.label_tag }}<br>
+                <input type="text" name="{{ form.email.name }}" value="{{ email_selected }}" />
+            {% else %}
+                {{ field.label_tag }}<br>
+                {{ field }}<br>
+            {% endif %}
             {% if field.help_text %}
                 <p style="color: grey">{{ field.help_text }}</p>
             {% endif %}

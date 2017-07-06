@@ -152,7 +152,6 @@ def activate(request, uidb64, token):
         user.save()
 
         optional = RegisterUser.objects.get(user=user) #get optional info of user
-
         #email admin
         admin_subject = 'New User Registered'
         admin_message = render_to_string('app/new_user_email_to_admin.html', {
