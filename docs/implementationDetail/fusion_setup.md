@@ -1,4 +1,6 @@
-<i> Note: This documentation has been created to aid in the use of Google Fusion Tables in the CAM2 project and therefore, this is not an exhaustive documentation of all features of Google Fusion Tables, that can be found [here](https://developers.google.com/fusiontables/), but only of those features that are relevant/useful for this project.</i>
+#Google Fusion Tables
+
+This documentation has been created to aid in the use of Google Fusion Tables in the CAM2 project and therefore, this is not an exhaustive documentation of all features of Google Fusion Tables, that can be found [here](https://developers.google.com/fusiontables/), but only of those features that are relevant/useful for this project.
 
 ### [About fusion tables](https://support.google.com/fusiontables/answer/2571232?hl=en)
  - "Fusion Tables is an experimental data visualization web application to gather, visualize, and share data tables." - About Fusion Tables, https://support.google.com/fusiontables/answer/2571232?hl=en
