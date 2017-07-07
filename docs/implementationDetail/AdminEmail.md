@@ -15,7 +15,8 @@ We will add a new action to User admin called `email user` to redirect the page 
   
 In `app/admin.py`
 First we write the action. An admin action takes 3 parameters, self, request and queryset.
-The queryset contains every user object we selected under User admin page. ```
+The queryset contains every user object we selected under User admin page. 
+```
 def email_users(self, request, queryset):
     list = queryset.values_list('email')
     email_selected = []
