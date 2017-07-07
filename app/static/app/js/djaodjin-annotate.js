@@ -575,7 +575,15 @@ MIT License
           'id'));
       }
     
-    }else if (options === 'fill') {
+    } else if (options === 'removecurrent') {
+      if ($annotate) {
+        $annotate.removecurrentImage();
+      } else {
+        throw new Error('No annotate initialized for: #' + $(this).attr(
+          'id'));
+      }
+    
+    } else if (options === 'fill') {
       if ($annotate) {
         $annotate.addElements(cmdOption, true, callback);
       } else {

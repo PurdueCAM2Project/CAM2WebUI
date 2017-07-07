@@ -15,12 +15,6 @@ $(document).ready(function(){
 		color: 'red',
 		bootstrap: true,
 		images: ['ftp://128.46.75.58/WD1/2016%20Olympics/01_August_Mon/161_2016-08-01_15-27-17-440411.png'],
-		onExport: function(image){
-			if ($("#exported-image").length > 0){
-				$("#exported-image").remove();
-			}
-			$("body").append("<img src=\"" + image + "\" id=\"exported-image\">");
-		},
 		selectEvent: "change", // listened event on .annotate-image-select selector to select active images
   		unselectTool: true,   // Add a unselect tool button in toolbar (useful in mobile to enable zoom/scroll)
 	}
@@ -87,14 +81,39 @@ $(document).ready(function(){
 				}
 			}
 			an.push(obj);
-			return an;
+			
 		}
+		return an;
 	}
 
 	$(".submit-all-images").click(function(event) {
 		$('#myCanvas').annotate("getall", null, function(d) {
-			console.log(d);
-			alert("successful");
+			//console.log(d);
+			var all = [];
+			for (var i = 0; i < d.length; i++) {
+				var an = objectinfo(d[i].storedElement, d[i].height, d[i].width);
+				var o = {"annotation": 
+					{"folder": "folder", 
+					"filename": "filename",
+					"path": d[i].id,
+					"source": {
+							"database": "database"
+						},
+					"size": {
+							"width": d[i].width,
+							"height": d[i].height,
+							"depth": 0,
+						},
+					"segmented": 0,
+					"object": an
+					}
+				}
+
+				all.push(o);
+			}
+			var x2js = new X2JS();
+			console.log(x2js.json2xml_str(all));
+			//alert("successful");
 		});		
 	});
 
@@ -102,7 +121,7 @@ $(document).ready(function(){
 		$('#myCanvas').annotate("getcurrent", null, function(d, id, height, width) {
 			console.log(d);
 			//console.log(id);
-			an = objectinfo(d, height, width);
+			var an = objectinfo(d, height, width);
 
 			var o = {"annotation": 
 				{"folder": "folder", 
@@ -125,7 +144,12 @@ $(document).ready(function(){
 			var x2js = new X2JS();
 			console.log(x2js.json2xml_str(o));
 
-			alert("successful");
+			//alert("successful");
+
+		});
+
+
+		$('#myCanvas').annotate("removecurrent", null, function() {
 
 		});
 	});
