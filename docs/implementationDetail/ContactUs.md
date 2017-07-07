@@ -6,24 +6,28 @@ Under email_system app, creating a page for user to contact our website.
 ## Approach
 Using a form that requires user to input "Name, email, subject and message" and the content into an email template. And then email admin. 
 In `forms.py`:
+```
     class ContactForm(forms.Form):
         name = forms.CharField(required=True)
         from_email = forms.EmailField(required=True)
         subject = forms.CharField(required=True)
         message = forms.CharField(widget=forms.Textarea, required=True)
-
+```
 2 new urls needed to be linked: one for contact us, and one for notifying user the email has been sent.
 In `urls.py`, add:
+```
     url(r'^contact/$', views.contact, name='contact'),
     url(r'^email_sent/$', views.email_sent, name='email_sent'),
-  
+```
 2 new views corresponding to the two urls are added.
 The one that tells user email has been seet only needs a template:
+```
     def email_sent(request):
         return render(request, 'email_system/email_sent.html')
-
+```
 The second one is the view for contact us page:
 First we get everything user input and add them into our email template. And then we email our website host.
+```
     def contact(request):
         if request.method == 'POST':
             form = ContactForm(request.POST)
@@ -48,11 +52,12 @@ First we get everything user input and add them into our email template. And the
         else:
             form = ContactForm()
         return render(request, "email_system/contact.html", {'form': form})
-        
+```
+
 ### Template
-***
 Email template:
 `contact_email_template.html`
+```
     Contact Name:
     {{ name }}
 
@@ -61,18 +66,20 @@ Email template:
 
     Content:
     {{ message }}
-  
-***
+```
+
 Tempalte for web page that tells user the email has been sent:
+```
     {% block content %}
         <h4 id="emailconfirm">Email Successfully sent</h4>
         <p>Thank you for your message. <br>
         We will read it as soon as possible!</p>
         <p><a style="color: deepskyblue" href="/">Go back to home page</a></p>
     {% endblock %}
-  
-***
-Template for contact us page
+```  
+
+Template for contact us page:
+```
     {% extends "app/base.html" %} 
     {% block title %}Contact us{% endblock %}
     {% load static %} 
@@ -103,3 +110,4 @@ Template for contact us page
       </form>
     </div>
     {% endblock %}
+```
