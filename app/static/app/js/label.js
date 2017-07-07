@@ -145,6 +145,8 @@ $(document).ready(function(){
 			console.log(x2js.json2xml_str(o));
 
 			//alert("successful");
+			var blob = new Blob([x2js.json2xml_str(o)], {type: "text/plain;charset=utf-8"});
+			saveAs(blob, id + ".xml");
 
 		});
 
