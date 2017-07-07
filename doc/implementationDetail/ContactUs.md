@@ -1,7 +1,8 @@
-Django version 1.11.1
-***
+# Contact Us
+
 ## Goal
 Under email_system app, creating a page for user to contact our website.
+
 ## Approach
 Using a form that requires user to input "Name, email, subject and message" and the content into an email template. And then email admin. 
 In `forms.py`:
