@@ -90,6 +90,8 @@ $(document).ready(function(){
 		$('#myCanvas').annotate("getall", null, function(d) {
 			//console.log(d);
 			var all = [];
+			var zip = new JSZip();
+			var x2js = new X2JS();
 			for (var i = 0; i < d.length; i++) {
 				var an = objectinfo(d[i].storedElement, d[i].height, d[i].width);
 				var o = {"annotation": 
@@ -108,12 +110,22 @@ $(document).ready(function(){
 					"object": an
 					}
 				}
+				zip.file(d[i].id + ".xml", x2js.json2xml_str(o));
+				//all.push(o);
 
-				all.push(o);
+
 			}
-			var x2js = new X2JS();
-			console.log(x2js.json2xml_str(all));
+
+			zip.generateAsync({type:"blob"})
+			.then(function(content) {
+			    // see FileSaver.js
+			    saveAs(content, "xmlfiles.zip");
+			});
+			
+			//console.log(x2js.json2xml_str(all));
 			//alert("successful");
+
+
 		});		
 	});
 
