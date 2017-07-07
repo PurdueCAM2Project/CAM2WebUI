@@ -209,21 +209,14 @@ MIT License
       var path = null;
       var img = this.img;
       var height;
-      var width;
-      //console.log(newImage);
-      //console.log(this.image);
-      
+      var width;      
 
       function findHHandWW() {
         height = this.height;
         width = this.width;
-        if (id === '' || typeof id === 'undefined' || self.selectBackgroundImage(
-          id)) {
-          id = self.generateId(10);
-          while (self.selectBackgroundImage(id)) {
-            id = self.generateId(10);
-          }
-        }
+        
+        id = self.generateId(10);
+
         var image = {
           id: id,
           height: height,
@@ -264,11 +257,24 @@ MIT License
         img.onload = findHHandWW;
         img.src = path;
       }
-
-
       
     },
     removecurrentImage: function(callback) {
+      var self = this;
+      var id = self.selectedImage;
+
+      for (var i = 0; i < self.images.length; i++) {
+        if (self.images[i].id === id) {
+          self.images.splice(i, 1);
+        }
+        console.log(self.images);
+      }
+
+      self.$el.trigger('annotate-image-remove', [
+        id
+      ]);
+
+
       // todo
     },
     initBackgroundImages: function() {
@@ -578,6 +584,7 @@ MIT License
     } else if (options === 'removecurrent') {
       if ($annotate) {
         $annotate.removecurrentImage();
+        callback();
       } else {
         throw new Error('No annotate initialized for: #' + $(this).attr(
           'id'));

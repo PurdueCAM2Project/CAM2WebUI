@@ -6,8 +6,8 @@ $(document).ready(function(){
 	$('#myCanvas').on("annotate-image-added", function(event, id, path){
 		$(".my-image-selector").append("<label id=\"" + id + "\"><input type=\"radio\" name=\"image-selector\" class=\"annotate-image-select\" value=\"" + path + "\" checked id=\"" + id + "\"><img src=\"" + path + "\" width=\"35\" height=\"35\"></label>");
 	});
-	$('#myCanvas').on("annotate-image-remove", function(event, id, path){
-		$(".my-image-selector").remove('label#' + id);
+	$('#myCanvas').on("annotate-image-remove", function(event, id){
+		$('label#' + id).remove();
 	});
 	var options = {
 		width: "640",          // Width of canvas
@@ -28,7 +28,7 @@ $(document).ready(function(){
 			counter += 1;
 		}else{
 			$('#myCanvas').annotate("push", {id:"unique_identifier", path:"ftp://128.46.75.58/WD1/2016%20Olympics/01_August_Mon/101_2016-08-01_13-44-05-736267.png"});
-			
+			counter += 1;
 		}
 	});
 
@@ -150,7 +150,8 @@ $(document).ready(function(){
 
 
 		$('#myCanvas').annotate("removecurrent", null, function() {
-
+			$('#myCanvas').annotate("push", {id:"unique_identifier", path: "ftp://128.46.75.58/WD1/2016%20Olympics/01_August_Mon/100_2016-08-01_15-27-14-530185.png"});
+			counter -= 1;
 		});
 	});
 
