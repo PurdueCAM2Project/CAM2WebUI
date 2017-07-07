@@ -150,7 +150,7 @@ $(document).ready(function(){
 
 
 		$('#myCanvas').annotate("removecurrent", null, function() {
-			$('#myCanvas').annotate("push", {id:"unique_identifier", path: "ftp://128.46.75.58/WD1/2016%20Olympics/01_August_Mon/100_2016-08-01_15-27-14-530185.png"});
+			$('#myCanvas').annotate("push", {id:"unique_identifier", path: "ftp://128.46.75.58/WD1/2016%20Olympics/01_August_Mon/119_2016-08-01_15-27-14-993698.png"});
 			counter -= 1;
 		});
 	});
