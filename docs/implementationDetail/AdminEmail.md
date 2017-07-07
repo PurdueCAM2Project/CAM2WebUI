@@ -84,14 +84,8 @@ Before `Mailform`, add:
             if not value:
                 return []
             #Modify the input so that email can be split by , and ;
-            #For copying and pasting email address from the list, None, () \ will be removed.
             value = value.replace(' ', '') 
-            value = value.replace('None,', '') 
             value = value.replace(';', ',')
-            value = value.replace('(', '')
-            value = value.replace(')', '')
-            value = value.replace('\'', '')
-            print(value)
             while value.endswith(',') or value.endswith(';'):
                 value = value[:-1] #remove the last ',' or ';'
 
@@ -177,4 +171,4 @@ Right after `def admin_send_email(request):` and before `if request.method == 'P
     users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined') #Obtaining a list of info required from user
     
 and add this two list in `return render()` in the end:
-     return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': users, 'email_table': email_table})
+    return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': users, 'email_table': email_table})
