@@ -159,3 +159,65 @@ pushImage: function(newImage, set, callback) {
 
 So the above is the whole process of pushing a new image into the canvas.
 
+
+## Change Label
+
+Since we need to add different labels to different objects, so we need to change the color of our annoatation box everytime we change our label to make the image look clearer.
+
+On the side of our canvas, we can add a label box to change the labels:
+
+```
+
+<ul class="nav nav-pills nav-stacked" style="margin-top:50px;">
+	<li class="active" id="human"><a href="#">Human</a></li>
+	<li id="car"><a href="#" >Car</a></li>
+	<li id="sign"><a href="#" >Street Sign</a></li>
+</ul>
+
+
+```
+
+To change the color of the label box after it is clicked(active), we need to add a new css file to change its color.
+
+```
+
+.nav-pills>li.active#human>a{
+   background-color: red !important;
+}
+
+.nav-pills>li.active#car>a{
+   background-color: blue !important;
+}
+
+.nav-pills>li.active#sign>a{
+   background-color: green !important;
+}
+
+
+```
+
+Then use jquery functions to change the settings of the annotation box after each click, we add a new funtion in the plugin called 'changecolor' to change the annotation box color:
+
+```
+
+$("#human").on('click', function() {
+	isactive.removeClass('active');
+	isactive = $("#human");
+	isactive.addClass('active');
+	$('#myCanvas').annotate("changecolor", 'red', function(d) {
+		// callbacks
+	});
+});
+
+$("#car").on('click', function() {
+	//console.log("car");
+	isactive.removeClass('active');
+	isactive = $("#car");
+	isactive.addClass('active');
+	$('#myCanvas').annotate("changecolor", 'blue', function(d) {
+		// callbacks
+	});
+});
+
+
+```
