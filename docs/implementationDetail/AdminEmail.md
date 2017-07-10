@@ -4,10 +4,9 @@ Allow admin to send email to specific users.
 procedure:
 Log in as admin, and in the main page, go to `Users`， click the checkbox to choose recipient and select `Email Users`, then click `Go` to go to a web page that admin can type in subject and message.
 
-## Set Up a new django app
-Create a new app called `email_system`
-  
-Create a view for the email page. To make sure only admin can use this, we need to add a django decorator `@staff_member_required` before aour function.
+## Approach
+### decorator
+To make sure only admin can use this view, we need to add a django decorator `@staff_member_required` before our function.
 
 ### Admin action
 We will add a new action to User admin called `email user` to redirect the page to our `admin_send_email` page, and pass the email of selected user to the email input in `admin_send_email` page.
@@ -103,67 +102,66 @@ The MultiEmailField will accept a list of email addresses that is split by `,` o
 Now go to `views.py`:
 
 ```
-    def admin_send_email(request):
-        if request.method == 'POST':
-            form = MailForm(request.POST)
-            if form.is_valid():
-                #email specific users
-                subject = form.cleaned_data['subject']
-                message = form.cleaned_data['message']
-                email = form.cleaned_data['email']
-                email_all_users = form.cleaned_data['email_all_users'] #option for email all users
-                
-                try:
-                    if email_all_users: #if ture, send email to all users
-                        current_site = get_current_site(request)#will be used in templates
-                        all_users = User.objects.all() #For iteration of email all users
-                        mass_email = []
-                        #iterations that add users info to each email and attach to mass_email list
-                        for user in all_users: 
-                            username = user.username
-                            template = render_to_string('email_system/admin_send_email_template.html', {
-                                'username': username,
-                                'message': message,
-                                'domain': current_site.domain,
-                            })
-                            mass_email.append((
-                                subject,
-                                template,
-                                EMAIL_HOST_USER,
-                                [user.email],
-                            ))
-                            
-                        send_mass_mail(mass_email)
-                    else: #if email_all_users is not true, send email to address that the admin typed in
-                        send_mail(subject,message,EMAIL_HOST_USER,email)
+@staff_member_required
+def admin_send_email(request):
+    if request.method == 'POST':
+        form = MailForm(request.POST)
+        if form.is_valid():
+            #email specific users
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            email = form.cleaned_data['email']
+            email_all_users = form.cleaned_data['email_all_users'] #option for email all users
 
-                    messages.success(request, 'Email successfully sent.')#success message
-                except:
-                    messages.error(request, 'Email sent failed.')#error message
+            try:
+                if email_all_users: #if ture, send email to all users
+                    current_site = get_current_site(request)#will be used in templates
+                    all_users = User.objects.all() #For iteration of email all users
+                    mass_email = []
+                    #iterations that add users info to each email and attach to mass_email list
+                    for user in all_users: 
+                        username = user.username
+                        template = render_to_string('email_system/admin_send_email_template.html', {
+                            'username': username,
+                            'message': message,
+                            'domain': current_site.domain,
+                        })
+                        mass_email.append((
+                            subject,
+                            template,
+                            EMAIL_HOST_USER,
+                            [user.email],
+                        ))
 
-                return redirect('admin_send_email')
-            else:
-                messages.error(request, 'Email sent failed.')
+                    send_mass_mail(mass_email)
+                else: #if email_all_users is not true, send email to address that the admin typed in
+                    send_mail(subject,message,EMAIL_HOST_USER,email)
+
+                messages.success(request, 'Email successfully sent.')#success message
+            except:
+                messages.error(request, 'Email sent failed.')#error message
+
+            return redirect('admin_send_email')
         else:
-            form = MailForm()
-        return render(request, 'email_system/admin_send_email.html', {'form': form})
+            messages.error(request, 'Email sent failed.')
+    else:
+        form = MailForm()
+    return render(request, 'email_system/admin_send_email.html', {'form': form})
  ```
  
-There are two ways of sending email: send_mail and send_mass_mail. send_mass_mail will not close the channel of sending email after each email es sent, so it is slightly faster when sending email to a lot of people.
-  
-And the outcome is different. If we send_mass_email by attach every email to a list and send them together, the "to" part of the email will only show one email address, but if we use send_mail with a email list, the "to" part will show all the receivers.
-  
+There are two ways of sending email: send_mail and send_mass_mail. send_mass_mail will not close the channel of sending email after each email es sent, so it is slightly faster when sending a lot of email.
+
 We also used a template here for email_all_users since it is nice to have signiture for an official email:
 
 ```
-    Hi {{ username }},
-    {{ message }}
+Hi {{ username }},
+{{ message }}
 
 
 
-    Sincerely,
-    CAM2
-    http://{{ domain }}
+Sincerely,
+CAM2
+http://{{ domain }}
 ```
 For the convenience of administrator, it is good to have a table of all users' info.
 To obtain them, we will use `objects.values` and `objects.values_list`. The `objects.values` will collect the names of each aspact of info, however, `objects.values_list` will only contain the info itself.
