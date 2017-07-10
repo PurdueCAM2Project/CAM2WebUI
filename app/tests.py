@@ -5,7 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities    
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 from pyvirtualdisplay import Display
@@ -37,11 +37,12 @@ class AddTestCase(StaticLiveServerTestCase):
 
 
 	def setUp(self):
-		self.display = Display(visible=0, size=(1000, 1200))
-		self.display.start()
-		d = DesiredCapabilities.CHROME
-		d['loggingPrefs'] = { 'browser':'ALL' }
-		self.selenium = webdriver.Chrome(desired_capabilities=d)
+		#self.display = Display(visible=0, size=(1000, 1200))
+		#self.display.start()
+		#d = DesiredCapabilities.CHROME
+		#d['loggingPrefs'] = { 'browser':'ALL' }
+		#self.selenium = webdriver.Chrome(desired_capabilities=d)
+		self.selenium = webdriver.Firefox()
 		User.objects.create_superuser(
 			username='admin',
 			password='admin',
@@ -54,7 +55,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		self.test_username = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
 		self.test_password = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
 
-		
+
 	def tearDown(self):
 		self.selenium.quit()
 		super(AddTestCase, self).tearDown()
@@ -63,7 +64,6 @@ class AddTestCase(StaticLiveServerTestCase):
 
 
 	# test whether testcase works
-	
 	def test_a_one(self):
 		print("start first test")
 		pass
@@ -77,13 +77,13 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser.get(url)
 		assert 'CAM²' in browser.title
 
-		# test if login page title is Login	
+		# test if login page title is Login
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'
 		browser.get(url)
 		assert 'Login' in browser.title
 
-		# test if register page title is Login	
+		# test if register page title is Login
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
 		browser.get(url)
@@ -124,7 +124,7 @@ class AddTestCase(StaticLiveServerTestCase):
 	# Test login and register locally. Generate long random strings for username and password, test if jump to redirect page
 
 	def test_Login_Register_1(self):
-		browser = self.selenium		
+		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
 		browser.get(url)
 
@@ -193,7 +193,7 @@ class AddTestCase(StaticLiveServerTestCase):
 
 		assert error.get_attribute("innerHTML") == 'Please enter a correct username and password. Note that both fields may be case-sensitive.'
 
-	
+
 
 	def test_Login_Register_3(self):
 		browser = self.selenium
@@ -320,11 +320,11 @@ class AddTestCase(StaticLiveServerTestCase):
 			url('https://engineering.purdue.edu/HELPS/Publications/papers/2016IEEEHSTNPD.pdf')
 			url('https://engineering.purdue.edu/HELPS/Publications/papers/KohLuEI2016.pdf')
 			url('https://engineering.purdue.edu/HELPS/Publications/papers/CCBD2015Kaseb.pdf')
-		except ValidationError as e:			
+		except ValidationError as e:
 			print(e)
 			assert False
-	
-	
+      
+
 	def test_camera_state(self):
 		print("start usa state test")
 		browser = self.selenium
@@ -336,25 +336,17 @@ class AddTestCase(StaticLiveServerTestCase):
 		country_options = element.find_elements_by_tag_name("option")
 		for option in country_options:
 			if (option.get_attribute("value") == "USA"):
-				option.click()				
-				#break
+				option.click()
+				break
 			#print("Value is: %s" % option.get_attribute("value"))
-		
+
 		browser.implicitly_wait(10)
 
 		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='state']")
 		state_options = element.find_elements_by_tag_name("option")
-		if (len(state_options) == 0):
-			print("Incorrect")
-			assert True
-		else:
-			#print(len(state_options))
-			assert (len(state_options) >= 50)
-		"""
-		for entry in browser.get_log('browser'):
-			print (entry)
-		"""
+		assert (len(state_options) >= 50)
+
 
 	def test_camera_state_city(self):
 		print("start usa state city test")
@@ -367,10 +359,10 @@ class AddTestCase(StaticLiveServerTestCase):
 		country_options = element.find_elements_by_tag_name("option")
 		for option in country_options:
 			if (option.get_attribute("value") == "USA"):
-				option.click()				
-				#break
+				option.click()
+				break
 			#print("Value is: %s" % option.get_attribute("value"))
-		
+
 		browser.implicitly_wait(10)
 
 		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
@@ -379,17 +371,12 @@ class AddTestCase(StaticLiveServerTestCase):
 
 		for option in state_options:
 			if (option.get_attribute("value") == "IN"):
-				option.click()				
+				option.click()
 
 		browser.implicitly_wait(10)
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")
-		#print (len(city_options))
-		if (len(city_options) == 0):
-			print("Incorrect")
-			assert True
-		else:
-			assert (len(city_options) >= 60)
+		assert (len(city_options) >= 60)
 
 
 	def test_camera_state_multiple_states(self):
@@ -403,10 +390,10 @@ class AddTestCase(StaticLiveServerTestCase):
 		country_options = element.find_elements_by_tag_name("option")
 		for option in country_options:
 			if (option.get_attribute("value") == "USA"):
-				option.click()				
+				option.click()
 				#break
 			#print("Value is: %s" % option.get_attribute("value"))
-		
+
 		browser.implicitly_wait(10)
 
 		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
@@ -415,18 +402,12 @@ class AddTestCase(StaticLiveServerTestCase):
 
 		for option in state_options:
 			if (option.get_attribute("value") == "IN" or option.get_attribute("value") == "CA"):
-				option.click()				
+				option.click()
 
 		browser.implicitly_wait(10)
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")
-		#print (len(city_options))
-		if (len(city_options) == 0):
-			print("Incorrect")
-			assert True
-		else:
-			assert (len(city_options) >= 500)
-
+		assert (len(city_options) >= 500)
 
 	def test_camera_disable_state(self):
 		print("start german no states with cities")
@@ -439,9 +420,10 @@ class AddTestCase(StaticLiveServerTestCase):
 		country_options = element.find_elements_by_tag_name("option")
 		for option in country_options:
 			if (option.get_attribute("value") == "DE"):
-				option.click()				
+				option.click()
+				break
 			#print("Value is: %s" % option.get_attribute("value"))
-		
+
 		browser.implicitly_wait(10)
 
 		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
@@ -457,13 +439,7 @@ class AddTestCase(StaticLiveServerTestCase):
 
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")
-		#print(len(city_options))
-		if (len(city_options) == 0):
-			print("Incorrect")
-			assert True
-		else:
-			assert (len(city_options) >= 3000)
-
+		assert (len(city_options) >= 3000)
 
 
 	def test_camera_disable_city(self):
@@ -477,24 +453,15 @@ class AddTestCase(StaticLiveServerTestCase):
 		country_options = element.find_elements_by_tag_name("option")
 		for option in country_options:
 			if (option.get_attribute("value") == "USA"):
-				option.click()				
-
+				option.click()
 			#print("Value is: %s" % option.get_attribute("value"))
-		
+
 		browser.implicitly_wait(10)
 
 		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")
-
-		#print(len(city_options))
-		if (len(city_options) == 0):
-			print("Incorrect")
-			assert True
-		else:
-			assert (len(city_options) == 1)
-
-
+		assert len(city_options) == 0
 		
 	
 	def test_Login_Register_6(self):
@@ -528,8 +495,4 @@ class AddTestCase(StaticLiveServerTestCase):
 		error4 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[3]/ul/li")
 		error5 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[4]/ul/li")
 		assert error3.get_attribute("innerHTML") == 'Invalid URL for this field'
-
-
-
-
 
