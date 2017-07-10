@@ -285,3 +285,38 @@ var x2js = new X2JS();
 console.log(x2js.json2xml_str(o));
 
 ```
+
+In our website, we have created another button called submit all images, this will submit all the images that we have pushed in our websites. The functionalities are pretty much similar.
+
+
+## Download xml and zip files
+
+After we create our xml data, we need to download it after we generate it. We also need to import libraries that allow us to download any file or zip it to download a zip file.
+
+To download a single file, we need to use [https://github.com/eligrey/FileSaver.js/](https://github.com/eligrey/FileSaver.js/)
+
+To download multiple files and zip it, we need to use [https://stuk.github.io/jszip/](https://stuk.github.io/jszip/) 
+
+Follow the instructions on those websites, we can download the single xml file like the following.
+
+```
+
+var blob = new Blob([x2js.json2xml_str(o)], {type: "text/plain;charset=utf-8"});
+saveAs(blob, id + ".xml");
+
+```
+
+We can download the zip file for all xml files like the following.
+
+```
+for loop {
+	zip.file(d[i].id + ".xml", x2js.json2xml_str(o));
+}
+
+zip.generateAsync({type:"blob"})
+.then(function(content) {
+    // see FileSaver.js
+    saveAs(content, "xmlfiles.zip");
+});
+
+```
