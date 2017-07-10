@@ -37,8 +37,8 @@ class AddTestCase(StaticLiveServerTestCase):
 
 
 	def setUp(self):
-		self.display = Display(visible=0, size=(1000, 1200))
-		self.display.start()
+		#self.display = Display(visible=0, size=(1000, 1200))
+		#self.display.start()
 		#d = DesiredCapabilities.CHROME
 		#d['loggingPrefs'] = { 'browser':'ALL' }
 		#self.selenium = webdriver.Chrome(desired_capabilities=d)
@@ -59,7 +59,7 @@ class AddTestCase(StaticLiveServerTestCase):
 	def tearDown(self):
 		self.selenium.quit()
 		super(AddTestCase, self).tearDown()
-		self.display.stop()
+		#self.display.stop()
 		return
 
 
@@ -346,16 +346,8 @@ class AddTestCase(StaticLiveServerTestCase):
 		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='state']")
 		state_options = element.find_elements_by_tag_name("option")
-		if (len(state_options) == 0):
-			print("Incorrect")
-			assert True
-		else:
-			#print(len(state_options))
-			assert (len(state_options) >= 50)
-		"""
-		for entry in browser.get_log('browser'):
-			print (entry)
-		"""
+		assert (len(state_options) >= 50)
+
 
 	def test_camera_state_city(self):
 		print("start usa state city test")
@@ -385,12 +377,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser.implicitly_wait(10)
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")
-		#print (len(city_options))
-		if (len(city_options) == 0):
-			print("Incorrect")
-			assert True
-		else:
-			assert (len(city_options) >= 60)
+		assert (len(city_options) >= 60)
 
 
 	def test_camera_state_multiple_states(self):
@@ -421,12 +408,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser.implicitly_wait(10)
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")
-		#print (len(city_options))
-		if (len(city_options) == 0):
-			print("Incorrect")
-			assert True
-		else:
-			assert (len(city_options) >= 500)
+		assert (len(city_options) >= 500)
 
 
 	def test_camera_disable_state(self):
@@ -459,12 +441,7 @@ class AddTestCase(StaticLiveServerTestCase):
 
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")
-		#print(len(city_options))
-		if (len(city_options) == 0):
-			print("Incorrect")
-			assert True
-		else:
-			assert (len(city_options) >= 3000)
+		assert (len(city_options) >= 3000)
 
 
 
@@ -480,7 +457,6 @@ class AddTestCase(StaticLiveServerTestCase):
 		for option in country_options:
 			if (option.get_attribute("value") == "USA"):
 				option.click()
-				break
 			#print("Value is: %s" % option.get_attribute("value"))
 
 		browser.implicitly_wait(10)
@@ -489,13 +465,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")
 
-		#print(len(city_options))
-		if (len(city_options) == 0):
-			print("Incorrect")
-			assert True
-		else:
-			assert (len(city_options) == 1)
-
+		assert len(city_options) == 0
 
 
 
