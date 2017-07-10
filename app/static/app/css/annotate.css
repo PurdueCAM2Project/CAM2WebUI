@@ -1,0 +1,19 @@
+.annotate-container{
+	position: relative;
+}
+
+.annotate-container > [id^=baseLayer]{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	background: grey;
+}
+
+.annotate-container > [id^=drawingLayer]{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background: transparent;
+}

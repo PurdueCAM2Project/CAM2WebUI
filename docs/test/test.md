@@ -1,15 +1,6 @@
-[Guide] Django Selenium test
-
-Juncheng Tang edited this page on Jun 6
-
-___
+# Django Selenium test
 
 Selenium test environment is in the previous guide [Set up selenium test environment](https://purduecam2project.github.io/CAM2WebUI/selenium). If you haven't done that, click on the link and finish building up selenium environment first.
-
-___
-
-
-This page will walk you through some guides on writing django selenium testcases.
 
 ## Running Django Test
 
@@ -151,4 +142,4 @@ This testcase is something different from the previous ones. Since after we clic
 
 That is almost everything for our testcases. If you would like to create more testcases, you can use [Selenium Python Webdriver API](http://selenium-python.readthedocs.io/api.html) as reference to test something new.
 
-***
+

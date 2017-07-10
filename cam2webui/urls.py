@@ -19,7 +19,8 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^', include('app.urls')),
-    url(r'^admin_email/', include('email_system.urls')),
+    url(r'^email/', include('email_system.urls')),
     url(r'^admin/', admin.site.urls),
+	url(r'^label/', include('labelimg.urls')),
 
 ]

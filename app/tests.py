@@ -59,17 +59,16 @@ class AddTestCase(StaticLiveServerTestCase):
 	def tearDown(self):
 		self.selenium.quit()
 		super(AddTestCase, self).tearDown()
-		#self.display.stop()
+		self.display.stop()
 		return
 
 
 	# test whether testcase works
-
 	def test_a_one(self):
 		print("start first test")
 		pass
 
-
+	
 	# Test if page title is Cam2
 
 	def test_connection(self):
@@ -324,7 +323,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		except ValidationError as e:
 			print(e)
 			assert False
-
+      
 
 	def test_camera_state(self):
 		print("start usa state test")
@@ -410,7 +409,6 @@ class AddTestCase(StaticLiveServerTestCase):
 		city_options = element.find_elements_by_tag_name("option")
 		assert (len(city_options) >= 500)
 
-
 	def test_camera_disable_state(self):
 		print("start german no states with cities")
 		browser = self.selenium
@@ -444,7 +442,6 @@ class AddTestCase(StaticLiveServerTestCase):
 		assert (len(city_options) >= 3000)
 
 
-
 	def test_camera_disable_city(self):
 		print("start usa no state with city test")
 		browser = self.selenium
@@ -464,11 +461,9 @@ class AddTestCase(StaticLiveServerTestCase):
 		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")
-
 		assert len(city_options) == 0
-
-
-
+		
+	
 	def test_Login_Register_6(self):
 		#log in the admin account
 		browser = self.selenium
@@ -500,8 +495,4 @@ class AddTestCase(StaticLiveServerTestCase):
 		error4 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[3]/ul/li")
 		error5 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[4]/ul/li")
 		assert error3.get_attribute("innerHTML") == 'Invalid URL for this field'
-
-
-
-
 
