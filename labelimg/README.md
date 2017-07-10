@@ -221,3 +221,67 @@ $("#car").on('click', function() {
 
 
 ```
+
+Then there will be a complicated process in djaodjin-annotate to change the color of the annotation box. I have modified some arguments and functions of the original plugin to make the annotation box change its color.
+
+
+## Submit Image and generate xml file
+
+
+Just like pushing the images, when we submit image, we need to create button to submit image and create script to trigger the image.
+
+```
+
+<button class="submit-image">Submit Current Image</button>
+
+```
+
+```
+
+$(".submit-image").click(function(event) {
+	$('#myCanvas').annotate("getcurrent", null, function(d, id, height, width) {
+	
+	}
+});
+
+```
+
+The callback of the getcurrent function in the plugin will return four elements: storedElements of the annotation box, id of the image, height and width of the image. Then we will use javascript object to create a full object using the data we get.
+
+
+```
+
+var o = {"annotation": 
+	{"folder": "folder", 
+	"filename": "filename",
+	"path": id,
+	"source": {
+			"database": "database"
+		},
+	"size": {
+			"width": width,
+			"height": height,
+			"depth": 0,
+		},
+	"segmented": 0,
+	"object": an
+	}
+}
+
+```
+
+Since there is no javascript function which can directly change json to xml, so we will use a new library to convert javascript object to xml. We will be using a library called x2js to convert that.
+
+```
+<script type="text/javascript" src="https://cdn.rawgit.com/abdmob/x2js/master/xml2json.js"></script>
+
+```
+
+Then we can directly change the js object into the xml data format.
+
+
+```
+var x2js = new X2JS();
+console.log(x2js.json2xml_str(o));
+
+```
