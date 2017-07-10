@@ -59,7 +59,7 @@ class AddTestCase(StaticLiveServerTestCase):
 	def tearDown(self):
 		self.selenium.quit()
 		super(AddTestCase, self).tearDown()
-		self.display.stop()
+		# self.display.stop()
 		return
 
 
