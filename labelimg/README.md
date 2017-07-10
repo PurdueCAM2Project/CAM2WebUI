@@ -61,5 +61,101 @@ var options = {
 ```
 
 
-Now you can see the image in the html file which has a width of 640, height of 400. If you do annotation on the image, you can use a red rectangle box to draw boxes in the images.
+Now you can see the image in the html file which has a width of 640, height of 400. If you do annotation on the image, you can use a red rectangle box to draw annotations in the images.
+
+
+
+## Push New Image
+
+To push new images into the canvas, we need to first create a new button that can trigger the push image process and add a script that can push image in the djaodjin.
+
+```
+
+<button class="push-new-image">Push a new image!</button>
+
+```
+
+```
+
+$(".push-new-image").click(function(event) {		
+		$('#myCanvas').annotate("push", {id:"unique_identifier", path: "some_image_url"});		
+	});
+
+```
+
+Then this will trigger the script in the plugin. For every image in the canvas, it will record the id, path, image original height and width for the image.
+
+
+```
+
+pushImage: function(newImage, set, callback) {
+      var self = this;
+      var id = null;
+      var path = null;
+      var img = this.img;
+      var height;
+      var width;      
+
+      function findHHandWW() {
+        height = this.height;
+        width = this.width;
+        
+        id = self.generateId(10);
+
+        var image = {
+          id: id,
+          height: height,
+          width: width,
+          path: path,
+          storedUndo: [],
+          storedElement: []
+        };
+        self.images.push(image);
+        if (set) {
+          self.setBackgroundImage(image);
+        }
+        if (callback) {
+          callback({
+            id: image.id,
+            path: image.path
+          });
+        }
+        self.$el.trigger('annotate-image-added', [
+          image.id,
+          image.path
+        ]);
+        return true;
+      }
+      
+      if (typeof newImage === 'object') {
+        id = newImage.id;
+        path = newImage.path;
+        img = new Image();
+        img.name = path;
+        img.onload = findHHandWW;
+        img.src = path;
+      } else {
+        id = newImage;
+        path = newImage;
+        img = new Image();
+        img.name = path;
+        img.onload = findHHandWW;
+        img.src = path;
+      }
+      
+    }
+
+```
+
+ In the above script, it can also trigger a new function called 'annotate-image-added'. It will add the checkbox of all the images in the html file. We can add this function in the label.js file to add the image checkboxes.
+
+ ```
+
+ $('#myCanvas').on("annotate-image-added", function(event, id, path){
+		$(".my-image-selector").append("<label id=\"" + id + "\"><input type=\"radio\" name=\"image-selector\" class=\"annotate-image-select\" value=\"" + path + "\" checked id=\"" + id + "\"><img src=\"" + path + "\" width=\"35\" height=\"35\"></label>");
+	});
+
+```
+
+So the above is the whole process of pushing a new image into the canvas.
 
