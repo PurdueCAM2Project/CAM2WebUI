@@ -8,7 +8,7 @@ before_install:
 - sudo apt-get install xvfb
 before_script:
 - wget https://github.com/mozilla/geckodriver/releases/download/v0.17.0/geckodriver-v0.17.0-linux64.tar.gz
-- sudo tar -xzf geckodriver-v0.16.1-linux64.tar.gz -C /usr/bin
+- sudo tar -xzf geckodriver-v0.17.0-linux64.tar.gz -C /usr/bin
 - sudo chmod a+x /usr/bin/geckodriver
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
