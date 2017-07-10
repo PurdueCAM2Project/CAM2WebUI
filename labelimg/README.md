@@ -320,3 +320,42 @@ zip.generateAsync({type:"blob"})
 });
 
 ```
+
+
+## Remove file
+
+After everytime we submit a image, we need to remove the previous image to leave space for new image. So in the last step of submit image, we need to remove image.
+
+We do the reverse step of pushing the image. We will remove the image in the array with current id.
+
+```
+
+removecurrentImage: function(callback) {
+  var self = this;
+  var id = self.selectedImage;
+
+  for (var i = 0; i < self.images.length; i++) {
+    if (self.images[i].id === id) {
+      self.images.splice(i, 1);
+    }
+    //console.log(self.images);
+  }
+
+  self.$el.trigger('annotate-image-remove', [
+    id
+  ]);
+}
+
+```
+
+This will also trigger a function in label.js called 'annotate-image-remove'. It is the reverse process of adding the image in the html.
+
+
+```
+
+$('#myCanvas').on("annotate-image-remove", function(event, id){
+	$('label#' + id).remove();
+});
+
+```
+
