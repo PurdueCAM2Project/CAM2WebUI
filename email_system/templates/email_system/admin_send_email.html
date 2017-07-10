@@ -26,7 +26,7 @@
         {% for field in form %}
             {% if field is form.email %}
                 {{ field.label_tag }}<br>
-                <input type="text" name="{{ form.email.name }}" value="{{ email_selected }}" />
+                <input type="text" style="width: 100%" name="{{ form.email.name }}" value="{{ email_selected }}" />
             {% else %}
                 {{ field.label_tag }}<br>
                 {{ field }}<br>
