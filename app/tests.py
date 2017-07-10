@@ -337,7 +337,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		for option in country_options:
 			if (option.get_attribute("value") == "USA"):
 				option.click()				
-				break
+				#break
 			#print("Value is: %s" % option.get_attribute("value"))
 		
 		browser.implicitly_wait(10)
@@ -368,7 +368,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		for option in country_options:
 			if (option.get_attribute("value") == "USA"):
 				option.click()				
-				break
+				#break
 			#print("Value is: %s" % option.get_attribute("value"))
 		
 		browser.implicitly_wait(10)
@@ -440,7 +440,6 @@ class AddTestCase(StaticLiveServerTestCase):
 		for option in country_options:
 			if (option.get_attribute("value") == "DE"):
 				option.click()				
-				break
 			#print("Value is: %s" % option.get_attribute("value"))
 		
 		browser.implicitly_wait(10)
@@ -479,7 +478,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		for option in country_options:
 			if (option.get_attribute("value") == "USA"):
 				option.click()				
-				break
+
 			#print("Value is: %s" % option.get_attribute("value"))
 		
 		browser.implicitly_wait(10)

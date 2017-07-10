@@ -1,9 +1,4 @@
-Third party login
-
-Juncheng Tang edited this page on Jun 8
-
-___
-
+# User Third party login
 
 This page will walk you through some guides on writing third party login including google login and github login on the login page.
 

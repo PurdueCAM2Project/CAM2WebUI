@@ -1,12 +1,11 @@
-Django version 1.11.1
-***
+# Administrator Send Email
 ## Goal
 Allow admin to send email to specific users.
 procedure:
 Log in as admin, and in the main page, go to `Users`， click the checkbox to choose recipient and select `Email Users`, then click `Go` to go to a web page that admin can type in subject and message.
 
-## Approach
-Create a new app calld `email_system`
+## Set Up a new django app
+Create a new app called `email_system`
   
 Create a view for the email page. To make sure only admin can use this, we need to add a django decorator `@staff_member_required` before aour function.
 
@@ -24,7 +23,7 @@ def email_users(self, request, queryset):
         email_selected.append(l)
 ```
 Since we want to automatically put the email of selected users to the input of admin_send_email page, we want to make it look pretty so that the email field in admin_send_email page can read the email.
-  
+ 
 Therefore we get the email and append them into a list, make it a string and remove the redundant brackets and empty value. 
 
 ```
@@ -63,8 +62,9 @@ At last we need to unregister the User model because it is registered by default
 
 ### Send Email Page
 we use a form to obtain the subject, message and email:
-```
+
 In `forms.py':
+```
     from django import forms
     from django.core.validators import validate_email
     
@@ -101,6 +101,7 @@ Before `Mailform`, add:
 The MultiEmailField will accept a list of email addresses that is split by `,` or `;` aas well as a list copy and paste from the user info table that we will create later.
   
 Now go to `views.py`:
+
 ```
     def admin_send_email(request):
         if request.method == 'POST':
@@ -153,6 +154,7 @@ There are two ways of sending email: send_mail and send_mass_mail. send_mass_mai
 And the outcome is different. If we send_mass_email by attach every email to a list and send them together, the "to" part of the email will only show one email address, but if we use send_mail with a email list, the "to" part will show all the receivers.
   
 We also used a template here for email_all_users since it is nice to have signiture for an official email:
+
 ```
     Hi {{ username }},
     {{ message }}
@@ -166,7 +168,8 @@ We also used a template here for email_all_users since it is nice to have signit
 For the convenience of administrator, it is good to have a table of all users' info.
 To obtain them, we will use `objects.values` and `objects.values_list`. The `objects.values` will collect the names of each aspact of info, however, `objects.values_list` will only contain the info itself.
   
-Right after `def admin_send_email(request):` and before `if request.method == 'POST':`, add:
+Right after `def admin_send_email(request):` and before `if request.method == 'POST':`, add the following to get user info:
+  
     email_table = (User.objects.values('email')) #Obtaining a list of users' emails outside users info table for easy copying and pasting.
     users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined') #Obtaining a list of info required from user
     
