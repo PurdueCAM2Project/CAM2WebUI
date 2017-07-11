@@ -90,6 +90,8 @@ $(document).ready(function(){
 		$('#myCanvas').annotate("getall", null, function(d) {
 			//console.log(d);
 			var all = [];
+			var zip = new JSZip();
+			var x2js = new X2JS();
 			for (var i = 0; i < d.length; i++) {
 				var an = objectinfo(d[i].storedElement, d[i].height, d[i].width);
 				var o = {"annotation": 
@@ -108,12 +110,22 @@ $(document).ready(function(){
 					"object": an
 					}
 				}
+				zip.file(d[i].id + ".xml", x2js.json2xml_str(o));
+				//all.push(o);
 
-				all.push(o);
+
 			}
-			var x2js = new X2JS();
-			console.log(x2js.json2xml_str(all));
+
+			zip.generateAsync({type:"blob"})
+			.then(function(content) {
+			    // see FileSaver.js
+			    saveAs(content, "xmlfiles.zip");
+			});
+			
+			//console.log(x2js.json2xml_str(all));
 			//alert("successful");
+
+
 		});		
 	});
 
@@ -145,12 +157,14 @@ $(document).ready(function(){
 			console.log(x2js.json2xml_str(o));
 
 			//alert("successful");
+			var blob = new Blob([x2js.json2xml_str(o)], {type: "text/plain;charset=utf-8"});
+			saveAs(blob, id + ".xml");
 
 		});
 
 
 		$('#myCanvas').annotate("removecurrent", null, function() {
-			$('#myCanvas').annotate("push", {id:"unique_identifier", path: "ftp://128.46.75.58/WD1/2016%20Olympics/01_August_Mon/100_2016-08-01_15-27-14-530185.png"});
+			$('#myCanvas').annotate("push", {id:"unique_identifier", path: "ftp://128.46.75.58/WD1/2016%20Olympics/01_August_Mon/119_2016-08-01_15-27-14-993698.png"});
 			counter -= 1;
 		});
 	});

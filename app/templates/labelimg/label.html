@@ -8,7 +8,7 @@
 {% endblock %}
 {% block content %}
 
-<div class="container">
+<div class="container" style="padding-top: 30px">
 
 	<div class="my-image-selector">
 		<button class="push-new-image">Push a new image!</button>
@@ -41,8 +41,11 @@
 
 <script src="{% static "app/js/djaodjin-annotate.js" %}"></script>
 
-<script src="{% static "app/js/label.js" %}"></script>
+<script src="{% static "app/js/FileSaver.min.js" %}"></script>
 
+<script src="{% static "app/js/jszip.min.js" %}"></script>
+
+<script src="{% static "app/js/label.js" %}"></script>
 
 
 {% endblock %}

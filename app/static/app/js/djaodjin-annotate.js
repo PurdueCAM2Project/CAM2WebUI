@@ -267,15 +267,12 @@ MIT License
         if (self.images[i].id === id) {
           self.images.splice(i, 1);
         }
-        console.log(self.images);
+        //console.log(self.images);
       }
 
       self.$el.trigger('annotate-image-remove', [
         id
       ]);
-
-
-      // todo
     },
     initBackgroundImages: function() {
       var self = this;
@@ -653,8 +650,5 @@ MIT License
     idAttribute: 'id',
     selectEvent: 'change',
     unselectTool: false,
-    onExport: function(image) {
-      console.log(image);
-    }
   };
 })(jQuery);
