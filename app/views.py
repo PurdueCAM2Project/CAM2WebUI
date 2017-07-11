@@ -216,3 +216,4 @@ def oauthinfo(request):
             form2 = AdditionalForm()
 
             return render(request, 'app/oauthinfo.html', {'form2': form2})
+
