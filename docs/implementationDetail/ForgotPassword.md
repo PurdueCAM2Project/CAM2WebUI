@@ -1,4 +1,4 @@
-#Forgot Password (Password Reset)
+# Forgot Password (Password Reset)
 
 ## Goal
 Allow users to reset their password through email.
