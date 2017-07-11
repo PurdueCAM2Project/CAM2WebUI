@@ -27,6 +27,10 @@ A recommended way to install these packages is putting them into a :code:`requir
 
 Sphinx Configuration
 ====================
+
+Initial Sphinx Set up
+---------------------
+
 for initial set up of sphinx folders, execute:
 
 .. code-block:: bash
@@ -36,30 +40,43 @@ for initial set up of sphinx folders, execute:
 this command will guide you initial set up of sphinx document source folder. Most of options can be left default, except a *GithubPage* option should be set to True. After finishing initial setup, open and modify :code:`conf.py`. 
 
 
+Add build folder to gitignore
+-----------------------------
+
+After finishing setup, some build folders should be ignored during git commit. By default, these folders are
+
+.. code-block:: bash
+
+    # sphinx document build folders
+    path_to_sphinx_root/_build/
+    path_to_sphinx_root/_static/
+    path_to_sphinx_root/_templates/
+
+
 Add Sphinx RTD theme
 --------------------
 
-#. import sphinx RTD theme library
+1. import sphinx RTD theme library
 
-    .. code-block:: python
-    
-        import sphinx_rtd_theme
+.. code-block:: python
 
-#. set sphinx theme to RTD
+    import sphinx_rtd_theme
 
-    .. code-block:: python
-    
-        html_theme = "sphinx_rtd_theme"
-        html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+2. set sphinx theme to RTD
 
-#. set sphinx theme option
+.. code-block:: python
 
-    .. code-block:: python
-    
-        html_theme_options = {
-            'display_version': False,
-            'navigation_depth': 2,
-        }
+    html_theme = "sphinx_rtd_theme"
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+
+3. set sphinx theme option
+
+.. code-block:: python
+
+    html_theme_options = {
+        'display_version': False,
+        'navigation_depth': 2,
+    }
     
 for more Sphinx rtd theme settings, see `Sphinx rtd github repo`_
 
@@ -67,32 +84,32 @@ for more Sphinx rtd theme settings, see `Sphinx rtd github repo`_
 Add Sphinx MarkDown Support
 ---------------------------
 
-#. import markdown parser library
+1. import markdown parser library
 
-    .. code-block:: python
-    
-        from recommonmark.parser import CommonMarkParser
-        from recommonmark.transform import AutoStructify
+.. code-block:: python
 
-#. Change :code:`source_suffix` to following to make parser recognize markdown files
+    from recommonmark.parser import CommonMarkParser
+    from recommonmark.transform import AutoStructify
 
-    .. code-block:: python
+2. Change :code:`source_suffix` to following to make parser recognize markdown files
+
+.. code-block:: python
+
+    source_suffix = ['.rst', '.md']
     
-        source_suffix = ['.rst', '.md']
+3. add following configuration to make use of markdown parser
     
-#. add following configuration to make use of markdown parser
+.. code-block:: python 
+
+    source_parsers = {
+        '.md': CommonMarkParser,
+    }
     
-    .. code-block:: python 
-    
-        source_parsers = {
-            '.md': CommonMarkParser,
-        }
-        
-        def setup(app):
-            app.add_config_value('recommonmark_config', {
-                'enable_eval_rst': True,
-            }, True)
-            app.add_transform(AutoStructify)
+    def setup(app):
+        app.add_config_value('recommonmark_config', {
+            'enable_eval_rst': True,
+        }, True)
+        app.add_transform(AutoStructify)
 
 if you want to modify setup of recommonmark markdown parser, refer to `Recommonmark Documentation`_
 
@@ -144,7 +161,7 @@ if you didn't change settings during initial setup, a folder named :code:`_build
 
 .. note::
 
-    if you modify some files and rebuild documentation page, but didn't see any changes, clean temperary build files by running 
+    When you modify some files and rebuild documentation page, but didn't see any changes, clean temperary build files by running 
     
     .. code-block:: bash
     
@@ -154,9 +171,54 @@ if you didn't change settings during initial setup, a folder named :code:`_build
 Deploy to Github Page
 =====================
 
+Since obtaining Sphinx Documentation requires a build step, there are two ways to deploy built sphinx page to Github page. One is using some automatic built services (like Travis-CI) which will automatically build and deploy for you. The other is built locally yourself.
+
+
+Deploy with Travis-CI
+---------------------
+
+Deploy with Travis-CI basically needs 4 steps:
+
+1. modify :code:`.travis.yml` configuration by adding the following (only works in python environment). For more information about travis github page deployment, see `Travis Configuration`_
+
+.. code-block:: bash
+
+    install:            # Install requirement as "Environment Setup Section"
+    - pip install -r sphinx_root/requirements.txt
+    script:             # build sphinx document
+    - cd sphinx_root/
+    - make html
+    - cd -
+    deploy              # deploy to github page
+    - provider: pages
+      skip_cleanup: true
+      local_dir: sphinx_root/_build/html
+      github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+
+
+2. Obtain Github personal token. 
+   This Token can be anyone who has access right to Repository. To obtain this token, Go to personal Github settings, At very end of left column, click *personal access tokens* and create a new one. With regards to Scope option during token creation, only :code:`public_repo` should be selected for safety.  Put this token in Travis-CI environment variable settings with name corresponding to travis script
+
+.. note::
+    
+    Whoever use their own *personal access token*, every auto deployment commit will be treated as their commit. For a team, it's recommended to use tokens from organization
+
+3. Change repository settings
+   repository manager should change github page source to branch :code:`gh-pages` branch. This branch will be created during auto deployment by default. 
+
+.. note::
+
+    :code:`gh-pages` branch can't be a protected branch, otherwise, Travis-CI won't be able to push to repository.
+
+
+Locally built and deploy by push
+--------------------------------
+
+To be continued
 
 .. _`Sphinx Official Website`: http://www.sphinx-doc.org
 .. _`Sphinx rtd github repo`: https://github.com/rtfd/sphinx_rtd_theme
 .. _`Recommonmark Documentation`: https://recommonmark.readthedocs.io/en/latest/
 .. _`Sphinx TOC tree Docs`: http://www.sphinx-doc.org/en/stable/markup/toctree.html
 .. _`rst reference`: http://docutils.sourceforge.net/docs/user/rst/quickref.html
+.. _`Travis Configuration`: https://docs.travis-ci.com/user/deployment/pages/
