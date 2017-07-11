@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from ftplib import FTP
 import json
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -31,4 +32,6 @@ def getimg(request):
 	j = json.dumps(out)
 	print(j)
 
-	return j
+	ftp.close()
+
+	return JsonResponse({'list':j})
