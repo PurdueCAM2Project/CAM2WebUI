@@ -116,17 +116,27 @@ $(document).ready(function(){
 
 			}
 
+			
+
 			zip.generateAsync({type:"blob"})
 			.then(function(content) {
 			    // see FileSaver.js
 			    saveAs(content, "xmlfiles.zip");
 			});
 			
-			//console.log(x2js.json2xml_str(all));
-			//alert("successful");
 
 
-		});		
+		});	
+
+		
+
+
+		$('#myCanvas').annotate("removeall", null, function() {
+			$('#myCanvas').annotate("push", {id:"unique_identifier", path: "ftp://128.46.75.58/WD1/2016%20Olympics/01_August_Mon/119_2016-08-01_15-27-14-993698.png"});
+			counter = 1;
+		});	
+
+
 	});
 
 	$(".submit-image").click(function(event) {

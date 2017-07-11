@@ -4,7 +4,6 @@ Copyright (c) 2015, Djaodjin Inc.
 MIT License
 */
 /* global document jQuery Image window:true*/
-//console.log("hello world");
 (function($) {
   'use strict';
   /**
@@ -273,6 +272,17 @@ MIT License
       self.$el.trigger('annotate-image-remove', [
         id
       ]);
+    },
+    removeallImage: function(callback) {
+      var self = this;
+      for (var i = 0; i < self.images.length; i++) {
+        var id = self.images[i].id;
+        console.log(id);       
+        self.$el.trigger('annotate-image-remove', [
+          id
+        ]);
+      }
+      self.images = [];       
     },
     initBackgroundImages: function() {
       var self = this;
@@ -581,6 +591,15 @@ MIT License
     } else if (options === 'removecurrent') {
       if ($annotate) {
         $annotate.removecurrentImage();
+        callback();
+      } else {
+        throw new Error('No annotate initialized for: #' + $(this).attr(
+          'id'));
+      }
+    
+    } else if (options === 'removeall') {
+      if ($annotate) {
+        $annotate.removeallImage();
         callback();
       } else {
         throw new Error('No annotate initialized for: #' + $(this).attr(
