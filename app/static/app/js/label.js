@@ -97,7 +97,7 @@ $(document).ready(function(){
 				var o = {"annotation": 
 					{"folder": "folder", 
 					"filename": "filename",
-					"path": d[i].id,
+					"path": d[i].path,
 					"source": {
 							"database": "database"
 						},
@@ -140,7 +140,7 @@ $(document).ready(function(){
 	});
 
 	$(".submit-image").click(function(event) {
-		$('#myCanvas').annotate("getcurrent", null, function(d, id, height, width) {
+		$('#myCanvas').annotate("getcurrent", null, function(d, path, height, width) {
 			console.log(d);
 			//console.log(id);
 			var an = objectinfo(d, height, width);
@@ -148,7 +148,7 @@ $(document).ready(function(){
 			var o = {"annotation": 
 				{"folder": "folder", 
 				"filename": "filename",
-				"path": id,
+				"path": path,
 				"source": {
 						"database": "database"
 					},
@@ -168,7 +168,7 @@ $(document).ready(function(){
 
 			//alert("successful");
 			var blob = new Blob([x2js.json2xml_str(o)], {type: "text/plain;charset=utf-8"});
-			saveAs(blob, id + ".xml");
+			saveAs(blob, path + ".xml");
 
 		});
 

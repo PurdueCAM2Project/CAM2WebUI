@@ -277,7 +277,7 @@ MIT License
       var self = this;
       for (var i = 0; i < self.images.length; i++) {
         var id = self.images[i].id;
-        console.log(id);       
+        //console.log(id);       
         self.$el.trigger('annotate-image-remove', [
           id
         ]);
@@ -493,6 +493,10 @@ MIT License
       var self = this;
       return self.selectedImage;
     },
+    getcurrentpath: function(event) {
+      var self = this;
+      return self.img.src;
+    },
     changecolor: function(event, cmdOption) {
       var self = this;
       this.options.color = cmdOption
@@ -634,9 +638,10 @@ MIT License
       if ($annotate) {
         //$annotate.exportImage(cmdOption, callback);
         var s = $annotate.getbox(this);
-        var id = $annotate.getcurrentid(this);
+        //var id = $annotate.getcurrentid(this);
+        var path = $annotate.getcurrentpath(this);
         var origin = $annotate.getoriginal(this);
-        callback(s, id, origin.height, origin.width);
+        callback(s, path, origin.height, origin.width);
       } else {
         throw new Error('No annotate initialized for: #' + $(this).attr(
           'id'));
