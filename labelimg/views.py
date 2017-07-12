@@ -30,7 +30,7 @@ def getimg(request):
 		out.append(element)
 
 	j = json.dumps(out)
-	print(j)
+	#print(j)
 
 	ftp.close()
 

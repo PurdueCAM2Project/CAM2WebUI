@@ -16,9 +16,11 @@ $(document).ready(function(){
 	$('#myCanvas').on("annotate-image-remove", function(event, id){
 		$('label#' + id).remove();
 	});
+	var curr_width = 640;
+	var curr_height = 400;
 	var options = {
-		width: "640",          // Width of canvas
-  		height: "400",         // Height of canvas
+		width: curr_width,          // Width of canvas
+  		height: curr_height,         // Height of canvas
 		color: 'red',
 		bootstrap: true,
 		images: ['ftp://128.46.75.58/WD1/2016%20Olympics/01_August_Mon/161_2016-08-01_15-27-17-440411.png'],
@@ -62,19 +64,19 @@ $(document).ready(function(){
 			var ymin;
 			var ymax;
 			if (d[i].tox < 0) {
-				var xmin = (d[i].fromx + d[i].tox) * width / 640;
-				var xmax = d[i].fromx * width / 640;
+				var xmin = (d[i].fromx + d[i].tox) * curr_width / 640;
+				var xmax = d[i].fromx * curr_width / 640;
 			} else {
-				var xmin = d[i].fromx * width / 640;
-				var xmax = (d[i].fromx + d[i].tox) * width / 640;
+				var xmin = d[i].fromx * curr_width / 640;
+				var xmax = (d[i].fromx + d[i].tox) * curr_width / 640;
 			}
 
 			if (d[i].toy < 0) {
-				var ymin = (d[i].fromy + d[i].toy) * height / 400;
-				var ymax = d[i].fromy * height / 400;
+				var ymin = (d[i].fromy + d[i].toy) * curr_height / 400;
+				var ymax = d[i].fromy * curr_height / 400;
 			} else {
-				var ymin = d[i].fromy * height / 400;
-				var ymax = (d[i].fromy + d[i].toy) * height / 400;
+				var ymin = d[i].fromy * curr_height / 400;
+				var ymax = (d[i].fromy + d[i].toy) * curr_height / 400;
 			}
 
 			var obj = {
