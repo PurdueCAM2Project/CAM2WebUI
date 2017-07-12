@@ -43,6 +43,22 @@ $(document).ready(function(){
 		}
 	});
 
+	$(".zoom-in").click(function(event) {
+		curr_width = curr_width * 1.25;
+		curr_height = curr_height * 1.25;
+		$('#myCanvas').annotate("resize", '+', function(){
+
+		});
+	});
+
+	$(".zoom-in").click(function(event) {
+		curr_width = curr_width * 0.8;
+		curr_height = curr_height * 0.8;
+		$('#myCanvas').annotate("resize", '-', function(){
+			
+		});
+	});
+
 
 	function objectinfo(d, height, width) {
 		var an = [];
@@ -64,19 +80,19 @@ $(document).ready(function(){
 			var ymin;
 			var ymax;
 			if (d[i].tox < 0) {
-				var xmin = (d[i].fromx + d[i].tox) * curr_width / 640;
-				var xmax = d[i].fromx * curr_width / 640;
+				var xmin = (d[i].fromx + d[i].tox) * width / curr_width;
+				var xmax = d[i].fromx * width / curr_width;
 			} else {
-				var xmin = d[i].fromx * curr_width / 640;
-				var xmax = (d[i].fromx + d[i].tox) * curr_width / 640;
+				var xmin = d[i].fromx * width / curr_width;
+				var xmax = (d[i].fromx + d[i].tox) * width / curr_width;
 			}
 
 			if (d[i].toy < 0) {
-				var ymin = (d[i].fromy + d[i].toy) * curr_height / 400;
-				var ymax = d[i].fromy * curr_height / 400;
+				var ymin = (d[i].fromy + d[i].toy) * height / curr_height;
+				var ymax = d[i].fromy * height / curr_height;
 			} else {
-				var ymin = d[i].fromy * curr_height / 400;
-				var ymax = (d[i].fromy + d[i].toy) * curr_height / 400;
+				var ymin = d[i].fromy * height / curr_height;
+				var ymax = (d[i].fromy + d[i].toy) * height / curr_height;
 			}
 
 			var obj = {

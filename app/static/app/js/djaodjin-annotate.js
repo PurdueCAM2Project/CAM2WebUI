@@ -499,7 +499,39 @@ MIT License
     },
     changecolor: function(event, cmdOption) {
       var self = this;
-      this.options.color = cmdOption
+      this.options.color = cmdOption;
+      return cmdOption;
+    },
+    resize: function(event, cmdOption) {
+      var self = this;
+
+      if (cmdOption === '+') {
+        self.currentWidth = self.currentWidth * 1.25;
+        self.currentHeight = self.currentHeight * 1.25;
+        self.selectImageSize.width = self.selectImageSize.width * 1.25;
+        self.selectImageSize.height = self.selectImageSize.height * 1.25;
+      } else {
+        self.currentWidth = self.currentWidth * 0.8;
+        self.currentHeight = self.currentHeight * 0.8;
+        self.selectImageSize.width = self.selectImageSize.width * 0.8;
+        self.selectImageSize.height = self.selectImageSize.height * 0.8;
+      }
+      
+      self.baseCanvas.width = self.drawingCanvas.width = self.currentWidth;
+      self.baseCanvas.height = self.drawingCanvas.height = self.currentHeight;
+      self.baseContext.drawImage(self.img, 0, 0, self.currentWidth,
+        self.currentHeight);
+      self.$el.css({
+        height: self.currentHeight,
+        width: self.currentWidth
+      });
+      self.storedElement = image.storedElement;
+      self.storedUndo = image.storedUndo;
+      self.selectedImage = image.id;
+      self.checkUndoRedo();
+      self.clear();
+      self.redraw();
+      self.annotateresize();
       return cmdOption;
     },
     annotateleave: function(event) {
@@ -650,6 +682,15 @@ MIT License
       if ($annotate) {
         //$annotate.exportImage(cmdOption, callback);
         var s = $annotate.changecolor(this, cmdOption);
+        callback(s);
+      } else {
+        throw new Error('No annotate initialized for: #' + $(this).attr(
+          'id'));
+      }
+    } else if (options === 'resize') {
+      if ($annotate) {
+        //$annotate.exportImage(cmdOption, callback);
+        var s = $annotate.resize(this, cmdOption);
         callback(s);
       } else {
         throw new Error('No annotate initialized for: #' + $(this).attr(
