@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CAM2 API console</title>
-</head>
-<body>
 
-</body>
-</html>
+{% extends "app/base.html" %}
+{% block title %}Cameras{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/api_console.css " %}">
+<link rel="stylesheet" href="{% static "app/css/select2.min.css " %}">
+{% endblock %}
+{% block content %}
+<nav class="navbar navbar-inverse navbar-fixed-top api-console-navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/api_console/">CAM<sup>2</sup> API console</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/api_console/README">README</a></li>
+                <li><a href="/api_console/documentation">Documentation</a></li>
+                <li><a href="/api_console/console">Console</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+{% block scripts %}
+<script src="{% static "app/js/jquery-3.2.0.min.js" %}"></script>
+<script src="/static/app/js/bootstrap.min.js"></script>
+
+{% endblock %}
