@@ -506,6 +506,8 @@ MIT License
       var self = this;
 
       if (cmdOption === '+') {
+        self.options.width = self.options.width * 1.25;
+        self.options.height = self.options.height * 1.25;
         self.currentWidth = self.currentWidth * 1.25;
         self.currentHeight = self.currentHeight * 1.25;
         self.selectImageSize.width = self.selectImageSize.width * 1.25;

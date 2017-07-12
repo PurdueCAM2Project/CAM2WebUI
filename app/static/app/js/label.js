@@ -51,7 +51,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$(".zoom-in").click(function(event) {
+	$(".zoom-out").click(function(event) {
 		curr_width = curr_width * 0.8;
 		curr_height = curr_height * 0.8;
 		$('#myCanvas').annotate("resize", '-', function(){
