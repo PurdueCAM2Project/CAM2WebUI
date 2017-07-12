@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^team/$', app_views.team, name='team'),
     url(r'^history/$', app_views.history, name='history'),
     url(r'^publications/$', app_views.publications, name='publications'),
+    url(r'^api_console/$', app_views.api_console, name='API console'),           
     url(r'^privacy/$', app_views.privacy, name='privacy'),
     url(r'^ack/$', app_views.acknowledgement, name='acknowledgement'),
     #url(r'^contact/$', app_views.contact, name='contact'),

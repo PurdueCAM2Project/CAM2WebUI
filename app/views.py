@@ -42,6 +42,9 @@ def team(request):
               }
     return render(request, 'app/team.html', context)
 
+def api_console(request):
+  return render(request, 'app/api_console.html')
+
 def privacy(request):
     return render(request, 'app/privacy.html')
 
