@@ -23,8 +23,8 @@ Welcome to PurdueCAM2Project/CAM2WebUI's documentation!
    implementationDetail/UserLoginandLogout.md
    implementationDetail/oauth.md
    implementationDetail/drive.md
-   implementationDetail/fusion.md
    implementationDetail/fusion_setup.md
+   implementationDetail/fusion.md
    implementationDetail/ForgotPassword.md
    implementationDetail/ContactUs.md
 
