@@ -24,7 +24,8 @@ Welcome to PurdueCAM2Project/CAM2WebUI's documentation!
    implementationDetail/oauth.md
    implementationDetail/drive.md
    implementationDetail/fusion.md
-
+   implementationDetail/fusion_setup.md
+   implementationDetail/ForgotPassword.md
 
 .. toctree::
    :glob:

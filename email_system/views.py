@@ -10,24 +10,43 @@ from django.core.mail import send_mass_mail, send_mail
 
 @staff_member_required
 def admin_send_email(request):
-    email_table = (User.objects.values('email')) #Obtaining a list of users' emails outside users info table for easy copying and pasting.
-    users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined') #Obtaining a list of info required from user
+    email_table = (User.objects.values('email').order_by('date_joined')) #Obtaining a list of users' emails outside users info table for easy copying and pasting.
+    users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined').order_by('date_joined') #Obtaining a list of info required from user
+    email_selected = request.session['email_selected'] #obtain email_selected from session
     if request.method == 'POST':
         form = MailForm(request.POST)
         if form.is_valid():
-            #email specific users
+            #get admin input
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             email = form.cleaned_data['email']
             email_all_users = form.cleaned_data['email_all_users']#option for email all users
-            
+
+            current_site = get_current_site(request)  # will be used in templates
             try:
                 if email_all_users: #if ture, send email to all users
-                    current_site = get_current_site(request)#will be used in templates
-                    all_users = User.objects.all() #For iteration of email all users
+                    all_users = User.objects.all() #For iteration of "email all users"
                     mass_email = []
                     for user in all_users:
-                        username = user.username
+                        if user.is_active:
+                            username = user.username #will be used in template
+                            template = render_to_string('email_system/admin_send_email_template.html', {
+                                'username': username,
+                                'message': message,
+                                'domain': current_site.domain,
+                            })
+                            mass_email.append((
+                                subject,
+                                template,
+                                EMAIL_HOST_USER,
+                                [user.email],
+                            ))
+                    send_mass_mail(mass_email, fail_silently=False)
+                else: #if email_all_users is False, send email to address that the admin typed in
+                    mass_email = []
+                    for e in email: #attach template one by one to make sure only one email shows up in the recipient list,
+                                    #if not, recipients in the same recipient_list will all see the other addresses in the email messages’ “To:” field
+                        username = e #will be used in template
                         template = render_to_string('email_system/admin_send_email_template.html', {
                             'username': username,
                             'message': message,
@@ -37,11 +56,9 @@ def admin_send_email(request):
                             subject,
                             template,
                             EMAIL_HOST_USER,
-                            [user.email],
+                            [e],
                         ))
-                    send_mass_mail(mass_email)
-                else: #if email_all_users is not true, send email to address that the admin typed in
-                    send_mail(subject,message,EMAIL_HOST_USER,email)
+                    send_mass_mail(mass_email, fail_silently=False)
 
                 messages.success(request, 'Email successfully sent.')#success message
             except:
@@ -52,7 +69,7 @@ def admin_send_email(request):
             messages.error(request, 'Email sent failed.')
     else:
         form = MailForm()
-    return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': users, 'email_table': email_table})
+    return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': users, 'email_table': email_table, 'email_selected': email_selected,})
 
 
 def contact(request):
