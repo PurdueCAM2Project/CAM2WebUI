@@ -5,9 +5,14 @@ $(document).ready(function(){
 
 	var allimg;
 
-	$.get( "/label/getimg", function( data ) {
+	var fd = 0;
+	var sd = 0;
+
+	$.get( "/label/getimg", {dir: fd, subdir: sd}, function( data ) {
 	  	allimg = JSON.parse(data.list)
 	  	//console.log(allimg)
+	  	fd = JSON.parse(data.fd);
+	  	sd = JSON.parse(data.sd);
 	});
 
 	$('#myCanvas').on("annotate-image-added", function(event, id, path){
