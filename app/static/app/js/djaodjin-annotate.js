@@ -425,13 +425,7 @@ MIT License
           if (!self.tox) {
             self.tox = 100;
           }
-          self.storedElement.push({
-            type: 'text',
-            text: text,
-            fromx: (self.fromxText - offset.left) * self.compensationWidthRate,
-            fromy: (self.fromyText - offset.top) * self.compensationWidthRate,
-            maxwidth: self.tox
-          });
+          
           if (self.storedUndo.length > 0) {
             self.storedUndo = [];
           }
@@ -537,7 +531,13 @@ MIT License
             self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 1.25;
             self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 1.25;
             self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 1.25;
-          }          
+          }
+          for (var j = self.images[i].storedUndo.length - 1; j >= 0; j--) {
+            self.images[i].storedUndo[j].fromx = self.images[i].storedUndo[j].fromx * 1.25;
+            self.images[i].storedUndo[j].fromy = self.images[i].storedUndo[j].fromy * 1.25;
+            self.images[i].storedUndo[j].tox = self.images[i].storedUndo[j].tox * 1.25;
+            self.images[i].storedUndo[j].toy = self.images[i].storedUndo[j].toy * 1.25;
+          }     
         }
 
       } else {
@@ -548,7 +548,13 @@ MIT License
             self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 0.8;
             self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 0.8;
             self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 0.8;
-          }          
+          }
+          for (var j = self.images[i].storedUndo.length - 1; j >= 0; j--) {
+            self.images[i].storedUndo[j].fromx = self.images[i].storedUndo[j].fromx * 0.8;
+            self.images[i].storedUndo[j].fromy = self.images[i].storedUndo[j].fromy * 0.8;
+            self.images[i].storedUndo[j].tox = self.images[i].storedUndo[j].tox * 0.8;
+            self.images[i].storedUndot[j].toy = self.images[i].storedUndo[j].toy * 0.8;
+          }        
         }
       }
       
