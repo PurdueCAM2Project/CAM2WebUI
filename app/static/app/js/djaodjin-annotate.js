@@ -513,6 +513,8 @@ MIT License
         self.selectImageSize.width = self.selectImageSize.width * 1.25;
         self.selectImageSize.height = self.selectImageSize.height * 1.25;
       } else {
+        self.options.width = self.options.width * 0.8;
+        self.options.height = self.options.height * 0.8;
         self.currentWidth = self.currentWidth * 0.8;
         self.currentHeight = self.currentHeight * 0.8;
         self.selectImageSize.width = self.selectImageSize.width * 0.8;
@@ -527,9 +529,29 @@ MIT License
         height: self.currentHeight,
         width: self.currentWidth
       });
-      self.storedElement = image.storedElement;
-      self.storedUndo = image.storedUndo;
-      self.selectedImage = image.id;
+      if (cmdOption === '+') {        
+        
+        for (var i = self.images.length - 1; i >= 0; i--) {
+          for (var j = self.images[i].storedElement.length - 1; j >= 0; j--) {
+            self.images[i].storedElement[j].fromx = self.images[i].storedElement[j].fromx * 1.25;
+            self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 1.25;
+            self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 1.25;
+            self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 1.25;
+          }          
+        }
+
+      } else {
+        
+        for (var i = self.images.length - 1; i >= 0; i--) {
+          for (var j = self.images[i].storedElement.length - 1; j >= 0; j--) {
+            self.images[i].storedElement[j].fromx = self.images[i].storedElement[j].fromx * 0.8;
+            self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 0.8;
+            self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 0.8;
+            self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 0.8;
+          }          
+        }
+      }
+      
       self.checkUndoRedo();
       self.clear();
       self.redraw();
