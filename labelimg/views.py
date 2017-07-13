@@ -21,10 +21,13 @@ def getimg(request):
 	ftp.cwd(ftplist[fd])
 	sub1 = ftp.nlst()
 
+	#Unformatted directory has bug, todo
+
 	if (sd == len(sub1)):
 		sd = 0
 		fd = fd + 1
 		ftp.cwd('..')
+		ftplist = ftp.nlst()
 		ftp.cwd(ftplist[fd])
 		sub1 = ftp.nlst()
 

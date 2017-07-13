@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var counter = 20;
+	var counter = 0;
 
 	var isactive = $("#human");
 
