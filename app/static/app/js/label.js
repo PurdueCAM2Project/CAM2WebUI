@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var counter = 0;
+	var counter = 20;
 
 	var isactive = $("#human");
 
@@ -35,8 +35,6 @@ $(document).ready(function(){
 
 
 	$('#myCanvas').annotate(options);
-
-
 
 	$(".push-new-image").click(function(event) {
 		if (counter < allimg.length - 1) {

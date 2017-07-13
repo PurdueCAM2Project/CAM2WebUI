@@ -10,8 +10,8 @@ def index(request):
 
 
 def getimg(request):
-	fd = int(request.GET.get('dir'));
-	sd = int(request.GET.get('subdir'));
+	fd = int(request.GET.get('dir'))
+	sd = int(request.GET.get('subdir'))
 	ftp = FTP('128.46.75.58')     # connect to host, default port
 	ftp.login()
 	print('success')
@@ -19,10 +19,16 @@ def getimg(request):
 	#ftp.retrlines('LIST')
 	ftplist = ftp.nlst()
 	ftp.cwd(ftplist[fd])
-
 	sub1 = ftp.nlst()
-	ftp.cwd(sub1[sd])
 
+	if (sd == len(sub1)):
+		sd = 0
+		fd = fd + 1
+		ftp.cwd('..')
+		ftp.cwd(ftplist[fd])
+		sub1 = ftp.nlst()
+
+	ftp.cwd(sub1[sd])
 	a = ftp.nlst()
 
 	out = []
