@@ -69,12 +69,12 @@ We also used a [OneToOneField](https://docs.djangoproject.com/en/1.10/ref/models
   
 Now we go back to `app/forms.py` to add our second form.
 ```
-    from .models import RegisterUser
-  
-    class AdditionalForm(forms.ModelForm):
-        class Meta:
-            model = RegisterUser
-            exclude = ('user')
+from .models import RegisterUser
+
+class AdditionalForm(forms.ModelForm):
+    class Meta:
+        model = RegisterUser
+        exclude = ('user')
 ```
 Because we will use exactly the RegisterUser model we just created, so we don't need to define any other fields. However, we do want to exclude the 'user' object that relates the `RegisterUser` model to the user, but we don't want to create a new user object with the same information in the database. Recall that this model is to store optional information, and all the crucial information is in our first form `RegistrationForm`.
 
@@ -82,37 +82,35 @@ Because we will use exactly the RegisterUser model we just created, so we don't 
 ## Writing a register view:
 Now, we are going to create a view for or user registration. Go to `app/views.py` and add the following:
 ```
-    def register(request):
-        if request.method == 'POST':
-            form1 = RegistrationForm(request.POST)
-            form2 = AdditionalForm(request.POST)
-            if form1.is_valid() and form2.is_valid():
-                model1 = form1.save()
-                model2 = form2.save(commit=False)
-                model2.user = model1
-                model2.save()
-                return redirect('index')
-        else:
-            form1 = RegistrationForm()
-            form2 = AdditionalForm()
-        return render(request, 'app/register.html', {'form1': form1, 'form2': form2})
+def register(request):
+    if request.method == 'POST':
+        form1 = RegistrationForm(request.POST)
+        form2 = AdditionalForm(request.POST)
+        if form1.is_valid() and form2.is_valid():
+            model1 = form1.save()
+            model2 = form2.save(commit=False)
+            model2.user = model1
+            model2.save()
+            return redirect('index')
+    else:
+        form1 = RegistrationForm()
+        form2 = AdditionalForm()
+    return render(request, 'app/register.html', {'form1': form1, 'form2': form2})
 ```
 The reason we have `commit=False` in `model2 = form2.save(commit=False)` is that we do not want `form2` to create a new user, so when we create `form2`, it does not sync to the database, it allows us to make changes before we sync them. After we assign the `form1.user` to `form2.user`, we call `model2.save()` and the data of `form1` and `form2` goes under the same user in the database. After registration, we will redirect the user to our home page(`redirect('index')`).
 
 ### Template:
 We just use 2 `{% for %}` loops to display the required information and optional information as 2 columns:
 ```
-    {% for field in form1 %} <!-- or for field in form2 -->
-      <p>
-      {{ field.label_tag }}<br>
-      {{ field }}
-      {% for error in field.errors %}
-        <p style="color: red">{{ error }}</p>
-      {% endfor %}
-      </p>
-    {% endfor %}
+{% for field in form1 %} <!-- or for field in form2 -->
+  <p>
+  {{ field.label_tag }}<br>
+  {{ field }}
+  {% for error in field.errors %}
+    <p style="color: red">{{ error }}</p>
+  {% endfor %}
+  </p>
+{% endfor %}
 ```
-***
-Last Documentation: [User Login and Logout](https://github.com/PurdueCAM2Project/CAM2WebUI/wiki/User-Login-and-Logout)
 ***
 [Useful tutorial from "SIMPLE IS BETTER THAN COMPLEX"](https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html)

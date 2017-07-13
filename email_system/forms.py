@@ -10,9 +10,7 @@ class MultiEmailField(forms.Field):
         value = value.replace(' ', '')
         value = value.replace('None,', '')
         value = value.replace(';', ',')
-        value = value.replace('(', '')
-        value = value.replace(')', '')
-        value = value.replace('\'', '')
+        value = value.replace(',,', ',')
         print(value)
         while value.endswith(',') or value.endswith(';'):
             value = value[:-1] #remove the last ',' or ';'
