@@ -44,7 +44,15 @@ $(document).ready(function(){
 			$('#myCanvas').annotate("push", {id:"unique_identifier", path: path});
 			counter += 1;
 		} else {
-			alert('maximum photo')
+			$.get( "/label/getimg", {dir: fd, subdir: sd + 1}, function( data ) {
+			  	allimg = JSON.parse(data.list)
+			  	fd = JSON.parse(data.fd);
+			  	sd = JSON.parse(data.sd);
+			});
+			counter = -1;
+			var path = allimg[counter + 1]		
+			$('#myCanvas').annotate("push", {id:"unique_identifier", path: path});
+			counter += 1;
 		}
 	});
 
