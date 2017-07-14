@@ -39,6 +39,7 @@ for initial set up of sphinx folders, execute:
 
 this command will guide you initial set up of sphinx document source folder. Most of options can be left default, except a *GithubPage* option should be set to True. After finishing initial setup, open and modify :code:`conf.py`. 
 
+.. _gitignore:
 
 Add build folder to gitignore
 -----------------------------
@@ -214,7 +215,33 @@ Deploy with Travis-CI basically needs 4 steps:
 Locally built and deploy by push
 --------------------------------
 
-To be continued
+Deploy by github push needs 6 steps:
+
+1. create a :code:`source` directory inside docs folder of repo root directory and move everything in sphinx root to new folder
+
+2. allow git to track sphinx temp file by removing these lines shown gitignore_ section
+
+3. Change Sphinx build path to parent directory of sphinx root directory by changing two lines in :code:`Makefile` and :code:`make.bat`:
+
+.. code-block:: bash
+
+    # in Makefile
+    BUILDDIR=_build      ->       BUILDDIR=..
+    # in make.bat
+    set BUILDDIR=_build    ->       set BUILDDIR=..
+
+4. execute following command to move files to docs folder in root docs directory
+
+.. code-block:: bash
+
+    $ mv html/* ./
+
+5. commit every change in docs folder and push it to github
+
+6. (only needs to be done once) change github repo github page settings, make source to be *master branch /docs folder*
+
+
+
 
 .. _`Sphinx Official Website`: http://www.sphinx-doc.org
 .. _`Sphinx rtd github repo`: https://github.com/rtfd/sphinx_rtd_theme
