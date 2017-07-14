@@ -446,3 +446,53 @@ resize: function(event, cmdOption) {
 ```
 
 
+## FTP browser
+
+To get all the images from the ftp server, we need to create a simple ftp client to get the address of all the urls of images.
+
+Here we will use python to create a ftp browser. We will be using the python default library ftplib to browse the ftp server. The full document of ftplib is on [https://docs.python.org/3.6/library/ftplib.html](https://docs.python.org/3.6/library/ftplib.html)
+
+```
+
+ftp = FTP('128.46.75.58')     # connect to host, default port
+ftp.login()
+ftp.cwd('WD1')
+
+```
+
+First we will be connecting the the ftp server and visit the working directory WD1 which is the directory which all of our image files are stored.
+
+Then we will go through the working directory which we need and get all the image files in the folder. ftp.nlist() will return an array of all the files(including directories) in the current working directory. In the example below, we can get all the images in the first directory first subdirectory. Then we will create a list of the full addresses of all the images.
+
+
+```
+
+ftplist = ftp.nlst()
+ftp.cwd(ftplist[0])
+sub1 = ftp.nlst()
+ftp.cwd(sub1[0])
+a = ftp.nlst()
+out = []
+
+for element in a:
+  element = 'ftp://128.46.75.58/WD1/' + ftplist[0] + '/' + sub1[0] + '/' + element
+  out.append(element)
+
+```
+Then close the ftp client and return the whole address in json.
+
+```
+j = json.dumps(out)
+ftp.close()
+return JsonResponse({'list':j})
+
+```
+
+In the javascript file, we can then simply get the full list of the image address using a simple get.
+
+```
+$.get( "/label/getimg", {dir: fd, subdir: sd}, function( data ) {
+      allimg = JSON.parse(data.list)
+  });
+
+```
