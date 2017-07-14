@@ -120,7 +120,7 @@ function updateMap_Country(layer, map) {
         updateLayer(layer, "'Nation' IN " + country);
 
         var countryname = $("#country").select2('data')[0].text;
-        console.log(countryname, countrylist,  countrylist.length);
+
         //if only one country then recenter on it
         if(countrylist.length == 1)
             center_on_place(countryname, map);
@@ -186,6 +186,7 @@ function updateMap_City(layer) {
 
 function set_dropdown_null(dropdown_name){
     $("#" + dropdown_name).select2('val', '[]');
+    document.getElementById(dropdown_name).innerHTML = '[]';
 }
 
 //layer -> fusion tables layer on map to update
@@ -258,6 +259,7 @@ function getStateNames() {
         query.send();
     }
     else {
+        set_dropdown_null("state");
         document.getElementById('state').isDisabled = true;
         getCityNames();
 
@@ -283,8 +285,6 @@ function get_querytext(data){
         FT_Query += " WHERE 'Nation' IN " + country;
 
     FT_Query += " group by '" + data + "'";
-
-    console.log(FT_Query);
 
     return encodeURIComponent(FT_Query);
 }
