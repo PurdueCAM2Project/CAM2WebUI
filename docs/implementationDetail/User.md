@@ -50,6 +50,7 @@ and then add the following in the template:
   {{ field.help_text }}
 {% endif %}
 ```  
+***
 
 Good! We are done with the required field, now we will use a different approach to recording optional information.
 Go to app/models.py and create our own model, `RegisterUser' for optional information:
