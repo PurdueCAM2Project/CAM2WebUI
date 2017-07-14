@@ -431,11 +431,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		state_options = element.find_elements_by_tag_name("option")
 
 		#print(len(state_options))
-		if (len(state_options) == 0):
-			print("Incorrect")
-			assert True
-		else:
-			assert (len(state_options) == 1)
+		assert type(state_options) is list
 
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")

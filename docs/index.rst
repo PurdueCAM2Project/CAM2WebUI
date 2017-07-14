@@ -17,14 +17,14 @@ Welcome to PurdueCAM2Project/CAM2WebUI's documentation!
    :glob:
    :caption: Implementation Details
    
+   implementationDetail/GoogleFusionTable.md
    implementationDetail/AdminEmail.md
    implementationDetail/emailConfirmation.md
    implementationDetail/UserRegistration.md
    implementationDetail/UserLoginandLogout.md
    implementationDetail/oauth.md
-   implementationDetail/drive.md
-   implementationDetail/fusion.md
-
+   implementationDetail/ForgotPassword.md
+   implementationDetail/ContactUs.md
 
 .. toctree::
    :glob:

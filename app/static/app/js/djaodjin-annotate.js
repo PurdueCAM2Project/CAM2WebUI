@@ -4,7 +4,6 @@ Copyright (c) 2015, Djaodjin Inc.
 MIT License
 */
 /* global document jQuery Image window:true*/
-//console.log("hello world");
 (function($) {
   'use strict';
   /**
@@ -274,6 +273,17 @@ MIT License
         id
       ]);
     },
+    removeallImage: function(callback) {
+      var self = this;
+      for (var i = 0; i < self.images.length; i++) {
+        var id = self.images[i].id;
+        //console.log(id);       
+        self.$el.trigger('annotate-image-remove', [
+          id
+        ]);
+      }
+      self.images = [];       
+    },
     initBackgroundImages: function() {
       var self = this;
       $.each(self.options.images, function(index, image) {
@@ -415,13 +425,7 @@ MIT License
           if (!self.tox) {
             self.tox = 100;
           }
-          self.storedElement.push({
-            type: 'text',
-            text: text,
-            fromx: (self.fromxText - offset.left) * self.compensationWidthRate,
-            fromy: (self.fromyText - offset.top) * self.compensationWidthRate,
-            maxwidth: self.tox
-          });
+          
           if (self.storedUndo.length > 0) {
             self.storedUndo = [];
           }
@@ -483,9 +487,81 @@ MIT License
       var self = this;
       return self.selectedImage;
     },
+    getcurrentpath: function(event) {
+      var self = this;
+      return self.img.src;
+    },
     changecolor: function(event, cmdOption) {
       var self = this;
-      this.options.color = cmdOption
+      this.options.color = cmdOption;
+      return cmdOption;
+    },
+    resize: function(event, cmdOption) {
+      var self = this;
+
+      if (cmdOption === '+') {
+        self.options.width = self.options.width * 1.25;
+        self.options.height = self.options.height * 1.25;
+        self.currentWidth = self.currentWidth * 1.25;
+        self.currentHeight = self.currentHeight * 1.25;
+        self.selectImageSize.width = self.selectImageSize.width * 1.25;
+        self.selectImageSize.height = self.selectImageSize.height * 1.25;
+      } else {
+        self.options.width = self.options.width * 0.8;
+        self.options.height = self.options.height * 0.8;
+        self.currentWidth = self.currentWidth * 0.8;
+        self.currentHeight = self.currentHeight * 0.8;
+        self.selectImageSize.width = self.selectImageSize.width * 0.8;
+        self.selectImageSize.height = self.selectImageSize.height * 0.8;
+      }
+      
+      self.baseCanvas.width = self.drawingCanvas.width = self.currentWidth;
+      self.baseCanvas.height = self.drawingCanvas.height = self.currentHeight;
+      self.baseContext.drawImage(self.img, 0, 0, self.currentWidth,
+        self.currentHeight);
+      self.$el.css({
+        height: self.currentHeight,
+        width: self.currentWidth
+      });
+      if (cmdOption === '+') {        
+        
+        for (var i = self.images.length - 1; i >= 0; i--) {
+          for (var j = self.images[i].storedElement.length - 1; j >= 0; j--) {
+            self.images[i].storedElement[j].fromx = self.images[i].storedElement[j].fromx * 1.25;
+            self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 1.25;
+            self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 1.25;
+            self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 1.25;
+          }
+          for (var j = self.images[i].storedUndo.length - 1; j >= 0; j--) {
+            self.images[i].storedUndo[j].fromx = self.images[i].storedUndo[j].fromx * 1.25;
+            self.images[i].storedUndo[j].fromy = self.images[i].storedUndo[j].fromy * 1.25;
+            self.images[i].storedUndo[j].tox = self.images[i].storedUndo[j].tox * 1.25;
+            self.images[i].storedUndo[j].toy = self.images[i].storedUndo[j].toy * 1.25;
+          }     
+        }
+
+      } else {
+        
+        for (var i = self.images.length - 1; i >= 0; i--) {
+          for (var j = self.images[i].storedElement.length - 1; j >= 0; j--) {
+            self.images[i].storedElement[j].fromx = self.images[i].storedElement[j].fromx * 0.8;
+            self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 0.8;
+            self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 0.8;
+            self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 0.8;
+          }
+          for (var j = self.images[i].storedUndo.length - 1; j >= 0; j--) {
+            self.images[i].storedUndo[j].fromx = self.images[i].storedUndo[j].fromx * 0.8;
+            self.images[i].storedUndo[j].fromy = self.images[i].storedUndo[j].fromy * 0.8;
+            self.images[i].storedUndo[j].tox = self.images[i].storedUndo[j].tox * 0.8;
+            self.images[i].storedUndot[j].toy = self.images[i].storedUndo[j].toy * 0.8;
+          }        
+        }
+      }
+      
+      self.checkUndoRedo();
+      self.clear();
+      self.redraw();
+      self.annotateresize();
       return cmdOption;
     },
     annotateleave: function(event) {
@@ -587,6 +663,15 @@ MIT License
           'id'));
       }
     
+    } else if (options === 'removeall') {
+      if ($annotate) {
+        $annotate.removeallImage();
+        callback();
+      } else {
+        throw new Error('No annotate initialized for: #' + $(this).attr(
+          'id'));
+      }
+    
     } else if (options === 'fill') {
       if ($annotate) {
         $annotate.addElements(cmdOption, true, callback);
@@ -615,9 +700,10 @@ MIT License
       if ($annotate) {
         //$annotate.exportImage(cmdOption, callback);
         var s = $annotate.getbox(this);
-        var id = $annotate.getcurrentid(this);
+        //var id = $annotate.getcurrentid(this);
+        var path = $annotate.getcurrentpath(this);
         var origin = $annotate.getoriginal(this);
-        callback(s, id, origin.height, origin.width);
+        callback(s, path, origin.height, origin.width);
       } else {
         throw new Error('No annotate initialized for: #' + $(this).attr(
           'id'));
@@ -626,6 +712,15 @@ MIT License
       if ($annotate) {
         //$annotate.exportImage(cmdOption, callback);
         var s = $annotate.changecolor(this, cmdOption);
+        callback(s);
+      } else {
+        throw new Error('No annotate initialized for: #' + $(this).attr(
+          'id'));
+      }
+    } else if (options === 'resize') {
+      if ($annotate) {
+        //$annotate.exportImage(cmdOption, callback);
+        var s = $annotate.resize(this, cmdOption);
         callback(s);
       } else {
         throw new Error('No annotate initialized for: #' + $(this).attr(
