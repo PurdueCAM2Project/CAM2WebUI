@@ -26,18 +26,18 @@ Since we want to automatically put the email of selected users to the input of a
 Therefore we get the email and append them into a list, make it a string and remove the redundant brackets and empty value. 
 
 ```
-    email_selected = str(email_selected)
-    # remove empty email
-    email_selected = email_selected.replace('(\'\',),', '')
-    # remove redundant char
-    email_selected = email_selected.replace('[', '').replace(']', '').replace('(\'', '').replace('\',)', '')
+email_selected = str(email_selected)
+# remove empty email
+email_selected = email_selected.replace('(\'\',),', '')
+# remove redundant char
+email_selected = email_selected.replace('[', '').replace(']', '').replace('(\'', '').replace('\',)', '')
 
 ```
 At last we will use a `session` to pass the `email_selected`. And then, redirect admin to admin_send_email page
 ```
-    #open a session and render the email_selected to admin_send_email view
-    request.session['email_selected'] = email_selected
-    return redirect('admin_send_email')
+#open a session and render the email_selected to admin_send_email view
+request.session['email_selected'] = email_selected
+return redirect('admin_send_email')
 ```
 
 After completing the action, We need to redefine a `UserAdmin` to add the action. In list_display, we choose the field we want to see in admin page.
