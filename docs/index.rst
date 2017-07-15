@@ -17,7 +17,7 @@ Welcome to PurdueCAM2Project/CAM2WebUI's documentation!
    :glob:
    :caption: Implementation Details
    
-   implementationDetail/User
+   implementationDetail/User.md
    implementationDetail/oauth.md
    implementationDetail/GoogleFusionTable.md
    implementationDetail/AdminEmail.md
