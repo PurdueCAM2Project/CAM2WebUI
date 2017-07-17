@@ -150,8 +150,6 @@ $(document).ready(function(){
 				}
 				zip.file(d[i].id + ".xml", x2js.json2xml_str(o));
 				//all.push(o);
-
-
 			}
 
 			
