@@ -5,6 +5,7 @@
 //functions named get* are used to query data from fusion tables
 //function populate_dropdown is used to parse data from JSON object obtained by queries sent from get* functions
 //--------------------------------------------------------------------------------------------------------------
+(function () {
 
 //tableId - unique id of database fusions table
 //col1 - column containing latitude information for camera
@@ -29,6 +30,42 @@ var queryUrlTail = '&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=';
 
 //a global variable to track whether state or city data is to be queried from database fusiontable
 var region = '';
+
+
+
+
+
+
+//function to populate dropdown menus
+    function populate_dropdown(response) {
+        //if the returned JSON object doesn't have a rows keys then it means that an error has occurred
+        if (!response.rows) {
+            return;
+        }
+
+        //number of data items to populate
+        numRows = response.rows.length;
+
+        var Names = {};
+        for (var i = 0; i < numRows; i++) {
+            var name = response.rows[i][0];
+            Names[name] = name;
+        }
+
+        var dropdown_list = "<select name='data_select' onchange='handleSelected(this)'>"
+        for (name in Names) {
+            dropdown_list += "<option value='"+name+"'>"+name+"</option>"
+        }
+        dropdown_list += "</select>"
+        document.getElementById(region).innerHTML = dropdown_list;
+    }
+
+
+
+
+
+
+
 
 //This function is called every time the cameras webpage is loaded
 //It initializes a map, overlays a "layer" of data from fusiontables (camera markers) on the map
@@ -289,26 +326,4 @@ function get_querytext(data){
     return encodeURIComponent(FT_Query);
 }
 
-//function to populate dropdown menus
-function populate_dropdown(response) {
-    //if the returned JSON object doesn't have a rows keys then it means that an error has occurred
-    if (!response.rows) {
-        return;
-    }
-
-    //number of data items to populate
-    numRows = response.rows.length;
-
-    var Names = {};
-    for (var i = 0; i < numRows; i++) {
-        var name = response.rows[i][0];
-        Names[name] = name;
-    }
-
-    var dropdown_list = "<select name='data_select' onchange='handleSelected(this)'>"
-    for (name in Names) {
-        dropdown_list += "<option value='"+name+"'>"+name+"</option>"
-    }
-    dropdown_list += "</select>"
-    document.getElementById(region).innerHTML = dropdown_list;
-}
+})();
