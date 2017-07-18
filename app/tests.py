@@ -517,6 +517,6 @@ class AddTestCase(StaticLiveServerTestCase):
 		WebDriverWait(browser, 10).until(
 			EC.text_to_be_present_in_element(
 				(By.ID, 'EmailSent'),
-				'Email confirmation sent'
+				'Password reset email sent'
 			)
 		)
