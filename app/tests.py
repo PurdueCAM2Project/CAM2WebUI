@@ -110,7 +110,18 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser.get(url)
 		assert 'Publications' in browser.title
 
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset'
+		browser.get(url)
+		print(self.username, self.password)
+		assert 'Forgot Password?' in browser.title
 
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset/complete'
+		browser.get(url)
+		assert 'Password Reset Completed' in browser.title
+
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset_email_sent'
+		browser.get(url)
+		assert 'Password Reset Email Sent' in browser.title
 
 
 	def test_db_conneciton(self):
@@ -494,3 +505,18 @@ class AddTestCase(StaticLiveServerTestCase):
 		error5 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[4]/ul/li")
 		assert error3.get_attribute("innerHTML") == 'Invalid URL for this field'
 
+	def test_forgot_password(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset'
+		browser.get(url)
+
+		email = browser.find_element_by_name('email')
+		email.send_keys('test@case.net')  # input email
+		browser.find_element_by_name('submitEmail').click()
+
+		WebDriverWait(browser, 10).until(
+			EC.text_to_be_present_in_element(
+				(By.ID, 'EmailSent'),
+				'Email confirmation sent'
+			)
+		)
