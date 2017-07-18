@@ -11,12 +11,38 @@
   <h2 class="sub-header">User Information</h2>
   <div class="container">
     {% if not github_login %}
+    {% if user.is_superuser %}
+      <a href="/admin/" ID="Admin">Admin Page</a>
+    {% endif %}
     {% if user.email %}
       <h3 class="sub-header">Email</h3>
       <div class="panel-body">
         <p>Current email: <strong>{{ user.email }}</strong></p>
       </div>
     {% endif %}
+
+
+    <h3 class="sub-header">App Lists</h3>
+
+      {% if apps %}
+      <ul class="apps">
+          {% for app in apps %}
+          <li ID="new_app">{{ app.applist }}</li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+        {% for field in app_form %}
+           <p>
+             {{ field.label_tag }}<br>
+             {{ field }}
+           </p>
+        {% endfor %}
+        <button class="btn" type="submit" name="add">Add</button>
+      </form>
+
     <h3 class="sub-header">Change Password</h3>
       {% if messages %}
       <ul class="messages">

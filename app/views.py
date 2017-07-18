@@ -16,10 +16,10 @@ from social_django.models import UserSocialAuth
 from django.utils.encoding import force_text, force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .tokens import account_activation_token
-from .forms import RegistrationForm, AdditionalForm
+from .forms import RegistrationForm, AdditionalForm, AppForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
-from .models import FAQ, History, Publication, Team, Leader, Member
+from .models import FAQ, History, Publication, Team, Leader, Member, AppList, RegisterUser
 
 def index(request):
     return render(request, 'app/index.html')
@@ -176,18 +176,36 @@ def profile(request):
     else:
         PasswordForm = AdminPasswordChangeForm
     """
+
     form = PasswordChangeForm(request.user)
-    if request.method == 'POST':
+    if request.method == 'POST' and 'save_changes' in request.POST:
         form = PasswordChangeForm(user, request.POST)
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
             messages.success(request, 'Your password was successfully updated!')
             return redirect('profile')
+
+   
+    app_form = AppForm()
+
+    apps = AppList.objects.filter(user=request.user).values()
+
+    if request.method == 'POST' and 'add' in request.POST:
+        app_form = AppForm(request.POST)
+        if app_form.is_valid():
+            applist = app_form.save(commit=False);
+            applist.user = request.user
+            applist.save()
+        return redirect('profile')
+
+
     return render(request, 'app/profile.html', {
         'github_login': github_login,
-        'form':form
-    })
+        'form':form,
+        'app_form':app_form,
+        'apps':apps
+     })
     #else:
         #return redirect('index')
 
