@@ -229,6 +229,7 @@ Allow admin to send email to specific users.
 procedure:
 Log in as admin, and in the main page, go to `Users`， click the checkbox to choose recipient and select `Email Users`, then click `Go` to go to a web page that admin can type in subject and message.
 
+### Approach
 ### decorator
 To make sure only admin can use this view, we need to add a django decorator `@staff_member_required` before our function.
 
