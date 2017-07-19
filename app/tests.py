@@ -111,6 +111,8 @@ class AddTestCase(StaticLiveServerTestCase):
 		assert 'Publications' in browser.title
 
 
+
+
 	def test_db_conneciton(self):
 		db_conn = connections['default']
 		try:
