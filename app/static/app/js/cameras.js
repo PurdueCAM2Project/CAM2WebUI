@@ -27,36 +27,10 @@
 //The callback function will be a method to parse the returned JSON object
 
     var queryUrlHead = 'https://www.googleapis.com/fusiontables/v2/query?sql=';
-    var queryUrlTail = '&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=';
+    var queryUrlTail = '&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=?';
 
-//a global variable to track whether state or city data is to be queried from database fusiontable
+//a variable to track whether state or city data is to be queried from database fusiontable
     var region = '';
-
-
-//function to populate dropdown menus based on JSON returned by sql like query to fusion table
-    function populate_dropdown(response) {
-        //if the returned JSON object doesn't have a rows keys then it means that an error has occurred
-        if (!response.rows) {
-            return;
-        }
-
-        //number of data items to populate
-        var numRows = response.rows.length;
-
-        var Names = {};
-        for (var i = 0; i < numRows; i++) {
-            var name = response.rows[i][0];
-            Names[name] = name;
-        }
-
-        var dropdown_list = "<select name='data_select' onchange='handleSelected(this)'>"
-        for (name in Names) {
-            dropdown_list += "<option value='" + name + "'>" + name + "</option>"
-        }
-        dropdown_list += "</select>"
-        document.getElementById(region).innerHTML = dropdown_list;
-    }
-
 
 //This function is called every time the cameras webpage is loaded
 //It initializes a map, overlays a "layer" of data from fusiontables (camera markers) on the map
@@ -260,48 +234,45 @@
         return data;
     }
 
-//This function 1) updates region and 2) queries fusion tables
-function getCityNames() {
-    document.getElementById('city').isDisabled = false;
-    region = 'city';
-    var query = new google.visualization.Query(queryUrlHead + get_querytext('City') + queryUrlTail + populate_dropdown);
-    query.send();
-}
-
 //This function
 // if USA is the selected country
 // 1) updates region and 2)queries fusion tables
 // else it calls the getCityNames functions
-function getStateNames() {
-    // set the query using the parameters
+    function getStateNames() {
+        // set the query using the parameters
 
-    var country = getdata_dropdown("#country");
-    var countrylist = $("#country").select2('val');
-    if ($.inArray( "USA", countrylist ) != -1){
+        var country = getdata_dropdown("#country");
+        var countrylist = $("#country").select2('val');
+        if ($.inArray( "USA", countrylist ) != -1){
 
-        document.getElementById('state').isDisabled = false;
-        document.getElementById('city').isDisabled = true;
-        region = 'state';
-        var queryText = get_querytext('State');
-        var query = new google.visualization.Query(queryUrlHead + queryText + queryUrlTail + "populate_dropdown");
+            document.getElementById('state').isDisabled = false;
+            document.getElementById('city').isDisabled = true;
+            region = 'state';
+            var encodedQuery = get_encodedQuery('State');
+            sendRequest(encodedQuery);
+        }
+        else {
+            set_dropdown_null("state");
+            document.getElementById('state').isDisabled = true;
+            getCityNames();
 
-        //set the callback function
-        query.send();
+        }
     }
-    else {
-        set_dropdown_null("state");
-        document.getElementById('state').isDisabled = true;
-        getCityNames();
 
+//This function 1) updates region and 2) queries fusion tables
+    function getCityNames() {
+        document.getElementById('city').isDisabled = false;
+        region = 'city';
+        var encodedQuery = get_encodedQuery('City');
+        sendRequest(encodedQuery);
     }
-}
 
 //query fusiontables database using SQL
 //set the query from html form as explained here:
 //https://developers.google.com/fusiontables/docs/v2/using#queryData
 //Tip: use fusiontables website and set filter conitions on data using its user friendly interface
 //then use 'publish' tool to see the correct query and thus, understand how to code it
-    function get_querytext(data) {
+    function get_encodedQuery(data) {
         //var country = document.getElementById('country').value;
         var state = getdata_dropdown("#state");
         var country = getdata_dropdown("#country");
@@ -317,6 +288,41 @@ function getStateNames() {
         FT_Query += " group by '" + data + "'";
 
         return encodeURIComponent(FT_Query);
+    }
+
+    // Send the JSONP request using jQuery
+    function sendRequest(encodedQuery){
+        $.ajax({
+            url: queryUrlHead + encodedQuery + queryUrlTail,
+            dataType: 'jsonp',
+            success: function (response) {
+                populate_dropdown(response);
+            }
+        });
+    }
+
+    //function to populate dropdown menus based on JSON returned by sql like query to fusion table
+    function populate_dropdown(response) {
+        //if the returned JSON object doesn't have a rows keys then it means that an error has occurred
+        if (!response.rows) {
+            return;
+        }
+
+        //number of data items to populate
+        var numRows = response.rows.length;
+
+        var Names = {};
+        for (var i = 0; i < numRows; i++) {
+            var name = response.rows[i][0];
+            Names[name] = name;
+        }
+
+        var dropdown_list = "<select name='data_select' onchange='handleSelected(this)'>"
+        for (name in Names) {
+            dropdown_list += "<option value='" + name + "'>" + name + "</option>"
+        }
+        dropdown_list += "</select>"
+        document.getElementById(region).innerHTML = dropdown_list;
     }
 
 })();
