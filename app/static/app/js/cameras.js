@@ -21,6 +21,7 @@
     //a variable to track whether state or city data has been queried from fusiontable
     var region = '';
 
+    var minZoom = 2;
     //Initialize a layer on map with markers for all cameras in database
     //Add DOM listeners for inputs on cameras html page
     //
@@ -41,9 +42,11 @@
 
         var map = new google.maps.Map(mapDiv, {
             center: new google.maps.LatLng(40.363489, -98.832955),
-            zoom: 4,
+            zoom: minZoom,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
+
+        map.setOptions({ minZoom: minZoom});
 
         var layer = new google.maps.FusionTablesLayer({
             map: map,
@@ -186,9 +189,8 @@
 
     function center_on_world(map) {
         var center_of_world = new google.maps.LatLng(0, 0);
-        var maxZoom = 2;
         map.setCenter(center_of_world);
-        map.setZoom(maxZoom);
+        map.setZoom(minZoom);
     }
 
     function set_dropdown_null(dropdown_name) {
