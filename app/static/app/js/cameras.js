@@ -22,6 +22,7 @@
     var region = '';
 
     var minZoom = 2;
+    var center_of_world;
     //Initialize a layer on map with markers for all cameras in database
     //Add DOM listeners for inputs on cameras html page
     //
@@ -30,6 +31,7 @@
     window.initialize = function () {
 
         google.maps.visualRefresh = true;
+        center_of_world = new google.maps.LatLng(0, 0);
 
         var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
             (navigator.userAgent.match(/(iPod|iPhone|iPad|BlackBerry|Windows Phone|iemobile)/));
@@ -41,10 +43,10 @@
         var mapDiv = document.getElementById('mapCanvas');
 
         var map = new google.maps.Map(mapDiv, {
-            center: new google.maps.LatLng(40.363489, -98.832955),
-            zoom: minZoom,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
+
+        center_on_world(map);
 
         map.setOptions({ minZoom: minZoom});
 
@@ -182,13 +184,13 @@
             while (status != google.maps.GeocoderStatus.OK) {
             }
             map.setCenter(results[0].geometry.location);
+            console.log(results[0].geometry);
             map.fitBounds(results[0].geometry.viewport);
         });
     }
 
 
     function center_on_world(map) {
-        var center_of_world = new google.maps.LatLng(0, 0);
         map.setCenter(center_of_world);
         map.setZoom(minZoom);
     }
