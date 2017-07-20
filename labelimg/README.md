@@ -359,3 +359,140 @@ $('#myCanvas').on("annotate-image-remove", function(event, id){
 
 ```
 
+## Zoom in and out
+
+Sometimes, it is not easy to annotate the image if the object in the image is too small or too large. So I created zoom in and zoom out function to solve with that problem.
+
+We need to notice that everytime we zoom the image, we need to also zoom the stored annotation boxes and change the canvas width. So we can get the correct size for the annotation boxes in the xml files.
+
+```
+
+$(".zoom-in").click(function(event) {
+    curr_width = curr_width * 1.25;
+    curr_height = curr_height * 1.25;
+    $('#myCanvas').annotate("resize", '+', function(){
+
+    });
+  });
+
+```
+
+After we change the canvas size, we need to change the annoation box size for every image. We also need to change the undo element size so that undo is also in the correct size. Then we can clear the original image and redraw the image to make the whole image look properly.
+
+```
+
+resize: function(event, cmdOption) {
+  var self = this;
+
+  if (cmdOption === '+') {
+    self.options.width = self.options.width * 1.25;
+    self.options.height = self.options.height * 1.25;
+    self.currentWidth = self.currentWidth * 1.25;
+    self.currentHeight = self.currentHeight * 1.25;
+    self.selectImageSize.width = self.selectImageSize.width * 1.25;
+    self.selectImageSize.height = self.selectImageSize.height * 1.25;
+  } else {
+    self.options.width = self.options.width * 0.8;
+    self.options.height = self.options.height * 0.8;
+    self.currentWidth = self.currentWidth * 0.8;
+    self.currentHeight = self.currentHeight * 0.8;
+    self.selectImageSize.width = self.selectImageSize.width * 0.8;
+    self.selectImageSize.height = self.selectImageSize.height * 0.8;
+  }
+
+  self.baseCanvas.width = self.drawingCanvas.width = self.currentWidth;
+  self.baseCanvas.height = self.drawingCanvas.height = self.currentHeight;
+  self.baseContext.drawImage(self.img, 0, 0, self.currentWidth,
+    self.currentHeight);
+  self.$el.css({
+    height: self.currentHeight,
+    width: self.currentWidth
+  });
+  if (cmdOption === '+') {        
+    
+    for (var i = self.images.length - 1; i >= 0; i--) {
+      for (var j = self.images[i].storedElement.length - 1; j >= 0; j--) {
+        self.images[i].storedElement[j].fromx = self.images[i].storedElement[j].fromx * 1.25;
+        self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 1.25;
+        self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 1.25;
+        self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 1.25;
+      }
+      for (var j = self.images[i].storedUndo.length - 1; j >= 0; j--) {
+        self.images[i].storedUndo[j].fromx = self.images[i].storedUndo[j].fromx * 1.25;
+        self.images[i].storedUndo[j].fromy = self.images[i].storedUndo[j].fromy * 1.25;
+        self.images[i].storedUndo[j].tox = self.images[i].storedUndo[j].tox * 1.25;
+        self.images[i].storedUndo[j].toy = self.images[i].storedUndo[j].toy * 1.25;
+      }     
+    }
+
+  } else {
+    
+    for (var i = self.images.length - 1; i >= 0; i--) {
+      for (var j = self.images[i].storedElement.length - 1; j >= 0; j--) {
+        self.images[i].storedElement[j].fromx = self.images[i].storedElement[j].fromx * 0.8;
+        self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 0.8;
+        self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 0.8;
+        self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 0.8;
+      }
+      for (var j = self.images[i].storedUndo.length - 1; j >= 0; j--) {
+        self.images[i].storedUndo[j].fromx = self.images[i].storedUndo[j].fromx * 0.8;
+        self.images[i].storedUndo[j].fromy = self.images[i].storedUndo[j].fromy * 0.8;
+        self.images[i].storedUndo[j].tox = self.images[i].storedUndo[j].tox * 0.8;
+        self.images[i].storedUndot[j].toy = self.images[i].storedUndo[j].toy * 0.8;
+      }        
+    }
+  }
+
+```
+
+
+## FTP browser
+
+To get all the images from the ftp server, we need to create a simple ftp client to get the address of all the urls of images.
+
+Here we will use python to create a ftp browser. We will be using the python default library ftplib to browse the ftp server. The full document of ftplib is on [https://docs.python.org/3.6/library/ftplib.html](https://docs.python.org/3.6/library/ftplib.html)
+
+```
+
+ftp = FTP('128.46.75.58')     # connect to host, default port
+ftp.login()
+ftp.cwd('WD1')
+
+```
+
+First we will be connecting the the ftp server and visit the working directory WD1 which is the directory which all of our image files are stored.
+
+Then we will go through the working directory which we need and get all the image files in the folder. ftp.nlist() will return an array of all the files(including directories) in the current working directory. In the example below, we can get all the images in the first directory first subdirectory. Then we will create a list of the full addresses of all the images.
+
+
+```
+
+ftplist = ftp.nlst()
+ftp.cwd(ftplist[0])
+sub1 = ftp.nlst()
+ftp.cwd(sub1[0])
+a = ftp.nlst()
+out = []
+
+for element in a:
+  element = 'ftp://128.46.75.58/WD1/' + ftplist[0] + '/' + sub1[0] + '/' + element
+  out.append(element)
+
+```
+Then close the ftp client and return the whole address in json.
+
+```
+j = json.dumps(out)
+ftp.close()
+return JsonResponse({'list':j})
+
+```
+
+In the javascript file, we can then simply get the full list of the image address using a simple get.
+
+```
+$.get( "/label/getimg", {dir: fd, subdir: sd}, function( data ) {
+      allimg = JSON.parse(data.list)
+  });
+
+```
