@@ -1,7 +1,7 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% load widget_tweaks %}
-{% block title %}Email sent{% endblock %}
+{% block title %}System Error{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{% static "app/css/login.css " %}">
 {% endblock %}
@@ -14,13 +14,13 @@
           <div class="form-box">
             <div class="form-top">
               <div class="form-top-left">
-                <h4 id="emailconfirm">Email Successfully sent</h4>
+                <h4 id="SystemError">System Error</h4>
               </div>
               <div class="form-top-right"> <i class="fa fa-key"></i> </div>
             </div>
             <div class="form-bottom">
-                <p>Thank you for your message. <br>
-                We will read it as soon as possible!</p>
+                <p>Encountering a system error, we have notified site administrator, please try again later<br>
+
                 <p><a style="color: deepskyblue" href="/">Go back to home page</a></p>
             </div>
           </div>

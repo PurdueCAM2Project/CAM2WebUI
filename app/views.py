@@ -219,3 +219,6 @@ def oauthinfo(request):
 
             return render(request, 'app/oauthinfo.html', {'form2': form2})
 
+
+def system_error(request):
+    return render(request, 'app/system_error.html')

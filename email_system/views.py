@@ -3,7 +3,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
-from cam2webui.settings import EMAIL_HOST_USER
+from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 from email_system.forms import MailForm, ContactForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.mail import send_mass_mail, send_mail
@@ -79,7 +79,7 @@ def contact(request):
             #get info from form
             name = form.cleaned_data['name']
             from_email = form.cleaned_data['from_email']
-            subject = form.cleaned_data['subject']
+            subject = '[CAM2 WebUI User Feedback] ' + form.cleaned_data['subject']
             message = form.cleaned_data['message']
             #add info to email template
             content = render_to_string('email_system/contact_email_template.html', {
@@ -88,9 +88,9 @@ def contact(request):
                 'message': message,
             })
             try:
-                send_mail(subject, content, from_email, [EMAIL_HOST_USER])#email admin
+                send_mail(subject, content, EMAIL_HOST_USER, MANAGER_EMAIL)#email admin
             except:
-                messages.error(request, 'Email sent failed.')  # error message
+                return redirect('system_error')
 
             return redirect('email_sent')
     else:

@@ -31,7 +31,12 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+# Receive error log
 ADMINS = [('Yutong', 'huang_yutong@outlook.com')]
+
+# Receive user feedback
+MANAGER_EMAIL = ['duan37@purdue.edu']
 
 # Application definition
 
