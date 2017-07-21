@@ -22,7 +22,7 @@
     var region = '';
 
     var minZoom = 2;
-    var center_of_world;
+    var center_of_world, maxNorthEastLat, maxNorthEastLng, maxSouthWestLat, maxSouthWestLng;
     //Initialize a layer on map with markers for all cameras in database
     //Add DOM listeners for inputs on cameras html page
     //
@@ -97,19 +97,10 @@
 
     function updateMap_Country(layer, map) {
         var country = getdata_dropdown("#country");
-        var countrylist = $("#country").select2('val');
 
         if (country != "('undefined')") {
             updateLayer(layer, "'Nation' IN " + country);
-
-            var countryname = $("#country").select2('data')[0].text;
-
-            //if only one country then recenter on it
-            if (countrylist.length == 1)
-                center_on_place(countryname, map);
-            else
-                center_on_world(map);
-
+            center_on_selected_countries(map);
             getStateNames();
         }
         else {
@@ -178,21 +169,45 @@
 
     //using geocoder to center map on country selected - see link below to for documentation and example
     //https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?csw=1
-    function center_on_place(place_name, map) {
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({'address': place_name}, function (results, status) {
-            while (status != google.maps.GeocoderStatus.OK) {
-            }
-            map.setCenter(results[0].geometry.location);
-            console.log(results[0].geometry);
-            map.fitBounds(results[0].geometry.viewport);
-        });
+    function center_on_selected_countries(map) {
+        
+        // var geocoder = new google.maps.Geocoder();
+        // geocoder.geocode({'address': place_name}, function (results, status) {
+        //     while (status != google.maps.GeocoderStatus.OK) {
+        //     }
+        //     map.setCenter(results[0].geometry.location);
+        //     map.fitBounds(results[0].geometry.viewport);
+        //
+        //     if (maxNorthEastLat < results[0].geometry.viewport.getNorthEast().lat())
+        //         maxNorthEastLat = results[0].geometry.viewport.getNorthEast().lat();
+        //
+        //     if (maxNorthEastLng < results[0].geometry.viewport.getNorthEast().lng())
+        //         maxNorthEastLng = results[0].geometry.viewport.getNorthEast().lng();
+        //
+        //     if (maxSouthWestLat < results[0].geometry.viewport.getSouthWest().lat())
+        //         maxSouthWestLat = results[0].geometry.viewport.getSouthWest().lat();
+        //
+        //     if (Math.abs(maxSouthWestLng) < Math.abs(results[0].geometry.viewport.getSouthWest().lng()))
+        //         maxSouthWestLng = results[0].geometry.viewport.getSouthWest().lng();
+        //
+        //     var bounds = new google.maps.LatLngBounds();
+        //
+        //     bounds.extend(new google.maps.LatLng(maxNorthEastLat, maxNorthEastLng));
+        //     bounds.extend(new google.maps.LatLng(maxSouthWestLat, maxSouthWestLng));
+        //     console.log(bounds);
+        //     map.fitBounds(bounds);
+        // });
     }
 
 
     function center_on_world(map) {
         map.setCenter(center_of_world);
         map.setZoom(minZoom);
+
+        maxNorthEastLat = 0;
+        maxNorthEastLng = 0;
+        maxSouthWestLat = 0;
+        maxSouthWestLng = 0;
     }
 
     function set_dropdown_null(dropdown_name) {
