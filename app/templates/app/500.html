@@ -1,11 +1,10 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% load widget_tweaks %}
-{% block title %}Forgot Password?{% endblock %}
+{% block title %}System Error{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{% static "app/css/login.css " %}">
 {% endblock %}
-
 {% block content %}
 <div class="top-content">
   <div class="inner-bg">
@@ -15,18 +14,13 @@
           <div class="form-box">
             <div class="form-top">
               <div class="form-top-left">
-                <h4 id="ForgotPassword">Forgot password?</h4>
+                <h4 id="SystemError">System Error</h4>
               </div>
-              <div class="form-top-right"> </div>
             </div>
             <div class="form-bottom">
-              <p>Please enter the email you registered with:</p>
-              <form method="post">
-                {% csrf_token %}
-                <input type="email" name="email" id="email" required="required" class="form" placeholder="Your Email" />
-                <br>
-                <button name="submitEmail" type="submit">Submit</button>
-              </form>
+                <p>Encountering a system error, we have notified site administrator, please try again later.<br>
+
+                <p><a style="color: deepskyblue" href="/">Go back to home page</a></p>
             </div>
           </div>
           </div>

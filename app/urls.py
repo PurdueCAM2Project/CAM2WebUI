@@ -10,7 +10,6 @@ urlpatterns = [
     url(r'^publications/$', app_views.publications, name='publications'),
     url(r'^privacy/$', app_views.privacy, name='privacy'),
     url(r'^ack/$', app_views.acknowledgement, name='acknowledgement'),
-    #url(r'^contact/$', app_views.contact, name='contact'),
     url(r'^faqs/$', app_views.faqs, name='faqs'),
     url(r'^terms/$', app_views.terms, name='terms'),
     url(r'^profile/$', app_views.profile, name='profile'),
@@ -30,5 +29,5 @@ urlpatterns = [
     url(r'^password_reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^password_reset/complete/$', auth_views.password_reset_complete, name='password_reset_complete'),
-
+    #url(r'^system_error/$', app_views.system_error, name = 'system_error'),
 ]

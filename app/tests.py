@@ -59,7 +59,7 @@ class AddTestCase(StaticLiveServerTestCase):
 	def tearDown(self):
 		self.selenium.quit()
 		super(AddTestCase, self).tearDown()
-		# self.display.stop()
+		#self.display.stop()
 		return
 
 
@@ -70,7 +70,6 @@ class AddTestCase(StaticLiveServerTestCase):
 
 	
 	# Test if page title is Cam2
-
 	def test_connection(self):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/'
@@ -110,7 +109,18 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser.get(url)
 		assert 'Publications' in browser.title
 
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset'
+		browser.get(url)
+		print(self.username, self.password)
+		assert 'Forgot Password?' in browser.title
 
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset/complete'
+		browser.get(url)
+		assert 'Password Reset Completed' in browser.title
+
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset_email_sent'
+		browser.get(url)
+		assert 'Password Reset Email Sent' in browser.title
 
 
 	def test_db_conneciton(self):
@@ -494,3 +504,36 @@ class AddTestCase(StaticLiveServerTestCase):
 		error5 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[4]/ul/li")
 		assert error3.get_attribute("innerHTML") == 'Invalid URL for this field'
 
+	def test_forgot_password(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset'
+		browser.get(url)
+
+		email = browser.find_element_by_name('email')
+		email.send_keys('test@case.net')  # input email
+		browser.find_element_by_name('submitEmail').click()
+
+		WebDriverWait(browser, 10).until(
+			EC.text_to_be_present_in_element(
+				(By.ID, 'EmailSent'),
+				'Password reset email sent'
+			)
+		)
+	'''
+	def test_admin_emailing(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/admin/'
+		browser.get(url)
+		un = browser.find_element_by_name('username')
+		un.send_keys("admin")
+		pw = browser.find_element_by_name('password')
+		pw.send_keys("admin")
+		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/form[@id='login-form']/div[@class='submit-row']/input[@value='Log in']").click()
+		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/div[@class='app-auth module']/tbody/tr[@class='model-user']/th").click()
+		#select users
+		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/div[@id='changelist']/form[@id='changelist-form']/div[@class='results']/tbody/tr[@class='row1']/td/input[@class='action-select']").click()
+		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/div[@id='changelist']/form[@id='changelist-form']/div[@class='actions']/select/option[@value='email_users']").click()
+		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/div[@id='changelist']/form[@id='changelist-form']/div[@class='actions']/button").click()
+		
+		
+	'''

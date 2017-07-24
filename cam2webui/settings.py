@@ -29,9 +29,15 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+
+# Receive error log
 ADMINS = [('Yutong', 'huang_yutong@outlook.com')]
+
+# Receive user feedback
+MANAGER_EMAIL = ['duan37@purdue.edu']
 
 # Application definition
 
