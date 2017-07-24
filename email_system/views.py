@@ -13,6 +13,9 @@ def admin_send_email(request):
     email_table = (User.objects.values('email').order_by('date_joined')) #Obtaining a list of users' emails outside users info table for easy copying and pasting.
     users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined').order_by('date_joined') #Obtaining a list of info required from user
     email_selected = request.session.get('email_selected', None)
+    if email_selected == None:
+        email_selected = ''
+    #email_selected = request.session['email_selected']
     if request.method == 'POST':
         form = MailForm(request.POST)
         if form.is_valid():
@@ -87,10 +90,7 @@ def contact(request):
                 'from_email': from_email,
                 'message': message,
             })
-            try:
-                send_mail(subject, content, EMAIL_HOST_USER, MANAGER_EMAIL)#email admin
-            except:
-                return redirect('system_error')
+            send_mail(subject, content, EMAIL_HOST_USER, MANAGER_EMAIL)#email admin
 
             return redirect('email_sent')
     else:
