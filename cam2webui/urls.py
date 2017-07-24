@@ -24,3 +24,5 @@ urlpatterns = [
 	url(r'^label/', include('labelimg.urls')),
 
 ]
+handler500 = 'app.views.error500'
+handler404 = 'app.views.error404'
