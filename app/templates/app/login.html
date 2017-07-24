@@ -30,7 +30,8 @@
                   </p>
                 {% endfor %}
                 <a href="/password_reset/">Forgot password?</a>
-                <button type="submit" name="submitbutton" class="btn">Sign in</button>
+                <div class="clearfix"></div>
+                <button type="submit" name="submitbutton" class="btn center-block">Sign in</button>
                 {% if form.non_field_errors %}
                   <ul class='form-errors'>
                     {% for error in form.non_field_errors %}

@@ -60,7 +60,7 @@ p {
 }
 
 .form-box {
-  margin-top: 70px;
+  margin-top: 30px;
 }
 
 .form-top {
@@ -103,19 +103,19 @@ p {
 }
 
 .form-bottom form textarea {
-  height: 100px;
+  height: 133px;
   width: 100%;
   border-radius: 5px;
   border-style:hidden;
 }
 
 .form-bottom form button.btn {
-  width: 100%;
-  height:120%;
+  width: 70%;
   background-color: #444;
   color:#fff;
+  font-weight: 700;
+  padding: 10px 15px;
   margin-top: 20px;
-  font-weight: 700
 }
 
 .form-bottom form .input-error {
@@ -163,4 +163,9 @@ input {
   h2 {
     font-size: 32px;
   }
+}
+
+.recaptcha-btn {
+  padding: 10px 15px;
+  margin-bottom: 15px;
 }

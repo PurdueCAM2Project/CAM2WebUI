@@ -2,7 +2,7 @@
 {% block title %}Contact us{% endblock %}
 {% load static %} 
 {% block css %}
-<link rel="stylesheet" href="{% static "app/css/contact.css" %}" />
+<link rel="stylesheet" href="{% static "email_system/css/contact.css" %}" />
 {% endblock %} 
 {% block content %}
 <div class="container">
@@ -11,11 +11,13 @@
   <hr class="divide-divider">
   <form id="contact-us" method="post" action="/email/contact/">
     {% csrf_token %}
-    <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+    <div class="row">
+    <div class="col-xs-12 col-sm-6 wow animated slideInLeft" data-wow-delay=".5s">
       <input type="text" name="name" id="name" required="required" class="form" placeholder="Your Name" />
       <input type="email" name="from_email" id="from_email" required="required" class="form" placeholder="Your Email" />
-      <input type="text" name="subject" id="subject" required="required" class="form" placeholder="Subject" /> </div>
-    <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
+      <input type="text" name="subject" id="subject" required="required" class="form" placeholder="Subject" /> 
+    </div>
+    <div class="col-xs-12 col-sm-6 wow animated slideInRight" data-wow-delay=".5s">
       <textarea name="message" id="message" class="form textarea" placeholder="Message"></textarea>
     </div>
     <div class="relative fullwidth col-xs-12">
@@ -25,6 +27,7 @@
     {% for error in field.errors %}
         <p id="emailerror" style="color: red">{{ error }}</p>
     {% endfor %}
+      </div>
   </form>
 </div>
 {% endblock %}
