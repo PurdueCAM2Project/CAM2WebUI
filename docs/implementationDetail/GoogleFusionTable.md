@@ -294,8 +294,9 @@ In our example, we have used a fusion table with location data and consequently,
 ![](static/img/Getting_html_and_javascript_code_using_Publish_tool.png)
 
 ### Querying data from fusion tables using Javascript
-See [this post](https://developers.google.com/fusiontables/docs/samples/change_query)
+- To update the map layer: see [this post](https://developers.google.com/fusiontables/docs/samples/change_query)
 
+- To send a JSONP request using jQuery: see [this post](https://developers.google.com/fusiontables/docs/samples/basic_jsonp_request)
 <div class="admonition note">
 <p class="first admonition-title">Tip</p>
 <p class="last">To understand how to write the query in code - apply the exact filter condition you are trying to code on the fusion table and then see the string displayed on the the right side of the 'Filter' button.</p>
