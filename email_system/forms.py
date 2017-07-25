@@ -5,12 +5,12 @@ class MultiEmailField(forms.Field):
     def to_python(self, value):
         if not value:
             return []
-        value = value.replace(' ', '') #remove space
+        #Modify the input so that email can be split by , and ;
+        #For copying and pasting email address from the list, None, () \ will be removed.
+        value = value.replace(' ', '')
         value = value.replace('None,', '')
         value = value.replace(';', ',')
-        value = value.replace('(', '')
-        value = value.replace(')', '')
-        value = value.replace('\'', '')
+        value = value.replace(',,', ',')
         print(value)
         while value.endswith(',') or value.endswith(';'):
             value = value[:-1] #remove the last ',' or ';'
@@ -29,4 +29,11 @@ class MailForm(forms.Form):
     email_all_users = forms.BooleanField(required=False)
     subject = forms.CharField(max_length=255)
     message = forms.CharField(widget=forms.Textarea)
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(required=True)
+    from_email = forms.EmailField(required=True)
+    subject = forms.CharField(required=True)
+    message = forms.CharField(widget=forms.Textarea, required=True)
 

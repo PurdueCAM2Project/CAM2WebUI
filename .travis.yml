@@ -1,22 +1,26 @@
+dist: trusty
 language: python
 python:
 - '3.6'
-dist: trusty
+addons:
+  firefox: latest
 before_install:
 - sudo apt-get install xvfb
-
 before_script:
-- wget https://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
-- unzip chromedriver_linux64.zip
-- sudo mv chromedriver /usr/bin
-- sudo chmod a+x /usr/bin/chromedriver
+- wget https://github.com/mozilla/geckodriver/releases/download/v0.17.0/geckodriver-v0.17.0-linux64.tar.gz
+- sudo tar -xzf geckodriver-v0.17.0-linux64.tar.gz -C /usr/bin
+- sudo chmod a+x /usr/bin/geckodriver
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 install:
 - pip install -r requirements.txt
+- pip install -r docs/requirements.txt
 - python manage.py collectstatic --noinput
 script:
 - travis_retry python manage.py test app
+- cd docs
+- make html
+- cd ..
 cache: pip
 notifications:
   email: false
@@ -25,12 +29,18 @@ notifications:
 env:
   secure: NSdLJPs/L0a91lD0H470usbTR3DsEsmgfHAkDbpBD196mVkF5efdbsHLeO0FSiTkxRl2EYmJGeJHXWulmJfsQlrBPppuisvuxjVGfIPHVGxS30SuYrsbNJ/HoD2rdi1ZdvBu7FBTIeCSurhnv/y6qgJNc0QDaXiWKSiUC20w1V4lAUwQpfj0k/4b+zrSyoadDCg0xFFCPTHODAah5S8yvXxNih7HdnAGoN3mLEP7+1UvO1+zed85fMTk1B+Ae1qdy4eXr/xmvaSvvS9rVygWBuOUKCZ/MEb56yDFU0xTTgbLP9xMVte/tKdj3EeU+T4AvMJOucfLZ+VkTREvR/jLaLDGQh9hjzg6OhbDn445YidZVyqFDsGZ+j+pVfAIf4Z4PXv2GpvMUbeNRzroTBSBY0hhEyTUHPTLibCVuZb6+i8NxBihjlv0roXp4EjveYPwRRAna+FSdWPiVcA/pRs1hJSSsnfM105RG71tVAk2BtYjWXphIyL4r2Hii2gqhv3tWEWg2UOwJ4s9NjbKrSsptta+PEZpgl9b0HuS5rohYuelorPrsReBa4QFDlSQ149dJ8qJm57PhMqi+qPuwjC5RJ+78CK28qZBeI5BA6VziYfQAoT1+MY6fjiTq3H4B/sZ6g4QKLI4GO7KWrUuTMB5Vtwqg72cxgj2g+UVUNTObHY=
 deploy:
-  provider: heroku
+- provider: heroku
   api_key:
     secure: d+T/Jrl1k7YyjF0oQL/sl0gXLfhHD3f3Eq5+1WzAA+8quzpMvrwU9xyt9PRa86el/eEvXq0esVo46mfLFT9Jm61CpFD21a6qeLs11jJzv9Z2jhaGqZtSMx7G/pOOwNN2hVPGixiFEueB0HlLXu736wgMIqijDzKgYtvRdzHsTGUpHue9ajYxXh3Xu6K5bMH5ICENj75foXZBWJflmlkiG1tAKdUHzJSElQH5/Qgy44cbw1RswHkn9yiIyBFrqnHX+7jqBfzaTCkeHMu0NFzwDGTVanvH1O16gHvY6v0YG6KG2xCsRYbZp/ncmIwmUA1iwVLOISxLDyZf3zlmkT1eubuoCiHdEQ1541dpdJj17JzwVm4eBjv7AdUPws4bSN+rBEyM4WxHf2dSiv4630coZTgekMxG3Z25w98kcgWwGvO4A0l5lPxNYrrc3NHvdHaMGuX8WUIb94DjT5WCXLJU9KI16KNO7YMvRnD6+jvjgi0xCUucLZR5+UEpk19y3THyu2jqs7xPQzUidAfhttkUbJYtUaAnvxIGeNJgm6buZRXhuBfLfi38MKW+ucsbpR8/ORws0gilzkkp0ik74h/xy62fFVupAaTJlYpgPj/RV80xwfPTi7r3rXMAJqrNsSqIOrAvFgq0DM46nMicvwp/jHDW5liec7ZBaLHeEukmW3g=
   app:
     master: cam2webui-staging
     release: cam2webui
+- provider: pages
+  skip_cleanup: true
+  local_dir: $PWD/docs/_build/html
+  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  on:
+    branch: master      
 after_deploy:
 - "python manage.py makemigrations"
 - "python manage.py migrate"

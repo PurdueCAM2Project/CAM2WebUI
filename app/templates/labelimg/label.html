@@ -1,0 +1,56 @@
+{% extends "app/base.html" %}
+{% block title %}CAM²{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/annotate.css" %}">
+<link rel="stylesheet" href="{% static "app/css/label.css" %}">
+
+{% endblock %}
+{% block content %}
+
+<div class="container" style="padding-top: 30px">
+
+	<div class="my-image-selector">
+		<button class="push-new-image btn-primary">Push a new image!</button>
+		<button class="submit-image btn-warning">Submit Current Image</button>
+		<button class="submit-all-images btn-success">Submit All Images</button>
+		<button class="remove-image btn-danger">Remove Image</button>
+	</div>
+	<div class="row">
+		<div class="col-sm-8">
+			<div style="margin-top:50px;">
+				<div id="myCanvas" style="position:relative"></div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<ul class="nav nav-pills nav-stacked" style="margin-top:50px;">
+				<li class="active" id="human"><a href="#">Human</a></li>
+				<li id="car"><a href="#" >Car</a></li>
+				<li id="sign"><a href="#" >Street Sign</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<button class="zoom-in btn-primary">Zoom In</button>
+		<button class="zoom-out btn-primary">Zoom Out</button>
+	</div>
+
+</div>
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script type="text/javascript" src="https://cdn.rawgit.com/abdmob/x2js/master/xml2json.js"></script>
+
+<script src="{% static "app/js/djaodjin-annotate.js" %}"></script>
+
+<script src="{% static "app/js/FileSaver.min.js" %}"></script>
+
+<script src="{% static "app/js/jszip.min.js" %}"></script>
+
+<script src="{% static "app/js/label.js" %}"></script>
+
+
+{% endblock %}

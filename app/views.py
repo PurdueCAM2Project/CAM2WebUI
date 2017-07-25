@@ -51,8 +51,8 @@ def terms(request):
 def acknowledgement(request):
     return render(request, 'app/ack.html')
 
-def contact(request):
-    return render(request, 'app/contact.html')
+#def contact(request):
+#    return render(request, 'app/contact.html')
 
 def faqs(request):
     question_list = FAQ.objects.reverse()
@@ -73,6 +73,8 @@ def register(request):
     if request.method == 'POST':
         form1 = RegistrationForm(request.POST)
         form2 = AdditionalForm(request.POST)
+
+
         if form1.is_valid() and form2.is_valid():
 
             recaptcha_response = request.POST.get('g-recaptcha-response')
@@ -86,12 +88,14 @@ def register(request):
             response = urllib.request.urlopen(req)
             result = json.loads(response.read().decode())
             if result['success']:
-                model1 = form1.save(commit=False)
-                model1.is_active = True
+                model1 = form1.save(commit=False) #Required information of user
+                model1.is_active = True #Set true for testing without email.
                 model1.save()
-                model2 = form2.save(commit=False)
+                model2 = form2.save(commit=False) #Optional information of user
                 model2.user = model1
                 model2.save()
+                
+                #Email user
                 current_site = get_current_site(request)
                 subject = 'Activate Your CAM2 Account'
                 message = render_to_string('app/confirmation_email.html', {
@@ -101,13 +105,6 @@ def register(request):
                     'token': account_activation_token.make_token(model1),
                 })
                 model1.email_user(subject, message)
-
-                admin_subject = 'New User Registered'
-                admin_message = render_to_string('app/new_user_email_to_admin.html', {
-                    'user': model1,
-                    'optional': model2,
-                })
-                mail_admins(admin_subject, admin_message)
 
                 return redirect('email_confirmation_sent')
             else:
@@ -153,8 +150,15 @@ def activate(request, uidb64, token):
         user.registeruser.email_confirmed = True
         user.save()
 
+        optional = RegisterUser.objects.get(user=user) #get optional info of user
+        #email admin
+        admin_subject = 'New User Registered'
+        admin_message = render_to_string('app/new_user_email_to_admin.html', {
+            'user': user,
+            'optional': optional,
+        })
+        mail_admins(admin_subject, admin_message)
         login(request, user, backend="django.contrib.auth.backends.ModelBackend")
-        
         return redirect('account_activated')
     else:
         return render(request, 'email_confirmation_invalid.html')
@@ -231,3 +235,10 @@ def oauthinfo(request):
             form2 = AdditionalForm()
 
             return render(request, 'app/oauthinfo.html', {'form2': form2})
+
+
+def error500(request):
+    return render(request, 'app/500.html')
+
+def error404(request):
+    return render(request, 'app/404.html')

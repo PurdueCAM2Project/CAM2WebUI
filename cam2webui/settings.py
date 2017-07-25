@@ -29,9 +29,15 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+
+# Receive error log
 ADMINS = [('Yutong', 'huang_yutong@outlook.com')]
+
+# Receive user feedback
+MANAGER_EMAIL = ['duan37@purdue.edu']
 
 # Application definition
 
@@ -89,6 +95,7 @@ STATIC_URL = '/static/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'app/static/app'),
+    os.path.join(BASE_DIR, 'email_system/static/email_system'),
 )
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
@@ -202,8 +209,8 @@ GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
 
 
 #Email system
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #For testing. Email will not be sent, only shown in console
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_PORT = os.environ['EMAIL_PORT']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']

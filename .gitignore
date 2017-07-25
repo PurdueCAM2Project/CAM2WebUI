@@ -2,6 +2,11 @@
 db.sqlite3
 .idea/
 
+# sphinx document build folders
+docs/_build/
+docs/_static/
+docs/_templates/
+
 # Django collect static folders
 cam2webui/static/
 
