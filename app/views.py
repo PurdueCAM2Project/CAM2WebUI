@@ -219,3 +219,9 @@ def oauthinfo(request):
 
             return render(request, 'app/oauthinfo.html', {'form2': form2})
 
+
+def error500(request):
+    return render(request, 'app/500.html')
+
+def error404(request):
+    return render(request, 'app/404.html')
