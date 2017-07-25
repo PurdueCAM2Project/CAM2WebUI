@@ -8,7 +8,6 @@
 
 {% block content %}
 <div class="top-content">
-  <div class="inner-bg">
     <div class="container">
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
@@ -16,7 +15,7 @@
             <div class="form-top">
               <div class="form-top-left">
                 <h3>Login to CAM2</h3>
-                <p>Enter username and password :</p>
+                <p>Enter username and password</p>
               </div>
               <div class="form-top-right"> <i class="fa fa-key"></i> </div>
             </div>
@@ -45,11 +44,11 @@
           <div class="social-login">
             <h4 style="color:black;text-align:center;">- or -</h4>
             <div class="social-login-buttons">
-              <a class="btn btn-block btn-social btn-lg btn-github" id="github_login" href="{% url 'social:begin' 'github' %}">
+              <a class="oauth-btn btn btn-block btn-social btn-md btn-github center-block" id="github_login" href="{% url 'social:begin' 'github' %}">
                 <span class="fa fa-github"></span>Sign in with Github
               </a>
-              <a class="btn btn-block btn-social btn-lg btn-google" href="{% url 'social:begin' 'google-oauth2' %}">
-                <span class="fa fa-google"></span> Login with Google
+              <a class="oauth-btn btn btn-block btn-social btn-md btn-google center-block" href="{% url 'social:begin' 'google-oauth2' %}">
+                <span class="fa fa-google"></span>Sign in with Google
               </a>
             </div>
 
@@ -57,7 +56,6 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
 {% endblock %}
 

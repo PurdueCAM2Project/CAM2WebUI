@@ -60,7 +60,7 @@ p {
 }
 
 .form-box {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .form-top {
@@ -110,7 +110,7 @@ p {
 }
 
 .form-bottom form button.btn {
-  width: 70%;
+  width: 77%;
   background-color: #444;
   color:#fff;
   font-weight: 700;
@@ -123,11 +123,11 @@ p {
 }
 
 .social-login {
-  margin-top: 35px;
+  margin-top: 20px;
 }
 
 .social-login-buttons {
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .middle-border {
@@ -168,4 +168,18 @@ input {
 .recaptcha-btn {
   padding: 10px 15px;
   margin-bottom: 15px;
+}
+
+.oauth-btn {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  width: 70%;
+}
+
+.terms {
+  line-height: 150%;
+  margin-left: 2px;
+  margin-bottom: 20px;
+  font-size: 0.9em;
 }
