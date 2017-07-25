@@ -10,9 +10,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
-
 from social_django.models import UserSocialAuth
-
 from django.utils.encoding import force_text, force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .tokens import account_activation_token
@@ -196,10 +194,6 @@ def profile(request):
     #else:
         #return redirect('index')
 
-
-@login_required
-def password(request):
-    return render(request, 'app/password.html', {'form': form})
 
 def oauthinfo(request):
     if request.method == 'POST':
