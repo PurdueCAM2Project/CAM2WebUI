@@ -16,9 +16,15 @@ class Command(BaseCommand):
         url = "http://www.cam2project.net/cameras/"
         html = urllib.request.urlopen(url, context=ctx).read()
         soup = BeautifulSoup(html, 'html.parser')
-        country_menu = soup.find('select', id="country")
-        print(country_menu.prettify())
+        country_menu = soup.find('select', id="country").find_all('option')
+
+        countries = {}
+        for country in country_menu:
+            countries[country['value']] =  str(country.text)
+
+        return countries
+
 
 
     def handle(self, *args, **options):
-        self.stdout.write("testing")
+        countries = self.get_countries_from_webpage()
