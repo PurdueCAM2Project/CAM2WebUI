@@ -19,7 +19,7 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm, AppForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
-from .models import FAQ, History, Publication, Team, Leader, Member, AppList, RegisterUser
+from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser
 
 def index(request):
     return render(request, 'app/index.html')
@@ -193,14 +193,14 @@ def profile(request):
    
     app_form = AppForm()
 
-    apps = AppList.objects.filter(user=request.user).values()
-
+    apps = CAM2dbApi.objects.filter(user=request.user).values()
+    print(apps)
     if request.method == 'POST' and 'add' in request.POST:
         app_form = AppForm(request.POST)
         if app_form.is_valid():
-            applist = app_form.save(commit=False);
-            applist.user = request.user
-            applist.save()
+            dbapp = app_form.save(commit=False)
+            dbapp.user = request.user
+            dbapp.save()
         return redirect('profile')
 
 

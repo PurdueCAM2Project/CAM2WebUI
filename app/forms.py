@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm #username, password
 from django.contrib.auth.models import User
-from .models import RegisterUser, AppList
+from .models import RegisterUser, CAM2dbApi
 
 class RegistrationForm(UserCreationForm):
     #To add more imformation, simply define below and add it to fields
@@ -24,8 +24,8 @@ class LoginForm(forms.Form):
 	password = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={'class' : 'loginput'}), required=True)
 
 class AppForm(forms.ModelForm):
-    applist = forms.CharField()
+    appname = forms.CharField()
 
     class Meta:
-        model = AppList
-        fields = ('applist',)
+        model = CAM2dbApi
+        fields = ('appname',)

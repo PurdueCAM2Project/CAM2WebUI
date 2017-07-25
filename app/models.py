@@ -15,8 +15,8 @@ class RegisterUser(models.Model):
     about= models.TextField(verbose_name='About(Optional)', max_length=500, blank=True, null=True)
     email_confirmed = models.BooleanField(default=False)
 
-class AppList(models.Model):
-    applist = models.CharField(max_length=200, null=True)
+class CAM2dbApi(models.Model):
+    appname = models.CharField(max_length=200, null=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE,)
 
 
