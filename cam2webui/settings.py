@@ -34,10 +34,10 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # Receive error log
-ADMINS = [('Yutong', 'huang_yutong@outlook.com'),]
+#ADMINS = [('Yutong', 'huang_yutong@outlook.com'),]
 
 # Receive user feedback
-MANAGER_EMAIL = ['duan37@purdue.edu']
+#MANAGER_EMAIL = ['duan37@purdue.edu']
 
 # Application definition
 
