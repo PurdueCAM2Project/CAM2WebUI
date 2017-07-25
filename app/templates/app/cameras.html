@@ -2,19 +2,18 @@
 {% block title %}Cameras{% endblock %}
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static "app/css/cameras.css " %}">
-<link rel="stylesheet" href="{% static "app/css/select2.min.css " %}">
+<link rel="stylesheet" href="{% static "app/css/cameras.css" %}">
+<link rel="stylesheet" href="{% static "app/css/select2.min.css" %}">
 {% endblock %}
 {% block content %}
 <div class="container">
   <br>
-  <div class="row">
-    <div class="col-xs-12 col-lg-4">
+  <div class="row sel-box">
+    <div class="col-xs-12 col-md-4">
       <form>
         <div class="form-group">
             <label class="control-label" for="country" align="left">Country (select one or multiple):</label>
             <select class="form-control" id="country" multiple="multiple" style="height: 28px;">
-
             <option value="USA">United States</option>
             <option value="AF">Afghanistan</option>
             <option value="AX">Åland Islands</option>
@@ -285,7 +284,6 @@
       </form>
     </div>
   </div>
-  <br></br>
   <div id="mapCanvas"></div>
 </div>
 
