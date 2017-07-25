@@ -214,6 +214,39 @@ class AddTestCase(StaticLiveServerTestCase):
 		        "apples"
 		    )
 		)
+	def test_Login_Register_2(self):		
+ -		browser = self.selenium		
+ -		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'		
+ -		
+ -		browser.get(url)		
+ -		x = browser.find_element_by_name('username')  # Find the search box		
+ -		x.send_keys('wrongusername')		
+ -		y = browser.find_element_by_name('password')		
+ -		y.send_keys('wrongpassword')		
+ -		browser.find_element_by_name('submitbutton').click()		
+ -		
+ -		error = browser.find_element(By.ID,value="loginerror")		
+ -		
+ -		assert error.get_attribute("innerHTML") == 'Please enter a correct username and password. Note that both fields may be case-sensitive.'		
+ -		
+ -		
+ -		
+ -	def test_Login_Register_3(self):		
+ -		browser = self.selenium		
+ -		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'		
+ -		browser.get(url)		
+ -		
+ -		un = browser.find_element_by_name('username')		
+ -		un.send_keys(self.test_username)		
+ -		
+ -		fn = browser.find_element_by_name('first_name')		
+ -		fn.send_keys('Test')		
+ -		
+ -		ln = browser.find_element_by_name('last_name')		
+ -		ln.send_keys('Case')		
+ -		
+ -		email = browser.find_element_by_name('email')		
+ -		email.send_keys('test@case.net')
 
 		p = browser.find_element_by_name('password1')
 		cp = browser.find_element_by_name('password2')
@@ -222,10 +255,9 @@ class AddTestCase(StaticLiveServerTestCase):
 		cp.send_keys(self.test_password + '123')
 
 		browser.find_element_by_name('registerbutton').click()
-
-
+		
 		error = browser.find_element(By.ID,value="registererror")
-
+		
 		assert error.get_attribute("innerHTML") == 'The two password fields didn\'t match.'
 
 
