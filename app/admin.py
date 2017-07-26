@@ -49,7 +49,7 @@ def email_users(self, request, queryset):
     return redirect('admin_send_email')
 email_users.short_description = "Email Users"
 
-def download_csv(modeladmin, request, queryset):
+def export_csv(modeladmin, request, queryset):
     #https://docs.djangoproject.com/en/1.11/howto/outputting-csv/
     #https://stackoverflow.com/questions/18685223/how-to-export-django-model-data-into-csv-file
     opts = queryset.model._meta
@@ -106,7 +106,7 @@ class UserAdmin(admin.ModelAdmin):
     inlines = [
         UserInline,
                ]
-    actions = [email_users,download_csv]
+    actions = [email_users,export_csv]
 
     # callable that display info from RegisterUser
     def department(self,user):
