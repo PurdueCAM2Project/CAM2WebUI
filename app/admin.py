@@ -49,7 +49,7 @@ def email_users(self, request, queryset):
     return redirect('admin_send_email')
 email_users.short_description = "Email Users"
 
-def export_csv(modeladmin, request, queryset):
+def export_csv(self, request, queryset):
     #https://docs.djangoproject.com/en/1.11/howto/outputting-csv/
     #https://stackoverflow.com/questions/18685223/how-to-export-django-model-data-into-csv-file
     
@@ -88,7 +88,7 @@ def export_csv(modeladmin, request, queryset):
             required_info.append(data)
         writer.writerow(required_info)
     return response
-download_csv.short_description = "Export selected user as csv"
+export_csv.short_description = "Export selected user as csv"
 
 
 #model
