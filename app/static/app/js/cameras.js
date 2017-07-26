@@ -187,53 +187,44 @@
     //using geocoder to center map on country selected - see link below to for documentation and example
     //https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?csw=1
     function center_on_selected_countries(map) {
-        var selected_countries = getdata_dropdown("#country");
-        console.log(selected_countries);
-        // var selected_countries = $("#country").select2('data');
-        // var country_name = selected_countries[0].text;
-        // geocoder.geocode({'address': country_name}, function (results, status) {
-        //     while (status != google.maps.GeocoderStatus.OK) {
-        //     }
-        //     var curr_country_viewport = results[0].geometry.viewport;
-        //     map.fitBounds(curr_country_viewport);
-        //     maxNorthEastLat = results[0].geometry.viewport.getNorthEast().lat();
-        //     maxNorthEastLng = results[0].geometry.viewport.getNorthEast().lng();
-        //     maxSouthWestLat = results[0].geometry.viewport.getSouthWest().lat();
-        //     maxSouthWestLng = results[0].geometry.viewport.getSouthWest().lng();
-        // })
-        //
-        // for (var i = 1; i < selected_countries.length; i++) {
-        //     country_name = selected_countries[i].text;
-        //     geocoder.geocode({'address': country_name}, function (results, status) {
-        //         while (status != google.maps.GeocoderStatus.OK) {
-        //         }
-        //         var curr_country_viewport = results[0].geometry.viewport;
-        //
-        //         var currNorthEastLat = curr_country_viewport.getNorthEast().lat();
-        //         var currNorthEastLng = curr_country_viewport.getNorthEast().lng();
-        //         var currSouthWestLat = curr_country_viewport.getSouthWest().lat();
-        //         var currSouthWestLng = curr_country_viewport.getSouthWest().lng();
-        //
-        //         if (maxNorthEastLat < currNorthEastLat)
-        //             maxNorthEastLat = currNorthEastLat;
-        //
-        //         if (maxNorthEastLng < currNorthEastLng)
-        //             maxNorthEastLng = currNorthEastLng;
-        //
-        //         if (maxSouthWestLat > currSouthWestLat)
-        //             maxSouthWestLat = currSouthWestLat;
-        //
-        //         if (maxSouthWestLng > currSouthWestLng)
-        //             maxSouthWestLng = currSouthWestLng;
-        //
-        //         var bounds = new google.maps.LatLngBounds();
-        //
-        //         bounds.extend(new google.maps.LatLng(maxNorthEastLat, maxNorthEastLng));
-        //         bounds.extend(new google.maps.LatLng(maxSouthWestLat, maxSouthWestLng));
-        //
-        //         map.fitBounds(bounds);
-        //     });
-        // }
+        var selected_countries = $("#country").select2('val');
+
+        //initiliaze with corners of first country
+        var curr_country = countries_viewport[selected_countries[0]];
+        maxNorthEastLat = curr_country.northeast.lat;
+        maxNorthEastLng = curr_country.northeast.lng;
+        maxSouthWestLat = curr_country.southwest.lat;
+        maxSouthWestLng = curr_country.southwest.lng;
+
+
+        for (var i = 1; i < selected_countries.length; i++) {
+            var country = selected_countries[i];
+            curr_country = countries_viewport[country];
+
+            var currNorthEastLat = curr_country.northeast.lat;
+            var currNorthEastLng = curr_country.northeast.lng;
+            var currSouthWestLat = curr_country.southwest.lat;
+            var currSouthWestLng = curr_country.southwest.lng;
+
+            if (maxNorthEastLat < currNorthEastLat)
+                maxNorthEastLat = currNorthEastLat;
+
+            if (maxNorthEastLng < currNorthEastLng)
+                maxNorthEastLng = currNorthEastLng;
+
+            if (maxSouthWestLat > currSouthWestLat)
+                maxSouthWestLat = currSouthWestLat;
+
+            if (maxSouthWestLng > currSouthWestLng)
+                maxSouthWestLng = currSouthWestLng;
+        }
+
+        var bounds = new google.maps.LatLngBounds();
+
+        bounds.extend(new google.maps.LatLng(maxNorthEastLat, maxNorthEastLng));
+        bounds.extend(new google.maps.LatLng(maxSouthWestLat, maxSouthWestLng));
+
+        map.fitBounds(bounds);
     }
 
 
