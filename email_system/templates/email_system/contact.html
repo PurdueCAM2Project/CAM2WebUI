@@ -2,29 +2,47 @@
 {% block title %}Contact us{% endblock %}
 {% load static %} 
 {% block css %}
-<link rel="stylesheet" href="{% static "app/css/contact.css" %}" />
+<link rel="stylesheet" href="{% static "app/css/login.css" %}" />
+<link rel="stylesheet" href="{% static "email_system/css/contact.css" %}" />
 {% endblock %} 
 {% block content %}
 <div class="container">
-  <hr class="divide-divider">
-  <div class="center">Contact Us </div>
-  <hr class="divide-divider">
-  <form id="contact-us" method="post" action="/email/contact/">
-    {% csrf_token %}
-    <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
-      <input type="text" name="name" id="name" required="required" class="form" placeholder="Your Name" />
-      <input type="email" name="from_email" id="from_email" required="required" class="form" placeholder="Your Email" />
-      <input type="text" name="subject" id="subject" required="required" class="form" placeholder="Subject" /> </div>
-    <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
-      <textarea name="message" id="message" class="form textarea" placeholder="Message"></textarea>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10 col-sx-12">
+      <div class="form-box">
+        <div class="form-top">
+          <div class="form-top-left">
+            <h3>Contact Us</h3>
+            <p>Leave your message and contact info</p>
+          </div>
+          <div class="form-top-right"> <i class="fa fa-envelope"></i> </div>
+        </div>
+        <div class="form-bottom">
+          <form id="contact-us" method="post" action="/email/contact/">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-xs-12 col-sm-5 wow animated slideInLeft" data-wow-delay=".5s">
+                <p><label>Name: </label><br><input type="text" name="name" id="name" required="required" placeholder="Your Name"></p>
+                <p><label>Email: </label><br><input type="email" name="from_email" id="from_email" required="required" placeholder="Your Email" /></p>
+                <p><label>Subject: </label><br><input type="text" name="subject" id="subject" required="required" placeholder="Subject"></p>
+              </div>
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>Messages: </label><br>
+                <textarea name="message" id="message" class="textarea-lg" placeholder="Message"></textarea>
+              </div>
+              <div class="clearfix"></div>
+              <div class="relative fullwidth col-xs-12">
+                <button type="submit" id="submit" name="submit" class="btn center-block">Send Message</button>
+              </div>
+              <div class="clear"></div>
+              {% for error in field.errors %}
+                  <p id="emailerror" style="color: red">{{ error }}</p>
+              {% endfor %}
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="relative fullwidth col-xs-12">
-      <button type="submit" id="submit" name="submit" class="form-btn semibold">Send Message</button>
-    </div>
-    <div class="clear"></div>
-    {% for error in field.errors %}
-        <p id="emailerror" style="color: red">{{ error }}</p>
-    {% endfor %}
-  </form>
+  </div>
 </div>
 {% endblock %}

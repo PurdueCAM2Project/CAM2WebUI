@@ -1,0 +1,11 @@
+textarea.textarea-lg {
+  height: 222px !important;
+  width: 100%;
+  border-radius: 5px;
+  border-style:hidden;
+  padding: 7px;
+}
+
+.form-bottom form button.btn {
+  width: 60%  !important;
+}
