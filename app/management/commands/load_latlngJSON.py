@@ -71,4 +71,4 @@ class Command(BaseCommand):
         countries = self.geocode_data(countries)
 
         with open('app/static/app/js/countries_viewport.json', "w") as writeJSON:
-            json.dump(countries, writeJSON)
+            json.dump(countries, writeJSON, indent=2)
