@@ -34,7 +34,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # Receive error log
-ADMINS = [('Yutong', 'huang_yutong@outlook.com')]
+#ADMINS = [('Yutong', 'huang_yutong@outlook.com'),]
 
 # Receive user feedback
 MANAGER_EMAIL = ['duan37@purdue.edu']
@@ -95,6 +95,7 @@ STATIC_URL = '/static/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'app/static/app'),
+    os.path.join(BASE_DIR, 'email_system/static/email_system'),
 )
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
