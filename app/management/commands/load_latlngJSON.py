@@ -1,3 +1,7 @@
+# Python script to create JSON file of country codes mapped to country viewports
+# See this link for extensive documentation: https://purduecam2project.github.io/CAM2WebUI/implementationDetail/load_latlngJSON.html#
+# Author: Deeptanshu Malik
+
 from django.core.management.base import BaseCommand, CommandError
 import urllib.request, urllib.parse, urllib.error
 import requests
@@ -30,13 +34,11 @@ class Command(BaseCommand):
     def geocode_data(self, countries):
         GOOGLE_MAPS_API_URL = 'http://maps.googleapis.com/maps/api/geocode/json'
 
-        countries_missed = set()
-
         for country_code, country_name in countries.items():
             #to enfore geocode 50 queries per second limit
             sleep(0.01)
 
-            # make the request and get the response data
+            #make the request and get the response data
             req = requests.get(GOOGLE_MAPS_API_URL, params= {
                 'address': country_name
             })
@@ -55,6 +57,7 @@ class Command(BaseCommand):
                     print("Failed 2nd attempt: ", country_code, country_name)
                     continue
                 print("OK: ", country_code, country_name)
+
             #Use the first result
             result = res['results'][0]
 
