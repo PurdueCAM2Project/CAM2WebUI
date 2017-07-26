@@ -257,7 +257,7 @@ email_selected = email_selected.replace('(\'\',),', '')
 email_selected = email_selected.replace('[', '').replace(']', '').replace('(\'', '').replace('\',)', '')
 
 ```
-At last we will use a `session` to pass the `email_selected`. And then, redirect admin to admin_send_email page
+At last we will use a `session` to pass the `email_selected`. And then, redirect admin to `admin_send_email page`
 ```
 #open a session and render the email_selected to admin_send_email view
 request.session['email_selected'] = email_selected
