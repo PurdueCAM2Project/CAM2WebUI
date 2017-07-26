@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^register/$', app_views.register, name='register'),
 ]
 ```
-### Creating forms
+### Creating a form
 Create a file `forms.py` in `app` and import `forms` from Django.
 ```
 from django import forms
@@ -51,7 +51,7 @@ and then add the following in the template:
 {% endif %}
 ```  
 ***
-
+### Creating a model
 Good! We are done with the required field, now we will use a different approach to recording optional information.
 Go to app/models.py and create our own model, `RegisterUser' for optional information:
 ```  
