@@ -52,11 +52,13 @@ email_users.short_description = "Email Users"
 def export_csv(modeladmin, request, queryset):
     #https://docs.djangoproject.com/en/1.11/howto/outputting-csv/
     #https://stackoverflow.com/questions/18685223/how-to-export-django-model-data-into-csv-file
-    opts = queryset.model._meta
+    
+    #setup csv writer
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment;filename=CAM2UserList.csv'
-
     writer = csv.writer(response)
+    
+    opts = queryset.model._meta
     # output field names as first row
     # required_field_names
     # ['id', 'password', 'last_login', 'is_superuser', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'date_joined']
