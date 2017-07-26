@@ -4,6 +4,7 @@ import requests
 import ssl
 from bs4 import BeautifulSoup
 import json
+from time import sleep
 
 class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
@@ -29,18 +30,36 @@ class Command(BaseCommand):
     def geocode_data(self, countries):
         GOOGLE_MAPS_API_URL = 'http://maps.googleapis.com/maps/api/geocode/json'
 
+        countries_missed = set()
+
         for country_code, country_name in countries.items():
-            print(country_code, country_name)
+            #to enfore geocode 50 queries per second limit
+            sleep(0.01)
+
             # make the request and get the response data
             req = requests.get(GOOGLE_MAPS_API_URL, params= {
                 'address': country_name
             })
             res = req.json()
 
+            if(res['status'] != 'OK'):
+                print(country_code, country_name)
+                continue
+            else:
+                sleep(1)
+                req = requests.get(GOOGLE_MAPS_API_URL, params={
+                    'address': country_name
+                })
+                res = req.json()
+                if (res['status'] != 'OK'):
+                    print("Failed 2nd attempt: ", country_code, country_name)
+                    continue
+                print("OK: ", country_code, country_name)
             #Use the first result
             result = res['results'][0]
 
             countries[country_code] = result['geometry']['viewport']
+
         return countries
 
 
