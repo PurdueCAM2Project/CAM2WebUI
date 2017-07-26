@@ -83,7 +83,7 @@ def export_csv(self, request, queryset):
             optional = RegisterUser.objects.get(user=obj)  # get optional info of user
             optional_info = [getattr(optional, field) for field in optional_field_names]
         except:
-            optional_info = ['N/A' for field in optional_field_names]
+            optional_info = ['' for field in optional_field_names]
         for data in optional_info:
             required_info.append(data)
         writer.writerow(required_info)
