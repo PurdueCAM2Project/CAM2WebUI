@@ -67,7 +67,7 @@ def export_csv(modeladmin, request, queryset):
 
     # optional_field_names
     # ['id', 'user', 'department', 'organization', 'title', 'country', 'about', 'email_confirmed']
-    #optional_field_names = [field.name for field in RegisterUser._meta.fields] ##all fields in RegisterUser model
+    #optional_field_names = [field.name for field in RegisterUser._meta.fields] #all fields in RegisterUser model
     optional_field_names = ['department', 'organization', 'title', 'country', 'about']
 
     field_names = required_field_names.copy()
