@@ -47,3 +47,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         countries = self.get_countries_from_webpage()
         countries = self.geocode_data(countries)
+
+        with open('app/static/app/js/countries_viewport.json', "w") as writeJSON:
+            json.dump(countries, writeJSON)
