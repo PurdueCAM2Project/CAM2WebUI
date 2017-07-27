@@ -26,7 +26,7 @@
         {% for field in form %}
             {% if field is form.email %}
                 {{ field.label_tag }}<br>
-                <input type="text" style="width: 100%" name="{{ form.email.name }}" value="{{ email_selected }}" />
+                <input type="text" style="width: 100%" name="{{ form.email.name }}"/>
             {% else %}
                 {{ field.label_tag }}<br>
                 {{ field }}<br>
@@ -40,43 +40,31 @@
 
         {% endfor %}
         <button type="submit" name="sendemail" class="btn">Send</button>
+
         <br>
         <br>
         <div class="infoTable">
-            <div class="emailCol">
-                <table cellspacing="2" style="width:100%; float: left">
-                    <tr><th>Email</th></tr>
-                    {% for email in email_table %}
-                    <tr>
-                        {% if email.email%}
-                            <td>{{ email.email }},</td>
-                        {% else %}
-                            <td>None,</td>
-                        {% endif %}
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
+            <table style="width:100%; float: left">
+            <h3>Selected Users</h3>
+            <tr>
+                <th>Staff Status</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date Joined</th>
+            </tr>
 
-            <div class="infoCol">
-                <table style="width:100%; float: left">
+            {% for user in users %}
                 <tr>
-                    <th>Username</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Date Joined</th>
-                </tr>
-
-                {% for user in users %}
-                    <tr>
-                    {% for field in user %}
-                        <td>{{ field }}</td>
-                    {% endfor %}
-                    </tr>
+                {% for field in user %}
+                    <td>{{ field }}</td>
                 {% endfor %}
+                </tr>
+            {% endfor %}
 
-                </table>
-            </div>
+            </table>
+
         </div>
       </form>
     </div>
