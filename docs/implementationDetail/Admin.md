@@ -3,8 +3,11 @@
 ### Goal
 Allow admin to send email to specific users. 
 procedure: 1.Log in as admin, and in the main page, go to Users. 
+  
            2.Using checkbox to choose recipient
+             
            3.Select "Email Users" in action
+             
            4.Click Go to go to a web page that admin      input in subject and message.
 
 ### Approach
