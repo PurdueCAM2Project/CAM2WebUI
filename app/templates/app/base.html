@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.css">
-  <link rel="stylesheet" href="{% static "app/css/base.css " %}">
+  <link rel="stylesheet" href="{% static "app/css/base.css" %}">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <meta name="google-signin-client_id" content="294339896954-gouidbgcpu2cktb5v42qdkelu1d0a9ks.apps.googleusercontent.com">
   {% block css %}
@@ -46,14 +46,12 @@
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="/">CAM<sup>2</sup></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li><a href="/cameras/">Cameras</a></li>
-          <li><a href="">Source Code</a></li>
           <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/team/">Team</a></li>
@@ -64,13 +62,8 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            {% if user.is_authenticated %}
-                <li id="someprofile"><a href="/profile/">{{request.user.username}}'s Profile </a></li>
-                <li><a href="/logout/">Logout</a></li>
-            {% else %}
-                <li><a href="/login/">Login</a></li>
-                <li><a href="/register/">Register</a></li>
-            {% endif %}
+          <li><a href="https://cam2.ecn.purdue.edu/members/register">Register</a></li>
+          <li><a href="https://cam2.ecn.purdue.edu/members/login">Sign In</a></li>
         </ul>
       </div>
     </div>
