@@ -25,8 +25,8 @@ class MultiEmailField(forms.Field):
             validate_email(email)
 
 class MailForm(forms.Form):
-    email = MultiEmailField(required=False, help_text='Split email by " ,  " or " ; ", or copy paste a list from below')
-    email_all_users = forms.BooleanField(required=False)
+    email = MultiEmailField(label='Email of Additional Recipient', required=False, help_text='Split email by " ,  " or " ; ", or copy paste a list from below')
+    email_all_users = forms.BooleanField(required=False, help_text='Checking this box will not send email to additional recipient')
     subject = forms.CharField(max_length=255)
     message = forms.CharField(widget=forms.Textarea)
 
