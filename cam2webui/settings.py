@@ -25,8 +25,7 @@ BASE_DIR =  os.path.dirname(PROJECT_ROOT)
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#DEBUG = False
+DEBUG = os.environ['IS_PRODUCTION_SITE']
 
 ALLOWED_HOSTS = [
     'www.cam2project.net',
@@ -210,8 +209,8 @@ GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
 
 
 #Email system
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #For testing. Email will not be sent, only shown in console
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' if os.environ['IS_PRODUCTION_SITE'] \
+                else 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_PORT = os.environ['EMAIL_PORT']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
@@ -222,7 +221,7 @@ DEFAULT_FROM_EMAIL = os.environ['EMAIL_HOST_USER']
 
 # Release settings
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-#SECURE_BROWSER_XSS_FILTER = True
-#SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') if os.environ['IS_PRODUCTION_SITE'] else None
+SECURE_BROWSER_XSS_FILTER = os.environ['IS_PRODUCTION_SITE']
+SECURE_SSL_REDIRECT = os.environ['IS_PRODUCTION_SITE']
 
