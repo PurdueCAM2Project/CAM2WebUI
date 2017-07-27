@@ -31,9 +31,9 @@ The CSV-creation acts on file-like objects such as the HttpResponse in Django.
   
 See [Django documentation](https://docs.djangoproject.com/en/1.11/howto/outputting-csv/).
 ```
-opts = queryset.model._meta  #obtaining User model as meta data because models are not iterable
-required_field_names = [field.name for field in opts.fields] #get names of all fields in User model as a list
-optional_field_names = [field.name for field in RegisterUser._meta.fields] ##get names of all fields in User model as a list
+    opts = queryset.model._meta  #obtaining User model as meta data because models are not iterable
+    required_field_names = [field.name for field in opts.fields] #get names of all fields in User model as a list
+    optional_field_names = [field.name for field in RegisterUser._meta.fields] ##get names of all fields in User model as a list
 ```
 We need to seperate them because they will be used for every iteration of selected users. And create another combined list for the final CSV form.
 ```
@@ -48,9 +48,8 @@ The field in `required_field_names` and `optional_field_names` decide which info
   
 More info on `RegisterUser`, see [here](https://purduecam2project.github.io/CAM2WebUI/implementationDetail/User.html#creating-a-model).
   
-
 ```
-for obj in queryset:
+    for obj in queryset:
         required_info = [getattr(obj, field) for field in required_field_names]
         try:
             optional = RegisterUser.objects.get(user=obj)  # get optional info of user
