@@ -5,7 +5,7 @@ Email user to confirm registration and notify administrator after user registere
 
 ### Approach
 
-Followed this [tutorial](https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html)
+Useful [tutorial](https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html)
 
 After the code of register, add the following to email user and admin:
 Under `model1 = form1.save(commit=False)`, add
