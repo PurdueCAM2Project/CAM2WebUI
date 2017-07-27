@@ -17,6 +17,7 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR =  os.path.dirname(PROJECT_ROOT)
+IS_RPODUCTION_SITE = bool(os.environ['IS_PRODUCTION_SITE'] == "True")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -25,8 +26,7 @@ BASE_DIR =  os.path.dirname(PROJECT_ROOT)
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#DEBUG = False
+DEBUG = IS_RPODUCTION_SITE
 
 ALLOWED_HOSTS = [
     'www.cam2project.net',
@@ -58,7 +58,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'app.middleware.basicauth.BasicAuthMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -149,8 +148,6 @@ else:
     DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
 
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
@@ -168,7 +165,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 LANGUAGE_CODE = 'en-us'
@@ -177,6 +173,12 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+# Basic auth
+# https://djangosnippets.org/snippets/2468/
+if not IS_RPODUCTION_SITE: 
+    BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
+    BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
+    MIDDLEWARE.extend(['app.middleware.basicauth.BasicAuthMiddleware'])
 
 # Django social authentication
 # http://python-social-auth.readthedocs.io/en/latest/configuration/
@@ -186,33 +188,26 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_LOGIN_ERROR_URL = '/register/'
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/oauthinfo/'
-SOCIAL_AUTH_RAISE_EXCEPTIONS = False
-
-SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']
-SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['GOOGLE_LOGIN_KEY']
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['GOOGLE_LOGIN_SECRET']
-
-# Basic auth
-# https://djangosnippets.org/snippets/2468/
-
-BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
-BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
-
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'index'
 
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/register/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/oauthinfo/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+
+# Github Auth
+SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']
+SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
 
 # Google API KEY and Auth
 GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
-
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['GOOGLE_LOGIN_KEY']
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['GOOGLE_LOGIN_SECRET']
 
 #Email system
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #For testing. Email will not be sent, only shown in console
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' if IS_RPODUCTION_SITE \
+                else 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_PORT = os.environ['EMAIL_PORT']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
@@ -223,7 +218,6 @@ DEFAULT_FROM_EMAIL = os.environ['EMAIL_HOST_USER']
 
 # Release settings
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-#SECURE_BROWSER_XSS_FILTER = True
-#SECURE_SSL_REDIRECT = True
-
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') if IS_RPODUCTION_SITE else None
+SECURE_BROWSER_XSS_FILTER = IS_RPODUCTION_SITE
+SECURE_SSL_REDIRECT = IS_RPODUCTION_SITE
