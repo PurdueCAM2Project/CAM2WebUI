@@ -60,18 +60,19 @@ def admin_send_email(request):
                     mass_email = []
                     for i in user_selected:
                         obj = User.objects.get(id=i)
-                        username = obj.username  # will be used in template
-                        template = render_to_string('email_system/admin_send_email_template.html', {
-                            'username': username,
-                            'message': message,
-                            'domain': current_site.domain,
-                        })
-                        mass_email.append((
-                            subject,
-                            template,
-                            EMAIL_HOST_USER,
-                            [obj.email],
-                        ))
+                        if obj.email is not '':
+                            username = obj.username  # will be used in template
+                            template = render_to_string('email_system/admin_send_email_template.html', {
+                                'username': username,
+                                'message': message,
+                                'domain': current_site.domain,
+                            })
+                            mass_email.append((
+                                subject,
+                                template,
+                                EMAIL_HOST_USER,
+                                [obj.email],
+                            ))
 
                     for e in email: #attach template one by one to make sure only one email shows up in the recipient list,
                                     #if not, recipients in the same recipient_list will all see the other addresses in the email messages’ “To:” field
