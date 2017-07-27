@@ -223,7 +223,7 @@ Content:
 {{ message }}
 ```
 
-## 3. Administrator Emailing
+## 3. Send Email from Admin
 ### Goal
 Allow admin to send email to specific users.
 procedure:
