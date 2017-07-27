@@ -4,7 +4,7 @@
 Allow admin to send email to specific users. procedure: Log in as admin, and in the main page, go to Users， click the checkbox to choose recipient and select Email Users, then click Go to go to a web page that admin can type in subject and message.
 
 ### Approach
-See the documentation [here](https://purduecam2project.github.io/CAM2WebUI/implementationDetail/Email.html#administrator-emailing).
+See the documentation [here](https://purduecam2project.github.io/CAM2WebUI/implementationDetail/Email.html#send-email-from-admin).
   
 ## 2. Export User Data to CSV
 ### Goal
