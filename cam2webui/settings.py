@@ -30,6 +30,7 @@ DEBUG = os.environ['IS_PRODUCTION_SITE']
 ALLOWED_HOSTS = [
     'www.cam2project.net',
     'cam2webui.herokuapp.com',
+    'cam2webui-staging.herokuapp.com',
     'localhost',
     '127.0.0.1',
 ]
