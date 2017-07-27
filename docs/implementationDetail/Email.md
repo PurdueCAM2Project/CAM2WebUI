@@ -208,8 +208,8 @@ def contact(request):
         form = ContactForm()
     return render(request, "email_system/contact.html", {'form': form})
 ```
-
-## Template
+  
+### Related Templates
 Email template:
 `contact_email_template.html`
 ```
