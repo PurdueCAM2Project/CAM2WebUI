@@ -17,9 +17,6 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR =  os.path.dirname(PROJECT_ROOT)
-import sys
-
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -28,16 +25,20 @@ import sys
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#DEBUG = False
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'www.cam2project.net',
+    'cam2webui.herokuapp.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 # Receive error log
-#ADMINS = [('Yutong', 'huang_yutong@outlook.com'),]
+ADMINS = [('Yutong', 'huang_yutong@outlook.com'),]
 
 # Receive user feedback
-MANAGER_EMAIL = ['duan37@purdue.edu']
+MANAGER_EMAIL = ['huang_yutong@outlook.com']
 
 # Application definition
 
@@ -55,7 +56,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'app.middleware.basicauth.BasicAuthMiddleware',
+    #'app.middleware.basicauth.BasicAuthMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -175,8 +176,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-
-
 # Django social authentication
 # http://python-social-auth.readthedocs.io/en/latest/configuration/
 AUTHENTICATION_BACKENDS = (
@@ -191,13 +190,14 @@ SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']
 SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
-
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['GOOGLE_LOGIN_KEY']
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['GOOGLE_LOGIN_SECRET']
 
 # Basic auth
 # https://djangosnippets.org/snippets/2468/
 
-BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
-BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
+#BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
+#BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
@@ -209,8 +209,8 @@ GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
 
 
 #Email system
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #For testing. Email will not be sent, only shown in console
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #For testing. Email will not be sent, only shown in console
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_PORT = os.environ['EMAIL_PORT']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
@@ -218,13 +218,10 @@ EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_USE_SSL = True
 SERVER_EMAIL = os.environ['EMAIL_HOST_USER']
 DEFAULT_FROM_EMAIL = os.environ['EMAIL_HOST_USER']
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 
 # Release settings
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_BROWSER_XSS_FILTER = True
+SECURE_SSL_REDIRECT = True
 
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['GOOGLE_LOGIN_KEY']
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['GOOGLE_LOGIN_SECRET']
