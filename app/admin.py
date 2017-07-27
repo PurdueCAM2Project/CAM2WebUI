@@ -34,22 +34,12 @@ class UserInline(admin.TabularInline):
 #actions
 def email_users(self, request, queryset):
     list = queryset.values('email','id')
-    email_selected = []
+    
     user_id_selected = []
-
     for l in list:
-        email_selected.append(l['email'])
         user_id_selected.append(l['id'])
 
-
-    email_selected = str(email_selected)
-    # remove empty email
-    email_selected = email_selected.replace('\'\',', '').replace('\'','')
-    # remove redundant char
-    email_selected = email_selected.replace('[', '').replace(']', '').replace('(\'', '').replace('\',)', '')
-
     #open a session and render the email_selected to admin_send_email view
-    request.session['email_selected'] = email_selected
     request.session['user_id_selected'] = user_id_selected
     return redirect('admin_send_email')
 email_users.short_description = "Email Users"
