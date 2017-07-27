@@ -10,7 +10,6 @@ urlpatterns = [
     url(r'^publications/$', app_views.publications, name='publications'),
     url(r'^privacy/$', app_views.privacy, name='privacy'),
     url(r'^ack/$', app_views.acknowledgement, name='acknowledgement'),
-    url(r'^contact/$', app_views.contact, name='contact'),
     url(r'^faqs/$', app_views.faqs, name='faqs'),
     url(r'^terms/$', app_views.terms, name='terms'),
     url(r'^profile/$', app_views.profile, name='profile'),
@@ -25,4 +24,10 @@ urlpatterns = [
     url(r'^email_confirmation_invalid/$', app_views.email_confirmation_invalid, name='email_confirmation_invalid'),
     url(r'^account_activated/$', app_views.account_activated, name='account_activated'),
 
+    url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
+    url(r'^password_reset_email_sent/$', auth_views.password_reset_done, name='password_reset_done'),
+    url(r'^password_reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        auth_views.password_reset_confirm, name='password_reset_confirm'),
+    url(r'^password_reset/complete/$', auth_views.password_reset_complete, name='password_reset_complete'),
+    #url(r'^system_error/$', app_views.system_error, name = 'system_error'),
 ]

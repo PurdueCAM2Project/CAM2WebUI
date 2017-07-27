@@ -1,18 +1,19 @@
 {% extends "app/base.html" %}
+{% block title %}Cameras{% endblock %}
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static "app/css/cameras.css " %}">
+<link rel="stylesheet" href="{% static "app/css/cameras.css" %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
 {% endblock %}
 {% block content %}
 <div class="container">
   <br>
-  <div class="row">
-    <div class="col-xs-4">
+  <div class="row sel-box">
+    <div class="col-xs-12 col-md-4">
       <form>
         <div class="form-group">
-          <label for="country">Country (select one):</label>
-          <select class="form-control" id="country">
-            <option value="" selected="selected"> - All - </option>
+            <label class="control-label" for="country" align="left">Country (select one or multiple):</label>
+            <select class="form-control" id="country" multiple="multiple" style="height: 28px;">
             <option value="USA">United States</option>
             <option value="AF">Afghanistan</option>
             <option value="AX">Åland Islands</option>
@@ -23,7 +24,6 @@
             <option value="AO">Angola</option>
             <option value="AI">Anguilla</option>
             <option value="AQ">Antarctica</option>
-            <option value="AG">Antigua and Barbuda</option>
             <option value="AR">Argentina</option>
             <option value="AM">Armenia</option>
             <option value="AW">Aruba</option>
@@ -183,7 +183,6 @@
             <option value="OM">Oman</option>
             <option value="PK">Pakistan</option>
             <option value="PW">Palau</option>
-            <option value="PS">Palestinian Territory, Occupied</option>
             <option value="PA">Panama</option>
             <option value="PG">Papua New Guinea</option>
             <option value="PY">Paraguay</option>
@@ -266,37 +265,40 @@
         </div>
       </form>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-12 col-lg-4">
       <form>
         <div class="form-group">
-          <label for="state">States (select one):</label>
-          <select class="form-control" id="state"></select>
+          <label class="control-label" for="state" align="left">States (select one or multiple):</label>
+          <select class="form-control" id="state" multiple="multiple" style="height: 28px;"></select>
         </div>
       </form>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-12 col-lg-4">
       <form>
-        <div class="form-group">
-          <label for="city">City (select one):</label>
-          <select class="form-control" id="city"></select>
+        <div class="form-group" >
+          <label class="control-label" for="city" align="left">City (select one or multiple):</label>
+          <select class="form-control" id="city" multiple="multiple" style="height: 28px;"></select>
         </div>
       </form>
     </div>
-
   </div>
-  <br>
-  <div id="mapCanvas"></div></div>
-  <div id="FTquery2"></div>
-  <div id="sidebar" style="width:300px;height:600px; overflow:auto"></div>
-  <div id="dropdown_menu"></div>
-  <div id="ft-data"></div>
+  <div id="mapCanvas"></div>
+</div>
 
 {% endblock %}
 {% block scripts %}
-  <script async defer type="text/javascript" src="https://maps.google.com/maps/api/js?v=3&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=initialize"></script>
-  <script src="{% static "app/js/cameras.js" %}"></script>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  <script type="text/javascript">
+<script src="{% static "app/js/cameras.js" %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script async defer type="text/javascript" src="https://maps.google.com/maps/api/js?v=3&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=initialize"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
     google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
-  </script>
+</script>
+<script type="text/javascript">
+    $("#country").select2();
+    $("#state").select2();
+    $("#city").select2();
+</script>
+
 {% endblock %}

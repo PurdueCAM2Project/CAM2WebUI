@@ -1,3 +1,8 @@
 #mapCanvas {
+  width: 100%;
   height: 500px;
+}
+
+.sel-box {
+  margin-bottom: 10px;
 }

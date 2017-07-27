@@ -1,0 +1,33 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}Email sent{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/login.css " %}">
+{% endblock %}
+{% block content %}
+<div class="top-content">
+  <div class="inner-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <div class="form-box">
+            <div class="form-top">
+              <div class="form-top-left">
+                <h4 id="emailconfirm">Email Successfully sent</h4>
+              </div>
+              <div class="form-top-right"> <i class="fa fa-key"></i> </div>
+            </div>
+            <div class="form-bottom">
+                <p>Thank you for your message. <br>
+                We will read it as soon as possible!</p>
+                <p><a style="color: deepskyblue" href="/">Go back to home page</a></p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

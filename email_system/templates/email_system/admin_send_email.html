@@ -1,0 +1,86 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}Email Users{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static "email_system/css/admin_send_email.css" %}">
+{% endblock %}
+{% block content %}
+<div class="top-content">
+  <div class="inner-bg">
+    <div class="container">
+      <div class="row">
+          <a style="color: blue" href="/admin/auth/user/">Go back to User administration</a>
+        <h3>Email Users</h3>
+      </div>
+        {% if messages %}
+        <ul style="color: red" class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+      <div class="form-bottom">
+      <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field is form.email %}
+                {{ field.label_tag }}<br>
+                <input type="text" style="width: 100%" name="{{ form.email.name }}" value="{{ email_selected }}" />
+            {% else %}
+                {{ field.label_tag }}<br>
+                {{ field }}<br>
+            {% endif %}
+            {% if field.help_text %}
+                <p style="color: grey">{{ field.help_text }}</p>
+            {% endif %}
+            {% for error in field.errors %}
+                <p id="emailerror" style="color: red">{{ error }}</p>
+            {% endfor %}
+
+        {% endfor %}
+        <button type="submit" name="sendemail" class="btn">Send</button>
+        <br>
+        <br>
+        <div class="infoTable">
+            <div class="emailCol">
+                <table cellspacing="2" style="width:100%; float: left">
+                    <tr><th>Email</th></tr>
+                    {% for email in email_table %}
+                    <tr>
+                        {% if email.email%}
+                            <td>{{ email.email }},</td>
+                        {% else %}
+                            <td>None,</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+            <div class="infoCol">
+                <table style="width:100%; float: left">
+                <tr>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date Joined</th>
+                </tr>
+
+                {% for user in users %}
+                    <tr>
+                    {% for field in user %}
+                        <td>{{ field }}</td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+
+                </table>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

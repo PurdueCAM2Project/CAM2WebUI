@@ -1,4 +1,5 @@
 {% extends "app/base.html" %}
+{% block title %}CAM²{% endblock %}
 {% load static %}
 {% block css %}
 <link rel="stylesheet" href="{% static "app/css/index.css" %}">
@@ -11,60 +12,77 @@
      <h2>the Continuous Analysis of Many CAMeras</h2>
   </div>
 </div>
-<div class="container main-content">
-  <hr class="divide-divider">
-  <div class="row divide">
-    <div class="col-sm-6">
-      <h2 class="divide-heading">What is CAM2?</h2>
-      <p class="lead">
-        the Continuous Analysis of Many CAMeras
-        <br>A system for analyzing streaming data built by a team of Purdue University researchers.
-      </p>
-    </div>
-    <div class="col-sm-6">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/jtoQ5eB-GCE?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"></iframe>
-       </div>
-    </div>
-  </div>
-  <hr class="divide-divider">
-  <div class="row divide">
-    <div class="col-sm-6 col-sm-push-6">
-      <h2 class="divide-heading">CAM² Park Cam</h2>
-      <p class="lead">
-        Detect wildlife patterns.
-        <br>Count the number of people at a specific attraction.
-      </p>
-    </div>
-    <div class="col-sm-6 col-sm-pull-6">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OYksWrQJOpQ?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"></iframe>
-       </div>
-    </div>
-  </div>
-  <hr class="divide-divider">
-  <div class="row divide">
-    <div class="col-sm-6">
-      <h2 class="divide-heading">CAM² Event Cam</h2>
-      <p class="lead">Event cam gives a general overview of the CAM² system and shows what our system is capable of doing.</p>
-    </div>
-    <div class="col-sm-6">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/pdT4bksL8y8?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"></iframe>
+<div class="main-content">
+  <div class="row divide" style="background-color: #F1F1F1; padding-top: 50px;
+  padding-bottom: 50px;">
+    <div style="width: 80%; margin: auto">
+      <div class="col-sm-5">
+        <h2 class="divide-heading">What is CAM2?</h2>
+        <p class="lead">          
+          <ul class="list-unstyled">
+            <li><span style="padding:10px" class="fa fa-camera-retro"></span>the Continuous Analysis of Many CAMeras</li>
+            <li><span style="padding:10px" class="fa fa-group"></span>A system for analyzing streaming data built by a team of Purdue University researchers.</li>
+          </ul>
+        </p>
+      </div>
+      <div class="col-sm-5 col-sm-push-2">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/jtoQ5eB-GCE?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"></iframe>
+         </div>
       </div>
     </div>
   </div>
   <hr class="divide-divider">
   <div class="row divide">
-    <div class="col-sm-6  col-sm-push-6">
-      <h2 class="divide-heading">CAM² City Cam</h2>
-      <p class="lead">CAM² has cameras in cities, in addition to traffic cameras, and we can do many different analyses on those images.
-        Mainly we can detect different activities in the cities during the day.
-      </p>
+    <div style="width: 80%; margin: auto">
+      <div class="col-sm-5 col-sm-push-7">
+        <h2 class="divide-heading">CAM² Park Cam</h2>
+        <p class="lead">
+          <ul class="list-unstyled">
+            <li><span style="padding:10px" class="fa fa-paw"></span>Detect wildlife patterns.</li>
+            <li><span style="padding:10px" class="fa fa-male"></span>Count the number of people at a specific attraction.</li>
+          </ul>
+        </p>
+      </div>
+      <div class="col-sm-5 col-sm-pull-5">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OYksWrQJOpQ?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"></iframe>
+         </div>
+      </div>
     </div>
-    <div class="col-sm-6 col-sm-pull-6">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Y9JwapBTzG0?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"></iframe>
+  </div>
+  <hr class="divide-divider">
+  <div class="row divide" style="background-color: #F1F1F1; padding-top: 50px;
+  padding-bottom: 50px;">
+    <div style="width: 80%; margin: auto">
+      <div class="col-sm-5">
+        <h2 class="divide-heading">CAM² Event Cam</h2>
+        <ul class="list-unstyled">
+            <li><span style="padding:10px" class="fa fa-camera"></span>Give a general overview of the CAM² system</li>
+            <li><span style="padding:10px" class="fa fa-video-camera"></span>Show what our system is capable of doing</li>
+        </ul>
+      </div>
+      <div class="col-sm-5 col-sm-push-2">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/pdT4bksL8y8?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="divide-divider">
+  <div class="row divide">
+    <div style="width: 80%; margin: auto">
+      <div class="col-sm-5  col-sm-push-7">
+        <h2 class="divide-heading">CAM² City Cam</h2>
+        <ul class="list-unstyled">
+            <li><span style="padding:10px" class="fa fa-line-chart"></span>Do many different analyses on those images</li>
+            <li><span style="padding:10px" class="fa fa-pie-chart"></span>Detect different activities in the cities during the day</li>
+        </ul>
+      </div>
+      <div class="col-sm-5 col-sm-pull-5">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Y9JwapBTzG0?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"></iframe>
+        </div>
       </div>
     </div>
   </div>

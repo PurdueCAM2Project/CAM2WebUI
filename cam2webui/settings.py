@@ -17,9 +17,6 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR =  os.path.dirname(PROJECT_ROOT)
-import sys
-
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -36,11 +33,17 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
 ]
-ADMINS = [('Yutong', 'huang_yutong@outlook.com')]
+
+# Receive error log
+ADMINS = [('Yutong', 'huang_yutong@outlook.com'),]
+
+# Receive user feedback
+MANAGER_EMAIL = ['huang_yutong@outlook.com']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'email_system',
     'app.apps.AppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -53,7 +56,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
- #   'app.middleware.basicauth.BasicAuthMiddleware',
+    #'app.middleware.basicauth.BasicAuthMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -93,6 +96,7 @@ STATIC_URL = '/static/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'app/static/app'),
+    os.path.join(BASE_DIR, 'email_system/static/email_system'),
 )
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
@@ -137,8 +141,12 @@ if 'test' in sys.argv:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+    GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_TEST_PRIVATE_KEY']
+
 else:
     DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+    GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
+
 
 
 # Password validation
@@ -182,7 +190,8 @@ SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']
 SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
-
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['GOOGLE_LOGIN_KEY']
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['GOOGLE_LOGIN_SECRET']
 
 # Basic auth
 # https://djangosnippets.org/snippets/2468/
@@ -200,7 +209,7 @@ GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
 
 
 #Email system
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #For testing. Email will not be sent, only shown in console
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_PORT = os.environ['EMAIL_PORT']
@@ -209,13 +218,10 @@ EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_USE_SSL = True
 SERVER_EMAIL = os.environ['EMAIL_HOST_USER']
 DEFAULT_FROM_EMAIL = os.environ['EMAIL_HOST_USER']
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 
 # Release settings
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_BROWSER_XSS_FILTER = True
+SECURE_SSL_REDIRECT = True
 
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['GOOGLE_LOGIN_KEY']
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['GOOGLE_LOGIN_SECRET']
