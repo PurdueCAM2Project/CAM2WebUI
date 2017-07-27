@@ -221,7 +221,7 @@ DEFAULT_FROM_EMAIL = os.environ['EMAIL_HOST_USER']
 
 # Release settings
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_BROWSER_XSS_FILTER = True
-SECURE_SSL_REDIRECT = True
+#SECURE_SSL_REDIRECT = True
 
