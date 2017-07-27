@@ -3,14 +3,14 @@
 {% load widget_tweaks %}
 {% block title %}Email Users{% endblock %}
 {% block css %}
-<link rel="stylesheet" href="{% static "email_system/css/admin_send_email.css " %}">
+<link rel="stylesheet" href="{% static "email_system/css/admin_send_email.css" %}">
 {% endblock %}
 {% block content %}
 <div class="top-content">
   <div class="inner-bg">
     <div class="container">
       <div class="row">
-          <a style="color: blue" href="/admin/user/">Go back to User administration</a>
+          <a style="color: blue" href="/admin/auth/user/">Go back to User administration</a>
         <h3>Email Users</h3>
       </div>
         {% if messages %}

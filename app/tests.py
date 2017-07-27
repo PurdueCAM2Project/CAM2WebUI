@@ -68,9 +68,33 @@ class AddTestCase(StaticLiveServerTestCase):
 		print("start first test")
 		pass
 
+	def test_profile_admin(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login/'
+		browser.get(url)
+		un = browser.find_element_by_name('username')
+		un.send_keys("admin")
+		pw = browser.find_element_by_name('password')
+		pw.send_keys("admin")
+		browser.find_element_by_name('submitbutton').click()
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
+		browser.get(url)
+		WebDriverWait(browser, 10).until(
+		    EC.text_to_be_present_in_element(
+			(By.ID,"Admin"),
+		        "Admin Page"
+		    )
+		)
+		browser.find_element_by_name('appname').send_keys("apple")
+		browser.find_element_by_name('add').click()
+		WebDriverWait(browser, 10).until(
+		    EC.text_to_be_present_in_element(
+			(By.ID,"new_app"),
+		        "apple"
+		    )
+		)
 	
 	# Test if page title is Cam2
-
 	def test_connection(self):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/'
@@ -110,7 +134,18 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser.get(url)
 		assert 'Publications' in browser.title
 
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset'
+		browser.get(url)
+		print(self.username, self.password)
+		assert 'Forgot Password?' in browser.title
 
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset/complete'
+		browser.get(url)
+		assert 'Password Reset Completed' in browser.title
+
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset_email_sent'
+		browser.get(url)
+		assert 'Password Reset Email Sent' in browser.title
 
 
 	def test_db_conneciton(self):
@@ -151,8 +186,6 @@ class AddTestCase(StaticLiveServerTestCase):
 
 		browser.find_element_by_name('registerbutton').click()
 
-		#test if register can work
-
 		WebDriverWait(browser, 10).until(
 		    EC.text_to_be_present_in_element(
 		        (By.ID, 'emailconfirm'),
@@ -166,54 +199,53 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser.get(url)
 
 
-		x = browser.find_element_by_name('username')  # Find the search box
+		x = browser.find_element_by_name('username') 
 		x.send_keys(self.test_username)
 		y = browser.find_element_by_name('password')
 		y.send_keys(self.test_password)
 		browser.find_element_by_name('submitbutton').click()
-
-		WebDriverWait(browser, 5).until(
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
+		browser.get(url)
+		browser.find_element_by_name('appname').send_keys("apples")
+		browser.find_element_by_name('add').click()
+		WebDriverWait(browser, 10).until(
 		    EC.text_to_be_present_in_element(
-		        (By.ID, 'someprofile'),
-		        self.test_username + '\'s Profile'
+			(By.ID,"new_app"),
+		        "apples"
 		    )
 		)
+	def test_Login_Register_2(self):		
+		browser = self.selenium		
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'		
 
-
-	def test_Login_Register_2(self):
-		browser = self.selenium
-		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'
-
-		browser.get(url)
-		x = browser.find_element_by_name('username')  # Find the search box
+		browser.get(url)		
+		x = browser.find_element_by_name('username')  # Find the search box		
 		x.send_keys('wrongusername')
 		y = browser.find_element_by_name('password')
-		y.send_keys('wrongpassword')
+		y.send_keys('wrongpassword')	
 		browser.find_element_by_name('submitbutton').click()
+		
+		error = browser.find_element(By.ID,value="loginerror")	
+		
+		assert error.get_attribute("innerHTML") == 'Please enter a correct username and password. Note that both fields may be case-sensitive.'		
+		
+		
+	def test_Login_Register_3(self):		
+		browser = self.selenium		
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'		
+		browser.get(url)		
 
-		error = browser.find_element(By.ID,value="loginerror")
+		un = browser.find_element_by_name('username')		
+		un.send_keys(self.test_username)		
 
-		assert error.get_attribute("innerHTML") == 'Please enter a correct username and password. Note that both fields may be case-sensitive.'
+		fn = browser.find_element_by_name('first_name')		
+		fn.send_keys('Test')		
 
+		ln = browser.find_element_by_name('last_name')		
+		ln.send_keys('Case')		
 
-
-	def test_Login_Register_3(self):
-		browser = self.selenium
-		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
-		browser.get(url)
-
-		un = browser.find_element_by_name('username')
-		un.send_keys(self.test_username)
-
-		fn = browser.find_element_by_name('first_name')
-		fn.send_keys('Test')
-
-		ln = browser.find_element_by_name('last_name')
-		ln.send_keys('Case')
-
-		email = browser.find_element_by_name('email')
+		email = browser.find_element_by_name('email')		
 		email.send_keys('test@case.net')
-
 
 		p = browser.find_element_by_name('password1')
 		cp = browser.find_element_by_name('password2')
@@ -222,10 +254,9 @@ class AddTestCase(StaticLiveServerTestCase):
 		cp.send_keys(self.test_password + '123')
 
 		browser.find_element_by_name('registerbutton').click()
-
-
+		
 		error = browser.find_element(By.ID,value="registererror")
-
+		
 		assert error.get_attribute("innerHTML") == 'The two password fields didn\'t match.'
 
 
@@ -494,3 +525,36 @@ class AddTestCase(StaticLiveServerTestCase):
 		error5 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[4]/ul/li")
 		assert error3.get_attribute("innerHTML") == 'Invalid URL for this field'
 
+	def test_forgot_password(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset'
+		browser.get(url)
+
+		email = browser.find_element_by_name('email')
+		email.send_keys('test@case.net')  # input email
+		browser.find_element_by_name('submitEmail').click()
+
+		WebDriverWait(browser, 10).until(
+			EC.text_to_be_present_in_element(
+				(By.ID, 'EmailSent'),
+				'Password reset email sent'
+			)
+		)
+	'''
+	def test_admin_emailing(self):
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/admin/'
+		browser.get(url)
+		un = browser.find_element_by_name('username')
+		un.send_keys("admin")
+		pw = browser.find_element_by_name('password')
+		pw.send_keys("admin")
+		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/form[@id='login-form']/div[@class='submit-row']/input[@value='Log in']").click()
+		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/div[@class='app-auth module']/tbody/tr[@class='model-user']/th").click()
+		#select users
+		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/div[@id='changelist']/form[@id='changelist-form']/div[@class='results']/tbody/tr[@class='row1']/td/input[@class='action-select']").click()
+		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/div[@id='changelist']/form[@id='changelist-form']/div[@class='actions']/select/option[@value='email_users']").click()
+		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/div[@id='changelist']/form[@id='changelist-form']/div[@class='actions']/button").click()
+		
+		
+	'''

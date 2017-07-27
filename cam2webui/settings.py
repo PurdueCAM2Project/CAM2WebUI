@@ -29,9 +29,15 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-ADMINS = [('Yutong', 'huang_yutong@outlook.com')]
+
+# Receive error log
+#ADMINS = [('Yutong', 'huang_yutong@outlook.com'),]
+
+# Receive user feedback
+MANAGER_EMAIL = ['duan37@purdue.edu']
 
 # Application definition
 
@@ -89,6 +95,7 @@ STATIC_URL = '/static/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'app/static/app'),
+    os.path.join(BASE_DIR, 'email_system/static/email_system'),
 )
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'

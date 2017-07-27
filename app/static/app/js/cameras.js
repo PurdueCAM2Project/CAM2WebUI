@@ -21,6 +21,11 @@
     //a variable to track whether state or city data has been queried from fusiontable
     var region = '';
 
+    var minZoom = 2;
+    var center_of_world, maxNorthEastLat, maxNorthEastLng, maxSouthWestLat, maxSouthWestLng;
+    var countries_viewport;
+
+
     //Initialize a layer on map with markers for all cameras in database
     //Add DOM listeners for inputs on cameras html page
     //
@@ -29,6 +34,7 @@
     window.initialize = function () {
 
         google.maps.visualRefresh = true;
+        center_of_world = new google.maps.LatLng(0, 0);
 
         var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
             (navigator.userAgent.match(/(iPod|iPhone|iPad|BlackBerry|Windows Phone|iemobile)/));
@@ -40,10 +46,12 @@
         var mapDiv = document.getElementById('mapCanvas');
 
         var map = new google.maps.Map(mapDiv, {
-            center: new google.maps.LatLng(40.363489, -98.832955),
-            zoom: 4,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
+
+        center_on_world(map);
+
+        map.setOptions({ minZoom: minZoom});
 
         var layer = new google.maps.FusionTablesLayer({
             map: map,
@@ -70,6 +78,8 @@
             updateMap_City(layer);
         }));
 
+        initialize_countries_viewport();
+
         if (isMobile) {
             var legend = document.getElementById('googft-legend');
             var legendOpenButton = document.getElementById('googft-legend-open');
@@ -89,22 +99,25 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
     }
+    
+    function initialize_countries_viewport() {
+        $.ajax({
+            'async': false,
+            'global': false,
+            'url': "/static/app/js/countries_viewport.json",
+            'dataType': "json",
+            'success': function (data) {
+                countries_viewport = data;
+            }
+        });
+    }
 
     function updateMap_Country(layer, map) {
         var country = getdata_dropdown("#country");
-        var countrylist = $("#country").select2('val');
 
         if (country != "('undefined')") {
             updateLayer(layer, "'Nation' IN " + country);
-
-            var countryname = $("#country").select2('data')[0].text;
-
-            //if only one country then recenter on it
-            if (countrylist.length == 1)
-                center_on_place(countryname, map);
-            else
-                center_on_world(map);
-
+            center_on_selected_countries(map);
             getStateNames();
         }
         else {
@@ -173,22 +186,51 @@
 
     //using geocoder to center map on country selected - see link below to for documentation and example
     //https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?csw=1
-    function center_on_place(place_name, map) {
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({'address': place_name}, function (results, status) {
-            while (status != google.maps.GeocoderStatus.OK) {
-            }
-            map.setCenter(results[0].geometry.location);
-            map.fitBounds(results[0].geometry.viewport);
-        });
+    function center_on_selected_countries(map) {
+        var selected_countries = $("#country").select2('val');
+
+        //initiliaze with corners of first country
+        var curr_country = countries_viewport[selected_countries[0]];
+        maxNorthEastLat = curr_country.northeast.lat;
+        maxNorthEastLng = curr_country.northeast.lng;
+        maxSouthWestLat = curr_country.southwest.lat;
+        maxSouthWestLng = curr_country.southwest.lng;
+
+
+        for (var i = 1; i < selected_countries.length; i++) {
+            var country = selected_countries[i];
+            curr_country = countries_viewport[country];
+
+            var currNorthEastLat = curr_country.northeast.lat;
+            var currNorthEastLng = curr_country.northeast.lng;
+            var currSouthWestLat = curr_country.southwest.lat;
+            var currSouthWestLng = curr_country.southwest.lng;
+
+            if (maxNorthEastLat < currNorthEastLat)
+                maxNorthEastLat = currNorthEastLat;
+
+            if (maxNorthEastLng < currNorthEastLng)
+                maxNorthEastLng = currNorthEastLng;
+
+            if (maxSouthWestLat > currSouthWestLat)
+                maxSouthWestLat = currSouthWestLat;
+
+            if (maxSouthWestLng > currSouthWestLng)
+                maxSouthWestLng = currSouthWestLng;
+        }
+
+        var bounds = new google.maps.LatLngBounds();
+
+        bounds.extend(new google.maps.LatLng(maxNorthEastLat, maxNorthEastLng));
+        bounds.extend(new google.maps.LatLng(maxSouthWestLat, maxSouthWestLng));
+
+        map.fitBounds(bounds);
     }
 
 
     function center_on_world(map) {
-        var center_of_world = new google.maps.LatLng(0, 0);
-        var maxZoom = 2;
         map.setCenter(center_of_world);
-        map.setZoom(maxZoom);
+        map.setZoom(minZoom);
     }
 
     function set_dropdown_null(dropdown_name) {

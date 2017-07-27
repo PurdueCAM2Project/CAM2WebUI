@@ -3,7 +3,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
-from cam2webui.settings import EMAIL_HOST_USER
+from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 from email_system.forms import MailForm, ContactForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.mail import send_mass_mail, send_mail
@@ -12,7 +12,11 @@ from django.core.mail import send_mass_mail, send_mail
 def admin_send_email(request):
     email_table = (User.objects.values('email').order_by('date_joined')) #Obtaining a list of users' emails outside users info table for easy copying and pasting.
     users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined').order_by('date_joined') #Obtaining a list of info required from user
-    email_selected = request.session['email_selected'] #obtain email_selected from session
+    #obtain email selected by admin from session, or none
+    email_selected = request.session.get('email_selected', None)
+    if email_selected == None:
+        email_selected = ''
+    #email_selected = request.session['email_selected']
     if request.method == 'POST':
         form = MailForm(request.POST)
         if form.is_valid():
@@ -79,7 +83,7 @@ def contact(request):
             #get info from form
             name = form.cleaned_data['name']
             from_email = form.cleaned_data['from_email']
-            subject = form.cleaned_data['subject']
+            subject = '[CAM2 WebUI User Feedback] ' + form.cleaned_data['subject']
             message = form.cleaned_data['message']
             #add info to email template
             content = render_to_string('email_system/contact_email_template.html', {
@@ -87,10 +91,7 @@ def contact(request):
                 'from_email': from_email,
                 'message': message,
             })
-            try:
-                send_mail(subject, content, from_email, [EMAIL_HOST_USER])#email admin
-            except:
-                messages.error(request, 'Email sent failed.')  # error message
+            send_mail(subject, content, EMAIL_HOST_USER, MANAGER_EMAIL)#email admin
 
             return redirect('email_sent')
     else:
