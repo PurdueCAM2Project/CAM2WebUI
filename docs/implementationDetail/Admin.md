@@ -55,7 +55,7 @@ for obj in queryset:
         writer.writerow(required_info)
     return response
 ```
-At last, give this action a name:
+At last, give this action a name outside function(no indentation):
 ```
 export_csv.short_description = "Export selected user as csv"
 ```
