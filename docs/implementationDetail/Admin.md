@@ -1,5 +1,12 @@
 # Admin
-## 1. Export User data to CSV
+## 1. Send Email from Admin
+### Goal
+Allow admin to send email to specific users. procedure: Log in as admin, and in the main page, go to Users， click the checkbox to choose recipient and select Email Users, then click Go to go to a web page that admin can type in subject and message.
+
+### Approach
+See the documentation [here](https://purduecam2project.github.io/CAM2WebUI/implementationDetail/Email.html#administrator-emailing).
+  
+## 2. Export User Data to CSV
 ### Goal
 To create an admin action that download a CSV file containing info of selected user(s).
   
