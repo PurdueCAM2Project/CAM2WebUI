@@ -2,13 +2,15 @@
 ## 1. Admin action of Send Email from Admin
 ### Goal
 Allow admin to send email to specific users. 
-procedure: 1.Log in as admin, and in the main page, go to Users. 
+procedure: 
   
-           2.Using checkbox to choose recipient
+1.Log in as admin, and in the main page, go to Users. 
+  
+2.Using checkbox to choose recipient
              
-           3.Select "Email Users" in action
+3.Select "Email Users" in action
              
-           4.Click Go to go to a web page that admin      input in subject and message.
+4.Click Go to go to a web page that admin      input in subject and message.
 
 ### Approach
 We will add a new action to User admin called `email user` to redirect the page to our `admin_send_email` page, and pass the email of selected user to the email input in `admin_send_email` page.
