@@ -4,7 +4,8 @@
 To create an admin action that download a CSV file containing info of selected user(s).
   
 ### UserAdmin class and Admin action
-[Django Documentation](https://docs.djangoproject.com/en/1.11/howto/outputting-csv/)
+[Django Documentation on "Outputting CSV with Django"](https://docs.djangoproject.com/en/1.11/howto/outputting-csv/) 
+  
 To see how to add actions to Model and how to modify`UserAdmin`,
 see [here](https://purduecam2project.github.io/CAM2WebUI/implementationDetail/Email.html#admin-action).
   
