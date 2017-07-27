@@ -25,7 +25,8 @@ BASE_DIR =  os.path.dirname(PROJECT_ROOT)
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = [
     'www.cam2project.net',
@@ -56,7 +57,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    #'app.middleware.basicauth.BasicAuthMiddleware',
+    'app.middleware.basicauth.BasicAuthMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -196,8 +197,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['GOOGLE_LOGIN_SECRET']
 # Basic auth
 # https://djangosnippets.org/snippets/2468/
 
-#BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
-#BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
+BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
+BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
@@ -222,6 +223,6 @@ DEFAULT_FROM_EMAIL = os.environ['EMAIL_HOST_USER']
 # Release settings
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_SSL_REDIRECT = True
+#SECURE_BROWSER_XSS_FILTER = True
+#SECURE_SSL_REDIRECT = True
 

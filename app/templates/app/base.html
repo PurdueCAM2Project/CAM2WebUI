@@ -62,8 +62,13 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="https://cam2.ecn.purdue.edu/members/register">Register</a></li>
-          <li><a href="https://cam2.ecn.purdue.edu/members/login">Sign In</a></li>
+            {% if user.is_authenticated %}
+                <li id="someprofile"><a href="/profile/">{{request.user.username}}'s Profile </a></li>
+                <li><a href="/logout/">Logout</a></li>
+            {% else %}
+                <li><a href="/login/">Login</a></li>
+                <li><a href="/register/">Register</a></li>
+            {% endif %}
         </ul>
       </div>
     </div>
