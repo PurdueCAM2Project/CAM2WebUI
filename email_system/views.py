@@ -10,13 +10,16 @@ from django.core.mail import send_mass_mail, send_mail
 
 @staff_member_required
 def admin_send_email(request):
-    email_table = (User.objects.values('email').order_by('date_joined')) #Obtaining a list of users' emails outside users info table for easy copying and pasting.
-    users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined').order_by('date_joined') #Obtaining a list of info required from user
-    #obtain email selected by admin from session, or none
-    email_selected = request.session.get('email_selected', None)
-    if email_selected == None:
-        email_selected = ''
-    #email_selected = request.session['email_selected']
+    #obtain user id list from session, or none
+    user_selected = request.session.get('user_id_selected', None)
+    #get a list of User objects
+    user_info=[]
+    if user_selected is not None:
+        for i in user_selected:
+            obj=User.objects.get(id=i)
+            obj_info=[obj.is_staff, obj.username, obj.email, obj.first_name, obj.last_name, obj.date_joined]
+            user_info.append(obj_info)
+
     if request.method == 'POST':
         form = MailForm(request.POST)
         if form.is_valid():
@@ -46,8 +49,25 @@ def admin_send_email(request):
                                 [user.email],
                             ))
                     send_mass_mail(mass_email, fail_silently=False)
-                else: #if email_all_users is False, send email to address that the admin typed in
+                else: #if email_all_users is False, send email to users in the user id list, and address that the admin typed in
                     mass_email = []
+                    #for user id list
+                    for i in user_selected:
+                        obj = User.objects.get(id=i)
+                        if obj.email is not '':
+                            username = obj.username  # will be used in template
+                            template = render_to_string('email_system/admin_send_email_template.html', {
+                                'username': username,
+                                'message': message,
+                                'domain': current_site.domain,
+                            })
+                            mass_email.append((
+                                subject,
+                                template,
+                                EMAIL_HOST_USER,
+                                [obj.email],
+                            ))
+                    # for additional recipient
                     for e in email: #attach template one by one to make sure only one email shows up in the recipient list,
                                     #if not, recipients in the same recipient_list will all see the other addresses in the email messages’ “To:” field
                         username = e #will be used in template
@@ -73,8 +93,7 @@ def admin_send_email(request):
             messages.error(request, 'Email sent failed.')
     else:
         form = MailForm()
-    return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': users, 'email_table': email_table, 'email_selected': email_selected,})
-
+    return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': user_info})
 
 def contact(request):
     if request.method == 'POST':
