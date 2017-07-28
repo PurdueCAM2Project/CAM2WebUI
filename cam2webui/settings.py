@@ -26,7 +26,7 @@ IS_RPODUCTION_SITE = bool(os.environ['IS_PRODUCTION_SITE'] == "True")
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = IS_RPODUCTION_SITE
+DEBUG = not IS_RPODUCTION_SITE
 
 ALLOWED_HOSTS = [
     'www.cam2project.net',
