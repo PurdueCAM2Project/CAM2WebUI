@@ -1,5 +1,55 @@
 # Admin
-## 1. Admin action of Send Email from Admin
+## 1. Redefine User Admin
+In order to add more admin actions related to User object, we need to redefine the User Admin model.
+### Inline
+model inline combines 2 model so that info from RegisterUser can be modified and displayed with user info
+first, create a class for inline model in `app/admin.py`
+```
+class UserInline(admin.TabularInline):
+    model = RegisterUser
+```
+More info on [RegisterUser model](https://purduecam2project.github.io/CAM2WebUI/implementationDetail/User.html#creating-a-model).
+We need to redefine a `UserAdmin` to do the modification. In list_display, we choose the field we want to see in admin page.
+And add the action to `actions` :
+```
+class UserAdmin(admin.ModelAdmin):
+    list_display = (
+        'username',
+        'email',
+        'first_name',
+        'last_name',
+        'department',
+        'organization',
+        'is_staff',
+        'date_joined',
+    )
+    inlines = [
+        UserInline,
+               ]
+    actions = []
+```
+The two field `department` and `organization` are from RegisterUser model, and we cannot display them directly. 
+  
+We will write them as callable or a string representing an attribute. See [Django Documentation](https://docs.djangoproject.com/en/1.11/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display).
+```
+    # callable that display info from RegisterUser
+    def department(self,user):
+        return "{}".format(RegisterUser.objects.get(user=user).department)
+    department.short_description = 'department'
+
+    def organization(self,user):
+        return "{}".format(RegisterUser.objects.get(user=user).organization)
+    organization.short_description = 'organization'
+```
+
+at last we unregister the previous `User` model provided by Django and register our `UserAdmin` model with the `User` model.
+```
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
+```
+For any action written for User, define the function before UserAdmin class.
+  
+## 2. Admin action of Send Email from Admin
 ### Goal
 Allow admin to send email to specific users. 
 procedure: 
@@ -10,60 +60,33 @@ procedure:
              
 3. Select "Email Users" in action
              
-4. Click "Go" to direct to a web page for admin to input subject and message.
+4. Click "Go" to direct to a web page for admin to input subject and message, and pass a list of user id through session.
 
 ### Approach
-We will add a new action to User admin called `email user` to redirect the page to our `admin_send_email` page, and pass the email of selected user to the email input in `admin_send_email` page.
+We will add a new action to User admin called `email user` to redirect the page to our `admin_send_email` page, and pass the id of selected user to `admin_send_email` page.
   
 In `app/admin.py`
 First we write the action. An admin action takes 3 parameters, self, request and queryset.
 The queryset contains every user object we selected under User admin page. 
 ```
 def email_users(self, request, queryset):
-    list = queryset.values_list('email')
-    email_selected = []
+    list = queryset.values('email','id')
+    
+    user_id_selected = []
     for l in list:
-        email_selected.append(l)
+        user_id_selected.append(l['id'])
 ```
-Since we want to automatically put the email of selected users to the input of admin_send_email page, we want to make it look pretty so that the email field in admin_send_email page can read the email.
- 
-Therefore we get the email and append them into a list, make it a string and remove the redundant brackets and empty value. 
-
-```
-email_selected = str(email_selected)
-# remove empty email
-email_selected = email_selected.replace('(\'\',),', '')
-# remove redundant char
-email_selected = email_selected.replace('[', '').replace(']', '').replace('(\'', '').replace('\',)', '')
-
-```
-At last we will use a `session` to pass the `email_selected`. And then, redirect admin to `admin_send_email page`
+we will then use a `request.session` ([Django Documentation](https://docs.djangoproject.com/en/1.11/topics/http/sessions/))
+to pass the `email_selected` and redirect admin to `admin_send_email` page:
 ```
 #open a session and render the email_selected to admin_send_email view
-request.session['email_selected'] = email_selected
-return redirect('admin_send_email')
+    request.session['user_id_selected'] = user_id_selected
+    return redirect('admin_send_email')
+email_users.short_description = "Email Users"
 ```
+Give this action a description shown in the action list when admin select actions. Note that it is called outside the function.
 
-After completing the action, We need to redefine a `UserAdmin` to add the action. In list_display, we choose the field we want to see in admin page.
-And add the action to `actions` :
-```
-class UserAdmin(admin.ModelAdmin):
-    list_display = (
-        'username',
-        'email',
-        'first_name',
-        'last_name',
-        'is_staff',
-        'date_joined',
-    )
-    actions = [email_users]
-
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
-```
-At last we need to unregister the User model because it is registered by default, and then reregister it with our`UserAdmin` class.
-
-## 2. Export User Data to CSV
+## 3. Export User Data to CSV
 ### Goal
 To create an admin action that download a CSV file containing info of selected user(s).
   
