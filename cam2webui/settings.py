@@ -47,8 +47,8 @@ try:
     EMAIL_PORT = os.environ['EMAIL_PORT']
     EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
     EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
-except KeyError:
-    print('Please Set Up Environment Variables.')
+except KeyError as e:
+    print('Lacking Environment Variables: ' + str(e))
     print('Visit https://purduecam2project.github.io/CAM2WebUI/basicSetup/localsite.html#exporting-config-vars for details')
     exit()
 
