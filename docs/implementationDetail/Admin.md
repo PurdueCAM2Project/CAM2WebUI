@@ -76,7 +76,7 @@ def email_users(self, request, queryset):
     for l in list:
         user_id_selected.append(l['id'])
 ```
-we will then use a `request.session` ([Django Documentation](https://docs.djangoproject.com/en/1.11/topics/http/sessions/))
+we will then use a "request.session](https://docs.djangoproject.com/en/1.11/topics/http/sessions/)"
 to pass the `email_selected` and redirect admin to `admin_send_email` page:
 ```
 #open a session and render the email_selected to admin_send_email view
@@ -85,6 +85,11 @@ to pass the `email_selected` and redirect admin to `admin_send_email` page:
 email_users.short_description = "Email Users"
 ```
 Give this action a description shown in the action list when admin select actions. Note that it is called outside the function.
+  
+Add this function to `actions` under UserAdmin model.
+```
+actions = [email_users]
+```
 
 ## 3. Export User Data to CSV
 ### Goal
@@ -141,8 +146,12 @@ More info on `RegisterUser`, see [here](https://purduecam2project.github.io/CAM2
         writer.writerow(required_info)
     return response
 ```
-At last, give this action a name outside function(no indentation):
+Give this action a name outside function(no indentation):
 ```
 export_csv.short_description = "Export selected user as csv"
+```
+Add this function to `actions` under UserAdmin model.
+```
+actions = [email_users, export_csv]
 ```
 
