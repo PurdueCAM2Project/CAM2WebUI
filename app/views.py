@@ -106,7 +106,7 @@ def register(request):
 
                 return redirect('email_confirmation_sent')
             else:
-                messages.error(request, 'Invalid reCAPTCHA. Please try again.')
+                messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
                 if 'test' in sys.argv:
                     sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
                 else:
