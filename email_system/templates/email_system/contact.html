@@ -18,6 +18,13 @@
           <div class="form-top-right"> <i class="fa fa-envelope"></i> </div>
         </div>
         <div class="form-bottom">
+          {% if messages %}
+            <ul style="color: red" class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+          {% endif %}
           <form id="contact-us" method="post" action="/email/contact/">
             {% csrf_token %}
             <div class="row">
@@ -31,6 +38,10 @@
                 <textarea name="message" id="message" class="textarea-lg" placeholder="Message"></textarea>
               </div>
               <div class="clearfix"></div>
+              <div class="clearfix"></div>
+              <div class="g-recaptcha pull-left recaptcha-btn" data-sitekey={{sitekey}}></div>
+              <div class="clearfix"></div>
+
               <div class="relative fullwidth col-xs-12">
                 <button type="submit" id="submit" name="submit" class="btn center-block">Send Message</button>
               </div>
@@ -45,4 +56,7 @@
     </div>
   </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src='https://www.google.com/recaptcha/api.js'></script>
 {% endblock %}
