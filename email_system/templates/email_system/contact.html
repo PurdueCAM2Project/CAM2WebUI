@@ -19,9 +19,9 @@
         </div>
         <div class="form-bottom">
           {% if messages %}
-            <ul style="color: red" class="messages">
+            <ul class="list-group">
                 {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                <li{% if message.tags %} class="list-group-item list-group-item-danger"{% endif %}>{{ message }}</li>
                 {% endfor %}
             </ul>
           {% endif %}
