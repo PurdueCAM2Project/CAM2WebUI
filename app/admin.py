@@ -27,7 +27,7 @@ class MemberAdmin(admin.ModelAdmin):
         
 
 """User Admin"""
-#combine 2 model so that info from RegisterUser will be displayed with user info
+#combine 2 model so that info from RegisterUser can be modified and displayed with user info
 class UserInline(admin.TabularInline):
     model = RegisterUser
 
