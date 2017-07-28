@@ -8,25 +8,52 @@ https://docs.djangoproject.com/en/1.10/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
-"""
 
-import os
-import dj_database_url
-import sys
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
+"""
+import os, sys, dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR =  os.path.dirname(PROJECT_ROOT)
-IS_RPODUCTION_SITE = bool(os.environ['IS_PRODUCTION_SITE'] == "True")
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+# Environment Variables Import
+try: 
+    # Does the site runs on production site or tested locally
+    IS_RPODUCTION_SITE = bool(os.environ['IS_PRODUCTION_SITE'] == "True")
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+    # Database URLS
+    DATABASE_URL = os.environ["DATABASE_URL"]
+    # Recaptcha Keys
+    if 'test' in sys.argv:
+        GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_TEST_PRIVATE_KEY']
+    else:
+        GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
+    # Development Site Protection
+    if not IS_RPODUCTION_SITE: 
+        BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
+        BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
+    # Github Auth
+    SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']
+    SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
+    # Google API KEY and Auth
+    GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
+    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['GOOGLE_LOGIN_KEY']
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['GOOGLE_LOGIN_SECRET']
+    # Email Smtp Settings
+    EMAIL_HOST = os.environ['EMAIL_HOST']
+    EMAIL_PORT = os.environ['EMAIL_PORT']
+    EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+    EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+except KeyError as e:
+    print('Lacking Environment Variables: ' + str(e))
+    print('Visit https://purduecam2project.github.io/CAM2WebUI/basicSetup/localsite.html#exporting-config-vars for details')
+    exit()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = IS_RPODUCTION_SITE
+DEBUG = not IS_RPODUCTION_SITE
 
 ALLOWED_HOSTS = [
     'www.cam2project.net',
@@ -43,7 +70,6 @@ ADMINS = [('Yutong', 'huang_yutong@outlook.com'),]
 MANAGER_EMAIL = ['huang_yutong@outlook.com']
 
 # Application definition
-
 INSTALLED_APPS = [
     'email_system',
     'app.apps.AppConfig',
@@ -68,6 +94,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
+# Basic auth
+# https://djangosnippets.org/snippets/2468/
+if not IS_RPODUCTION_SITE: 
+    MIDDLEWARE.extend(['app.middleware.basicauth.BasicAuthMiddleware'])
 
 ROOT_URLCONF = 'cam2webui.urls'
 
@@ -91,7 +121,6 @@ TEMPLATES = [
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATIC_URL = '/static/'
 # Extra places for collectstatic to find static files.
@@ -101,7 +130,6 @@ STATICFILES_DIRS = (
 )
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
 WSGI_APPLICATION = 'cam2webui.wsgi.application'
 
 # Logging
@@ -126,15 +154,7 @@ LOGGING = {
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': "django.db.backends.postgresql",
-        'client_encoding': 'UTF8',
-        'default_transaction_isolation': 'read committed'
-    }
-}
 # Update database configuration with $DATABASE_URL.
-DATABASE_URL = os.environ["DATABASE_URL"]
 if 'test' in sys.argv:
     DATABASES = {
         'default': {
@@ -142,11 +162,15 @@ if 'test' in sys.argv:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-    GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_TEST_PRIVATE_KEY']
-
 else:
+    DATABASES = {
+        'default': {
+            'ENGINE': "django.db.backends.postgresql",
+            'client_encoding': 'UTF8',
+            'default_transaction_isolation': 'read committed'
+        }
+    }
     DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
-    GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -173,13 +197,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Basic auth
-# https://djangosnippets.org/snippets/2468/
-if not IS_RPODUCTION_SITE: 
-    BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
-    BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
-    MIDDLEWARE.extend(['app.middleware.basicauth.BasicAuthMiddleware'])
-
 # Django social authentication
 # http://python-social-auth.readthedocs.io/en/latest/configuration/
 AUTHENTICATION_BACKENDS = (
@@ -196,25 +213,12 @@ SOCIAL_AUTH_LOGIN_ERROR_URL = '/register/'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/oauthinfo/'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
-# Github Auth
-SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']
-SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
-
-# Google API KEY and Auth
-GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['GOOGLE_LOGIN_KEY']
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['GOOGLE_LOGIN_SECRET']
-
 #Email system
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' if IS_RPODUCTION_SITE \
                 else 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = os.environ['EMAIL_HOST']
-EMAIL_PORT = os.environ['EMAIL_PORT']
-EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_USE_SSL = True
-SERVER_EMAIL = os.environ['EMAIL_HOST_USER']
-DEFAULT_FROM_EMAIL = os.environ['EMAIL_HOST_USER']
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Release settings
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
