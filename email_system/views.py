@@ -70,7 +70,7 @@ def admin_send_email(request):
                     # for additional recipient
                     for e in email: #attach template one by one to make sure only one email shows up in the recipient list,
                                     #if not, recipients in the same recipient_list will all see the other addresses in the email messages’ “To:” field
-                        username = e #will be used in template
+                        username = e #use email address for greeting for non-users
                         template = render_to_string('email_system/admin_send_email_template.html', {
                             'username': username,
                             'message': message,
