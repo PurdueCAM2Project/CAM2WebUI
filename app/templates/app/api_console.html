@@ -27,6 +27,36 @@
         </div>
     </div>
 </nav>
+
+
+
+<div id="Console" ng-controller="Console" class="ng-scope">
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-6 left-col">
+            <div class="row control-row">
+            </div>
+            <div class="row body-row">
+            </div>
+        </div>
+
+        <div id="Response" ng-controller="Response" class="col-xs-12 col-sm-6 right-col ng-scope">
+            <div class="row control-row">
+                <div class="col-xs-12">
+                </div>
+            </div>
+            <div ng-if="responseError" class="row alert alert-danger pin-left pin-right ng-binding ng-scope">
+                Status Code 401: Unauthorized
+            </div>
+            <div class="row body-row">
+                <div class="col-xs-12">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 {% block scripts %}
 <script src="{% static "app/js/console_app.js" %}"></script>
