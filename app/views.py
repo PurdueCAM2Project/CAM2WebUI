@@ -169,26 +169,18 @@ def profile(request):
         github_login = user.social_auth.get(provider='github')
     except UserSocialAuth.DoesNotExist:
         github_login = None
-    #if github_login:
-    """
-    can_disconnect = user.has_usable_password()
 
-    if can_disconnect:
-        PasswordForm = PasswordChangeForm
-    else:
-        PasswordForm = AdminPasswordChangeForm
-    """
-
-    form = PasswordChangeForm(request.user)
-    if request.method == 'POST' and 'save_changes' in request.POST:
-        form = PasswordChangeForm(user, request.POST)
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
-            messages.success(request, 'Your password was successfully updated!')
+    # Change password
+    passwordform = PasswordChangeForm(user)
+    if request.method == 'POST' and 'changePassword' in request.POST:
+        passwordform = PasswordChangeForm(user, request.POST)
+        if passwordform.is_valid():
+            passwordform.save()
+            update_session_auth_hash(request, passwordform.user)
+            messages.success(request, 'Your password has been successfully updated!')
             return redirect('profile')
 
-   
+    # Add app
     app_form = AppForm()
 
     apps = CAM2dbApi.objects.filter(user=request.user).values()
@@ -201,15 +193,32 @@ def profile(request):
             dbapp.save()
         return redirect('profile')
 
+    # Modify Profile
+    try:
+        optional = RegisterUser.objects.get(user=user)
+    except:
+        add_form = AdditionalForm({})
+        optional = add_form.save(commit=False)
+        optional.user = user
+        optional.save()
+    infoform = AdditionalForm()
+    print(optional.department)
+    print(user)
+    if request.method == 'POST' and 'saveChanges' in request.POST:
+        infoform = AdditionalForm(data=request.POST,instance=optional)
+        if infoform.is_valid():
+            infoform.save()
+            messages.success(request, 'Your information has been successfully updated!')
+            return redirect('profile')
+
 
     return render(request, 'app/profile.html', {
         'github_login': github_login,
-        'form':form,
-        'app_form':app_form,
-        'apps':apps
+        'passwordform': passwordform,
+        'app_form': app_form,
+        'apps': apps,
+        'infoform': infoform,
      })
-    #else:
-        #return redirect('index')
 
 
 def oauthinfo(request):
