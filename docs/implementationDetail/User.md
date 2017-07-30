@@ -441,7 +441,7 @@ Now you can try to login with github and google!
 ## 5. User Profile
 allow user to modify their profile information
 
-### relate submit button with forms
+### Relate submit button with forms
 There are several submit button in our profile page, and we don't want to submit the different form. therefore, we will specify the name of each submit button for each form:
 in template:
 ```
@@ -453,6 +453,65 @@ if request.method == 'POST' and 'changeInfo' in request.POST:
 ```
 note that we use the name of the button in the view.
 
-### obtain data of user specified by fields in the form
+### Obtain data of user specified by fields in the form
 To get the data specified in the form, take the [`AdditionalForm`](https://purduecam2project.github.io/CAM2WebUI/implementationDetail/User.html#creating-a-model) 
-we are using as an example:
+we are using as an example, it has 5 fields: `"department" , "organization", "title", "country", "about"` 
+we can easily grab these 5 fields of a user from database by specify the `instance`:
+```
+model = RegisterUser.objects.get(user=a_user)
+infoForm = AdditionalForm(instance=model)
+```
+to get the [User](https://docs.djangoproject.com/en/1.11/ref/contrib/auth/#user-model) 
+model of current user who is using the website, simply use `request.user`
+
+### Views
+If a user login with social oauth such as google or github, they will not have a RegisterUser model created in the database.
+Therefore, `RegisterUser.objects.get(user=request.user)` will return error. So when the user go to "Profile" page, we create one first.
+```
+ try:
+        optional = RegisterUser.objects.get(user=user)
+    except:# If cannot find RegisterUser object(social login users), create one
+        add_form = AdditionalForm({})
+        optional = add_form.save(commit=False)
+        optional.user = user
+        optional.save()
+```
+Then, for the convenience of users, we will get the form with an instance so that their current info will be automatically filled in if we use `{{ field }}` as input box in our template.
+```
+infoForm = AdditionalForm(instance=optional)#get form with info of a specific instance
+
+    if request.method == 'POST' and 'changeInfo' in request.POST:
+        infoForm = AdditionalForm(request.POST, instance=optional)
+        if infoForm.is_valid():
+            infoForm.save()
+            messages.success(request, 'Your information has been successfully updated!')
+        else:
+            infoForm=AdditionalForm(instance=optional)
+            messages.error(request, 'Something went wrong. Please try again or contact us!')
+        return redirect('profile')
+    return render(request, 'app/profile.html', {'infoForm': infoForm,})
+```
+
+### Template
+```
+<h3>Change Profile Information</h3>
+    <div class="panel-body">
+    <form method="post">
+        {% csrf_token %}
+        {% for field in infoForm %}
+           <p>
+             {{ field.label_tag }}<br>
+             {{ field }}<br>
+             Current: {{ field.value|linebreaks }}
+             {% for error in field.errors %}
+               <p style="color: red">{{ error }}</p>
+             {% endfor %}
+           </p>
+        {% endfor %}
+
+
+        <button class="btn" type="submit" name="changeInfo">Change My Info</button>
+    </form>
+    </div>
+```
+The linebreaks in `{{ field.value|linebreaks }}` will interpret new line as <br> and double new line as <p>. Without it, the value in `Textarea` may be displayed as a whole paragraph.
