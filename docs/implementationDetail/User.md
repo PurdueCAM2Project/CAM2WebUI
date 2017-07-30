@@ -438,3 +438,21 @@ On the same page left side, choose 'library', in Social APIs column choose Googl
 
 Now you can try to login with github and google!
 
+## 5. User Profile
+allow user to modify their profile information
+
+### relate submit button with forms
+There are several submit button in our profile page, and we don't want to submit the different form. therefore, we will specify the name of each submit button for each form:
+in template:
+```
+<button class="btn" type="submit" name="changeInfo">Change My Info</button>
+```
+in views:
+```
+if request.method == 'POST' and 'changeInfo' in request.POST:
+```
+note that we use the name of the button in the view.
+
+### obtain data of user specified by fields in the form
+To get the data specified in the form, take the [`AdditionalForm`](https://purduecam2project.github.io/CAM2WebUI/implementationDetail/User.html#creating-a-model) 
+we are using as an example:
