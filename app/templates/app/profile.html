@@ -17,6 +17,25 @@
       </ul>
     {% endif %}
   <div class="container">
+    {% if userinfo.first_name is None %}
+    <form method="post">
+        {% csrf_token %}
+           <p>
+             <b>New Email Address:</b><br>
+             {{ emailForm.email }}
+           </p>
+           {% for error in emailForm.email.errors %}
+             <p style="color: red">{{ error }}</p>
+           {% endfor %}
+        {% if user.email %}
+            <button class="btn" type="submit" name="changeEmail">Change Email</button>
+        {% else %}
+            <button class="btn" type="submit" name="changeEmail">Confirm Email</button>
+        {% endif %}
+    </form>
+    {% else %}
+        Welcome to your profile, {{ user.first_name }} {{ user.last_name }}!<br>
+    {% endif %}
     {% if not github_login %}
     {% if user.is_superuser %}
       <a href="/admin/" ID="Admin">Admin Page</a>
@@ -27,6 +46,21 @@
         <p>Current email: <strong>{{ user.email }}</strong></p>
       </div>
     {% endif %}
+    <form method="post">
+        {% csrf_token %}
+           <p>
+             <b>New Email Address:</b><br>
+             {{ emailForm.email }}
+           </p>
+           {% for error in emailForm.email.errors %}
+             <p style="color: red">{{ error }}</p>
+           {% endfor %}
+        {% if user.email %}
+            <button class="btn" type="submit" name="changeEmail">Change Email</button>
+        {% else %}
+            <button class="btn" type="submit" name="changeEmail">Confirm Email</button>
+        {% endif %}
+    </form>
 
 
     <h3 class="sub-header">App Lists</h3>

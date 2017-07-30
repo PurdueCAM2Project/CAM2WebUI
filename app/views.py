@@ -14,7 +14,7 @@ from social_django.models import UserSocialAuth
 from django.utils.encoding import force_text, force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .tokens import account_activation_token
-from .forms import RegistrationForm, AdditionalForm, AppForm
+from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
 from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser
@@ -193,25 +193,40 @@ def profile(request):
             dbapp.save()
         return redirect('profile')
 
+    # Change Email
+    emailForm = ProfileEmailForm(instance=user)
+
+    if request.method == 'POST' and 'changeEmail' in request.POST:
+        emailForm = ProfileEmailForm(request.POST, instance=user)
+        print(emailForm.is_valid())
+        if emailForm.is_valid():
+            model = emailForm.save(commit=False)
+            model.user = user
+            model.save()
+            messages.success(request, 'Your Email has been successfully updated!')
+        else:
+            emailForm=ProfileEmailForm(instance=user)
+            messages.error(request, 'Something went wrong. Please try again or contact us!')
+        return redirect('profile')
     # Modify Profile
     try:
         optional = RegisterUser.objects.get(user=user)
-    except:
+    except:# If cannot find RegisterUser object(social login users), create one
         add_form = AdditionalForm({})
         optional = add_form.save(commit=False)
         optional.user = user
         optional.save()
-    infoform = AdditionalForm(instance=optional)
+    infoform = AdditionalForm(instance=optional)#get form with info of a specific instance
 
     if request.method == 'POST' and 'saveChanges' in request.POST:
         infoform = AdditionalForm(request.POST, instance=optional)
-        print(infoform.is_valid())
         if infoform.is_valid():
             infoform.save()
             messages.success(request, 'Your information has been successfully updated!')
-            return redirect('profile')
         else:
-            infoform=AdditionalForm()
+            infoform=AdditionalForm(instance=optional)
+            messages.error(request, 'Something went wrong. Please try again or contact us!')
+        return redirect('profile')
 
     return render(request, 'app/profile.html', {
         'github_login': github_login,
@@ -219,6 +234,7 @@ def profile(request):
         'app_form': app_form,
         'apps': apps,
         'infoform': infoform,
+        'emailForm': emailForm,
      })
 
 

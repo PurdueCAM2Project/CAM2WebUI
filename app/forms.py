@@ -29,3 +29,13 @@ class AppForm(forms.ModelForm):
     class Meta:
         model = CAM2dbApi
         fields = ('appname',)
+
+class ProfileEmailForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('email',)
+
+class NameForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name',)
