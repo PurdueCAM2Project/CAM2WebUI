@@ -184,9 +184,6 @@ def profile(request):
         return redirect('profile')
 
 
-    # Change password
-
-
     # Add app
     app_form = AppForm()
 
@@ -242,7 +239,7 @@ def profile(request):
         'nameForm': nameForm
      })
 
-
+""" use 'password_reset' instead
 def change_password(request):
     user = request.user
     passwordform = PasswordChangeForm(user)
@@ -257,6 +254,7 @@ def change_password(request):
             passwordform = PasswordChangeForm(user)
 
     return render(request, 'app/change_password.html', {'passwordform': passwordform})
+"""
 
 def oauthinfo(request):
     if request.method == 'POST':
