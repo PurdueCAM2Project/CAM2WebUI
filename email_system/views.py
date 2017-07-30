@@ -57,21 +57,22 @@ def admin_send_email(request):
                 else: # send email to users in the user id list, and address that the admin typed in
                     mass_email = []
                     # for user id list
-                    for i in user_selected:
-                        obj = User.objects.get(id=i)
-                        if obj.email is not '':
-                            username = obj.username  # will be used in template
-                            template = render_to_string('email_system/admin_send_email_template.html', {
-                                'username': username,
-                                'message': message,
-                                'domain': current_site.domain,
-                            })
-                            mass_email.append((
-                                subject,
-                                template,
-                                EMAIL_HOST_USER,
-                                [obj.email],
-                            ))
+                    if user_selected is not None:
+                        for i in user_selected:
+                            obj = User.objects.get(id=i)
+                            if obj.email is not '':
+                                username = obj.username  # will be used in template
+                                template = render_to_string('email_system/admin_send_email_template.html', {
+                                    'username': username,
+                                    'message': message,
+                                    'domain': current_site.domain,
+                                })
+                                mass_email.append((
+                                    subject,
+                                    template,
+                                    EMAIL_HOST_USER,
+                                    [obj.email],
+                                ))
                     # for additional recipient
                     for e in email:
                         """ attach template one by one to make sure only one email is in the recipient_list,
