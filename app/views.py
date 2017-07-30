@@ -184,7 +184,7 @@ def profile(request):
     app_form = AppForm()
 
     apps = CAM2dbApi.objects.filter(user=request.user).values()
-    print(apps)
+
     if request.method == 'POST' and 'add' in request.POST:
         app_form = AppForm(request.POST)
         if app_form.is_valid():
@@ -201,16 +201,17 @@ def profile(request):
         optional = add_form.save(commit=False)
         optional.user = user
         optional.save()
-    infoform = AdditionalForm()
-    print(optional.department)
-    print(user)
+    infoform = AdditionalForm(instance=optional)
+
     if request.method == 'POST' and 'saveChanges' in request.POST:
-        infoform = AdditionalForm(data=request.POST,instance=optional)
+        infoform = AdditionalForm(request.POST, instance=optional)
+        print(infoform.is_valid())
         if infoform.is_valid():
             infoform.save()
             messages.success(request, 'Your information has been successfully updated!')
             return redirect('profile')
-
+        else:
+            infoform=AdditionalForm()
 
     return render(request, 'app/profile.html', {
         'github_login': github_login,

@@ -90,7 +90,18 @@
     <div class="panel-body">
     <form method="post">
         {% csrf_token %}
-        <input type=text" name="department"
+        {% for field in infoform %}
+           <p>
+             {{ field.label_tag }}<br>
+             {{ field }}<br>
+             Current: {{ field.value|linebreaks }}
+             {% for error in field.errors %}
+               <p style="color: red">{{ error }}</p>
+             {% endfor %}
+           </p>
+        {% endfor %}
+
+
         <button class="btn" type="submit" name="saveChanges">Save Changes</button>
     </form>
     </div>
