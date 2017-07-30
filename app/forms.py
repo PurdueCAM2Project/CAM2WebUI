@@ -36,6 +36,8 @@ class ProfileEmailForm(forms.ModelForm):
         fields = ('email',)
 
 class NameForm(forms.ModelForm):
+    first_name = forms.CharField(max_length=30, required=True)
+    last_name = forms.CharField(max_length=30, required=True)
     class Meta:
         model = User
         fields = ('first_name', 'last_name',)

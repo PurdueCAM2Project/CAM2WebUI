@@ -17,24 +17,24 @@
       </ul>
     {% endif %}
   <div class="container">
-    {% if userinfo.first_name is None %}
-    <form method="post">
-        {% csrf_token %}
-           <p>
-             <b>New Email Address:</b><br>
-             {{ emailForm.email }}
-           </p>
-           {% for error in emailForm.email.errors %}
-             <p style="color: red">{{ error }}</p>
-           {% endfor %}
-        {% if user.email %}
-            <button class="btn" type="submit" name="changeEmail">Change Email</button>
-        {% else %}
-            <button class="btn" type="submit" name="changeEmail">Confirm Email</button>
-        {% endif %}
-    </form>
+    {% if user.first_name is None %}
+        <form method="post">
+            {% csrf_token %}
+               {% for field in nameForm %}
+               <p>
+                 {{ field.label_tag }}<br>
+                 {{ field }}
+                 {% for error in field.errors %}
+                   <p style="color: red">{{ error }}</p>
+                 {% endfor %}
+               </p>
+               {% endfor %}
+
+            <button class="btn" type="submit" name="saveName">Save My Name</button>
+
+        </form>
     {% else %}
-        Welcome to your profile, {{ user.first_name }} {{ user.last_name }}!<br>
+        <h3>{{ user.first_name }} {{ user.last_name }}</h3><br>
     {% endif %}
     {% if not github_login %}
     {% if user.is_superuser %}
@@ -48,17 +48,20 @@
     {% endif %}
     <form method="post">
         {% csrf_token %}
+           {% csrf_token %}
+        {% for field in emailForm %}
            <p>
-             <b>New Email Address:</b><br>
-             {{ emailForm.email }}
+             {{ field.label_tag }}<br>
+             {{ field }}
+             {% for error in field.errors %}
+               <p style="color: red">{{ error }}</p>
+             {% endfor %}
            </p>
-           {% for error in emailForm.email.errors %}
-             <p style="color: red">{{ error }}</p>
-           {% endfor %}
+        {% endfor %}
         {% if user.email %}
-            <button class="btn" type="submit" name="changeEmail">Change Email</button>
+            <button class="btn" type="submit" name="changeEmail">Change My Email</button>
         {% else %}
-            <button class="btn" type="submit" name="changeEmail">Confirm Email</button>
+            <button class="btn" type="submit" name="changeEmail">Confirm My Email</button>
         {% endif %}
     </form>
 
@@ -107,7 +110,7 @@
              {% endfor %}
            </p>
         {% endfor %}
-        <button class="btn" type="submit" name="changePassword">Change Password</button>
+        <button class="btn" type="submit" name="changePassword">Change My Password</button>
       </form>
       {% endif %}
     </div>
@@ -124,7 +127,7 @@
     <div class="panel-body">
     <form method="post">
         {% csrf_token %}
-        {% for field in infoform %}
+        {% for field in infoForm %}
            <p>
              {{ field.label_tag }}<br>
              {{ field }}<br>
@@ -136,7 +139,7 @@
         {% endfor %}
 
 
-        <button class="btn" type="submit" name="saveChanges">Save Changes</button>
+        <button class="btn" type="submit" name="changeInfo">Change My Info</button>
     </form>
     </div>
   </div>
