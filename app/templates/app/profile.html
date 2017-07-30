@@ -34,17 +34,29 @@
 
         </form>
     {% else %}
-        <h3>{{ user.first_name }} {{ user.last_name }}</h3><br>
+        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
     {% endif %}
+
+
+
     {% if not github_login %}
-    {% if user.is_superuser %}
-      <a href="/admin/" ID="Admin">Admin Page</a>
+    <div class="panel-body">
+      <a href="/password_reset/">Change my password</a>
+    </div>
+    {% else %}
+    <h3 class="sub-header">GitHub(Under Development)</h3> 
+      <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
+      <div class="social-login-buttons" style="width:30%">
+        <a class="btn btn-block btn-social btn-github" href="/logout">
+          <span class="fa fa-github"></span>Log out Github
+        </a>
+      </div>     
     {% endif %}
+
+    <h3 class="sub-header">Email</h3>
+    <div class="panel-body">
     {% if user.email %}
-      <h3 class="sub-header">Email</h3>
-      <div class="panel-body">
-        <p>Current email: <strong>{{ user.email }}</strong></p>
-      </div>
+        <p><b>Current email:</b> {{ user.email }}</p>
     {% endif %}
     <form method="post">
         {% csrf_token %}
@@ -64,10 +76,11 @@
             <button class="btn" type="submit" name="changeEmail">Confirm My Email</button>
         {% endif %}
     </form>
+    </div>
 
 
     <h3 class="sub-header">App Lists</h3>
-
+    <div class="panel-body">
       {% if apps %}
       <ul class="apps">
           {% for app in apps %}
@@ -86,43 +99,9 @@
         {% endfor %}
         <button class="btn" type="submit" name="add">Add</button>
       </form>
-
-    <h3 class="sub-header">Change Password</h3>
-
-    <div class="panel-body">
-      {% if not user.has_usable_password %}
-        <p style="color: red">You have not defined a password yet.</p>
-      {% else %}
-          <p>
-            Your password can't be too similar to your other personal information.<br>
-            Your password must contain at least 8 characters.<br>
-            Your password can't be a commonly used password.<br>
-            Your password can't be entirely numeric.<br>
-          </p>
-      <form method="post">
-        {% csrf_token %}
-        {% for field in passwordform %}
-           <p>
-             {{ field.label_tag }}<br>
-             {{ field }}
-             {% for error in field.errors %}
-               <p style="color: red">{{ error }}</p>
-             {% endfor %}
-           </p>
-        {% endfor %}
-        <button class="btn" type="submit" name="changePassword">Change My Password</button>
-      </form>
-      {% endif %}
     </div>
-    {% else %}
-    <h3 class="sub-header">GitHub(Under Development)</h3> 
-      <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
-      <div class="social-login-buttons" style="width:30%">
-        <a class="btn btn-block btn-social btn-github" href="/logout">
-          <span class="fa fa-github"></span>Log out Github
-        </a>
-      </div>     
-    {% endif %}
+
+
     <h3>Change Profile Information</h3>
     <div class="panel-body">
     <form method="post">

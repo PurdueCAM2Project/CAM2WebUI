@@ -185,14 +185,7 @@ def profile(request):
 
 
     # Change password
-    passwordform = PasswordChangeForm(user)
-    if request.method == 'POST' and 'changePassword' in request.POST:
-        passwordform = PasswordChangeForm(user, request.POST)
-        if passwordform.is_valid():
-            passwordform.save()
-            update_session_auth_hash(request, passwordform.user)
-            messages.success(request, 'Your password has been successfully updated!')
-        return redirect('profile')
+
 
     # Add app
     app_form = AppForm()
@@ -242,7 +235,6 @@ def profile(request):
 
     return render(request, 'app/profile.html', {
         'github_login': github_login,
-        'passwordform': passwordform,
         'app_form': app_form,
         'apps': apps,
         'infoForm': infoForm,
@@ -250,6 +242,21 @@ def profile(request):
         'nameForm': nameForm
      })
 
+
+def change_password(request):
+    user = request.user
+    passwordform = PasswordChangeForm(user)
+    if request.method == 'POST':
+        passwordform = PasswordChangeForm(user, request.POST)
+        if passwordform.is_valid():
+            passwordform.save()
+            update_session_auth_hash(request, passwordform.user)
+            messages.success(request, 'Your password has been successfully updated!')
+            return redirect('profile')
+        else:
+            passwordform = PasswordChangeForm(user)
+
+    return render(request, 'app/change_password.html', {'passwordform': passwordform})
 
 def oauthinfo(request):
     if request.method == 'POST':
