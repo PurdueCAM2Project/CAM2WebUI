@@ -514,4 +514,4 @@ infoForm = AdditionalForm(instance=optional)#get form with info of a specific in
     </form>
     </div>
 ```
-The linebreaks in `{{ field.value|linebreaks }}` will interpret new line as <br> and double new line as <p>. Without it, the value in `Textarea` may be displayed as a whole paragraph.
+The linebreaks in `{{ field.value|linebreaks }}` will interpret new line character as `<br>` and two new line characters as `<p>`. Without it, the value in `Textarea` may be displayed as a whole paragraph.
