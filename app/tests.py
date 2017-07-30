@@ -67,7 +67,7 @@ class AddTestCase(StaticLiveServerTestCase):
 	def test_a_one(self):
 		print("start first test")
 		pass
-
+	
 	def test_profile_admin(self):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login/'
@@ -79,12 +79,14 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser.find_element_by_name('submitbutton').click()
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
 		browser.get(url)
+		"""
 		WebDriverWait(browser, 10).until(
 		    EC.text_to_be_present_in_element(
 			(By.ID,"Admin"),
 		        "Admin Page"
 		    )
 		)
+		"""
 		browser.find_element_by_name('appname').send_keys("apple")
 		browser.find_element_by_name('add').click()
 		WebDriverWait(browser, 10).until(

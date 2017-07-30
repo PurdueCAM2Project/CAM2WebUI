@@ -63,6 +63,9 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    <li id="adminSite"><a href="/admin/">Admin Site</a></li>
+                {% endif %}
                 <li id="someprofile"><a href="/profile/">{{request.user.username}}'s Profile </a></li>
                 <li><a href="/logout/">Logout</a></li>
             {% else %}

@@ -14,7 +14,7 @@ from social_django.models import UserSocialAuth
 from django.utils.encoding import force_text, force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .tokens import account_activation_token
-from .forms import RegistrationForm, AdditionalForm, AppForm
+from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
 from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser
@@ -169,30 +169,26 @@ def profile(request):
         github_login = user.social_auth.get(provider='github')
     except UserSocialAuth.DoesNotExist:
         github_login = None
-    #if github_login:
-    """
-    can_disconnect = user.has_usable_password()
 
-    if can_disconnect:
-        PasswordForm = PasswordChangeForm
-    else:
-        PasswordForm = AdminPasswordChangeForm
-    """
+    # Enter name for social login users
+    nameForm = NameForm(instance=user)
 
-    form = PasswordChangeForm(request.user)
-    if request.method == 'POST' and 'save_changes' in request.POST:
-        form = PasswordChangeForm(user, request.POST)
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
-            messages.success(request, 'Your password was successfully updated!')
-            return redirect('profile')
+    if request.method == 'POST' and 'saveName' in request.POST:
+        nameForm = NameForm(request.POST, instance=user)
+        if nameForm.is_valid():
+            nameForm.save()
+            messages.success(request, 'Thank you! Your name has been updated.')
+        else:
+            nameForm = NameForm(instance=user)
+            messages.error(request, 'Something went wrong. Please try again or contact us!')
+        return redirect('profile')
 
-   
+
+    # Add app
     app_form = AppForm()
 
     apps = CAM2dbApi.objects.filter(user=request.user).values()
-    print(apps)
+
     if request.method == 'POST' and 'add' in request.POST:
         app_form = AppForm(request.POST)
         if app_form.is_valid():
@@ -201,16 +197,64 @@ def profile(request):
             dbapp.save()
         return redirect('profile')
 
+    # Change Email
+    emailForm = ProfileEmailForm(instance=user)
+
+    if request.method == 'POST' and 'changeEmail' in request.POST:
+        emailForm = ProfileEmailForm(request.POST, instance=user)
+        if emailForm.is_valid():
+            emailForm.save()
+            messages.success(request, 'Your Email has been successfully updated!')
+        else:
+            emailForm=ProfileEmailForm(instance=user)
+            messages.error(request, 'Something went wrong. Please try again or contact us!')
+        return redirect('profile')
+
+    # Modify Profile
+    try:
+        optional = RegisterUser.objects.get(user=user)
+    except:# If cannot find RegisterUser object(social login users), create one
+        add_form = AdditionalForm({})
+        optional = add_form.save(commit=False)
+        optional.user = user
+        optional.save()
+    infoForm = AdditionalForm(instance=optional)#get form with info of a specific instance
+
+    if request.method == 'POST' and 'changeInfo' in request.POST:
+        infoForm = AdditionalForm(request.POST, instance=optional)
+        if infoForm.is_valid():
+            infoForm.save()
+            messages.success(request, 'Your information has been successfully updated!')
+        else:
+            infoForm=AdditionalForm(instance=optional)
+            messages.error(request, 'Something went wrong. Please try again or contact us!')
+        return redirect('profile')
 
     return render(request, 'app/profile.html', {
         'github_login': github_login,
-        'form':form,
-        'app_form':app_form,
-        'apps':apps
+        'app_form': app_form,
+        'apps': apps,
+        'infoForm': infoForm,
+        'emailForm': emailForm,
+        'nameForm': nameForm
      })
-    #else:
-        #return redirect('index')
 
+""" use 'password_reset' instead
+def change_password(request):
+    user = request.user
+    passwordform = PasswordChangeForm(user)
+    if request.method == 'POST':
+        passwordform = PasswordChangeForm(user, request.POST)
+        if passwordform.is_valid():
+            passwordform.save()
+            update_session_auth_hash(request, passwordform.user)
+            messages.success(request, 'Your password has been successfully updated!')
+            return redirect('profile')
+        else:
+            passwordform = PasswordChangeForm(user)
+
+    return render(request, 'app/change_password.html', {'passwordform': passwordform})
+"""
 
 def oauthinfo(request):
     if request.method == 'POST':
