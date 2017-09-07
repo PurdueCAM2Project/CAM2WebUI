@@ -385,20 +385,25 @@ MIT License
       // clear each stored line
       for (var i = 0; i < self.storedElement.length; i++) {
         var element = self.storedElement[i];
+        //console.log(element);
         switch (element.type) {
           case 'rectangle':
             self.drawRectangle(self.baseContext, element.fromx, element.fromy,
               element.tox, element.toy, element.color);
             break;
           case 'pen':
+            console.log(element)
             for (var b = 0; b < element.points.length - 1; b++) {
               var fromx = element.points[b][0];
               var fromy = element.points[b][1];
               var tox = element.points[b + 1][0];
               var toy = element.points[b + 1][1];
+              if (b == 0) {
+                console.log(element.color);
+              }              
               self.drawPen(self.baseContext, fromx, fromy, tox, toy, element.color);
             }
-
+            console.log(element.color);
             self.drawPen(self.baseContext, element.points[element.points.length-1][0], 
               element.points[element.points.length-1][1], 
               element.points[0][0], 
@@ -428,7 +433,6 @@ MIT License
       context.lineWidth = self.linewidth;
       context.moveTo(fromx, fromy);
       context.lineTo(tox, toy);
-      context.strokeStyle = self.options.color;
       context.strokeStyle = c;
       context.stroke();
     },
@@ -497,20 +501,12 @@ MIT License
             });
             break;
           case 'pen':
+            var c = self.options.color;
             self.storedElement.push({
               type: 'pen',
               points: self.points,
-              color: self.options.color
+              color: c
             });
-            for (var i = 0; i < self.points.length - 1; i++) {
-              self.fromx = self.points[i][0];
-              self.fromy = self.points[i][1];
-              self.tox = self.points[i + 1][0];
-              self.toy = self.points[i + 1][1];
-              self.drawPen(self.baseContext, self.fromx, self.fromy, self
-                .tox,
-                self.toy);
-            }
             self.points = [];
             break;
           default:
