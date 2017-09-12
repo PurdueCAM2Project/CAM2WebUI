@@ -430,6 +430,7 @@ MIT License
     },
     drawPen: function(context, fromx, fromy, tox, toy, c) {
       var self = this;
+      context.beginPath();
       context.lineWidth = self.linewidth;
       context.moveTo(fromx, fromy);
       context.lineTo(tox, toy);
