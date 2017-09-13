@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^$', app_views.index, name="index"),
     url(r'^cameras/$', app_views.cameras, name='cameras'),
     url(r'^team/$', app_views.team, name='team'),
+    url(r'^advice/$', app_views.advice, name='advice'),
     url(r'^history/$', app_views.history, name='history'),
     url(r'^publications/$', app_views.publications, name='publications'),
     url(r'^privacy/$', app_views.privacy, name='privacy'),
