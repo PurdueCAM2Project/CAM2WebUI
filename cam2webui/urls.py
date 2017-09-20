@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^', include('app.urls')),
     url(r'^email/', include('email_system.urls')),
     url(r'^admin/', admin.site.urls),
-	#url(r'^label/', include('labelimg.urls')),
+	url(r'^label/', include('labelimg.urls')),
 
 ]
 handler500 = 'app.views.error500'
