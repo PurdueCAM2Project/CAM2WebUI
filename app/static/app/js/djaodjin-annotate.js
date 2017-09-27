@@ -575,16 +575,28 @@ MIT License
         
         for (var i = self.images.length - 1; i >= 0; i--) {
           for (var j = self.images[i].storedElement.length - 1; j >= 0; j--) {
+            for (var k = self.images[i].storedElement[j].points.length-1; k >= 0; k--) {
+              self.images[i].storedElement[j].points[k][0] = self.images[i].storedElement[j].points[k][0] * 1.25;
+              self.images[i].storedElement[j].points[k][1] = self.images[i].storedElement[j].points[k][1] * 1.25;
+            }
+            /*
             self.images[i].storedElement[j].fromx = self.images[i].storedElement[j].fromx * 1.25;
             self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 1.25;
             self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 1.25;
             self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 1.25;
+          */
           }
           for (var j = self.images[i].storedUndo.length - 1; j >= 0; j--) {
+            /*
             self.images[i].storedUndo[j].fromx = self.images[i].storedUndo[j].fromx * 1.25;
             self.images[i].storedUndo[j].fromy = self.images[i].storedUndo[j].fromy * 1.25;
             self.images[i].storedUndo[j].tox = self.images[i].storedUndo[j].tox * 1.25;
             self.images[i].storedUndo[j].toy = self.images[i].storedUndo[j].toy * 1.25;
+            */
+            for (var k = self.images[i].storedUndo[j].points.length-1; k >= 0; k--) {
+              self.images[i].storedUndo[j].points[k][0] = self.images[i].storedUndo[j].points[k][0] * 1.25;
+              self.images[i].storedUndo[j].points[k][1] = self.images[i].storedUndo[j].points[k][1] * 1.25;
+            }
           }     
         }
 
@@ -592,16 +604,28 @@ MIT License
         
         for (var i = self.images.length - 1; i >= 0; i--) {
           for (var j = self.images[i].storedElement.length - 1; j >= 0; j--) {
+            /*
             self.images[i].storedElement[j].fromx = self.images[i].storedElement[j].fromx * 0.8;
             self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 0.8;
             self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 0.8;
             self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 0.8;
+            */
+            for (var k = self.images[i].storedElement[j].points.length-1; k >= 0; k--) {
+              self.images[i].storedElement[j].points[k][0] = self.images[i].storedElement[j].points[k][0] * 0.8;
+              self.images[i].storedElement[j].points[k][1] = self.images[i].storedElement[j].points[k][1] * 0.8;
+            }
           }
           for (var j = self.images[i].storedUndo.length - 1; j >= 0; j--) {
+            /*
             self.images[i].storedUndo[j].fromx = self.images[i].storedUndo[j].fromx * 0.8;
             self.images[i].storedUndo[j].fromy = self.images[i].storedUndo[j].fromy * 0.8;
             self.images[i].storedUndo[j].tox = self.images[i].storedUndo[j].tox * 0.8;
             self.images[i].storedUndot[j].toy = self.images[i].storedUndo[j].toy * 0.8;
+            */
+            for (var k = self.images[i].storedUndo[j].points.length-1; k >= 0; k--) {
+              self.images[i].storedUndo[j].points[k][0] = self.images[i].storedUndo[j].points[k][0] * 0.8;
+              self.images[i].storedUndo[j].points[k][1] = self.images[i].storedUndo[j].points[k][1] * 0.8;
+            }
           }        
         }
       }
