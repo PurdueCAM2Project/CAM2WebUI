@@ -80,14 +80,14 @@ MIT License
             '<i class="glyphicon glyphicon-ban-circle"></i>' +
             '</label>';
         }
-        self.$tool += '<label class="btn btn-primary active">' +
+        self.$tool += /*'<label class="btn btn-primary active">' +
           '<input type="radio" name="' + self.toolOptionId +
           '" data-tool="rectangle"' +
           ' data-toggle="tooltip" data-placement="top"' +
           ' title="Draw an rectangle">' +
           '<i class="glyphicon glyphicon-unchecked"></i>' +
-          '</label>' +
-          '<label class="btn btn-primary">' +
+          '</label>' +*/
+          '<label class="btn btn-primary active">' +
           '<input type="radio" name="' + self.toolOptionId +
           '" data-tool="pen"' +
           ' data-toggle="tooltip" data-placement="top" title="Pen Tool">' +
@@ -798,7 +798,7 @@ MIT License
     height: null,
     images: [],
     color: 'red',
-    type: 'rectangle',
+    type: 'pen',
     linewidth: 2,
     fontsize: '20px',
     bootstrap: false,
