@@ -392,18 +392,18 @@ MIT License
               element.tox, element.toy, element.color);
             break;
           case 'pen':
-            console.log(element)
+            //console.log(element)
             for (var b = 0; b < element.points.length - 1; b++) {
               var fromx = element.points[b][0];
               var fromy = element.points[b][1];
               var tox = element.points[b + 1][0];
               var toy = element.points[b + 1][1];
               if (b == 0) {
-                console.log(element.color);
+                //console.log(element.color);
               }              
               self.drawPen(self.baseContext, fromx, fromy, tox, toy, element.color);
             }
-            console.log(element.color);
+            //console.log(element.color);
             self.drawPen(self.baseContext, element.points[element.points.length-1][0], 
               element.points[element.points.length-1][1], 
               element.points[0][0], 
@@ -801,7 +801,7 @@ MIT License
     type: 'pen',
     linewidth: 2,
     fontsize: '20px',
-    bootstrap: false,
+    bootstrap: true,
     position: 'top',
     idAttribute: 'id',
     selectEvent: 'change',

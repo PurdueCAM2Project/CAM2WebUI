@@ -74,6 +74,8 @@ $(document).ready(function(){
 	function objectinfo(d, height, width) {
 		var an = [];
 
+		//console.log(d);
+
 		for (var i = 0; i < d.length; i++) {
 			var name;
 			if (d[i].color === 'red') {
@@ -83,9 +85,16 @@ $(document).ready(function(){
 			} else if (d[i].color === 'green') {
 				name = 'street sign'
 			}
+
+			for (var j = 0; j < d[i].points.length; j++) {
+				d[i].points[j][0] = d[i].points[j][0] * width / curr_width;
+				d[i].points[j][1] = d[i].points[j][1] * width / curr_width;
+
+			}
 			var pose = 'Unspecified';
 			var truncated = 0;
 			var difficult = 0;
+			/*
 			var xmin;
 			var xmax;
 			var ymin;
@@ -104,18 +113,15 @@ $(document).ready(function(){
 			} else {
 				var ymin = d[i].fromy * height / curr_height;
 				var ymax = (d[i].fromy + d[i].toy) * height / curr_height;
-			}
+			}*/
 
 			var obj = {
 				"name": name,
 				"pose": pose,
 				"truncated": truncated,
 				"difficult": difficult,
-				"bndbox": {
-					"xmin": xmin,
-					"xmax": xmax,
-					"ymin": ymin,
-					"ymax": ymax
+				"annotate-box": {
+					"points": d[i].points
 				}
 			}
 			an.push(obj);
@@ -151,14 +157,14 @@ $(document).ready(function(){
 				zip.file(d[i].id + ".xml", x2js.json2xml_str(o));
 				//all.push(o);
 			}
-
-			
+			/*
 
 			zip.generateAsync({type:"blob"})
 			.then(function(content) {
 			    // see FileSaver.js
 			    saveAs(content, "xmlfiles.zip");
 			});
+			*/
 			
 
 
@@ -196,12 +202,12 @@ $(document).ready(function(){
 			}
 			console.log(JSON.stringify(o));
 
-			var x2js = new X2JS();
-			console.log(x2js.json2xml_str(o));
+			//var x2js = new X2JS();
+			//console.log(x2js.json2xml_str(o));
 
 			//alert("successful");
-			var blob = new Blob([x2js.json2xml_str(o)], {type: "text/plain;charset=utf-8"});
-			saveAs(blob, path + ".xml");
+			//var blob = new Blob([x2js.json2xml_str(o)], {type: "text/plain;charset=utf-8"});
+			//saveAs(blob, path + ".xml");
 
 		});
 
