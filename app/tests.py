@@ -87,6 +87,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		    )
 		)
 		"""
+		browser.implicitly_wait(10)
 		browser.find_element_by_name('appname').send_keys("apple")
 		browser.find_element_by_name('add').click()
 		WebDriverWait(browser, 10).until(
@@ -206,6 +207,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		y = browser.find_element_by_name('password')
 		y.send_keys(self.test_password)
 		browser.find_element_by_name('submitbutton').click()
+		browser.implicitly_wait(10)
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
 		browser.get(url)
 		browser.find_element_by_name('appname').send_keys("apples")
@@ -226,6 +228,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		y = browser.find_element_by_name('password')
 		y.send_keys('wrongpassword')	
 		browser.find_element_by_name('submitbutton').click()
+		browser.implicitly_wait(10)
 		
 		error = browser.find_element(By.ID,value="loginerror")	
 		
