@@ -87,6 +87,11 @@ MIT License
           ' title="Draw an rectangle">' +
           '<i class="glyphicon glyphicon-unchecked"></i>' +
           '</label>' +
+          '<label class="btn btn-primary">' +
+          '<input type="radio" name="' + self.toolOptionId +
+          '" data-tool="pen"' +
+          ' data-toggle="tooltip" data-placement="top" title="Pen Tool">' +
+          '<i class="glyphicon glyphicon-pencil"></i></label>' +
           '</div><button type="button" id="redoaction"' +
           ' title="Redo the last undone annotation"' +
           'class="btn btn-primary ' + classPosition2 + ' annotate-redo">' +
@@ -380,10 +385,29 @@ MIT License
       // clear each stored line
       for (var i = 0; i < self.storedElement.length; i++) {
         var element = self.storedElement[i];
+        //console.log(element);
         switch (element.type) {
           case 'rectangle':
             self.drawRectangle(self.baseContext, element.fromx, element.fromy,
               element.tox, element.toy, element.color);
+            break;
+          case 'pen':
+            console.log(element)
+            for (var b = 0; b < element.points.length - 1; b++) {
+              var fromx = element.points[b][0];
+              var fromy = element.points[b][1];
+              var tox = element.points[b + 1][0];
+              var toy = element.points[b + 1][1];
+              if (b == 0) {
+                console.log(element.color);
+              }              
+              self.drawPen(self.baseContext, fromx, fromy, tox, toy, element.color);
+            }
+            console.log(element.color);
+            self.drawPen(self.baseContext, element.points[element.points.length-1][0], 
+              element.points[element.points.length-1][1], 
+              element.points[0][0], 
+              element.points[0][1], element.color);
             break;
           default:
         }
@@ -404,7 +428,15 @@ MIT License
       context.strokeStyle = c;
       context.stroke();
     },
-    
+    drawPen: function(context, fromx, fromy, tox, toy, c) {
+      var self = this;
+      context.beginPath();
+      context.lineWidth = self.linewidth;
+      context.moveTo(fromx, fromy);
+      context.lineTo(tox, toy);
+      context.strokeStyle = c;
+      context.stroke();
+    },
     
     // Events
     selectTool: function(element) {
@@ -443,6 +475,13 @@ MIT License
       self.fromy = (pageY - offset.top) * self.compensationWidthRate;
       self.fromxText = pageX;
       self.fromyText = pageY;
+
+      if (self.options.type === 'pen') {
+        self.points.push([
+          self.fromx,
+          self.fromy
+        ]);
+      }
       
     },
     annotatestop: function() {
@@ -461,6 +500,15 @@ MIT License
               toy: self.toy,
               color: self.options.color
             });
+            break;
+          case 'pen':
+            var c = self.options.color;
+            self.storedElement.push({
+              type: 'pen',
+              points: self.points,
+              color: c
+            });
+            self.points = [];
             break;
           default:
         }
@@ -572,6 +620,7 @@ MIT License
     },
     annotatemove: function(event) {
       var self = this;
+      //console.log(self);
       if (self.options.type) {
         event.preventDefault();
       }
@@ -590,6 +639,18 @@ MIT License
             self.fromy;
           self.drawRectangle(self.drawingContext, self.fromx, self.fromy,
             self.tox, self.toy, self.options.color);
+          break;
+        case 'pen':
+          self.tox = (pageX - offset.left) * self.compensationWidthRate;
+          self.toy = (pageY - offset.top) * self.compensationWidthRate;
+          self.fromx = self.points[self.points.length - 1][0];
+          self.fromy = self.points[self.points.length - 1][1];
+          self.points.push([
+            self.tox,
+            self.toy
+          ]);
+          self.drawPen(self.drawingContext, self.fromx, self.fromy, self.tox,
+            self.toy, self.options.color);
           break;
         default:
       }
