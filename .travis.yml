@@ -1,9 +1,9 @@
 dist: trusty
 language: python
 python:
-- '3.6'
+- '3.6.1'
 addons:
-  firefox: latest
+  firefox: "56.0"
 before_install:
 - sudo apt-get install xvfb
 before_script:
