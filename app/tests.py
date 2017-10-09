@@ -77,17 +77,14 @@ class AddTestCase(StaticLiveServerTestCase):
 		pw = browser.find_element_by_name('password')
 		pw.send_keys("admin")
 		browser.find_element_by_name('submitbutton').click()
-		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
-		browser.get(url)
-		"""
 		WebDriverWait(browser, 10).until(
 		    EC.text_to_be_present_in_element(
-			(By.ID,"Admin"),
-		        "Admin Page"
+			(By.ID,"welcome"),
+		        "the Continuous Analysis of Many CAMeras"
 		    )
-		)
-		"""
-		browser.implicitly_wait(10)
+                )
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
+		browser.get(url)
 		browser.find_element_by_name('appname').send_keys("apple")
 		browser.find_element_by_name('add').click()
 		WebDriverWait(browser, 10).until(
@@ -96,7 +93,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		        "apple"
 		    )
 		)
-	
+
 	# Test if page title is Cam2
 	def test_connection(self):
 		browser = self.selenium
@@ -207,7 +204,12 @@ class AddTestCase(StaticLiveServerTestCase):
 		y = browser.find_element_by_name('password')
 		y.send_keys(self.test_password)
 		browser.find_element_by_name('submitbutton').click()
-		browser.implicitly_wait(10)
+		WebDriverWait(browser, 10).until(
+		    EC.text_to_be_present_in_element(
+			(By.ID,"welcome"),
+		        "the Continuous Analysis of Many CAMeras"
+		    )
+                )
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
 		browser.get(url)
 		browser.find_element_by_name('appname').send_keys("apples")
@@ -545,7 +547,7 @@ class AddTestCase(StaticLiveServerTestCase):
 				'Password reset email sent'
 			)
 		)
-	'''
+'''
 	def test_admin_emailing(self):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/admin/'
