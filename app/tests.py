@@ -42,7 +42,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		#d = DesiredCapabilities.CHROME
 		#d['loggingPrefs'] = { 'browser':'ALL' }
 		#self.selenium = webdriver.Chrome(desired_capabilities=d)
-		self.selenium = webdriver.Firefox()
+		self.selenium = webdriver.Chrome()
 		User.objects.create_superuser(
 			username='admin',
 			password='admin',

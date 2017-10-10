@@ -3,10 +3,46 @@ from ftplib import FTP
 import json
 from django.http import JsonResponse
 
+import images
+import imagedb
+import os
+from PIL import Image
+import imagehash
+from imagedb import Dataset
+import getpass
+import time
+
 
 # Create your views here.
 def index(request):
     return render(request, 'labelimg/label.html')
+
+def getdbimg(request):
+	imagedb.connectDatabase("password")
+
+	images.buildFileTree(10000)
+
+	ids=os.listdir('web_ui_test')
+	folder='web_ui_test/'
+	imagest= [folder + image for image in ids]
+
+	print("Adding 10 images to database and file system from folder 'web_ui_test'")
+	i=0
+	while i<10:
+		imagedb.addImage(imagest[i], 'test1', {})
+		i+=1
+
+	dataset=Dataset('test1')
+	while dataset.hasNext():
+		data=dataset.getNext()
+		hash=imagehash.average_hash(data[0])
+		dbhash=data[1]['imagehash']
+		if(str(hash)!=dbhash):
+			message="\nIMAGES DO NOT MATCH!"
+		else:
+			message=" -Confirmed"
+		print("Stored hash: "+str(hash)+" Database hash: "+str(dbhash)+message)
+
 
 
 def getimg(request):
