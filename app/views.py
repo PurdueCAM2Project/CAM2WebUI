@@ -22,8 +22,8 @@ from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, 
 def index(request):
     return render(request, 'app/index.html')
 
-def flood(request):
-    return render(request, 'app/flood.html')
+def watch(request):
+    return render(request, 'app/watch.html')
 
 def cameras(request):
 #    context = {'google_api_key': settings.GOOGLE_API_KEY,

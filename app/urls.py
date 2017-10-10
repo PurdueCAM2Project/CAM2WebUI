@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^$', app_views.index, name="index"),
-    url(r'^flood/$', app_views.flood, name='flood'),
+    url(r'^watch/$', app_views.watch, name='watch'),
     url(r'^cameras/$', app_views.cameras, name='cameras'),
     url(r'^team/$', app_views.team, name='team'),
     url(r'^history/$', app_views.history, name='history'),
