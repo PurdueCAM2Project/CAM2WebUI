@@ -14,7 +14,7 @@ import time
 
 
 # Create your views here.
-def index(request):
+def labelimgindex(request):
     return render(request, 'labelimg/label.html')
 
 def getdbimg(request):

@@ -77,16 +77,14 @@ class AddTestCase(StaticLiveServerTestCase):
 		pw = browser.find_element_by_name('password')
 		pw.send_keys("admin")
 		browser.find_element_by_name('submitbutton').click()
-		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
-		browser.get(url)
-		"""
 		WebDriverWait(browser, 10).until(
 		    EC.text_to_be_present_in_element(
-			(By.ID,"Admin"),
-		        "Admin Page"
+			(By.ID,"welcome"),
+		        "the Continuous Analysis of Many CAMeras"
 		    )
-		)
-		"""
+                )
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
+		browser.get(url)
 		browser.find_element_by_name('appname').send_keys("apple")
 		browser.find_element_by_name('add').click()
 		WebDriverWait(browser, 10).until(
@@ -95,7 +93,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		        "apple"
 		    )
 		)
-	
+
 	# Test if page title is Cam2
 	def test_connection(self):
 		browser = self.selenium
@@ -206,6 +204,12 @@ class AddTestCase(StaticLiveServerTestCase):
 		y = browser.find_element_by_name('password')
 		y.send_keys(self.test_password)
 		browser.find_element_by_name('submitbutton').click()
+		WebDriverWait(browser, 10).until(
+		    EC.text_to_be_present_in_element(
+			(By.ID,"welcome"),
+		        "the Continuous Analysis of Many CAMeras"
+		    )
+                )
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
 		browser.get(url)
 		browser.find_element_by_name('appname').send_keys("apples")
@@ -226,6 +230,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		y = browser.find_element_by_name('password')
 		y.send_keys('wrongpassword')	
 		browser.find_element_by_name('submitbutton').click()
+		browser.implicitly_wait(10)
 		
 		error = browser.find_element(By.ID,value="loginerror")	
 		
@@ -505,9 +510,21 @@ class AddTestCase(StaticLiveServerTestCase):
 		pw = browser.find_element_by_name('password')
 		pw.send_keys("admin")
 		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/form[@id='login-form']/div[@class='submit-row']/input[@value='Log in']").click()
+		WebDriverWait(browser, 10).until(
+		    EC.text_to_be_present_in_element(
+			(By.ID,"site-name"),
+		        "Django administration"
+		    )
+                )
 		currentUrl = browser.current_url
 		#Test the validation for history
 		browser.find_element_by_xpath("//div[@id='container']/div[2]/div[@id='content-main']//tbody/tr[@class='model-history']/td").click()
+		WebDriverWait(browser, 10).until(
+		    EC.text_to_be_present_in_element(
+			(By.ID,"content"),
+		        "Add history"
+		    )
+                )
 		browser.find_element_by_name('month').send_keys("13")
 		browser.find_element_by_name('year').send_keys("2019")
 		browser.find_element_by_name('_save').click()
@@ -517,6 +534,12 @@ class AddTestCase(StaticLiveServerTestCase):
 		assert error2.get_attribute("innerHTML") == 'The maximum value is 2017'
 		#Test the validation for leader
 		browser.get(currentUrl)
+		WebDriverWait(browser, 10).until(
+		    EC.text_to_be_present_in_element(
+			(By.ID,"content"),
+		        "Site administration"
+		    )
+                )
 		browser.find_element_by_xpath("//div[@id='container']/div[2]/div[@id='content-main']//tbody/tr[@class='model-leader']/td").click()
 		browser.find_element_by_name('leaderimg').send_keys("a.com")
 		browser.find_element_by_name('leadername').send_keys("Harvey K. J")
@@ -542,7 +565,7 @@ class AddTestCase(StaticLiveServerTestCase):
 				'Password reset email sent'
 			)
 		)
-	'''
+'''
 	def test_admin_emailing(self):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/admin/'
