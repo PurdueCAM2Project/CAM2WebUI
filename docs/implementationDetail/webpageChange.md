@@ -1,0 +1,29 @@
+# WebPage Change 
+
+## Plug in the new video
+Add a new div in 'index.html':
+```
+<div class="main-content">
+  <div class="row divide" style="padding-top: 50px;">
+    <div style="width: 80%; margin: auto">
+      <div class="col-sm-5 col-sm-push-7">
+        <h2 class="divide-heading">CAM² 2017 Houston Flood</h2>
+        <p class="lead">
+          <ul class="list-unstyled">
+            <li><span style="padding:10px" class="fa fa-eye"></span>The Disaster of Houston Flood.</li>
+            <li><span style="padding:10px" class="fa fa-video-camera"></span>How can CAM² make a difference?</li>
+          </ul>
+        </p>
+      </div>
+      <div class="col-sm-5 col-sm-pull-5">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/bwQPSo4oTTA?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"></iframe>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+## Add a new tab page
+Move the original videos on the main page to the new tab page. A new tab is set up by citing a new template html called 'Watch.html'.
