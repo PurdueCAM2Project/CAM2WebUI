@@ -547,20 +547,24 @@ MIT License
     resize: function(event, cmdOption) {
       var self = this;
 
+      //console.log(self.options);
+
+      self.options.width = self.selectImageSize.width * cmdOption;
+      self.options.height = self.selectImageSize.height * cmdOption;
+      self.currentWidth = self.selectImageSize.width * cmdOption;
+      self.currentHeight = self.selectImageSize.height * cmdOption;
+
       if (cmdOption === '+') {
-        self.options.width = self.options.width * 1.25;
-        self.options.height = self.options.height * 1.25;
-        self.currentWidth = self.currentWidth * 1.25;
-        self.currentHeight = self.currentHeight * 1.25;
-        self.selectImageSize.width = self.selectImageSize.width * 1.25;
-        self.selectImageSize.height = self.selectImageSize.height * 1.25;
+        
+        //self.selectImageSize.width = self.selectImageSize.width * 1.25;
+        //self.selectImageSize.height = self.selectImageSize.height * 1.25;
       } else {
-        self.options.width = self.options.width * 0.8;
-        self.options.height = self.options.height * 0.8;
-        self.currentWidth = self.currentWidth * 0.8;
-        self.currentHeight = self.currentHeight * 0.8;
-        self.selectImageSize.width = self.selectImageSize.width * 0.8;
-        self.selectImageSize.height = self.selectImageSize.height * 0.8;
+        //self.options.width = self.options.width * 0.8;
+        //self.options.height = self.options.height * 0.8;
+        //self.currentWidth = self.currentWidth * 0.8;
+        //self.currentHeight = self.currentHeight * 0.8;
+        //self.selectImageSize.width = self.selectImageSize.width * 0.8;
+        //self.selectImageSize.height = self.selectImageSize.height * 0.8;
       }
       
       self.baseCanvas.width = self.drawingCanvas.width = self.currentWidth;
@@ -571,20 +575,20 @@ MIT License
         height: self.currentHeight,
         width: self.currentWidth
       });
-      if (cmdOption === '+') {        
+           
         
         for (var i = self.images.length - 1; i >= 0; i--) {
           for (var j = self.images[i].storedElement.length - 1; j >= 0; j--) {
             for (var k = self.images[i].storedElement[j].points.length-1; k >= 0; k--) {
-              self.images[i].storedElement[j].points[k][0] = self.images[i].storedElement[j].points[k][0] * 1.25;
-              self.images[i].storedElement[j].points[k][1] = self.images[i].storedElement[j].points[k][1] * 1.25;
+              self.images[i].storedElement[j].points[k][0] = self.images[i].storedElement[j].points[k][0] * cmdOption;
+              self.images[i].storedElement[j].points[k][1] = self.images[i].storedElement[j].points[k][1] * cmdOption;
             }
             /*
             self.images[i].storedElement[j].fromx = self.images[i].storedElement[j].fromx * 1.25;
             self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 1.25;
             self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 1.25;
             self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 1.25;
-          */
+            */
           }
           for (var j = self.images[i].storedUndo.length - 1; j >= 0; j--) {
             /*
@@ -594,41 +598,42 @@ MIT License
             self.images[i].storedUndo[j].toy = self.images[i].storedUndo[j].toy * 1.25;
             */
             for (var k = self.images[i].storedUndo[j].points.length-1; k >= 0; k--) {
-              self.images[i].storedUndo[j].points[k][0] = self.images[i].storedUndo[j].points[k][0] * 1.25;
-              self.images[i].storedUndo[j].points[k][1] = self.images[i].storedUndo[j].points[k][1] * 1.25;
+              self.images[i].storedUndo[j].points[k][0] = self.images[i].storedUndo[j].points[k][0] * cmdOption;
+              self.images[i].storedUndo[j].points[k][1] = self.images[i].storedUndo[j].points[k][1] * cmdOption;
             }
           }     
         }
 
-      } else {
+
+      /* else {
         
         for (var i = self.images.length - 1; i >= 0; i--) {
           for (var j = self.images[i].storedElement.length - 1; j >= 0; j--) {
-            /*
+            
             self.images[i].storedElement[j].fromx = self.images[i].storedElement[j].fromx * 0.8;
             self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 0.8;
             self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 0.8;
             self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 0.8;
-            */
+            
             for (var k = self.images[i].storedElement[j].points.length-1; k >= 0; k--) {
               self.images[i].storedElement[j].points[k][0] = self.images[i].storedElement[j].points[k][0] * 0.8;
               self.images[i].storedElement[j].points[k][1] = self.images[i].storedElement[j].points[k][1] * 0.8;
             }
           }
           for (var j = self.images[i].storedUndo.length - 1; j >= 0; j--) {
-            /*
+            
             self.images[i].storedUndo[j].fromx = self.images[i].storedUndo[j].fromx * 0.8;
             self.images[i].storedUndo[j].fromy = self.images[i].storedUndo[j].fromy * 0.8;
             self.images[i].storedUndo[j].tox = self.images[i].storedUndo[j].tox * 0.8;
             self.images[i].storedUndot[j].toy = self.images[i].storedUndo[j].toy * 0.8;
-            */
+            
             for (var k = self.images[i].storedUndo[j].points.length-1; k >= 0; k--) {
               self.images[i].storedUndo[j].points[k][0] = self.images[i].storedUndo[j].points[k][0] * 0.8;
               self.images[i].storedUndo[j].points[k][1] = self.images[i].storedUndo[j].points[k][1] * 0.8;
             }
           }        
         }
-      }
+      }*/
       
       self.checkUndoRedo();
       self.clear();

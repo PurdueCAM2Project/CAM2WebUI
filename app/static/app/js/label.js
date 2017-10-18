@@ -1,4 +1,24 @@
 $(document).ready(function(){
+
+	var handle = $( "#custom-handle" );
+    $( "#slider" ).slider({
+
+      create: function() {
+        handle.text( $( this ).slider( "value" ) );
+      },
+      
+      slide: function( event, ui ) {
+      	
+        handle.text( ui.value / 40 );
+
+        $('#myCanvas').annotate("resize", ui.value / 40 , function(){
+
+		});
+      },
+      min: 16,
+      value: 50,
+    });
+
 	var counter = 0;
 
 	var isactive = $("#human");
@@ -54,6 +74,8 @@ $(document).ready(function(){
 		}
 	});
 
+	/*
+
 	$(".zoom-in").click(function(event) {
 		curr_width = curr_width * 1.25;
 		curr_height = curr_height * 1.25;
@@ -68,7 +90,7 @@ $(document).ready(function(){
 		$('#myCanvas').annotate("resize", '-', function(){
 			
 		});
-	});
+	});*/
 
 
 	function objectinfo(d, height, width) {

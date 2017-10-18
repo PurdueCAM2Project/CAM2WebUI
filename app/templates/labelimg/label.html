@@ -30,12 +30,26 @@
 			</ul>
 		</div>
 	</div>
-	<div class="row">
-		<button class="zoom-in btn-primary">Zoom In</button>
-		<button class="zoom-out btn-primary">Zoom Out</button>
+	<div class="row" style="padding: 20px">
+		<!--<button class="zoom-in btn-primary">Zoom In</button>
+		<button class="zoom-out btn-primary">Zoom Out</button>-->
+
+		<div id="slider" style="width: 66%">
+		  <div id="custom-handle" class="ui-slider-handle"></div>
+		</div>
 	</div>
 
 </div>
+<style>
+#custom-handle {
+width: 3em;
+height: 1.6em;
+top: 50%;
+margin-top: -.8em;
+text-align: center;
+line-height: 1.6em;
+}
+</style>
 {% endblock %}
 
 
@@ -51,6 +65,8 @@
 <script src="{% static "app/js/jszip.min.js" %}"></script>
 
 <script src="{% static "app/js/label.js" %}"></script>
+
+
 
 
 {% endblock %}
