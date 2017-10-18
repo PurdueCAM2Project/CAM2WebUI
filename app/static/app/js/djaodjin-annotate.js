@@ -33,6 +33,7 @@ MIT License
     this.compensationWidthRate = 1;
     this.linewidth = 1;
     this.fontsize = 1;
+    this.resizet = 1;
     this.init();
   }
   Annotate.prototype = {
@@ -394,20 +395,21 @@ MIT License
           case 'pen':
             //console.log(element)
             for (var b = 0; b < element.points.length - 1; b++) {
-              var fromx = element.points[b][0];
-              var fromy = element.points[b][1];
-              var tox = element.points[b + 1][0];
-              var toy = element.points[b + 1][1];
+              var fromx = element.points[b][0] * self.resizet;
+              var fromy = element.points[b][1] * self.resizet;
+              var tox = element.points[b + 1][0] * self.resizet;
+              var toy = element.points[b + 1][1] * self.resizet;
               if (b == 0) {
                 //console.log(element.color);
               }              
               self.drawPen(self.baseContext, fromx, fromy, tox, toy, element.color);
             }
             //console.log(element.color);
-            self.drawPen(self.baseContext, element.points[element.points.length-1][0], 
-              element.points[element.points.length-1][1], 
-              element.points[0][0], 
-              element.points[0][1], element.color);
+            console.log(self);
+            self.drawPen(self.baseContext, element.points[element.points.length-1][0] * self.resizet, 
+              element.points[element.points.length-1][1] * self.resizet, 
+              element.points[0][0] * self.resizet, 
+              element.points[0][1] * self.resizet, element.color) ;
             break;
           default:
         }
@@ -548,6 +550,7 @@ MIT License
       var self = this;
 
       //console.log(self.options);
+      this.resizet = cmdOption;
 
       self.options.width = self.selectImageSize.width * cmdOption;
       self.options.height = self.selectImageSize.height * cmdOption;
@@ -580,8 +583,8 @@ MIT License
         for (var i = self.images.length - 1; i >= 0; i--) {
           for (var j = self.images[i].storedElement.length - 1; j >= 0; j--) {
             for (var k = self.images[i].storedElement[j].points.length-1; k >= 0; k--) {
-              self.images[i].storedElement[j].points[k][0] = self.images[i].storedElement[j].points[k][0] * cmdOption;
-              self.images[i].storedElement[j].points[k][1] = self.images[i].storedElement[j].points[k][1] * cmdOption;
+              //self.images[i].storedElement[j].points[k][0] = self.images[i].storedElement[j].points[k][0] * cmdOption;
+              //self.images[i].storedElement[j].points[k][1] = self.images[i].storedElement[j].points[k][1] * cmdOption;
             }
             /*
             self.images[i].storedElement[j].fromx = self.images[i].storedElement[j].fromx * 1.25;
@@ -598,8 +601,8 @@ MIT License
             self.images[i].storedUndo[j].toy = self.images[i].storedUndo[j].toy * 1.25;
             */
             for (var k = self.images[i].storedUndo[j].points.length-1; k >= 0; k--) {
-              self.images[i].storedUndo[j].points[k][0] = self.images[i].storedUndo[j].points[k][0] * cmdOption;
-              self.images[i].storedUndo[j].points[k][1] = self.images[i].storedUndo[j].points[k][1] * cmdOption;
+              //self.images[i].storedUndo[j].points[k][0] = self.images[i].storedUndo[j].points[k][0] * cmdOption;
+              //self.images[i].storedUndo[j].points[k][1] = self.images[i].storedUndo[j].points[k][1] * cmdOption;
             }
           }     
         }
@@ -835,5 +838,6 @@ MIT License
     idAttribute: 'id',
     selectEvent: 'change',
     unselectTool: false,
+    resizet: 1,
   };
 })(jQuery);
