@@ -1,9 +1,9 @@
-import db
-import images
+from labelimg.db import *
+from labelimg.images import *
 from PIL import Image
-import imagehash
+from imagehash import * 
 import json
-from db import DB
+from labelimg.db import DB
 
 db=DB()
 login_info="host: 128.46.213.21, user_type: cam2team,  db_name: ImageDBTest, user_name: test user1"

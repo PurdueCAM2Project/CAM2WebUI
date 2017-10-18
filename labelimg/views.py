@@ -3,12 +3,12 @@ from ftplib import FTP
 import json
 from django.http import JsonResponse
 
-import images
-import imagedb
+from labelimg.images import *
+from labelimg.imagedb import *
 import os
 from PIL import Image
-import imagehash
-from imagedb import Dataset
+from imagehash import * 
+from labelimg.imagedb import Dataset
 import getpass
 import time
 
