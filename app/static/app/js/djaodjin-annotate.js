@@ -405,7 +405,7 @@ MIT License
               self.drawPen(self.baseContext, fromx, fromy, tox, toy, element.color);
             }
             //console.log(element.color);
-            console.log(element);
+            //console.log(element.points[0]);
             self.drawPen(self.baseContext, element.points[element.points.length-1][0], 
               element.points[element.points.length-1][1], 
               element.points[0][0], 
@@ -434,6 +434,8 @@ MIT License
       var self = this;
       context.beginPath();
       context.lineWidth = self.linewidth;
+      //console.log("fromx:" + fromx);
+      //console.log("tox:" +tox);
       context.moveTo(fromx*self.resizet, fromy*self.resizet);
       context.lineTo(tox*self.resizet, toy*self.resizet);
       context.strokeStyle = c;
@@ -471,6 +473,7 @@ MIT License
       self.tox = null;
       self.toy = null;
       self.points = [];
+      //console.log(event)
       var pageX = event.pageX || event.originalEvent.touches[0].pageX;
       var pageY = event.pageY || event.originalEvent.touches[0].pageY;
       self.fromx = (pageX - offset.left) * self.compensationWidthRate;
@@ -557,18 +560,7 @@ MIT License
       //self.currentWidth = self.selectImageSize.width * cmdOption;
       //self.currentHeight = self.selectImageSize.height * cmdOption;
 
-      if (cmdOption === '+') {
-        
-        //self.selectImageSize.width = self.selectImageSize.width * 1.25;
-        //self.selectImageSize.height = self.selectImageSize.height * 1.25;
-      } else {
-        //self.options.width = self.options.width * 0.8;
-        //self.options.height = self.options.height * 0.8;
-        //self.currentWidth = self.currentWidth * 0.8;
-        //self.currentHeight = self.currentHeight * 0.8;
-        //self.selectImageSize.width = self.selectImageSize.width * 0.8;
-        //self.selectImageSize.height = self.selectImageSize.height * 0.8;
-      }
+      
       
       self.baseCanvas.width = self.drawingCanvas.width = self.currentWidth * cmdOption;
       self.baseCanvas.height = self.drawingCanvas.height = self.currentHeight * cmdOption;
@@ -625,8 +617,10 @@ MIT License
             self.tox / self.resizet,
             self.toy / self.resizet
           ]);
-          self.drawPen(self.drawingContext, self.fromx, self.fromy, self.tox,
-            self.toy, self.options.color);
+          //console.log(self.points)
+          //console.log(self.toy / self.resizet * self.resizet)
+          self.drawPen(self.drawingContext, self.fromx, self.fromy, self.tox / self.resizet,
+            self.toy / self.resizet, self.options.color);
           break;
         default:
       }
@@ -637,9 +631,12 @@ MIT License
       var currentcompensationWidthRate = self.compensationWidthRate;
       self.compensationWidthRate = self.selectImageSize.width /
         currentWidth;
+      self.compensationWidthRate = 1;
+      /*
       if (self.compensationWidthRate < 1) {
-        self.compensationWidthRate = 1;
-      }
+        
+      }*/
+      console.log(currentcompensationWidthRate)
       self.linewidth = self.options.linewidth * self.compensationWidthRate;
       self.fontsize = String(parseInt(self.options.fontsize.split('px')[0],
           10) *

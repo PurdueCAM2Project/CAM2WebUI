@@ -1,23 +1,18 @@
 $(document).ready(function(){
 
-	var handle = $( "#custom-handle" );
-    $( "#slider" ).slider({
-
-      create: function() {
-        handle.text( $( this ).slider( "value" ) );
-      },
-      
-      slide: function( event, ui ) {
-      	
-        handle.text( ui.value / 40 );
-
-        $('#myCanvas').annotate("resize", ui.value / 40 , function(){
-
-		});
-      },
-      min: 16,
+    $( "#slider-vertical" ).slider({
+      orientation: "vertical",
+      range: "min",
+      min: 33,
+      max: 75,
       value: 50,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( ui.value / 50);
+        $('#myCanvas').annotate("resize", ui.value / 50 , function(){
+		});
+      }
     });
+    $( "#amount" ).val( $( "#slider-vertical" ).slider( "value" ) / 50 );
 
 	var counter = 0;
 
