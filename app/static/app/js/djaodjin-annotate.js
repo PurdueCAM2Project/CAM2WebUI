@@ -377,8 +377,14 @@ MIT License
       var self = this;
       self.baseCanvas.width = self.baseCanvas.width;
       if (self.options.images) {
+        self.baseCanvas.width = self.drawingCanvas.width = self.currentWidth * self.resizet;
+        self.baseCanvas.height = self.drawingCanvas.height = self.currentHeight * self.resizet;
         self.baseContext.drawImage(self.img, 0, 0, self.currentWidth * self.resizet,
           self.currentHeight * self.resizet);
+        self.$el.css({
+          height: self.currentHeight * self.resizet,
+          width: self.currentWidth * self.resizet
+        });
       }
       if (self.storedElement.length === 0) {
         return;
@@ -562,14 +568,7 @@ MIT License
 
       
       
-      self.baseCanvas.width = self.drawingCanvas.width = self.currentWidth * cmdOption;
-      self.baseCanvas.height = self.drawingCanvas.height = self.currentHeight * cmdOption;
-      self.baseContext.drawImage(self.img, 0, 0, self.currentWidth * cmdOption,
-        self.currentHeight * cmdOption);
-      self.$el.css({
-        height: self.currentHeight * cmdOption,
-        width: self.currentWidth * cmdOption
-      });
+      
            
         
       
@@ -634,7 +633,7 @@ MIT License
       self.compensationWidthRate = 1;
       /*
       if (self.compensationWidthRate < 1) {
-        
+        self.compensationWidthRate = 1;
       }*/
       console.log(currentcompensationWidthRate)
       self.linewidth = self.options.linewidth * self.compensationWidthRate;
