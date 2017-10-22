@@ -1,17 +1,8 @@
-{% extends "app/base.html" %}
-{% block title %}CAM²{% endblock %}
-{% load static %}
-{% block css %}
-<link rel="stylesheet" href="{% static "app/css/index.css" %}">
-{% endblock %}
-{% block content %}
-<div class="splash">
-  <img src="{% static "app/img/background.jpg" %}">
-  <div class="center">
-     <h1>Welcome to CAM<sup>2</sup></h1>
-     <h2>the Continuous Analysis of Many CAMeras</h2>
-  </div>
-</div>
+# WebPage Change 
+
+## Plug in the new video
+Add a new div in 'index.html':
+```
 <div class="main-content">
   <div class="row divide" style="padding-top: 50px;">
     <div style="width: 80%; margin: auto">
@@ -32,4 +23,7 @@
     </div>
   </div>
 </div>
-{% endblock %}
+```
+
+## Add a new tab page
+Move the original videos on the main page to the new tab page. A new tab is set up by citing a new template html called 'Watch.html'.
