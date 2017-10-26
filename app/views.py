@@ -67,6 +67,9 @@ def publications(request):
     context = {'publication_list': publication_list}
     return render(request, 'app/publications.html', context)
 
+def advice(request):
+    return render(request, 'app/advice.html')
+
 def register(request):
     if request.method == 'POST':
         form1 = RegistrationForm(request.POST)
