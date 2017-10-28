@@ -200,9 +200,11 @@ class AddTestCase(StaticLiveServerTestCase):
 
 
 		x = browser.find_element_by_name('username') 
-		x.send_keys(self.test_username)
+		#x.send_keys(self.test_username)
+		x.send_keys('admin')
 		y = browser.find_element_by_name('password')
-		y.send_keys(self.test_password)
+		#y.send_keys(self.test_password)
+		y.send_keys('admin')
 		browser.find_element_by_name('submitbutton').click()
 		WebDriverWait(browser, 10).until(
 		    EC.text_to_be_present_in_element(
