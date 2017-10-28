@@ -198,7 +198,8 @@ class AddTestCase(StaticLiveServerTestCase):
 
 		browser.get(url)
 
-
+		#Need email confirmation for suscessful login of test_username.
+		#Therefore, use superuser to test login instead.
 		x = browser.find_element_by_name('username') 
 		#x.send_keys(self.test_username)
 		x.send_keys('admin')
