@@ -39,6 +39,11 @@ class ProfileEmailForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email',)
+    def clean_email(self):
+        data = self.cleaned_data['email']
+        if User.objects.filter(email=data).exists():
+            raise forms.ValidationError("This email has already been used")
+        return data
 
 class NameForm(forms.ModelForm):
     first_name = forms.CharField(max_length=30, required=True)
