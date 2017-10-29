@@ -90,7 +90,7 @@ def register(request):
             result = json.loads(response.read().decode())
             if result['success']:
                 model1 = form1.save(commit=False) #Required information of user
-                model1.is_active = True #Set true for testing without email.
+                model1.is_active = False #Set true for testing without email.
                 model1.save()
                 model2 = form2.save(commit=False) #Optional information of user
                 model2.user = model1
