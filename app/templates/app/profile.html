@@ -12,12 +12,15 @@
     {% if messages %}
       <ul class="messages">
           {% for message in messages %}
-          <li{% if message.tags %} style="color: green" class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          <li{% if message.tags %}
+               {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} style="color: red" class="{{ message.tags }}"
+               {% else %} style="color: green" class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+             {% endif %}
           {% endfor %}
       </ul>
     {% endif %}
   <div class="container">
-    {% if user.first_name is None %}
+    {% if request.user.first_name is None %}
         <form method="post">
             {% csrf_token %}
                {% for field in nameForm %}
@@ -34,14 +37,14 @@
 
         </form>
     {% else %}
-        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+        <h3>{{ request.user.get_full_name }}</h3>
     {% endif %}
 
 
 
     {% if not github_login %}
     <div class="panel-body">
-      <a href="/password_reset/">Change my password</a>
+      <a href="/password_reset/">Change my password (Password reset)</a>
     </div>
     {% else %}
     <h3 class="sub-header">GitHub(Under Development)</h3> 
@@ -60,7 +63,6 @@
     {% endif %}
     <form method="post">
         {% csrf_token %}
-           {% csrf_token %}
         {% for field in emailForm %}
            <p>
              {{ field.label_tag }}<br>
