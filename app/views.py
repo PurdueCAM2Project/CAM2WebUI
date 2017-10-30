@@ -67,6 +67,9 @@ def publications(request):
     context = {'publication_list': publication_list}
     return render(request, 'app/publications.html', context)
 
+def advice(request):
+    return render(request, 'app/advice.html')
+
 def register(request):
     if request.method == 'POST':
         form1 = RegistrationForm(request.POST)
@@ -87,7 +90,7 @@ def register(request):
             result = json.loads(response.read().decode())
             if result['success']:
                 model1 = form1.save(commit=False) #Required information of user
-                model1.is_active = True #Set true for testing without email.
+                model1.is_active = False #Set true for testing without email.
                 model1.save()
                 model2 = form2.save(commit=False) #Optional information of user
                 model2.user = model1
@@ -164,53 +167,15 @@ def activate(request, uidb64, token):
 @login_required
 def profile(request):
     user = request.user
-
     try:
         github_login = user.social_auth.get(provider='github')
     except UserSocialAuth.DoesNotExist:
         github_login = None
 
-    # Enter name for social login users
-    nameForm = NameForm(instance=user)
-
-    if request.method == 'POST' and 'saveName' in request.POST:
-        nameForm = NameForm(request.POST, instance=user)
-        if nameForm.is_valid():
-            nameForm.save()
-            messages.success(request, 'Thank you! Your name has been updated.')
-        else:
-            nameForm = NameForm(instance=user)
-            messages.error(request, 'Something went wrong. Please try again or contact us!')
-        return redirect('profile')
-
-
-    # Add app
+    #initialize forms
     app_form = AppForm()
-
     apps = CAM2dbApi.objects.filter(user=request.user).values()
-
-    if request.method == 'POST' and 'add' in request.POST:
-        app_form = AppForm(request.POST)
-        if app_form.is_valid():
-            dbapp = app_form.save(commit=False)
-            dbapp.user = request.user
-            dbapp.save()
-        return redirect('profile')
-
-    # Change Email
     emailForm = ProfileEmailForm(instance=user)
-
-    if request.method == 'POST' and 'changeEmail' in request.POST:
-        emailForm = ProfileEmailForm(request.POST, instance=user)
-        if emailForm.is_valid():
-            emailForm.save()
-            messages.success(request, 'Your Email has been successfully updated!')
-        else:
-            emailForm=ProfileEmailForm(instance=user)
-            messages.error(request, 'Something went wrong. Please try again or contact us!')
-        return redirect('profile')
-
-    # Modify Profile
     try:
         optional = RegisterUser.objects.get(user=user)
     except:# If cannot find RegisterUser object(social login users), create one
@@ -220,24 +185,62 @@ def profile(request):
         optional.save()
     infoForm = AdditionalForm(instance=optional)#get form with info of a specific instance
 
+
+    '''
+    # Enter name for social login users
+    if request.method == 'POST' and 'saveName' in request.POST:
+        nameForm = NameForm(request.POST, instance=user)
+        if nameForm.is_valid():
+            nameForm.save()
+            messages.success(request, 'Thank you! Your name has been updated.')
+        else:
+            nameForm = NameForm(instance=user)
+            messages.error(request, 'Something went wrong. Please try again or contact us!')
+        #return redirect('profile')
+    return render(request, 'app/profile.html', form_dict)
+    '''
+    # Add app
+    if request.method == 'POST' and 'add' in request.POST:
+        app_form = AppForm(request.POST)
+        if app_form.is_valid():
+            dbapp = app_form.save(commit=False)
+            dbapp.user = request.user
+            dbapp.save()
+            return redirect('profile')
+    else:
+        app_form = AppForm()
+        #messages.error(request, 'Something went wrong. Please try again or contact us!')
+    #return render(request, 'app/profile.html', form_dict)
+
+    # Change Email
+    if request.method == 'POST' and 'changeEmail' in request.POST:
+        emailForm = ProfileEmailForm(request.POST, instance=user)
+        if emailForm.is_valid():
+            emailForm.save()
+            messages.success(request, 'Your Email has been successfully updated!')
+            return redirect('profile')
+    else:
+        emailForm=ProfileEmailForm(instance=user)
+        #messages.error(request, 'Something went wrong. Please try again or contact us!')
+    #return render(request, 'app/profile.html', form_dict)
+
+    # Modify Profile
     if request.method == 'POST' and 'changeInfo' in request.POST:
         infoForm = AdditionalForm(request.POST, instance=optional)
         if infoForm.is_valid():
             infoForm.save()
             messages.success(request, 'Your information has been successfully updated!')
-        else:
-            infoForm=AdditionalForm(instance=optional)
-            messages.error(request, 'Something went wrong. Please try again or contact us!')
-        return redirect('profile')
-
+            return redirect('profile')
+    else:
+        infoForm=AdditionalForm(instance=optional)
+        #messages.error(request, 'Something went wrong. Please try again or contact us!')
     return render(request, 'app/profile.html', {
         'github_login': github_login,
         'app_form': app_form,
         'apps': apps,
         'infoForm': infoForm,
         'emailForm': emailForm,
-        'nameForm': nameForm
-     })
+    })
 
 """ use 'password_reset' instead
 def change_password(request):

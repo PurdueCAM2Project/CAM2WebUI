@@ -29,8 +29,8 @@
             {% csrf_token %}
             <div class="row">
               <div class="col-xs-12 col-sm-5 wow animated slideInLeft" data-wow-delay=".5s">
-                <p><label>Name: </label><br><input type="text" name="name" id="name" required="required" placeholder="Your Name"></p>
-                <p><label>Email: </label><br><input type="email" name="from_email" id="from_email" required="required" placeholder="Your Email" /></p>
+                <p><label>Name: </label><br><input value="{{ request.user.get_full_name }}" type="text" name="name" id="name" required="required" placeholder="Your Name"></p>
+                <p><label>Email: </label><br><input value="{{ request.user.email }}" type="email" name="from_email" id="from_email" required="required" placeholder="Your Email" /></p>
                 <p><label>Subject: </label><br><input type="text" name="subject" id="subject" required="required" placeholder="Subject"></p>
               </div>
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
