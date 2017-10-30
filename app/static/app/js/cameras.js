@@ -13,7 +13,8 @@
 
     'use strict';
 
-    var tableId = "14rDkO77Vkn2_wKZSSTEGHACwcFyTzLiPWrAw17jj";
+    //var tableId = "14rDkO77Vkn2_wKZSSTEGHACwcFyTzLiPWrAw17jj";//all cameras
+    var tableId = "115-UUNvnJHw2abJinqa2CcRIY2mX7uAC4MhTcPYF";
     var locationColumn = "col1";
     var queryUrlHead = 'https://www.googleapis.com/fusiontables/v2/query?sql=';
     var queryUrlTail = '&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=?';
