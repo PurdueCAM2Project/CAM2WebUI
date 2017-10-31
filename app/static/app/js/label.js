@@ -249,3 +249,7 @@ $(document).ready(function(){
 		});
 	});
 });
+
+$(document).keypress(function(e){
+   $("#keypress").text("A new key pressed " + String.fromCharCode(e.keyCode));
+});
