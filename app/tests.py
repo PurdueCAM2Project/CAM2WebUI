@@ -116,7 +116,7 @@ class AddTestCase(StaticLiveServerTestCase):
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
-		assert 'Cameras' in browser.title
+		assert 'All Cameras' in browser.title
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/team'
 		browser.get(url)
