@@ -27,6 +27,9 @@ def cameras(request):
 #               'google_client_id': settings.GOOGLE_CLIENT_ID}
     return render(request, 'app/cameras.html')
 
+def good_cameras(request):
+    return render(request, 'app/good_cameras.html')
+
 def team(request):
     team_list = Team.objects.reverse()
     leader_list = Leader.objects.reverse()
