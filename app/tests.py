@@ -116,7 +116,7 @@ class AddTestCase(StaticLiveServerTestCase):
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
-		assert 'Cameras' in browser.title
+		assert 'All Cameras' in browser.title
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/team'
 		browser.get(url)
@@ -198,11 +198,14 @@ class AddTestCase(StaticLiveServerTestCase):
 
 		browser.get(url)
 
-
+		#Need email confirmation for suscessful login of test_username.
+		#Therefore, use superuser to test login instead.
 		x = browser.find_element_by_name('username') 
-		x.send_keys(self.test_username)
+		#x.send_keys(self.test_username)
+		x.send_keys('admin')
 		y = browser.find_element_by_name('password')
-		y.send_keys(self.test_password)
+		#y.send_keys(self.test_password)
+		y.send_keys('admin')
 		browser.find_element_by_name('submitbutton').click()
 		WebDriverWait(browser, 10).until(
 		    EC.text_to_be_present_in_element(
