@@ -17,25 +17,33 @@
 		<button class="remove-image btn-danger">Remove Image</button>
 	</div>
 	<div class="row">
-		<div class="col-sm-8">
+		<div class="col-sm-10">
 			<div style="margin-top:50px;">
 				<div id="myCanvas" style="position:relative"></div>
 			</div>
 		</div>
-		<div class="col-sm-4">
-			<ul class="nav nav-pills nav-stacked" style="margin-top:50px;">
-				<li class="active" id="human"><a href="#">Human</a></li>
-				<li id="car"><a href="#" >Car</a></li>
-				<li id="sign"><a href="#" >Street Sign</a></li>
-			</ul>
+		<div class="col-sm-2">
+			<p>
+			  <label for="amount">Volume:</label>
+			  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+			</p>
+			<div id="slider-vertical" style="height:200px;"></div>
 		</div>
 	</div>
-	<div class="row">
-		<button class="zoom-in btn-primary">Zoom In</button>
-		<button class="zoom-out btn-primary">Zoom Out</button>
+	<div class="row" style="padding: 20px">
+		<!--<button class="zoom-in btn-primary">Zoom In</button>
+		<button class="zoom-out btn-primary">Zoom Out</button>-->
+		<ul class="nav nav-pills nav-stacked" style="margin-top:50px;">
+			<li class="active" id="human"><a href="#">Human</a></li>
+			<li id="car"><a href="#" >Car</a></li>
+			<li id="sign"><a href="#" >Street Sign</a></li>
+		</ul>
+
+
 	</div>
 
 </div>
+
 {% endblock %}
 
 
@@ -51,6 +59,8 @@
 <script src="{% static "app/js/jszip.min.js" %}"></script>
 
 <script src="{% static "app/js/label.js" %}"></script>
+
+
 
 
 {% endblock %}

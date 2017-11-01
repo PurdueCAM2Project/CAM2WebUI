@@ -33,6 +33,7 @@ MIT License
     this.compensationWidthRate = 1;
     this.linewidth = 1;
     this.fontsize = 1;
+    this.resizet = 1;
     this.init();
   }
   Annotate.prototype = {
@@ -80,14 +81,14 @@ MIT License
             '<i class="glyphicon glyphicon-ban-circle"></i>' +
             '</label>';
         }
-        self.$tool += '<label class="btn btn-primary active">' +
+        self.$tool += /*'<label class="btn btn-primary active">' +
           '<input type="radio" name="' + self.toolOptionId +
           '" data-tool="rectangle"' +
           ' data-toggle="tooltip" data-placement="top"' +
           ' title="Draw an rectangle">' +
           '<i class="glyphicon glyphicon-unchecked"></i>' +
-          '</label>' +
-          '<label class="btn btn-primary">' +
+          '</label>' +*/
+          '<label class="btn btn-primary active">' +
           '<input type="radio" name="' + self.toolOptionId +
           '" data-tool="pen"' +
           ' data-toggle="tooltip" data-placement="top" title="Pen Tool">' +
@@ -376,8 +377,14 @@ MIT License
       var self = this;
       self.baseCanvas.width = self.baseCanvas.width;
       if (self.options.images) {
-        self.baseContext.drawImage(self.img, 0, 0, self.currentWidth,
-          self.currentHeight);
+        self.baseCanvas.width = self.drawingCanvas.width = self.currentWidth * self.resizet;
+        self.baseCanvas.height = self.drawingCanvas.height = self.currentHeight * self.resizet;
+        self.baseContext.drawImage(self.img, 0, 0, self.currentWidth * self.resizet,
+          self.currentHeight * self.resizet);
+        self.$el.css({
+          height: self.currentHeight * self.resizet,
+          width: self.currentWidth * self.resizet
+        });
       }
       if (self.storedElement.length === 0) {
         return;
@@ -392,22 +399,23 @@ MIT License
               element.tox, element.toy, element.color);
             break;
           case 'pen':
-            console.log(element)
+            //console.log(element)
             for (var b = 0; b < element.points.length - 1; b++) {
               var fromx = element.points[b][0];
               var fromy = element.points[b][1];
               var tox = element.points[b + 1][0];
-              var toy = element.points[b + 1][1];
+              var toy = element.points[b + 1][1] ;
               if (b == 0) {
-                console.log(element.color);
+                //console.log(element.color);
               }              
               self.drawPen(self.baseContext, fromx, fromy, tox, toy, element.color);
             }
-            console.log(element.color);
+            //console.log(element.color);
+            //console.log(element.points[0]);
             self.drawPen(self.baseContext, element.points[element.points.length-1][0], 
               element.points[element.points.length-1][1], 
               element.points[0][0], 
-              element.points[0][1], element.color);
+              element.points[0][1], element.color) ;
             break;
           default:
         }
@@ -432,8 +440,10 @@ MIT License
       var self = this;
       context.beginPath();
       context.lineWidth = self.linewidth;
-      context.moveTo(fromx, fromy);
-      context.lineTo(tox, toy);
+      //console.log("fromx:" + fromx);
+      //console.log("tox:" +tox);
+      context.moveTo(fromx*self.resizet, fromy*self.resizet);
+      context.lineTo(tox*self.resizet, toy*self.resizet);
       context.strokeStyle = c;
       context.stroke();
     },
@@ -469,6 +479,7 @@ MIT License
       self.tox = null;
       self.toy = null;
       self.points = [];
+      //console.log(event)
       var pageX = event.pageX || event.originalEvent.touches[0].pageX;
       var pageY = event.pageY || event.originalEvent.touches[0].pageY;
       self.fromx = (pageX - offset.left) * self.compensationWidthRate;
@@ -478,8 +489,8 @@ MIT License
 
       if (self.options.type === 'pen') {
         self.points.push([
-          self.fromx,
-          self.fromy
+          self.fromx / self.resizet,
+          self.fromy / self.resizet
         ]);
       }
       
@@ -494,10 +505,10 @@ MIT License
           case 'rectangle':
             self.storedElement.push({
               type: 'rectangle',
-              fromx: self.fromx,
-              fromy: self.fromy,
-              tox: self.tox,
-              toy: self.toy,
+              fromx: self.fromx / self.resizet,
+              fromy: self.fromy / self.resizet,
+              tox: self.tox / self.resizet,
+              toy: self.toy / self.resizet,
               color: self.options.color
             });
             break;
@@ -547,64 +558,20 @@ MIT License
     resize: function(event, cmdOption) {
       var self = this;
 
-      if (cmdOption === '+') {
-        self.options.width = self.options.width * 1.25;
-        self.options.height = self.options.height * 1.25;
-        self.currentWidth = self.currentWidth * 1.25;
-        self.currentHeight = self.currentHeight * 1.25;
-        self.selectImageSize.width = self.selectImageSize.width * 1.25;
-        self.selectImageSize.height = self.selectImageSize.height * 1.25;
-      } else {
-        self.options.width = self.options.width * 0.8;
-        self.options.height = self.options.height * 0.8;
-        self.currentWidth = self.currentWidth * 0.8;
-        self.currentHeight = self.currentHeight * 0.8;
-        self.selectImageSize.width = self.selectImageSize.width * 0.8;
-        self.selectImageSize.height = self.selectImageSize.height * 0.8;
-      }
-      
-      self.baseCanvas.width = self.drawingCanvas.width = self.currentWidth;
-      self.baseCanvas.height = self.drawingCanvas.height = self.currentHeight;
-      self.baseContext.drawImage(self.img, 0, 0, self.currentWidth,
-        self.currentHeight);
-      self.$el.css({
-        height: self.currentHeight,
-        width: self.currentWidth
-      });
-      if (cmdOption === '+') {        
-        
-        for (var i = self.images.length - 1; i >= 0; i--) {
-          for (var j = self.images[i].storedElement.length - 1; j >= 0; j--) {
-            self.images[i].storedElement[j].fromx = self.images[i].storedElement[j].fromx * 1.25;
-            self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 1.25;
-            self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 1.25;
-            self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 1.25;
-          }
-          for (var j = self.images[i].storedUndo.length - 1; j >= 0; j--) {
-            self.images[i].storedUndo[j].fromx = self.images[i].storedUndo[j].fromx * 1.25;
-            self.images[i].storedUndo[j].fromy = self.images[i].storedUndo[j].fromy * 1.25;
-            self.images[i].storedUndo[j].tox = self.images[i].storedUndo[j].tox * 1.25;
-            self.images[i].storedUndo[j].toy = self.images[i].storedUndo[j].toy * 1.25;
-          }     
-        }
+      //console.log(self.options);
+      self.resizet = cmdOption;
 
-      } else {
+      //self.options.width = self.selectImageSize.width * cmdOption;
+      //self.options.height = self.selectImageSize.height * cmdOption;
+      //self.currentWidth = self.selectImageSize.width * cmdOption;
+      //self.currentHeight = self.selectImageSize.height * cmdOption;
+
+      
+      
+      
+           
         
-        for (var i = self.images.length - 1; i >= 0; i--) {
-          for (var j = self.images[i].storedElement.length - 1; j >= 0; j--) {
-            self.images[i].storedElement[j].fromx = self.images[i].storedElement[j].fromx * 0.8;
-            self.images[i].storedElement[j].fromy = self.images[i].storedElement[j].fromy * 0.8;
-            self.images[i].storedElement[j].tox = self.images[i].storedElement[j].tox * 0.8;
-            self.images[i].storedElement[j].toy = self.images[i].storedElement[j].toy * 0.8;
-          }
-          for (var j = self.images[i].storedUndo.length - 1; j >= 0; j--) {
-            self.images[i].storedUndo[j].fromx = self.images[i].storedUndo[j].fromx * 0.8;
-            self.images[i].storedUndo[j].fromy = self.images[i].storedUndo[j].fromy * 0.8;
-            self.images[i].storedUndo[j].tox = self.images[i].storedUndo[j].tox * 0.8;
-            self.images[i].storedUndot[j].toy = self.images[i].storedUndo[j].toy * 0.8;
-          }        
-        }
-      }
+      
       
       self.checkUndoRedo();
       self.clear();
@@ -646,11 +613,13 @@ MIT License
           self.fromx = self.points[self.points.length - 1][0];
           self.fromy = self.points[self.points.length - 1][1];
           self.points.push([
-            self.tox,
-            self.toy
+            self.tox / self.resizet,
+            self.toy / self.resizet
           ]);
-          self.drawPen(self.drawingContext, self.fromx, self.fromy, self.tox,
-            self.toy, self.options.color);
+          //console.log(self.points)
+          //console.log(self.toy / self.resizet * self.resizet)
+          self.drawPen(self.drawingContext, self.fromx, self.fromy, self.tox / self.resizet,
+            self.toy / self.resizet, self.options.color);
           break;
         default:
       }
@@ -661,9 +630,12 @@ MIT License
       var currentcompensationWidthRate = self.compensationWidthRate;
       self.compensationWidthRate = self.selectImageSize.width /
         currentWidth;
+      self.compensationWidthRate = 1;
+      /*
       if (self.compensationWidthRate < 1) {
         self.compensationWidthRate = 1;
-      }
+      }*/
+      console.log(currentcompensationWidthRate)
       self.linewidth = self.options.linewidth * self.compensationWidthRate;
       self.fontsize = String(parseInt(self.options.fontsize.split('px')[0],
           10) *
@@ -798,13 +770,14 @@ MIT License
     height: null,
     images: [],
     color: 'red',
-    type: 'rectangle',
+    type: 'pen',
     linewidth: 2,
     fontsize: '20px',
-    bootstrap: false,
+    bootstrap: true,
     position: 'top',
     idAttribute: 'id',
     selectEvent: 'change',
     unselectTool: false,
+    resizet: 1,
   };
 })(jQuery);

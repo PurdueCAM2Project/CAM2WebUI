@@ -5,4 +5,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.labelimgindex, name='labelimgindex'),
     url(r'^getimg/$', views.getimg, name='image'),
+    url(r'^getdbimg/$', views.getdbimg, name='dbimage'),
 ]
+
