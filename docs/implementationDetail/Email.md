@@ -224,17 +224,17 @@ Content:
 ```
 
 ## 3. Send Email from Admin
-See [here](https://purduecam2project.github.io/CAM2WebUI/implementationDetail/Email.html#administrator-emailing)
-for admin action that direct admin to this view.
+See [here](https://purduecam2project.github.io/CAM2WebUI/implementationDetail/Admin.html#admin-action-of-send-email-from-admin)
+for admin action of "send email from admin" that direct admin to this view.
 ### Goal
-Receive a list of user id from previous page, and send email to users in the list.
+Receive a list of user id from previous page, and allow admin to input subject and message to send email to users in the list.
+The admin can also add other recipient by adding email addresses into the "additional email" box.
 
 ### decorator
 To make sure only admin can use this view, we need to add a django decorator `@staff_member_required` before our function.
 
 ### Send Email Page
-we use a form to obtain the subject, message and email:
-
+we use a form to obtain the subject, message and additional email:
 In `forms.py':
 ```
     from django import forms
@@ -248,6 +248,7 @@ In `forms.py':
 ```
 
 Since we want to send email to more than one address, we need to define a field that accepts multiple email addresses.
+See [Django Documentation: Form field default cleaning](https://docs.djangoproject.com/en/1.11/ref/forms/validation/#form-field-default-cleaning)
   
 Before `Mailform`, add:
 ```
@@ -272,60 +273,80 @@ Before `Mailform`, add:
 ```
 The MultiEmailField will accept a list of email addresses that is split by `,` or `;` aas well as a list copy and paste from the user info table that we will create later.
   
-Now go to `views.py`:
-
+Now go to `views.py`. We will use `request.session` to pass the user id list from another web page.
+  
+And we want to show the info of selected user at the bottom of the view for admin's convenience.
+  
+Therefore, we will first get the `User` object from user id, and form a list containing the information we need.
 ```
 @staff_member_required
 def admin_send_email(request):
+    #obtain user id list from session, or none
+    user_selected = request.session.get('user_id_selected', None)
+    #get a list of User objects
+    user_info=[]
+    if user_selected is not None:
+        for i in user_selected:
+            obj=User.objects.get(id=i)
+            obj_info=[obj.is_staff, obj.username, obj.email, obj.first_name, obj.last_name, obj.date_joined]
+            user_info.append(obj_info)
+
+```
+
+To retrieve input from admin:
+```
     if request.method == 'POST':
         form = MailForm(request.POST)
         if form.is_valid():
-            #email specific users
+            #get admin input
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             email = form.cleaned_data['email']
-            email_all_users = form.cleaned_data['email_all_users'] #option for email all users
-
-            try:
-                if email_all_users: #if ture, send email to all users
-                    current_site = get_current_site(request)#will be used in templates
-                    all_users = User.objects.all() #For iteration of email all users
-                    mass_email = []
-                    #iterations that add users info to each email and attach to mass_email list
-                    for user in all_users: 
-                        username = user.username
-                        template = render_to_string('email_system/admin_send_email_template.html', {
-                            'username': username,
-                            'message': message,
-                            'domain': current_site.domain,
-                        })
-                        mass_email.append((
-                            subject,
-                            template,
-                            EMAIL_HOST_USER,
-                            [user.email],
-                        ))
-
-                    send_mass_mail(mass_email)
-                else: #if email_all_users is not true, send email to address that the admin typed in
-                    send_mail(subject,message,EMAIL_HOST_USER,email)
-
-                messages.success(request, 'Email successfully sent.')#success message
-            except:
-                messages.error(request, 'Email sent failed.')#error message
-
-            return redirect('admin_send_email')
-        else:
-            messages.error(request, 'Email sent failed.')
+```
+There are two ways of sending email: send_mail and send_mass_mail. send_mass_mail will not close the channel of sending email after each email es sent, so it is slightly faster when sending a lot of email. 
+  
+send_mass_mail accepts the email in the format: `(subject, message, from_email, recipient_list)`. See [Django Documentation: send_mass_mail()](https://docs.djangoproject.com/en/1.11/topics/email/#send-mass-mail).
+    
+It is better to send the email one by one, that is, we only put one email at a time in the `recipienct_list`, because all the email in `recipienct_list` is visible to others in the same `recipienct_list`.
+  
+To send the email one by one, we need to create a list to put all of our email, and then iterate through the user list to get their username and email. The username will be used for greeting in the email template. 
+```
+                    
+            current_site = get_current_site(request)  # will be used in templates
+            mass_email = []
+            #for user id list
+            for i in user_selected:
+                obj = User.objects.get(id=i)
+                if obj.email is not '':
+                    username = obj.username  # will be used in template
+                    template = render_to_string('email_system/admin_send_email_template.html', {
+                        'username': username,
+                        'message': message,
+                        'domain': current_site.domain,
+                    })
+                    mass_email.append((
+                        subject,
+                        template,
+                        EMAIL_HOST_USER,
+                        [obj.email],
+                    ))
+            send_mass_mail(mass_email, fail_silently=False)
+```
+To email additional recipient is easy, just do another for loop iterating the email list: `for e in email:`.
+  
+Assign each email address as username for greeting in template. `username = e`
+  
+And change the recipient_list to `[e]`. All the other code can be reused directly.
+  
+At last, finish the function, the else matches the `if request.method == 'POST':`:
+```
     else:
         form = MailForm()
-    return render(request, 'email_system/admin_send_email.html', {'form': form})
- ```
- 
-There are two ways of sending email: send_mail and send_mass_mail. send_mass_mail will not close the channel of sending email after each email es sent, so it is slightly faster when sending a lot of email.
+    return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': user_info})
+```
 
-We also used a template here for email_all_users since it is nice to have signiture for an official email:
-
+### Template
+Email template:
 ```
 Hi {{ username }},
 {{ message }}
@@ -336,15 +357,74 @@ Sincerely,
 CAM2
 http://{{ domain }}
 ```
-For the convenience of administrator, it is good to have a table of all users' info.
-To obtain them, we will use `objects.values` and `objects.values_list`. The `objects.values` will collect the names of each aspact of info, however, `objects.values_list` will only contain the info itself.
-  
-Right after `def admin_send_email(request):` and before `if request.method == 'POST':`, add the following to get user info:
-  
-    email_table = (User.objects.values('email')) #Obtaining a list of users' emails outside users info table for easy copying and pasting.
-    users = User.objects.values_list('username', 'first_name', 'last_name', 'date_joined') #Obtaining a list of info required from user
-    
-and add this two list in `return render()` in the end:
-    return render(request, 'email_system/admin_send_email.html', {'form': form, 'users': users, 'email_table': email_table})
 
+View template:
+```
+{% block content %}
+<div class="top-content">
+  <div class="inner-bg">
+    <div class="container">
+      <div class="row">
+          <a style="color: blue" href="/admin/auth/user/">Go back to User administration</a>
+        <h3>Email Users</h3>
+      </div>
+        {% if messages %}
+        <ul style="color: red" class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+      <div class="form-bottom">
+      <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field is form.email %}
+                {{ field.label_tag }}<br>
+                <input type="text" style="width: 100%" name="{{ form.email.name }}"/>
+            {% else %}
+                {{ field.label_tag }}<br>
+                {{ field }}<br>
+            {% endif %}
+            {% if field.help_text %}
+                <p style="color: grey">{{ field.help_text }}</p>
+            {% endif %}
+            {% for error in field.errors %}
+                <p id="emailerror" style="color: red">{{ error }}</p>
+            {% endfor %}
 
+        {% endfor %}
+        <button type="submit" name="sendemail" class="btn">Send</button>
+
+        <br>
+        <br>
+        <div class="infoTable">
+            <table style="width:100%; float: left">
+            <h3>Selected Users</h3>
+            <tr>
+                <th>Staff Status</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date Joined</th>
+            </tr>
+
+            {% for user in users %}
+                <tr>
+                {% for field in user %}
+                    <td>{{ field }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+
+            </table>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
+```

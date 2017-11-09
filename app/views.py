@@ -14,7 +14,7 @@ from social_django.models import UserSocialAuth
 from django.utils.encoding import force_text, force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .tokens import account_activation_token
-from .forms import RegistrationForm, AdditionalForm, AppForm
+from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
 from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser
@@ -26,6 +26,9 @@ def cameras(request):
 #    context = {'google_api_key': settings.GOOGLE_API_KEY,
 #               'google_client_id': settings.GOOGLE_CLIENT_ID}
     return render(request, 'app/cameras.html')
+
+def good_cameras(request):
+    return render(request, 'app/good_cameras.html')
 
 def team(request):
     team_list = Team.objects.reverse()
@@ -67,6 +70,9 @@ def publications(request):
     context = {'publication_list': publication_list}
     return render(request, 'app/publications.html', context)
 
+def advice(request):
+    return render(request, 'app/advice.html')
+
 def register(request):
     if request.method == 'POST':
         form1 = RegistrationForm(request.POST)
@@ -87,7 +93,7 @@ def register(request):
             result = json.loads(response.read().decode())
             if result['success']:
                 model1 = form1.save(commit=False) #Required information of user
-                model1.is_active = True #Set true for testing without email.
+                model1.is_active = False #Set true for testing without email.
                 model1.save()
                 model2 = form2.save(commit=False) #Optional information of user
                 model2.user = model1
@@ -106,7 +112,7 @@ def register(request):
 
                 return redirect('email_confirmation_sent')
             else:
-                messages.error(request, 'Invalid reCAPTCHA. Please try again.')
+                messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
                 if 'test' in sys.argv:
                     sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
                 else:
@@ -164,53 +170,97 @@ def activate(request, uidb64, token):
 @login_required
 def profile(request):
     user = request.user
-
     try:
         github_login = user.social_auth.get(provider='github')
     except UserSocialAuth.DoesNotExist:
         github_login = None
-    #if github_login:
-    """
-    can_disconnect = user.has_usable_password()
 
-    if can_disconnect:
-        PasswordForm = PasswordChangeForm
-    else:
-        PasswordForm = AdminPasswordChangeForm
-    """
-
-    form = PasswordChangeForm(request.user)
-    if request.method == 'POST' and 'save_changes' in request.POST:
-        form = PasswordChangeForm(user, request.POST)
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
-            messages.success(request, 'Your password was successfully updated!')
-            return redirect('profile')
-
-   
+    #initialize forms
     app_form = AppForm()
-
     apps = CAM2dbApi.objects.filter(user=request.user).values()
-    print(apps)
+    emailForm = ProfileEmailForm(instance=user)
+    try:
+        optional = RegisterUser.objects.get(user=user)
+    except:# If cannot find RegisterUser object(social login users), create one
+        add_form = AdditionalForm({})
+        optional = add_form.save(commit=False)
+        optional.user = user
+        optional.save()
+    infoForm = AdditionalForm(instance=optional)#get form with info of a specific instance
+
+
+    '''
+    # Enter name for social login users
+    if request.method == 'POST' and 'saveName' in request.POST:
+        nameForm = NameForm(request.POST, instance=user)
+        if nameForm.is_valid():
+            nameForm.save()
+            messages.success(request, 'Thank you! Your name has been updated.')
+        else:
+            nameForm = NameForm(instance=user)
+            messages.error(request, 'Something went wrong. Please try again or contact us!')
+        #return redirect('profile')
+    return render(request, 'app/profile.html', form_dict)
+    '''
+    # Add app
     if request.method == 'POST' and 'add' in request.POST:
         app_form = AppForm(request.POST)
         if app_form.is_valid():
             dbapp = app_form.save(commit=False)
             dbapp.user = request.user
             dbapp.save()
-        return redirect('profile')
+            return redirect('profile')
+    else:
+        app_form = AppForm()
+        #messages.error(request, 'Something went wrong. Please try again or contact us!')
+    #return render(request, 'app/profile.html', form_dict)
 
+    # Change Email
+    if request.method == 'POST' and 'changeEmail' in request.POST:
+        emailForm = ProfileEmailForm(request.POST, instance=user)
+        if emailForm.is_valid():
+            emailForm.save()
+            messages.success(request, 'Your Email has been successfully updated!')
+            return redirect('profile')
+    else:
+        emailForm=ProfileEmailForm(instance=user)
+        #messages.error(request, 'Something went wrong. Please try again or contact us!')
+    #return render(request, 'app/profile.html', form_dict)
 
+    # Modify Profile
+    if request.method == 'POST' and 'changeInfo' in request.POST:
+        infoForm = AdditionalForm(request.POST, instance=optional)
+        if infoForm.is_valid():
+            infoForm.save()
+            messages.success(request, 'Your information has been successfully updated!')
+            return redirect('profile')
+    else:
+        infoForm=AdditionalForm(instance=optional)
+        #messages.error(request, 'Something went wrong. Please try again or contact us!')
     return render(request, 'app/profile.html', {
         'github_login': github_login,
-        'form':form,
-        'app_form':app_form,
-        'apps':apps
-     })
-    #else:
-        #return redirect('index')
+        'app_form': app_form,
+        'apps': apps,
+        'infoForm': infoForm,
+        'emailForm': emailForm,
+    })
 
+""" use 'password_reset' instead
+def change_password(request):
+    user = request.user
+    passwordform = PasswordChangeForm(user)
+    if request.method == 'POST':
+        passwordform = PasswordChangeForm(user, request.POST)
+        if passwordform.is_valid():
+            passwordform.save()
+            update_session_auth_hash(request, passwordform.user)
+            messages.success(request, 'Your password has been successfully updated!')
+            return redirect('profile')
+        else:
+            passwordform = PasswordChangeForm(user)
+
+    return render(request, 'app/change_password.html', {'passwordform': passwordform})
+"""
 
 def oauthinfo(request):
     if request.method == 'POST':

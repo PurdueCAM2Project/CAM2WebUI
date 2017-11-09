@@ -13,6 +13,11 @@ class RegistrationForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
+    def clean_email(self):
+        data = self.cleaned_data['email']
+        if User.objects.filter(email=data).exists():
+            raise forms.ValidationError("This email has already been used")
+        return data
 
 class AdditionalForm(forms.ModelForm):
     class Meta:
@@ -29,3 +34,20 @@ class AppForm(forms.ModelForm):
     class Meta:
         model = CAM2dbApi
         fields = ('appname',)
+
+class ProfileEmailForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('email',)
+    def clean_email(self):
+        data = self.cleaned_data['email']
+        if User.objects.filter(email=data).exists():
+            raise forms.ValidationError("This email has already been used")
+        return data
+
+class NameForm(forms.ModelForm):
+    first_name = forms.CharField(max_length=30, required=True)
+    last_name = forms.CharField(max_length=30, required=True)
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name',)

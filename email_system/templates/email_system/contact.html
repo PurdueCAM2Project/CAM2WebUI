@@ -18,12 +18,19 @@
           <div class="form-top-right"> <i class="fa fa-envelope"></i> </div>
         </div>
         <div class="form-bottom">
+          {% if messages %}
+            <ul class="list-group">
+                {% for message in messages %}
+                <li{% if message.tags %} class="list-group-item list-group-item-danger"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+          {% endif %}
           <form id="contact-us" method="post" action="/email/contact/">
             {% csrf_token %}
             <div class="row">
               <div class="col-xs-12 col-sm-5 wow animated slideInLeft" data-wow-delay=".5s">
-                <p><label>Name: </label><br><input type="text" name="name" id="name" required="required" placeholder="Your Name"></p>
-                <p><label>Email: </label><br><input type="email" name="from_email" id="from_email" required="required" placeholder="Your Email" /></p>
+                <p><label>Name: </label><br><input value="{{ request.user.get_full_name }}" type="text" name="name" id="name" required="required" placeholder="Your Name"></p>
+                <p><label>Email: </label><br><input value="{{ request.user.email }}" type="email" name="from_email" id="from_email" required="required" placeholder="Your Email" /></p>
                 <p><label>Subject: </label><br><input type="text" name="subject" id="subject" required="required" placeholder="Subject"></p>
               </div>
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
@@ -31,6 +38,10 @@
                 <textarea name="message" id="message" class="textarea-lg" placeholder="Message"></textarea>
               </div>
               <div class="clearfix"></div>
+              <div class="clearfix"></div>
+              <div class="g-recaptcha pull-left recaptcha-btn" data-sitekey={{sitekey}}></div>
+              <div class="clearfix"></div>
+
               <div class="relative fullwidth col-xs-12">
                 <button type="submit" id="submit" name="submit" class="btn center-block">Send Message</button>
               </div>
@@ -45,4 +56,7 @@
     </div>
   </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src='https://www.google.com/recaptcha/api.js'></script>
 {% endblock %}

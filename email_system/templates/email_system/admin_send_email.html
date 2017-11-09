@@ -25,20 +25,14 @@
       <form method="post">
         {% csrf_token %}
         {% for field in form %}
-            {% if field is form.email %}
-                {{ field.label_tag }}<br>
-                <input type="text" style="width: 100%" name="{{ form.email.name }}"/>
-            {% else %}
-                {{ field.label_tag }}<br>
-                {{ field }}<br>
-            {% endif %}
+            {{ field.label_tag }}<br>
+            {{ field }}<br>
             {% if field.help_text %}
                 <p style="color: grey">{{ field.help_text }}</p>
             {% endif %}
             {% for error in field.errors %}
                 <p id="emailerror" style="color: red">{{ error }}</p>
             {% endfor %}
-
         {% endfor %}
         <button type="submit" name="sendemail" class="btn">Send</button>
 

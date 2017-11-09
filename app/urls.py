@@ -5,7 +5,9 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^$', app_views.index, name="index"),
     url(r'^cameras/$', app_views.cameras, name='cameras'),
+    url(r'^good_cameras/$', app_views.good_cameras, name='good_cameras'),
     url(r'^team/$', app_views.team, name='team'),
+    url(r'^advice/$', app_views.advice, name='advice'),
     url(r'^history/$', app_views.history, name='history'),
     url(r'^publications/$', app_views.publications, name='publications'),
     url(r'^privacy/$', app_views.privacy, name='privacy'),
@@ -29,5 +31,4 @@ urlpatterns = [
     url(r'^password_reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^password_reset/complete/$', auth_views.password_reset_complete, name='password_reset_complete'),
-    #url(r'^system_error/$', app_views.system_error, name = 'system_error'),
 ]
