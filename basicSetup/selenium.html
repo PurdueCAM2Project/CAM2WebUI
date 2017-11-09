@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Selenium Test Environment &mdash; PurdueCAM2Project/CAM2WebUI 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PurdueCAM2Project/CAM2WebUI 1.0 documentation" href="../index.html"/>
+        <link rel="next" title="Sphinx-generated Github Page" href="sphinx.html"/>
+        <link rel="prev" title="Viewing Website Locally" href="localsite.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PurdueCAM2Project/CAM2WebUI
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Basic Setup</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="git.html">Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="localsite.html">Viewing Website Locally</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Selenium Test Environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#download-python-selenium">Download Python Selenium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download-firefox-chrome-driver">Download Firefox/Chrome driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-x-virtual-framebuffer-xvfb">Install X virtual framebuffer(xvfb)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ready-to-write-selenium-test">Ready to Write Selenium Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx-generated Github Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="travis.html">Travis CI Setup</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Implementation Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/User.html">User</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/GoogleFusionTable.html">Google Fusion Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/Email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/Admin.html">Admin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/AppList.html">App List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/load_latlngJSON.html">load_latlngJSON</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Test Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../test/test.html">Django Selenium test</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PurdueCAM2Project/CAM2WebUI</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Selenium Test Environment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/basicSetup/selenium.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="selenium-test-environment">
+<span id="selenium-test-environment"></span><h1>Selenium Test Environment<a class="headerlink" href="#selenium-test-environment" title="Permalink to this headline">¶</a></h1>
+<p>Selenium automates browsers. It is for automating web applications for testing purposes. More details of selenium web driver can be found at <a class="reference external" href="http://www.seleniumhq.org/">Selenium HQ</a></p>
+<div class="section" id="download-python-selenium">
+<span id="download-python-selenium"></span><h2>Download Python Selenium<a class="headerlink" href="#download-python-selenium" title="Permalink to this headline">¶</a></h2>
+<p>If you have pip on your system, you can simply install or upgrade the Python bindings:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">selenium</span>
+</pre></div>
+</div>
+<p>Alternately, you can download the source distribution from PyPI <a class="reference external" href="https://pypi.python.org/pypi/selenium">Selenium PYPI</a>, unarchive it, and run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>Note: both of the methods described above install selenium as a system-wide package That will require administrative/root access to their machine.</p>
+</div>
+<div class="section" id="download-firefox-chrome-driver">
+<span id="download-firefox-chrome-driver"></span><h2>Download Firefox/Chrome driver<a class="headerlink" href="#download-firefox-chrome-driver" title="Permalink to this headline">¶</a></h2>
+<p>Selenium requires a driver to interface with the chosen browser. Firefox, for example, requires geckodriver, which needs to be installed before the selenium can run.</p>
+<p>Failure to observe this step will give you an error selenium.common.exceptions.WebDriverException: Message: ‘xxxdriver’ executable needs to be in PATH.</p>
+<p>Here I will use the Chrome driver as the example. The installation of the Firefox or Safari driver is similar to the ones of Chrome driver.</p>
+<ol class="simple">
+<li>Visit <a class="reference external" href="https://pypi.python.org/pypi/selenium">Selenium PYPI</a> and scroll down to the driver part. You can see the url links to those common web browsers. Click on the link of Chrome and link to the Chrome driver page.</li>
+</ol>
+<ol class="simple">
+<li>Choose the latest version of Chrome driver in the page and download the zip file of the driver depending on your system. Remember the folder where you download the zip file.</li>
+<li>Open the terminal and change directory to the one which you download the driver zip file. Unzip chrome driver using the following command. Here I am using linux 64 bit system. If you are using some other systems, you will unzip a different zip file.</li>
+</ol>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">unzip</span> <span class="n">chromedriver_linux64</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li>Use sudo command to move your unzipped chromedriver to the usr/bin/ directory. Change the mode of chromedriver to make it executable.</li>
+</ol>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mv</span> <span class="n">chromedriver</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span>
+<span class="n">sudo</span> <span class="n">chmod</span> <span class="n">a</span><span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">chromedriver</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-x-virtual-framebuffer-xvfb">
+<span id="install-x-virtual-framebuffer-xvfb"></span><h2>Install X virtual framebuffer(xvfb)<a class="headerlink" href="#install-x-virtual-framebuffer-xvfb" title="Permalink to this headline">¶</a></h2>
+<p>Xvfb (short for X virtual framebuffer) is an in-memory display server for UNIX-like operating system (e.g., Linux). It enables you to run graphical applications without a display (e.g., browser tests on a CI server) while also having the ability to take screenshots.</p>
+<p>You can simply install xvfb using command</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">xvfb</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ready-to-write-selenium-test">
+<span id="ready-to-write-selenium-test"></span><h2>Ready to Write Selenium Test<a class="headerlink" href="#ready-to-write-selenium-test" title="Permalink to this headline">¶</a></h2>
+<p>Congratulations, you have successfully built the selenium test environment. In this <a class="reference external" href="https://purduecam2project.github.io/CAM2WebUI/test/test.html">guide</a>, you will learn about how to create selenium tests and what are the test files.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sphinx.html" class="btn btn-neutral float-right" title="Sphinx-generated Github Page" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="localsite.html" class="btn btn-neutral" title="Viewing Website Locally" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Purdue CAM2 Project Developers.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

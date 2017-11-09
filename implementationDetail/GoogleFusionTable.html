@@ -1,0 +1,565 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Google Fusion Table &mdash; PurdueCAM2Project/CAM2WebUI 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PurdueCAM2Project/CAM2WebUI 1.0 documentation" href="../index.html"/>
+        <link rel="next" title="Email" href="Email.html"/>
+        <link rel="prev" title="User" href="User.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PurdueCAM2Project/CAM2WebUI
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Basic Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/git.html">Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/localsite.html">Viewing Website Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/selenium.html">Selenium Test Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/sphinx.html">Sphinx-generated Github Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/travis.html">Travis CI Setup</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Implementation Details</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="User.html">User</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Google Fusion Table</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preparation">Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication-and-upload-files-to-google-drive">Authentication and upload files to Google Drive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sync-fusion-table-with-google-spreadsheet">Sync Fusion Table with Google Spreadsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-google-fusion-tables">Using Google Fusion Tables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Admin.html">Admin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppList.html">App List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="load_latlngJSON.html">load_latlngJSON</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Test Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../test/test.html">Django Selenium test</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PurdueCAM2Project/CAM2WebUI</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Google Fusion Table</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/implementationDetail/GoogleFusionTable.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="google-fusion-table">
+<span id="google-fusion-table"></span><h1>Google Fusion Table<a class="headerlink" href="#google-fusion-table" title="Permalink to this headline">¶</a></h1>
+<p>This page is created for documenting every feature relevant to Google Fusion Table</p>
+<div class="section" id="preparation">
+<span id="preparation"></span><h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="enable-google-api">
+<span id="enable-google-api"></span><h3>Enable Google API<a class="headerlink" href="#enable-google-api" title="Permalink to this headline">¶</a></h3>
+<p>Before writing any code for the project, we need to enable two Google APIs. Both Google Drive and Google Fusion Table.</p>
+<ol class="simple">
+<li>Visit <a class="reference external" href="https://console.developers.google.com/">Google Developer Console</a>.</li>
+<li>Look at dashboard page and examine whether or not Google Fusion Table and Google Drive API has already been enabled. If not, click on the library, search for Google Fusion Table API, and click on &#8220;ENABLE&#8221; button</li>
+<li>To enable Google Drive API, follow steps below.<ol>
+<li>Follow <a class="reference external" href="https://developers.google.com/drive/v3/web/quickstart/python#step_1_turn_on_the_api_name">Officical Documentation for Python Version Google Drive API</a>.</li>
+<li>The only field needs to be changed is application name, <em>e.g.</em> CAM2 Drive API.</li>
+<li>Make sure download and save client_secret.json file. This file will be used later.</li>
+</ol>
+</li>
+</ol>
+</div>
+<div class="section" id="install-google-client-library">
+<span id="install-google-client-library"></span><h3>Install Google Client Library<a class="headerlink" href="#install-google-client-library" title="Permalink to this headline">¶</a></h3>
+<p>Run the following command to install the library using pip:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">google</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="n">client</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="authentication-and-upload-files-to-google-drive">
+<span id="authentication-and-upload-files-to-google-drive"></span><h2>Authentication and upload files to Google Drive<a class="headerlink" href="#authentication-and-upload-files-to-google-drive" title="Permalink to this headline">¶</a></h2>
+<p>In the gdrive folder, you can see the python file called &#8216;quickstart.py&#8217;. This is the file which uploads the file to the google drive.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SCOPES</span> <span class="o">=</span> <span class="s1">&#39;https://www.googleapis.com/auth/drive&#39;</span>
+<span class="n">CLIENT_SECRET_FILE</span> <span class="o">=</span> <span class="s1">&#39;../../client_secret.json&#39;</span>
+<span class="n">APPLICATION_NAME</span> <span class="o">=</span> <span class="s1">&#39;CAM2 Drive API&#39;</span>
+
+<span class="k">def</span> <span class="nf">get_credentials</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Gets valid user credentials from storage.</span>
+
+<span class="sd">    If nothing has been stored, or if the stored credentials are invalid,</span>
+<span class="sd">    the OAuth2 flow is completed to obtain the new credentials.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Credentials, the obtained credential.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">home_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">)</span>
+    <span class="n">credential_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">home_dir</span><span class="p">,</span> <span class="s1">&#39;.credentials&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">credential_dir</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">credential_dir</span><span class="p">)</span>
+    <span class="n">credential_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">credential_dir</span><span class="p">,</span>
+                                   <span class="s1">&#39;drive-python-quickstart.json&#39;</span><span class="p">)</span>
+
+    <span class="n">store</span> <span class="o">=</span> <span class="n">Storage</span><span class="p">(</span><span class="n">credential_path</span><span class="p">)</span>
+    <span class="n">credentials</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">credentials</span> <span class="ow">or</span> <span class="n">credentials</span><span class="o">.</span><span class="n">invalid</span><span class="p">:</span>
+        <span class="n">flow</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">flow_from_clientsecrets</span><span class="p">(</span><span class="n">CLIENT_SECRET_FILE</span><span class="p">,</span> <span class="n">SCOPES</span><span class="p">)</span>
+        <span class="n">flow</span><span class="o">.</span><span class="n">user_agent</span> <span class="o">=</span> <span class="n">APPLICATION_NAME</span>
+        <span class="k">if</span> <span class="n">flags</span><span class="p">:</span>
+            <span class="n">credentials</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">run_flow</span><span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">store</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># Needed only for compatibility with Python 2.6</span>
+            <span class="n">credentials</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">store</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Storing credentials to &#39;</span> <span class="o">+</span> <span class="n">credential_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">credentials</span>
+</pre></div>
+</div>
+<p>The above code will take the information you have in the <strong>client_secret.json</strong> file get and create a file called <strong>drive-python-quickstart.json</strong> in the <strong>~/.credentials/</strong> directory. This file will be use to authenticate the use of google drive.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>
+<span class="n">file_metadata</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;name&#39;</span> <span class="p">:</span> <span class="s1">&#39;cameraLocations&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;mimeType&#39;</span> <span class="p">:</span> <span class="s1">&#39;application/vnd.google-apps.fusiontable&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;parents&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PARENT_DIR_ID&#39;</span><span class="p">]</span>
+                    <span class="p">}</span>
+    <span class="n">media</span> <span class="o">=</span> <span class="n">MediaFileUpload</span><span class="p">(</span><span class="s1">&#39;../../cameraLocations.csv&#39;</span><span class="p">,</span>
+                            <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">,</span>
+                            <span class="n">resumable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">files</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">file_metadata</span><span class="p">,</span>
+                                        <span class="n">media_body</span><span class="o">=</span><span class="n">media</span><span class="p">,</span>
+                                        <span class="n">fields</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Successful create File ID: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The above code is used to upload the file into a particular directory. It only needs to execute once to create the file in the drive. After that, we only need to update the file in the directory.</p>
+<p>In the code,we need to add the id of the parent directory that we would like to place our file in. If you do not add the parent directory, then it will be place in the main directory. You can get the id of the google drive directory by clicking on the property of the directory.</p>
+<p>After you execute this code, you can get the file id in the google drive. Write down the file id since you will need that in the next piece of code.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>
+<span class="n">file_metadata</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;name&#39;</span> <span class="p">:</span> <span class="s1">&#39;cameraLocations&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;mimeType&#39;</span> <span class="p">:</span> <span class="s1">&#39;application/vnd.google-apps.fusiontable&#39;</span><span class="p">,</span>
+                    <span class="p">}</span>
+    <span class="n">media</span> <span class="o">=</span> <span class="n">MediaFileUpload</span><span class="p">(</span><span class="s1">&#39;../../cameraLocations.csv&#39;</span><span class="p">,</span>
+                            <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">,</span>
+                            <span class="n">resumable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">files</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">file_metadata</span><span class="p">,</span>
+                                        <span class="n">fileId</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SPREADSHEET_ID&#39;</span><span class="p">],</span>
+                                        <span class="n">media_body</span><span class="o">=</span><span class="n">media</span><span class="p">,</span>
+                                        <span class="n">fields</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Successful update File ID: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>After you upload the file, if the file on your local machine is changed, then the above code can be use to update the file on the driver. You need to use the fileID which you get in the previous upload section. You can also get the file id if you click on the property of the file on the google drive. After you add the fileID, you can update the file to the google drive.</p>
+<p>run the following code to create or update file.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">quickstart</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sync-fusion-table-with-google-spreadsheet">
+<span id="sync-fusion-table-with-google-spreadsheet"></span><h2>Sync Fusion Table with Google Spreadsheet<a class="headerlink" href="#sync-fusion-table-with-google-spreadsheet" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="export-spreadsheet-to-google-fusion-table">
+<span id="export-spreadsheet-to-google-fusion-table"></span><h3>Export spreadsheet to Google Fusion table<a class="headerlink" href="#export-spreadsheet-to-google-fusion-table" title="Permalink to this headline">¶</a></h3>
+<p>Since our file is ended with csv, if we upload that CSV file to google drive, it will automatically converted into Google SpreadSheet. So we need to change that file into Google Fusion Table</p>
+<p>In google drive, click on new button, and choose &#8220;more&#8221; option to see if Google Fusion Table already exists in the google drive app. If not, then click on &#8220;Connect more apps&#8221;. Find Google Fusion Table in the apps and add that into the google drive app. Then create new Google Fusion Table, and choose import it from spreadsheet. Then we can create our fusion table in google drive.</p>
+</div>
+<div class="section" id="add-the-script-to-the-spreadsheet">
+<span id="add-the-script-to-the-spreadsheet"></span><h3>Add the script to the spreadsheet<a class="headerlink" href="#add-the-script-to-the-spreadsheet" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Now we&#8217;re ready to add our script to our spreadsheet. Back at your spreadsheet, go to Tools &#8211;<p>&amp;gt;</p>
+ Script Editor and paste the following code.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>/**
+ * appsscript script to run in a google spreadsheet that synchronizes its
+ * contents with a fusion table by replacing all rows.
+ * based on instructions here: 
+ * https://htmlpreview.github.io/?https://github.com/fusiontable-gallery/fusion-tables-api-samples/blob/master/FusionTablesSheetSync/docs/reference.html#enabling_advanced_services
+ */
+
+// replace with your fusion table&#39;s id (from File &gt; About this table)
+var TABLE_ID = &#39;XXXXXXXXXXXXXXXXXXXXXXXXXX&#39;;
+
+// first row that has data, as opposed to header information
+var FIRST_DATA_ROW = 2;
+
+// true means the spreadsheet and table must have the same column count
+var REQUIRE_SAME_COLUMNS = true;
+
+/**
+ * replaces all rows in the fusion table identified by TABLE_ID with the
+ * current sheet&#39;s data, starting at FIRST_DATA_ROW.
+ */
+function sync() {
+    var tasks = FusionTables.Task.list(TABLE_ID);  
+    // Only run if there are no outstanding deletions or schema changes.
+    if (tasks.totalItems === 0) {
+        var sheet = SpreadsheetApp.getActiveSheet();
+        var wholeSheet = sheet.getRange(1, 1, sheet.getLastRow(), sheet.getLastColumn());
+        var values = wholeSheet.getValues();
+        if (values.length &gt; 1) {
+            var csvBlob = Utilities.newBlob(convertToCsv_(values), &#39;application/octet-stream&#39;);
+            FusionTables.Table.replaceRows(TABLE_ID, csvBlob, { isStrict: REQUIRE_SAME_COLUMNS, startLine: FIRST_DATA_ROW - 1 });
+            //Browser.msgBox(&#39;Replaced &#39; + values.length + &#39; rows in your Fusion Table&#39;, Browser.Buttons.OK);
+        }
+    } else {
+        Logger.log(&#39;Skipping row replacement because of &#39; + tasks.totalItems + &#39; active background task(s)&#39;);
+    }
+};
+
+/**
+ * converts the spreadsheet values to a csv string.
+ * @param {array} data the spreadsheet values.
+ * @return {string} the csv string.
+ */
+function convertToCsv_(data) {
+    // See https://developers.google.com/apps-script/articles/docslist_tutorial#section3
+    var csv = &#39;&#39;;
+    for (var row = 0; row &lt; data.length; row++) {
+        for (var col = 0; col &lt; data[row].length; col++) {
+            var value = data[row][col].toString();
+            if (value.indexOf(&#39;,&#39;) != -1 ||
+                value.indexOf(&#39;\n&#39;) != -1 ||
+                value.indexOf(&#39;&quot;&#39;) != -1) {
+                    // Double-quote values with commas, double quotes, or newlines
+                    value = &#39;&quot;&#39; + value.replace(/&quot;/g, &#39;&quot;&quot;&#39;) + &#39;&quot;&#39;;
+                    data[row][col] = value;
+            }
+        };
+        // Join each row&#39;s columns and add a carriage return to end of each row except the last
+        if (row &lt; data.length - 1) {
+            csv += data[row].join(&#39;,&#39;) + &#39;\r\n&#39;;
+        } else {
+            csv += data[row];
+        };
+    };
+    return csv;
+};
+
+// create menu buttons
+function onOpen() {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var menuEntries = [{
+        name: &quot;Update Fusion Table&quot;,
+        functionName: &quot;sync&quot;
+    }];
+    ss.addMenu(&quot;Sync Spreadsheet To Fusion Table&quot;, menuEntries);
+};
+</pre></div>
+</div>
+<ul>
+<li><p class="first">On [Line 9] add Fusion Table&#8217;s Table ID... It can be get from fusion table property.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="o">//</span> <span class="n">Add</span> <span class="n">the</span> <span class="n">encrypted</span> <span class="n">table</span> <span class="n">ID</span> <span class="n">of</span> <span class="n">the</span> <span class="n">fusion</span> <span class="n">table</span> <span class="n">here</span>
+  <span class="n">var</span> <span class="n">TABLE_ID</span> <span class="o">=</span> <span class="s1">&#39;17xnxY......&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Optional</strong>: if you have multiple header rows, put the row number of the first data row on this <a class="reference external" href="https://gist.github.com/chrislkeller/3013360#file-spreadsheet_to_fusion_tables-js-L12">line</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>      <span class="n">var</span> <span class="n">FIRST_DATA_ROW</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Optional</strong>: if you want to allow the spreadsheet to have different columns than the table, change the <a class="reference external" href="https://gist.github.com/chrislkeller/3013360#file-spreadsheet_to_fusion_tables-js-L15">line 15</a> value to &#8220;false&#8221;:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>      <span class="n">var</span> <span class="n">REQUIRE_SAME_COLUMNS</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Click save. You will be prompted to give the project a name. &#8220;Update Fusion Tables&#8221; works. Click the save icon or go to File &#8211;<p>&amp;gt;</p>
+ Save.</p>
+</li>
+<li><p class="first">Click Resources  &#8211;&gt; Developer&#8217;s Console Project. Enter the Project Number for the project. The project number can be found in <a class="reference external" href="https://console.developers.google.com/projectselector/iam-admin/iam">Google IAM &amp; Admin</a>. Note that project number is not project id, they are not the same thing. The screen shot below is from another tutorial which is just the screen that we can see after we update our project number.</p>
+</li>
+</ul>
+<p><img alt="" src="../_images/developer_console_project.png" /></p>
+<ul class="simple">
+<li>Click Resources &#8211;&gt; Advanced Google Service, find Google fusion table API, Google SpreadSheet API and enable them. If you don&#8217;t do that, you will get errors: &#8220;Referenced error: FusionTables is not defined&#8221;</li>
+<li>Reload the spreadsheet and you will see a new menu item next to help. Mine reads &#8220;Sync Spreadsheet To Fusion Table.&#8221; Click the menu item and you will see an option to &#8220;Update Fusion Table.&#8221; Since our file has more than 100 thousand data points in the file, it may cost more than 5 minutes to execute the script. As long as the file is running, you do not need to worry about the script too much.</li>
+</ul>
+</div>
+<div class="section" id="synchronize-spreadsheet">
+<span id="synchronize-spreadsheet"></span><h3>Synchronize Spreadsheet<a class="headerlink" href="#synchronize-spreadsheet" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Click Edit &#8211;&gt; Current Project Trigger, then add a new project trigger to the project.</li>
+</ul>
+<p>Since we would like to sync the fusion table everytime when spreadsheet is changed, so we choose the option: &#8220;sync&#8221;, &#8220;from spreadsheet&#8221;, &#8220;on change&#8221; those options. Then for everytime the spreadsheet is changed, it will automatically run the script and sync spreadsheet content to the fusion table!</p>
+<p>Now we can update the camera location file into the google drive. We will update the spreadsheet in the particular google drive folder using google drive api and then use google app script to synchronize google fusion table from google spreadsheet everytime when google spreadsheet is change.</p>
+</div>
+</div>
+<div class="section" id="using-google-fusion-tables">
+<span id="using-google-fusion-tables"></span><h2>Using Google Fusion Tables<a class="headerlink" href="#using-google-fusion-tables" title="Permalink to this headline">¶</a></h2>
+<p>This section has been created to aid in the use of Google Fusion Tables in the CAM2 project and therefore, this is not an exhaustive documentation of all features of Google Fusion Tables, that can be found <a class="reference external" href="https://developers.google.com/fusiontables/">here</a>, but only of those features that are relevant/useful for this project.</p>
+<div class="section" id="about-fusion-tables">
+<span id="about-fusion-tables"></span><h3>About fusion tables<a class="headerlink" href="#about-fusion-tables" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>&#8220;Fusion Tables is an experimental data visualization web application to gather, visualize, and share data tables.&#8221; - <a class="reference external" href="https://support.google.com/fusiontables/answer/2571232?hl=en">About Fusion Tables</a></li>
+<li>It&#8217;s a tool for working with tabulated data</li>
+<li>Fusion tables are created by uploading data tables, for e.g., spreadsheets or CSV files, to Google Drive</li>
+<li>Advantages of using Google Fusion Tables<ul>
+<li>Filter and summarize across hundreds of thousands of rows<ul>
+<li>As of July 3, 2017 our camera database consists of more than 110,000 cameras and thus, more than 110,000 rows. Using fusion tables allows effecient rendering of our website.</li>
+</ul>
+</li>
+<li>We can chart, map, network graph, or use a custom layout for our data - it will always display the latest data values from our table.<ul>
+<li>We can perform these operations on the fusion tables website itself and then embed the result to our website</li>
+<li>We can also perform these operations by writing javascript code to post get requests using the fusion tables api</li>
+</ul>
+</li>
+<li>Merge two or three tables to generate a single visualization that includes both sets of data<ul>
+<li>This is very relevant for this project - different camera databases can be merged seamlessly because they all have columns of unique camera IDs.</li>
+</ul>
+</li>
+<li>We can turn location tables into maps<ul>
+<li>This is the primary reason we started using fusion tables in our project - the cameras data base consists of latitudanal and longitudanal position data for a camera, i.e., location data, and this allows very efficient rendering of our camera location markers on a google map.</li>
+</ul>
+</li>
+<li>Excellent API documentation and stackoverflow support community</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="creating-fusion-tables">
+<span id="creating-fusion-tables"></span><h3>Creating fusion tables<a class="headerlink" href="#creating-fusion-tables" title="Permalink to this headline">¶</a></h3>
+<p>Before uploading creating fusion tables it is recommended that the tabulated data have</p>
+<ul class="simple">
+<li>Spreadsheets, delimited text files (.csv, .tsv, or .txt), and Keyhole Markup Language files (.kml) to create fusion tables</li>
+<li>Upload tabulated data to google drive</li>
+<li>In Google Drive select &#8216;New&#8217; -&gt; &#8216;File&#8217; -&gt; &#8216;More&#8217; -&gt; &#8216;Google Fusion Tables&#8217; -&gt; &#8216;Create and Share&#8217;
+<img alt="image" src="../_images/create_new_fusion_table.png" />
+The fusion table will have the same visibility as the host google drive folder where it is stored. BY default, it&#8217;s the google drive folder that was open when when the table was created.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">if your fusion table contains location data, geocoding will start automatically - <em>cancel it</em>. Only 10,000 data items (less than 10% of our camera database as of July 3, 2017) can be geocoded for free in a 24 hours period. Geocoding is not required to create markers for camera locations on a map, however, it is required for other features described later in this document and hence, the geocoding quota must not be exhausted.</p>
+</div></div>
+<div class="section" id="filtering-data-in-fusion-tables">
+<span id="filtering-data-in-fusion-tables"></span><h3>Filtering data in fusion tables<a class="headerlink" href="#filtering-data-in-fusion-tables" title="Permalink to this headline">¶</a></h3>
+<p>In the example below <a class="reference external" href="https://fusiontables.google.com/DataSource?docid=1XszW34wSZP2dW4tfBJxX_Tnvmvvqnumd31WMIlxg#rows:id=1">this</a> table is used.</p>
+<ol class="simple">
+<li>Use filter button located on top left of fusion table
+<img alt="" src="../_images/filter_button.png" /></li>
+<li>Filter data using column values.
+<img alt="" src="../_images/filter_by_columns.png" /></li>
+<li>Multiple filters can be applied - all filter conditions are logically ANDed.
+<img alt="" src="../_images/can_apply_multiple_filters.png" />
+<img alt="" src="../_images/filter_conditions_are_logically_ANDed.png" /></li>
+</ol>
+</div>
+<div class="section" id="getting-html-and-javascript-code-for-map-obtained-from-location-data">
+<span id="getting-html-and-javascript-code-for-map-obtained-from-location-data"></span><h3>Getting HTML and Javascript code for map obtained from location data<a class="headerlink" href="#getting-html-and-javascript-code-for-map-obtained-from-location-data" title="Permalink to this headline">¶</a></h3>
+<p>In our example, we have used a fusion table with location data and consequently, obtained a &#8216;Map of Latitudes&#8217;.</p>
+<ol class="simple">
+<li>Navigate to &#8216;Map of Latitudes&#8217;.
+<img alt="" src="../_images/Map_of_Latitudes_Page.png" /></li>
+<li>Tools -&gt; Publish -&gt; Get HTML and Javascript -&gt; happy copying and pasting :)
+<img alt="" src="../_images/Getting_html_and_javascript_code_using_Publish_tool.png" /></li>
+</ol>
+</div>
+<div class="section" id="querying-data-from-fusion-tables-using-javascript">
+<span id="querying-data-from-fusion-tables-using-javascript"></span><h3>Querying data from fusion tables using Javascript<a class="headerlink" href="#querying-data-from-fusion-tables-using-javascript" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>To update the map layer: see <a class="reference external" href="https://developers.google.com/fusiontables/docs/samples/change_query">this post</a></li>
+<li>To send a JSONP request using jQuery: see <a class="reference external" href="https://developers.google.com/fusiontables/docs/samples/basic_jsonp_request">this post</a></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Tip</p>
+<p class="last">To understand how to write the query in code - apply the exact filter condition you are trying to code on the fusion table and then see the string displayed on the the right side of the 'Filter' button.</p>
+</div><p><img alt="" src="../_images/filter_conditions_are_logically_ANDed.png" /></p>
+</div>
+<div class="section" id="customizing-markers-info-windows">
+<span id="customizing-markers-info-windows"></span><h3>Customizing markers&#8217; info windows<a class="headerlink" href="#customizing-markers-info-windows" title="Permalink to this headline">¶</a></h3>
+<p>By default the markers on the maps have preformatted info window layout: it consists of pairs of all column names and column data for that row on seperate lines. However, the layout of info windows can be customized to a great extent using CSS.</p>
+<p>See <a class="reference external" href="https://support.google.com/fusiontables/answer/1244603?hl=en">this post</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Email.html" class="btn btn-neutral float-right" title="Email" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="User.html" class="btn btn-neutral" title="User" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Purdue CAM2 Project Developers.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Admin &mdash; PurdueCAM2Project/CAM2WebUI 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PurdueCAM2Project/CAM2WebUI 1.0 documentation" href="../index.html"/>
+        <link rel="next" title="App List" href="AppList.html"/>
+        <link rel="prev" title="Email" href="Email.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PurdueCAM2Project/CAM2WebUI
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Basic Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/git.html">Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/localsite.html">Viewing Website Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/selenium.html">Selenium Test Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/sphinx.html">Sphinx-generated Github Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/travis.html">Travis CI Setup</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Implementation Details</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="User.html">User</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GoogleFusionTable.html">Google Fusion Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Email.html">Email</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Admin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#redefine-user-admin">1. Redefine User Admin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#admin-action-of-send-email-from-admin">2. Admin action of Send Email from Admin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#export-user-data-to-csv">3. Export User Data to CSV</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="AppList.html">App List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="load_latlngJSON.html">load_latlngJSON</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Test Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../test/test.html">Django Selenium test</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PurdueCAM2Project/CAM2WebUI</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Admin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/implementationDetail/Admin.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="admin">
+<span id="admin"></span><h1>Admin<a class="headerlink" href="#admin" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="redefine-user-admin">
+<span id="redefine-user-admin"></span><h2>1. Redefine User Admin<a class="headerlink" href="#redefine-user-admin" title="Permalink to this headline">¶</a></h2>
+<p>In order to add more admin actions related to User object, we need to redefine the User Admin model.</p>
+<div class="section" id="inline">
+<span id="inline"></span><h3>Inline<a class="headerlink" href="#inline" title="Permalink to this headline">¶</a></h3>
+<p>model inline combines 2 model so that info from RegisterUser can be modified and displayed with user info
+first, create a class for inline model in <code class="docutils literal"><span class="pre">app/admin.py</span></code></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserInline</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">TabularInline</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">RegisterUser</span>
+</pre></div>
+</div>
+<p>More info on <a class="reference external" href="https://purduecam2project.github.io/CAM2WebUI/implementationDetail/User.html#creating-a-model">RegisterUser model</a>.
+We need to redefine a <code class="docutils literal"><span class="pre">UserAdmin</span></code> to do the modification. In list_display, we choose the field we want to see in admin page.
+And add the action to <code class="docutils literal"><span class="pre">actions</span></code> :</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;first_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;last_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;department&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;organization&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;is_staff&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;date_joined&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">inlines</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">UserInline</span><span class="p">,</span>
+               <span class="p">]</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p>The two field <code class="docutils literal"><span class="pre">department</span></code> and <code class="docutils literal"><span class="pre">organization</span></code> are from RegisterUser model, and we cannot display them directly.</p>
+<p>We will write them as callable or a string representing an attribute. See <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display">Django Documentation</a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="c1"># callable that display info from RegisterUser</span>
+    <span class="k">def</span> <span class="nf">department</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">user</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">RegisterUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">department</span><span class="p">)</span>
+    <span class="n">department</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s1">&#39;department&#39;</span>
+
+    <span class="k">def</span> <span class="nf">organization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">user</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">RegisterUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">organization</span><span class="p">)</span>
+    <span class="n">organization</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s1">&#39;organization&#39;</span>
+</pre></div>
+</div>
+<p>at last we unregister the previous <code class="docutils literal"><span class="pre">User</span></code> model provided by Django and register our <code class="docutils literal"><span class="pre">UserAdmin</span></code> model with the <code class="docutils literal"><span class="pre">User</span></code> model.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">unregister</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">UserAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For any action written for User, define the function before UserAdmin class.</p>
+</div>
+</div>
+<div class="section" id="admin-action-of-send-email-from-admin">
+<span id="admin-action-of-send-email-from-admin"></span><h2>2. Admin action of Send Email from Admin<a class="headerlink" href="#admin-action-of-send-email-from-admin" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="goal">
+<span id="goal"></span><h3>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h3>
+<p>Allow admin to send email to specific users.
+procedure:</p>
+<ol class="simple">
+<li>Log in as admin, and in the main page, go to Users.</li>
+<li>Using checkbox to choose recipient</li>
+<li>Select &#8220;Email Users&#8221; in action</li>
+<li>Click &#8220;Go&#8221; to direct to a web page for admin to input subject and message, and pass a list of user id through session.</li>
+</ol>
+</div>
+<div class="section" id="approach">
+<span id="approach"></span><h3>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h3>
+<p>We will add a new action to User admin called <code class="docutils literal"><span class="pre">email</span> <span class="pre">user</span></code> to redirect the page to our <code class="docutils literal"><span class="pre">admin_send_email</span></code> page, and pass the id of selected user to <code class="docutils literal"><span class="pre">admin_send_email</span></code> page.</p>
+<p>In <code class="docutils literal"><span class="pre">app/admin.py</span></code>
+First we write the action. An admin action takes 3 parameters, self, request and queryset.
+The queryset contains every user object we selected under User admin page.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">email_users</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+    <span class="nb">list</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+    
+    <span class="n">user_id_selected</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="n">user_id_selected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>we will then use a &#8220;request.session](https://docs.djangoproject.com/en/1.11/topics/http/sessions/)&#8221;
+to pass the <code class="docutils literal"><span class="pre">email_selected</span></code> and redirect admin to <code class="docutils literal"><span class="pre">admin_send_email</span></code> page:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#open a session and render the email_selected to admin_send_email view</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;user_id_selected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_id_selected</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;admin_send_email&#39;</span><span class="p">)</span>
+<span class="n">email_users</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s2">&quot;Email Users&quot;</span>
+</pre></div>
+</div>
+<p>Give this action a description shown in the action list when admin select actions. Note that it is called outside the function.</p>
+<p>Add this function to <code class="docutils literal"><span class="pre">actions</span></code> under UserAdmin model.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="n">email_users</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="export-user-data-to-csv">
+<span id="export-user-data-to-csv"></span><h2>3. Export User Data to CSV<a class="headerlink" href="#export-user-data-to-csv" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="goal">
+<span id="id1"></span><h3>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h3>
+<p>To create an admin action that download a CSV file containing info of selected user(s).</p>
+</div>
+<div class="section" id="useradmin-class-and-admin-action">
+<span id="useradmin-class-and-admin-action"></span><h3>UserAdmin class and Admin action<a class="headerlink" href="#useradmin-class-and-admin-action" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://docs.djangoproject.com/en/1.11/howto/outputting-csv/">Django Documentation on &#8220;Outputting CSV with Django&#8221;</a></p>
+<p>To see how to add actions to Model and how to modify<code class="docutils literal"><span class="pre">UserAdmin</span></code>,
+see <a class="reference external" href="https://purduecam2project.github.io/CAM2WebUI/implementationDetail/Email.html#admin-action">here</a>.</p>
+</div>
+<div class="section" id="action-function">
+<span id="action-function"></span><h3>Action Function<a class="headerlink" href="#action-function" title="Permalink to this headline">¶</a></h3>
+<p>Go to <code class="docutils literal"><span class="pre">app/admin.py</span></code>, find <code class="docutils literal"><span class="pre">actions</span></code> in class <code class="docutils literal"><span class="pre">UserAdmin</span></code>, add the new function <code class="docutils literal"><span class="pre">export_csv</span></code>.</p>
+<p>And create the function <strong>before</strong> class <code class="docutils literal"><span class="pre">UserAdmin</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">export_csv</span><span class="p">(</span><span class="n">modeladmin</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+    <span class="c1">#setup csv writer</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">)</span>
+    <span class="n">response</span><span class="p">[</span><span class="s1">&#39;Content-Disposition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;attachment;filename=CAM2UserList.csv&#39;</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The CSV-creation acts on file-like objects such as the HttpResponse in Django.</p>
+<p>See <a class="reference external" href="https://docs.djangoproject.com/en/1.11/howto/outputting-csv/">Django documentation</a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="n">opts</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_meta</span>  <span class="c1">#obtaining User model as meta data because models are not iterable</span>
+    <span class="n">required_field_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">opts</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span> <span class="c1">#get names of all fields in User model as a list</span>
+    <span class="n">optional_field_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">RegisterUser</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span> <span class="c1">##get names of all fields in User model as a list</span>
+</pre></div>
+</div>
+<p>We need to seperate them because they will be used for every iteration of selected users. And create another combined list for the final CSV form.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="n">field_names</span> <span class="o">=</span> <span class="n">required_field_names</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">optional_field_names</span><span class="p">:</span>
+        <span class="n">field_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">field_names</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To obtain info of each user, an for loop is used, and the required info and optional info will be gained through each iteration.</p>
+<p>The field in <code class="docutils literal"><span class="pre">required_field_names</span></code> and <code class="docutils literal"><span class="pre">optional_field_names</span></code> decide which info from <code class="docutils literal"><span class="pre">User</span></code> and <code class="docutils literal"><span class="pre">RegisterUser</span></code> model we will get.</p>
+<p>More info on <code class="docutils literal"><span class="pre">RegisterUser</span></code>, see <a class="reference external" href="https://purduecam2project.github.io/CAM2WebUI/implementationDetail/User.html#creating-a-model">here</a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">queryset</span><span class="p">:</span>
+        <span class="n">required_info</span> <span class="o">=</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">required_field_names</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">optional</span> <span class="o">=</span> <span class="n">RegisterUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>  <span class="c1"># get optional info of user</span>
+            <span class="n">optional_info</span> <span class="o">=</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">optional</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">optional_field_names</span><span class="p">]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">optional_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;N/A&#39;</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">optional_field_names</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">optional_info</span><span class="p">:</span>
+            <span class="n">required_info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">required_info</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</div>
+<p>Give this action a name outside function(no indentation):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">export_csv</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s2">&quot;Export selected user as csv&quot;</span>
+</pre></div>
+</div>
+<p>Add this function to <code class="docutils literal"><span class="pre">actions</span></code> under UserAdmin model.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="n">email_users</span><span class="p">,</span> <span class="n">export_csv</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="AppList.html" class="btn btn-neutral float-right" title="App List" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Email.html" class="btn btn-neutral" title="Email" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Purdue CAM2 Project Developers.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

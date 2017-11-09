@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Travis CI Setup &mdash; PurdueCAM2Project/CAM2WebUI 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PurdueCAM2Project/CAM2WebUI 1.0 documentation" href="../index.html"/>
+        <link rel="next" title="User" href="../implementationDetail/User.html"/>
+        <link rel="prev" title="Sphinx-generated Github Page" href="sphinx.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PurdueCAM2Project/CAM2WebUI
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Basic Setup</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="git.html">Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="localsite.html">Viewing Website Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selenium.html">Selenium Test Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx-generated Github Page</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Travis CI Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#connect-travis-ci-with-github">Connect Travis CI with Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#travis-ci-configuration-file">Travis CI Configuration File</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Implementation Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/User.html">User</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/GoogleFusionTable.html">Google Fusion Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/Email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/Admin.html">Admin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/AppList.html">App List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/load_latlngJSON.html">load_latlngJSON</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Test Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../test/test.html">Django Selenium test</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PurdueCAM2Project/CAM2WebUI</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Travis CI Setup</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/basicSetup/travis.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="travis-ci-setup">
+<h1>Travis CI Setup<a class="headerlink" href="#travis-ci-setup" title="Permalink to this headline">¶</a></h1>
+<p>Travis CI is a continuous integration testing service used to build and test software projects hosted at GitHub</p>
+<div class="section" id="connect-travis-ci-with-github">
+<h2>Connect Travis CI with Github<a class="headerlink" href="#connect-travis-ci-with-github" title="Permalink to this headline">¶</a></h2>
+<p>To connect Travis with Github Repository, There are several steps (repository admin permission is necessary):</p>
+<ol class="arabic simple">
+<li>Go to repository main page, click on <em>Settings</em> tab.</li>
+<li>Click on <em>Integration &amp; Service</em> on menu.</li>
+<li>Click on <em>Add Service</em> drop-down menu and select <em>Travis CI</em>.</li>
+<li>Sign in <a class="reference external" href="https://travis-ci.org/">Travis CI Website</a> with Github account.</li>
+<li>Once sign in, click on <em>account</em> at top right corner of web page.</li>
+<li>At this page, repositories under this github account will be shown, select checkbox of corresponding repository.</li>
+<li>Create a Travis configuration file <code class="code docutils literal"><span class="pre">.travis.yml</span></code> at root directory of repository.</li>
+<li>Start writing configuration file and testing script will be triggered on every push to Github or based on configuration.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">While Travis CI for public github repository is free, it doesn&#8217;t work with private repository. To use Travis CI for private repository, go to <a class="reference external" href="https://travis-ci.com/">Travis CI Pro Website</a>, purchase plans, and follow the instructions above.</p>
+</div>
+</div>
+<div class="section" id="travis-ci-configuration-file">
+<h2>Travis CI Configuration File<a class="headerlink" href="#travis-ci-configuration-file" title="Permalink to this headline">¶</a></h2>
+<p>Travis scripts can be generally devided into following groups:</p>
+<ul class="simple">
+<li>Environment selection</li>
+<li>pre-test scripts and installation</li>
+<li>testing scripts</li>
+<li>deployment</li>
+<li>Notifications</li>
+</ul>
+<p>Details of each part will be explained in following sections</p>
+<div class="section" id="environment-selection">
+<h3>Environment Selection<a class="headerlink" href="#environment-selection" title="Permalink to this headline">¶</a></h3>
+<p>Travis CI is basically a remote ubuntu or osx machine that runs testing code in repository with testing scripts provided in travis configuration file. Therefore, selecting environment is analogous to choose the operating system and language you would like to use for testing environment. With respect to cam2 project, ubuntu environment and python are used, so the configuration file is as follow:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>dist: trusty
+language: python
+python:
+- <span class="s1">&#39;3.6.1&#39;</span>
+</pre></div>
+</div>
+<p>The <code class="code docutils literal"><span class="pre">dist</span></code> infers version of OS, a detailed table is provided on <a class="reference external" href="https://docs.travis-ci.com/user/reference/overview/">Travis Build Environment Overview</a></p>
+</div>
+<div class="section" id="pre-test-scripts-and-installation">
+<h3>pre-test scripts and installation<a class="headerlink" href="#pre-test-scripts-and-installation" title="Permalink to this headline">¶</a></h3>
+<p>Before running of testcases, all the dependent software needs to be installed and correctly configured. In general, there are four sections to used for this steps, they are:</p>
+<ol class="arabic simple">
+<li>addons</li>
+<li>before_install</li>
+<li>before_script</li>
+<li>install</li>
+</ol>
+<p>the <code class="code docutils literal"><span class="pre">addons</span></code> section is used for Travis CI built-in packages and configuration such as Firefox, MariaDB, Ubuntu package manager APT, etc. The rest of three are run in the order as listed above. In general there is no specific difference among these three section except naming. All the normal Ubuntu apt command and bash command can be run in all of three sections. Usually, based on the naming convention of each section, <code class="code docutils literal"><span class="pre">before_install</span></code> can be used for install basic packages, <code class="code docutils literal"><span class="pre">before_script</span></code> can be used for configure the packages installed or downloaded at <code class="code docutils literal"><span class="pre">before_install</span></code> section and <code class="code docutils literal"><span class="pre">install</span></code> section is used for install rest of packages before using any testing scripts.</p>
+<p>In our specific case, we need Firefox as dependency. So we add the Firefox in the addons sections, and specify the version of Firefox we want:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>addons:
+  firefox: <span class="s2">&quot;56.0&quot;</span>
+</pre></div>
+</div>
+<p>The reason of fixing the version of Firefox browser will be explained later. In addition to Firefox, we also need <code class="code docutils literal"><span class="pre">xvfb</span></code> package and <code class="code docutils literal"><span class="pre">geckodriver</span></code> for Selenium testing. Since it&#8217;s in apt repository and git repository, we use <code class="code docutils literal"><span class="pre">apt</span> <span class="pre">install</span></code> and <code class="code docutils literal"><span class="pre">wget</span></code> to install or download them.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>before_install:
+- sudo apt-get install xvfb
+- wget https://github.com/mozilla/geckodriver/releases/download/v0.19.0/geckodriver-v0.19.0-linux64.tar.gz
+</pre></div>
+</div>
+<p>Here we comes the reason of specify version of Firefox. Since geckodriver only support some specific versions of Firefox. If we want to update the version of Firefox, we need to update the version of geckodriver as well.</p>
+<p>Then, we need to configure these packages, unzip the geckodriver and move it to global library directory of Linux to be ready to use. We also need to configure xvfb, the detail of configuration of xvfb is given by <a class="reference external" href="https://docs.travis-ci.com/user/gui-and-headless-browsers/#Using-xvfb-to-Run-Tests-That-Require-a-GUI">Travis CI xvfb Configuration</a>. The sample code is as follow:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>- sudo tar -xzf geckodriver-v0.19.0-linux64.tar.gz -C /usr/bin
+- sudo chmod a+x /usr/bin/geckodriver
+- <span class="nb">export</span> <span class="nv">DISPLAY</span><span class="o">=</span>:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep <span class="m">5</span> <span class="c1"># give xvfb some time to start</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing-scripts">
+<h3>testing scripts<a class="headerlink" href="#testing-scripts" title="Permalink to this headline">¶</a></h3>
+<p>After setup all the packages, the testing is actually very easy, put all the testing command executed locally here and wait for the testing result.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Any failure in this section will be considered the failure of whole testing, resulting the termination of deployment section</p>
+</div>
+<p>To reduce the amount of random failure of testing scripts, Travis provided a prefix <code class="code docutils literal"><span class="pre">travis_retry</span></code>. In fact, all the command script in the sections above can use this prefix. In general the command with this prefix will be retry for several times if it fails. The default retry times is three. You can also modify it as you want. The detail documents of <code class="code docutils literal"><span class="pre">travis_retry</span></code>  and advanced method to eliminate timeout failure are on <a class="reference external" href="https://docs.travis-ci.com/user/common-build-problems/#Timeouts-installing-dependencies">Timeouts installing dependencies</a> section.</p>
+</div>
+<div class="section" id="deployment">
+<h3>deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h3>
+<p>After testing success, having Travis automatically deploy code for us is a good choice. To do that, we need to first find out if Travis support the cloud platform we want to use. See <a class="reference external" href="https://docs.travis-ci.com/user/deployment/">Supported Providers</a> for details.</p>
+<p>Each platform has its own configuration. However, there is one useful configuration that is pervasive throughout all platform. It&#8217;s the <code class="code docutils literal"><span class="pre">app</span></code> section. In this section, you can specify which specific branch you want to deploy and which one you don&#8217;t want, since if the testing code is on a feature branch, you don&#8217;t want it to deploy to the production site app.</p>
+</div>
+<div class="section" id="notifications">
+<h3>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h3>
+<p>Once you have finished all the Travis CI configuration. After you finish one push, it&#8217;s the time you can have some rest. However, if your test script is very complicated, you may want Travis to norify you whenever testing is finished with success or failure. Travis CI does have its own notification system. The default nofitication is sent to your github email. However, you can configure it to different social app or team management app like <em>Slack</em>. To know how to configure it, see <a class="reference external" href="https://docs.travis-ci.com/user/notifications/">Travis CI Notifications</a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../implementationDetail/User.html" class="btn btn-neutral float-right" title="User" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sphinx.html" class="btn btn-neutral" title="Sphinx-generated Github Page" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Purdue CAM2 Project Developers.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

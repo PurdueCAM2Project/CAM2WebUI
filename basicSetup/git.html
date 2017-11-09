@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Git and GitHub &mdash; PurdueCAM2Project/CAM2WebUI 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PurdueCAM2Project/CAM2WebUI 1.0 documentation" href="../index.html"/>
+        <link rel="next" title="Heroku" href="heroku.html"/>
+        <link rel="prev" title="Welcome to PurdueCAM2Project/CAM2WebUI’s documentation!" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PurdueCAM2Project/CAM2WebUI
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Basic Setup</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Git and GitHub</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-git-and-github">Basic Git and GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#frequently-used-git-commands">Frequently Used Git Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#managing-branches">Managing branches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#issuing-a-pull-request">Issuing a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cleaning-up">Cleaning up</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="localsite.html">Viewing Website Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selenium.html">Selenium Test Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx-generated Github Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="travis.html">Travis CI Setup</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Implementation Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/User.html">User</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/GoogleFusionTable.html">Google Fusion Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/Email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/Admin.html">Admin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/AppList.html">App List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementationDetail/load_latlngJSON.html">load_latlngJSON</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Test Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../test/test.html">Django Selenium test</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PurdueCAM2Project/CAM2WebUI</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Git and GitHub</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/basicSetup/git.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="git-and-github">
+<h1>Git and GitHub<a class="headerlink" href="#git-and-github" title="Permalink to this headline">¶</a></h1>
+<p>This page will walk you through the best practices for using Git and GitHub for CAM<sup>2</sup>.</p>
+<div class="section" id="basic-git-and-github">
+<h2>Basic Git and GitHub<a class="headerlink" href="#basic-git-and-github" title="Permalink to this headline">¶</a></h2>
+<p>Git is version control software. If you are unfamiliar with Git, please read through its <a class="reference external" href="https://git-scm.com/doc">getting started guide</a> and seek basic training before continuing with this guide.</p>
+<p>GitHub is a website that hosts Git repositories. You are currently using it right now! If you are unfamiliar with GitHub, please complete <a class="reference external" href="https://guides.github.com/activities/hello-world/">GitHub &#8220;Hello World&#8221; guide</a> before continuing with this guide.</p>
+</div>
+<div class="section" id="frequently-used-git-commands">
+<span id="id1"></span><h2>Frequently Used Git Commands<a class="headerlink" href="#frequently-used-git-commands" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Command</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">&lt;repository_url&gt;</span></code></td>
+<td>Clone repository to local disk</td>
+</tr>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">status</span></code></td>
+<td>Show files changes since last commit <a class="footnote-reference" href="#id5" id="id2">[1]</a></td>
+</tr>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">&lt;filename/pattern&gt;</span></code></td>
+<td>Add untracked or modified files to staging area <a class="footnote-reference" href="#id6" id="id3">[2]</a></td>
+</tr>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;&lt;commit</span> <span class="pre">msg&gt;&quot;</span></code></td>
+<td>Commit files from staging area with commit message <a class="footnote-reference" href="#id6" id="id4">[2]</a></td>
+</tr>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-am</span> <span class="pre">&quot;&lt;commit</span> <span class="pre">msg&gt;&quot;</span></code></td>
+<td>Directly commit all modified files with commit message, skiping staging area</td>
+</tr>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">branch</span></code></td>
+<td>List local branches</td>
+</tr>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-a</span></code></td>
+<td>List local and remote branches</td>
+</tr>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-d</span> <span class="pre">&lt;branch&gt;</span></code></td>
+<td>Delete the local branch named <code class="code docutils literal"><span class="pre">&lt;branch&gt;</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;branch&gt;</span></code></td>
+<td>Switch to local or remote branch named <code class="code docutils literal"><span class="pre">&lt;branch&gt;</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">&lt;branch&gt;</span></code></td>
+<td>Create and switch to a new local branch named <code class="code docutils literal"><span class="pre">&lt;branch&gt;</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">fetch</span></code></td>
+<td>Fetch all latest changes info from remote repository, won&#8217;t change any local file</td>
+</tr>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">push</span></code></td>
+<td>Push your branch to remote repository</td>
+</tr>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">&lt;remote&gt;</span> <span class="pre">&lt;branch&gt;</span></code></td>
+<td>First push a new <code class="code docutils literal"><span class="pre">branch</span></code> to remote repository with name <code class="code docutils literal"><span class="pre">remote</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">pull</span></code></td>
+<td>Pull your branch to the remote repository</td>
+</tr>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">prune</span> <span class="pre">origin</span></code></td>
+<td>Delete any local branches that were deleted in the remote repository</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="managing-branches">
+<h2>Managing branches<a class="headerlink" href="#managing-branches" title="Permalink to this headline">¶</a></h2>
+<p>Branches are very important when working with Git. If have not used branches with Git before, please read <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">this page</a> to learn the basics.</p>
+<p>There are a few protected branches that are important to CAM<sup>2</sup> front-end developers:</p>
+<ul class="simple">
+<li><code class="code docutils literal"><span class="pre">master</span></code>: contains source code of CAM<sup>2</sup> staging site with most recent functional feature.</li>
+<li><code class="code docutils literal"><span class="pre">release</span></code>: contains source code of CAM<sup>2</sup> production site, stable version of master branch.</li>
+<li><code class="code docutils literal"><span class="pre">gh-pages</span></code>: (optional) contains front-end code of github documentation page, automatically built.</li>
+</ul>
+<p>No work should be done on these branches. All work must be done on a feature branch, a short-lived branch extended from <code class="code docutils literal"><span class="pre">master</span></code> branch. A feature branch should have a meaningful name indicating feature or fix that this branch will implement. After completion, feature branch is merged back to <code class="code docutils literal"><span class="pre">master</span></code>. In general, only repository managers should merge to protected branches.</p>
+</div>
+<div class="section" id="issuing-a-pull-request">
+<h2>Issuing a pull request<a class="headerlink" href="#issuing-a-pull-request" title="Permalink to this headline">¶</a></h2>
+<p>The Purpose of making pull request is to make other team members and someone who interested in this repository keep track of the progress of a new feature branch. team members and leaders can commit, review, provide advice on this branch and every commit is visiable to everyone. For an overview of pull requests, please see <a class="reference external" href="https://help.github.com/articles/about-pull-requests/">about pull request</a>.</p>
+<p>Once making first commit of a new feature branch, A pull request should be set up. To initiate a pull request, go to project GitHub and click &#8220;New Pull Request&#8221;. On the following page, make sure base branch is <code class="code docutils literal"><span class="pre">master</span></code> and compare branch is your new feature branch. If necessary, modify title so that it is a descriptive phrase describing the purpose of the branch you are merging. On this page you can also add a more detailed description. Finally, click &#8220;Create Pull Request&#8221;, and you will be redirected to the pull request page. When your feature branch is ready to be merged, leave a comment so that reviewers know.</p>
+</div>
+<div class="section" id="cleaning-up">
+<h2>Cleaning up<a class="headerlink" href="#cleaning-up" title="Permalink to this headline">¶</a></h2>
+<p>Once your feature branch has been merged, the merging contributor will delete the branch as it is no longer needed. Now you can remove the branch on your local repository. Open a terminal, navigate to your repository, and switch to the <code class="code docutils literal"><span class="pre">master</span></code> branch. delete local branch and tracking information of remote branch with <a class="reference internal" href="#frequently-used-git-commands">Frequently Used Git Commands</a>.</p>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>Always check <code class="code docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> before add or commit to prevent adding unwanted files. <code class="code docutils literal"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> is not a good practice</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id4">2</a>)</em> For Git commit workflow, see <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics#_the_three_states">The Three Stages</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="heroku.html" class="btn btn-neutral float-right" title="Heroku" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Welcome to PurdueCAM2Project/CAM2WebUI’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Purdue CAM2 Project Developers.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

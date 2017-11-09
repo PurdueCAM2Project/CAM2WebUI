@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>load_latlngJSON &mdash; PurdueCAM2Project/CAM2WebUI 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PurdueCAM2Project/CAM2WebUI 1.0 documentation" href="../index.html"/>
+        <link rel="next" title="Django Selenium test" href="../test/test.html"/>
+        <link rel="prev" title="App List" href="AppList.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PurdueCAM2Project/CAM2WebUI
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Basic Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/git.html">Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/localsite.html">Viewing Website Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/selenium.html">Selenium Test Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/sphinx.html">Sphinx-generated Github Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/travis.html">Travis CI Setup</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Implementation Details</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="User.html">User</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GoogleFusionTable.html">Google Fusion Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Admin.html">Admin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppList.html">App List</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">load_latlngJSON</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-it">What is it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-it-was-needed">Why it was needed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#executing-the-script">Executing the script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Test Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../test/test.html">Django Selenium test</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PurdueCAM2Project/CAM2WebUI</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>load_latlngJSON</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/implementationDetail/load_latlngJSON.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="load-latlngjson">
+<span id="load-latlngjson"></span><h1>load_latlngJSON<a class="headerlink" href="#load-latlngjson" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-it">
+<span id="what-is-it"></span><h2>What is it<a class="headerlink" href="#what-is-it" title="Permalink to this headline">¶</a></h2>
+<p>It is a custom Django command to execute the load_latlngJSON.py script.</p>
+<p>Main purpose of this script is to create a dictionary in the form a JSON object to proivde O(1) lookup for latitudinal and longitudinal information of  northeast and southwest corners of a country. This information is needed to dynamically adjust viewport of map as multiple countries are selected.</p>
+<p>This command is used to execute a scripts that parses all countries listed on our project&#8217;s cameras webpage, uses geocode API to obtain viewport of each country, and then creates a JSON file of country codes mapped to country viewports.</p>
+</div>
+<div class="section" id="why-it-was-needed">
+<span id="why-it-was-needed"></span><h2>Why it was needed<a class="headerlink" href="#why-it-was-needed" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference external" href="https://github.com/PurdueCAM2Project/CAM2WebUI/issues/95">this issue</a> for an in-depth explanation.</p>
+<p>A brief summary: this script is a necessary solution to</p>
+<ol class="simple">
+<li>Limit calls to geocode API: there&#8217;s a limit to number of free requests to geocode API which would have been undoubtedly exceeded in times of relatively heavy traffic to our website.</li>
+<li>Increase speed performace of our website&#8217;s cameras page: geocoder API requests may take several hundered milliseconds and this results in a subpar user experience when multiple countries are selected, in fact, dynaymically adjusting viewport when more than 3 countries are selected becomes infeasbile</li>
+</ol>
+</div>
+<div class="section" id="executing-the-script">
+<span id="executing-the-script"></span><h2>Executing the script<a class="headerlink" href="#executing-the-script" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">load_latlngJSON</span>
+</pre></div>
+</div>
+<p>This will print relevant message to to the console for each country as it is successfully, or not, geocoded. If this is not desired then the output can be piped to a dummy file where it can be examined.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">load_latlngJSON</span> <span class="o">&gt;</span> <span class="n">dummy</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>The script can run for potentially more than 2 minutes, due to reasons explained <a class="reference external" href="#delay_reason">here</a> and <a class="reference external" href="https://github.com/PurdueCAM2Project/CAM2WebUI/commit/b725343182ae964cbd2a3a44cb72d379a11b4c2e">here</a>.</p>
+</div>
+<div class="section" id="documentation">
+<span id="documentation"></span><h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>The script was setup as per the <a class="reference external" href="https://docs.djangoproject.com/en/dev/howto/custom-management-commands/">official tutorial</a> on how to create a custom Django command.</p>
+<p>The path to the script: /app/management/commands/load_latlngJSON.py</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"Tthe path to the script, the 'Command' class definition and the 'handle' member function definition must not be modified as they are necessary for the custom command to be recognized by Django.
+.</p>
+</div><p>Each time the script is executed, the handle member funtion of the Command class is called</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="n">countries</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_countries_from_webpage</span><span class="p">()</span>
+        <span class="n">countries</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocode_data</span><span class="p">(</span><span class="n">countries</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;app/static/app/js/countries_viewport.json&#39;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">writeJSON</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">countries</span><span class="p">,</span> <span class="n">writeJSON</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="using-beautiful-soup-to-parse-webpage">
+<span id="using-beautiful-soup-to-parse-webpage"></span><h3>Using Beautiful Soup to parse webpage<a class="headerlink" href="#using-beautiful-soup-to-parse-webpage" title="Permalink to this headline">¶</a></h3>
+<p>As explained in the <a class="reference external" href="https://github.com/PurdueCAM2Project/Training#introduction-to-beautiful-soup-and-selenium">CAM2 Training docs</a>, Beautiful Soup was used to parse the list of countries for our website&#8217;s cameras page.</p>
+<p><a class="reference external" href="http://web.stanford.edu/~zlotnick/TextAsData/Web_Scraping_with_Beautiful_Soup.html">This</a> webpage from stanford.edu is also an excellent quick guide to Beautiful Soup</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span><span class="o">,</span> <span class="nn">urllib.parse</span><span class="o">,</span> <span class="nn">urllib.error</span>
+<span class="kn">import</span> <span class="nn">ssl</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="k">import</span> <span class="n">BeautifulSoup</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get_countries_from_webpage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#ignore SSL certificate errors</span>
+        <span class="n">ctx</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">create_default_context</span><span class="p">()</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">check_hostname</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">verify_mode</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">CERT_NONE</span>
+
+        <span class="c1">#get country select tag</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://www.cam2project.net/cameras/&quot;</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">ctx</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+        <span class="n">country_menu</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;select&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;option&#39;</span><span class="p">)</span>
+
+        <span class="n">countries</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">country_menu</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">country</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]:</span>
+                <span class="n">countries</span><span class="p">[</span><span class="n">country</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]]</span> <span class="o">=</span>  <span class="nb">str</span><span class="p">(</span><span class="n">country</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">countries</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-geocode-api">
+<span id="using-geocode-api"></span><h3>Using geocode API<a class="headerlink" href="#using-geocode-api" title="Permalink to this headline">¶</a></h3>
+<p>Google&#8217;s geocode API was used to obtain viewports of countries listed on our website&#8217;s drop down menu.</p>
+<p>These viewports are nested dictionaries containing information about the latitudinal and longitudinal positions of the northwest and southwest corners of a country.</p>
+<p><a class="reference external" href="https://gist.github.com/pnavarrc/5379521">This</a> tutorial on Github was referred to as a guide to use geocode API in python.</p>
+<p>The geocoding function takes a dictionary of country codes mapped to country names as inputs and makes requests using country names to obtain viewports. Each country&#8217;s code is then mapped to country&#8217;s viewport. The resulting dictionary is then returned.</p>
+<ul class="simple">
+<li>It is necessary for the script to sleep for 0.01 secounds before making a request to geocode API in order to ensure that the 50 queries per second limit is not exceeded.</li>
+<li><a name="delay_reason">Initially not all countries were geocoded properly, each time geocoding randomly failed for a number of consecutively listed countries. This was solved by waiting for 1 second in the event of failure and then sending the same request to geocode API again. Now 100% of the countries are geocoded each time the script is executed. However, as a consequence, the script may take more than 2 minutes to run.</a></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">sleep</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">geocode_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">countries</span><span class="p">):</span>
+        <span class="n">GOOGLE_MAPS_API_URL</span> <span class="o">=</span> <span class="s1">&#39;http://maps.googleapis.com/maps/api/geocode/json&#39;</span>
+
+        <span class="k">for</span> <span class="n">country_code</span><span class="p">,</span> <span class="n">country_name</span> <span class="ow">in</span> <span class="n">countries</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1">#to enfore geocode 50 queries per second limit</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+
+            <span class="c1">#make the request and get the response data</span>
+            <span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">GOOGLE_MAPS_API_URL</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="n">country_name</span>
+            <span class="p">})</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;OK&#39;</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">country_code</span><span class="p">,</span> <span class="n">country_name</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">GOOGLE_MAPS_API_URL</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="n">country_name</span>
+                <span class="p">})</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;OK&#39;</span><span class="p">):</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed 2nd attempt: &quot;</span><span class="p">,</span> <span class="n">country_code</span><span class="p">,</span> <span class="n">country_name</span><span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;OK: &quot;</span><span class="p">,</span> <span class="n">country_code</span><span class="p">,</span> <span class="n">country_name</span><span class="p">)</span>
+
+            <span class="c1">#Use the first result</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="n">countries</span><span class="p">[</span><span class="n">country_code</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;viewport&#39;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">countries</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-json-file">
+<span id="creating-json-file"></span><h3>Creating JSON file<a class="headerlink" href="#creating-json-file" title="Permalink to this headline">¶</a></h3>
+<p>Once the nested dictionary of country codes mapped to country viewports is obtained, &#8216;json&#8217; library is used to create a JSON file of this dictionary in the appropriate directory:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;app/static/app/js/countries_viewport.json&#39;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">writeJSON</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">countries</span><span class="p">,</span> <span class="n">writeJSON</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../test/test.html" class="btn btn-neutral float-right" title="Django Selenium test" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="AppList.html" class="btn btn-neutral" title="App List" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Purdue CAM2 Project Developers.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
