@@ -67,7 +67,7 @@ ALLOWED_HOSTS = [
 #ADMINS = [('Yutong', 'huang_yutong@outlook.com'),]
 
 # Receive user feedback
-MANAGER_EMAIL = ['huang_yutong@outlook.com']
+MANAGER_EMAIL = ['']
 
 # Application definition
 INSTALLED_APPS = [
