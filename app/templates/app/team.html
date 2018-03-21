@@ -6,14 +6,14 @@
 {% endblock %}
 {% block content %}
 <div class="container main-content">
-  
+
   <hr class="divide-divider">
   <h2>The Team</h2>
   {% for team in team_list %}
     <img src="{{ team.teamimg }}" alt="team image">
   {% endfor %}
   <hr class="divide-divider">
-  
+
   {% if leader_list is not None %}
     <h2>Team Administrator</h2>
     {% for leader in leader_list %}
@@ -38,7 +38,7 @@
       {% endif %}
     {% endfor %}
   {% endif %}
-  
+
   {% if leader_list is not None %}
     <hr class="divide-divider">
     <h2>Current Members</h2>
@@ -59,7 +59,7 @@
       {% endif %}
     {% endfor %}
   {% endif %}
-  
+
   {% if oldmember_list is not None and oldmember_list|length != 0 %}
     <hr class="divide-divider">
     <h2>Former Members</h2>
@@ -69,6 +69,43 @@
           {% endfor %}
     </ul>
   {% endif %}
-  
+
+
+  <div class="row divide">
+
+    <div style="width: 70%; margin: auto">
+      <h2 class="divide-heading">Everett Berry, CTO of Perceive Inc.</h2>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lpbFLdf3u3o?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"></iframe>
+         </div>
+
+    </div>
+  </div>
+
+  <div class="row divide">
+    <hr class="divide-divider">
+    <hr class="divide-divider">
+    <div style="width: 70%; margin: auto">
+      <h2 class="divide-heading">Jinyi Zhang (Bachelor of Science, Purdue University 2016)</h2>
+      <h4 class="divide-heading">Columbia University - Graduate Student</h4>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fNZAGS9bj74?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"></iframe>
+         </div>
+
+    </div>
+  </div>
+
+  <div class="row divide">
+    <hr class="divide-divider">
+    <hr class="divide-divider">
+    <div style="width: 70%; margin: auto">
+      <h2 class="divide-heading">Travis Tutorial</h2>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/p2kSN7dDfn0?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"></iframe>
+         </div>
+
+    </div>
+  </div>
+
 </div>
 {% endblock %}
