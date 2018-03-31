@@ -43,6 +43,15 @@ def team(request):
               }
     return render(request, 'app/team.html', context)
 
+def api_resources_readme(request):
+    return render(request, 'app/api_readme.html')
+
+def api_resources_documentation(request):
+    return render(request, 'app/api_docs.html')
+
+def api_resources_console(request):
+    return render(request, 'app/api_console.html')
+
 def privacy(request):
     return render(request, 'app/privacy.html')
 
