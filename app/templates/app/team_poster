@@ -1,0 +1,17 @@
+{% extends "app/base.html" %}
+{% block title %}Team{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/team.css " %}">
+{% endblock %}
+{% block content %}
+<div class="container main-content">
+
+  <div class="team-posters">
+    <h2 class = "title-for-posters">Team Posters </h2>
+    <p><img style="width: 90%; margin-left: auto; margin-right: auto;" src="{% static "app/img/ICRC2016PosterYHLu.jpg" %}"/></p>
+    <p><img style="width: 90%; margin-left: auto; margin-right: auto;" src="{% static "app/img/SI2PI2017PurdueYungHsiangLu.jpg" %}"/></p>
+  </div>
+ 
+</div>
+{% endblock %}
