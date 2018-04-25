@@ -1,0 +1,94 @@
+{% extends "app/base.html" %} 
+{% block title %}Join Us{% endblock %}
+{% load static %} 
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/login.css" %}" />
+<link rel="stylesheet" href="{% static "email_system/css/contact.css" %}" />
+{% endblock %} 
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10 col-sx-12">
+      <div class="form-box">
+        <div class="form-top">
+          <div class="form-top-left">
+            <h3>Join Us</h3>
+            <p>Leave your message if you're interested in joining!</p>
+          </div>
+          <div class="form-top-right"> <i class="fa fa-envelope"></i> </div>
+        </div>
+        <div class="form-bottom">
+          {% if messages %}
+            <ul class="list-group">
+                {% for message in messages %}
+                <li{% if message.tags %} class="list-group-item list-group-item-danger"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+          {% endif %}
+          <form id="contact-us" method="post" action="/email/contact/">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-xs-12 col-sm-5 wow animated slideInLeft" data-wow-delay=".5s">
+                <p><label>Name: </label><br><input value="{{ request.user.get_full_name }}" type="text" name="name" id="name" required="required" placeholder="Your Name"></p>
+                <p><label>Email: </label><br><input value="{{ request.user.email }}" type="email" name="from_email" id="from_email" required="required" placeholder="Your Email" /></p>
+              </div>
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>What is your major? </label><br>
+                <textarea name="message" id="major" class="textarea-lg" placeholder="CS,CmpE,etc."></textarea>
+              </div>
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>When do you intend to graduate? </label><br>
+                <textarea name="message" id="gradDate" class="textarea-lg" placeholder="Example: 10/21/2015"></textarea>
+              </div>
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>Which programming courses/software engineering courses have you already passed? </label><br>
+                <textarea name="message" id="courses" class="textarea-lg" placeholder="CS 370 - Software Engineering, ECE 264 - Advanced Programming in C, etc.
+"></textarea>
+              </div>
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>What programming languages do you know?
+ </label><br>
+                <textarea name="message" id="languages" class="textarea-lg" placeholder="HTML, C, Python, JavaScript, etc.
+"></textarea>
+              </div>
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>Which software engineering tools are you comfortable with?
+ </label><br>
+                <textarea name="message" id="tools" class="textarea-lg" placeholder="Git, Travis, Linux Bash, etc.
+"></textarea>
+              </div>
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>Why are you interested in researching with CAM²?
+ </label><br>
+                <textarea name="message" id="whyCAM2" class="textarea-lg" placeholder="Just a couple sentences will suffice.
+"></textarea>
+              </div>
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>Anything else?
+ </label><br>
+                <textarea name="message" id="anythingElse" class="textarea-lg" placeholder="Clarify anything you want about your survey answers
+"></textarea>
+              </div>       
+              <div class="clearfix"></div>
+              <div class="clearfix"></div>
+              <div class="g-recaptcha pull-left recaptcha-btn" data-sitekey={{sitekey}}></div>
+              <div class="clearfix"></div>
+
+              <div class="relative fullwidth col-xs-12">
+                <button type="submit" id="submit" name="submit" class="btn center-block">Send Message</button>
+              </div>
+              <div class="clear"></div>
+              {% for error in field.errors %}
+                  <p id="emailerror" style="color: red">{{ error }}</p>
+              {% endfor %}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}
