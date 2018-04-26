@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^cameras/$', app_views.cameras, name='cameras'),
     url(r'^good_cameras/$', app_views.good_cameras, name='good_cameras'),
     url(r'^team/$', app_views.team, name='team'),
+    url(r'^team_poster/$', app_views.team_poster, name='team_poster'),
     url(r'^advice/$', app_views.advice, name='advice'),
     url(r'^history/$', app_views.history, name='history'),
     url(r'^publications/$', app_views.publications, name='publications'),
