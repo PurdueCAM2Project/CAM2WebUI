@@ -43,6 +43,9 @@ def team(request):
               }
     return render(request, 'app/team.html', context)
 
+def team_poster(request):
+    return render(request, 'app/team_poster.html')
+
 def privacy(request):
     return render(request, 'app/privacy.html')
 
