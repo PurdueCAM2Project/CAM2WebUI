@@ -174,26 +174,26 @@ def join(request):
                 #get info from form
                 name = form.cleaned_data['name']
                 from_email = form.cleaned_data['from_email']
-                major = form.cleaned_data[‘major’]
-                gradDate = form.cleaned_data[‘gradDate’]
-                courses = form.cleaned_data[‘courses’]
-                languages = form.cleaned_data[‘languages’]
-                tools = form.cleaned_data[‘tools’]
-                whyCAM2 = form.cleaned_data[‘whyCAM2’]
-                anythingElse = form.cleaned_data[‘anythingElse’]
+                major = form.cleaned_data['major']
+                gradDate = form.cleaned_data['gradDate']
+                courses = form.cleaned_data['courses']
+                languages = form.cleaned_data['languages']
+                tools = form.cleaned_data['tools']
+                whyCAM2 = form.cleaned_data['whyCAM2']
+                anythingElse = form.cleaned_data['anythingElse']
                 subject = '[CAM2 Join Team Questions]'
-                
+
                 #add info to email template
                 content = render_to_string('email_system/join_email_template.html', {
                     'name': name,
                     'from_email': from_email,
-                    ‘major’: major,
-                    ‘gradDate’: gradDate, 
-                    ‘courses’: courses, 
-                    ‘languages’: languages,
-                     ’tools’, : tools, 
-                     ‘whyCAM2’, : whyCAM2, 
-                     ‘anythingElse’, :anythingElse  
+                    'major': major,
+                    'gradDate': gradDate,
+                    'courses': courses,
+                    'languages': languages,
+                     'tools' : tools,
+                     'whyCAM2' : whyCAM2,
+                     'anythingElse' :anythingElse  
                 })
                 send_mail(subject, content, EMAIL_HOST_USER, MANAGER_EMAIL)#email admin
 
