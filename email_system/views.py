@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
-from email_system.forms import MailForm, ContactForm
+from email_system.forms import MailForm, ContactForm, JoinForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.mail import send_mass_mail, send_mail
 import os
@@ -154,6 +154,70 @@ def contact(request):
             sitekey = os.environ['RECAPTCHA_SITE_KEY']
 
     return render(request, "email_system/contact.html", {'form': form, 'sitekey': sitekey})
+
+def join(request):
+    if request.method == 'POST':
+        form = JoinForm(request.POST)
+        if form.is_valid():
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            values = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_response
+            }
+            data = urllib.parse.urlencode(values).encode()
+            req = urllib.request.Request(url, data=data)
+            response = urllib.request.urlopen(req)
+            result = json.loads(response.read().decode())
+            if result['success']:
+
+                #get info from form
+                name = form.cleaned_data['name']
+                from_email = form.cleaned_data['from_email']
+                major = form.cleaned_data['major']
+                gradDate = form.cleaned_data['gradDate']
+                courses = form.cleaned_data['courses']
+                languages = form.cleaned_data['languages']
+                tools = form.cleaned_data['tools']
+                whyCAM2 = form.cleaned_data['whyCAM2']
+                anythingElse = form.cleaned_data['anythingElse']
+                subject = '[CAM2 Join Team Questions]'
+
+                #add info to email template
+                content = render_to_string('email_system/join_email_template.html', {
+                    'name': name,
+                    'from_email': from_email,
+                    'major': major,
+                    'gradDate': gradDate,
+                    'courses': courses,
+                    'languages': languages,
+                     'tools' : tools,
+                     'whyCAM2' : whyCAM2,
+                     'anythingElse' :anythingElse  
+                })
+                send_mail(subject, content, EMAIL_HOST_USER, MANAGER_EMAIL)#email admin
+
+                return redirect('email_sent')
+            else:
+                messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
+                if 'test' in sys.argv:
+                    sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
+                else:
+                    sitekey = os.environ['RECAPTCHA_SITE_KEY']
+        else:
+            if 'test' in sys.argv:
+                sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
+            else:
+                sitekey = os.environ['RECAPTCHA_SITE_KEY']
+
+    else:
+        form = JoinForm()
+        if 'test' in sys.argv:
+            sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
+        else:
+            sitekey = os.environ['RECAPTCHA_SITE_KEY']
+
+    return render(request, "email_system/join.html", {'form': form, 'sitekey': sitekey})
 
 def email_sent(request):
     return render(request, 'email_system/email_sent.html')
