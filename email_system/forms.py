@@ -37,3 +37,13 @@ class ContactForm(forms.Form):
     subject = forms.CharField(required=True)
     message = forms.CharField(widget=forms.Textarea, required=True)
 
+class JoinForm(forms.Form):
+    name = forms.CharField(required=True)
+    from_email = forms.EmailField(required=True)
+    major = forms.CharField(widget=forms.Textarea, required=True)
+    gradDate = forms.CharField(widget=forms.Textarea, required=True)
+    courses = forms.CharField(widget=forms.Textarea, required=True)
+    languages = forms.CharField(widget=forms.Textarea, required=True)
+    tools = forms.CharField(widget=forms.Textarea, required=True)
+    whyCAM2 = forms.CharField(widget=forms.Textarea, required=True)
+    anythingElse = forms.CharField(widget=forms.Textarea, required=True)
