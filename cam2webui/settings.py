@@ -19,7 +19,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR =  os.path.dirname(PROJECT_ROOT)
 
 # Environment Variables Import
-try: 
+try:
     # Does the site runs on production site or tested locally
     IS_RPODUCTION_SITE = bool(os.environ['IS_PRODUCTION_SITE'] == "True")
     # SECURITY WARNING: keep the secret key used in production secret!
@@ -32,7 +32,7 @@ try:
     else:
         GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
     # Development Site Protection
-    if not IS_RPODUCTION_SITE: 
+    if not IS_RPODUCTION_SITE:
         BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
         BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
     # Github Auth
@@ -97,7 +97,7 @@ MIDDLEWARE = [
 # Basic auth
 # https://djangosnippets.org/snippets/2468/
 
-if not IS_RPODUCTION_SITE: 
+if not IS_RPODUCTION_SITE:
     MIDDLEWARE.extend(['app.middleware.basicauth.BasicAuthMiddleware'])
 
 ROOT_URLCONF = 'cam2webui.urls'

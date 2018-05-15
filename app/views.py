@@ -101,7 +101,7 @@ def register(request):
                 model2 = form2.save(commit=False) #Optional information of user
                 model2.user = model1
                 model2.save()
-                
+
                 #Email user
                 current_site = get_current_site(request)
                 subject = 'Activate Your CAM2 Account'
@@ -289,3 +289,7 @@ def error500(request):
 
 def error404(request):
     return render(request, 'app/404.html')
+
+def api_request(request):
+    template_name = 'app/api_access.html'
+    return render(request, template_name)
