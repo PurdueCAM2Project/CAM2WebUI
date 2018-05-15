@@ -108,7 +108,7 @@ def register(request):
                 message = render_to_string('app/confirmation_email.html', {
                     'user': model1,
                     'domain': current_site.domain,
-                    'uid': urlsafe_base64_encode(force_bytes(model1.pk)),
+                    'uid': urlsafe_base64_encode(force_bytes(model1.pk)).decode(),
                     'token': account_activation_token.make_token(model1),
                 })
                 model1.email_user(subject, message)
