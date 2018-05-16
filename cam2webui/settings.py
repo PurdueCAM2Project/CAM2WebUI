@@ -67,7 +67,7 @@ ALLOWED_HOSTS = [
 #ADMINS = [('Yutong', 'huang_yutong@outlook.com'),]
 
 # Receive user feedback
-MANAGER_EMAIL = ['cam2proj@shay.ecn.purdue.edu']
+MANAGER_EMAIL = ['cam2proj@ecn.purdue.edu']
 
 # Application definition
 INSTALLED_APPS = [
