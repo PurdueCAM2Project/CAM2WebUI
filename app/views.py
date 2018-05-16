@@ -18,6 +18,7 @@ from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, 
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
 from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser
+from django.http import HttpResponseNotFound
 
 def index(request):
     return render(request, 'app/index.html')
@@ -290,7 +291,7 @@ def error500(request):
     return render(request, 'app/500.html')
 
 def error404(request):
-    return render(request, 'app/404.html')
+    return HttpResponseNotFound(request, 'app/404.html')
 
 def api_request(request):
     template_name = 'app/api_access.html'
