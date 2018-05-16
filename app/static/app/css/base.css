@@ -54,3 +54,12 @@ a:focus {
   margin-right: 5px;
   margin-left: 5px;
 }
+
+/*Change the bg color of footer*/
+footer {
+  margin: 0 -500%;
+  padding: 0.5em 500%;
+  background: rgba(255,0,0,.5);
+  background-color: #f1f1f1
+}
+
