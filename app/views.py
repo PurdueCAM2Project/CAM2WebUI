@@ -18,6 +18,7 @@ from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, 
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
 from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser
+import logging
 
 def index(request):
     return render(request, 'app/index.html')
@@ -164,6 +165,10 @@ def activate(request, uidb64, token):
             'user': user,
             'optional': optional,
         })
+
+        logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+        logging.debug(admin_message)
+
         mail_admins(admin_subject, admin_message)
         login(request, user, backend="django.contrib.auth.backends.ModelBackend")
         return redirect('account_activated')
