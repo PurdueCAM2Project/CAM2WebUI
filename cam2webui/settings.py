@@ -64,7 +64,7 @@ ALLOWED_HOSTS = [
 ]
 
 # Receive error log
-ADMINS = [('cam2proj', 'cam2proj@ecn.purdue.edu')]
+#ADMINS = [('cam2proj', 'cam2proj@ecn.purdue.edu')]
 
 # Receive user feedback
 MANAGER_EMAIL = ['cam2proj@ecn.purdue.edu']
