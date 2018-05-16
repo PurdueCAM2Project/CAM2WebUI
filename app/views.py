@@ -164,6 +164,8 @@ def activate(request, uidb64, token):
             'user': user,
             'optional': optional,
         })
+
+
         mail_admins(admin_subject, admin_message)
         login(request, user, backend="django.contrib.auth.backends.ModelBackend")
         return redirect('account_activated')
