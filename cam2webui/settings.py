@@ -73,9 +73,10 @@ MANAGER_EMAIL = ['cam2proj@ecn.purdue.edu']
 #ignore 404 error to be sent to admin email
 #documented in https://docs.djangoproject.com/en/2.0/howto/error-reporting/
 IGNORABLE_404_URLS = [
-    re.compile(r'^/robots.txt'),
-    re.compile(r'^/favicon.ico'),
-    re.compile(r'^/&amp'),
+    re.compile(r'^/favicon\.ico$'),
+    re.compile(r'^/robots\.txt$'),
+    re.compile(r'^/&amp/'),
+
 ]
 
 # Application definition
