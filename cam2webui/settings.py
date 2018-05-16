@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 """
-import os, sys, dj_database_url
+import os, sys, dj_database_url, re
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -64,10 +64,19 @@ ALLOWED_HOSTS = [
 ]
 
 # Receive error log
-#ADMINS = [('cam2proj', 'cam2proj@ecn.purdue.edu')]
+# use IGNORABLE_404_URLS to ignore error logs being sent to admin email
+ADMINS = [('cam2proj', 'cam2proj@ecn.purdue.edu')]
 
 # Receive user feedback
 MANAGER_EMAIL = ['cam2proj@ecn.purdue.edu']
+
+#ignore 404 error to be sent to admin email
+#documented in https://docs.djangoproject.com/en/2.0/howto/error-reporting/
+IGNORABLE_404_URLS = [
+    re.compile(r'^/robots.txt'),
+    re.compile(r'^/favicon.ico'),
+    re.compile(r'^/&amp'),
+]
 
 # Application definition
 INSTALLED_APPS = [
