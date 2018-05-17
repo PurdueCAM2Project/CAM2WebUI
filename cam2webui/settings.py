@@ -47,6 +47,7 @@ try:
     EMAIL_PORT = os.environ['EMAIL_PORT']
     EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
     EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+    MANAGER_EMAIL = os.environ['MANAGER_EMAIL']
 except KeyError as e:
     print('Lacking Environment Variables: ' + str(e))
     print('Visit https://purduecam2project.github.io/CAM2WebUI/basicSetup/localsite.html#exporting-config-vars for details')
@@ -67,8 +68,7 @@ ALLOWED_HOSTS = [
 # use IGNORABLE_404_URLS to ignore error logs being sent to admin email
 ADMINS = [('cam2proj', 'cam2proj@ecn.purdue.edu')]
 
-# Receive user feedback
-MANAGER_EMAIL = ['cam2proj@ecn.purdue.edu']
+# Receive user feedback - manager email in environment
 
 #ignore 404 error to be sent to admin email
 #documented in https://docs.djangoproject.com/en/2.0/howto/error-reporting/
