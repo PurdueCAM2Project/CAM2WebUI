@@ -290,8 +290,8 @@ def oauthinfo(request):
 def error500(request):
     return render(request, 'app/500.html')
 
-def error404(request):
-    return HttpResponseNotFound(request, 'app/404.html')
+def error404(request, exception, template_name='app/404.html'):
+    return render(request, 'app/404.html')
 
 def api_request(request):
     template_name = 'app/api_access.html'
