@@ -131,7 +131,7 @@ def contact(request):
                     'from_email': from_email,
                     'message': message,
                 })
-                send_mail(subject, content, EMAIL_HOST_USER, MANAGER_EMAIL)#email admin
+                send_mail(subject, content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
 
                 return redirect('email_sent')
             else:
@@ -195,7 +195,7 @@ def join(request):
                      'whyCAM2' : whyCAM2,
                      'anythingElse' :anythingElse  
                 })
-                send_mail(subject, content, EMAIL_HOST_USER, MANAGER_EMAIL)#email admin
+                send_mail(subject, content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
 
                 return redirect('email_sent')
             else:
