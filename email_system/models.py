@@ -7,6 +7,8 @@ class ContactModel(models.Model):
     from_email=models.EmailField()
     subject=models.CharField(verbose_name='Subject', max_length=100, blank=True, null=True)
     message=models.CharField(verbose_name='Message', max_length=500, blank=True, null=True)
+    def __str__(self):
+        return "{0}".format(self.subject)
 
 class JoinModel(models.Model):
     name=models.CharField(verbose_name='Name', max_length=100, blank=True, null=True)
@@ -18,4 +20,6 @@ class JoinModel(models.Model):
     tools=models.CharField(verbose_name='Development Tools', max_length=500, blank=True, null=True)
     whyCAM2=models.CharField(verbose_name='Reason to Join', max_length=500, blank=True, null=True)
     anythingElse=models.CharField(verbose_name='Additional Information', max_length=500, blank=True, null=True)
+    def __str__(self):
+        return "{0}".format(self.name)
 
