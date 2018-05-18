@@ -5,6 +5,7 @@ from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 from email_system.forms import MailForm, ContactForm, JoinForm
+from email_system.models import ContactModel, JoinModel
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.mail import send_mass_mail, send_mail
 import os
@@ -133,6 +134,10 @@ def contact(request):
                 })
                 send_mail(subject, content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
 
+                #add info to admin database - using cleaned_data
+                contact_obj = ContactModel(name=name, from_email=from_email, subject=subject, message=message)
+                contact_obj.save()
+
                 return redirect('email_sent')
             else:
                 messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
@@ -196,6 +201,10 @@ def join(request):
                      'anythingElse' :anythingElse  
                 })
                 send_mail(subject, content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
+
+                #add info to admin database
+                join_obj = JoinModel(name=name, from_email=from_email, major=major, gradDate=gradDate, courses=courses, languages=languages, tools=tools, whyCAM2=whyCAM2, anythingElse=anythingElse)
+                join_obj.save()
 
                 return redirect('email_sent')
             else:
