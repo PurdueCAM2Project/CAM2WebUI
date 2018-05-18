@@ -66,7 +66,7 @@ ALLOWED_HOSTS = [
 
 # Receive error log
 # use IGNORABLE_404_URLS to ignore error logs being sent to admin email
-ADMINS = [('cam2proj', 'cam2proj@ecn.purdue.edu')]
+ADMINS = [('cam2proj', MANAGER_EMAIL)]
 
 # Receive user feedback - manager email in environment
 
