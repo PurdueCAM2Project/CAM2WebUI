@@ -28,35 +28,25 @@
           <form id="contact-us" method="post" action="/email/join_us/">
             {% csrf_token %}
             <div class="row">
-              <div class="col-xs-12 col-sm-5 wow animated slideInLeft" data-wow-delay=".5s">
+              <div class="col-xs-12 col-sm-5 wow animated slideInLeft" data-wow-delay=".5s" style="width: 50%;">
                 <p><label>Name: </label><br><input value="{{ request.user.get_full_name }}" type="text" name="name" id="name" required="required" placeholder="Your Name"></p>
                 <p><label>Email: </label><br><input value="{{ request.user.email }}" type="email" name="from_email" id="from_email" required="required" placeholder="Your Email" /></p>
+		<p><label>Major: </label><br><input type="text" name="major" id="major" required="required" placeholder="CS,CmpE,etc."></input></p>
               </div>
-              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
-                <label>What is your major? </label><br>
-                <textarea name="major" id="major" class="textarea-lg" required="required" placeholder="CS,CmpE,etc."></textarea>
+	      <div class="col-xs-12 col-sm-5 wow animated slideInRight" data-wow-delay=".5s" style="width: 50%;">
+                <p><label>Graduation Date: </label><br><input type="text" name="gradDate" id="gradDate" required="required" placeholder="Example: 10/21/2015"></input></p>
+                <p><label>Programming Languages: </label><br><input type="text" name="languages" id="languages" required="required" placeholder="HTML, C, Python, JavaScript, etc.
+"></input></p>
+		<p><label>Software Engineering Tools Experience: </label><br><input type="text" name="tools" id="tools" required="required" placeholder="Git, Travis, Linux Bash, etc.
+"></input></p>
               </div>
-              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
-                <label>When do you intend to graduate? </label><br>
-                <textarea name="gradDate" id="gradDate" class="textarea-lg" required="required" placeholder="Example: 10/21/2015"></textarea>
-              </div>
+              
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
                 <label>Which programming courses/software engineering courses have you already passed? </label><br>
                 <textarea name="courses" id="courses" class="textarea-lg" required="required" placeholder="CS 370 - Software Engineering, ECE 264 - Advanced Programming in C, etc.
 "></textarea>
               </div>
-              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
-                <label>What programming languages do you know?
- </label><br>
-                <textarea name="languages" id="languages" class="textarea-lg" required="required" placeholder="HTML, C, Python, JavaScript, etc.
-"></textarea>
-              </div>
-              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
-                <label>Which software engineering tools are you comfortable with?
- </label><br>
-                <textarea name="tools" id="tools" class="textarea-lg" required="required" placeholder="Git, Travis, Linux Bash, etc.
-"></textarea>
-              </div>
+              
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
                 <label>Why are you interested in researching with CAM²?
  </label><br>
