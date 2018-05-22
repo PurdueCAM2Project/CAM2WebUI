@@ -25,7 +25,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" type="image/png" href="{% static "app/img/favicon.ico" %}"/>
+  <link rel="shortcut icon" type="image/png" href="{% static "app/img/favicon.ico" %}"/>  
+    
+  <!-- Title Depends on Page -->
   <title>{% block title %}{% endblock %}</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -36,10 +38,13 @@
   {% block css %}
   {% endblock %}
 </head>
-
+    
+<!------------------------------------------------------------>
 <body>
+    
   {% block nav %}
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+<!--    navbar-inverse navbar-fixed-top  -->
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -47,17 +52,24 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/"><img id="new_logo" src="{% static "app/img/new_logo.png" %}"></a>
+          
+        <!-- Logo on the left -->
+        <a class="navbar-brand" href="/">
+            <img id="new_logo" style="width: 50px; height: 25px;" src="{% static "app/img/new_logo2.png" %}">
+        </a>
       </div>
+        
+        <!-- Tab Cameras -->
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cameras<span class="caret"></span></a>
+          <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: black">Cameras<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/cameras/">All Cameras</a></li>
               <li><a href="/good_cameras/">Cameras in Good Conditions</a></li>
             </ul>
           </li>
-
+            
+        <!-- Tab About Us -->
           <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/history/">History</a></li>
@@ -65,7 +77,8 @@
               <li><a href="/email/contact/">Contact Us</a></li>
             </ul>
           </li>
-
+        
+        <!-- Tab Team -->
           <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Team<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/team/">Team Members</a></li>
@@ -100,7 +113,7 @@
   {% block content %}{% endblock %}
   {% block footer %}
     
-  <div class="container" style="width: 100%; padding-left: 0px; padding-right: 0px;">
+  <div class="container" style="width: 100%; padding-left: 0px; padding-right: 0;">
     <hr class="divide-divider">
       
     <!--  footer id in CSS    -->
