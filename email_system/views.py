@@ -12,6 +12,7 @@ import os
 import json
 import urllib
 import sys
+import datetime
 from django.conf import settings
 
 @staff_member_required
@@ -135,7 +136,7 @@ def contact(request):
                 send_mail(subject, content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
 
                 #add info to admin database - using cleaned_data
-                contact_obj = ContactModel(name=name, from_email=from_email, subject=subject, message=message)
+                contact_obj = ContactModel(name=name, from_email=from_email, subject=subject, message=message, date=datetime.date.today())
                 contact_obj.save()
 
                 return redirect('email_sent')
@@ -203,7 +204,7 @@ def join(request):
                 send_mail(subject, content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
 
                 #add info to admin database
-                join_obj = JoinModel(name=name, from_email=from_email, major=major, gradDate=gradDate, courses=courses, languages=languages, tools=tools, whyCAM2=whyCAM2, anythingElse=anythingElse)
+                join_obj = JoinModel(name=name, from_email=from_email, major=major, gradDate=gradDate, courses=courses, languages=languages, tools=tools, whyCAM2=whyCAM2, anythingElse=anythingElse, date=datetime.date.today())
                 join_obj.save()
 
                 return redirect('email_sent')
