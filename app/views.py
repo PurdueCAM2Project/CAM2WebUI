@@ -32,6 +32,16 @@ def good_cameras(request):
     return render(request, 'app/good_cameras.html')
 
 def team(request):
+    """Renders content for the Team page
+    
+    Retrieves information from the Team database using the matching Django Model structure.
+
+    Args:
+        request: the HttpRequest corresponding to the page to be accessed.
+
+    Returns:
+        A render that displays the page team.html, complete with information from the Team database.
+    """
     team_list = Team.objects.reverse()
     leader_list = Leader.objects.reverse()
     curmember_list = Member.objects.filter(iscurrentmember=True).order_by("membername")
@@ -60,16 +70,46 @@ def acknowledgement(request):
 #    return render(request, 'app/contact.html')
 
 def faqs(request):
+    """Renders content for the FAQs page
+    
+    Retrieves information from the FAQ database using the matching Django Model structure.
+
+    Args:
+        request: the HttpRequest corresponding to the page to be accessed.
+
+    Returns:
+        A render that displays the page faq.html, complete with information from the FAQs database.
+    """
     question_list = FAQ.objects.reverse()
     context = {'question_list': question_list}
     return render(request, 'app/faq.html', context)
 
 def history(request):
+    """Renders content for the History page
+    
+    Retrieves information from the History database using the matching Django Model structure.
+
+    Args:
+        request: the HttpRequest corresponding to the page to be accessed.
+
+    Returns:
+        A render that displays the page history.html, complete with information from the History database.
+    """
     history_list = History.objects.order_by('-year', '-month')
     context = {'history_list': history_list}
     return render(request, 'app/history.html', context)
 
 def publications(request):
+    """Renders content for the Publications page
+    
+    Retrieves information from the Publications database using the matching Django Model structure.
+
+    Args:
+        request: the HttpRequest corresponding to the page to be accessed.
+
+    Returns:
+        A render that displays the page publications.html, complete with information from the Publications database.
+    """
     publication_list = Publication.objects.reverse()
     context = {'publication_list': publication_list}
     return render(request, 'app/publications.html', context)
@@ -78,6 +118,22 @@ def advice(request):
     return render(request, 'app/advice.html')
 
 def register(request):
+    """Renders content for the Registration form page
+    
+    Uses the Django Forms structure outlined in forms.py to create a form for users to use
+    to register their information. When the user submits this form, it validates it to ensure
+    that the values are acceptable and that the required fields were filled, then it stores
+    the contents of the form into the Django Admin database for Users. Once this is complete,
+    an email is sent to the provided email address that contains an activation link for the user
+    to click.
+
+    Args:
+        request: the HttpRequest corresponding to the page to be accessed or the submitted form.
+
+    Returns:
+        A render that displays the form page if the page was just accessed or the form was invalid,
+        or a redirection to a page that confirms that the account was registered.
+    """
     if request.method == 'POST':
         form1 = RegistrationForm(request.POST)
         form2 = AdditionalForm(request.POST)
@@ -146,6 +202,22 @@ def account_activated(request):
     return render(request, 'app/account_activated.html')
 
 def activate(request, uidb64, token):
+    """Renders content for account activation
+    
+    Determines which user is attempting to activate their account based on the encoded section of the
+    URL used to access the page, sets the user's account to an activated state and saves the change
+    to the database, emails the system administrator about the newly registered account, logs the user
+    in, and redirects them to the site.
+
+    Args:
+        request: the HttpRequest corresponding to the page to be accessed.
+        uidb64: an encoded form of the user id used in activation.
+        token: the access token for activation given by the activation link.
+
+    Returns:
+        Either a redirection to the site indicating successful confirmation, or a rendering of a page
+        that indicates a failure to activate the account.
+    """
     """Followed tutorial: https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html"""
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -175,6 +247,22 @@ def activate(request, uidb64, token):
 
 @login_required
 def profile(request):
+    """Renders content for the Profile page
+    
+    For a user that's currently logged in, displays information currently stored in the database
+    for that user (First Name, Last Name, email, etc...), and allows the User to modify that
+    information using a form.
+
+    Also pulls information provided by Github sign-in, if Github authentication was used to access
+    the site.
+
+    Args:
+        request: the HttpRequest corresponding to the page to be accessed.
+
+    Returns:
+        A render that displays the user's profile page, complete with all information accessible from the
+        Django admin database for that specific user.
+    """
     user = request.user
     try:
         github_login = user.social_auth.get(provider='github')
@@ -269,6 +357,20 @@ def change_password(request):
 """
 
 def oauthinfo(request):
+    """Renders a form for additional content for users authenticated with Github or Google
+    
+    Retrieves information from the social authentication library provided by Django and allows
+    a user authenticated with an external service to provide additional information about themselves
+    (organization, location, etc...) that can then be stored within the Django admin user database.
+
+    * Note that while this appears to be the intention, it isn't fully implemented yet *
+
+    Args:
+        request: the HttpRequest corresponding to the page to be accessed.
+
+    Returns:
+        A render that displays the page for externally authenticated users to add information about themselves.
+    """
     if request.method == 'POST':
         return redirect('index')
 
