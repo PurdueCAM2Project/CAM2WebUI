@@ -56,6 +56,7 @@ except KeyError as e:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not IS_RPODUCTION_SITE
 
+# Defines which sites are allowed to display the site
 ALLOWED_HOSTS = [
     'www.cam2project.net',
     'cam2webui.herokuapp.com',
@@ -93,6 +94,7 @@ INSTALLED_APPS = [
     'social_django',
 ]
 
+# Middleware definition
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
