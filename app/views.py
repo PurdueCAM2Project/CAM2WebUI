@@ -56,6 +56,9 @@ def terms(request):
 def acknowledgement(request):
     return render(request, 'app/ack.html')
 
+#Addition for Testimony Video
+def testimony_vid1(request):
+	return render(request, 'app/testimony_vid.html')
 #def contact(request):
 #    return render(request, 'app/contact.html')
 
