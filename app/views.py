@@ -31,8 +31,6 @@ def cameras(request):
 def good_cameras(request):
     return render(request, 'app/good_cameras.html')
 
-	
-	
 def team(request):
     team_list = Team.objects.reverse()
     leader_list = Leader.objects.reverse()
