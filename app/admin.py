@@ -123,7 +123,7 @@ class UserAdmin(admin.ModelAdmin):
     country.short_description = 'country'
 
 
-
+	
 
 
 admin.site.unregister(User)
