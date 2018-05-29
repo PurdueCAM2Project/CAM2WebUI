@@ -70,10 +70,15 @@
             <ul class="dropdown-menu">
               <li><a href="/team/">Team Members</a></li>
               <li><a href="/team_poster/">Our Work</a></li>
-              <li><a href="/email/join_us/">Join Us!</a><li>
+              <li><a href="/email/join_us/">Join Us!</a></li>
             </ul>
           </li>
-
+		 
+          <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Training<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/travis_ci/">Travis CI</a></li>
+            </ul>
+          </li>
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -86,7 +91,7 @@
                             <li><a href="/api_access/">My application</a></li>
                             <li><a href="/profile/">My Profile</a></li>
                    		</ul>
-                 </li> 
+                </li> 
                 <li><a href="/logout/">Logout</a></li>
             {% else %}
                 <li><a href="/login/">Login</a></li>
@@ -100,7 +105,7 @@
   {% block content %}{% endblock %}
   {% block footer %}
     
-  <div class="container" style="width: 100%; padding-left: 0px; padding-right: 0px;">
+  <div class="container" style="width: 100%; padding-left: 0px; padding-right: 0px; height: 50px">
     <hr class="divide-divider">
       
     <!--  footer id in CSS    -->
