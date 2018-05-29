@@ -57,6 +57,9 @@ def team(request):
 def team_poster(request):
     return render(request, 'app/team_poster.html')
 
+def travis_ci(request):
+	return render(request, 'app/travis_ci.html')
+
 def privacy(request):
     return render(request, 'app/privacy.html')
 
@@ -398,3 +401,5 @@ def error404(request, exception, template_name='app/404.html'):
 def api_request(request):
     template_name = 'app/api_access.html'
     return render(request, template_name)
+
+
