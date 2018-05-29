@@ -123,14 +123,13 @@ class UserAdmin(admin.ModelAdmin):
     country.short_description = 'country'
 
 
-#def user_priv(request):
 	
 
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
-admin.site.egister(FAQ)
+admin.site.register(FAQ)
 admin.site.register(History)
 admin.site.register(Publication)
 admin.site.register(Team)
