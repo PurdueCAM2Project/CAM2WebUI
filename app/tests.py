@@ -34,9 +34,26 @@ import random
 
 
 class AddTestCase(StaticLiveServerTestCase):
+	"""Tests the functionality of the sites served by this Django app
 
+	Contains several test cases to ensure that the site behaves as intended.
+
+	Attributes:
+		selenium: a testing environment based on a web browser driver
+		port: the port of access used when testing using localhost as an address
+		username: a username used to access the site, pulled from the environment
+		password: a password used to access the site, pulled from the environment
+		test_username: a generated username used to test certain functions of the site
+		test_password: a generated password used to test certain functions of the site
+	
+	"""
 
 	def setUp(self):
+		"""Sets up the testing environment
+
+		Sets up an environment that can be used to test the site by initializing the class attributes
+
+		"""
 		#self.display = Display(visible=0, size=(1000, 1200))
 		#self.display.start()
 		#d = DesiredCapabilities.CHROME
@@ -57,6 +74,11 @@ class AddTestCase(StaticLiveServerTestCase):
 
 
 	def tearDown(self):
+		"""Exits the testing environment and stops all testing
+
+		Closes out of any testing systems.
+
+		"""
 		self.selenium.quit()
 		super(AddTestCase, self).tearDown()
 		# self.display.stop()
@@ -69,6 +91,11 @@ class AddTestCase(StaticLiveServerTestCase):
 		pass
 	
 	def test_profile_admin(self):
+		"""tests the functionality of the profile page and admin sign in
+
+		Logs into the site as an admin and tests the functionality of the profile page.
+
+		"""
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login/'
 		browser.get(url)
@@ -96,6 +123,11 @@ class AddTestCase(StaticLiveServerTestCase):
 
 	# Test if page title is Cam2
 	def test_connection(self):
+		"""Tests several pages for correctness of title to ensure correct url routing
+
+		Navigates to multiple pages and checks each one for a specific expected title
+
+		"""
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/'
 		browser.get(url)
@@ -149,6 +181,11 @@ class AddTestCase(StaticLiveServerTestCase):
 
 
 	def test_db_conneciton(self):
+		"""Tests connecting to the Django database
+
+		Attempts to connect to the Django database to test its functionality
+
+		"""
 		db_conn = connections['default']
 		try:
 		    c = db_conn.cursor()
@@ -161,6 +198,11 @@ class AddTestCase(StaticLiveServerTestCase):
 	# Test login and register locally. Generate long random strings for username and password, test if jump to redirect page
 
 	def test_Login_Register_1(self):
+		"""tests user registration and login
+
+		First, tests registration of a new user. Then tests logging in and accessing the profile page.
+
+		"""
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
 		browser.get(url)
@@ -223,7 +265,13 @@ class AddTestCase(StaticLiveServerTestCase):
 		        "apples"
 		    )
 		)
-	def test_Login_Register_2(self):		
+	def test_Login_Register_2(self):
+		"""tests the system's response to a failed login
+
+		Tries to login with a non-existent username and password and looks for a
+		response indicating authentication failure
+
+		"""		
 		browser = self.selenium		
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'		
 
@@ -240,7 +288,13 @@ class AddTestCase(StaticLiveServerTestCase):
 		assert error.get_attribute("innerHTML") == 'Please enter a correct username and password. Note that both fields may be case-sensitive.'		
 		
 		
-	def test_Login_Register_3(self):		
+	def test_Login_Register_3(self):
+		"""Tests the system's response to mismatched passwords on registration
+
+		Attempts to register a new user, but alters the password given in the confirm password field,
+		then checks for an error response
+
+		"""		
 		browser = self.selenium		
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'		
 		browser.get(url)		
@@ -272,6 +326,12 @@ class AddTestCase(StaticLiveServerTestCase):
 
 
 	def test_Login_Register_4(self):
+		"""Tests the error handling for registration with an invalid email address
+
+		Attempts to register a user using an email address that does not match
+		a correct pattern, then checks for the correct error response
+
+		"""
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
 		browser.get(url)
@@ -304,6 +364,12 @@ class AddTestCase(StaticLiveServerTestCase):
 
 
 	def test_Login_Register_5(self):
+		"""Tests to see if the system prevents multiple users registering with the same username
+
+		Registers a new user, then attempts to register a user with the same username, and
+		looks for an error response.
+
+		"""
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
 		browser.get(url)
@@ -356,6 +422,11 @@ class AddTestCase(StaticLiveServerTestCase):
 
 
 	def test_url_validate(self):
+		"""Tests the URLValidator given by Django
+
+		Attempts to validate multiple URLs and sees if URLValidator correctly validates them
+
+		"""
 		url = URLValidator()
 		try:
 			url('https://engineering.purdue.edu/HELPS/Publications/papers/2016CloudcomB.pdf')
@@ -369,6 +440,12 @@ class AddTestCase(StaticLiveServerTestCase):
       
 
 	def test_camera_state(self):
+		"""Tests the functionality of the state field on the camera page
+
+		On the camera page, selects the US in the country field, 
+		then checks that the state field lists at least 50 options.
+
+		"""
 		print("start usa state test")
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
@@ -392,6 +469,12 @@ class AddTestCase(StaticLiveServerTestCase):
 
 
 	def test_camera_state_city(self):
+		"""Tests the list of cities available in the field on the camera page
+
+		Tests the city field by checking the number of choices given for
+		cities in Indiana.
+
+		"""
 		print("start usa state city test")
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
@@ -423,6 +506,12 @@ class AddTestCase(StaticLiveServerTestCase):
 
 
 	def test_camera_state_multiple_states(self):
+		"""Tests querying multiple states in the camera page
+
+		Selects two statws in the list of possible states and checks the number of available
+		city options that can be selected with the two states chosen.
+
+		"""
 		print("start usa multiple states test")
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
@@ -453,6 +542,12 @@ class AddTestCase(StaticLiveServerTestCase):
 		assert (len(city_options) >= 500)
 
 	def test_camera_disable_state(self):
+		"""Tests the list of states for a country that has no states
+
+		In the camera page, queries a country with no states, checks the options within states,
+		then checks to ensure that cities can still be selected, even when no states exist.
+
+		"""
 		print("start german no states with cities")
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
@@ -482,6 +577,12 @@ class AddTestCase(StaticLiveServerTestCase):
 
 
 	def test_camera_disable_city(self):
+		"""Checks the functions of a city list for countries with states
+
+		On the camera page, queries for USA, then checks that no cities are listed
+		when no states are queried.
+
+		"""
 		print("start usa no state with city test")
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
@@ -504,6 +605,12 @@ class AddTestCase(StaticLiveServerTestCase):
 		
 	
 	def test_Login_Register_6(self):
+		"""Tests the functionality of the Django admin databases for History and Leaders
+
+		Signs into the Django admin interface, then enters the History and Leaders databases
+		and tests their validations and error handling when given invalid inputs.
+
+		"""
 		#log in the admin account
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/admin/'
@@ -554,6 +661,11 @@ class AddTestCase(StaticLiveServerTestCase):
 		assert error3.get_attribute("innerHTML") == 'Invalid URL for this field'
 
 	def test_forgot_password(self):
+		"""Tests the functionality of the password reset page
+
+		Attempts a password reset by entering an email and waiting for a response page confirming the sent email address.
+
+		"""
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset'
 		browser.get(url)
