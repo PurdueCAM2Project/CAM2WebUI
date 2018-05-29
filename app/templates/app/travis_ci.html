@@ -1,0 +1,26 @@
+{% extends "app/base.html" %}
+{% block title %}Travis CI{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/travis.css " %}">
+{% endblock %}
+{% block content %}
+<div class="row divide" style="background-color: #F1F1F1; padding-top: 50px; padding-bottom: 50px;">
+	<div style="width: 80%; margin: auto">
+    	<div class="col-sm-5">
+	    	 <h2 class="divide-heading">Travis Continuous Integration</h2>
+				 <ul class="list-unstyled">
+			    	 <li><span style="padding:10px" class="fa fa-line-chart"></span>Travis Tutorial</li>
+					 <li><span style="padding:10px" class="fa fa-pie-chart"></span>An overview of Travis CI usage for development</li>
+				 </ul>
+		 </div>
+		 <div class="col-sm-5 col-sm-push-2">
+			 <div class="embed-responsive embed-responsive-16by9">
+			 	<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/p2kSN7dDfn0?rel=0&controls=1&showinfo=0&vq=hd720&autohid"allowfullscreen="allowfullscreen"></iframe>
+			 </div>
+
+		 </div>
+	 </div>
+
+</div>
+{% endblock %}
