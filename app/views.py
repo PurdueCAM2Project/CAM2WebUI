@@ -57,8 +57,8 @@ def team(request):
 def team_poster(request):
     return render(request, 'app/team_poster.html')
 
-def travis_ci(request):
-	return render(request, 'app/travis_ci.html')
+def training(request):
+	return render(request, 'app/training.html')
 
 def privacy(request):
     return render(request, 'app/privacy.html')
@@ -69,6 +69,9 @@ def terms(request):
 def acknowledgement(request):
     return render(request, 'app/ack.html')
 
+#Addition for Testimony Video
+def testimony_vid1(request):
+	return render(request, 'app/testimony_vid.html')
 #def contact(request):
 #    return render(request, 'app/contact.html')
 
