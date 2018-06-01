@@ -1,0 +1,14 @@
+{% extends "app/base.html" %}
+{% block title %}CAM²{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/index.css" %}">
+{% endblock %}
+{% block content %}
+
+<h1>Test Live Streaming Camera Site</h1>
+
+<img src="http://173.165.152.131/axis-cgi/mjpg/video.cgi">
+
+{% endblock %}
+
