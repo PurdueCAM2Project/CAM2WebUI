@@ -14,16 +14,11 @@ import csv
 
 
 class ContactModelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'emailaddress', 'subject','message', 'date')
+    list_display = ('name', 'from_email', 'subject','message', 'date')
 	
-    def username(self, obj):
-        return obj.name
-    
-    def emailaddress(self, obj):
-        return obj.name
 
 class JoinModelAdmin(admin.ModelAdmin):
-    list_display= ('',)
+    st_display = ('name', 'from_email', 'major', 'gradDate','courses', 'languages', 'tools', 'whyCAM2', 'anythingElse', 'date')
 
 
 
