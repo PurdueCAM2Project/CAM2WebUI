@@ -18,12 +18,12 @@ class ContactModelAdmin(admin.ModelAdmin):
 	
 
 class JoinModelAdmin(admin.ModelAdmin):
-    st_display = ('name', 'from_email', 'major', 'gradDate','courses', 'languages', 'tools', 'whyCAM2', 'anythingElse', 'date')
+    list_display = ('name', 'from_email', 'major', 'gradDate','courses', 'languages', 'tools', 'whyCAM2', 'anythingElse', 'date')
 
 
 
 
 # Register your models here.
 admin.site.register(ContactModel, ContactModelAdmin)
-admin.site.register(JoinModel, )
+admin.site.register(JoinModel, JoinModelAdmin)
 #admin.site.register()
