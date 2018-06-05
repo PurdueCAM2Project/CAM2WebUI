@@ -35,4 +35,7 @@ urlpatterns = [
 
     #for testing API response
     url(r'^api_access/$', app_views.api_request, name='api_access'),
+    
+    #Adding live camera to website 
+    url(r'^live_cam/$', app_views.live_cam, name='live_cam'),
 ]
