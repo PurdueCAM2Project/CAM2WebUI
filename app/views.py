@@ -296,3 +296,6 @@ def error404(request, exception, template_name='app/404.html'):
 def api_request(request):
     template_name = 'app/api_access.html'
     return render(request, template_name)
+
+def live_cam(request):
+    return render(request, 'app/live_cam.html')
