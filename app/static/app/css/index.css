@@ -2,9 +2,9 @@ h1 {
   font-weight:bold;
 }
 
-img { 
+img {
   height: 100%;
-  opacity: 0.6;
+  opacity: 1.0;
 }
 
 .center {
