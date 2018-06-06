@@ -13,7 +13,7 @@ from django.http import HttpResponse
 import csv
 
 
-def export_csv1(self, request, queryset):  #added diff_char
+def export_csv1(self, request, queryset):
     #https://docs.djangoproject.com/en/1.11/howto/outputting-csv/
     #https://stackoverflow.com/questions/18685223/how-to-export-django-model-data-into-csv-file
     
