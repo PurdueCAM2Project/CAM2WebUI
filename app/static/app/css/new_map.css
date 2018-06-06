@@ -1,0 +1,12 @@
+#container {
+    background-color: #f1f1f1;
+    margin: auto;
+    padding: 20px;
+    width: 70%;
+}
+
+#map {
+    margin: auto;
+    height: 700px;
+    width: 80%;
+}

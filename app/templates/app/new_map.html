@@ -3,34 +3,24 @@
 {% load widget_tweaks %}
 {% block title %}New Map Test{% endblock %}
 {% block css %}
-<link rel="stylesheet" href="{% static "app/css/login.css " %}">
+<link rel="stylesheet" href="{% static "app/css/new_map.css " %}">
 {% endblock %}
 {% block content %}
-<div class="top-content">
-  <div class="inner-bg">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
-          <div class="form-box">
-            <div class="form-top">
-              <div class="form-top-left">
-                <h4 id="SystemError">New Map API Test</h4>
-              </div>
-            <div class="form-bottom">
-                <p>Testing the New Map: </p>
-                <p><!-- To add: info from API --></p>
-            </div>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div id="container">
+    <div id="map"></div>
 </div>
-<div>
+<script>
+function initMap(){
+    var center = {lat: 0, lng: 0};
+    var map = new google.maps.Map(document.getElementById('map'), {zoom: 2, center: center});
+    var marker = new google.maps.Marker({position: center, map: map});
+}
+</script>
+<script asynch defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDICtCV5dWSi73-a7Bbhlw5Rs01Jax8EJY&callback=initMap"></script>
+<!-- <div>
 {% for c in data %}
-<h4>Camera {{ c.legacy_cameraID }}</h4>
-<p>{{ c.city }}, {{ c.state }}, {{ c.country }}</p>
+<h4>Camera {{ c.cameraID }}</h4>
+<p>{% if c.city is not null %}{{ c.city }}, {% endif %}{% if c.state != "Null" %}{{ c.state }}, {% endif %}{{ c.country }}</p>
 <p>{{ c.latitude }}, {{ c.longitude }}</p>
 {% if c.is_active_video %}
 <img src="http://{{ c.retrieval.ip }}/{{ c.retrieval.video_path }}" alt="No Image">
@@ -45,5 +35,5 @@
 {% endif %}
 <br>
 {% endfor %}
-</div>
+</div> -->
 {% endblock %}
