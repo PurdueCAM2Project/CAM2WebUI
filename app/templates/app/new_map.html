@@ -4,17 +4,107 @@
 {% block title %}New Map Test{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{% static "app/css/new_map.css " %}">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 {% endblock %}
 {% block content %}
+<br>
 <div id="container">
     <div id="map"></div>
 </div>
+<br>
+<div id="camInfo"></div>
 <script>
 function initMap(){
     var center = {lat: 0, lng: 0};
     var map = new google.maps.Map(document.getElementById('map'), {zoom: 2, center: center});
-    var marker = new google.maps.Marker({position: center, map: map});
+    var infowindow = new google.maps.InfoWindow();
+    {% for c in data %}
+    var point = {lat: {{ c.latitude }}, lng: {{ c.longitude }}};
+    var marker = new google.maps.Marker({position: point, map: map, icon: 'https://storage.googleapis.com/support-kms-prod/SNP_2752125_en_v0'});
+    marker.addListener('click', function() {
+        //infowindow.close();
+        var path = '<div class="liveCam" style="margin:auto;text-align:center;"><p>No Image</p></div>';
+        {% if c.type == 'ip' %}
+         {% if c.is_active_video %}
+         path = '<div class="liveCam" style="margin:auto;display:block;width:50%;"><img src="http://{{ c.retrieval.ip }}/{{ c.retrieval.video_path }}" alt="No Image" style="margin:auto;display:block;"></div>';
+         {% elif c.is_active_image %}
+         path = '<div class="liveCam" style="margin:auto;display:block;width:50%;"><img src="http://{{ c.retrieval.ip }}/{{ c.retrieval.image_path }}" alt="No Image" style="margin:auto;display:block;"></div>';
+         {% elif c.retrieval.video_path is not null %}
+         path = '<div class="liveCam" style="margin:auto;display:block;width:50%;"><img src="http://{{ c.retrieval.ip }}/{{ c.retrieval.video_path }}" alt="No Image" style="margin:auto;display:block;"></div>';
+         {% elif c.retrieval.image_path is not null %}
+         path = '<div class="liveCam" style="margin:auto;display:block;width:50%;"><img src="http://{{ c.retrieval.ip }}/{{ c.retrieval.image_path }}" alt="No Image" style="margin:auto;display:block;"></div>';
+         {% else %}
+         path = '<div class="liveCam" style="margin:auto;text-align:center;"><p>No Image</p></div>';
+         {% endif %}
+        {% elif c.type == 'non_ip' %}
+         {% if c.retrieval.snapshot_url is not null %}
+         path = '<div class="liveCam" style="margin:auto;display:block;width:50%;"><img src="{{ c.retrieval.snapshot_url }}" alt="No Image" style="margin:auto;display:block;"></div>';
+         {% else %}
+         path = '<div class="liveCam" style="margin:auto;text-align:center;"><p>No Image</p></div>';
+         {% endif %}
+        {% elif c.type == 'stream' %}
+         {% if c.retrieval.m3u8_url is not null %}
+         path = '<div class="liveCam" style="margin:auto;display:block;width:50%;"><img src="{{ c.retrieval.m3u8_url }}" alt="No Image" style="margin:auto;display:block;"></div>';
+         {% else %}
+         path = '<div class="liveCam" style="margin:auto;text-align:center;"><p>No Image</p></div>';
+         {% endif %}
+        {% endif %}
+        var place = '<div class="place" style="margin:auto;text-align:center;"><p>{% if c.city is not null %}{{ c.city }}, {% endif %}{% if c.state != "Null" %}{{ c.state }}, {% endif %}{{ c.country }}</p></div>';
+        var location = '<div class="loc" style="margin:auto;text-align:center;"><p>{{ c.latitude }}, {{ c.longitude }}</p></div>';
+        var contentString = path + place + location;
+        /*infowindow.setContent(contentString);
+        infowindow.setPosition({lat: {{ c.latitude }}, lng: {{ c.longitude }}});
+        infowindow.open(map, marker);*/
+        document.getElementById("camInfo").innerHTML=contentString;
+    });
+    {% endfor %}
+    /*marker.addListener('click', function() {
+        infowindow.close();
+        $.ajax({
+            url: "https://cam2-api.herokuapp.com/auth?clientID=34b9eb8afc032098bc96174ec38ca2dba940a401d03c311251af4d8b609f7272c91ed0aaef1ee4eddb4783bcaa3ead7d&clientSecret=b0eaea176c29331149557b1c2fe54b82d335c8c30dbed9a50c5e4aa141b15dbefbbfd69",
+            type: "GET",
+            dataType: 'json',
+            xhrFields: {withCredentials: true},
+            success: function(data) {
+                var content = makeContent(data, "c.cameraID");
+                infowindow.setContent(content);
+                infowindow.open(map, marker);
+            }
+        });
+    });
+    // endfor*/
 }
+
+/*function makeContent(data, ID){
+    var myURL = "https://cam2-api.herokuapp.com/cameras/" + ID;
+    var headerVal = 'Bearer ' + data['token'];
+    var output = "";
+    $.ajax({
+        url: myURL,
+        type: "GET",
+        dataType: 'json',
+        headers: {'Authorization': headerVal},
+        xhrFields: {withCredentials: true},
+        success: function (result) {
+            var imgpath = "";
+            if (result['type'] == "ip"){
+                if (result['retrieval']['video_path'] != null){imgpath = result['retrieval']['ip'] + result['retrieval']['video_path'];}
+            } else if (result['type'] == "non_ip"){
+                if (result['retrieval']['snapshot_url'] != null){imgpath = result['retrieval']['snapshot_url'];}
+            } else if (result['type'] == "stream"){
+                if (result['retrieval']['m3u8_url'] != null){imgpath = result['retrieval']['m3u8_url'];}
+            }
+            output = '<img src="'+imgpath+'" alt="No Image">'+
+                '<p>City: '+result['city']+'</p>'+
+                '<p>State: '+result['state']+'</p>'+
+                '<p>Country: '+result['country']+'</p>';
+        },
+        error: function (error) {
+            output = '<p>Information Retrieval Error</p>';
+        }
+    });
+    return output;
+} */
 </script>
 <script asynch defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDICtCV5dWSi73-a7Bbhlw5Rs01Jax8EJY&callback=initMap"></script>
 <!-- <div>
