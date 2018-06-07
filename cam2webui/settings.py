@@ -56,7 +56,6 @@ except KeyError as e:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not IS_RPODUCTION_SITE
 
-# Defines which sites are allowed to display the site
 ALLOWED_HOSTS = [
     'www.cam2project.net',
     'cam2webui.herokuapp.com',
@@ -82,8 +81,6 @@ IGNORABLE_404_URLS = [
 
 # Application definition
 INSTALLED_APPS = [
-	
-	'admin_view_permission',
     'email_system',
     'app.apps.AppConfig',
     'django.contrib.admin',
@@ -94,10 +91,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'social_django',
-		
 ]
 
-# Middleware definition
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -112,8 +107,8 @@ MIDDLEWARE = [
 # Basic auth
 # https://djangosnippets.org/snippets/2468/
 
-if not IS_RPODUCTION_SITE:
-    MIDDLEWARE.extend(['app.middleware.basicauth.BasicAuthMiddleware'])
+#if not IS_RPODUCTION_SITE:
+ #   MIDDLEWARE.extend(['app.middleware.basicauth.BasicAuthMiddleware'])
 
 ROOT_URLCONF = 'cam2webui.urls'
 
@@ -171,6 +166,7 @@ LOGGING = {
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 # Update database configuration with $DATABASE_URL.
+#if 'test' in sys.argv:
 if 'test' in sys.argv:
     DATABASES = {
         'default': {

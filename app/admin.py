@@ -13,7 +13,7 @@ import csv
 
 class MemberAdmin(admin.ModelAdmin):
 
-    list_display = ('membername', 'memberimg', 'iscurrentmember')
+    list_display = ('membername', 'memberimg', 'iscurrentmember', 'subteam')
     actions = ['move_to_oldMember']
 
     def move_to_oldMember(self, request, queryset):
@@ -88,14 +88,42 @@ export_csv.short_description = "Export selected user as csv"
 
 #model
 class UserAdmin(admin.ModelAdmin):
-    inlines = [UserInline,]
+    list_display = (
+        'username',
+        'email',
+        'first_name',
+        'last_name',
+        'department',
+        'organization',
+        'title',
+        'country',
+        'is_staff',
+        'date_joined',
+    )
+    inlines = [
+        UserInline,
+               ]
     actions = [email_users,export_csv]
 
-	
-class ContactModel(admin.ModelAdmin):
-    inlines = [UserInline,]
-    actions = [email_users,export_csv]
-	
+    # callable that display info from RegisterUser
+    def department(self,user):
+        return "{}".format(RegisterUser.objects.get(user=user).department)
+    department.short_description = 'department'
+
+    def organization(self,user):
+        return "{}".format(RegisterUser.objects.get(user=user).organization)
+    organization.short_description = 'organization'
+
+    def title(self,user):
+        return "{}".format(RegisterUser.objects.get(user=user).title)
+    title.short_description = 'title'
+
+    def country(self,user):
+        return "{}".format(RegisterUser.objects.get(user=user).country)
+    country.short_description = 'country'
+
+
+
 
 
 admin.site.unregister(User)
