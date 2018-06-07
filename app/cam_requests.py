@@ -23,8 +23,8 @@ data = r.json()
 #print(data)
 output = list()
 for d in data:
-    info = {'cameraID': d['cameraID'], 'latitude': d['latitude'], 'longitude': d['longitude']}
-    output.append(info)
+    #info = {'cameraID': d['cameraID'], 'latitude': d['latitude'], 'longitude': d['longitude']}
+    output.append(d)
 """for d in data:
     info = {'cameraID': d['cameraID'], 'latitude': d['latitude'], 'longitude': d['longitude']}
     output.append(info)"""
@@ -62,8 +62,8 @@ for x in range(1,4):
         continue
     tdata2 = tr2.json()
     for d2 in tdata2:
-        tinfo2 = {'cameraID': d2['cameraID'], 'latitude': d2['latitude'], 'longitude': d2['longitude']}
-        output.append(tinfo2)
+        #tinfo2 = {'cameraID': d2['cameraID'], 'latitude': d2['latitude'], 'longitude': d2['longitude']}
+        output.append(d2)
     if len(tr2.json()) < 100:
         break
 with open('cam_data.json', 'w') as f:
