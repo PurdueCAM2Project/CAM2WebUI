@@ -7,6 +7,23 @@ img {
   opacity: 0.6;
 }
 
+
+.column {
+	float: left;
+	width: 25%;
+
+}
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.left .right .middle {
+	column-gap: 100 px;
+}
+
 .center {
   position: absolute;
   top: 50%;
