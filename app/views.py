@@ -19,6 +19,7 @@ from django.contrib.auth.models import User
 from django.core.mail import mail_admins
 from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser
 from django.http import HttpResponseNotFound
+import cv2
 
 def index(request):
     return render(request, 'app/index.html')
@@ -406,5 +407,11 @@ def api_request(request):
     return render(request, template_name)
 
 def live_cam(request):
-    return render(request, 'app/live_cam.html')
-
+	cap = cv2.VideoCapture("http://173.165.152.131/axis-cgi/mjpg/video.cgi")
+	b,firstFrame= cap.read()
+	cv2.imwrite("darknet/firstframe.jpg", firstFrame)
+	os.chdir("darknet")
+	os.system("sudo ./darknet detect cfg/yolov3.cfg yolov3.weights firstframe.jpg")
+	os.system("sudo mv predictions.png ../app/static/app/img/firstframe.jpg")
+	os.chdir("..")
+	return render(request, 'app/live_cam.html')
