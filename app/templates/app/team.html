@@ -2,227 +2,316 @@
 {% block title %}Team{% endblock %}
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static "app/css/team.css " %}">
+    <link rel="stylesheet" href="{% static "app/css/team.css " %}">
 {% endblock %}
 {% block content %}
-<div class="container main-content">
+    <div class="container main-content">
 
-  <hr class="divide-divider">
-  <h2>The Team</h2>
-  {% for team in team_list %}
-    <img src="{{ team.teamimg }}" alt="team image">
-  {% endfor %}
-  <hr class="divide-divider">
+        <hr class="divide-divider">
+        <h2>The Team</h2>
+        {% load  custom_tags %}
+        {% for team in team_list %}
+            {% if forloop.counter0|divisibleby:"3" %}
+                <div class="row">
+            {% endif %}
 
-  {% if leader_list is not None %}
-    <h2>Team Administrator</h2>
-    {% for leader in leader_list %}
-      {% if forloop.counter0|divisibleby:"2" %}
-        <div class="row">
-      {% endif %}
-      <div class="col-md-3 col-sm-6">
-        <img class="leaders" src="{{ leader.leaderimg }}" alt="{{ leader.leadername }}">
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <h3>{{ leader.leadertitle }}</h3>
-        {% if leader.leaderpagelink is not None %}
-          <h4><a href="{{ leader.leaderpagelink }}">{{ leader.leadername }}</a></h4>
-        {% else %}
-          <h4>{{ leader.leadername }}</h4>
+        {% if forloop.revcounter > 2 or team_list|length|modulo:3 == 0 %}
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <img src="{{ team.teamimg }}" alt="team image" class="team">
+            </div>
+
+
+        {% elif forloop.revcounter <= 2 and forloop.counter|divisibleby:"3" is False and team_list|length|modulo:3 == 2 %}
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <img src="{{ team.teamimg }}" alt="team image" class="team">
+            </div>
+
+
+        {% elif forloop.revcounter <= 2 and team_list|length|modulo:3 == 1 %}
+            {% if forloop.counter|divisibleby:"3" %}
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <img src="{{ team.teamimg }}" alt="team image" class="team">
+                </div>
+
+
+            {% else %}
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <img src="{{ team.teamimg }}" alt="team image" class="team">
+                </div>
+            {% endif %}
         {% endif %}
-      </div>
-      {% if forloop.counter0|divisibleby:"2" and not forloop.last %}
-        <div class="clearfix visible-sm-block"></div>
-      {% else %}
-        </div>
-      {% endif %}
-    {% endfor %}
-  {% endif %}
+        {% if forloop.counter|divisibleby:"3" or forloop.last %}
+            </div>
+        {% endif %}
+        {% endfor %}
+        <hr class="divide-divider">
 
-  {% if leader_list is not None %}
-    <hr class="divide-divider">
-    <h2>Current Members</h2>
-    {% for member in curmember_list %}
-      {% if forloop.counter0|divisibleby:"6" %}
-        <div class="row">
-      {% endif %}
-        <div class="col-md-2 col-sm-4 col-xs-6">
-          <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-          <h4>{{ member.membername }}</h4>
-        </div>
-      {% if forloop.counter|divisibleby:"6" or forloop.last %}
-        </div>
-      {% elif forloop.counter|divisibleby:"2" %}
-        <div class="clearfix visible-xs-block"></div>
-      {% elif forloop.counter|divisibleby:"3" %}
-        <div class="clearfix visible-sm-block"></div>
-      {% endif %}
-    {% endfor %}
-  {% endif %}
+        {% if leader_list is not None %}
+            <h2>Team Administrator</h2>
+            {% for leader in leader_list %}
+                {% if forloop.counter0|divisibleby:"2" %}
+                    <div class="row">
+                {% endif %}
+            <div class="col-md-3 col-sm-6">
+                <img class="leaders" src="{{ leader.leaderimg }}" alt="{{ leader.leadername }}">
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <h3>{{ leader.leadertitle }}</h3>
+                {% if leader.leaderpagelink is not None %}
+                    <h4><a href="{{ leader.leaderpagelink }}">{{ leader.leadername }}</a></h4>
+                {% else %}
+                    <h4>{{ leader.leadername }}</h4>
+                {% endif %}
+            </div>
+            {% if forloop.counter0|divisibleby:"2" and not forloop.last %}
+                <div class="clearfix visible-sm-block"></div>
+            {% else %}
+                </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
 
-  {% if oldmember_list is not None and oldmember_list|length != 0 %}
-    <hr class="divide-divider">
-    <h2>Former Members</h2>
-    <ul class="list-group row">
-          {% for member in oldmember_list %}
-              <li class="list-group-item col-xs-12 col-sm-6 col-md-4">{{ member.membername }}</li>
-          {% endfor %}
-    </ul>
+        {% if leader_list is not None %}
+            <hr class="divide-divider">
+            <h2>Current Members</h2>
+            <div class="col-md-12" style="background-color: white">
 
-
-  {% endif %}
-
-
-
-  <div class="row divide">
-
-<!--
-    <div style="width: 70%; margin: auto">
-      <h2 class="divide-heading">Everett Berry, CTO of Perceive Inc.</h2>
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lpbFLdf3u3o?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
-                  allowfullscreen="allowfullscreen"></iframe>
--->
-<div>
-	<h2>Testimony from former members</h2>
-
-	
-</div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
+                        <h3>Image Team</h3>
+                        {% for member in image_list %}
+                            {% if forloop.counter0|divisibleby:"2" %}
+                                <div class="row">
+                            {% endif %}
+                        <div class="col-md-4 col-sm-4 col-xs-6" style="float: left">
+                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}" class="img-circle">
+                            <h4>{{ member.membername }}</h4>
+                        </div>
+                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
+                            </div>
+                        {% elif forloop.counter|divisibleby:"2" %}
+                            <div class="clearfix visible-xs-block"></div>
+                        {% elif forloop.counter|divisibleby:"3" %}
+                            <div class="clearfix visible-sm-block"></div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
 
 
+                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: right">
+                        <h3>Web UI Team</h3>
+                        {% for member in webui_list %}
+                            {% if forloop.counter0|divisibleby:"2" %}
+                                <div class="row">
+                            {% endif %}
+                        <div class="col-md-4 col-sm-4 col-xs-6" style="float: left">
+                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}" class="img-circle">
+                            <h4>{{ member.membername }}</h4>
+                        </div>
+                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
+                            </div>
+                        {% elif forloop.counter|divisibleby:"2" %}
+                            <div class="clearfix visible-xs-block"></div>
+                        {% elif forloop.counter|divisibleby:"3" %}
+                            <div class="clearfix visible-sm-block"></div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
+                        <h3>Intel Target Tracking</h3>
+                        {% for member in intel_list %}
+                            {% if forloop.counter0|divisibleby:"2" %}
+                                <div class="row">
+                            {% endif %}
+                        <div class="col-md-4 col-sm-4 col-xs-6" style="float: left">
+                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}" class="img-circle">
+                            <h4>{{ member.membername }}</h4>
+                        </div>
+                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
+                            </div>
+                        {% elif forloop.counter|divisibleby:"2" %}
+                            <div class="clearfix visible-xs-block"></div>
+                        {% elif forloop.counter|divisibleby:"3" %}
+                            <div class="clearfix visible-sm-block"></div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+
+                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
+                        <h3>One Billion Images</h3>
+                        {% for member in billion_list %}
+                            {% if forloop.counter0|divisibleby:"2" %}
+                                <div class="row">
+                            {% endif %}
+                        <div class="col-md-4 col-sm-4 col-xs-6" style="float: left">
+                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}" class="img-circle">
+                            <h4>{{ member.membername }}</h4>
+                        </div>
+                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
+                            </div>
+                        {% elif forloop.counter|divisibleby:"2" %}
+                            <div class="clearfix visible-xs-block"></div>
+                        {% elif forloop.counter|divisibleby:"3" %}
+                            <div class="clearfix visible-sm-block"></div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        {% endif %}
+
+         <hr class="divide-divider">
+        {% if oldmember_list is not None and oldmember_list|length != 0 %}
+            <h2>Former Members</h2>
+            <ul class="list-group row">
+                {% for member in oldmember_list %}
+                    <li class="list-group-item col-xs-12 col-sm-6 col-md-4">{{ member.membername }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
 
 
-<div class="main-content">
-  <div class="row divide" style="background-color: #F1F1F1; padding-top: 50px;
+        <div class="row divide">
+
+            <!--
+                <div style="width: 70%; margin: auto">
+                  <h2 class="divide-heading">Everett Berry, CTO of Perceive Inc.</h2>
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lpbFLdf3u3o?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
+                              allowfullscreen="allowfullscreen"></iframe>
+            -->
+
+            <div class="main-content">
+                <div class="row divide" style="background-color: #F1F1F1; padding-top: 50px;padding-bottom: 50px;">
+                    <div style="width: 80%; margin: auto">
+                        <div class="col-sm-5">
+                            <h2 class="divide-heading">What is CAM2?</h2>
+                            <p class="lead">
+                            <ul class="list-unstyled">
+                                <li><span style="padding:10px" class="fa fa-user"></span>Everett Berrty, CTO, Perceive
+                                </li>
+                                <li><span style="padding:10px" class="fa fa-video-camera"></span>In this video, Everett
+                                    gives undergraduate researchers advice on how to succeed.
+                                </li>
+                            </ul>
+                            </p>
+                        </div>
+                        <div class="col-sm-5 col-sm-push-2">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item"
+                                        src="https://www.youtube.com/embed/lpbFLdf3u3o?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
+                                        allowfullscreen="allowfullscreen"></iframe>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="divide-divider">
+                <div class="row divide">
+                    <div style="width: 80%; margin: auto">
+                        <div class="col-sm-5 col-sm-push-7">
+                            <h2 class="divide-heading">Research and Innovation</h2>
+                            <p class="lead">
+                            <ul class="list-unstyled">
+                                <li><span style="padding:10px" class="fa fa-user"></span>Mrigank Jha, graduated in 2015,
+                                    joined World Wide Technology
+                                </li>
+                                <li><span style="padding:10px" class="fa fa-video-camera"></span>Jha outlines his
+                                    research experience in this video.
+                                </li>
+                            </ul>
+                            </p>
+                        </div>
+                        <div class="col-sm-5 col-sm-pull-5">
+                            <div class="embed-responsive embed-responsive-16by9">
+
+                                <iframe class="embed-responsive-item"
+                                        src="https://www.youtube.com/embed/oPeKHUHpU2c?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
+                                        allowfullscreen="allowfullscreen"></iframe>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="divide-divider">
+                <div class="row divide" style="background-color: #F1F1F1; padding-top: 50px;
   padding-bottom: 50px;">
-    <div style="width: 80%; margin: auto">
-      <div class="col-sm-5">
-        <h2 class="divide-heading">What is CAM2?</h2>
-        <p class="lead">          
-          <ul class="list-unstyled">
-            <li><span style="padding:10px" class="fa fa-user"></span>Everett Berrty, CTO, Perceive</li>
-            <li><span style="padding:10px" class="fa fa-video-camera"></span>In this video, Everett gives undergraduate researchers advice on how to succeed.</li>
-          </ul>
-        </p>
-      </div>
-       <div class="col-sm-5 col-sm-push-2">
-        <div class="embed-responsive embed-responsive-16by9"> 
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lpbFLdf3u3o?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
-                  allowfullscreen="allowfullscreen"></iframe> 
-
-         </div>
-      </div>
-    </div>
-  </div>
-  <hr class="divide-divider">
-  <div class="row divide">
-    <div style="width: 80%; margin: auto">
-      <div class="col-sm-5 col-sm-push-7">
-        <h2 class="divide-heading">Research and Innovation</h2>
-        <p class="lead">
-          <ul class="list-unstyled">
-            <li><span style="padding:10px" class="fa fa-user"></span>Mrigank Jha, graduated in 2015, joined World Wide Technology</li>
-            <li><span style="padding:10px" class="fa fa-video-camera"></span>Jha outlines his research experience in this video.</li>
-          </ul>
-        </p>
-      </div>
-      <div class="col-sm-5 col-sm-pull-5">
-        <div class="embed-responsive embed-responsive-16by9">
-
-           <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oPeKHUHpU2c?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
-                    allowfullscreen="allowfullscreen"></iframe> 
-
-         </div>
-      </div>
-    </div>
-  </div>
-  <hr class="divide-divider">
-  <div class="row divide" style="background-color: #F1F1F1; padding-top: 50px;
+                    <div style="width: 80%; margin: auto">
+                        <div class="col-sm-5">
+                            <h2 class="divide-heading">Innovation Challenges</h2>
+                            <ul class="list-unstyled">
+                                <li><span style="padding:10px" class="fa fa-user"></span>Jinyi Zhang, graduated in 2016,
+                                    joined Columbia University as a graduate student
+                                </li>
+                                <li><span style="padding:10px" class="fa fa-video-camera"></span>Jinyi explains how
+                                    doing research helped him in graduate school
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-5 col-sm-push-2">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item"
+                                        src="https://www.youtube.com/embed/fNZAGS9bj74?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
+                                        allowfullscreen="allowfullscreen"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="divide-divider">
+                <div class="row divide">
+                    <div style="width: 80%; margin: auto">
+                        <div class="col-sm-5  col-sm-push-7">
+                            <h2 class="divide-heading">Unique Work</h2>
+                            <ul class="list-unstyled">
+                                <li><span style="padding:10px" class="fa fa-user"></span>Joseph Sweeney, graduated in
+                                    2017, joined Carnegie Mellon University as a graduate student
+                                </li>
+                                <li><span style="padding:10px" class="fa fa-video-camera"></span>Joseph explains how
+                                    undergraduate research is different from normal classwork
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-5 col-sm-pull-5">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item"
+                                        src="https://www.youtube.com/embed/p--yMuGqO-o?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
+                                        allowfullscreen="allowfullscreen"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="divide-divider">
+                <div class="row divide" style="background-color: #F1F1F1; padding-top: 50px;
   padding-bottom: 50px;">
-    <div style="width: 80%; margin: auto">
-      <div class="col-sm-5">
-        <h2 class="divide-heading">Innovation Challenges</h2>
-        <ul class="list-unstyled">
-            <li><span style="padding:10px" class="fa fa-user"></span>Jinyi Zhang, graduated in 2016, joined Columbia University as a graduate student</li>
-            <li><span style="padding:10px" class="fa fa-video-camera"></span>Jinyi explains how doing research helped him in graduate school</li>
-        </ul>
-      </div>
-      <div class="col-sm-5 col-sm-push-2">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fNZAGS9bj74?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
-                  allowfullscreen="allowfullscreen"></iframe>
+                    <div style="width: 80%; margin: auto">
+                        <div class="col-sm-5">
+                            <h2 class="divide-heading">Travis Continuous Integration</h2>
+                            <ul class="list-unstyled">
+                                <li><span style="padding:10px" class="fa fa-line-chart"></span>Travis Tutorial</li>
+                                <li><span style="padding:10px" class="fa fa-pie-chart"></span>An overview of Travis CI
+                                    usage for development
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-5 col-sm-push-2">
+                            <div class="embed-responsive embed-responsive-16by9">
+
+                                <iframe class="embed-responsive-item"
+                                        src="https://www.youtube.com/embed/p2kSN7dDfn0?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
+                                        allowfullscreen="allowfullscreen"></iframe>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <hr class="divide-divider">
-  <div class="row divide">
-    <div style="width: 80%; margin: auto">
-      <div class="col-sm-5  col-sm-push-7">
-        <h2 class="divide-heading">Unique Work</h2>
-        <ul class="list-unstyled">
-            <li><span style="padding:10px" class="fa fa-user"></span>Joseph Sweeney, graduated in 2017, joined Carnegie Mellon University as a graduate student</li>
-            <li><span style="padding:10px" class="fa fa-video-camera"></span>Joseph explains how undergraduate research is different from normal classwork</li>
-        </ul>
-      </div>
-      <div class="col-sm-5 col-sm-pull-5">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/p--yMuGqO-o?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
-                  allowfullscreen="allowfullscreen"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Added Section for Ali's Video> -->
-  <hr class="divide-divider">
-  <div class="row divide" style="background-color: #F1F1F1; padding-top: 50px;
-  padding-bottom: 50px;">
-    <div style="width: 80%; margin: auto">
-      <div class="col-sm-5">
-        <h2 class="divide-heading">Travis Continuous Integration</h2>
-        <ul class="list-unstyled">
-            <li><span style="padding:10px" class="fa fa-line-chart"></span>Travis Tutorial</li>
-            <li><span style="padding:10px" class="fa fa-pie-chart"></span>An overview of Travis CI usage for development</li>
-        </ul>
-      </div>
-      <div class="col-sm-5 col-sm-push-2">
-        <div class="embed-responsive embed-responsive-16by9">
-
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/p2kSN7dDfn0?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
-                  allowfullscreen="allowfullscreen"></iframe>
-         </div>
-
-	  </div>
-  </div>
-</div>
-</div>
-</div>
-
-	<!-- Added section for CAM2 Purdue Ali Cataltepe Video -->	
-			
-   <hr class="divide-divider">
-  <div class="row divide" style="background-color: #F1F1F1; padding-top: 50px;
-  padding-bottom: 50px;">
-    <div style="width: 80%; margin: auto">
-      <div class="col-sm-5">
-        <h2 class="divide-heading">Testimony</h2>
-        <ul class="list-unstyled">
-            <li><span style="padding:10px" class="fa fa-user"></span>Ali Cataltepe participated in CAM2 in Summer 2016.</li>
-            <li><span style="padding:10px" class="fa fa-video-camera"></span>Ali reflects on his experiences in CAM2.</li>
-        </ul>
-      </div>
-      <div class="col-sm-5 col-sm-push-2">
-        <div class="embed-responsive embed-responsive-16by9">
-		<iframe 
-			width="560" height="315" src="https://www.youtube.com/embed/lyFB6Bijxkk" frameborder="0" allow="encrypted-media"
-			allowfullscreen>
-		</iframe>>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-</div>
 {% endblock %}

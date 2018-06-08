@@ -48,12 +48,23 @@ def team(request):
     leader_list = Leader.objects.reverse()
     curmember_list = Member.objects.filter(iscurrentmember=True).order_by("membername")
     oldmember_list = Member.objects.filter(iscurrentmember=False).order_by("membername")
+    image_list = Member.objects.filter(subteam__exact='I').order_by("membername")
+    webui_list = Member.objects.filter(subteam__exact='UI').order_by("membername")
+    api_list = Member.objects.filter(subteam__exact='D+API').order_by("membername")
+    billion_list = Member.objects.filter(subteam__exact='One B').order_by("membername")
+    intel_list = Member.objects.filter(subteam__exact='Intel').order_by("membername")
+
     context = {
-                "team_list": team_list,
-                "leader_list": leader_list,
-                "curmember_list": curmember_list,
-                "oldmember_list": oldmember_list
-              }
+        "team_list": team_list,
+        "leader_list": leader_list,
+        "curmember_list": curmember_list,
+        "oldmember_list": oldmember_list,
+        "image_list": image_list,
+        "api_list": api_list,
+        "webui_list": webui_list,
+        "billion_list": billion_list,
+        "intel_list": intel_list
+    }
     return render(request, 'app/team.html', context)
 
 def team_poster(request):
