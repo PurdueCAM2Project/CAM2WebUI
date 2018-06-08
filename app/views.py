@@ -53,6 +53,7 @@ def team(request):
     api_list = Member.objects.filter(subteam__exact='D+API').order_by("membername")
     billion_list = Member.objects.filter(subteam__exact='One B').order_by("membername")
     intel_list = Member.objects.filter(subteam__exact='Intel').order_by("membername")
+    active_list = Member.objects.filter(subteam__exact='').filter(iscurrentmember=True).order_by("membername")
 
     context = {
         "team_list": team_list,
@@ -63,7 +64,8 @@ def team(request):
         "api_list": api_list,
         "webui_list": webui_list,
         "billion_list": billion_list,
-        "intel_list": intel_list
+        "intel_list": intel_list,
+        "active_list": active_list
     }
     return render(request, 'app/team.html', context)
 
