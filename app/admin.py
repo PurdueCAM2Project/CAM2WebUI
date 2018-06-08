@@ -13,7 +13,7 @@ import csv
 
 class MemberAdmin(admin.ModelAdmin):
 
-    list_display = ('membername', 'memberimg', 'iscurrentmember')
+    list_display = ('membername', 'memberimg', 'iscurrentmember','subteam')
     actions = ['move_to_oldMember']
 
     def move_to_oldMember(self, request, queryset):
