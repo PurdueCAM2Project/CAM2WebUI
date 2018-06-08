@@ -7,6 +7,10 @@ img {
   opacity: 0.6;
 }
 
+.link_text {
+	color: blue;
+}
+
 
 .column {
 	float: left;

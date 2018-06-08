@@ -72,8 +72,9 @@ def acknowledgement(request):
 #Addition for Testimony Video
 def testimony_vid1(request):
 	return render(request, 'app/testimony_vid.html')
-#def contact(request):
-#    return render(request, 'app/contact.html')
+
+def video_archive(request):
+   return render(request, 'app/video_page.html')
 
 def faqs(request):
     """Renders content for the FAQs page

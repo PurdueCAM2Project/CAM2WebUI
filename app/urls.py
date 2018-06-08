@@ -33,6 +33,10 @@ urlpatterns = [
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^password_reset/complete/$', auth_views.password_reset_complete, name='password_reset_complete'),
 
+	#new section for dedicated video archive
+	url(r'^video_archive/$', app_views.video_archive, name='video_archive'),
+	
+	
     #for testing API response
     url(r'^api_access/$', app_views.api_request, name='api_access'),
 	url(r'^training/$', app_views.training, name ='Training_Videos'), 
