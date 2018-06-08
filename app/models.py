@@ -144,6 +144,16 @@ class Member(models.Model):
     membername = models.CharField(verbose_name='Member Name', max_length=50, validators=[validateName])
     memberimg = models.CharField(verbose_name='Member Image', max_length=300, blank=True, null=True, validators=[validateURL])
     iscurrentmember = models.BooleanField(verbose_name='Is Current Member')
+
+    TEAM = (
+        ('I', "Image Analysis"),
+        ('UI', "Web UI"),
+        ('D+API', "API team"),
+        ('One B', "One Billion Images Team"),
+        ('Intel', "Intel Target Tracking")
+    )
+
+    subteam = models.CharField(verbose_name='Subteam', blank=True, max_length=50, choices=TEAM, default='blank')
     def __str__(self):
         return "{0}".format(self.membername)
 
