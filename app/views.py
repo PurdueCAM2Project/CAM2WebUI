@@ -149,6 +149,11 @@ def new_map(request):
         data = json.load(f)
     return render(request, 'app/new_map.html', {'data': data})
 
+def good_map(request):
+    with open('app/cam_data.json') as f:
+        data = json.load(f)
+    return render(request, 'app/new_map_good.html', {'data': data})
+
 def advice(request):
     return render(request, 'app/advice.html')
 
