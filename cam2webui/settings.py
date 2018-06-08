@@ -111,8 +111,8 @@ MIDDLEWARE = [
 # Basic auth
 # https://djangosnippets.org/snippets/2468/
 
-if not IS_RPODUCTION_SITE:
-    MIDDLEWARE.extend(['app.middleware.basicauth.BasicAuthMiddleware'])
+# if not IS_RPODUCTION_SITE:
+#     MIDDLEWARE.extend(['app.middleware.basicauth.BasicAuthMiddleware'])
 
 ROOT_URLCONF = 'cam2webui.urls'
 
