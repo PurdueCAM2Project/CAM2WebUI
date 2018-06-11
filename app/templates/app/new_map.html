@@ -9,71 +9,122 @@
 {% block content %}
 <br>
 <div id="container">
-    <!-- <select id="camSelect">
+    <select id="camSelect">
         <option value="all">All Cameras</option>
         <option value="good">Cameras in Good Condition</option>
     </select>
-    <br> -->
+    <br>
     <div id="map"></div>
 </div>
 <br>
 <div id="camInfo"></div>
 <script>
+var markerlist = [];
+
 function initMap(){
     var center = {lat: 0, lng: 0};
     var map = new google.maps.Map(document.getElementById('map'), {zoom: 2, center: center});
     var infowindow = new google.maps.InfoWindow();
-    //var selector = document.getElementById('camSelect');
-    /*var markerArray = [];
+    var datalist = [];
+    {% for c in data %}
+    {% if c.type == 'ip' %}
+    var dat = {latitude: {{ c.latitude }}, longitude: {{ c.longitude }}, type: "{{ c.type }}", is_active_video: "{{ c.is_active_video }}", retrieval: {ip: "{{ c.retrieval.ip }}", video_path: "{{ c.retrieval.video_path }}", image_path: "{{ c.retrieval.image_path }}"}, city: "{{ c.city }}", state: "{{ c.state }}", country: "{{ c.country }}"};
+    {% elif c.type == 'non_ip' %}
+    var dat = {latitude: {{ c.latitude }}, longitude: {{ c.longitude }}, type: "{{ c.type }}", is_active_video: "{{ c.is_active_video }}", retrieval: {snapshot_url: "{{ c.retrieval.snapshot_url }}"}, city: "{{ c.city }}", state: "{{ c.state }}", country: "{{ c.country }}"};
+    {% elif c.type == 'stream' %}
+    var dat = {latitude: {{ c.latitude }}, longitude: {{ c.longitude }}, type: "{{ c.type }}", is_active_video: "{{ c.is_active_video }}", retrieval: {m3u8_url: "{{ c.retrieval.m3u8_url }}"}, city: "{{ c.city }}", state: "{{ c.state }}", country: "{{ c.country }}"};
+    {% else %}
+    var dat = {};
+    {% endif %}
+    datalist.push(dat);
+    {% endfor %}
+    var i;
+    for(i = 0; i < datalist.length; i++){
+        var point = {lat: datalist[i].latitude, lng: datalist[i].longitude};
+        var marker = new google.maps.Marker({position: point, map: map, icon: 'https://storage.googleapis.com/support-kms-prod/SNP_2752125_en_v0'});
+        addMarkerListener(marker, infowindow, point, map, datalist[i]);
+        markerlist.push(marker);
+    }
+    var selector = document.getElementById('camSelect');
     selector.addEventListener("change", function() {
         if (selector.value == "good"){
-            goodCAMs(map, infowindow, markerArray);
+            goodCAMs(datalist, map, infowindow);
         } else {
-            allCAMs(map, infowindow, markerArray);
+            allCAMs(datalist, map, infowindow);
         }
-    }); */
-    //allCAMs(map, infowindow, markerArray);
-    //infowindow.setPosition({lat: -80, lng: 0});
-    {% for c in data %}
-    var point = {lat: {{ c.latitude }}, lng: {{ c.longitude }}};
-    var marker = new google.maps.Marker({position: point, map: map, icon: 'https://storage.googleapis.com/support-kms-prod/SNP_2752125_en_v0'});
-    marker.addListener('click', function() {
-        infowindow.close();
-        var path = '<p>No Image</p>';
-        {% if c.type == 'ip' %}
-         {% if c.is_active_video %}
-         path = '<img src="http://{{ c.retrieval.ip }}{{ c.retrieval.video_path }}" alt="No Image" width="500">';
-         {% elif c.is_active_image %}
-         path = '<img src="http://{{ c.retrieval.ip }}{{ c.retrieval.image_path }}" alt="No Image" width="500">';
-         {% elif c.retrieval.video_path is not null %}
-         path = '<img src="http://{{ c.retrieval.ip }}{{ c.retrieval.video_path }}" alt="No Image" width="500">';
-         {% elif c.retrieval.image_path is not null %}
-         path = '<img src="http://{{ c.retrieval.ip }}{{ c.retrieval.image_path }}" alt="No Image" width="500">';
-         {% else %}
-         path = '<p>No Image</p>';
-         {% endif %}
-        {% elif c.type == 'non_ip' %}
-         {% if c.retrieval.snapshot_url is not null %}
-         path = '<img src="{{ c.retrieval.snapshot_url }}" alt="No Image" width="500">';
-         {% else %}
-         path = '<p>No Image</p>';
-         {% endif %}
-        {% elif c.type == 'stream' %}
-         {% if c.retrieval.m3u8_url is not null %}
-         path = '<img src="{{ c.retrieval.m3u8_url }}" alt="No Image" width="500">';
-         {% else %}
-         path = '<p>No Image</p>';
-         {% endif %}
-        {% endif %}
-        var place = '<div class="place" style="margin:auto;text-align:center;"><p>{% if c.city is not null %}{{ c.city }}, {% endif %}{% if c.state != "Null" %}{{ c.state }}, {% endif %}{{ c.country }}</p></div>';
-        var location = '<div class="loc" style="margin:auto;text-align:center;"><p>{{ c.latitude }}, {{ c.longitude }}</p></div>';
-        var contentString = path + place + location;
-        infowindow.setContent(contentString);
-        infowindow.setPosition({lat: {{ c.latitude }}, lng: {{ c.longitude }}});
-        infowindow.open(map);
-        //document.getElementById("camInfo").innerHTML=contentString;
     });
-    {% endfor %}
+}
+
+function addMarkerListener(marker, info, point, map, dataItem){
+    marker.addListener('click', function(){
+        info.close();
+        var path = '<p>No Image</p>';
+        if(dataItem.type == "ip"){
+            if(dataItem.is_active_video == "True"){
+                path = '<img src="http://' + dataItem.retrieval.ip + dataItem.retrieval.video_path + '" alt="No Image" width="500">';
+            } else if(dataItem.retrieval.video_path != null){
+                path = '<img src="http://' + dataItem.retrieval.ip + dataItem.retrieval.video_path + '" alt="No Image" width="500">';
+            } else if(dataItem.retrieval.image_path != null){
+                path = '<img src="http://' + dataItem.retrieval.ip + dataItem.retrieval.image_path + '" alt="No Image" width="500">';
+            } else {
+                path = '<p>No Image</p>';
+            }
+        } else if(dataItem.type == "non_ip"){
+            if(dataItem.retrieval.snapshot_url != null){
+                path = '<img src="http://' + dataItem.retrieval.snapshot_url + '" alt="No Image" width="500">';
+            } else {
+                path = '<p>No Image</p>';
+            }
+        } else if(dataItem.type == "stream"){
+            if(dataItem.retrieval.m3u8_url != null){
+                path = '<img src="http://' + dataItem.retrieval.m3u8_url + '" alt="No Image" width="500">';
+            } else {
+                path = '<p>No Image</p>';
+            }
+        }
+        var place = '<div class="place" style="margin:auto;text-align:center;"><p>';
+        if(dataItem.city != null && dataItem.city != "Null"){place = place + dataItem.city + ', ';}
+        if(dataItem.state != null && dataItem.state != "Null"){place = place + dataItem.state + ', ';}
+        if(dataItem.country != null && dataItem.country != "Null"){place = place + dataItem.country;}
+        place = place + '</p></div>';
+        var location = '<div class="loc" style="margin:auto;text-align:center;"><p>' + dataItem.latitude + ', ' + dataItem.longitude + '</p></div>';
+        var contentString = path + place + location;
+        info.setContent(contentString);
+        info.setPosition(point);
+        info.open(map);
+    });
+}
+
+function goodCAMs(datalist, map, info){
+    var k;
+    for(k = 0; k < markerlist.length; k++){
+        markerlist[k].setMap(null);
+    }
+    markerlist = [];
+    var i;
+    for(i = 0; i < datalist.length; i++){
+        if(datalist[i].is_active_video == "True"){
+            var point = {lat: datalist[i].latitude, lng: datalist[i].longitude};
+            var marker = new google.maps.Marker({position: point, map: map, icon: 'https://storage.googleapis.com/support-kms-prod/SNP_2752125_en_v0'});
+            addMarkerListener(marker, info, point, map, datalist[i]);
+            markerlist.push(marker);
+        }
+    }
+}
+
+function allCAMs(datalist, map, info){
+    var k;
+    for(k = 0; k < markerlist.length; k++){
+        markerlist[k].setMap(null);
+    }
+    markerlist = [];
+    var i;
+    for(i = 0; i < datalist.length; i++){
+        var point = {lat: datalist[i].latitude, lng: datalist[i].longitude};
+        var marker = new google.maps.Marker({position: point, map: map, icon: 'https://storage.googleapis.com/support-kms-prod/SNP_2752125_en_v0'});
+        addMarkerListener(marker, info, point, map, datalist[i]);
+        markerlist.push(marker);
+    }
 }
 </script>
 <script asynch defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDICtCV5dWSi73-a7Bbhlw5Rs01Jax8EJY&callback=initMap"></script>
