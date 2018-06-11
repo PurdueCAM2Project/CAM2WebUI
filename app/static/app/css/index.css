@@ -7,6 +7,27 @@ img {
   opacity: 0.6;
 }
 
+.link_text {
+	color: blue;
+}
+
+
+.column {
+	float: left;
+	width: 25%;
+
+}
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.left .right .middle {
+	column-gap: 100 px;
+}
+
 .center {
   position: absolute;
   top: 50%;
@@ -34,7 +55,7 @@ img {
 }
 
 .lead {
-  color: #5a5a5a;
+  color: #FFFFFF;
   font-size: 17px;
 }
 

@@ -16,12 +16,16 @@ h2 {
   font-weight: normal;
 }
 
+.navbar {
+    background-color: #F1F1F1;
+}
+
 .navbar-inverse .navbar-nav>li>a {
-  color: white;
+  color: #ff;
 }
 
 .navbar-inverse .navbar-brand {
-  color: white;
+  color: #f1f1f1;
 }
 
 
@@ -34,7 +38,7 @@ h2 {
 a,
 a:hover,
 a:focus {
-  color: #19b9e7;
+  color: #f1f1f1;
   text-decoration: none;
   -o-transition: all .3s;
   -moz-transition: all .3s;
