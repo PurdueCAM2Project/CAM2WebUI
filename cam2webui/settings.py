@@ -56,7 +56,6 @@ except KeyError as e:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not IS_RPODUCTION_SITE
 
-# Defines which sites are allowed to display the site
 ALLOWED_HOSTS = [
     'www.cam2project.net',
     'cam2webui.herokuapp.com',
@@ -82,8 +81,6 @@ IGNORABLE_404_URLS = [
 
 # Application definition
 INSTALLED_APPS = [
-
-	'admin_view_permission',
     'email_system',
     'app.apps.AppConfig',
     'django.contrib.admin',
@@ -96,7 +93,6 @@ INSTALLED_APPS = [
     'social_django',
 ]
 
-# Middleware definition
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -170,7 +166,6 @@ LOGGING = {
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 # Update database configuration with $DATABASE_URL.
-
 if 'test' in sys.argv:
     DATABASES = {
         'default': {
@@ -187,7 +182,6 @@ else:
         }
     }
     DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
