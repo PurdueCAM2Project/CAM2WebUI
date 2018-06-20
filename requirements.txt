@@ -9,5 +9,3 @@ whitenoise>=3.3.0
 Selenium>=3.4.1
 pyvirtualdisplay>=0.2.1
 google-api-python-client
-django-admin-view-permission==1.6
-

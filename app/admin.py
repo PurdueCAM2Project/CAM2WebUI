@@ -13,7 +13,7 @@ import csv
 
 class MemberAdmin(admin.ModelAdmin):
 
-    list_display = ('membername', 'memberimg', 'iscurrentmember','subteam')
+    list_display = ('membername', 'memberimg', 'iscurrentmember')
     actions = ['move_to_oldMember']
 
     def move_to_oldMember(self, request, queryset):
@@ -100,34 +100,30 @@ class UserAdmin(admin.ModelAdmin):
         'is_staff',
         'date_joined',
     )
-    inlines = [UserInline,]
+    inlines = [
+        UserInline,
+               ]
     actions = [email_users,export_csv]
 
-    def department(self, user):
+    # callable that display info from RegisterUser
+    def department(self,user):
         return "{}".format(RegisterUser.objects.get(user=user).department)
-
     department.short_description = 'department'
 
-    def organization(self, user):
+    def organization(self,user):
         return "{}".format(RegisterUser.objects.get(user=user).organization)
-
     organization.short_description = 'organization'
 
-    def title(self, user):
+    def title(self,user):
         return "{}".format(RegisterUser.objects.get(user=user).title)
-
     title.short_description = 'title'
 
-    def country(self, user):
+    def country(self,user):
         return "{}".format(RegisterUser.objects.get(user=user).country)
-
     country.short_description = 'country'
 
 
-class ContactModel(admin.ModelAdmin):
-    inlines = [UserInline,]
-    actions = [email_users,export_csv]
-	
+
 
 
 admin.site.unregister(User)
