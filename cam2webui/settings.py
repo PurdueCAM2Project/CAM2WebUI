@@ -111,8 +111,8 @@ MIDDLEWARE = [
 # Basic auth
 # https://djangosnippets.org/snippets/2468/
 
-if not IS_RPODUCTION_SITE:
-    MIDDLEWARE.extend(['app.middleware.basicauth.BasicAuthMiddleware'])
+# if not IS_RPODUCTION_SITE:
+#     MIDDLEWARE.extend(['app.middleware.basicauth.BasicAuthMiddleware'])
 
 ROOT_URLCONF = 'cam2webui.urls'
 
@@ -171,22 +171,22 @@ LOGGING = {
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 # Update database configuration with $DATABASE_URL.
 
-if 'test' in sys.argv:
-    DATABASES = {
+# if 'test' in sys.argv:
+DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': "django.db.backends.postgresql",
-            'client_encoding': 'UTF8',
-            'default_transaction_isolation': 'read committed'
-        }
-    }
-    DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': "django.db.backends.postgresql",
+#             'client_encoding': 'UTF8',
+#             'default_transaction_isolation': 'read committed'
+#         }
+#     }
+#     DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
 
 
 # Password validation
