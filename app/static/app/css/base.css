@@ -1,5 +1,6 @@
 html {
   overflow-y: scroll;
+  height: 100%;
 }
 
 body {
@@ -10,6 +11,7 @@ body {
   line-height: 30px;
   padding-top: 50px;
   padding-bottom: 40px;
+  min-height: 100%;
 }
 
 h2 {
@@ -58,6 +60,8 @@ a:focus {
 /*Change the bg color of footer*/
 footer {
   margin: auto;
+  position: absolute;
+  bottom: 0px;
   padding: 20px 100px 10px 100px;
   width: 100%;
   background: rgba(255,0,0,.5);
