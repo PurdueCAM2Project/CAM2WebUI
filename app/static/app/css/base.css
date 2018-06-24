@@ -9,9 +9,9 @@ body {
   font-weight: 300;
   color: #444;
   line-height: 30px;
-  padding-top: 50px;
-  padding-bottom: 40px;
+  padding-top: 40px;
   min-height: 100%;
+  position: relative;
 }
 
 h2 {
@@ -57,14 +57,20 @@ a:focus {
   margin-left: 5px;
 }
 
+.content{
+  overflow: auto;
+  padding-bottom: 60px;
+}
+
 /*Change the bg color of footer*/
 footer {
-  margin: auto;
+  margin-top: -60px;
   position: absolute;
   bottom: 0px;
+  height: 60px;
   padding: 20px 100px 10px 100px;
   width: 100%;
   background: rgba(255,0,0,.5);
-  background-color: #f1f1f1
+  background-color: #f1f1f1;
 }
 
