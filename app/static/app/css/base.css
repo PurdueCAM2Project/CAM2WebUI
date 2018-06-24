@@ -64,3 +64,9 @@ footer {
   background-color: #f1f1f1
 }
 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
