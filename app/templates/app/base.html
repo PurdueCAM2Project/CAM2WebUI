@@ -44,8 +44,6 @@
 <body>
   {% block nav %}
   <nav class="navbar navbar-inverse navbar-fixed-top">
-
-
       <div class="container">
           <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
@@ -119,18 +117,20 @@
       {% block content %}{% endblock %}
   </div>
   {% block footer %}
-    
+
+    <hr class="divide-divider">
     <!--  footer id in CSS    -->
     <footer id="site-footer">
       <p class="pull-right hidden-xs"><a href="#">Back to top</a></p>
       <p>© CAM² Research Group.   ·   <a href="/privacy/">Privacy</a>   ·   <a href="/terms/">Terms of Use</a>   ·   <a href="/ack/">Acknowledgements</a>   ·   <a href="/faqs/">FAQs</a></p> 
     </footer>
-
-  {% endblock %}
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  {% block scripts %}
-  {% endblock %}
+    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% block scripts %}
+    {% endblock %}
+        </div>
 </body>
 
 </html>
