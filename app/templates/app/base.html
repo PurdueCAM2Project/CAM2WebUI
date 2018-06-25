@@ -1,9 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 
-
-
-
 <html lang="en">
 <!--
                                                                                  -+yhdhy+`
@@ -43,10 +40,9 @@
 
 <body>
   {% block nav %}
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-  
-  
-  
+
+    <!--    navbar-inverse navbar-fixed-top  -->
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -54,40 +50,49 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/"><img id="new_logo" src="{% static "app/img/new_logo.png" %}"></a>
+          
+        <!-- Logo on the left -->
+        <a class="navbar-brand" href="/">
+            <img id="new_logo" style="width: 50px; height: 30px;position: relative; top: -5px" 
+                 src="{% static "app/img/new_logo2.png" %}">
+        </a>
       </div>
+        
+        <!-- Tab Cameras -->
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cameras<span class="caret"></span></a>
+          <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Camera<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/cameras/">All Cameras</a></li>
-              <li><a href="/good_cameras/">Cameras in Good Conditions</a></li>
+              <li><a href="/good_cameras/">Cameras in Good Condition</a></li>
             </ul>
           </li>
-
-          <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
+            
+        <!-- Tab Work -->
+          <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Publication<span class="caret"></span></a>
             <ul class="dropdown-menu">
+                <li><a href="/publications/">Publications</a></li>
+                <li><a href="/team_poster/">Posters</a></li>
+            </ul>
+          </li>
+            
+        <!-- Tab About Us -->
+          <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/team/">Team Members</a></li>
+              <li></li>
+              <li><a href="/videos/">Videos</a></li>
               <li><a href="/history/">History</a></li>
-              <li><a href="/publications/">Publications</a></li>
               <li><a href="/email/contact/">Contact Us</a></li>
             </ul>
           </li>
+            
+        <!-- Tab Join Us! -->
+            <li><a href="/email/join_us">Join Us!</a></li>
 
-          <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Team<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/team/">Team Members</a></li>
-              <li><a href="/team_poster/">Our Work</a></li>
-              <li><a href="/email/join_us/">Join Us!</a></li>
-            </ul>
-          </li>
-		 
-          <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Training<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/training/">Training Videos</a></li>
-            </ul>
-          </li>
-
+            
         </ul>
+          
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
                 {% if user.is_staff %}
@@ -98,7 +103,7 @@
                             <li><a href="/api_access/">My application</a></li>
                             <li><a href="/profile/">My Profile</a></li>
                    		</ul>
-                </li> 
+                 </li> 
                 <li><a href="/logout/">Logout</a></li>
             {% else %}
                 <li><a href="/login/">Login</a></li>
@@ -108,13 +113,13 @@
       </div>
     </div>
   </nav>
+
   {% endblock %}
   {% block content %}{% endblock %}
   {% block footer %}
     
   <div class="container" style="width: 100%; padding-left: 0px; padding-right: 0px; height: 50px">
-    <hr class="divide-divider">
-      
+    <hr class="divide-divider"> 
     <!--  footer id in CSS    -->
     <footer id="site-footer">
 
@@ -158,12 +163,11 @@
 
       <div>
 
-          <p class="pull-right hidden-xs"><a href="#">Back to top</a></p>
+          <p class="pull-right hidden-xs"><button type="button"><a href="#">Back to top</a></button></p>
 
           <p>© CAM² Research Group.   ·   <a href="/privacy/">Privacy</a>   ·   <a href="/terms/">Terms of Use</a>   ·   <a href="/ack/">Acknowledgements</a>   ·   <a href="/faqs/">FAQs</a></p> 
 
       </div>
-
     </footer>
   </div>
 
