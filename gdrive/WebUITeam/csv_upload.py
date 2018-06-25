@@ -47,6 +47,11 @@ def get_credentials():
     return credentials
 
 def write_csv():
+    """Takes data from the new API and writes it to a CSV file for uploading 
+    
+    Initial Testing uses data from a prepared json file with 1000 cameras. Final script will load directly from the API
+    
+    """
     with open('cam_data.json') as f:
         data = json.load(f)
         with open('cam_data.csv', 'w') as camData:
@@ -84,6 +89,11 @@ def write_csv():
                 camData.write('\n')
 
 def upload_csv():
+    """Uses the credentials specific to the Team/Project to upload a CSV to a specified Google Spreadsheet
+
+    Note that in production the fileId specified below should be an environment variable, for security purposes. 
+    
+    """
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('drive', 'v3', http=http)
