@@ -1,0 +1,1001 @@
+ID, Image, Latitude, Longitude, City, State, Country
+5b0cfa5845bb0c0004277e13, http://101.110.193.152/, 35.685, 139.751, Tokyo, Null, JP
+5b0cfa5945bb0c0004277e14, http://108.176.64.17/axis-cgi/mjpg/video.cgi, 43.3523, -73.6898, Queensbury, NY, USA
+5b0cfa5a45bb0c0004277e15, http://114.176.98.234/nphMotionJpeg?Resolution, 35.685, 139.751, Tokyo, Null, JP
+5b0cfa5b45bb0c0004277e16, http://114.184.144.163/nphMotionJpeg?Resolution, 35.685, 139.751, Tokyo, Null, JP
+5b0cfa5c45bb0c0004277e17, http://116.193.97.222/nphMotionJpeg?Resolution, 34.8167, 134.7, Himeji, Null, JP
+5b0cfa5c45bb0c0004277e18, http://118.22.146.80, 35.685, 139.751, Tokyo, Null, JP
+5b0cfa5e45bb0c0004277e19, http://119.228.91.54, 34.6864, 135.52, Osaka, Null, JP
+5b0cfa5f45bb0c0004277e1a, http://119.245.179.160/, 35.685, 139.751, Tokyo, Null, JP
+5b0cfa5f45bb0c0004277e1b, http://12.154.134.211/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfa6f45bb0c0004277e25, http://12.154.97.250/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfa7045bb0c0004277e26, http://12.154.97.251/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfa7145bb0c0004277e27, http://125.206.238.163/, 35.685, 139.751, Tokyo, Null, JP
+5b0cfa7245bb0c0004277e28, http://128.101.105.82/axis-cgi/mjpg/video.cgi, 44.9759, -93.2166, Minneapolis, MN, USA
+5b0cfa7345bb0c0004277e29, http://128.10.29.20/axis-cgi/mjpg/video.cgi, 40.4278, -86.9169, West Lafayette, IN, USA
+5b0cfa7445bb0c0004277e2a, http://128.10.29.21/axis-cgi/mjpg/video.cgi, 40.4278, -86.9169, West Lafayette, IN, USA
+5b0cfa7545bb0c0004277e2b, http://128.10.29.22/axis-cgi/mjpg/video.cgi, 40.4278, -86.9169, West Lafayette, IN, USA
+5b0cfa7645bb0c0004277e2c, http://128.10.29.23/axis-cgi/mjpg/video.cgi, 40.4278, -86.9169, West Lafayette, IN, USA
+5b0cfa7745bb0c0004277e2d, http://128.10.29.24/axis-cgi/mjpg/video.cgi, 40.4278, -86.9169, West Lafayette, IN, USA
+5b0cfa7845bb0c0004277e2e, http://128.10.29.25/axis-cgi/mjpg/video.cgi, 40.4278, -86.9169, West Lafayette, IN, USA
+5b0cfa7945bb0c0004277e2f, http://128.10.29.26/axis-cgi/mjpg/video.cgi, 40.4269, -86.9164, West Lafayette, IN, USA
+5b0cfa7a45bb0c0004277e30, http://128.10.29.27/axis-cgi/mjpg/video.cgi, 40.4269, -86.9164, West Lafayette, IN, USA
+5b0cfa7b45bb0c0004277e31, http://128.10.29.30/axis-cgi/mjpg/video.cgi, 40.4269, -86.9164, West Lafayette, IN, USA
+5b0cfa7c45bb0c0004277e32, http://128.10.29.31/axis-cgi/mjpg/video.cgi, 40.4278, -86.9169, West Lafayette, IN, USA
+5b0cfa7d45bb0c0004277e33, http://128.10.29.32/axis-cgi/mjpg/video.cgi, 40.4278, -86.9169, West Lafayette, IN, USA
+5b0cfa7e45bb0c0004277e34, http://128.10.29.33/axis-cgi/mjpg/video.cgi, 40.4278, -86.9169, West Lafayette, IN, USA
+5b0cfa7f45bb0c0004277e35, http://128.104.128.189/axis-cgi/mjpg/video.cgi, 43.0761, -89.4104, Madison, WI, USA
+5b0cfa7f45bb0c0004277e36, http://128.104.138.26/axis-cgi/mjpg/video.cgi, 43.0761, -89.4104, Madison, WI, USA
+5b0cfa8045bb0c0004277e37, http://128.104.181.37/axis-cgi/mjpg/video.cgi, 43.0761, -89.4104, Madison, WI, USA
+5b0cfa8145bb0c0004277e38, http://128.104.200.113/nphMotionJpeg?Resolution, 43.0761, -89.4104, Madison, WI, USA
+5b0cfa8245bb0c0004277e39, http://128.104.217.185/axis-cgi/mjpg/video.cgi, 43.0761, -89.4104, Madison, WI, USA
+5b0cfa8345bb0c0004277e3a, http://128.111.184.53/axis-cgi/mjpg/video.cgi, 34.4329, -119.837, Santa Barbara, CA, USA
+5b0cfa8445bb0c0004277e3b, http://128.112.240.176/axis-cgi/mjpg/video.cgi, 40.3756, -74.6597, Princeton, NJ, USA
+5b0cfa8545bb0c0004277e3c, http://128.112.240.93/axis-cgi/mjpg/video.cgi, 40.3756, -74.6597, Princeton, NJ, USA
+5b0cfa8645bb0c0004277e3d, http://128.112.32.247/axis-cgi/mjpg/video.cgi, 40.3756, -74.6597, Princeton, NJ, USA
+5b0cfa8745bb0c0004277e3e, http://128.112.33.7/axis-cgi/mjpg/video.cgi, 40.3756, -74.6597, Princeton, NJ, USA
+5b0cfa8845bb0c0004277e3f, http://128.112.64.67/axis-cgi/mjpg/video.cgi, 40.3756, -74.6597, Princeton, NJ, USA
+5b0cfa8945bb0c0004277e40, http://128.119.160.155/, 42.3804, -72.5231, Amherst, MA, USA
+5b0cfa8945bb0c0004277e41, http://128.119.170.14/axis-cgi/mjpg/video.cgi, 42.3804, -72.5231, Amherst, MA, USA
+5b0cfa8a45bb0c0004277e42, http://128.119.247.64/axis-cgi/mjpg/video.cgi, 42.3804, -72.5231, Amherst, MA, USA
+5b0cfa8b45bb0c0004277e43, http://128.119.98.19/axis-cgi/mjpg/video.cgi, 42.3804, -72.5231, Amherst, MA, USA
+5b0cfa8c45bb0c0004277e44, http://128.120.82.170/axis-cgi/mjpg/video.cgi, 38.4829, -121.64, Davis, CA, USA
+5b0cfa8d45bb0c0004277e45, http://128.122.151.22/, 40.7317, -73.9885, New York, NY, USA
+5b0cfa8e45bb0c0004277e46, http://128.122.151.227/, 40.7317, -73.9885, New York, NY, USA
+5b0cfa8f45bb0c0004277e47, http://128.125.166.107/, 33.7866, -118.299, Los Angeles, CA, USA
+5b0cfa9045bb0c0004277e48, http://128.125.166.83/axis-cgi/mjpg/video.cgi, 33.7866, -118.299, Los Angeles, CA, USA
+5b0cfa9145bb0c0004277e49, http://128.135.156.197/nphMotionJpeg?Resolution, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9245bb0c0004277e4a, http://128.135.156.247/axis-cgi/mjpg/video.cgi, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9445bb0c0004277e4b, http://128.135.17.122/axis-cgi/mjpg/video.cgi, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9545bb0c0004277e4c, http://128.135.244.15/nphMotionJpeg?Resolution, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9645bb0c0004277e4d, http://128.135.244.16/nphMotionJpeg?Resolution, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9745bb0c0004277e4e, http://128.135.244.18/nphMotionJpeg?Resolution, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9845bb0c0004277e4f, http://128.135.244.19/nphMotionJpeg?Resolution, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9945bb0c0004277e50, http://128.135.244.21/nphMotionJpeg?Resolution, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9a45bb0c0004277e51, http://128.135.244.22/nphMotionJpeg?Resolution, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9b45bb0c0004277e52, http://128.135.244.23/nphMotionJpeg?Resolution, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9c45bb0c0004277e53, http://128.135.244.28/axis-cgi/mjpg/video.cgi, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9c45bb0c0004277e54, http://128.135.36.219/axis-cgi/mjpg/video.cgi, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9d45bb0c0004277e55, http://128.135.81.164/nphMotionJpeg?Resolution, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9e45bb0c0004277e56, http://128.135.81.168/axis-cgi/mjpg/video.cgi, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfa9f45bb0c0004277e57, http://128.135.82.192/axis-cgi/mjpg/video.cgi, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfaa045bb0c0004277e58, http://128.135.89.83/axis-cgi/mjpg/video.cgi, 41.7804, -87.6027, Chicago, IL, USA
+5b0cfaa145bb0c0004277e59, http://128.143.108.226/axis-cgi/mjpg/video.cgi, 38.0329, -78.5137, Charlottesville, VA, USA
+5b0cfaa245bb0c0004277e5a, http://128.143.122.22/MJPEG.CGI, 38.0329, -78.5137, Charlottesville, VA, USA
+5b0cfaa345bb0c0004277e5b, http://128.151.62.11/MJPEG.CGI, 43.1548, -77.6156, Rochester, NY, USA
+5b0cfaa445bb0c0004277e5c, http://128.153.6.43/axis-cgi/mjpg/video.cgi, 44.6609, -74.9258, Potsdam, NY, USA
+5b0cfaa545bb0c0004277e5d, http://128.171.83.191/axis-cgi/mjpg/video.cgi, 21.3267, -157.817, Honolulu, HI, USA
+5b0cfaa645bb0c0004277e5e, http://128.174.15.234/axis-cgi/mjpg/video.cgi, 40.1095, -88.2123, Urbana, IL, USA
+5b0cfaa745bb0c0004277e5f, http://128.178.6.160/axis-cgi/mjpg/video.cgi, 46.5333, 6.6667, Lausanne, Null, CH
+5b0cfaa845bb0c0004277e60, http://128.178.6.161/axis-cgi/mjpg/video.cgi, 46.5333, 6.6667, Lausanne, Null, CH
+5b0cfaa945bb0c0004277e61, http://128.187.50.247/axis-cgi/mjpg/video.cgi, 40.3563, -111.732, Provo, UT, USA
+5b0cfaaa45bb0c0004277e62, http://128.194.59.236/axis-cgi/mjpg/video.cgi, 30.6521, -96.341, College Station, TX, USA
+5b0cfaab45bb0c0004277e63, http://128.196.12.150/, 32.2338, -110.95, Tucson, AZ, USA
+5b0cfaac45bb0c0004277e64, http://128.196.12.155/, 32.2338, -110.95, Tucson, AZ, USA
+5b0cfaad45bb0c0004277e65, http://128.196.12.29/axis-cgi/mjpg/video.cgi, 32.2338, -110.95, Tucson, AZ, USA
+5b0cfaae45bb0c0004277e66, http://128.196.12.63/, 32.2338, -110.95, Tucson, AZ, USA
+5b0cfaaf45bb0c0004277e67, http://128.197.26.35/, 42.3451, -71.0993, Boston, MA, USA
+5b0cfab045bb0c0004277e68, http://128.208.252.2/axis-cgi/mjpg/video.cgi, 47.6606, -122.292, Seattle, WA, USA
+5b0cfab145bb0c0004277e69, http://128.210.129.12/axis-cgi/mjpg/video.cgi, 40.4238, -86.9107, West Lafayette, IN, USA
+5b0cfab245bb0c0004277e6a, http://128.210.133.200/axis-cgi/mjpg/video.cgi, 40.4238, -86.9107, West Lafayette, IN, USA
+5b0cfab345bb0c0004277e6b, http://128.210.133.218/axis-cgi/mjpg/video.cgi, 40.4238, -86.9098, West Lafayette, IN, USA
+5b0cfab445bb0c0004277e6c, http://128.210.133.219/axis-cgi/mjpg/video.cgi, 40.4238, -86.9098, West Lafayette, IN, USA
+5b0cfab445bb0c0004277e6d, http://128.210.137.244/, 40.4249, -86.9162, West Lafayette, IN, USA
+5b0cfab545bb0c0004277e6e, http://128.210.169.237/MJPEG.CGI, 40.4249, -86.9162, West Lafayette, IN, USA
+5b0cfab645bb0c0004277e6f, http://128.210.72.31/axis-cgi/mjpg/video.cgi, 40.4265, -86.9131, West Lafayette, IN, USA
+5b0cfab745bb0c0004277e70, http://128.223.108.30/axis-cgi/mjpg/video.cgi, 44.0364, -123.055, Eugene, OR, USA
+5b0cfab845bb0c0004277e71, http://128.232.239.218/axis-cgi/mjpg/video.cgi, 52.2, 0.1167, Cambridge, Null, GB
+5b0cfab945bb0c0004277e72, http://128.253.181.41/axis-cgi/mjpg/video.cgi, 42.4485, -76.4804, Ithaca, NY, USA
+5b0cfabb45bb0c0004277e73, http://128.255.26.210/axis-cgi/mjpg/video.cgi, 41.664, -91.5447, Iowa City, IA, USA
+5b0cfabb45bb0c0004277e74, http://128.46.160.229/axis-cgi/mjpg/video.cgi, 40.4102, -86.9173, West Lafayette, IN, USA
+5b0cfabc45bb0c0004277e75, http://128.46.170.242/axis-cgi/mjpg/video.cgi, 40.4314, -86.914, West Lafayette, IN, USA
+5b0cfabd45bb0c0004277e76, http://128.46.170.243/axis-cgi/mjpg/video.cgi, 40.4314, -86.914, West Lafayette, IN, USA
+5b0cfabe45bb0c0004277e77, http://128.46.184.48/axis-cgi/mjpg/video.cgi, 40.4283, -86.9127, West Lafayette, IN, USA
+5b0cfabf45bb0c0004277e78, http://128.46.184.49/axis-cgi/mjpg/video.cgi, 40.4283, -86.9127, West Lafayette, IN, USA
+5b0cfac045bb0c0004277e79, http://128.46.190.179/axis-cgi/mjpg/video.cgi, 40.4249, -86.9162, West Lafayette, IN, USA
+5b0cfac145bb0c0004277e7a, http://128.46.193.69/axis-cgi/mjpg/video.cgi, 40.4249, -86.9162, West Lafayette, IN, USA
+5b0cfac245bb0c0004277e7b, http://128.46.207.194/MJPEG.CGI, 40.4249, -86.9162, West Lafayette, IN, USA
+5b0cfac345bb0c0004277e7c, http://128.46.207.40/MJPEG.CGI, 40.431, -86.9152, West Lafayette, IN, USA
+5b0cfac445bb0c0004277e7d, http://128.46.207.59/MJPEG.CGI, 40.4249, -86.9162, West Lafayette, IN, USA
+5b0cfac545bb0c0004277e7e, http://128.46.207.84/MJPEG.CGI, 40.4249, -86.9162, West Lafayette, IN, USA
+5b0cfac645bb0c0004277e7f, http://128.46.71.10/axis-cgi/mjpg/video.cgi, 40.4249, -86.9162, West Lafayette, IN, USA
+5b0cfac645bb0c0004277e80, http://128.46.75.70/nphMotionJpeg?Resolution, 40.4289, -86.9117, West Lafayette, IN, USA
+5b0cfac845bb0c0004277e81, http://128.46.75.76/nphMotionJpeg?Resolution, 40.429, -86.912, West Lafayette, IN, USA
+5b0cfac945bb0c0004277e82, http://129.130.11.10/nphMotionJpeg?Resolution, 39.1023, -96.5246, Manhattan, KS, USA
+5b0cfac945bb0c0004277e83, http://129.130.17.134/, 39.1023, -96.5246, Manhattan, KS, USA
+5b0cfaca45bb0c0004277e84, http://129.130.82.191/axis-cgi/mjpg/video.cgi, 39.1023, -96.5246, Manhattan, KS, USA
+5b0cfacb45bb0c0004277e85, http://129.137.3.21/axis-cgi/mjpg/video.cgi, 39.1668, -84.5382, Cincinnati, OH, USA
+5b0cfacc45bb0c0004277e86, http://129.15.200.109/axis-cgi/mjpg/video.cgi, 35.2523, -97.4603, Norman, OK, USA
+5b0cfacd45bb0c0004277e87, http://129.15.81.9, 35.2523, -97.4603, Norman, OK, USA
+5b0cface45bb0c0004277e88, http://129.170.117.10/axis-cgi/mjpg/video.cgi, 43.7226, -72.1342, Hanover, NH, USA
+5b0cfacf45bb0c0004277e89, http://129.173.213.208/axis-cgi/mjpg/video.cgi, 44.6224, -63.5736, Halifax, Null, CA
+5b0cfad045bb0c0004277e8a, http://129.186.47.239/, 42.036, -93.4652, Ames, IA, USA
+5b0cfad145bb0c0004277e8b, http://129.19.131.74/now.jpg?snap=spush, 40.0878, -105.373, Boulder, CO, USA
+5b0cfad245bb0c0004277e8c, http://129.206.127.105/axis-cgi/mjpg/video.cgi, 49.4167, 8.7, Heidelberg, Null, DE
+5b0cfad345bb0c0004277e8d, http://129.210.52.139/axis-cgi/mjpg/video.cgi, 37.1894, -121.705, Santa Clara, CA, USA
+5b0cfad445bb0c0004277e8e, http://129.2.16.181/axis-cgi/mjpg/video.cgi, 38.8336, -76.8777, College Park, MD, USA
+5b0cfad545bb0c0004277e8f, http://129.63.200.203/axis-cgi/mjpg/video.cgi, 42.6523, -71.3506, Lowell, MA, USA
+5b0cfad645bb0c0004277e90, http://130.158.111.250/axis-cgi/mjpg/video.cgi, 36.0833, 140.117, Tsukuba, Null, JP
+5b0cfad745bb0c0004277e91, http://130.160.85.22/axis-cgi/mjpg/video.cgi, 33.3072, -87.5859, Tuscaloosa, AL, USA
+5b0cfad845bb0c0004277e92, http://130.160.99.15/MJPEG.CGI, 33.3072, -87.5859, Tuscaloosa, AL, USA
+5b0cfad945bb0c0004277e93, http://130.194.155.69/, -34.2333, 140.567, Monash, Null, AU
+5b0cfada45bb0c0004277e94, http://130.207.153.67/axis-cgi/mjpg/video.cgi, 33.7763, -84.398, Atlanta, GA, USA
+5b0cfadb45bb0c0004277e95, http://130.207.153.71/axis-cgi/mjpg/video.cgi, 33.7763, -84.398, Atlanta, GA, USA
+5b0cfadc45bb0c0004277e96, http://130.207.76.153/axis-cgi/mjpg/video.cgi, 33.7763, -84.398, Atlanta, GA, USA
+5b0cfadd45bb0c0004277e97, http://130.215.28.199/axis-cgi/mjpg/video.cgi, 42.2857, -71.8292, Worcester, MA, USA
+5b0cfade45bb0c0004277e98, http://130.230.72.143/axis-cgi/mjpg/video.cgi, 61.5, 23.75, Tampere, Null, FI
+5b0cfadf45bb0c0004277e99, http://130.241.163.111/axis-cgi/mjpg/video.cgi, 57.7167, 11.9667, Gteborg, Null, SE
+5b0cfae045bb0c0004277e9a, http://130.241.175.79/axis-cgi/mjpg/video.cgi, 57.7167, 11.9667, Gteborg, Null, SE
+5b0cfae145bb0c0004277e9b, http://130.68.5.191/axis-cgi/mjpg/video.cgi, 40.8467, -74.2, Montclair, NJ, USA
+5b0cfae245bb0c0004277e9c, http://130.82.102.72/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfae345bb0c0004277e9d, http://131.111.125.248/axis-cgi/mjpg/video.cgi, 52.2, 0.1167, Cambridge, Null, GB
+5b0cfae345bb0c0004277e9e, http://131.111.133.11/axis-cgi/mjpg/video.cgi, 52.2, 0.1167, Cambridge, Null, GB
+5b0cfae445bb0c0004277e9f, http://131.111.167.50/axis-cgi/mjpg/video.cgi, 52.2, 0.1167, Cambridge, Null, GB
+5b0cfae545bb0c0004277ea0, http://131.111.167.81/axis-cgi/mjpg/video.cgi, 52.2, 0.1167, Cambridge, Null, GB
+5b0cfae645bb0c0004277ea1, http://131.111.234.70/axis-cgi/mjpg/video.cgi, 52.2, 0.1167, Cambridge, Null, GB
+5b0cfae745bb0c0004277ea2, http://131.111.42.9/, 52.2, 0.1167, Cambridge, Null, GB
+5b0cfae845bb0c0004277ea3, http://131.111.48.34/axis-cgi/mjpg/video.cgi, 52.2, 0.1167, Cambridge, Null, GB
+5b0cfae945bb0c0004277ea4, http://131.111.48.44/axis-cgi/mjpg/video.cgi, 52.2, 0.1167, Cambridge, Null, GB
+5b0cfaea45bb0c0004277ea5, http://131.118.33.250/axis-cgi/mjpg/video.cgi, 39.0007, -76.973, Hyattsville, MD, USA
+5b0cfaeb45bb0c0004277ea6, http://131.130.50.123/axis-cgi/mjpg/video.cgi, 48.2, 16.3667, Vienna, Null, AT
+5b0cfaec45bb0c0004277ea7, http://131.251.157.6/axis-cgi/mjpg/video.cgi, 51.5, -3.2, Cardiff, Null, GB
+5b0cfaed45bb0c0004277ea8, http://1.34.11.27/axis-cgi/mjpg/video.cgi, 25.0392, 121.525, Taipei, Null, TW
+5b0cfaee45bb0c0004277ea9, http://134.197.163.248/, 40.5412, -119.587, Reno, NV, USA
+5b0cfaef45bb0c0004277eaa, http://134.214.200.81/axis-cgi/mjpg/video.cgi, 45.7655, 4.8755, Villeurbanne, Null, FR
+5b0cfaf045bb0c0004277eab, http://134.29.208.43/axis-cgi/mjpg/video.cgi, 44.9679, -93.0884, Saint Paul, MN, USA
+5b0cfaf145bb0c0004277eac, http://134.71.66.231/axis-cgi/mjpg/video.cgi, 34.0659, -117.79, Pomona, CA, USA
+5b0cfaf245bb0c0004277ead, http://134.76.252.198/axis-cgi/mjpg/video.cgi, 51.5333, 9.9333, Gttingen, Null, DE
+5b0cfaf345bb0c0004277eae, http://134.95.225.126/cgi-bin/faststream.jpg, 51.45, 7.0167, , Null, DE
+5b0cfaf445bb0c0004277eaf, http://137.110.119.4/, 32.8807, -117.236, La Jolla, CA, USA
+5b0cfaf645bb0c0004277eb0, http://137.229.91.244/axis-cgi/mjpg/video.cgi, 64.8378, -147.716, Fairbanks, AK, USA
+5b0cfaf745bb0c0004277eb1, http://137.99.46.148/axis-cgi/mjpg/video.cgi, 41.808, -72.251, Storrs Mansfield, CT, USA
+5b0cfaf845bb0c0004277eb2, http://138.23.101.90/mjpeg, 33.7529, -116.056, Riverside, CA, USA
+5b0cfaf945bb0c0004277eb3, http://138.23.101.91/mjpeg, 33.7529, -116.056, Riverside, CA, USA
+5b0cfafa45bb0c0004277eb4, http://138.23.101.92/mjpeg, 33.7529, -116.056, Riverside, CA, USA
+5b0cfafb45bb0c0004277eb5, http://138.25.6.37/axis-cgi/mjpg/video.cgi, -33.8615, 151.206, Sydney, Null, AU
+5b0cfafc45bb0c0004277eb6, http://140.160.101.129/axis-cgi/mjpg/video.cgi, 48.7395, -122.481, Bellingham, WA, USA
+5b0cfafd45bb0c0004277eb7, http://140.233.86.204/axis-cgi/mjpg/video.cgi, 43.9957, -73.1596, Middlebury, VT, USA
+5b0cfafe45bb0c0004277eb8, http://140.247.38.165/axis-cgi/mjpg/video.cgi, 42.38, -71.1329, Cambridge, MA, USA
+5b0cfaff45bb0c0004277eb9, http://141.211.175.226/axis-cgi/mjpg/video.cgi, 42.2923, -83.7145, Ann Arbor, MI, USA
+5b0cfaff45bb0c0004277eba, http://141.213.21.87/axis-cgi/mjpg/video.cgi, 42.2923, -83.7145, Ann Arbor, MI, USA
+5b0cfb0045bb0c0004277ebb, http://144.75.185.75/axis-cgi/mjpg/video.cgi, 37.8015, -79.5123, Lexington, VA, USA
+5b0cfb0145bb0c0004277ebc, http://144.80.33.99/axis-cgi/mjpg/video.cgi, 40.64, -79.1294, Indiana, PA, USA
+5b0cfb0245bb0c0004277ebd, http://144.92.116.78/axis-cgi/mjpg/video.cgi, 43.0761, -89.4104, Madison, WI, USA
+5b0cfb0345bb0c0004277ebe, http://144.92.207.90/MJPEG.CGI, 43.0761, -89.4104, Madison, WI, USA
+5b0cfb0445bb0c0004277ebf, http://144.92.230.77/axis-cgi/mjpg/video.cgi, 43.0761, -89.4104, Madison, WI, USA
+5b0cfb0545bb0c0004277ec0, http://144.92.251.25/, 43.0761, -89.4104, Madison, WI, USA
+5b0cfb0645bb0c0004277ec1, http://144.92.42.14/view2.cgi?profile=5, 43.0761, -89.4104, Madison, WI, USA
+5b0cfb0745bb0c0004277ec2, http://144.92.44.100/axis-cgi/mjpg/video.cgi, 43.0761, -89.4104, Madison, WI, USA
+5b0cfb0845bb0c0004277ec3, http://144.92.51.25/axis-cgi/mjpg/video.cgi, 43.0761, -89.4104, Madison, WI, USA
+5b0cfb0945bb0c0004277ec4, http://144.92.96.157/axis-cgi/mjpg/video.cgi, 43.0761, -89.4104, Madison, WI, USA
+5b0cfb0a45bb0c0004277ec5, http://146.151.24.8/axis-cgi/mjpg/video.cgi, 43.0761, -89.4104, Madison, WI, USA
+5b0cfb0c45bb0c0004277ec6, http://146.151.55.250/, 43.0761, -89.4104, Madison, WI, USA
+5b0cfb0d45bb0c0004277ec7, http://146.186.123.229/axis-cgi/mjpg/video.cgi, 40.8077, -77.8614, University Park, PA, USA
+5b0cfb0e45bb0c0004277ec8, http://146.186.221.252/axis-cgi/mjpg/video.cgi, 40.8077, -77.8614, University Park, PA, USA
+5b0cfb0f45bb0c0004277ec9, http://146.186.29.200/axis-cgi/mjpg/video.cgi, 40.8077, -77.8614, University Park, PA, USA
+5b0cfb1045bb0c0004277eca, http://146.186.65.36/axis-cgi/mjpg/video.cgi, 40.8077, -77.8614, University Park, PA, USA
+5b0cfb1145bb0c0004277ecb, http://146.83.8.136/axis-cgi/mjpg/video.cgi, -33.45, -70.6667, Santiago, Null, CL
+5b0cfb1245bb0c0004277ecc, http://147.134.38.233/axis-cgi/mjpg/video.cgi, 41.2917, -96.1711, Omaha, NE, USA
+5b0cfb1345bb0c0004277ecd, http://147.134.40.120/axis-cgi/mjpg/video.cgi, 41.2917, -96.1711, Omaha, NE, USA
+5b0cfb1345bb0c0004277ece, http://147.253.140.110/axis-cgi/mjpg/video.cgi, 29.0453, -81.3976, Deland, FL, USA
+5b0cfb1445bb0c0004277ecf, http://147.8.231.110/nphMotionJpeg?Resolution, 22.2833, 114.15, Central District, Null, HK
+5b0cfb1645bb0c0004277ed0, http://148.137.190.230/axis-cgi/mjpg/video.cgi, 41.053, -76.4701, Bloomsburg, PA, USA
+5b0cfb1745bb0c0004277ed1, http://148.213.21.243/axis-cgi/mjpg/video.cgi, 19.2333, -103.717, Colima, Null, MX
+5b0cfb1945bb0c0004277ed2, http://148.61.171.201/axis-cgi/mjpg/video.cgi, 42.9742, -85.9311, Allendale, MI, USA
+5b0cfb1945bb0c0004277ed3, http://149.43.156.105/axis-cgi/mjpg/video.cgi, 42.8175, -75.5483, Hamilton, NY, USA
+5b0cfb1a45bb0c0004277ed4, http://152.1.130.216/axis-cgi/mjpg/video.cgi, 35.7463, -78.7239, Raleigh, NC, USA
+5b0cfb1b45bb0c0004277ed5, http://152.1.131.130/, 35.7463, -78.7239, Raleigh, NC, USA
+5b0cfb1c45bb0c0004277ed6, http://152.3.114.18/axis-cgi/mjpg/video.cgi, 35.9954, -78.9019, Durham, NC, USA
+5b0cfb1d45bb0c0004277ed7, http://155.247.171.2/axis-cgi/mjpg/video.cgi, 39.9774, -75.1452, Philadelphia, PA, USA
+5b0cfb1e45bb0c0004277ed8, http://155.247.171.3/axis-cgi/mjpg/video.cgi, 39.9774, -75.1452, Philadelphia, PA, USA
+5b0cfb1f45bb0c0004277ed9, http://155.41.140.126/, 42.3451, -71.0993, Boston, MA, USA
+5b0cfb2045bb0c0004277eda, http://157.157.121.205/, 64.136, -21.9203, Reykjavk, Null, IS
+5b0cfb2145bb0c0004277edb, http://157.157.215.231/axis-cgi/mjpg/video.cgi, 65, -18, , Null, IS
+5b0cfb2245bb0c0004277edc, http://157.157.79.9/, 64.136, -21.9203, Reykjavk, Null, IS
+5b0cfb2345bb0c0004277edd, http://157.228.175.40/axis-cgi/mjpg/video.cgi, 54.9119, -1.3833, Sunderland, Null, GB
+5b0cfb2445bb0c0004277ede, http://157.242.44.60/axis-cgi/mjpg/video.cgi, 33.9571, -118.404, Los Angeles, CA, USA
+5b0cfb2545bb0c0004277edf, http://158.142.178.131/axis-cgi/mjpg/video.cgi, 38.3403, -104.52, Pueblo, CO, USA
+5b0cfb2645bb0c0004277ee0, http://158.39.101.247/axis-cgi/mjpg/video.cgi, 62, 10, , Null, NO
+5b0cfb2745bb0c0004277ee1, http://160.26.142.170/, 36.6953, 137.211, Toyama, Null, JP
+5b0cfb2845bb0c0004277ee2, http://161.115.4.53/axis-cgi/mjpg/video.cgi, 37.3483, -79.1571, Lynchburg, VA, USA
+5b0cfb2945bb0c0004277ee3, http://161.53.240.140/axis-cgi/mjpg/video.cgi, 45.8, 16, Zagreb, Null, HR
+5b0cfb2a45bb0c0004277ee4, http://161.72.130.241/axis-cgi/mjpg/video.cgi, 43.359, -2.6664, Islas, Null, ES
+5b0cfb2b45bb0c0004277ee5, http://161.72.5.26/axis-cgi/mjpg/video.cgi, 43.359, -2.6664, Islas, Null, ES
+5b0cfb2c45bb0c0004277ee6, http://163.1.225.160/nphMotionJpeg?Resolution, 51.75, -1.25, Oxford, Null, GB
+5b0cfb2d45bb0c0004277ee7, http://163.1.225.161/nphMotionJpeg?Resolution, 51.75, -1.25, Oxford, Null, GB
+5b0cfb2e45bb0c0004277ee8, http://163.1.225.162/nphMotionJpeg?Resolution, 51.75, -1.25, Oxford, Null, GB
+5b0cfb2f45bb0c0004277ee9, http://163.1.225.163/nphMotionJpeg?Resolution, 51.75, -1.25, Oxford, Null, GB
+5b0cfb3045bb0c0004277eea, http://163.1.225.164/nphMotionJpeg?Resolution, 51.75, -1.25, Oxford, Null, GB
+5b0cfb3145bb0c0004277eeb, http://163.1.225.165/nphMotionJpeg?Resolution, 51.75, -1.25, Oxford, Null, GB
+5b0cfb3245bb0c0004277eec, http://164.54.143.12/, 41.6815, -87.9706, Lemont, IL, USA
+5b0cfb3345bb0c0004277eed, http://168.170.186.230/, 43.1499, -75.5848, Verona, NY, USA
+5b0cfb3445bb0c0004277eee, http://173.85.231.204/, 48.3432, -116.454, Sandpoint, ID, USA
+5b0cfb3545bb0c0004277eef, http://175.28.13.193/, 3.15, 101.767, Ampang, Null, MY
+5b0cfb3645bb0c0004277ef0, http://178.188.199.26/axis-cgi/mjpg/video.cgi, 47.3333, 13.3333, , Null, AT
+5b0cfb3745bb0c0004277ef1, http://178.23.216.226/axis-cgi/mjpg/video.cgi, 49.75, 15.5, , Null, CZ
+5b0cfb3845bb0c0004277ef2, http://178.82.149.242/axis-cgi/mjpg/video.cgi, 46.7315, 7.669, Oberhofen, Null, CH
+5b0cfb3945bb0c0004277ef3, http://180.43.40.161/nphMotionJpeg?Resolution, 35.685, 139.751, Tokyo, Null, JP
+5b0cfb3a45bb0c0004277ef4, http://188.181.46.68/nphMotionJpeg?Resolution, 56, 10, , Null, DK
+5b0cfb3b45bb0c0004277ef5, http://190.220.3.108/, -34.5875, -58.6725, Buenos Aires, Null, AR
+5b0cfb3c45bb0c0004277ef6, http://192.121.234.25/, 60.6, 15.6333, Falun, Null, SE
+5b0cfb3d45bb0c0004277ef7, http://192.167.19.29/axis-cgi/mjpg/video.cgi, 45.55, 10.25, Brescia, Null, IT
+5b0cfb3e45bb0c0004277ef8, http://192.171.163.3/axis-cgi/mjpg/video.cgi, 50.3761, -4.1632, Plymouth, Null, GB
+5b0cfb3f45bb0c0004277ef9, http://192.173.49.120/axis-cgi/mjpg/video.cgi, 35.9154, -94.97, Tahlequah, OK, USA
+5b0cfb4045bb0c0004277efa, http://192.185.88.80/, 29.8301, -95.4739, Houston, TX, USA
+5b0cfb4145bb0c0004277efb, http://192.203.224.2/axis-cgi/mjpg/video.cgi, 41.7653, -88.377, Aurora, IL, USA
+5b0cfb4245bb0c0004277efc, http://192.31.21.161/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfb4345bb0c0004277efd, http://193.104.160.47/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfb4445bb0c0004277efe, http://193.138.213.169/nphMotionJpeg?Resolution, 47, 8, , Null, CH
+5b0cfb4545bb0c0004277eff, http://193.170.198.254/axis-cgi/mjpg/video.cgi, 47.3, 11.0667, Telfs, Null, AT
+5b0cfb4645bb0c0004277f00, http://193.201.74.114/axis-cgi/mjpg/video.cgi, 62, 10, , Null, NO
+5b0cfb4745bb0c0004277f01, http://193.205.246.49/axis-cgi/mjpg/video.cgi, 42.8333, 12.8333, , Null, IT
+5b0cfb4845bb0c0004277f02, http://193.40.210.254/axis-cgi/mjpg/video.cgi, 59, 26, , Null, EE
+5b0cfb4945bb0c0004277f03, http://193.5.27.52/, 47.1333, 9.5167, Vaduz, Null, LI
+5b0cfb4a45bb0c0004277f04, http://193.60.94.57/axis-cgi/mjpg/video.cgi, 52.2, 0.1167, Cambridge, Null, GB
+5b0cfb4b45bb0c0004277f05, http://193.60.94.58/axis-cgi/mjpg/video.cgi, 52.2, 0.1167, Cambridge, Null, GB
+5b0cfb4c45bb0c0004277f06, http://193.72.68.48/cgi-bin/faststream.jpg, 47, 8, , Null, CH
+5b0cfb4d45bb0c0004277f07, http://194.103.218.15/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfb4e45bb0c0004277f08, http://194.107.20.5/, 47.3333, 13.3333, , Null, AT
+5b0cfb4f45bb0c0004277f09, http://194.117.188.138/axis-cgi/mjpg/video.cgi, 66.3833, 23.6667, Vertorne, Null, SE
+5b0cfb5045bb0c0004277f0a, http://194.137.195.250/, 64, 26, , Null, FI
+5b0cfb5145bb0c0004277f0b, http://194.153.36.13/axis-cgi/mjpg/video.cgi, 63.8333, 20.25, UME, Null, SE
+5b0cfb5245bb0c0004277f0c, http://194.17.153.12/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfb5345bb0c0004277f0d, http://194.208.34.75/, 47.3333, 13.3333, , Null, AT
+5b0cfb5445bb0c0004277f0e, http://194.218.96.90/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfb5545bb0c0004277f0f, http://194.22.238.31/axis-cgi/mjpg/video.cgi, 59.3333, 14.1167, Kristinehamn, Null, SE
+5b0cfb5645bb0c0004277f10, http://194.250.20.130/, 48.86, 2.35, , Null, FR
+5b0cfb5745bb0c0004277f11, http://194.252.49.4/cgi-bin/faststream.jpg, 64, 26, , Null, FI
+5b0cfb5845bb0c0004277f12, http://194.6.165.126/, 47, 8, , Null, CH
+5b0cfb5945bb0c0004277f13, http://194.81.60.11, 55.0375, -1.4681, Whitley Bay, Null, GB
+5b0cfb5a45bb0c0004277f14, http://194.89.9.86/axis-cgi/mjpg/video.cgi, 68.65, 27.6, Ivalo, Null, FI
+5b0cfb5b45bb0c0004277f15, http://194.94.31.202/, 50.7167, 10.45, Schmalkalden, Null, DE
+5b0cfb5c45bb0c0004277f16, http://195.113.207.238/axis-cgi/mjpg/video.cgi, 49.75, 15.5, , Null, CZ
+5b0cfb5d45bb0c0004277f17, http://195.12.20.166/, 51.5, -0.13, , Null, GB
+5b0cfb5e45bb0c0004277f18, http://195.18.181.53/, 69.65, 19.0167, Tromsdalen, Null, NO
+5b0cfb5f45bb0c0004277f19, http://195.191.130.7/axis-cgi/mjpg/video.cgi, 60, 100, , Null, RU
+5b0cfb6045bb0c0004277f1a, http://195.196.36.242/axis-cgi/mjpg/video.cgi, 67.2, 23.3667, Pajala, Null, SE
+5b0cfb6145bb0c0004277f1b, http://195.200.199.8/axis-cgi/mjpg/video.cgi, 52, 20, , Null, PL
+5b0cfb6245bb0c0004277f1c, http://195.221.212.68/axis-cgi/mjpg/video.cgi, 43.2854, 5.3761, Marseille, Null, FR
+5b0cfb6445bb0c0004277f1d, http://195.234.236.242/axis-cgi/mjpg/video.cgi, 43, 25, , Null, BG
+5b0cfb6545bb0c0004277f1e, http://195.29.188.11/cgi-bin/faststream.jpg, 45.1667, 15.5, , Null, HR
+5b0cfb6645bb0c0004277f1f, http://195.32.90.3/, 42.4667, 14.2167, Pescara, Null, IT
+5b0cfb6745bb0c0004277f20, http://195.67.26.73/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfb6845bb0c0004277f21, http://195.70.120.133/cgi-bin/faststream.jpg, 47.8, 13.0333, Salzburg, Null, AT
+5b0cfb6945bb0c0004277f22, http://195.84.98.146/cgi-bin/faststream.jpg, 62, 15, , Null, SE
+5b0cfb6a45bb0c0004277f23, http://198.110.57.13/MJPEG.CGI, 43.2486, -86.1383, Muskegon, MI, USA
+5b0cfb6b45bb0c0004277f24, http://198.182.205.201/axis-cgi/mjpg/video.cgi, 32.2524, -93.5759, Shreveport, LA, USA
+5b0cfb6c45bb0c0004277f25, http://198.182.241.98/nphMotionJpeg?Resolution, 37.3506, -94.6819, Pittsburg, KS, USA
+5b0cfb6d45bb0c0004277f26, http://198.209.146.44/axis-cgi/mjpg/video.cgi, 38.8817, -92.402, Columbia, MO, USA
+5b0cfb6e45bb0c0004277f27, http://198.59.187.81/nphMotionJpeg?Resolution, 35.15, -106.573, Albuquerque, NM, USA
+5b0cfb6f45bb0c0004277f28, http://198.82.159.136/axis-cgi/mjpg/video.cgi, 37.1791, -80.3515, Blacksburg, VA, USA
+5b0cfb7045bb0c0004277f29, http://198.92.142.140/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfb7145bb0c0004277f2a, http://199.79.254.179/axis-cgi/mjpg/video.cgi, 34.9926, -81.1787, Rock Hill, SC, USA
+5b0cfb7245bb0c0004277f2b, http://199.8.71.140/nphMotionJpeg?Resolution, 41.07, -85.0841, Fort Wayne, IN, USA
+5b0cfb7345bb0c0004277f2c, http://199.89.174.52/, 46.1107, -118.308, Walla Walla, WA, USA
+5b0cfb7445bb0c0004277f2d, http://200.36.58.250/axis-cgi/mjpg/video.cgi, 19.43, -99.13, , Null, MX
+5b0cfb7545bb0c0004277f2e, http://200.79.225.81/axis-cgi/mjpg/video.cgi, 21.1667, -86.8333, Cancn, Null, MX
+5b0cfb7645bb0c0004277f2f, http://202.210.189.104/, 35.69, 139.69, , Null, JP
+5b0cfb7745bb0c0004277f30, http://202.214.105.20/, 35.69, 139.69, , Null, JP
+5b0cfb7845bb0c0004277f31, http://202.215.166.140/, 34.8, 135.35, Takarazuka, Null, JP
+5b0cfb7945bb0c0004277f32, http://202.216.246.187/, 35.69, 139.69, , Null, JP
+5b0cfb7a45bb0c0004277f33, http://202.49.34.38/, -37.7833, 175.283, Hamilton, Null, NZ
+5b0cfb7b45bb0c0004277f34, http://203.141.204.88/, 35.69, 139.69, , Null, JP
+5b0cfb7c45bb0c0004277f35, http://203.179.254.102/cgi-bin/faststream.jpg, 35.69, 139.69, , Null, JP
+5b0cfb7d45bb0c0004277f36, http://204.10.252.150/axis-cgi/mjpg/video.cgi, 40.485, -106.832, Steamboat Springs, CO, USA
+5b0cfb7e45bb0c0004277f37, http://204.111.244.9/, 37.2707, -76.7075, Williamsburg, VA, USA
+5b0cfb7f45bb0c0004277f38, http://204.239.12.142/axis-cgi/mjpg/video.cgi, 49.3042, -123.065, North Vancouver, Null, CA
+5b0cfb8045bb0c0004277f39, http://206.171.67.11/axis-cgi/mjpg/video.cgi, 34.069, -118.35, Los Angeles, CA, USA
+5b0cfb8145bb0c0004277f3a, http://206.176.246.214/axis-cgi/mjpg/video.cgi, 38.6319, -122.897, Healdsburg, CA, USA
+5b0cfb8245bb0c0004277f3b, http://206.176.248.150/, 38.3928, -122.751, Santa Rosa, CA, USA
+5b0cfb8445bb0c0004277f3c, http://206.197.88.67/, 38, -97, , Null, USA
+5b0cfb8545bb0c0004277f3d, http://206.74.227.11/axis-cgi/mjpg/video.cgi, 33.9849, -81.025, Columbia, SC, USA
+5b0cfb8645bb0c0004277f3e, http://207.224.31.229/, 38, -97, , Null, USA
+5b0cfb8745bb0c0004277f3f, http://207.30.63.99/axis-cgi/mjpg/video.cgi, 28.3372, -82.2584, Saint Leo, FL, USA
+5b0cfb8845bb0c0004277f40, http://208.108.146.134/axis-cgi/mjpg/video.cgi, 41.6972, -81.1974, Painesville, OH, USA
+5b0cfb8945bb0c0004277f41, http://208.125.238.230/axis-cgi/mjpg/video.cgi, 43.0481, -76.1474, Syracuse, NY, USA
+5b0cfb8a45bb0c0004277f42, http://208.180.136.143/MJPEG.CGI, 37.6033, -81.54, Saulsville, WV, USA
+5b0cfb8b45bb0c0004277f43, http://208.53.254.139/axis-cgi/mjpg/video.cgi, 43.7183, -98.0262, Mitchell, SD, USA
+5b0cfb8c45bb0c0004277f44, http://208.67.229.99/axis-cgi/mjpg/video.cgi, 42.553, -83.4802, Walled Lake, MI, USA
+5b0cfb8d45bb0c0004277f45, http://208.78.189.12/axis-cgi/mjpg/video.cgi, 26.3711, -81.7733, Bonita Springs, FL, USA
+5b0cfb8e45bb0c0004277f46, http://208.82.90.13/, 43.8, -79.53, Concord, Null, CA
+5b0cfb8e45bb0c0004277f47, http://208.83.72.218/axis-cgi/mjpg/video.cgi, 26.142, -81.7948, Naples, FL, USA
+5b0cfb2a45bb0c0004277ee4, http://161.72.130.241/axis-cgi/mjpg/video.cgi, 43.359, -2.6664, Islas, Null, ES
+5b0cfb2b45bb0c0004277ee5, http://161.72.5.26/axis-cgi/mjpg/video.cgi, 43.359, -2.6664, Islas, Null, ES
+5b0cfb2c45bb0c0004277ee6, http://163.1.225.160/nphMotionJpeg?Resolution, 51.75, -1.25, Oxford, Null, GB
+5b0cfb2d45bb0c0004277ee7, http://163.1.225.161/nphMotionJpeg?Resolution, 51.75, -1.25, Oxford, Null, GB
+5b0cfb2e45bb0c0004277ee8, http://163.1.225.162/nphMotionJpeg?Resolution, 51.75, -1.25, Oxford, Null, GB
+5b0cfb2f45bb0c0004277ee9, http://163.1.225.163/nphMotionJpeg?Resolution, 51.75, -1.25, Oxford, Null, GB
+5b0cfb3045bb0c0004277eea, http://163.1.225.164/nphMotionJpeg?Resolution, 51.75, -1.25, Oxford, Null, GB
+5b0cfb3145bb0c0004277eeb, http://163.1.225.165/nphMotionJpeg?Resolution, 51.75, -1.25, Oxford, Null, GB
+5b0cfb3245bb0c0004277eec, http://164.54.143.12/, 41.6815, -87.9706, Lemont, IL, USA
+5b0cfb3345bb0c0004277eed, http://168.170.186.230/, 43.1499, -75.5848, Verona, NY, USA
+5b0cfb3445bb0c0004277eee, http://173.85.231.204/, 48.3432, -116.454, Sandpoint, ID, USA
+5b0cfb3545bb0c0004277eef, http://175.28.13.193/, 3.15, 101.767, Ampang, Null, MY
+5b0cfb3645bb0c0004277ef0, http://178.188.199.26/axis-cgi/mjpg/video.cgi, 47.3333, 13.3333, , Null, AT
+5b0cfb3745bb0c0004277ef1, http://178.23.216.226/axis-cgi/mjpg/video.cgi, 49.75, 15.5, , Null, CZ
+5b0cfb3845bb0c0004277ef2, http://178.82.149.242/axis-cgi/mjpg/video.cgi, 46.7315, 7.669, Oberhofen, Null, CH
+5b0cfb3945bb0c0004277ef3, http://180.43.40.161/nphMotionJpeg?Resolution, 35.685, 139.751, Tokyo, Null, JP
+5b0cfb3a45bb0c0004277ef4, http://188.181.46.68/nphMotionJpeg?Resolution, 56, 10, , Null, DK
+5b0cfb3b45bb0c0004277ef5, http://190.220.3.108/, -34.5875, -58.6725, Buenos Aires, Null, AR
+5b0cfb3c45bb0c0004277ef6, http://192.121.234.25/, 60.6, 15.6333, Falun, Null, SE
+5b0cfb3d45bb0c0004277ef7, http://192.167.19.29/axis-cgi/mjpg/video.cgi, 45.55, 10.25, Brescia, Null, IT
+5b0cfb3e45bb0c0004277ef8, http://192.171.163.3/axis-cgi/mjpg/video.cgi, 50.3761, -4.1632, Plymouth, Null, GB
+5b0cfb3f45bb0c0004277ef9, http://192.173.49.120/axis-cgi/mjpg/video.cgi, 35.9154, -94.97, Tahlequah, OK, USA
+5b0cfb4045bb0c0004277efa, http://192.185.88.80/, 29.8301, -95.4739, Houston, TX, USA
+5b0cfb4145bb0c0004277efb, http://192.203.224.2/axis-cgi/mjpg/video.cgi, 41.7653, -88.377, Aurora, IL, USA
+5b0cfb4245bb0c0004277efc, http://192.31.21.161/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfb4345bb0c0004277efd, http://193.104.160.47/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfb4445bb0c0004277efe, http://193.138.213.169/nphMotionJpeg?Resolution, 47, 8, , Null, CH
+5b0cfb4545bb0c0004277eff, http://193.170.198.254/axis-cgi/mjpg/video.cgi, 47.3, 11.0667, Telfs, Null, AT
+5b0cfb4645bb0c0004277f00, http://193.201.74.114/axis-cgi/mjpg/video.cgi, 62, 10, , Null, NO
+5b0cfb4745bb0c0004277f01, http://193.205.246.49/axis-cgi/mjpg/video.cgi, 42.8333, 12.8333, , Null, IT
+5b0cfb4845bb0c0004277f02, http://193.40.210.254/axis-cgi/mjpg/video.cgi, 59, 26, , Null, EE
+5b0cfb4945bb0c0004277f03, http://193.5.27.52/, 47.1333, 9.5167, Vaduz, Null, LI
+5b0cfb4a45bb0c0004277f04, http://193.60.94.57/axis-cgi/mjpg/video.cgi, 52.2, 0.1167, Cambridge, Null, GB
+5b0cfb4b45bb0c0004277f05, http://193.60.94.58/axis-cgi/mjpg/video.cgi, 52.2, 0.1167, Cambridge, Null, GB
+5b0cfb4c45bb0c0004277f06, http://193.72.68.48/cgi-bin/faststream.jpg, 47, 8, , Null, CH
+5b0cfb4d45bb0c0004277f07, http://194.103.218.15/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfb4e45bb0c0004277f08, http://194.107.20.5/, 47.3333, 13.3333, , Null, AT
+5b0cfb4f45bb0c0004277f09, http://194.117.188.138/axis-cgi/mjpg/video.cgi, 66.3833, 23.6667, Vertorne, Null, SE
+5b0cfb5045bb0c0004277f0a, http://194.137.195.250/, 64, 26, , Null, FI
+5b0cfb5145bb0c0004277f0b, http://194.153.36.13/axis-cgi/mjpg/video.cgi, 63.8333, 20.25, UME, Null, SE
+5b0cfb5245bb0c0004277f0c, http://194.17.153.12/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfb5345bb0c0004277f0d, http://194.208.34.75/, 47.3333, 13.3333, , Null, AT
+5b0cfb5445bb0c0004277f0e, http://194.218.96.90/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfb5545bb0c0004277f0f, http://194.22.238.31/axis-cgi/mjpg/video.cgi, 59.3333, 14.1167, Kristinehamn, Null, SE
+5b0cfb5645bb0c0004277f10, http://194.250.20.130/, 48.86, 2.35, , Null, FR
+5b0cfb5745bb0c0004277f11, http://194.252.49.4/cgi-bin/faststream.jpg, 64, 26, , Null, FI
+5b0cfb5845bb0c0004277f12, http://194.6.165.126/, 47, 8, , Null, CH
+5b0cfb5945bb0c0004277f13, http://194.81.60.11, 55.0375, -1.4681, Whitley Bay, Null, GB
+5b0cfb5a45bb0c0004277f14, http://194.89.9.86/axis-cgi/mjpg/video.cgi, 68.65, 27.6, Ivalo, Null, FI
+5b0cfb5b45bb0c0004277f15, http://194.94.31.202/, 50.7167, 10.45, Schmalkalden, Null, DE
+5b0cfb5c45bb0c0004277f16, http://195.113.207.238/axis-cgi/mjpg/video.cgi, 49.75, 15.5, , Null, CZ
+5b0cfb5d45bb0c0004277f17, http://195.12.20.166/, 51.5, -0.13, , Null, GB
+5b0cfb5e45bb0c0004277f18, http://195.18.181.53/, 69.65, 19.0167, Tromsdalen, Null, NO
+5b0cfb5f45bb0c0004277f19, http://195.191.130.7/axis-cgi/mjpg/video.cgi, 60, 100, , Null, RU
+5b0cfb6045bb0c0004277f1a, http://195.196.36.242/axis-cgi/mjpg/video.cgi, 67.2, 23.3667, Pajala, Null, SE
+5b0cfb6145bb0c0004277f1b, http://195.200.199.8/axis-cgi/mjpg/video.cgi, 52, 20, , Null, PL
+5b0cfb6245bb0c0004277f1c, http://195.221.212.68/axis-cgi/mjpg/video.cgi, 43.2854, 5.3761, Marseille, Null, FR
+5b0cfb6445bb0c0004277f1d, http://195.234.236.242/axis-cgi/mjpg/video.cgi, 43, 25, , Null, BG
+5b0cfb6545bb0c0004277f1e, http://195.29.188.11/cgi-bin/faststream.jpg, 45.1667, 15.5, , Null, HR
+5b0cfb6645bb0c0004277f1f, http://195.32.90.3/, 42.4667, 14.2167, Pescara, Null, IT
+5b0cfb6745bb0c0004277f20, http://195.67.26.73/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfb6845bb0c0004277f21, http://195.70.120.133/cgi-bin/faststream.jpg, 47.8, 13.0333, Salzburg, Null, AT
+5b0cfb6945bb0c0004277f22, http://195.84.98.146/cgi-bin/faststream.jpg, 62, 15, , Null, SE
+5b0cfb6a45bb0c0004277f23, http://198.110.57.13/MJPEG.CGI, 43.2486, -86.1383, Muskegon, MI, USA
+5b0cfb6b45bb0c0004277f24, http://198.182.205.201/axis-cgi/mjpg/video.cgi, 32.2524, -93.5759, Shreveport, LA, USA
+5b0cfb6c45bb0c0004277f25, http://198.182.241.98/nphMotionJpeg?Resolution, 37.3506, -94.6819, Pittsburg, KS, USA
+5b0cfb6d45bb0c0004277f26, http://198.209.146.44/axis-cgi/mjpg/video.cgi, 38.8817, -92.402, Columbia, MO, USA
+5b0cfb6e45bb0c0004277f27, http://198.59.187.81/nphMotionJpeg?Resolution, 35.15, -106.573, Albuquerque, NM, USA
+5b0cfb6f45bb0c0004277f28, http://198.82.159.136/axis-cgi/mjpg/video.cgi, 37.1791, -80.3515, Blacksburg, VA, USA
+5b0cfb7045bb0c0004277f29, http://198.92.142.140/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfb7145bb0c0004277f2a, http://199.79.254.179/axis-cgi/mjpg/video.cgi, 34.9926, -81.1787, Rock Hill, SC, USA
+5b0cfb7245bb0c0004277f2b, http://199.8.71.140/nphMotionJpeg?Resolution, 41.07, -85.0841, Fort Wayne, IN, USA
+5b0cfb7345bb0c0004277f2c, http://199.89.174.52/, 46.1107, -118.308, Walla Walla, WA, USA
+5b0cfb7445bb0c0004277f2d, http://200.36.58.250/axis-cgi/mjpg/video.cgi, 19.43, -99.13, , Null, MX
+5b0cfb7545bb0c0004277f2e, http://200.79.225.81/axis-cgi/mjpg/video.cgi, 21.1667, -86.8333, Cancn, Null, MX
+5b0cfb7645bb0c0004277f2f, http://202.210.189.104/, 35.69, 139.69, , Null, JP
+5b0cfb7745bb0c0004277f30, http://202.214.105.20/, 35.69, 139.69, , Null, JP
+5b0cfb7845bb0c0004277f31, http://202.215.166.140/, 34.8, 135.35, Takarazuka, Null, JP
+5b0cfb7945bb0c0004277f32, http://202.216.246.187/, 35.69, 139.69, , Null, JP
+5b0cfb7a45bb0c0004277f33, http://202.49.34.38/, -37.7833, 175.283, Hamilton, Null, NZ
+5b0cfb7b45bb0c0004277f34, http://203.141.204.88/, 35.69, 139.69, , Null, JP
+5b0cfb7c45bb0c0004277f35, http://203.179.254.102/cgi-bin/faststream.jpg, 35.69, 139.69, , Null, JP
+5b0cfb7d45bb0c0004277f36, http://204.10.252.150/axis-cgi/mjpg/video.cgi, 40.485, -106.832, Steamboat Springs, CO, USA
+5b0cfb7e45bb0c0004277f37, http://204.111.244.9/, 37.2707, -76.7075, Williamsburg, VA, USA
+5b0cfb7f45bb0c0004277f38, http://204.239.12.142/axis-cgi/mjpg/video.cgi, 49.3042, -123.065, North Vancouver, Null, CA
+5b0cfb8045bb0c0004277f39, http://206.171.67.11/axis-cgi/mjpg/video.cgi, 34.069, -118.35, Los Angeles, CA, USA
+5b0cfb8145bb0c0004277f3a, http://206.176.246.214/axis-cgi/mjpg/video.cgi, 38.6319, -122.897, Healdsburg, CA, USA
+5b0cfb8245bb0c0004277f3b, http://206.176.248.150/, 38.3928, -122.751, Santa Rosa, CA, USA
+5b0cfb8445bb0c0004277f3c, http://206.197.88.67/, 38, -97, , Null, USA
+5b0cfb8545bb0c0004277f3d, http://206.74.227.11/axis-cgi/mjpg/video.cgi, 33.9849, -81.025, Columbia, SC, USA
+5b0cfb8645bb0c0004277f3e, http://207.224.31.229/, 38, -97, , Null, USA
+5b0cfb8745bb0c0004277f3f, http://207.30.63.99/axis-cgi/mjpg/video.cgi, 28.3372, -82.2584, Saint Leo, FL, USA
+5b0cfb8845bb0c0004277f40, http://208.108.146.134/axis-cgi/mjpg/video.cgi, 41.6972, -81.1974, Painesville, OH, USA
+5b0cfb8945bb0c0004277f41, http://208.125.238.230/axis-cgi/mjpg/video.cgi, 43.0481, -76.1474, Syracuse, NY, USA
+5b0cfb8a45bb0c0004277f42, http://208.180.136.143/MJPEG.CGI, 37.6033, -81.54, Saulsville, WV, USA
+5b0cfb8b45bb0c0004277f43, http://208.53.254.139/axis-cgi/mjpg/video.cgi, 43.7183, -98.0262, Mitchell, SD, USA
+5b0cfb8c45bb0c0004277f44, http://208.67.229.99/axis-cgi/mjpg/video.cgi, 42.553, -83.4802, Walled Lake, MI, USA
+5b0cfb8d45bb0c0004277f45, http://208.78.189.12/axis-cgi/mjpg/video.cgi, 26.3711, -81.7733, Bonita Springs, FL, USA
+5b0cfb8e45bb0c0004277f46, http://208.82.90.13/, 43.8, -79.53, Concord, Null, CA
+5b0cfb8e45bb0c0004277f47, http://208.83.72.218/axis-cgi/mjpg/video.cgi, 26.142, -81.7948, Naples, FL, USA
+5b0cfb8f45bb0c0004277f48, http://208.86.36.154/nphMotionJpeg?Resolution, 37.9617, -121.261, Stockton, CA, USA
+5b0cfb9045bb0c0004277f49, http://208.88.170.243/now.jpg?snap=spush, 36.4642, -87.3797, Clarksville, TN, USA
+5b0cfb9145bb0c0004277f4a, http://209.105.184.104/, 41.5205, -80.8008, Orwell, OH, USA
+5b0cfb9245bb0c0004277f4b, http://209.170.66.110/axis-cgi/mjpg/video.cgi, 59.25, 18.0833, Farsta, Null, SE
+5b0cfb9345bb0c0004277f4c, http://210.150.183.66/, 35.69, 139.69, , Null, JP
+5b0cfb9445bb0c0004277f4d, http://210.155.223.251/nphMotionJpeg?Resolution, 35.69, 139.69, , Null, JP
+5b0cfb9545bb0c0004277f4e, http://210.157.229.36/, 35.69, 139.69, , Null, JP
+5b0cfb9645bb0c0004277f4f, http://210.167.182.127/axis-cgi/mjpg/video.cgi, 35.69, 139.69, , Null, JP
+5b0cfb9745bb0c0004277f50, http://210.237.44.116/, 35.69, 139.69, , Null, JP
+5b0cfb9845bb0c0004277f51, http://211.7.242.249/axis-cgi/mjpg/video.cgi, 35.69, 139.69, , Null, JP
+5b0cfb9945bb0c0004277f52, http://211.79.137.216/, 25.0392, 121.525, Taipei, Null, TW
+5b0cfb9a45bb0c0004277f53, http://212.103.68.24/, 47, 8, , Null, CH
+5b0cfb9b45bb0c0004277f54, http://212.121.119.125/, 52.5, 5.75, , Null, NL
+5b0cfb9c45bb0c0004277f55, http://212.142.228.68/axis-cgi/mjpg/video.cgi, 28.0916, -17.1133, San Sebastian, Null, ES
+5b0cfb9d45bb0c0004277f56, http://212.170.62.164/axis-cgi/mjpg/video.cgi, 40.45, -3.6892, Madrid, Null, ES
+5b0cfb9e45bb0c0004277f57, http://212.234.116.85/axis-cgi/mjpg/video.cgi, 48.3908, -4.4862, Brest, Null, FR
+5b0cfb9f45bb0c0004277f58, http://212.42.54.137/axis-cgi/mjpg/video.cgi, 60, 100, , Null, RU
+5b0cfba045bb0c0004277f59, http://212.43.123.243/, 42.45, 14.1333, Spoltore, Null, IT
+5b0cfba045bb0c0004277f5a, http://212.64.161.21/axis-cgi/mjpg/video.cgi, 40, -4, , Null, ES
+5b0cfba145bb0c0004277f5b, http://212.6.91.123/axis-cgi/mjpg/video.cgi, 52.8475, 8.0462, Cloppenburg, Null, DE
+5b0cfba245bb0c0004277f5c, http://213.122.163.83/cgi-bin/faststream.jpg, 51.5, -0.13, , Null, GB
+5b0cfba345bb0c0004277f5d, http://213.125.96.204/axis-cgi/mjpg/video.cgi, 52.4607, 4.6483, Velsen, Null, NL
+5b0cfba445bb0c0004277f5e, http://213.128.138.236/, 53.55, 10, Hamburg, Null, DE
+5b0cfba545bb0c0004277f5f, http://213.135.11.51/cgi-bin/faststream.jpg, 51, 9, , Null, DE
+5b0cfba645bb0c0004277f60, http://213.184.47.196/axis-cgi/mjpg/video.cgi, 59, 26, , Null, EE
+5b0cfba745bb0c0004277f61, http://213.195.168.134/, 51.7611, 18.091, Kalisz, Null, PL
+5b0cfba845bb0c0004277f62, http://213.196.182.244/axis-cgi/mjpg/video.cgi, 47.4942, 9.3425, Haggenschwil, Null, CH
+5b0cfba945bb0c0004277f63, http://213.209.86.72/, 53.5869, 10.1175, Hamburg, Null, DE
+5b0cfbaa45bb0c0004277f64, http://213.209.86.81, 53.5869, 10.1175, Hamburg, Null, DE
+5b0cfbab45bb0c0004277f65, http://213.211.42.237/axis-cgi/mjpg/video.cgi, 49.75, 15.5, , Null, CZ
+5b0cfbac45bb0c0004277f66, http://213.213.180.125/axis-cgi/mjpg/video.cgi, 46.9486, 7.6204, Walkringen, Null, CH
+5b0cfbac45bb0c0004277f67, http://213.255.188.107/cgi-bin/faststream.jpg, 64, 26, , Null, FI
+5b0cfbad45bb0c0004277f68, http://213.3.16.181/, 47, 8, , Null, CH
+5b0cfbae45bb0c0004277f69, http://2.139.43.27, 28.4667, -16.4, Tacoronte, Null, ES
+5b0cfbaf45bb0c0004277f6a, http://213.96.108.142/axis-cgi/mjpg/video.cgi, 40.5747, -3.9253, Torrelodones, Null, ES
+5b0cfbb045bb0c0004277f6b, http://216.119.89.234/, 33.7248, -112.089, Phoenix, AZ, USA
+5b0cfbb145bb0c0004277f6c, http://216.123.238.207/axis-cgi/mjpg/video.cgi, 53.55, -113.5, Edmonton, Null, CA
+5b0cfbb245bb0c0004277f6d, http://216.231.169.59/axis-cgi/mjpg/video.cgi, 30.388, -87.7199, Foley, AL, USA
+5b0cfbb345bb0c0004277f6e, http://216.243.103.220/axis-cgi/mjpg/video.cgi, 34.9555, -105.996, Moriarty, NM, USA
+5b0cfbb445bb0c0004277f6f, http://216.249.225.131/, 43.7887, -99.314, Chamberlain, SD, USA
+5b0cfbb545bb0c0004277f70, http://216.249.236.253/img/mjpeg.jpg, 43.7473, -96.5722, Garretson, SD, USA
+5b0cfbb645bb0c0004277f71, http://216.250.38.18/nphMotionJpeg?Resolution, 40.4363, -111.195, Heber City, UT, USA
+5b0cfbb745bb0c0004277f72, http://216.250.38.68/, 40.4363, -111.195, Heber City, UT, USA
+5b0cfbb845bb0c0004277f73, http://216.255.120.24/axis-cgi/mjpg/video.cgi, 40.6501, -73.9496, Brooklyn, NY, USA
+5b0cfbb945bb0c0004277f74, http://216.255.49.249/axis-cgi/mjpg/video.cgi, 40.5767, -84.1399, Wapakoneta, OH, USA
+5b0cfbba45bb0c0004277f75, http://216.37.255.15/axis-cgi/mjpg/video.cgi, 41.2808, -75.8962, Kingston, PA, USA
+5b0cfbbb45bb0c0004277f76, http://216.47.138.231/img/mjpeg.jpg, 41.8471, -87.6248, Chicago, IL, USA
+5b0cfbbc45bb0c0004277f77, http://216.51.148.14/axis-cgi/mjpg/video.cgi, 42.0542, -92.9305, Marshalltown, IA, USA
+5b0cfbbd45bb0c0004277f78, http://216.51.224.221/nphMotionJpeg?Resolution, 43.4133, -92.9573, Saint Ansgar, IA, USA
+5b0cfbbe45bb0c0004277f79, http://216.54.25.117/axis-cgi/mjpg/video.cgi, 37.4348, -77.0559, Providence Forge, VA, USA
+5b0cfbbf45bb0c0004277f7a, http://216.54.25.121/axis-cgi/mjpg/video.cgi, 37.4348, -77.0559, Providence Forge, VA, USA
+5b0cfbc045bb0c0004277f7b, http://216.54.27.7/axis-cgi/mjpg/video.cgi, 36.819, -76.2749, Chesapeake, VA, USA
+5b0cfbc145bb0c0004277f7c, http://216.54.29.198/axis-cgi/mjpg/video.cgi, 36.8468, -76.2852, Norfolk, VA, USA
+5b0cfbc245bb0c0004277f7d, http://216.56.47.7/MJPEG.CGI, 43.0611, -89.4067, Madison, WI, USA
+5b0cfbc345bb0c0004277f7e, http://216.67.98.12/axis-cgi/mjpg/video.cgi, 61.2181, -149.9, Anchorage, AK, USA
+5b0cfbc445bb0c0004277f7f, http://216.8.159.21/axis-cgi/mjpg/video.cgi, 42.3314, -83.0457, Detroit, MI, USA
+5b0cfbc545bb0c0004277f80, http://217.123.210.12/axis-cgi/mjpg/video.cgi, 52.5, 5.75, , Null, NL
+5b0cfbc645bb0c0004277f81, http://217.128.151.33/axis-cgi/mjpg/video.cgi, 48.86, 2.35, , Null, FR
+5b0cfbc745bb0c0004277f82, http://217.171.208.123/axis-cgi/mjpg/video.cgi, 65, -18, , Null, IS
+5b0cfbc845bb0c0004277f83, http://217.193.154.122/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfbc945bb0c0004277f84, http://217.196.77.178/cgi-bin/faststream.jpg, 48.2, 16.3667, Vienna, Null, AT
+5b0cfbca45bb0c0004277f85, http://217.197.122.134/axis-cgi/mjpg/video.cgi, 60, 100, , Null, RU
+5b0cfbcb45bb0c0004277f86, http://217.24.48.16/cgi-bin/faststream.jpg, 51, 9, , Null, DE
+5b0cfbcb45bb0c0004277f87, http://217.24.53.18/cgi-bin/faststream.jpg, 51, 9, , Null, DE
+5b0cfbcc45bb0c0004277f88, http://217.65.97.118/, 47, 20, , Null, HU
+5b0cfbcd45bb0c0004277f89, http://217.78.137.43/axis-cgi/mjpg/video.cgi, 51.45, 7.0167, Essen, Null, DE
+5b0cfbce45bb0c0004277f8a, http://217.8.147.22/axis-cgi/mjpg/video.cgi, 62, 10, , Null, NO
+5b0cfbcf45bb0c0004277f8b, http://217.86.132.145/axis-cgi/mjpg/video.cgi, 51, 9, , Null, DE
+5b0cfbd045bb0c0004277f8c, http://217.86.194.230, 51, 9, , Null, DE
+5b0cfbd145bb0c0004277f8d, http://217.92.94.29/cgi-bin/faststream.jpg, 48.5811, 8.0098, Renchen, Null, DE
+5b0cfbd245bb0c0004277f8e, http://218.216.63.248/nphMotionJpeg?Resolution, 35.69, 139.69, , Null, JP
+5b0cfbd345bb0c0004277f8f, http://218.219.210.174/axis-cgi/mjpg/video.cgi, 35.7167, 140.65, Asahi, Null, JP
+5b0cfbd445bb0c0004277f90, http://218.224.118.141/, 35.69, 139.69, , Null, JP
+5b0cfbd545bb0c0004277f91, http://218.227.159.88/, 35.69, 139.69, , Null, JP
+5b0cfbd645bb0c0004277f92, http://218.44.129.125/nphMotionJpeg?Resolution, 35.69, 139.69, , Null, JP
+5b0cfbd745bb0c0004277f93, http://218.44.75.94/, 35.69, 139.69, , Null, JP
+5b0cfbd845bb0c0004277f94, http://219.118.247.53/axis-cgi/mjpg/video.cgi, 35.69, 139.69, , Null, JP
+5b0cfbd945bb0c0004277f95, http://219.163.122.253/, 35.685, 139.751, Tokyo, Null, JP
+5b0cfbda45bb0c0004277f96, http://219.96.165.46/, 35.69, 139.69, , Null, JP
+5b0cfbdb45bb0c0004277f97, http://219.99.222.204/, 35.69, 139.69, , Null, JP
+5b0cfbdc45bb0c0004277f98, http://219.99.222.205/, 35.69, 139.69, , Null, JP
+5b0cfbdd45bb0c0004277f99, http://220.109.217.98/, 35.685, 139.751, Tokyo, Null, JP
+5b0cfbde45bb0c0004277f9a, http://220.215.193.91/, 35.4478, 139.643, Yokohama, Null, JP
+5b0cfbdf45bb0c0004277f9b, http://220.221.146.1/nphMotionJpeg?Resolution, 35.69, 139.69, , Null, JP
+5b0cfbe045bb0c0004277f9c, http://220.254.124.250/nphMotionJpeg?Resolution, 35.69, 139.69, , Null, JP
+5b0cfbe145bb0c0004277f9d, http://220.96.208.132/, 35.685, 139.751, Tokyo, Null, JP
+5b0cfbe245bb0c0004277f9e, http://221.255.120.171/axis-cgi/mjpg/video.cgi, 35.685, 139.751, Tokyo, Null, JP
+5b0cfbe345bb0c0004277f9f, http://24.104.138.100/, 38.5771, -122.441, Angwin, CA, USA
+5b0cfbe445bb0c0004277fa0, http://24.123.188.36/, 35.671, -80.4742, Salisbury, NC, USA
+5b0cfbe545bb0c0004277fa1, http://24.159.162.5/axis-cgi/mjpg/video.cgi, 36.3235, -75.9304, Aydlett, NC, USA
+5b0cfbe645bb0c0004277fa2, http://24.159.162.7/axis-cgi/mjpg/video.cgi, 36.3235, -75.9304, Aydlett, NC, USA
+5b0cfbe745bb0c0004277fa3, http://24.180.249.249/axis-cgi/mjpg/video.cgi, 43.7053, -84.2377, Midland, MI, USA
+5b0cfbe845bb0c0004277fa4, http://24.50.152.104/img/mjpeg.jpg, 46.171, -88.7371, Iron River, MI, USA
+5b0cfbe945bb0c0004277fa5, http://41.178.137.252/axis-cgi/mjpg/video.cgi, 27, 30, , Null, EG
+5b0cfbea45bb0c0004277fa6, http://46.14.113.51, 47.3667, 8.5644, Zurich, Null, CH
+5b0cfbeb45bb0c0004277fa7, http://46.227.192.128/axis-cgi/mjpg/video.cgi, 63.2833, 9.1, Kyrksterra, Null, NO
+5b0cfbec45bb0c0004277fa8, http://50.192.238.53/axis-cgi/mjpg/video.cgi, 40.2562, -74.7581, Trenton, NJ, USA
+5b0cfbed45bb0c0004277fa9, http://50.21.227.9/axis-cgi/mjpg/video.cgi, 50.7, -119.283, Salmon Arm, Null, CA
+5b0cfbee45bb0c0004277faa, http://50.87.111.119/, 40.2181, -111.613, Provo, UT, USA
+5b0cfbef45bb0c0004277fab, http://60.45.63.26/nphMotionJpeg?Resolution, 35.685, 139.751, Tokyo, Null, JP
+5b0cfbf045bb0c0004277fac, http://61.119.26.242/, 35.69, 139.69, , Null, JP
+5b0cfbf145bb0c0004277fad, http://61.206.120.208/nphMotionJpeg?Resolution, 35.685, 139.751, Tokyo, Null, JP
+5b0cfbf245bb0c0004277fae, http://61.60.112.230/axis-cgi/mjpg/video.cgi, 25.0392, 121.525, Taipei, Null, TW
+5b0cfbf345bb0c0004277faf, http://61.60.92.56/, 25.0392, 121.525, Taipei, Null, TW
+5b0cfbf445bb0c0004277fb0, http://61.7.96.32/, 33.2493, 130.299, Saga, Null, JP
+5b0cfbf545bb0c0004277fb1, http://62.116.22.167/cgi-bin/faststream.jpg, 47.3333, 13.3333, , Null, AT
+5b0cfbf545bb0c0004277fb2, http://62.145.183.146/axis-cgi/mjpg/video.cgi, 64, 26, , Null, FI
+5b0cfbf645bb0c0004277fb3, http://62.206.10.222/axis-cgi/mjpg/video.cgi, 51, 9, , Null, DE
+5b0cfbf745bb0c0004277fb4, http://62.254.171.181/axis-cgi/mjpg/video.cgi, 53.4333, -2.15, Reddish, Null, GB
+5b0cfbf845bb0c0004277fb5, http://62.28.103.70/axis-cgi/mjpg/video.cgi, 39.5, -8, , Null, PT
+5b0cfbfa45bb0c0004277fb6, http://62.44.223.185/, 60.9667, 25.6667, Lahti, Null, FI
+5b0cfbfb45bb0c0004277fb7, http://62.49.17.87, 51.5, -0.13, , Null, GB
+5b0cfbfd45bb0c0004277fb8, http://62.99.76.193/axis-cgi/mjpg/video.cgi, 43.2609, -2.9388, Bilbao, Null, ES
+5b0cfbfe45bb0c0004277fb9, http://63.142.130.2/axis-cgi/mjpg/video.cgi, 35.3619, -83.2078, Sylva, NC, USA
+5b0cfbff45bb0c0004277fba, http://63.198.242.120/, 34.0599, -118.31, Los Angeles, CA, USA
+5b0cfc0045bb0c0004277fbb, http://63.247.190.85/nphMotionJpeg?Resolution, 40.8584, -74.1638, Clifton, NJ, USA
+5b0cfc0145bb0c0004277fbc, http://64.181.39.104/axis-cgi/mjpg/video.cgi, 38.1103, -78.9073, Waynesboro, VA, USA
+5b0cfc0245bb0c0004277fbd, http://64.255.238.195/, 45.6023, -122.517, Vancouver, WA, USA
+5b0cfc0345bb0c0004277fbe, http://64.50.180.138/, 33.8502, -117.791, Anaheim, CA, USA
+5b0cfc0445bb0c0004277fbf, http://64.57.178.85/axis-cgi/mjpg/video.cgi, 42.4072, -76.5159, Ithaca, NY, USA
+5b0cfc0545bb0c0004277fc0, http://64.79.49.120/axis-cgi/mjpg/video.cgi, 39.1796, -77.7326, Purcellville, VA, USA
+5b0cfc0645bb0c0004277fc1, http://65.121.113.114/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfc0645bb0c0004277fc2, http://66.184.211.231/axis-cgi/mjpg/video.cgi, 28.0222, -81.7329, , FL, USA
+5b0cfc0745bb0c0004277fc3, http://66.188.23.142/axis-cgi/mjpg/video.cgi, 43.5824, -84.3578, Midland, MI, USA
+5b0cfc0845bb0c0004277fc4, http://66.209.252.250, 33.5151, -101.676, Ransom Canyon, TX, USA
+5b0cfc0945bb0c0004277fc5, http://66.232.88.122/MJPEG.CGI, 44.4729, -116.917, Weiser, ID, USA
+5b0cfc0a45bb0c0004277fc6, http://66.248.128.7/axis-cgi/mjpg/video.cgi, 36.0714, -79.7679, Greensboro, NC, USA
+5b0cfc0b45bb0c0004277fc7, http://66.35.137.234/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfc0c45bb0c0004277fc8, http://66.35.137.235/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfc0d45bb0c0004277fc9, http://66.64.192.181/axis-cgi/mjpg/video.cgi, 35.9724, -84.2904, Oak Ridge, TN, USA
+5b0cfc0e45bb0c0004277fca, http://66.64.192.183/axis-cgi/mjpg/video.cgi, 35.9724, -84.2904, Oak Ridge, TN, USA
+5b0cfc0f45bb0c0004277fcb, http://66.76.121.4/axis-cgi/mjpg/video.cgi, 34.6438, -92.9788, Hot Springs Village, AR, USA
+5b0cfc1045bb0c0004277fcc, http://66.76.70.70/axis-cgi/mjpg/video.cgi, 32.9157, -95.2805, Winnsboro, TX, USA
+5b0cfc1145bb0c0004277fcd, http://67.186.251.70/axis-cgi/mjpg/video.cgi, 40.7995, -111.828, Salt Lake City, UT, USA
+5b0cfc1245bb0c0004277fce, http://67.227.196.234/, 42.7257, -84.636, Lansing, MI, USA
+5b0cfc1345bb0c0004277fcf, http://67.42.115.85/axis-cgi/mjpg/video.cgi, 35.2334, -106.664, Rio Rancho, NM, USA
+5b0cfc1345bb0c0004277fd0, http://67.53.162.163/, 39.0997, -94.5786, Kansas City, MO, USA
+5b0cfc1545bb0c0004277fd1, http://67.58.125.209/axis-cgi/mjpg/video.cgi, 35.1698, -82.7897, Brevard, NC, USA
+5b0cfc1645bb0c0004277fd2, http://69.178.223.220, 46.8543, -96.8284, Fargo, ND, USA
+5b0cfc1745bb0c0004277fd3, http://69.18.18.80/axis-cgi/mjpg/video.cgi, 40.809, -92.121, Douds, IA, USA
+5b0cfc1845bb0c0004277fd4, http://69.2.220.133/, 35.2271, -80.8431, Charlotte, NC, USA
+5b0cfc1945bb0c0004277fd5, http://69.43.65.18/, 42.3451, -71.0993, Boston, MA, USA
+5b0cfc1945bb0c0004277fd6, http://69.66.204.149/axis-cgi/mjpg/video.cgi, 41.6695, -91.5133, Iowa City, IA, USA
+5b0cfc1a45bb0c0004277fd7, http://70.164.26.132/, 38, -97, , Null, USA
+5b0cfc1c45bb0c0004277fd8, http://70.167.229.2/, 30.3909, -86.3161, Miramar Beach, FL, USA
+5b0cfc1d45bb0c0004277fd9, http://70.91.185.187/axis-cgi/mjpg/video.cgi, 45.5234, -122.676, Portland, OR, USA
+5b0cfc1d45bb0c0004277fda, http://71.189.93.242/axis-cgi/mjpg/video.cgi, 33.7877, -117.974, Garden Grove, CA, USA
+5b0cfc1e45bb0c0004277fdb, http://71.204.243.221/axis-cgi/mjpg/video.cgi, 32.7081, -79.9438, Charleston, SC, USA
+5b0cfc1f45bb0c0004277fdc, http://71.244.101.102, 40.2489, -75.1498, Warrington, PA, USA
+5b0cfc2045bb0c0004277fdd, http://71.36.245.80/, 38, -97, , Null, USA
+5b0cfc2145bb0c0004277fde, http://72.165.31.230/, 39.8083, -104.934, Commerce City, CO, USA
+5b0cfc2245bb0c0004277fdf, http://72.236.125.34/nphMotionJpeg?Resolution, 38, -97, , Null, USA
+5b0cfc2345bb0c0004277fe0, http://72.36.1.86, 44.7777, -106.839, Sheridan, WY, USA
+5b0cfc2445bb0c0004277fe1, http://72.36.21.200/, 44.0205, -108.231, Worland, WY, USA
+5b0cfc2545bb0c0004277fe2, http://72.55.9.132/, 34.6392, -120.458, Lompoc, CA, USA
+5b0cfc2645bb0c0004277fe3, http://74.208.29.236/, 40.0548, -75.4083, Wayne, PA, USA
+5b0cfc2745bb0c0004277fe4, http://74.228.46.36/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfc2845bb0c0004277fe5, http://74.244.138.7, 38, -97, , Null, USA
+5b0cfc2945bb0c0004277fe6, http://74.40.218.253/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfc2a45bb0c0004277fe7, http://74.94.55.182/axis-cgi/mjpg/video.cgi, 39.6363, -74.7633, Hammonton, NJ, USA
+5b0cfc2b45bb0c0004277fe8, http://75.151.36.105/axis-cgi/mjpg/video.cgi, 26.6217, -81.8406, Fort Myers, FL, USA
+5b0cfc2b45bb0c0004277fe9, http://76.10.79.246/axis-cgi/mjpg/video.cgi, 48.1436, -98.8872, Devils Lake, ND, USA
+5b0cfc2c45bb0c0004277fea, http://76.10.86.11/axis-cgi/mjpg/video.cgi, 48.1436, -98.8872, Devils Lake, ND, USA
+5b0cfc2d45bb0c0004277feb, http://77.106.164.66/axis-cgi/mjpg/video.cgi, 62.1167, 10.65, Alvdal, Null, NO
+5b0cfc2e45bb0c0004277fec, http://77.222.138.106/, 49, 32, , Null, UA
+5b0cfc2f45bb0c0004277fed, http://77.48.31.68/axis-cgi/mjpg/video.cgi, 49.3996, 17.6742, Bystrice Pod Hostynem, Null, CZ
+5b0cfc3045bb0c0004277fee, http://77.72.56.163/axis-cgi/mjpg/video.cgi, 64, 26, , Null, FI
+5b0cfc3145bb0c0004277fef, http://78.134.4.30/axis-cgi/mjpg/video.cgi, 42.8333, 12.8333, , Null, IT
+5b0cfc3245bb0c0004277ff0, http://78.85.3.144/axis-cgi/mjpg/video.cgi, 60, 100, , Null, RU
+5b0cfc3345bb0c0004277ff1, http://79.148.216.143/, 38.997, -1.8545, Albacete, Null, ES
+5b0cfc3445bb0c0004277ff2, http://79.148.230.126/axis-cgi/mjpg/video.cgi, 42.1387, -0.4094, Huesca, Null, ES
+5b0cfc3545bb0c0004277ff3, http://79.207.29.236/, 47.9, 11.1833, PHL, Null, DE
+5b0cfc3645bb0c0004277ff4, http://79.29.97.140/, 44.2667, 9.4, Sestri Levante, Null, IT
+5b0cfc3745bb0c0004277ff5, http://80.118.5.197/axis-cgi/mjpg/video.cgi, 48.86, 2.35, , Null, FR
+5b0cfc3845bb0c0004277ff6, http://80.120.111.82, 47.1831, 9.7, Nenzing, Null, AT
+5b0cfc3945bb0c0004277ff7, http://80.122.12.94/axis-cgi/mjpg/video.cgi, 47.3333, 13.3333, , Null, AT
+5b0cfc3a45bb0c0004277ff8, http://80.122.26.250/cgi-bin/faststream.jpg, 47.3333, 13.3333, , Null, AT
+5b0cfc3b45bb0c0004277ff9, http://80.13.101.90/axis-cgi/mjpg/video.cgi, 48.86, 2.35, , Null, FR
+5b0cfc3c45bb0c0004277ffa, http://80.14.17.93/axis-cgi/mjpg/video.cgi, 48.86, 2.35, , Null, FR
+5b0cfc3d45bb0c0004277ffb, http://80.143.94.138, 50.8667, 6.3667, Inden, Null, DE
+5b0cfc3e45bb0c0004277ffc, http://80.150.128.5/axis-cgi/mjpg/video.cgi, 51, 9, , Null, DE
+5b0cfc3f45bb0c0004277ffd, http://80.188.222.135/axis-cgi/mjpg/video.cgi, 49.75, 15.5, , Null, CZ
+5b0cfc3f45bb0c0004277ffe, http://80.19.143.197/axis-cgi/mjpg/video.cgi, 42.8333, 12.8333, , Null, IT
+5b0cfc4045bb0c0004277fff, http://80.202.222.241/axis-cgi/mjpg/video.cgi, 63.7333, 9.7, Opphaug, Null, NO
+5b0cfc4145bb0c0004278000, http://80.250.121.198/cgi-bin/faststream.jpg, 58.3661, 26.7361, Tartu, Null, EE
+5b0cfc4245bb0c0004278001, http://80.25.152.115/axis-cgi/mjpg/video.cgi, 43.3333, -8.3167, Oleiros, Null, ES
+5b0cfc4345bb0c0004278002, http://80.254.173.253/axis-cgi/mjpg/video.cgi, 46.9458, 7.4713, Bern, Null, CH
+5b0cfc4445bb0c0004278003, http://80.26.69.138/axis-cgi/mjpg/video.cgi, 40, -4, , Null, ES
+5b0cfc4545bb0c0004278004, http://80.36.124.72/axis-cgi/mjpg/video.cgi, 40, -4, , Null, ES
+5b0cfc4645bb0c0004278005, http://80.39.113.72/axis-cgi/mjpg/video.cgi, 41.3984, 2.1741, Barcelona, Null, ES
+5b0cfc4745bb0c0004278006, http://80.67.28.148/, 51, 9, , Null, DE
+5b0cfc4845bb0c0004278007, http://80.82.144.83/axis-cgi/mjpg/video.cgi, 49.6804, 18.6653, Trinec, Null, CZ
+5b0cfc4945bb0c0004278008, http://81.149.155.148/axis-cgi/mjpg/video.cgi, 51.5, -0.13, , Null, GB
+5b0cfc4a45bb0c0004278009, http://81.167.235.97/axis-cgi/mjpg/video.cgi, 59.0167, 6.05, Jrpeland, Null, NO
+5b0cfc4b45bb0c000427800a, http://81.170.248.13/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfc4c45bb0c000427800b, http://81.201.204.198/axis-cgi/mjpg/video.cgi, 46.3178, 7.9881, Brig, Null, CH
+5b0cfc4d45bb0c000427800c, http://81.221.74.92, 47, 8, , Null, CH
+5b0cfc4e45bb0c000427800d, http://81.26.28.141/axis-cgi/mjpg/video.cgi, 50.8333, 20.6667, Kielce, Null, PL
+5b0cfc4f45bb0c000427800e, http://81.8.152.68/axis-cgi/mjpg/video.cgi, 65.0833, 17.1667, Stensele, Null, SE
+5b0cfc5045bb0c000427800f, http://81.8.163.101/axis-cgi/mjpg/video.cgi, 64.6167, 16.65, Vilhelmina, Null, SE
+5b0cfb8f45bb0c0004277f48, http://208.86.36.154/nphMotionJpeg?Resolution, 37.9617, -121.261, Stockton, CA, USA
+5b0cfb9045bb0c0004277f49, http://208.88.170.243/now.jpg?snap=spush, 36.4642, -87.3797, Clarksville, TN, USA
+5b0cfb9145bb0c0004277f4a, http://209.105.184.104/, 41.5205, -80.8008, Orwell, OH, USA
+5b0cfb9245bb0c0004277f4b, http://209.170.66.110/axis-cgi/mjpg/video.cgi, 59.25, 18.0833, Farsta, Null, SE
+5b0cfb9345bb0c0004277f4c, http://210.150.183.66/, 35.69, 139.69, , Null, JP
+5b0cfb9445bb0c0004277f4d, http://210.155.223.251/nphMotionJpeg?Resolution, 35.69, 139.69, , Null, JP
+5b0cfb9545bb0c0004277f4e, http://210.157.229.36/, 35.69, 139.69, , Null, JP
+5b0cfb9645bb0c0004277f4f, http://210.167.182.127/axis-cgi/mjpg/video.cgi, 35.69, 139.69, , Null, JP
+5b0cfb9745bb0c0004277f50, http://210.237.44.116/, 35.69, 139.69, , Null, JP
+5b0cfb9845bb0c0004277f51, http://211.7.242.249/axis-cgi/mjpg/video.cgi, 35.69, 139.69, , Null, JP
+5b0cfb9945bb0c0004277f52, http://211.79.137.216/, 25.0392, 121.525, Taipei, Null, TW
+5b0cfb9a45bb0c0004277f53, http://212.103.68.24/, 47, 8, , Null, CH
+5b0cfb9b45bb0c0004277f54, http://212.121.119.125/, 52.5, 5.75, , Null, NL
+5b0cfb9c45bb0c0004277f55, http://212.142.228.68/axis-cgi/mjpg/video.cgi, 28.0916, -17.1133, San Sebastian, Null, ES
+5b0cfb9d45bb0c0004277f56, http://212.170.62.164/axis-cgi/mjpg/video.cgi, 40.45, -3.6892, Madrid, Null, ES
+5b0cfb9e45bb0c0004277f57, http://212.234.116.85/axis-cgi/mjpg/video.cgi, 48.3908, -4.4862, Brest, Null, FR
+5b0cfb9f45bb0c0004277f58, http://212.42.54.137/axis-cgi/mjpg/video.cgi, 60, 100, , Null, RU
+5b0cfba045bb0c0004277f59, http://212.43.123.243/, 42.45, 14.1333, Spoltore, Null, IT
+5b0cfba045bb0c0004277f5a, http://212.64.161.21/axis-cgi/mjpg/video.cgi, 40, -4, , Null, ES
+5b0cfba145bb0c0004277f5b, http://212.6.91.123/axis-cgi/mjpg/video.cgi, 52.8475, 8.0462, Cloppenburg, Null, DE
+5b0cfba245bb0c0004277f5c, http://213.122.163.83/cgi-bin/faststream.jpg, 51.5, -0.13, , Null, GB
+5b0cfba345bb0c0004277f5d, http://213.125.96.204/axis-cgi/mjpg/video.cgi, 52.4607, 4.6483, Velsen, Null, NL
+5b0cfba445bb0c0004277f5e, http://213.128.138.236/, 53.55, 10, Hamburg, Null, DE
+5b0cfba545bb0c0004277f5f, http://213.135.11.51/cgi-bin/faststream.jpg, 51, 9, , Null, DE
+5b0cfba645bb0c0004277f60, http://213.184.47.196/axis-cgi/mjpg/video.cgi, 59, 26, , Null, EE
+5b0cfba745bb0c0004277f61, http://213.195.168.134/, 51.7611, 18.091, Kalisz, Null, PL
+5b0cfba845bb0c0004277f62, http://213.196.182.244/axis-cgi/mjpg/video.cgi, 47.4942, 9.3425, Haggenschwil, Null, CH
+5b0cfba945bb0c0004277f63, http://213.209.86.72/, 53.5869, 10.1175, Hamburg, Null, DE
+5b0cfbaa45bb0c0004277f64, http://213.209.86.81, 53.5869, 10.1175, Hamburg, Null, DE
+5b0cfbab45bb0c0004277f65, http://213.211.42.237/axis-cgi/mjpg/video.cgi, 49.75, 15.5, , Null, CZ
+5b0cfbac45bb0c0004277f66, http://213.213.180.125/axis-cgi/mjpg/video.cgi, 46.9486, 7.6204, Walkringen, Null, CH
+5b0cfbac45bb0c0004277f67, http://213.255.188.107/cgi-bin/faststream.jpg, 64, 26, , Null, FI
+5b0cfbad45bb0c0004277f68, http://213.3.16.181/, 47, 8, , Null, CH
+5b0cfbae45bb0c0004277f69, http://2.139.43.27, 28.4667, -16.4, Tacoronte, Null, ES
+5b0cfbaf45bb0c0004277f6a, http://213.96.108.142/axis-cgi/mjpg/video.cgi, 40.5747, -3.9253, Torrelodones, Null, ES
+5b0cfbb045bb0c0004277f6b, http://216.119.89.234/, 33.7248, -112.089, Phoenix, AZ, USA
+5b0cfbb145bb0c0004277f6c, http://216.123.238.207/axis-cgi/mjpg/video.cgi, 53.55, -113.5, Edmonton, Null, CA
+5b0cfbb245bb0c0004277f6d, http://216.231.169.59/axis-cgi/mjpg/video.cgi, 30.388, -87.7199, Foley, AL, USA
+5b0cfbb345bb0c0004277f6e, http://216.243.103.220/axis-cgi/mjpg/video.cgi, 34.9555, -105.996, Moriarty, NM, USA
+5b0cfbb445bb0c0004277f6f, http://216.249.225.131/, 43.7887, -99.314, Chamberlain, SD, USA
+5b0cfbb545bb0c0004277f70, http://216.249.236.253/img/mjpeg.jpg, 43.7473, -96.5722, Garretson, SD, USA
+5b0cfbb645bb0c0004277f71, http://216.250.38.18/nphMotionJpeg?Resolution, 40.4363, -111.195, Heber City, UT, USA
+5b0cfbb745bb0c0004277f72, http://216.250.38.68/, 40.4363, -111.195, Heber City, UT, USA
+5b0cfbb845bb0c0004277f73, http://216.255.120.24/axis-cgi/mjpg/video.cgi, 40.6501, -73.9496, Brooklyn, NY, USA
+5b0cfbb945bb0c0004277f74, http://216.255.49.249/axis-cgi/mjpg/video.cgi, 40.5767, -84.1399, Wapakoneta, OH, USA
+5b0cfbba45bb0c0004277f75, http://216.37.255.15/axis-cgi/mjpg/video.cgi, 41.2808, -75.8962, Kingston, PA, USA
+5b0cfbbb45bb0c0004277f76, http://216.47.138.231/img/mjpeg.jpg, 41.8471, -87.6248, Chicago, IL, USA
+5b0cfbbc45bb0c0004277f77, http://216.51.148.14/axis-cgi/mjpg/video.cgi, 42.0542, -92.9305, Marshalltown, IA, USA
+5b0cfbbd45bb0c0004277f78, http://216.51.224.221/nphMotionJpeg?Resolution, 43.4133, -92.9573, Saint Ansgar, IA, USA
+5b0cfbbe45bb0c0004277f79, http://216.54.25.117/axis-cgi/mjpg/video.cgi, 37.4348, -77.0559, Providence Forge, VA, USA
+5b0cfbbf45bb0c0004277f7a, http://216.54.25.121/axis-cgi/mjpg/video.cgi, 37.4348, -77.0559, Providence Forge, VA, USA
+5b0cfbc045bb0c0004277f7b, http://216.54.27.7/axis-cgi/mjpg/video.cgi, 36.819, -76.2749, Chesapeake, VA, USA
+5b0cfbc145bb0c0004277f7c, http://216.54.29.198/axis-cgi/mjpg/video.cgi, 36.8468, -76.2852, Norfolk, VA, USA
+5b0cfbc245bb0c0004277f7d, http://216.56.47.7/MJPEG.CGI, 43.0611, -89.4067, Madison, WI, USA
+5b0cfbc345bb0c0004277f7e, http://216.67.98.12/axis-cgi/mjpg/video.cgi, 61.2181, -149.9, Anchorage, AK, USA
+5b0cfbc445bb0c0004277f7f, http://216.8.159.21/axis-cgi/mjpg/video.cgi, 42.3314, -83.0457, Detroit, MI, USA
+5b0cfbc545bb0c0004277f80, http://217.123.210.12/axis-cgi/mjpg/video.cgi, 52.5, 5.75, , Null, NL
+5b0cfbc645bb0c0004277f81, http://217.128.151.33/axis-cgi/mjpg/video.cgi, 48.86, 2.35, , Null, FR
+5b0cfbc745bb0c0004277f82, http://217.171.208.123/axis-cgi/mjpg/video.cgi, 65, -18, , Null, IS
+5b0cfbc845bb0c0004277f83, http://217.193.154.122/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfbc945bb0c0004277f84, http://217.196.77.178/cgi-bin/faststream.jpg, 48.2, 16.3667, Vienna, Null, AT
+5b0cfbca45bb0c0004277f85, http://217.197.122.134/axis-cgi/mjpg/video.cgi, 60, 100, , Null, RU
+5b0cfbcb45bb0c0004277f86, http://217.24.48.16/cgi-bin/faststream.jpg, 51, 9, , Null, DE
+5b0cfbcb45bb0c0004277f87, http://217.24.53.18/cgi-bin/faststream.jpg, 51, 9, , Null, DE
+5b0cfbcc45bb0c0004277f88, http://217.65.97.118/, 47, 20, , Null, HU
+5b0cfbcd45bb0c0004277f89, http://217.78.137.43/axis-cgi/mjpg/video.cgi, 51.45, 7.0167, Essen, Null, DE
+5b0cfbce45bb0c0004277f8a, http://217.8.147.22/axis-cgi/mjpg/video.cgi, 62, 10, , Null, NO
+5b0cfbcf45bb0c0004277f8b, http://217.86.132.145/axis-cgi/mjpg/video.cgi, 51, 9, , Null, DE
+5b0cfbd045bb0c0004277f8c, http://217.86.194.230, 51, 9, , Null, DE
+5b0cfbd145bb0c0004277f8d, http://217.92.94.29/cgi-bin/faststream.jpg, 48.5811, 8.0098, Renchen, Null, DE
+5b0cfbd245bb0c0004277f8e, http://218.216.63.248/nphMotionJpeg?Resolution, 35.69, 139.69, , Null, JP
+5b0cfbd345bb0c0004277f8f, http://218.219.210.174/axis-cgi/mjpg/video.cgi, 35.7167, 140.65, Asahi, Null, JP
+5b0cfbd445bb0c0004277f90, http://218.224.118.141/, 35.69, 139.69, , Null, JP
+5b0cfbd545bb0c0004277f91, http://218.227.159.88/, 35.69, 139.69, , Null, JP
+5b0cfbd645bb0c0004277f92, http://218.44.129.125/nphMotionJpeg?Resolution, 35.69, 139.69, , Null, JP
+5b0cfbd745bb0c0004277f93, http://218.44.75.94/, 35.69, 139.69, , Null, JP
+5b0cfbd845bb0c0004277f94, http://219.118.247.53/axis-cgi/mjpg/video.cgi, 35.69, 139.69, , Null, JP
+5b0cfbd945bb0c0004277f95, http://219.163.122.253/, 35.685, 139.751, Tokyo, Null, JP
+5b0cfbda45bb0c0004277f96, http://219.96.165.46/, 35.69, 139.69, , Null, JP
+5b0cfbdb45bb0c0004277f97, http://219.99.222.204/, 35.69, 139.69, , Null, JP
+5b0cfbdc45bb0c0004277f98, http://219.99.222.205/, 35.69, 139.69, , Null, JP
+5b0cfbdd45bb0c0004277f99, http://220.109.217.98/, 35.685, 139.751, Tokyo, Null, JP
+5b0cfbde45bb0c0004277f9a, http://220.215.193.91/, 35.4478, 139.643, Yokohama, Null, JP
+5b0cfbdf45bb0c0004277f9b, http://220.221.146.1/nphMotionJpeg?Resolution, 35.69, 139.69, , Null, JP
+5b0cfbe045bb0c0004277f9c, http://220.254.124.250/nphMotionJpeg?Resolution, 35.69, 139.69, , Null, JP
+5b0cfbe145bb0c0004277f9d, http://220.96.208.132/, 35.685, 139.751, Tokyo, Null, JP
+5b0cfbe245bb0c0004277f9e, http://221.255.120.171/axis-cgi/mjpg/video.cgi, 35.685, 139.751, Tokyo, Null, JP
+5b0cfbe345bb0c0004277f9f, http://24.104.138.100/, 38.5771, -122.441, Angwin, CA, USA
+5b0cfbe445bb0c0004277fa0, http://24.123.188.36/, 35.671, -80.4742, Salisbury, NC, USA
+5b0cfbe545bb0c0004277fa1, http://24.159.162.5/axis-cgi/mjpg/video.cgi, 36.3235, -75.9304, Aydlett, NC, USA
+5b0cfbe645bb0c0004277fa2, http://24.159.162.7/axis-cgi/mjpg/video.cgi, 36.3235, -75.9304, Aydlett, NC, USA
+5b0cfbe745bb0c0004277fa3, http://24.180.249.249/axis-cgi/mjpg/video.cgi, 43.7053, -84.2377, Midland, MI, USA
+5b0cfbe845bb0c0004277fa4, http://24.50.152.104/img/mjpeg.jpg, 46.171, -88.7371, Iron River, MI, USA
+5b0cfbe945bb0c0004277fa5, http://41.178.137.252/axis-cgi/mjpg/video.cgi, 27, 30, , Null, EG
+5b0cfbea45bb0c0004277fa6, http://46.14.113.51, 47.3667, 8.5644, Zurich, Null, CH
+5b0cfbeb45bb0c0004277fa7, http://46.227.192.128/axis-cgi/mjpg/video.cgi, 63.2833, 9.1, Kyrksterra, Null, NO
+5b0cfbec45bb0c0004277fa8, http://50.192.238.53/axis-cgi/mjpg/video.cgi, 40.2562, -74.7581, Trenton, NJ, USA
+5b0cfbed45bb0c0004277fa9, http://50.21.227.9/axis-cgi/mjpg/video.cgi, 50.7, -119.283, Salmon Arm, Null, CA
+5b0cfbee45bb0c0004277faa, http://50.87.111.119/, 40.2181, -111.613, Provo, UT, USA
+5b0cfbef45bb0c0004277fab, http://60.45.63.26/nphMotionJpeg?Resolution, 35.685, 139.751, Tokyo, Null, JP
+5b0cfbf045bb0c0004277fac, http://61.119.26.242/, 35.69, 139.69, , Null, JP
+5b0cfbf145bb0c0004277fad, http://61.206.120.208/nphMotionJpeg?Resolution, 35.685, 139.751, Tokyo, Null, JP
+5b0cfbf245bb0c0004277fae, http://61.60.112.230/axis-cgi/mjpg/video.cgi, 25.0392, 121.525, Taipei, Null, TW
+5b0cfbf345bb0c0004277faf, http://61.60.92.56/, 25.0392, 121.525, Taipei, Null, TW
+5b0cfbf445bb0c0004277fb0, http://61.7.96.32/, 33.2493, 130.299, Saga, Null, JP
+5b0cfbf545bb0c0004277fb1, http://62.116.22.167/cgi-bin/faststream.jpg, 47.3333, 13.3333, , Null, AT
+5b0cfbf545bb0c0004277fb2, http://62.145.183.146/axis-cgi/mjpg/video.cgi, 64, 26, , Null, FI
+5b0cfbf645bb0c0004277fb3, http://62.206.10.222/axis-cgi/mjpg/video.cgi, 51, 9, , Null, DE
+5b0cfbf745bb0c0004277fb4, http://62.254.171.181/axis-cgi/mjpg/video.cgi, 53.4333, -2.15, Reddish, Null, GB
+5b0cfbf845bb0c0004277fb5, http://62.28.103.70/axis-cgi/mjpg/video.cgi, 39.5, -8, , Null, PT
+5b0cfbfa45bb0c0004277fb6, http://62.44.223.185/, 60.9667, 25.6667, Lahti, Null, FI
+5b0cfbfb45bb0c0004277fb7, http://62.49.17.87, 51.5, -0.13, , Null, GB
+5b0cfbfd45bb0c0004277fb8, http://62.99.76.193/axis-cgi/mjpg/video.cgi, 43.2609, -2.9388, Bilbao, Null, ES
+5b0cfbfe45bb0c0004277fb9, http://63.142.130.2/axis-cgi/mjpg/video.cgi, 35.3619, -83.2078, Sylva, NC, USA
+5b0cfbff45bb0c0004277fba, http://63.198.242.120/, 34.0599, -118.31, Los Angeles, CA, USA
+5b0cfc0045bb0c0004277fbb, http://63.247.190.85/nphMotionJpeg?Resolution, 40.8584, -74.1638, Clifton, NJ, USA
+5b0cfc0145bb0c0004277fbc, http://64.181.39.104/axis-cgi/mjpg/video.cgi, 38.1103, -78.9073, Waynesboro, VA, USA
+5b0cfc0245bb0c0004277fbd, http://64.255.238.195/, 45.6023, -122.517, Vancouver, WA, USA
+5b0cfc0345bb0c0004277fbe, http://64.50.180.138/, 33.8502, -117.791, Anaheim, CA, USA
+5b0cfc0445bb0c0004277fbf, http://64.57.178.85/axis-cgi/mjpg/video.cgi, 42.4072, -76.5159, Ithaca, NY, USA
+5b0cfc0545bb0c0004277fc0, http://64.79.49.120/axis-cgi/mjpg/video.cgi, 39.1796, -77.7326, Purcellville, VA, USA
+5b0cfc0645bb0c0004277fc1, http://65.121.113.114/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfc0645bb0c0004277fc2, http://66.184.211.231/axis-cgi/mjpg/video.cgi, 28.0222, -81.7329, , FL, USA
+5b0cfc0745bb0c0004277fc3, http://66.188.23.142/axis-cgi/mjpg/video.cgi, 43.5824, -84.3578, Midland, MI, USA
+5b0cfc0845bb0c0004277fc4, http://66.209.252.250, 33.5151, -101.676, Ransom Canyon, TX, USA
+5b0cfc0945bb0c0004277fc5, http://66.232.88.122/MJPEG.CGI, 44.4729, -116.917, Weiser, ID, USA
+5b0cfc0a45bb0c0004277fc6, http://66.248.128.7/axis-cgi/mjpg/video.cgi, 36.0714, -79.7679, Greensboro, NC, USA
+5b0cfc0b45bb0c0004277fc7, http://66.35.137.234/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfc0c45bb0c0004277fc8, http://66.35.137.235/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfc0d45bb0c0004277fc9, http://66.64.192.181/axis-cgi/mjpg/video.cgi, 35.9724, -84.2904, Oak Ridge, TN, USA
+5b0cfc0e45bb0c0004277fca, http://66.64.192.183/axis-cgi/mjpg/video.cgi, 35.9724, -84.2904, Oak Ridge, TN, USA
+5b0cfc0f45bb0c0004277fcb, http://66.76.121.4/axis-cgi/mjpg/video.cgi, 34.6438, -92.9788, Hot Springs Village, AR, USA
+5b0cfc1045bb0c0004277fcc, http://66.76.70.70/axis-cgi/mjpg/video.cgi, 32.9157, -95.2805, Winnsboro, TX, USA
+5b0cfc1145bb0c0004277fcd, http://67.186.251.70/axis-cgi/mjpg/video.cgi, 40.7995, -111.828, Salt Lake City, UT, USA
+5b0cfc1245bb0c0004277fce, http://67.227.196.234/, 42.7257, -84.636, Lansing, MI, USA
+5b0cfc1345bb0c0004277fcf, http://67.42.115.85/axis-cgi/mjpg/video.cgi, 35.2334, -106.664, Rio Rancho, NM, USA
+5b0cfc1345bb0c0004277fd0, http://67.53.162.163/, 39.0997, -94.5786, Kansas City, MO, USA
+5b0cfc1545bb0c0004277fd1, http://67.58.125.209/axis-cgi/mjpg/video.cgi, 35.1698, -82.7897, Brevard, NC, USA
+5b0cfc1645bb0c0004277fd2, http://69.178.223.220, 46.8543, -96.8284, Fargo, ND, USA
+5b0cfc1745bb0c0004277fd3, http://69.18.18.80/axis-cgi/mjpg/video.cgi, 40.809, -92.121, Douds, IA, USA
+5b0cfc1845bb0c0004277fd4, http://69.2.220.133/, 35.2271, -80.8431, Charlotte, NC, USA
+5b0cfc1945bb0c0004277fd5, http://69.43.65.18/, 42.3451, -71.0993, Boston, MA, USA
+5b0cfc1945bb0c0004277fd6, http://69.66.204.149/axis-cgi/mjpg/video.cgi, 41.6695, -91.5133, Iowa City, IA, USA
+5b0cfc1a45bb0c0004277fd7, http://70.164.26.132/, 38, -97, , Null, USA
+5b0cfc1c45bb0c0004277fd8, http://70.167.229.2/, 30.3909, -86.3161, Miramar Beach, FL, USA
+5b0cfc1d45bb0c0004277fd9, http://70.91.185.187/axis-cgi/mjpg/video.cgi, 45.5234, -122.676, Portland, OR, USA
+5b0cfc1d45bb0c0004277fda, http://71.189.93.242/axis-cgi/mjpg/video.cgi, 33.7877, -117.974, Garden Grove, CA, USA
+5b0cfc1e45bb0c0004277fdb, http://71.204.243.221/axis-cgi/mjpg/video.cgi, 32.7081, -79.9438, Charleston, SC, USA
+5b0cfc1f45bb0c0004277fdc, http://71.244.101.102, 40.2489, -75.1498, Warrington, PA, USA
+5b0cfc2045bb0c0004277fdd, http://71.36.245.80/, 38, -97, , Null, USA
+5b0cfc2145bb0c0004277fde, http://72.165.31.230/, 39.8083, -104.934, Commerce City, CO, USA
+5b0cfc2245bb0c0004277fdf, http://72.236.125.34/nphMotionJpeg?Resolution, 38, -97, , Null, USA
+5b0cfc2345bb0c0004277fe0, http://72.36.1.86, 44.7777, -106.839, Sheridan, WY, USA
+5b0cfc2445bb0c0004277fe1, http://72.36.21.200/, 44.0205, -108.231, Worland, WY, USA
+5b0cfc2545bb0c0004277fe2, http://72.55.9.132/, 34.6392, -120.458, Lompoc, CA, USA
+5b0cfc2645bb0c0004277fe3, http://74.208.29.236/, 40.0548, -75.4083, Wayne, PA, USA
+5b0cfc2745bb0c0004277fe4, http://74.228.46.36/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfc2845bb0c0004277fe5, http://74.244.138.7, 38, -97, , Null, USA
+5b0cfc2945bb0c0004277fe6, http://74.40.218.253/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfc2a45bb0c0004277fe7, http://74.94.55.182/axis-cgi/mjpg/video.cgi, 39.6363, -74.7633, Hammonton, NJ, USA
+5b0cfc2b45bb0c0004277fe8, http://75.151.36.105/axis-cgi/mjpg/video.cgi, 26.6217, -81.8406, Fort Myers, FL, USA
+5b0cfc2b45bb0c0004277fe9, http://76.10.79.246/axis-cgi/mjpg/video.cgi, 48.1436, -98.8872, Devils Lake, ND, USA
+5b0cfc2c45bb0c0004277fea, http://76.10.86.11/axis-cgi/mjpg/video.cgi, 48.1436, -98.8872, Devils Lake, ND, USA
+5b0cfc2d45bb0c0004277feb, http://77.106.164.66/axis-cgi/mjpg/video.cgi, 62.1167, 10.65, Alvdal, Null, NO
+5b0cfc2e45bb0c0004277fec, http://77.222.138.106/, 49, 32, , Null, UA
+5b0cfc2f45bb0c0004277fed, http://77.48.31.68/axis-cgi/mjpg/video.cgi, 49.3996, 17.6742, Bystrice Pod Hostynem, Null, CZ
+5b0cfc3045bb0c0004277fee, http://77.72.56.163/axis-cgi/mjpg/video.cgi, 64, 26, , Null, FI
+5b0cfc3145bb0c0004277fef, http://78.134.4.30/axis-cgi/mjpg/video.cgi, 42.8333, 12.8333, , Null, IT
+5b0cfc3245bb0c0004277ff0, http://78.85.3.144/axis-cgi/mjpg/video.cgi, 60, 100, , Null, RU
+5b0cfc3345bb0c0004277ff1, http://79.148.216.143/, 38.997, -1.8545, Albacete, Null, ES
+5b0cfc3445bb0c0004277ff2, http://79.148.230.126/axis-cgi/mjpg/video.cgi, 42.1387, -0.4094, Huesca, Null, ES
+5b0cfc3545bb0c0004277ff3, http://79.207.29.236/, 47.9, 11.1833, PHL, Null, DE
+5b0cfc3645bb0c0004277ff4, http://79.29.97.140/, 44.2667, 9.4, Sestri Levante, Null, IT
+5b0cfc3745bb0c0004277ff5, http://80.118.5.197/axis-cgi/mjpg/video.cgi, 48.86, 2.35, , Null, FR
+5b0cfc3845bb0c0004277ff6, http://80.120.111.82, 47.1831, 9.7, Nenzing, Null, AT
+5b0cfc3945bb0c0004277ff7, http://80.122.12.94/axis-cgi/mjpg/video.cgi, 47.3333, 13.3333, , Null, AT
+5b0cfc3a45bb0c0004277ff8, http://80.122.26.250/cgi-bin/faststream.jpg, 47.3333, 13.3333, , Null, AT
+5b0cfc3b45bb0c0004277ff9, http://80.13.101.90/axis-cgi/mjpg/video.cgi, 48.86, 2.35, , Null, FR
+5b0cfc3c45bb0c0004277ffa, http://80.14.17.93/axis-cgi/mjpg/video.cgi, 48.86, 2.35, , Null, FR
+5b0cfc3d45bb0c0004277ffb, http://80.143.94.138, 50.8667, 6.3667, Inden, Null, DE
+5b0cfc3e45bb0c0004277ffc, http://80.150.128.5/axis-cgi/mjpg/video.cgi, 51, 9, , Null, DE
+5b0cfc3f45bb0c0004277ffd, http://80.188.222.135/axis-cgi/mjpg/video.cgi, 49.75, 15.5, , Null, CZ
+5b0cfc3f45bb0c0004277ffe, http://80.19.143.197/axis-cgi/mjpg/video.cgi, 42.8333, 12.8333, , Null, IT
+5b0cfc4045bb0c0004277fff, http://80.202.222.241/axis-cgi/mjpg/video.cgi, 63.7333, 9.7, Opphaug, Null, NO
+5b0cfc4145bb0c0004278000, http://80.250.121.198/cgi-bin/faststream.jpg, 58.3661, 26.7361, Tartu, Null, EE
+5b0cfc4245bb0c0004278001, http://80.25.152.115/axis-cgi/mjpg/video.cgi, 43.3333, -8.3167, Oleiros, Null, ES
+5b0cfc4345bb0c0004278002, http://80.254.173.253/axis-cgi/mjpg/video.cgi, 46.9458, 7.4713, Bern, Null, CH
+5b0cfc4445bb0c0004278003, http://80.26.69.138/axis-cgi/mjpg/video.cgi, 40, -4, , Null, ES
+5b0cfc4545bb0c0004278004, http://80.36.124.72/axis-cgi/mjpg/video.cgi, 40, -4, , Null, ES
+5b0cfc4645bb0c0004278005, http://80.39.113.72/axis-cgi/mjpg/video.cgi, 41.3984, 2.1741, Barcelona, Null, ES
+5b0cfc4745bb0c0004278006, http://80.67.28.148/, 51, 9, , Null, DE
+5b0cfc4845bb0c0004278007, http://80.82.144.83/axis-cgi/mjpg/video.cgi, 49.6804, 18.6653, Trinec, Null, CZ
+5b0cfc4945bb0c0004278008, http://81.149.155.148/axis-cgi/mjpg/video.cgi, 51.5, -0.13, , Null, GB
+5b0cfc4a45bb0c0004278009, http://81.167.235.97/axis-cgi/mjpg/video.cgi, 59.0167, 6.05, Jrpeland, Null, NO
+5b0cfc4b45bb0c000427800a, http://81.170.248.13/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfc4c45bb0c000427800b, http://81.201.204.198/axis-cgi/mjpg/video.cgi, 46.3178, 7.9881, Brig, Null, CH
+5b0cfc4d45bb0c000427800c, http://81.221.74.92, 47, 8, , Null, CH
+5b0cfc4e45bb0c000427800d, http://81.26.28.141/axis-cgi/mjpg/video.cgi, 50.8333, 20.6667, Kielce, Null, PL
+5b0cfc4f45bb0c000427800e, http://81.8.152.68/axis-cgi/mjpg/video.cgi, 65.0833, 17.1667, Stensele, Null, SE
+5b0cfc5045bb0c000427800f, http://81.8.163.101/axis-cgi/mjpg/video.cgi, 64.6167, 16.65, Vilhelmina, Null, SE
+5b0cfc5145bb0c0004278010, http://81.8.176.2/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfc5245bb0c0004278011, http://81.93.105.28/axis-cgi/mjpg/video.cgi, 62, 10, , Null, NO
+5b0cfc5345bb0c0004278012, http://82.112.64.92/axis-cgi/mjpg/video.cgi, 64.136, -21.9203, Reykjavk, Null, IS
+5b0cfc5445bb0c0004278013, http://82.136.91.123/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfc5545bb0c0004278014, http://82.141.104.134/, 64, 26, , Null, FI
+5b0cfc5645bb0c0004278015, http://82.147.35.50/axis-cgi/mjpg/video.cgi, 62, 10, , Null, NO
+5b0cfc5745bb0c0004278016, http://82.188.208.242/axis-cgi/mjpg/video.cgi, 42.8333, 12.8333, , Null, IT
+5b0cfc5845bb0c0004278017, http://82.193.160.173/axis-cgi/mjpg/video.cgi, 57.7167, 11.9667, Gteborg, Null, SE
+5b0cfc5945bb0c0004278018, http://82.198.200.23/axis-cgi/mjpg/video.cgi, 53.0833, 8.8, Bremen, Null, DE
+5b0cfc5a45bb0c0004278019, http://82.60.18.7, 45.6833, 9.7167, Bergamo, Null, IT
+5b0cfc5b45bb0c000427801a, http://82.77.65.43/cgi-bin/faststream.jpg, 44.3167, 23.8, Craiova, Null, RO
+5b0cfc5c45bb0c000427801b, http://82.92.129.195/axis-cgi/mjpg/video.cgi, 52.5, 5.75, , Null, NL
+5b0cfc5d45bb0c000427801c, http://83.146.209.46/cgi-bin/faststream.jpg, 64, 26, , Null, FI
+5b0cfc5e45bb0c000427801d, http://83.146.210.196/cgi-bin/faststream.jpg, 64, 26, , Null, FI
+5b0cfc5f45bb0c000427801e, http://83.146.217.119/cgi-bin/faststream.jpg, 64, 26, , Null, FI
+5b0cfc5f45bb0c000427801f, http://83.175.144.131, 52, 20, , Null, PL
+5b0cfc6045bb0c0004278020, http://83.211.252.245/axis-cgi/mjpg/video.cgi, 42.8333, 12.8333, , Null, IT
+5b0cfc6145bb0c0004278021, http://83.218.29.57/axis-cgi/mjpg/video.cgi, 51.5, -0.13, , Null, GB
+5b0cfc6245bb0c0004278022, http://83.219.200.130/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfc6445bb0c0004278023, http://83.64.164.6/axis-cgi/mjpg/video.cgi, 47.3333, 13.3333, , Null, AT
+5b0cfc6545bb0c0004278024, http://83.65.244.86/cgi-bin/faststream.jpg, 47.3333, 13.3333, , Null, AT
+5b0cfc6545bb0c0004278025, http://83.91.83.165/, 56.2042, 9.0127, Sunds, Null, DK
+5b0cfc6645bb0c0004278026, http://83.96.53.242/axis-cgi/mjpg/video.cgi, 29.3375, 47.6581, , Null, KW
+5b0cfc6845bb0c0004278027, http://84.140.16.232/, 53.7833, 11.05, Rehna, Null, DE
+5b0cfc6945bb0c0004278028, http://84.205.233.40/axis-cgi/mjpg/video.cgi, 39, 22, , Null, GR
+5b0cfc6945bb0c0004278029, http://84.205.39.225/axis-cgi/mjpg/video.cgi, 62, 10, , Null, NO
+5b0cfc6a45bb0c000427802a, http://84.205.45.113/axis-cgi/mjpg/video.cgi, 60.3667, 6.1333, Norheimsund, Null, NO
+5b0cfc6b45bb0c000427802b, http://84.28.181.184/axis-cgi/mjpg/video.cgi, 50.9957, 5.8748, Sittard, Null, NL
+5b0cfc6c45bb0c000427802c, http://84.28.181.184/axis-cgi/mjpg/video.cgi, 50.9957, 5.8748, Sittard, Null, NL
+5b0cfc6d45bb0c000427802d, http://84.28.181.184, 50.9957, 5.8748, Sittard, Null, NL
+5b0cfc6e45bb0c000427802e, http://84.54.139.100/axis-cgi/mjpg/video.cgi, 42.5, 27.4667, Burgas, Null, BG
+5b0cfc6f45bb0c000427802f, http://85.119.104.71/axis-cgi/mjpg/video.cgi, 51.8167, 4.6176, Zwijndrecht, Null, NL
+5b0cfc7045bb0c0004278030, http://85.119.13.218/axis-cgi/mjpg/video.cgi, 47, 20, , Null, HU
+5b0cfc7145bb0c0004278031, http://85.177.48.213/, 53.5281, 10.0217, Hamburg, Null, DE
+5b0cfc7245bb0c0004278032, http://85.199.1.35/axis-cgi/mjpg/video.cgi, 47.3333, 13.3333, , Null, AT
+5b0cfc7445bb0c0004278033, http://85.228.152.43/axis-cgi/mjpg/video.cgi, 60.9167, 14.6167, Sollern, Null, SE
+5b0cfc7545bb0c0004278034, http://85.46.64.155/axis-cgi/mjpg/video.cgi, 42.8333, 12.8333, , Null, IT
+5b0cfc7645bb0c0004278035, http://85.72.45.47/axis-cgi/mjpg/video.cgi, 39, 22, , Null, GR
+5b0cfc7745bb0c0004278036, http://87.126.71.120/axis-cgi/mjpg/video.cgi, 43, 25, , Null, BG
+5b0cfc7845bb0c0004278037, http://87.239.46.3/axis-cgi/mjpg/video.cgi, 52, 20, , Null, PL
+5b0cfc7945bb0c0004278038, http://87.247.196.9/cgi-bin/faststream.jpg, 47.3, 11.0667, Telfs, Null, AT
+5b0cfc7a45bb0c0004278039, http://87.29.157.20/axis-cgi/mjpg/video.cgi, 42.8333, 12.8333, , Null, IT
+5b0cfc7b45bb0c000427803a, http://87.5.111.129/, 46.0703, 11.1216, Trento, Null, IT
+5b0cfc7c45bb0c000427803b, http://87.54.59.228/axis-cgi/mjpg/video.cgi, 55.8167, 12.4667, Holte, Null, DK
+5b0cfc7d45bb0c000427803c, http://88.2.215.73/axis-cgi/mjpg/video.cgi, 40, -4, , Null, ES
+5b0cfc7e45bb0c000427803d, http://88.26.178.142/cgi-bin/faststream.jpg, 40, -4, , Null, ES
+5b0cfc7e45bb0c000427803e, http://88.53.197.250/axis-cgi/mjpg/video.cgi, 42.8333, 12.8333, , Null, IT
+5b0cfc7f45bb0c000427803f, http://89.162.72.203/axis-cgi/mjpg/video.cgi, 62, 10, , Null, NO
+5b0cfc8045bb0c0004278040, http://89.216.23.100/cgi-bin/faststream.jpg, 44.8186, 20.4681, Belgrade, Null, RS
+5b0cfc8145bb0c0004278041, http://89.245.115.44/, 51.6425, 7.7343, Hamm, Null, DE
+5b0cfc8245bb0c0004278042, http://89.250.189.154/axis-cgi/mjpg/video.cgi, 52.5, 5.75, , Null, NL
+5b0cfc8345bb0c0004278043, http://90.146.9.118/axis-cgi/mjpg/video.cgi, 47.3333, 13.3333, , Null, AT
+5b0cfc8445bb0c0004278044, http://91.112.132.150/cgi-bin/faststream.jpg, 47.3333, 13.3333, , Null, AT
+5b0cfc8545bb0c0004278045, http://91.113.207.170/axis-cgi/mjpg/video.cgi, 47.3333, 13.3333, , Null, AT
+5b0cfc8645bb0c0004278046, http://91.143.62.11/axis-cgi/mjpg/video.cgi, 60, 100, , Null, RU
+5b0cfc8745bb0c0004278047, http://91.208.22.38/, 65, -18, , Null, IS
+5b0cfc8845bb0c0004278048, http://91.209.213.74/axis-cgi/mjpg/video.cgi, 52.5, 5.75, , Null, NL
+5b0cfc8945bb0c0004278049, http://91.237.77.92/axis-cgi/mjpg/video.cgi, 49.7833, 19.2333, Miedzybrodzie Zywieckie, Null, PL
+5b0cfc8a45bb0c000427804a, http://94.125.78.190/, 51, 9, , Null, DE
+5b0cfc8b45bb0c000427804b, http://94.125.79.44/axis-cgi/mjpg/video.cgi, 48.4391, 9.9823, ULM, Null, DE
+5b0cfc8c45bb0c000427804c, http://94.136.40.103/, 51.5, -0.13, , Null, GB
+5b0cfc8c45bb0c000427804d, http://94.66.7.20/MJPEG.CGI, 37.9833, 23.7333, Athens, Null, GR
+5b0cfc8d45bb0c000427804e, http://94.81.137.210/axis-cgi/mjpg/video.cgi, 45.9413, 13.6215, Gorizia, Null, IT
+5b0cfc8e45bb0c000427804f, http://94.85.216.39/cgi-bin/faststream.jpg, 45.3, 9.7667, Castelleone, Null, IT
+5b0cfc8f45bb0c0004278050, http://94.86.192.168/axis-cgi/mjpg/video.cgi, 42.8333, 12.8333, , Null, IT
+5b0cfc9045bb0c0004278051, http://95.240.226.104/axis-cgi/mjpg/video.cgi, 41.9, 12.4833, Rome, Null, IT
+5b0cfc9145bb0c0004278052, http://96.36.99.26/axis-cgi/mjpg/video.cgi, 34.5481, -77.5464, Holly Ridge, NC, USA
+5b0cfc9245bb0c0004278053, http://98.101.11.138/mjpeg.cgi, 34.2257, -77.9447, Wilmington, NC, USA
+5b0cfc9345bb0c0004278054, http://98.101.223.10, 34.0007, -81.0348, Columbia, SC, USA
+5b0cfc9445bb0c0004278055, http://98.115.44.140/nphMotionJpeg?Resolution, 40.1656, -74.8219, Levittown, PA, USA
+5b0cfc9545bb0c0004278056, http://98.139.135.125/, 37.4249, -122.007, Sunnyvale, CA, USA
+5b0cfc9645bb0c0004278057, http://99.194.167.214/axis-cgi/mjpg/video.cgi, 30.388, -87.7199, Foley, AL, USA
+5b0cfc9745bb0c0004278058, http://81.8.176.3/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfc9845bb0c0004278059, http://158.38.82.16/axis-cgi/mjpg/video.cgi, 62.7333, 7.1833, Molde, Null, 
+5b0cfc9945bb0c000427805a, http://93.200.85.152/axis-cgi/mjpg/video.cgi, 53.5714, 10.0189, Hamburg, Null, DE
+5b0cfc9a45bb0c000427805b, http://12.154.97.246/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfc9b45bb0c000427805c, http://12.154.97.247/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfc9c45bb0c000427805d, http://217.234.87.225/, 51.2, 11.5833, Bad Bibra, Null, DE
+5b0cfc9d45bb0c000427805e, http://198.214.229.105/axis-cgi/mjpg/video.cgi, 30.7587, -103.925, Fort Davis, TX, USA
+5b0cfc9e45bb0c000427805f, http://24.39.36.60/, 43.8988, -69.9725, Brunswick, ME, USA
+5b0cfc9f45bb0c0004278060, http://130.95.52.185/axis-cgi/mjpg/video.cgi, -27, 133, , Null, AU
+5b0cfca045bb0c0004278061, http://194.35.194.107/axis-cgi/mjpg/video.cgi, 57.0007, -5.8205, Mallaig, Null, GB
+5b0cfca145bb0c0004278062, http://130.241.163.130/axis-cgi/mjpg/video.cgi, 57.7167, 11.9667, Gteborg, Null, SE
+5b0cfca145bb0c0004278063, http://131.188.69.22/axis-cgi/mjpg/video.cgi, 49.5897, 11.0039, Erlangen, Null, DE
+5b0cfca245bb0c0004278064, http://216.236.251.135/axis-cgi/mjpg/video.cgi, 42.6007, -70.8719, Wenham, MA, USA
+5b0cfca345bb0c0004278065, http://217.152.196.254/nphMotionJpeg?Resolution, 64, 26, , Null, FI
+5b0cfca445bb0c0004278066, http://217.92.42.115/axis-cgi/mjpg/video.cgi, 51, 9, , Null, DE
+5b0cfca545bb0c0004278067, http://206.212.61.62/axis-cgi/mjpg/video.cgi, 38.4221, -82.4317, Huntington, WV, USA
+5b0cfca645bb0c0004278068, http://87.139.32.11/axis-cgi/mjpg/video.cgi, 51, 9, , Null, DE
+5b0cfca745bb0c0004278069, http://128.197.178.105/nphMotionJpeg?Resolution, 42.3451, -71.0993, Boston, MA, USA
+5b0cfca845bb0c000427806a, http://193.10.98.32/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfca945bb0c000427806b, http://193.10.98.33/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfcaa45bb0c000427806c, http://193.10.98.34/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfcab45bb0c000427806d, http://213.200.231.129/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfcac45bb0c000427806e, http://80.120.122.18/axis-cgi/mjpg/video.cgi, 47.3333, 13.3333, , Null, AT
+5b0cfcad45bb0c000427806f, http://198.182.247.191/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfcae45bb0c0004278070, http://128.173.44.107/axis-cgi/mjpg/video.cgi, 37.1791, -80.3515, Blacksburg, VA, USA
+5b0cfcae45bb0c0004278071, http://130.95.52.157/axis-cgi/mjpg/video.cgi, -27, 133, , Null, AU
+5b0cfcaf45bb0c0004278072, http://150.42.41.60/axis-cgi/mjpg/video.cgi, 35.69, 139.69, , Null, JP
+5b0cfcb045bb0c0004278073, http://195.80.101.230/axis-cgi/mjpg/video.cgi, 59, 26, , Null, EE
+5b0cfcb145bb0c0004278074, http://98.172.148.55/axis-cgi/mjpg/video.cgi, 41.6577, -72.6627, Rocky Hill, CT, USA
+5b0cfcb245bb0c0004278075, http://194.23.40.224/axis-cgi/mjpg/video.cgi, 60.1333, 13, Torsby, Null, SE
+5b0cfcb345bb0c0004278076, http://128.171.104.32/axis-cgi/mjpg/video.cgi, 21.3267, -157.817, Honolulu, HI, USA
+5b0cfcb445bb0c0004278077, http://68.116.20.194/axis-cgi/mjpg/video.cgi, 46.2396, -119.101, Pasco, WA, USA
+5b0cfcb545bb0c0004278078, http://130.157.32.16/axis-cgi/mjpg/video.cgi, 38.3433, -122.704, Rohnert Park, CA, USA
+5b0cfcb645bb0c0004278079, http://81.175.188.131/axis-cgi/mjpg/video.cgi, 64, 26, , Null, FI
+5b0cfcb745bb0c000427807a, http://128.171.86.104/axis-cgi/mjpg/video.cgi, 21.3267, -157.817, Honolulu, HI, USA
+5b0cfcb845bb0c000427807b, http://62.44.223.131/axis-cgi/mjpg/video.cgi, 60.9667, 25.6667, Lahti, Null, FI
+5b0cfcb945bb0c000427807c, http://217.149.125.238/axis-cgi/mjpg/video.cgi, 62, 10, , Null, NO
+5b0cfcba45bb0c000427807d, http://82.207.51.146/, 49, 32, , Null, UA
+5b0cfcbb45bb0c000427807e, http://88.2.47.141/axis-cgi/mjpg/video.cgi, 40.05, -0.15, San Juan De Mor, Null, ES
+5b0cfcbc45bb0c000427807f, http://85.221.90.13/axis-cgi/mjpg/video.cgi, 62.1, 6.5667, Bjrke, Null, NO
+5b0cfcbd45bb0c0004278080, http://194.177.131.229/axis-cgi/mjpg/video.cgi, 47.3333, 13.3333, , Null, AT
+5b0cfcbe45bb0c0004278081, http://217.173.192.179/axis-cgi/mjpg/video.cgi, 50.6667, 17.95, Opole, Null, PL
+5b0cfcbf45bb0c0004278082, http://211.23.83.34/, 23.5, 121, , Null, TW
+5b0cfcc045bb0c0004278083, http://129.16.208.82/axis-cgi/mjpg/video.cgi, 57.7167, 11.9667, Gothenburg, Null, SE
+5b0cfcc145bb0c0004278084, http://68.116.33.170/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfcc245bb0c0004278085, http://82.148.69.137/axis-cgi/mjpg/video.cgi, 65, -18, , Null, IS
+5b0cfcc345bb0c0004278086, http://138.86.104.249/axis-cgi/mjpg/video.cgi, 40.3993, -104.702, Greeley, CO, USA
+5b0cfcc345bb0c0004278087, http://66.79.6.100/axis-cgi/mjpg/video.cgi, 30.4066, -87.6836, Foley, AL, USA
+5b0cfcc445bb0c0004278088, http://207.157.71.105/, 34.7675, -87.1057, Athens, AL, USA
+5b0cfcc545bb0c0004278089, http://89.244.215.198, 51.6812, 6.963, Dorsten, Null, DE
+5b0cfcc645bb0c000427808a, http://195.80.122.205/axis-cgi/mjpg/video.cgi, 57.7744, 26.0453, Valga, Null, EE
+5b0cfcc745bb0c000427808b, http://213.209.86.72, 53.5869, 10.1175, Hamburg, Null, DE
+5b0cfcc845bb0c000427808c, http://108.162.196.106/, 37.7697, -122.393, San Francisco, CA, USA
+5b0cfcc945bb0c000427808d, http://213.125.26.170/axis-cgi/mjpg/video.cgi, 52.0833, 4.3, Den Haag, Null, NL
+5b0cfcca45bb0c000427808e, http://217.86.174.228/axis-cgi/mjpg/video.cgi, 51, 9, , Null, DE
+5b0cfccb45bb0c000427808f, http://213.211.51.90/axis-cgi/mjpg/video.cgi, 49.75, 15.5, , Null, CZ
+5b0cfccc45bb0c0004278090, http://83.64.164.4/axis-cgi/mjpg/video.cgi, 47.3333, 13.3333, , Null, AT
+5b0cfccd45bb0c0004278091, http://194.117.186.205/axis-cgi/mjpg/video.cgi, 66.3833, 23.6667, Vertorne, Null, SE
+5b0cfcce45bb0c0004278092, http://128.187.51.10/axis-cgi/mjpg/video.cgi, 40.3563, -111.732, Provo, UT, USA
+5b0cfccf45bb0c0004278093, http://62.2.213.147/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfcd045bb0c0004278094, http://142.240.200.10/axis-cgi/mjpg/video.cgi, 43.5974, -79.6402, Mississauga, Null, CA
+5b0cfcd145bb0c0004278095, http://84.246.0.104/axis-cgi/mjpg/video.cgi, 52.5, 5.75, , Null, NL
+5b0cfcd245bb0c0004278096, http://72.236.138.36/axis-cgi/mjpg/video.cgi, 26.6217, -81.8406, Fort Myers, FL, USA
+5b0cfcd345bb0c0004278097, http://195.144.40.170/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfcd445bb0c0004278098, http://24.213.36.254/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfcd545bb0c0004278099, http://213.221.201.78/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfcd645bb0c000427809a, http://217.37.180.233/axis-cgi/mjpg/video.cgi, 51.5, -0.13, , Null, GB
+5b0cfcd745bb0c000427809b, http://212.42.54.135/axis-cgi/mjpg/video.cgi, 60, 100, , Null, RU
+5b0cfcd845bb0c000427809c, http://152.97.90.50/MJPEG.CGI, 35.1805, -85.9035, Sewanee, TN, USA
+5b0cfcd845bb0c000427809d, http://148.61.97.229/axis-cgi/mjpg/video.cgi, 42.9742, -85.9311, Allendale, MI, USA
+5b0cfcd945bb0c000427809e, http://148.61.63.218/axis-cgi/mjpg/video.cgi, 42.9742, -85.9311, Allendale, MI, USA
+5b0cfcda45bb0c000427809f, http://62.160.44.43/axis-cgi/mjpg/video.cgi, 48.86, 2.35, , Null, FR
+5b0cfcdb45bb0c00042780a0, http://134.76.205.194/axis-cgi/mjpg/video.cgi, 51.5333, 9.9333, Gttingen, Null, DE
+5b0cfcdc45bb0c00042780a1, http://128.196.12.28/axis-cgi/mjpg/video.cgi, 32.2338, -110.95, Tucson, AZ, USA
+5b0cfcdd45bb0c00042780a2, http://62.2.213.146/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfcde45bb0c00042780a3, http://213.3.28.103/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfcdf45bb0c00042780a4, http://193.138.213.170/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfce145bb0c00042780a5, http://81.8.158.58/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfce245bb0c00042780a6, http://93.218.41.67/, 51, 9, , Null, DE
+5b0cfce345bb0c00042780a7, http://147.31.116.63/axis-cgi/mjpg/video.cgi, 39.8489, -75.3823, Chester, PA, USA
+5b0cfce345bb0c00042780a8, http://217.168.94.131/axis-cgi/mjpg/video.cgi, 62, 10, , Null, NO
+5b0cfce545bb0c00042780a9, http://12.236.117.73/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfce545bb0c00042780aa, http://81.149.140.139/axis-cgi/mjpg/video.cgi, 51.5, -0.13, , Null, GB
+5b0cfce645bb0c00042780ab, http://195.196.35.91/axis-cgi/mjpg/video.cgi, 67.2, 23.3667, Pajala, Null, SE
+5b0cfce745bb0c00042780ac, http://193.90.12.77/, 62, 10, , Null, NO
+5b0cfce845bb0c00042780ad, http://194.94.159.13/axis-cgi/mjpg/video.cgi, 49.015, 12.0956, Regensburg, Null, DE
+5b0cfcea45bb0c00042780ae, http://212.222.166.211/cgi-bin/faststream.jpg, 51.5, -0.13, , Null, GB
+5b0cfcec45bb0c00042780af, http://217.91.58.189/axis-cgi/mjpg/video.cgi, 51, 9, , Null, DE
+5b0cfced45bb0c00042780b0, http://217.198.147.5/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfcee45bb0c00042780b1, http://152.19.49.102/nphMotionJpeg?Resolution, 36.0525, -79.1077, Chapel Hill, NC, USA
+5b0cfcef45bb0c00042780b2, http://137.44.28.240/axis-cgi/mjpg/video.cgi, 51.6333, -3.9667, Swansea, Null, GB
+5b0cfcf045bb0c00042780b3, http://129.72.2.86/MJPEG.CGI, 41.3114, -105.591, Laramie, WY, USA
+5b0cfcf145bb0c00042780b4, http://192.134.16.112/axis-cgi/mjpg/video.cgi, 48.8222, 2.1221, Le Chesnay, Null, FR
+5b0cfcf245bb0c00042780b5, http://206.58.237.158/axis-cgi/mjpg/video.cgi, 39.6237, -104.874, Englewood, CO, USA
+5b0cfcf345bb0c00042780b6, http://12.154.97.243/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfcf445bb0c00042780b7, http://81.171.193.42/axis-cgi/mjpg/video.cgi, 51.9864, -4.5578, Star, Null, GB
+5b0cfcf545bb0c00042780b8, http://85.199.1.130/axis-cgi/mjpg/video.cgi, 47.3333, 13.3333, , Null, AT
+5b0cfcf645bb0c00042780b9, http://68.116.33.170/axis-cgi/mjpg/video.cgi, 38, -97, , Null, USA
+5b0cfcf645bb0c00042780ba, http://62.42.14.98/axis-cgi/mjpg/video.cgi, 43.469, -3.7986, Santander, Null, ES
+5b0cfcf745bb0c00042780bb, http://128.171.104.34/axis-cgi/mjpg/video.cgi, 21.3267, -157.817, Honolulu, HI, USA
+5b0cfcf845bb0c00042780bc, http://75.36.129.115/axis-cgi/mjpg/video.cgi, 37.709, -122.089, Castro Valley, CA, USA
+5b0cfcf945bb0c00042780bd, http://213.230.49.230/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfcfa45bb0c00042780be, http://69.178.250.15/axis-cgi/mjpg/video.cgi, 48.1436, -98.8872, Devils Lake, ND, USA
+5b0cfcfb45bb0c00042780bf, http://82.207.52.186/axis-cgi/mjpg/video.cgi, 49, 32, , Null, UA
+5b0cfcfc45bb0c00042780c0, http://142.103.183.237/axis-cgi/mjpg/video.cgi, 49.2765, -123.218, Vancouver, Null, 
+5b0cfcfd45bb0c00042780c1, http://62.153.175.52/axis-cgi/mjpg/video.cgi, 51, 9, , Null, DE
+5b0cfcfe45bb0c00042780c2, http://145.44.240.120/axis-cgi/mjpg/video.cgi, 52.5058, 6.0858, Zwolle, Null, NL
+5b0cfcff45bb0c00042780c3, http://161.72.17.246/axis-cgi/mjpg/video.cgi, 43.359, -2.6664, Islas, Null, ES
+5b0cfd0045bb0c00042780c4, http://212.111.2.158/axis-cgi/mjpg/video.cgi, 49.75, 15.5, , Null, CZ
+5b0cfd0145bb0c00042780c5, http://193.10.98.35/axis-cgi/mjpg/video.cgi, 62, 15, , Null, SE
+5b0cfd0245bb0c00042780c6, http://150.214.222.100/axis-cgi/mjpg/video.cgi, 37.3824, -5.9761, Sevilla, Null, ES
+5b0cfd0345bb0c00042780c7, http://213.184.43.2/axis-cgi/mjpg/video.cgi, 58.3661, 26.7361, Tartu, Null, EE
+5b0cfd0445bb0c00042780c8, http://129.15.84.18/axis-cgi/mjpg/video.cgi, 35.2523, -97.4603, Norman, OK, USA
+5b0cfd0545bb0c00042780c9, http://66.60.246.181/axis-cgi/mjpg/video.cgi, 29.7633, -95.3633, Houston, TX, USA
+5b0cfd0645bb0c00042780ca, http://213.230.49.229/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfd0745bb0c00042780cb, http://128.173.44.106/axis-cgi/mjpg/video.cgi, 37.1791, -80.3515, Blacksburg, VA, USA
+5b0cfd0845bb0c00042780cc, http://178.27.49.160/, 48.3167, 11.6667, Neufahrn, Null, DE
+5b0cfd0845bb0c00042780cd, http://213.167.124.54/axis-cgi/mjpg/video.cgi, 60.3833, 10.55, Jaren, Null, NO
+5b0cfd0945bb0c00042780ce, http://89.244.215.198, 51.6812, 6.963, Dorsten, Null, DE
+5b0cfd0a45bb0c00042780cf, http://72.240.51.210/axis-cgi/mjpg/video.cgi, 41.6733, -83.6044, Toledo, OH, USA
+5b0cfd0b45bb0c00042780d0, http://212.244.173.167/axis-cgi/mjpg/video.cgi, 52.5931, 19.0894, Polska, Null, PL
+5b0cfd0c45bb0c00042780d1, http://161.72.5.27/axis-cgi/mjpg/video.cgi, 43.359, -2.6664, Islas, Null, ES
+5b0cfd0d45bb0c00042780d2, http://76.190.159.187/axis-cgi/mjpg/video.cgi, 41.3891, -81.5368, Bedford, OH, USA
+5b0cfd0e45bb0c00042780d3, http://96.11.115.118/axis-cgi/mjpg/video.cgi, 41.0232, -81.628, Barberton, OH, USA
+5b0cfd0f45bb0c00042780d4, http://137.229.93.113/axis-cgi/mjpg/video.cgi, 64.8378, -147.716, Fairbanks, AK, USA
+5b0cfd0f45bb0c00042780d5, http://213.3.28.103/axis-cgi/mjpg/video.cgi, 47, 8, , Null, CH
+5b0cfd1045bb0c00042780d6, http://194.8.226.46/axis-cgi/mjpg/video.cgi, 64, 26, , Null, FI
+5b0cfd1145bb0c00042780d7, http://130.0.169.166/axis-cgi/mjpg/video.cgi, 42.8333, 12.8333, , Null, IT
