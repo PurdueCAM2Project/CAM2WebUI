@@ -35,6 +35,6 @@ urlpatterns = [
 
     #for testing API response
     url(r'^api_access/$', app_views.api_request, name='api_access'),
-	url(r'^training/$', app_views.training, name ='Training_Videos'), 
+	url(r'^videos/$', app_views.videos, name ='videos'), 
 
 ]
