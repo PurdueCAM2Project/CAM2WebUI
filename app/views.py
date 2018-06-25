@@ -418,4 +418,7 @@ def api_request(request):
     template_name = 'app/api_access.html'
     return render(request, template_name)
 
+def videos(request):
+    return render(request, 'app/videos.html')
+
 
