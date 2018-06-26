@@ -54,41 +54,42 @@ def write_csv():
     Initial Testing uses data from a prepared json file with 1000 cameras. Final script will load directly from the API
     
     """
-    with open('cam_data.json') as f:
-        data = json.load(f)
-        with open('cam_data.csv', 'w') as camData:
-            camData.write('ID, Image, Latitude, Longitude, City, State, Country')
+    data = get_api_data()
+    """with open('cam_data.json') as f:
+        data = json.load(f)"""
+    with open('cam_data.csv', 'w') as camData:
+        camData.write('ID, Image, Latitude, Longitude, City, State, Country')
+        camData.write('\n')
+        for d in data:
+            cid = d['cameraID']
+            if cid is None:
+                cid = ''
+            cpath = ''
+            if d['type'] == 'ip':
+                cip = d['retrieval']['ip']
+                if cip is None:
+                    cip = ''
+                cvp = d['retrieval']['video_path']
+                if cvp is None:
+                    cvp = ''
+                cpath = 'http://' + cip + cvp
+            elif d['type'] == 'non_ip':
+                cpath = d['snapshot_url']
+            elif d['type'] == 'stream':
+                cpath = d['m3u8_url']
+            lat = str(d['latitude'])
+            lng = str(d['longitude'])
+            ccity = d['city']
+            if ccity is None:
+                ccity = ''
+            cstate = d['state']
+            if cstate is None:
+                cstate = ''
+            ccountry = d['country']
+            if ccountry is None:
+                ccountry = ''
+            camData.write('' + cid + ', ' + cpath + ', ' + lat + ', ' + lng + ', ' + ccity + ', ' + cstate + ', ' + ccountry)
             camData.write('\n')
-            for d in data:
-                cid = d['cameraID']
-                if cid is None:
-                    cid = ''
-                cpath = ''
-                if d['type'] == 'ip':
-                    cip = d['retrieval']['ip']
-                    if cip is None:
-                        cip = ''
-                    cvp = d['retrieval']['video_path']
-                    if cvp is None:
-                        cvp = ''
-                    cpath = 'http://' + cip + cvp
-                elif d['type'] == 'non_ip':
-                    cpath = d['snapshot_url']
-                elif d['type'] == 'stream':
-                    cpath = d['m3u8_url']
-                lat = str(d['latitude'])
-                lng = str(d['longitude'])
-                ccity = d['city']
-                if ccity is None:
-                    ccity = ''
-                cstate = d['state']
-                if cstate is None:
-                    cstate = ''
-                ccountry = d['country']
-                if ccountry is None:
-                    ccountry = ''
-                camData.write('' + cid + ', ' + cpath + ', ' + lat + ', ' + lng + ', ' + ccity + ', ' + cstate + ', ' + ccountry)
-                camData.write('\n')
 
 def upload_csv():
     """Uses the credentials specific to the Team/Project to upload a CSV to a specified Google Spreadsheet
@@ -160,9 +161,18 @@ def get_api_data():
             output.append(info2)"""
     count = 0
     #while True:
-    for x in range(1,4):
+    for x in range(1,10):
         time.sleep(60)
         count = count + 100
+        rauth = requests.get('https://cam2-api.herokuapp.com/auth', params=params)
+        """tclient = 'user'
+        tsecret = 'user'
+        tparams = {'clientID': tclient, 'clientSecret': tsecret}
+        trauth = requests.get('https://cam2-api-test.herokuapp.com/auth', params=tparams)
+        token = trauth.json()['token']"""
+        token = rauth.json()['token']
+        headerval = 'Bearer ' + token
+        header = {'Authorization': headerval}
         param2 = {'offset': count}
         tr2 = requests.get('https://cam2-api.herokuapp.com/cameras/search', params=param2, headers=header)
         print(tr2.status_code)
@@ -181,8 +191,9 @@ def get_api_data():
             output.append(d2)
         if len(tr2.json()) < 100:
             break
-    with open('cam_data.json', 'w') as f:
-        json.dump(output, f, ensure_ascii=False)
+    #with open('cam_data.json', 'w') as f:
+    #    json.dump(output, f, ensure_ascii=False)
+    return output
 
 def main():
     write_csv()
