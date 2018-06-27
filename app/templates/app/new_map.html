@@ -303,43 +303,111 @@
 <br>
 <div id="camInfo"></div>
 <script>
-var markerlist = [];
+//var markerlist = [];
+ function initMap() {
 
-function initMap(){
+    var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
+
+      (navigator.userAgent.match(/(iPod|iPhone|iPad|BlackBerry|Windows Phone|iemobile)/));
+
+    if (isMobile) {
+
+      var viewport = document.querySelector("meta[name=viewport]");
+
+      viewport.setAttribute('content', 'initial-scale=1.0, user-scalable=no');
+
+    }
+
+    var mapDiv = document.getElementById('map');
+
+    //mapDiv.style.width = isMobile ? '100%' : '500px';
+
+    //mapDiv.style.height = isMobile ? '100%' : '300px';
+
+    var map = new google.maps.Map(mapDiv, {
+
+      center: new google.maps.LatLng(0, 0),
+
+      zoom: 2,
+
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+
+    });
+
+
+
+    layer = new google.maps.FusionTablesLayer({
+
+      map: map,
+
+      heatmap: { enabled: false },
+
+      query: {
+
+        select: "col2",
+
+        from: "1LGM19W8ExTJbuqXhw5Ytlig3ZCx5j8y8XsSWQhLG",
+
+        where: ""
+
+      },
+
+      options: {
+
+        styleId: 2,
+
+        templateId: 2
+
+      }
+
+    });
+
+
+
+    if (isMobile) {
+
+      var legend = document.getElementById('googft-legend');
+
+      var legendOpenButton = document.getElementById('googft-legend-open');
+
+      var legendCloseButton = document.getElementById('googft-legend-close');
+
+      legend.style.display = 'none';
+
+      legendOpenButton.style.display = 'block';
+
+      legendCloseButton.style.display = 'block';
+
+      legendOpenButton.onclick = function() {
+
+        legend.style.display = 'block';
+
+        legendOpenButton.style.display = 'none';
+
+      }
+
+      legendCloseButton.onclick = function() {
+
+        legend.style.display = 'none';
+
+        legendOpenButton.style.display = 'block';
+
+      }
+
+    }
+
+  }
+
+
+
+  //google.maps.event.addDomListener(window, 'load', initialize);
+
+/*function initMap(){
     var center = {lat: 0, lng: 0};
     var map = new google.maps.Map(document.getElementById('map'), {zoom: 2, center: center});
     var layer = new google.maps.FusionTablesLayer({query: {select: 'Latitude, Longitude', from: '1LGM19W8ExTJbuqXhw5Ytlig3ZCx5j8y8XsSWQhLG'}});
     layer.setMap(map);
-    //var infowindow = new google.maps.InfoWindow();
-    //var datalist = [];
-    /*{% for c in data %}
-    {% if c.type == 'ip' %}
-    var dat = {latitude: {{ c.latitude }}, longitude: {{ c.longitude }}, type: "{{ c.type }}", is_active_video: "{{ c.is_active_video }}", retrieval: {ip: "{{ c.retrieval.ip }}", video_path: "{{ c.retrieval.video_path }}", image_path: "{{ c.retrieval.image_path }}"}, city: "{{ c.city }}", state: "{{ c.state }}", country: "{{ c.country }}"};
-    {% elif c.type == 'non_ip' %}
-    var dat = {latitude: {{ c.latitude }}, longitude: {{ c.longitude }}, type: "{{ c.type }}", is_active_video: "{{ c.is_active_video }}", retrieval: {snapshot_url: "{{ c.retrieval.snapshot_url }}"}, city: "{{ c.city }}", state: "{{ c.state }}", country: "{{ c.country }}"};
-    {% elif c.type == 'stream' %}
-    var dat = {latitude: {{ c.latitude }}, longitude: {{ c.longitude }}, type: "{{ c.type }}", is_active_video: "{{ c.is_active_video }}", retrieval: {m3u8_url: "{{ c.retrieval.m3u8_url }}"}, city: "{{ c.city }}", state: "{{ c.state }}", country: "{{ c.country }}"};
-    {% else %}
-    var dat = {};
-    {% endif %}
-    datalist.push(dat);
-    {% endfor %}
-    var i;
-    for(i = 0; i < datalist.length; i++){
-        var point = {lat: datalist[i].latitude, lng: datalist[i].longitude};
-        var marker = new google.maps.Marker({position: point, map: map, icon: 'https://storage.googleapis.com/support-kms-prod/SNP_2752125_en_v0'});
-        addMarkerListener(marker, infowindow, point, map, datalist[i]);
-        markerlist.push(marker);
-    }
-    var selector = document.getElementById('camSelect');
-    selector.addEventListener("change", function() {
-        if (selector.value == "good"){
-            goodCAMs(datalist, map, infowindow);
-        } else {
-            allCAMs(datalist, map, infowindow);
-        }
-    });*/
-}
+}*/
 
 /*function addMarkerListener(marker, info, point, map, dataItem){
     marker.addListener('click', function(){
