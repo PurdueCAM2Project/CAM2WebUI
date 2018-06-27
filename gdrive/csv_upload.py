@@ -50,10 +50,10 @@ def get_credentials():
     return credentials
 
 def write_csv():
-    """Takes data from the new API and writes it to a CSV file for uploading 
-    
+    """Takes data from the new API and writes it to a CSV file for uploading
+
     Initial Testing uses data from a prepared json file with 1000 cameras. Final script will load directly from the API
-    
+
     """
     data = get_api_data()
     """with open('cam_data.json') as f:
@@ -95,8 +95,8 @@ def write_csv():
 def upload_csv():
     """Uses the credentials specific to the Team/Project to upload a CSV to a specified Google Spreadsheet
 
-    Note that in production the fileId specified below should be an environment variable, for security purposes. 
-    
+    Note that in production the fileId specified below should be an environment variable, for security purposes.
+
     """
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
@@ -116,7 +116,7 @@ def upload_csv():
 def get_api_data():
     """Old function used to pull data from the API and write it to a JSON file.
 
-    Very much requires re-writing and clean-up to use with this new code, but it's useful as a starting point. 
+    Very much requires re-writing and clean-up to use with this new code, but it's useful as a starting point.
 
     """
     client = '34b9eb8afc032098bc96174ec38ca2dba940a401d03c311251af4d8b609f7272c91ed0aaef1ee4eddb4783bcaa3ead7d'
@@ -128,6 +128,7 @@ def get_api_data():
     header = {'Authorization': headerval}
     r = requests.get('https://cam2-api.herokuapp.com/cameras/search', headers=header)
     data = r.json()
+    print('Number of data requested: ' + str(len(r.json())))
     output = list()
     for d in data:
         output.append(d)
@@ -146,6 +147,7 @@ def get_api_data():
         if tr2.status_code != 200:
             continue
         tdata2 = tr2.json()
+        print('Number of data requested: ' + str(len(tr2.json())))
         for d2 in tdata2:
             output.append(d2)
         if len(tr2.json()) < 100:
@@ -156,5 +158,5 @@ def main():
     write_csv()
     upload_csv()
 
-if __name__ == '__main__': 
+if __name__ == '__main__':
     main()
