@@ -19,6 +19,7 @@ except ImportError:
 SCOPES = 'https://www.googleapis.com/auth/drive'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'New Camera Map'
+FILE_ID = '15E5F5nA00C8zfaBxo42d4jOtNQ3F7zPDlNbGeKwrlwA'
 
 def get_credentials():
     """Gets valid user credentials from storage.
@@ -107,7 +108,7 @@ def upload_csv():
                             mimetype='text/csv',
                             resumable=True)
     file = service.files().update(body=file_metadata,
-                                        fileId='15E5F5nA00C8zfaBxo42d4jOtNQ3F7zPDlNbGeKwrlwA',
+                                        fileId=FILE_ID,
                                         media_body=media,
                                         fields='id').execute()
     print ('Successful update File ID: %s' % file.get('id'))
