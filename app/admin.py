@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import FAQ, History, Publication, Team, Leader, Member, RegisterUser
+from .models import FAQ, History, Publication, Team, Leader, Member, RegisterUser, Collab, Location
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin #Important, dont remove
 from django.contrib.auth.models import User
@@ -138,6 +138,8 @@ admin.site.register(History)
 admin.site.register(Publication)
 admin.site.register(Team)
 admin.site.register(Leader)
+admin.site.register(Collab)
+admin.site.register(Location)
 admin.site.register(Member, MemberAdmin)
 
 
