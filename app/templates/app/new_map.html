@@ -308,9 +308,11 @@ var markerlist = [];
 function initMap(){
     var center = {lat: 0, lng: 0};
     var map = new google.maps.Map(document.getElementById('map'), {zoom: 2, center: center});
-    var infowindow = new google.maps.InfoWindow();
-    var datalist = [];
-    {% for c in data %}
+    var layer = new google.maps.FusionTablesLayer({query: {select: 'Latitude, Longitude', from: '1LGM19W8ExTJbuqXhw5Ytlig3ZCx5j8y8XsSWQhLG'}});
+    layer.setMap(map);
+    //var infowindow = new google.maps.InfoWindow();
+    //var datalist = [];
+    /*{% for c in data %}
     {% if c.type == 'ip' %}
     var dat = {latitude: {{ c.latitude }}, longitude: {{ c.longitude }}, type: "{{ c.type }}", is_active_video: "{{ c.is_active_video }}", retrieval: {ip: "{{ c.retrieval.ip }}", video_path: "{{ c.retrieval.video_path }}", image_path: "{{ c.retrieval.image_path }}"}, city: "{{ c.city }}", state: "{{ c.state }}", country: "{{ c.country }}"};
     {% elif c.type == 'non_ip' %}
@@ -336,10 +338,10 @@ function initMap(){
         } else {
             allCAMs(datalist, map, infowindow);
         }
-    });
+    });*/
 }
 
-function addMarkerListener(marker, info, point, map, dataItem){
+/*function addMarkerListener(marker, info, point, map, dataItem){
     marker.addListener('click', function(){
         info.close();
         var path = '<p>No Image</p>';
@@ -409,7 +411,7 @@ function allCAMs(datalist, map, info){
         addMarkerListener(marker, info, point, map, datalist[i]);
         markerlist.push(marker);
     }
-}
+}*/
 </script>
 <script asynch defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDICtCV5dWSi73-a7Bbhlw5Rs01Jax8EJY&callback=initMap"></script>
 {% endblock %}
