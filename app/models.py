@@ -150,7 +150,7 @@ class Member(models.Model):
         ('UI', "Web UI"),
         ('D+API', "API team"),
         ('One B', "One Billion Images Team"),
-        ('Intel', "Intel Target Tracking")
+        ('Intel', "Embedded Computer Vision")
     )
 
     subteam = models.CharField(verbose_name='Subteam', blank=True, max_length=50, choices=TEAM, default='blank')
