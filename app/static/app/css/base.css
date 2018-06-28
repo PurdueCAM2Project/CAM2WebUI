@@ -10,7 +10,7 @@ body {
   color: #444;
   line-height: 30px;
   padding-top: 40px;
-  padding-bottom: 60px;
+  padding-bottom: 220px;
   min-height: 100%;
   position: relative;
 }
@@ -68,7 +68,7 @@ footer {
   margin-top: -60px;
   position: absolute;
   bottom: 0px;
-  height: 60px;
+  height: 230px;
   padding: 20px 100px 20px 100px;
   width: 100%;
   background: rgba(255,0,0,.5);
