@@ -10,33 +10,76 @@ from oauth2client import tools
 from oauth2client.file import Storage
 from apiclient.http import MediaFileUpload
 
+"""Golbal Variables"""
+"""API"""
+CLIENT_ID = '34b9eb8afc032098bc96174ec38ca2dba940a401d03c311251af4d8b609f7272c91ed0aaef1ee4eddb4783bcaa3ead7d'
+CLIENT_SECRET = 'b0eaea176c29331149557b1c2fe54b82d335c8c30dbed9a50c5e4aa141b15dbefbbfd69'
+MAIN_URL = 'https://cam2-api.herokuapp.com'
+TOTAL_NO_CAMERAS = 1290  # No of reqests per 100 cameras
+"""Google Credentials"""
+SCOPES = 'https://www.googleapis.com/auth/drive'
+CLIENT_SECRET_FILE = 'client_secret.json'
+APPLICATION_NAME = 'New Camera Map'
+FILE_ID = '1BQC1Zn2wVPqUq5GqtDWsXzWo5wbLjVwP8VjhoHMnUg8'
+"""Other"""
+CSV_FILE = 'cam_data.csv'
+
+"""API Requests"""
+class ApiRequest(object):
+    def __init__(self, url, token):
+        self.url = url
+        self.auth = token  # Equals 0 if the request is for a Token
+
+    def get_Api_Request(self, querystring):
+        header = {
+            'Authorization': "Bearer " + self.auth,
+            }
+        response = requests.get(self.url, headers=header, params=querystring)
+        #data = json.loads(str(response.text))
+        data = response.json()
+        return data
+
+    def get_Token(self):
+        querystring = {'clientID': CLIENT_ID, 'clientSecret': CLIENT_SECRET}
+        response = requests.request("GET", self.url, params=querystring)
+        token = (json.loads(str(response.text)))['token']
+        return token
 try:
     import argparse
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
 except ImportError:
     flags = None
 
-SCOPES = 'https://www.googleapis.com/auth/drive'
-CLIENT_SECRET_FILE = 'client_secret.json'
-APPLICATION_NAME = 'New Camera Map'
-FILE_ID = '15E5F5nA00C8zfaBxo42d4jOtNQ3F7zPDlNbGeKwrlwA'
+def get_api_data():
+    """Calls the CAM2 API and returns the camera data as a list of dictionaries in Json format.
+    Note: Current API is limited to 100 cameras per request. """
+
+    #Gets Token
+    token_request = ApiRequest(MAIN_URL + "/auth",0)
+    token = token_request.get_Token()
+
+    #Gets Data
+    camera_data = list()
+    data_request = ApiRequest(MAIN_URL + '/cameras/search', token)
+    offset = 0
+    for x in range(0,1290):
+        querystring = {'offset': offset}
+        data = data_request.get_Api_Request(querystring)
+        offset = offset + 100
+        camera_data.append(data)
+        """ Only use when Script is Failing
+        time.sleep(60)
+        """
+    return(camera_data)
 
 def get_credentials():
-    """Gets valid user credentials from storage.
+    """Gets credentials in order to use google API"""
 
-    If nothing has been stored, or if the stored credentials are invalid,
-    the OAuth2 flow is completed to obtain the new credentials.
-
-    Returns:
-        Credentials, the obtained credential.
-    """
     home_dir = os.path.expanduser('~')
     credential_dir = os.path.join(home_dir, '.credentials')
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
-    credential_path = os.path.join(credential_dir,
-                                   'drive-python-quickstart.json')
-
+    credential_path = os.path.join(credential_dir, 'drive-python-quickstart.json')
     store = Storage(credential_path)
     credentials = store.get()
     if not credentials or credentials.invalid:
@@ -47,116 +90,68 @@ def get_credentials():
         else: # Needed only for compatibility with Python 2.6
             credentials = tools.run(flow, store)
         print('Storing credentials to ' + credential_path)
+
     return credentials
 
 def write_csv():
-    """Takes data from the new API and writes it to a CSV file for uploading
-
-    Initial Testing uses data from a prepared json file with 1000 cameras. Final script will load directly from the API
-
-    """
+    """Takes data from the new API and writes it to a CSV file for uploading"""
     data = get_api_data()
-    """with open('cam_data.json') as f:
-        data = json.load(f)"""
-    with open('cam_data.csv', 'w') as camData:
+    with open(CSV_FILE, 'w') as camData:
         camData.write('ID, Image, Latitude, Longitude, City, State, Country')
         camData.write('\n')
-        for d in data:
-            cid = d['cameraID']
-            if cid is None:
-                cid = ''
-            cpath = ''
-            if d['type'] == 'ip':
-                cip = d['retrieval']['ip']
-                if cip is None:
-                    cip = ''
-                cvp = d['retrieval']['video_path']
-                if cvp is None:
-                    cvp = ''
-                cpath = 'http://' + cip + cvp
-            elif d['type'] == 'non_ip':
-                cpath = d['snapshot_url']
-            elif d['type'] == 'stream':
-                cpath = d['m3u8_url']
-            lat = str(d['latitude'])
-            lng = str(d['longitude'])
-            ccity = d['city']
-            if ccity is None:
-                ccity = ''
-            cstate = d['state']
-            if cstate is None:
-                cstate = ''
-            ccountry = d['country']
-            if ccountry is None:
-                ccountry = ''
-            camData.write('' + cid + ', ' + cpath + ', ' + lat + ', ' + lng + ', ' + ccity + ', ' + cstate + ', ' + ccountry)
-            camData.write('\n')
+        for hundred in data:
+            for camera in hundred:
+                try:
+                    id = camera['cameraID']
+                    if id is None:
+                        id = ''
+                    path = ''
+                    if camera['type'] == 'ip':
+                        ip_address = camera['retrieval']['ip']
+                        if ip_address is None:
+                            ip_address = ''
+                        video_path = camera['retrieval']['video_path']
+                        if video_path is None:
+                            video_path = ''
+                        path = 'http://' + ip_address + video_path
+                    elif camera['type'] == 'non_ip':
+                        path = camera['snapshot_url']
+                    elif camera['type'] == 'stream':
+                        path = camera['m3u8_url']
+                    latitude = str(camera['latitude'])
+                    longitude = str(camera['longitude'])
+                    city = camera['city']
+                    if city is None:
+                        city = ''
+                    state = camera['state']
+                    if state is None:
+                        state = ''
+                    country = camera['country']
+                    if country is None:
+                        country = ''
+
+                    camData.write('' + id + ', ' + path + ', ' + latitude + ', ' + longitude + ', ' + city + ', ' + state + ', ' + country + '\n')
+                except:
+                    continue
 
 def upload_csv():
-    """Uses the credentials specific to the Team/Project to upload a CSV to a specified Google Spreadsheet
+    """Uplodes the Csv to Google Drive """
 
-    Note that in production the fileId specified below should be an environment variable, for security purposes.
-
-    """
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('drive', 'v3', http=http)
     file_metadata = { 'name' : 'All Cameras',
                     'mimeType' : 'application/vnd.google-apps.fusiontable',
                     }
-    media = MediaFileUpload('cam_data.csv',
-                            mimetype='text/csv',
-                            resumable=True)
-    file = service.files().update(body=file_metadata,
-                                        fileId=FILE_ID,
-                                        media_body=media,
-                                        fields='id').execute()
+    media = MediaFileUpload('cam_data.csv',mimetype='text/csv',resumable=True)
+    file = service.files().update(body=file_metadata,fileId=FILE_ID,media_body=media,fields='id').execute()
     print ('Successful update File ID: %s' % file.get('id'))
 
-def get_api_data():
-    """Old function used to pull data from the API and write it to a JSON file.
-
-    Very much requires re-writing and clean-up to use with this new code, but it's useful as a starting point.
-
-    """
-    client = '34b9eb8afc032098bc96174ec38ca2dba940a401d03c311251af4d8b609f7272c91ed0aaef1ee4eddb4783bcaa3ead7d'
-    secret = 'b0eaea176c29331149557b1c2fe54b82d335c8c30dbed9a50c5e4aa141b15dbefbbfd69'
-    params = {'clientID': client, 'clientSecret': secret}
-    rauth = requests.get('https://cam2-api.herokuapp.com/auth', params=params)
-    token = rauth.json()['token']
-    headerval = 'Bearer ' + token
-    header = {'Authorization': headerval}
-    r = requests.get('https://cam2-api.herokuapp.com/cameras/search', headers=header)
-    data = r.json()
-    print('Number of data requested: ' + str(len(r.json())))
-    output = list()
-    for d in data:
-        output.append(d)
-    count = 0
-    #while True:
-    for x in range(1,10):
-        time.sleep(60)
-        count = count + 100
-        rauth = requests.get('https://cam2-api.herokuapp.com/auth', params=params)
-        token = rauth.json()['token']
-        headerval = 'Bearer ' + token
-        header = {'Authorization': headerval}
-        param2 = {'offset': count}
-        tr2 = requests.get('https://cam2-api.herokuapp.com/cameras/search', params=param2, headers=header)
-        print(tr2.status_code)
-        if tr2.status_code != 200:
-            continue
-        tdata2 = tr2.json()
-        print('Number of data requested: ' + str(len(tr2.json())))
-        for d2 in tdata2:
-            output.append(d2)
-        if len(tr2.json()) < 100:
-            break
-    return output
-
 def main():
+    start_time = time.time()
     write_csv()
     upload_csv()
+    print("--- %s seconds ---" % (time.time() - start_time))
 
 if __name__ == '__main__':
     main()
