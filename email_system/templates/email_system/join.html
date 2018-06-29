@@ -29,34 +29,34 @@
             {% csrf_token %}
             <div class="row">
               <div class="col-xs-12 col-sm-5 wow animated slideInLeft" data-wow-delay=".5s" style="width: 50%;">
-                <p><label>Name: </label><br><input value="{{ request.user.get_full_name }}" type="text" name="name" id="name" required="required" placeholder="Your Name"></p>
-                <p><label>Email: </label><br><input value="{{ request.user.email }}" type="email" name="from_email" id="from_email" required="required" placeholder="Your Email" /></p>
-		<p><label>Major: </label><br><input type="text" name="major" id="major" required="required" placeholder="CS,CmpE,etc."></input></p>
+                <p><label>Name: </label><br><input value="{{ request.user.get_full_name }}" type="text" name="name" maxlength="100" id="name" required="required" placeholder="Your Name"></p>
+                <p><label>Email: </label><br><input value="{{ request.user.email }}" type="email" name="from_email" maxlength="500" id="from_email" required="required" placeholder="Your Email" /></p>
+		<p><label>Major: </label><br><input type="text" name="major" maxlength="500" id="major" required="required" placeholder="CS,CmpE,etc."></input></p>
               </div>
 	      <div class="col-xs-12 col-sm-5 wow animated slideInRight" data-wow-delay=".5s" style="width: 50%;">
-                <p><label>Graduation Date: </label><br><input type="text" name="gradDate" id="gradDate" required="required" placeholder="Example: 10/21/2015"></input></p>
-                <p><label>Programming Languages: </label><br><input type="text" name="languages" id="languages" required="required" placeholder="HTML, C, Python, JavaScript, etc.
+                <p><label>Graduation Date: </label><br><input type="text" name="gradDate" maxlength="500" id="gradDate" required="required" placeholder="Example: 10/21/2015"></input></p>
+                <p><label>Programming Languages: </label><br><input type="text" name="languages" maxlength="1000" id="languages" required="required" placeholder="HTML, C, Python, JavaScript, etc.
 "></input></p>
-		<p><label>Software Engineering Tools Experience: </label><br><input type="text" name="tools" id="tools" required="required" placeholder="Git, Travis, Linux Bash, etc.
+		<p><label>Software Engineering Tools Experience: </label><br><input type="text" name="tools" maxlength="1000" id="tools" required="required" placeholder="Git, Travis, Linux Bash, etc.
 "></input></p>
               </div>
               
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
                 <label>Which programming courses/software engineering courses have you already passed? </label><br>
-                <textarea name="courses" id="courses" class="textarea-lg" required="required" placeholder="CS 370 - Software Engineering, ECE 264 - Advanced Programming in C, etc.
+                <textarea name="courses" maxlength= "1000" id="courses" class="textarea-lg" required="required" placeholder="CS 370 - Software Engineering, ECE 264 - Advanced Programming in C, etc.
 "></textarea>
               </div>
               
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
                 <label>Why are you interested in researching with CAM²?
  </label><br>
-                <textarea name="whyCAM2" id="whyCAM2" class="textarea-lg" required="required" placeholder="Just a couple sentences will suffice.
+                <textarea name="whyCAM2" maxlength="1000" id="whyCAM2" class="textarea-lg" required="required" placeholder="Just a couple sentences will suffice.
 "></textarea>
               </div>
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
                 <label>Anything else?
  </label><br>
-                <textarea name="anythingElse" id="anythingElse" class="textarea-lg" required="required" placeholder="Clarify anything you want about your survey answers
+                <textarea name="anythingElse" maxlength="1000" id="anythingElse" class="textarea-lg" required="required" placeholder="Clarify anything you want about your survey answers
 "></textarea>
               </div>       
               <div class="clearfix"></div>
