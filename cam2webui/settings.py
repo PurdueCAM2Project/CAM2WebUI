@@ -61,6 +61,7 @@ ALLOWED_HOSTS = [
     'www.cam2project.net',
     'cam2webui.herokuapp.com',
     'cam2webui-staging.herokuapp.com',
+    'cam2webui-stream.herokuapp.com',
     'localhost',
     '127.0.0.1',
 ]
