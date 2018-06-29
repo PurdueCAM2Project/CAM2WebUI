@@ -10,21 +10,24 @@ from oauth2client import tools
 from oauth2client.file import Storage
 from apiclient.http import MediaFileUpload
 
-"""Golbal Variables"""
+"""Global Variables"""
+
 """API"""
 CLIENT_ID = '34b9eb8afc032098bc96174ec38ca2dba940a401d03c311251af4d8b609f7272c91ed0aaef1ee4eddb4783bcaa3ead7d'
 CLIENT_SECRET = 'b0eaea176c29331149557b1c2fe54b82d335c8c30dbed9a50c5e4aa141b15dbefbbfd69'
 MAIN_URL = 'https://cam2-api.herokuapp.com'
 TOTAL_NO_CAMERAS = 1290  # No of reqests per 100 cameras
+
 """Google Credentials"""
 SCOPES = 'https://www.googleapis.com/auth/drive'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'New Camera Map'
 FILE_ID = '1BQC1Zn2wVPqUq5GqtDWsXzWo5wbLjVwP8VjhoHMnUg8'
+
 """Other"""
 CSV_FILE = 'cam_data.csv'
 
-"""API Requests"""
+
 class ApiRequest(object):
     def __init__(self, url, token):
         self.url = url
@@ -35,7 +38,6 @@ class ApiRequest(object):
             'Authorization': "Bearer " + self.auth,
             }
         response = requests.get(self.url, headers=header, params=querystring)
-        #data = json.loads(str(response.text))
         data = response.json()
         return data
 
@@ -51,14 +53,18 @@ except ImportError:
     flags = None
 
 def get_api_data():
-    """Calls the CAM2 API and returns the camera data as a list of dictionaries in Json format.
+
+
+    """Calls the CAM2 API and returns the camera data as a
+    list of dictionaries in Json format.
     Note: Current API is limited to 100 cameras per request. """
 
-    #Gets Token
+
+    # Gets Token
     token_request = ApiRequest(MAIN_URL + "/auth",0)
     token = token_request.get_Token()
 
-    #Gets Data
+    # Gets Data
     camera_data = list()
     data_request = ApiRequest(MAIN_URL + '/cameras/search', token)
     offset = 0
@@ -70,16 +76,21 @@ def get_api_data():
         """ Only use when Script is Failing
         time.sleep(60)
         """
+
     return(camera_data)
 
 def get_credentials():
+
+
     """Gets credentials in order to use google API"""
+
 
     home_dir = os.path.expanduser('~')
     credential_dir = os.path.join(home_dir, '.credentials')
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
-    credential_path = os.path.join(credential_dir, 'drive-python-quickstart.json')
+    credential_path = os.path.join(credential_dir,
+                                'drive-python-quickstart.json')
     store = Storage(credential_path)
     credentials = store.get()
     if not credentials or credentials.invalid:
@@ -94,7 +105,11 @@ def get_credentials():
     return credentials
 
 def write_csv():
+
+
     """Takes data from the new API and writes it to a CSV file for uploading"""
+
+
     data = get_api_data()
     with open(CSV_FILE, 'w') as camData:
         camData.write('ID, Image, Latitude, Longitude, City, State, Country')
@@ -130,12 +145,17 @@ def write_csv():
                     if country is None:
                         country = ''
 
-                    camData.write('' + id + ', ' + path + ', ' + latitude + ', ' + longitude + ', ' + city + ', ' + state + ', ' + country + '\n')
+                    camData.write('' + id + ', ' + path + ', ' + latitude + ', '
+                    + longitude + ', ' + city + ', ' + state + ', '
+                    + country + '\n')
                 except:
                     continue
 
 def upload_csv():
+
+
     """Uplodes the Csv to Google Drive """
+
 
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
@@ -144,7 +164,9 @@ def upload_csv():
                     'mimeType' : 'application/vnd.google-apps.fusiontable',
                     }
     media = MediaFileUpload('cam_data.csv',mimetype='text/csv',resumable=True)
-    file = service.files().update(body=file_metadata,fileId=FILE_ID,media_body=media,fields='id').execute()
+    file = service.files().update(body=file_metadata,
+                                    fileId=FILE_ID,media_body=media,
+                                    fields='id').execute()
     print ('Successful update File ID: %s' % file.get('id'))
 
 def main():
