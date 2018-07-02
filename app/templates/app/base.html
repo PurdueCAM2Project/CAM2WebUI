@@ -110,7 +110,7 @@
                 <li><a href="/register/">Register</a></li>
             {% endif %}
         </ul>
-
+      </div>
       </div>
   </nav>
 
@@ -119,6 +119,7 @@
       {% block content %}{% endblock %}
   </div>
   {% block footer %}
+  <div class="container" style="width: 100%; padding-left: 0px; padding-right: 0px; height: 50px">
 
     <hr class="divide-divider">
 
@@ -135,11 +136,11 @@
 
                   <li>Sponsors</li>
 
-                  <li>Collaborators</li>
+                  <li><a href="/collaborators/">Collaborators</a></li>
 
                   <li>Calendar</li>
 
-                  <li>Location</li>
+                  <li><a href="/location/">Location</a></li>
 
               </ul>
 
@@ -153,24 +154,24 @@
 
                   <li>API Access</li>
 
-                  <li>API Documentation</li>
+                  <li><a href="https://purduecam2project.github.io/CameraDatabaseAPI/">API Documentation</a></li>
 
               </ul>
 
           </div>
 
       </div>
+     
+     <!-- Bottom Footer Bar -->
+     <div>
 
-      
-
-      <div>
-
-          <p class="pull-right hidden-xs"><button type="button"><a href="#">Back to top</a></button></p>
+          <p class="pull-right hidden-xs"><button type="button" class="btn btn-info"><a href="#" style="color: white">Back to top</a></button></p>
 
           <p>© CAM² Research Group.   ·   <a href="/privacy/">Privacy</a>   ·   <a href="/terms/">Terms of Use</a>   ·   <a href="/ack/">Acknowledgements</a>   ·   <a href="/faqs/">FAQs</a></p> 
 
       </div>
     </footer>
+  </div>
     {% endblock %}
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

@@ -19,7 +19,7 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
-from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser
+from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location
 from django.http import HttpResponseNotFound
 
 def index(request):
@@ -83,6 +83,16 @@ def terms(request):
 
 def acknowledgement(request):
     return render(request, 'app/ack.html')
+
+def collaborators(request):
+    collab = Collab.objects.reverse()
+    context = {'collab_list': collab}
+    return render(request, 'app/collaborators.html', context)
+
+def location(request):
+    loc = Location.objects.reverse()
+    context = {'loc_list': loc}
+    return render(request, 'app/location.html', context)
 
 #Addition for Testimony Video
 def testimony_vid1(request):
