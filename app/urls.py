@@ -32,9 +32,13 @@ urlpatterns = [
     url(r'^password_reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^password_reset/complete/$', auth_views.password_reset_complete, name='password_reset_complete'),
+    url(r'^new_map/$', app_views.new_map, name='new_map'),
+    url(r'^good_map/$', app_views.good_map, name='good_map'),
 
     #for testing API response
     url(r'^api_access/$', app_views.api_request, name='api_access'),
-	url(r'^videos/$', app_views.videos, name ='videos'), 
+    url(r'^videos/$', app_views.videos, name ='videos'), 
+    url(r'^collaborators/$', app_views.collaborators, name='collaborators'),
+    url(r'^location/$', app_views.location, name='location'), 
 
 ]
