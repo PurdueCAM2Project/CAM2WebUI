@@ -13,8 +13,8 @@ from apiclient.http import MediaFileUpload
 """Global Variables"""
 
 """API"""
-CLIENT_ID = '34b9eb8afc032098bc96174ec38ca2dba940a401d03c311251af4d8b609f7272c91ed0aaef1ee4eddb4783bcaa3ead7d'
-CLIENT_SECRET = 'b0eaea176c29331149557b1c2fe54b82d335c8c30dbed9a50c5e4aa141b15dbefbbfd69'
+CLIENT_ID = os.environ['CAM2_CLIENT_ID']
+CLIENT_SECRET = os.environ['CAM2_CLIENT_SECRET']
 MAIN_URL = 'https://cam2-api.herokuapp.com'
 TOTAL_NO_CAMERAS = 1290  # No of reqests per 100 cameras
 
@@ -22,7 +22,7 @@ TOTAL_NO_CAMERAS = 1290  # No of reqests per 100 cameras
 SCOPES = 'https://www.googleapis.com/auth/drive'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'New Camera Map'
-FILE_ID = '1BQC1Zn2wVPqUq5GqtDWsXzWo5wbLjVwP8VjhoHMnUg8'
+FILE_ID = os.environ['SPREADSHEET_FILE_ID']
 
 """Other"""
 CSV_FILE = 'cam_data.csv'
