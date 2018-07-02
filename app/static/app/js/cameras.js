@@ -13,11 +13,11 @@
 
     'use strict';
 
-    var tableId = "1LGM19W8ExTJbuqXhw5Ytlig3ZCx5j8y8XsSWQhLG";//all cameras
+    var tableId = "1tDogwfdIRtJ1lOWd1OeW5_RDjmntbIiVUMHh6yG-";//all cameras
     //var tableId = "115-UUNvnJHw2abJinqa2CcRIY2mX7uAC4MhTcPYF";//only good cameras
     var locationColumn = "col2";
     var queryUrlHead = 'https://www.googleapis.com/fusiontables/v2/query?sql=';
-    var queryUrlTail = '&key=AIzaSyAoE6UOreGQfV4BRWT5AX8SsicewWwS-MQ&callback=?';
+    var queryUrlTail = '&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=?';
 
     //a variable to track whether state or city data has been queried from fusiontable
     var region = '';
@@ -63,7 +63,7 @@
             },
             options: {
                 styleId: 2,
-                templateId: 2
+                templateId: 3
             }
         });
 
