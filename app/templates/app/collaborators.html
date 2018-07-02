@@ -1,0 +1,26 @@
+{% extends "app/base.html" %} 
+{% block title %}Collaborators{% endblock %}
+{% load static %} 
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/publications.css" %}"> 
+{% endblock %} 
+{% block content %}
+<div class="container">
+  <hr class="divide-divider">
+  <h1>Collaborators</h1>
+  <hr class="divide-divider">
+  <ol>
+    {% for collaborator in collab_list %}
+      <li>
+        <b>{{ collaborator.collabname }}</b>
+        {% if collaborator.collabdescr is not None %}
+        , {{ collaborator.collabdescr }}
+        {% endif %}
+        {% if collaborator.collablink is not None %}
+        , <a href="{{ collaborator.collablink }}">Collaborator's Site</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</div>
+{% endblock %}
