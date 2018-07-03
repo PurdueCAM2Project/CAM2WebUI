@@ -13,9 +13,9 @@
 
     'use strict';
 
-    var tableId = "14rDkO77Vkn2_wKZSSTEGHACwcFyTzLiPWrAw17jj";//all cameras
+    var tableId = "1tDogwfdIRtJ1lOWd1OeW5_RDjmntbIiVUMHh6yG-";//all cameras
     //var tableId = "115-UUNvnJHw2abJinqa2CcRIY2mX7uAC4MhTcPYF";//only good cameras
-    var locationColumn = "col1";
+    var locationColumn = "col2";
     var queryUrlHead = 'https://www.googleapis.com/fusiontables/v2/query?sql=';
     var queryUrlTail = '&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=?';
 
@@ -63,7 +63,7 @@
             },
             options: {
                 styleId: 2,
-                templateId: 2
+                templateId: 3
             }
         });
 
@@ -117,7 +117,7 @@
         var country = getdata_dropdown("#country");
 
         if (country != "('undefined')") {
-            updateLayer(layer, "'Nation' IN " + country);
+            updateLayer(layer, "'Country' IN " + country);
             center_on_selected_countries(map);
             getStateNames();
         }
@@ -139,7 +139,7 @@
         else {
             set_dropdown_null("city");
             var country = getdata_dropdown("#country");
-            updateLayer(layer, "'Nation' IN " + country);
+            updateLayer(layer, "'Country' IN " + country);
         }
     }
 
@@ -153,11 +153,11 @@
                 updateLayer(layer, "'State' IN " + state + " AND  " + "'City' IN " + city);
             }
             else {
-                updateLayer(layer, "'Nation' IN" + country + " AND  " + "'City' IN " + city);
+                updateLayer(layer, "'Country' IN" + country + " AND  " + "'City' IN " + city);
             }
         }
         else {
-            updateLayer(layer, "'Nation' IN " + country);
+            updateLayer(layer, "'Country' IN " + country);
         }
     }
 
@@ -276,7 +276,7 @@
         if (state != "('undefined')" && state != "('')")
             FT_Query += " WHERE 'State' IN " + state;
         else if (country != "('undefined')" && country != "('')")
-            FT_Query += " WHERE 'Nation' IN " + country;
+            FT_Query += " WHERE 'Country' IN " + country;
 
         FT_Query += " group by '" + data + "'";
 
