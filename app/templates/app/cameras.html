@@ -290,32 +290,32 @@
       </form>
     </div>
   </div>
-  <div id="mapCanvas"></div>
-  <hr>
-  <input type="button" class="btn btn-info" name="report" value="Report Unavailable Images" onclick="openReport()" />
- 
-  <div id="reportForm" style="display:none;">
-  <p>Howdy! The button Worked!</p>
 
-        <div class="form-bottom">
-          {% if messages %}
+  <div id="messageWindow">
+  {% if messages %}
             <ul class="list-group">
                 {% for message in messages %}
                 <li{% if message.tags %} class="list-group-item list-group-item-danger"{% endif %}>{{ message }}</li>
                 {% endfor %}
             </ul>
-          {% endif %}
+  {% endif %}
+  </div>
+
+  <div id="mapCanvas"></div>
+  
+  <!-- <input type="button" class="btn btn-info" name="report" value="Report Unavailable Images" onclick="openReport()" /> -->
+ 
+  <div id="reportForm" style="display:none;">
+  <p>Howdy! The button Worked!</p>
+
+        <div class="form-bottom">
+          
           <form id="contact-us" method="post" action="/cameras/">
             {% csrf_token %}
             <div class="row">
               <div class="col-xs-12 col-sm-5 wow animated slideInLeft" data-wow-delay=".5s">
                 <p><label>Camera ID: </label><br><input type="text" name="cameraID" id="cameraID" required="required" placeholder="Camera ID"></p>
               </div>
-              <div class="clearfix"></div>
-              <div class="clearfix"></div>
-              <div class="g-recaptcha pull-left recaptcha-btn" data-sitekey={{sitekey}}></div>
-              <div class="clearfix"></div>
-
               <div class="relative fullwidth col-xs-12">
                 <button type="submit" id="submit" name="submit" class="btn center-block">Report Unavailable Image</button>
               </div>

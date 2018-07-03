@@ -32,51 +32,40 @@ def cameras(request):
     if request.method == 'POST':
         form = ReportForm(request.POST)
         if form.is_valid():
-            recaptcha_response = request.POST.get('g-recaptcha-response')
-            url = 'https://www.google.com/recaptcha/api/siteverify'
-            values = {
-                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
-                'response': recaptcha_response
-            }
-            data = urllib.parse.urlencode(values).encode()
-            req = urllib.request.Request(url, data=data)
-            response = urllib.request.urlopen(req)
-            result = json.loads(response.read().decode())
-            if result['success']:
+            #recaptcha_response = request.POST.get('g-recaptcha-response')
+            #url = 'https://www.google.com/recaptcha/api/siteverify'
+            #values = {
+            #    'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+            #    'response': recaptcha_response
+            #}
+            #data = urllib.parse.urlencode(values).encode()
+            #req = urllib.request.Request(url, data=data)
+            #response = urllib.request.urlopen(req)
+            #result = json.loads(response.read().decode())
+            #if result['success']:
 
-                #get info from form
-                camID = form.cleaned_data['cameraID']
-                #add info to email template
-                content = render_to_string('app/cam_report_email_template.html', {
-                    'cameraID': camID,
-                })
-                send_mail("Camera with Unavailable Image Reported", content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
+            #get info from form
+            camID = form.cleaned_data['cameraID']
+            #add info to email template
+            #content = render_to_string('app/cam_report_email_template.html', {
+            #    'cameraID': camID,
+            #})
+            #send_mail("Camera with Unavailable Image Reported", content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
 
-                #add info to admin database - using cleaned_data
-                cam_obj = ReportedCamera(cameraID=camID)
-                cam_obj.save()
+            #add info to admin database - using cleaned_data
+            cam_obj = ReportedCamera(cameraID=camID)
+            cam_obj.save()
 
-                return redirect('email_sent')
-            else:
-                messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
-                if 'test' in sys.argv:
-                    sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-                else:
-                    sitekey = os.environ['RECAPTCHA_SITE_KEY']
-        else:
-            if 'test' in sys.argv:
-                sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-            else:
-                sitekey = os.environ['RECAPTCHA_SITE_KEY']
+            #return redirect('email_sent')
+            form = ReportForm()
+            messages.success(request, 'The unavailable image has been reported. Thank you!')
+            
+        
 
     else:
         form = ReportForm()
-        if 'test' in sys.argv:
-            sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-        else:
-            sitekey = os.environ['RECAPTCHA_SITE_KEY']
 
-    return render(request, "app/cameras.html", {'form': form, 'sitekey': sitekey})
+    return render(request, "app/cameras.html", {'form': form})
     #return render(request, 'app/cameras.html')
 
 def good_cameras(request):
