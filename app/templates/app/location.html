@@ -1,0 +1,27 @@
+{% extends "app/base.html" %} 
+{% block title %}Location{% endblock %}
+{% load static %} 
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/publications.css" %}"> 
+{% endblock %} 
+{% block content %}
+<div class="container">
+  <hr class="divide-divider">
+  <h1>Location</h1>
+  <hr class="divide-divider">
+  {% for loc in loc_list %}
+    <h2>{{ loc.officename }}</h2>
+    {% if loc.officeroom is not None %}
+    <p>Room {{ loc.officeroom }}</p>
+    {% endif %}
+    {% if loc.officebldg is not None %}
+    <p>{{ loc.officebldg }}</p>
+    {% endif %}
+    <p>{{ loc.officeaddr }}</p>
+    <p>{{ loc.officecity}}, {{ loc.officestate }}, {{ loc.officezip }}</p>
+    {% if loc.officenum is not None %}
+    <p>TEL: {{ loc.officenum }}</p>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}

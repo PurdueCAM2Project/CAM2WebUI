@@ -129,6 +129,50 @@ class Leader(models.Model):
     def __str__(self):
         return "{0}".format(self.leadername)
 
+class Collab(models.Model):
+    """Django model for the team collaborators' information
+
+    Contains information that structures the database for the collaborators
+
+    Attributes:
+         collabname: A CharField for the name of the collaborating organization
+         collabdescr: A CharField for a brief description of the collaborator
+         collablink: A CharField for a link to the collaborator's website, validated as a URL
+
+    """
+    collabname = models.CharField(verbose_name='Collaborator', max_length=100)
+    collabdescr = models.CharField(verbose_name='Description', max_length=500, blank=True, null=True)
+    collablink = models.CharField(verbose_name='Link to Site', max_length=300, blank=True, null=True, validators=[validateURL])
+    def __str__(self):
+        return "{0}".format(self.collabname)
+
+class Location(models.Model):
+    """Django model for the office locations relevant to CAM2
+
+    Contains information that structures the database for the office locations of CAM2
+
+    Attributes:
+        officename: A CharField for a descriptive name for the office listed
+        officeroom: A CharField for the room number of the office
+        officebldg: A CharField for the building in which the office is located
+        officeaddr: A CharField for the street address of the office building
+        officecity: A CharField for the city of the office building
+        officestate: A CharField for the abbreviation of the state of the office building
+        officezip: A CharField for the Zip Code of the office building
+        officenum: A CharField for the phone number of the office
+
+    """
+    officename = models.CharField(verbose_name='Office Name', max_length=100)
+    officeroom = models.CharField(verbose_name='Room Number', max_length=50, blank=True, null=True)
+    officebldg = models.CharField(verbose_name='Building', max_length=100, blank=True, null=True)
+    officeaddr = models.CharField(verbose_name='Address', max_length=100)
+    officecity = models.CharField(verbose_name='City', max_length=100)
+    officestate = models.CharField(verbose_name='State', max_length=2)
+    officezip = models.CharField(verbose_name='Zip Code', max_length=50)
+    officenum = models.CharField(verbose_name='Phone Number', max_length=50, blank=True, null=True)
+    def __str__(self):
+        return "{0}".format(self.officename)
+
 
 class Member(models.Model):
     """Django model for team members

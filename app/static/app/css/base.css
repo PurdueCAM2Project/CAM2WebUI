@@ -9,8 +9,8 @@ body {
   font-weight: 300;
   color: #444;
   line-height: 30px;
-  padding-top: 40px;
-  padding-bottom: 60px;
+  padding-top: 50px;
+  padding-bottom: 230px;
   min-height: 100%;
   position: relative;
 }
@@ -26,13 +26,6 @@ h2 {
 .navbar-inverse .navbar-brand {
   color: white;
 }
-
-
-#new_logo {
-  height:25px;
-  width:auto;
-}
-
 
 a,
 a:hover,
@@ -59,27 +52,22 @@ a:focus {
 }
 
 
-.content{
-  overflow: auto;
-}
-
 /*Change the bg color of footer*/
 footer {
-  margin-top: -60px;
   position: absolute;
   bottom: 0px;
-  height: 60px;
-  padding: 20px 100px 20px 100px;
+  margin: auto;
+  /*height: 230px;*/
+  /*padding: 20px 100px 20px 100px;*/
+  padding: 20px 100px 10px 100px;
   width: 100%;
   background: rgba(255,0,0,.5);
   background-color: #f1f1f1;
-
 }
 
 .row:after {
   content: "";
   display: table;
-  clear: both;
-
+  clear: both；
 }
 
