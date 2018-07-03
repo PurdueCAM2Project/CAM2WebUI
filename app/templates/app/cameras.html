@@ -291,6 +291,44 @@
     </div>
   </div>
   <div id="mapCanvas"></div>
+  <hr>
+  <input type="button" class="btn btn-info" name="report" value="Report Unavailable Images" onclick="openReport()" />
+ 
+  <div id="reportForm" style="display:none;">
+  <p>Howdy! The button Worked!</p>
+
+        <div class="form-bottom">
+          {% if messages %}
+            <ul class="list-group">
+                {% for message in messages %}
+                <li{% if message.tags %} class="list-group-item list-group-item-danger"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+          {% endif %}
+          <form id="contact-us" method="post" action="/cameras/">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-xs-12 col-sm-5 wow animated slideInLeft" data-wow-delay=".5s">
+                <p><label>Camera ID: </label><br><input type="text" name="cameraID" id="cameraID" required="required" placeholder="Camera ID"></p>
+              </div>
+              <div class="clearfix"></div>
+              <div class="clearfix"></div>
+              <div class="g-recaptcha pull-left recaptcha-btn" data-sitekey={{sitekey}}></div>
+              <div class="clearfix"></div>
+
+              <div class="relative fullwidth col-xs-12">
+                <button type="submit" id="submit" name="submit" class="btn center-block">Report Unavailable Image</button>
+              </div>
+              <div class="clear"></div>
+              {% for error in field.errors %}
+                  <p id="emailerror" style="color: red">{{ error }}</p>
+              {% endfor %}
+            </div>
+          </form>
+        </div>
+
+  </div>
+
 </div>
 
 {% endblock %}
@@ -299,6 +337,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script async defer type="text/javascript" src="https://maps.google.com/maps/api/js?v=3&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=initialize"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 <script type="text/javascript">
     google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
@@ -308,5 +347,16 @@
     $("#state").select2();
     $("#city").select2();
 </script>
-
+<script type="text/javascript">
+    var visible = false;
+    function openReport(){
+        if(visible){
+            document.getElementById('reportForm').style.display = "none";
+            visible = false;
+        } else {
+            document.getElementById('reportForm').style.display = "block";
+            visible = true;
+        }
+    }
+</script>
 {% endblock %}
