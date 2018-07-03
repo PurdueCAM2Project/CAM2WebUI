@@ -3,6 +3,7 @@ import httplib2
 import os
 import requests
 import time
+import math
 
 from apiclient import discovery
 from oauth2client import client
@@ -16,7 +17,7 @@ from apiclient.http import MediaFileUpload
 CLIENT_ID = os.environ['CAM2_CLIENT_ID']
 CLIENT_SECRET = os.environ['CAM2_CLIENT_SECRET']
 MAIN_URL = 'https://cam2-api.herokuapp.com'
-TOTAL_NO_CAMERAS = 1290  # No of reqests per 100 cameras
+TOTAL_NO_CAMERAS = int(os.environ['TOTAL_NO_CAMERAS'])
 
 """Google Credentials"""
 SCOPES = 'https://www.googleapis.com/auth/drive'
@@ -39,6 +40,7 @@ class ApiRequest(object):
             }
         response = requests.get(self.url, headers=header, params=querystring)
         data = response.json()
+        print('Number of cameras received: ' + str(len(data)))
         return data
 
     def get_Token(self):
@@ -67,15 +69,16 @@ def get_api_data():
     # Gets Data
     camera_data = list()
     data_request = ApiRequest(MAIN_URL + '/cameras/search', token)
-    offset = 0
-    for x in range(0,1290):
-        querystring = {'offset': offset}
-        data = data_request.get_Api_Request(querystring)
-        offset = offset + 100
-        camera_data.append(data)
-        """ Only use when Script is Failing
-        time.sleep(60)
-        """
+    offset = int(TOTAL_NO_CAMERAS)
+    # for x in range(0, 1):  # No of reqests per 100 cameras
+    querystring = {'offset': offset}
+    data = data_request.get_Api_Request(querystring)
+    # offset = offset + 100
+    camera_data.append(data)
+    print('offset: ' + str(offset))
+    """ Only use when Script is Failing
+    time.sleep(60)
+    """
 
     return(camera_data)
 
@@ -173,7 +176,8 @@ def main():
     start_time = time.time()
     write_csv()
     upload_csv()
-    print("--- %s seconds ---" % (time.time() - start_time))
+    end_time = time.time()
+    print("--- %s seconds ---" % (end_time - start_time))
 
 if __name__ == '__main__':
     main()
