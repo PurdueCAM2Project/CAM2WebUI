@@ -2,11 +2,6 @@ h1 {
   font-weight:bold;
 }
 
-img { 
-  height: 100%;
-  opacity: 0.6;
-}
-
 .center {
   position: absolute;
   top: 50%;
@@ -22,7 +17,7 @@ img {
   vertical-align: middle;
   text-align: center;
   overflow: hidden;
-  background-color: black
+  background-color: black;
 }
 
 .divide-heading {
@@ -43,4 +38,8 @@ img {
   margin-bottom: 5px;
   margin-right: 5px;
   margin-left: 5px;
+}
+
+.darker {
+    filter: brightness(75%);
 }
