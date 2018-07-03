@@ -10,10 +10,15 @@
 var TABLE_ID;
 
 /**
- * This function is only run to check the script is authorized
+ * This function is only run to check the script is authorized. Call once manually to add triggers.
  */
 function checkAuthorization()
 {
+    var sheet = SpreadsheetApp.getActive();
+    ScriptApp.newTrigger("myEdit").forSpreadsheet(sheet).onEdit().create();
+    ScriptApp.newTrigger("myEdit").forSpreadsheet(sheet).onChange().create();
+    ScriptApp.newTrigger("onOpen").forSpreadsheet(sheet).onOpen().create();
+
     return;
 }
 
@@ -29,25 +34,6 @@ function checkAuthorization()
  */
 function onOpen(e)
 {
-  try
-  {
-    TABLE_ID = PropertiesService.getScriptProperties().getProperty("TABLE_ID");
-    if(!TABLE_ID)
-    {
-
-      throw new Error("Add table ID under File > Project properties > Script Properties");
-    }
-  }
-  catch(e)
-  {
-    Logger.log(e.message);
-    Browser.msgBox(e.message);
-    return;
-  }
-  if(!TABLE_ID)
-  {
-    Logger.log("no table ID");
-  }
   init();
 }
 
@@ -57,12 +43,11 @@ function onOpen(e)
  */
 function init(){
   var sheet = SpreadsheetApp.getActive();
-  ScriptApp.newTrigger("myEdit").forSpreadsheet(sheet).onEdit().create();
-  ScriptApp.newTrigger("onChange").forSpreadsheet(sheet).onChange().create();
+
 
   var menuEntries = [{
         name: "Update Fusion Table",
-        functionName: "refetch"
+        functionName: "myEdit"
     }];
     sheet.addMenu("Sync Spreadsheet To Fusion Table", menuEntries);
 
@@ -83,6 +68,7 @@ function init(){
  */
 function myEdit(e){
   Logger.log("change triggered");
+
   refetch();
   //Logger.log(e);
 }
@@ -92,26 +78,40 @@ function myEdit(e){
  * Refetches the spreadsheet originally linked to the Fusion table
  * took ~40 secs to refetch 120K records of data
  */
-function refetch()
-{
-    try{
+function refetch() {
+    try {
+        TABLE_ID = PropertiesService.getScriptProperties().getProperty("TABLE_ID");
+        if (!TABLE_ID) {
+
+            throw new Error("Add table ID under File > Project properties > Script Properties");
+        }
+    }
+    catch (e) {
+        Logger.log(e.message);
+        Browser.msgBox(e.message);
+        return;
+    }
+    if (!TABLE_ID) {
+        Logger.log("no table ID");
+    }
+
+
+
+    try {
         var tasks = FusionTables.Task.list(TABLE_ID);
     }
     catch (e) {
-       Logger.log(e.message);
-       Browser.msgBox(e.message.toString());
-       return;
+        Logger.log(e.message);
+        Browser.msgBox(e.message.toString());
+        return;
     }
 
-  if(tasks.totalItems == 0)
-  {
-      FusionTables.Table.refetchSheet(TABLE_ID);
-  }
-  else
-  {
-      Logger.log("Failed to refetch due to having tasks still running");
-  }
+    if (tasks.totalItems == 0) {
+        FusionTables.Table.refetchSheet(TABLE_ID);
+        Logger.log("Done refetching!");
+        Browser.msgBox("Done refetching!");
+    }
+    else {
+        Logger.log("Failed to refetch due to having tasks still running");
+    }
 }
-
-
-
