@@ -15,7 +15,7 @@ var TABLE_ID;
 function checkAuthorization()
 {
     var sheet = SpreadsheetApp.getActive();
-    ScriptApp.newTrigger("myEdit").forSpreadsheet(sheet).onEdit().create();
+   // ScriptApp.newTrigger("myEdit").forSpreadsheet(sheet).onEdit().create();
     ScriptApp.newTrigger("myEdit").forSpreadsheet(sheet).onChange().create();
     ScriptApp.newTrigger("onOpen").forSpreadsheet(sheet).onOpen().create();
 
