@@ -55,6 +55,8 @@
 
         map.setOptions({ minZoom: minZoom});
 
+        var infoWindow = new google.maps.InfoWindow();
+        
         var layer = new google.maps.FusionTablesLayer({
             map: map,
             heatmap: {enabled: false},
@@ -64,8 +66,22 @@
             },
             options: {
                 styleId: 2,
-                templateId: 3
+                templateId: 3,
+                suppressInfoWindows: true
             }
+        });
+        google.maps.event.addListener(layer, 'click', function(e){
+            //console.log(e);
+            var camID = e.row.ID.value;
+            infoWindow.setContent(e.infoWindowHtml + '<input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" value="Report Unavailable Image" />');
+            infoWindow.setPosition(e.latLng);
+            infoWindow.open(map);
+
+            google.maps.event.addDomListener(document.getElementById('reportthiscam'), 'click', function(){
+                document.getElementById('cameraID').value = camID;
+                //document.getElementById('contact-us').submit();
+                document.getElementById('submit').click();
+            });
         });
 
         google.maps.event.addDomListener($("#country").on("change", function () {
@@ -369,5 +385,10 @@
         dropdown_list += "</select>"
         document.getElementById(region).innerHTML = dropdown_list;
     }
+ 
+    /*function report_camera(cameraID) {
+       document.getElementById('cameraID').value = String(cameraID);
+       document.getElementById('contact-us').submit();
+    }*/
 
 })();
