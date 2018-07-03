@@ -11,7 +11,6 @@ body {
   line-height: 30px;
   padding-top: 50px;
   padding-bottom: 230px;
-  /*padding-bottom: 40px;*/
   min-height: 100%;
   position: relative;
 }
@@ -27,13 +26,6 @@ h2 {
 .navbar-inverse .navbar-brand {
   color: white;
 }
-
-
-#new_logo {
-  height:25px;
-  width:auto;
-}
-
 
 a,
 a:hover,
@@ -60,13 +52,8 @@ a:focus {
 }
 
 
-/*.content{*/
-  /*overflow: auto;*/
-/*}*/
-
 /*Change the bg color of footer*/
 footer {
-  /*margin-top: -60px;*/
   position: absolute;
   bottom: 0px;
   margin: auto;
@@ -81,7 +68,6 @@ footer {
 .row:after {
   content: "";
   display: table;
-  clear: both;
-
+  clear: both；
 }
 
