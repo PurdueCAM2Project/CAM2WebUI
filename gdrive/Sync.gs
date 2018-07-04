@@ -88,7 +88,7 @@ function refetch() {
     }
     catch (e) {
         Logger.log(e.message);
-        Browser.msgBox(e.message);
+        //Browser.msgBox(e.message);
         return;
     }
     if (!TABLE_ID) {
@@ -102,14 +102,14 @@ function refetch() {
     }
     catch (e) {
         Logger.log(e.message);
-        Browser.msgBox(e.message.toString());
+        //Browser.msgBox(e.message.toString());
         return;
     }
 
     if (tasks.totalItems == 0) {
         FusionTables.Table.refetchSheet(TABLE_ID);
         Logger.log("Done refetching!");
-        Browser.msgBox("Done refetching!");
+        //Browser.msgBox("Done refetching!");
     }
     else {
         Logger.log("Failed to refetch due to having tasks still running");
