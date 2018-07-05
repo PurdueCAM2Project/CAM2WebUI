@@ -156,3 +156,13 @@ class NameForm(forms.ModelForm):
         """
         model = User
         fields = ('first_name', 'last_name',)
+
+class ReportForm(forms.Form):
+    """Django form for entering information about cameras with missing images.
+
+    Contains information used to allow users to identify a camera with a missing image. 
+
+    Attributes:
+        
+    """
+    cameraID = forms.CharField(required=True)

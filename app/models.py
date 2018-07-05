@@ -201,3 +201,15 @@ class Member(models.Model):
     def __str__(self):
         return "{0}".format(self.membername)
 
+class ReportedCamera(models.Model):
+    """Django model for cameras reported as having missing images
+
+    Contains information that structures the database for missing cameras
+
+    Attributes:
+        
+    """
+    cameraID = models.CharField(verbose_name='Camera ID', max_length=100)
+    def __str__(self):
+        return "{0}".format(self.cameraID)
+
