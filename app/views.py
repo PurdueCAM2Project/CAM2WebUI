@@ -2,6 +2,8 @@ import os
 import json
 import urllib
 import sys
+import requests
+import json
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -17,7 +19,7 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins
-from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location
+from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor
 from django.http import HttpResponseNotFound
 
 def index(request):
@@ -87,6 +89,11 @@ def collaborators(request):
     context = {'collab_list': collab}
     return render(request, 'app/collaborators.html', context)
 
+def sponsors(request):
+    sponsor = Sponsor.objects.reverse()
+    context = {'sponsor_list': sponsor}
+    return render(request, 'app/sponsors.html', context)
+
 def location(request):
     loc = Location.objects.reverse()
     context = {'loc_list': loc}
@@ -142,6 +149,27 @@ def publications(request):
     publication_list = Publication.objects.reverse()
     context = {'publication_list': publication_list}
     return render(request, 'app/publications.html', context)
+
+def new_map(request):
+    #client = '34b9eb8afc032098bc96174ec38ca2dba940a401d03c311251af4d8b609f7272c91ed0aaef1ee4eddb4783bcaa3ead7d'
+    #secret = 'b0eaea176c29331149557b1c2fe54b82d335c8c30dbed9a50c5e4aa141b15dbefbbfd69'
+    #header = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJRCI6IjM0YjllYjhhZmMwMzIwOThiYzk2MTc0ZWMzOGNhMmRiYTk0MGE0MDFkMDNjMzExMjUxYWY0ZDhiNjA5ZjcyNzJjOTFlZDBhYWVmMWVlNGVkZGI0NzgzYmNhYTNlYWQ3ZCIsInBlcm1pc3Npb25MZXZlbCI6InVzZXIiLCJpYXQiOjE1MjgxMjkxNTAsImV4cCI6MTUyODEyOTQ1MH0.xaTv3iT7KJKoQlgZrlpm0d4RuhWjniL5QG6K_RqUWVQ'}
+    #params = {'clientID': client, 'clientSecret': secret}
+    #rauth = requests.get('https://cam2-api.herokuapp.com/auth', params=params)
+    #token = rauth.json()['token']
+    #headerval = 'Bearer ' + token
+    #header = {'Authorization': headerval}
+    #r = requests.get('https://cam2-api.herokuapp.com/cameras/search', headers=header)
+    #datalen = len(r.json())
+    #data = r.json()
+    with open('app/cam_data.json') as f:
+        data = json.load(f)
+    return render(request, 'app/new_map.html', {'data': data})
+
+def good_map(request):
+    with open('app/cam_data.json') as f:
+        data = json.load(f)
+    return render(request, 'app/new_map_good.html', {'data': data})
 
 def advice(request):
     return render(request, 'app/advice.html')
