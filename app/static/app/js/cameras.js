@@ -25,6 +25,7 @@
     var minZoom = 2;
     var center_of_world, maxNorthEastLat, maxNorthEastLng, maxSouthWestLat, maxSouthWestLng;
     var countries_viewport;
+    var states_viewport;
 
 
     //Initialize a layer on map with markers for all cameras in database
@@ -54,6 +55,8 @@
 
         map.setOptions({ minZoom: minZoom});
 
+        var infoWindow = new google.maps.InfoWindow();
+        
         var layer = new google.maps.FusionTablesLayer({
             map: map,
             heatmap: {enabled: false},
@@ -63,8 +66,22 @@
             },
             options: {
                 styleId: 2,
-                templateId: 3
+                templateId: 3,
+                suppressInfoWindows: true
             }
+        });
+        google.maps.event.addListener(layer, 'click', function(e){
+            //console.log(e);
+            var camID = e.row.ID.value;
+            infoWindow.setContent(e.infoWindowHtml + '<input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" value="Report Unavailable Image" />');
+            infoWindow.setPosition(e.latLng);
+            infoWindow.open(map);
+
+            google.maps.event.addDomListener(document.getElementById('reportthiscam'), 'click', function(){
+                document.getElementById('cameraID').value = camID;
+                //document.getElementById('contact-us').submit();
+                document.getElementById('submit').click();
+            });
         });
 
         google.maps.event.addDomListener($("#country").on("change", function () {
@@ -72,14 +89,15 @@
         }));
 
         google.maps.event.addDomListener($("#state").on("change", function () {
-            updateMap_State(layer);
+            updateMap_State(layer, map);
         }));
 
         google.maps.event.addDomListener($("#city").on("change", function () {
-            updateMap_City(layer);
+            updateMap_City(layer, map);
         }));
 
         initialize_countries_viewport();
+        initialize_states_viewport();
 
         if (isMobile) {
             var legend = document.getElementById('googft-legend');
@@ -100,7 +118,7 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
     }
-    
+
     function initialize_countries_viewport() {
         $.ajax({
             'async': false,
@@ -109,6 +127,17 @@
             'dataType': "json",
             'success': function (data) {
                 countries_viewport = data;
+            }
+        });
+    }
+    function initialize_states_viewport() {
+        $.ajax({
+            'async': false,
+            'global': false,
+            'url': "/static/app/js/states_viewport.json",
+            'dataType': "json",
+            'success': function (data) {
+                states_viewport = data;
             }
         });
     }
@@ -129,21 +158,23 @@
         }
     }
 
-    function updateMap_State(layer) {
+    function updateMap_State(layer, map) {
         var state = getdata_dropdown("#state");
 
         if (state != "('')" && state != "('undefined')") {
             updateLayer(layer, "'State' IN " + state);
+            center_on_selected_states(map)
             getCityNames();
         }
         else {
             set_dropdown_null("city");
             var country = getdata_dropdown("#country");
             updateLayer(layer, "'Country' IN " + country);
+            center_on_world(map);
         }
     }
 
-    function updateMap_City(layer) {
+    function updateMap_City(layer, map) {
         var city = getdata_dropdown("#city");
         var state = getdata_dropdown("#state");
         var country = getdata_dropdown("#country");
@@ -151,6 +182,7 @@
         if (city != "('')" && city != "('undefined')") {
             if (state != "('')" && state != "('undefined')") {
                 updateLayer(layer, "'State' IN " + state + " AND  " + "'City' IN " + city);
+
             }
             else {
                 updateLayer(layer, "'Country' IN" + country + " AND  " + "'City' IN " + city);
@@ -227,7 +259,46 @@
 
         map.fitBounds(bounds);
     }
+    //https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?csw=1
+    function center_on_selected_states(map) {
+        var selected_states = $("#state").select2('val');
 
+        //initiliaze with corners of first country
+        var curr_state = states_viewport[selected_states[0]];
+        maxNorthEastLat = curr_state.northeast.lat;
+        maxNorthEastLng = curr_state.northeast.lng;
+        maxSouthWestLat = curr_state.southwest.lat;
+        maxSouthWestLng = curr_state.southwest.lng;
+
+        for (var i = 1; i < selected_states.length; i++) {
+            var state = selected_states[i];
+            curr_state = countries_viewport[state];
+
+            var currNorthEastLat = curr_state.northeast.lat;
+            var currNorthEastLng = curr_state.northeast.lng;
+            var currSouthWestLat = curr_state.southwest.lat;
+            var currSouthWestLng = curr_state.southwest.lng;
+
+            if (maxNorthEastLat < currNorthEastLat)
+                maxNorthEastLat = currNorthEastLat;
+
+            if (maxNorthEastLng < currNorthEastLng)
+                maxNorthEastLng = currNorthEastLng;
+
+            if (maxSouthWestLat > currSouthWestLat)
+                maxSouthWestLat = currSouthWestLat;
+
+            if (maxSouthWestLng > currSouthWestLng)
+                maxSouthWestLng = currSouthWestLng;
+        }
+
+        var bounds = new google.maps.LatLngBounds();
+
+        bounds.extend(new google.maps.LatLng(maxNorthEastLat, maxNorthEastLng));
+        bounds.extend(new google.maps.LatLng(maxSouthWestLat, maxSouthWestLng));
+
+        map.fitBounds(bounds);
+    }
 
     function center_on_world(map) {
         map.setCenter(center_of_world);
@@ -314,5 +385,10 @@
         dropdown_list += "</select>"
         document.getElementById(region).innerHTML = dropdown_list;
     }
+ 
+    /*function report_camera(cameraID) {
+       document.getElementById('cameraID').value = String(cameraID);
+       document.getElementById('contact-us').submit();
+    }*/
 
 })();
