@@ -16,11 +16,12 @@ from social_django.models import UserSocialAuth
 from django.utils.encoding import force_text, force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .tokens import account_activation_token
-from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm
+from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm, ReportForm
 from django.contrib.auth.models import User
-from django.core.mail import mail_admins
-from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location
+from django.core.mail import mail_admins, send_mail
+from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, ReportedCamera
 from django.http import HttpResponseNotFound
+from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 
 def index(request):
     return render(request, 'app/index.html')
@@ -28,7 +29,44 @@ def index(request):
 def cameras(request):
 #    context = {'google_api_key': settings.GOOGLE_API_KEY,
 #               'google_client_id': settings.GOOGLE_CLIENT_ID}
-    return render(request, 'app/cameras.html')
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            #recaptcha_response = request.POST.get('g-recaptcha-response')
+            #url = 'https://www.google.com/recaptcha/api/siteverify'
+            #values = {
+            #    'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+            #    'response': recaptcha_response
+            #}
+            #data = urllib.parse.urlencode(values).encode()
+            #req = urllib.request.Request(url, data=data)
+            #response = urllib.request.urlopen(req)
+            #result = json.loads(response.read().decode())
+            #if result['success']:
+
+            #get info from form
+            camID = form.cleaned_data['cameraID']
+            #add info to email template
+            #content = render_to_string('app/cam_report_email_template.html', {
+            #    'cameraID': camID,
+            #})
+            #send_mail("Camera with Unavailable Image Reported", content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
+
+            #add info to admin database - using cleaned_data
+            cam_obj = ReportedCamera(cameraID=camID)
+            cam_obj.save()
+
+            #return redirect('email_sent')
+            form = ReportForm()
+            messages.success(request, 'The unavailable image has been reported. Thank you!')
+            
+        
+
+    else:
+        form = ReportForm()
+
+    return render(request, "app/cameras.html", {'form': form})
+    #return render(request, 'app/cameras.html')
 
 def good_cameras(request):
     return render(request, 'app/good_cameras.html')
