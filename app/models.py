@@ -200,6 +200,7 @@ class Member(models.Model):
         membername: A CharField for the team member's full name.
         memberimg: A CharField for an image URL for the team member. Should be blank if iscurrentmember is False.
         iscurrentmember: A BooleanField that indicates whether or not this team member is a current member
+        subteam: A CharField that indicates which subteam this member belongs to. Default is blank
 
     """
     membername = models.CharField(verbose_name='Member Name', max_length=50, validators=[validateName])
@@ -218,3 +219,13 @@ class Member(models.Model):
     def __str__(self):
         return "{0}".format(self.membername)
 
+class Poster(models.Model):
+    """Django model for Posters
+
+    Contains information that structures database for posters for CAM2
+
+    Attributes:
+        posterimg: A CharField for an image URL for the poster.
+    """
+
+    posterimg = models.CharField(verbose_name='Poster Image', max_length=300, validators=[validateURL])
