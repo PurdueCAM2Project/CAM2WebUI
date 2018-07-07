@@ -19,7 +19,7 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm, ReportForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins, send_mail
-from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, ReportedCamera
+from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera
 from django.http import HttpResponseNotFound
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 
@@ -108,7 +108,9 @@ def team(request):
     return render(request, 'app/team.html', context)
 
 def team_poster(request):
-    return render(request, 'app/team_poster.html')
+    poster_images = Poster.objects.reverse()
+    context = {"poster_images": poster_images}
+    return render(request, 'app/team_poster.html', context)
 
 def training(request):
 	return render(request, 'app/training.html')
@@ -126,6 +128,11 @@ def collaborators(request):
     collab = Collab.objects.reverse()
     context = {'collab_list': collab}
     return render(request, 'app/collaborators.html', context)
+
+def sponsors(request):
+    sponsor = Sponsor.objects.reverse()
+    context = {'sponsor_list': sponsor}
+    return render(request, 'app/sponsors.html', context)
 
 def location(request):
     loc = Location.objects.reverse()

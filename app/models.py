@@ -145,6 +145,23 @@ class Collab(models.Model):
     collablink = models.CharField(verbose_name='Link to Site', max_length=300, blank=True, null=True, validators=[validateURL])
     def __str__(self):
         return "{0}".format(self.collabname)
+    
+class Sponsor(models.Model):
+    """Django model for the team sponsors' information
+
+    Contains information that structures the database for the sponsors
+
+    Attributes:
+         sponname: A CharField for the name of the collaborating organization
+         spondescr: A CharField for a brief description of the sponsor
+         sponlink: A CharField for a link to the sponsor's website, validated as a URL
+
+    """
+    sponname = models.CharField(verbose_name='Sponsor', max_length=100)
+    spondescr = models.CharField(verbose_name='Description', max_length=500, blank=True, null=True)
+    sponlink = models.CharField(verbose_name='Link to Site', max_length=300, blank=True, null=True, validators=[validateURL])
+    def __str__(self):
+        return "{0}".format(self.sponname)
 
 class Location(models.Model):
     """Django model for the office locations relevant to CAM2
@@ -183,6 +200,7 @@ class Member(models.Model):
         membername: A CharField for the team member's full name.
         memberimg: A CharField for an image URL for the team member. Should be blank if iscurrentmember is False.
         iscurrentmember: A BooleanField that indicates whether or not this team member is a current member
+        subteam: A CharField that indicates which subteam this member belongs to. Default is blank
 
     """
     membername = models.CharField(verbose_name='Member Name', max_length=50, validators=[validateName])
@@ -200,6 +218,17 @@ class Member(models.Model):
     subteam = models.CharField(verbose_name='Subteam', blank=True, max_length=50, choices=TEAM, default='blank')
     def __str__(self):
         return "{0}".format(self.membername)
+
+class Poster(models.Model):
+    """Django model for Posters
+
+    Contains information that structures database for posters for CAM2
+
+    Attributes:
+        posterimg: A CharField for an image URL for the poster.
+    """
+
+    posterimg = models.CharField(verbose_name='Poster Image', max_length=300, validators=[validateURL])
 
 class ReportedCamera(models.Model):
     """Django model for cameras reported as having missing images
