@@ -59,8 +59,8 @@ def cameras(request):
             #return redirect('email_sent')
             form = ReportForm()
             messages.success(request, 'The unavailable image has been reported. Thank you!')
-            
-        
+
+
 
     else:
         form = ReportForm()
@@ -73,7 +73,7 @@ def good_cameras(request):
 
 def team(request):
     """Renders content for the Team page
-    
+
     Retrieves information from the Team database using the matching Django Model structure.
 
     Args:
@@ -147,7 +147,7 @@ def testimony_vid1(request):
 
 def faqs(request):
     """Renders content for the FAQs page
-    
+
     Retrieves information from the FAQ database using the matching Django Model structure.
 
     Args:
@@ -162,7 +162,7 @@ def faqs(request):
 
 def history(request):
     """Renders content for the History page
-    
+
     Retrieves information from the History database using the matching Django Model structure.
 
     Args:
@@ -177,7 +177,7 @@ def history(request):
 
 def publications(request):
     """Renders content for the Publications page
-    
+
     Retrieves information from the Publications database using the matching Django Model structure.
 
     Args:
@@ -216,7 +216,7 @@ def advice(request):
 
 def register(request):
     """Renders content for the Registration form page
-    
+
     Uses the Django Forms structure outlined in forms.py to create a form for users to use
     to register their information. When the user submits this form, it validates it to ensure
     that the values are acceptable and that the required fields were filled, then it stores
@@ -300,7 +300,7 @@ def account_activated(request):
 
 def activate(request, uidb64, token):
     """Renders content for account activation
-    
+
     Determines which user is attempting to activate their account based on the encoded section of the
     URL used to access the page, sets the user's account to an activated state and saves the change
     to the database, emails the system administrator about the newly registered account, logs the user
@@ -345,7 +345,7 @@ def activate(request, uidb64, token):
 @login_required
 def profile(request):
     """Renders content for the Profile page
-    
+
     For a user that's currently logged in, displays information currently stored in the database
     for that user (First Name, Last Name, email, etc...), and allows the User to modify that
     information using a form.
@@ -455,7 +455,7 @@ def change_password(request):
 
 def oauthinfo(request):
     """Renders a form for additional content for users authenticated with Github or Google
-    
+
     Retrieves information from the social authentication library provided by Django and allows
     a user authenticated with an external service to provide additional information about themselves
     (organization, location, etc...) that can then be stored within the Django admin user database.
@@ -498,5 +498,3 @@ def api_request(request):
 
 def videos(request):
     return render(request, 'app/videos.html')
-
-
