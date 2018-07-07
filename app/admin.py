@@ -2,7 +2,8 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import FAQ, History, Publication, Team, Leader, Member, RegisterUser, Collab, Location, Sponsor, ReportedCamera
+
+from .models import FAQ, History, Publication, Team, Leader, Member, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin #Important, dont remove
 from django.contrib.auth.models import User
@@ -24,7 +25,7 @@ class MemberAdmin(admin.ModelAdmin):
             message_bit = "{0} current members were".format(rows_updated)
         self.message_user(request, "{0} successfully move to old member(s).".format(message_bit))
     move_to_oldMember.short_description = "Move Current Members to Old Members"
-        
+
 
 """User Admin"""
 #combine 2 model so that info from RegisterUser can be modified inside User Admin
@@ -34,7 +35,7 @@ class UserInline(admin.TabularInline):
 #actions
 def email_users(self, request, queryset):
     list = queryset.values('email','id')
-    
+
     user_id_selected = []
     for l in list:
         user_id_selected.append(l['id'])
@@ -47,12 +48,12 @@ email_users.short_description = "Email Users"
 def export_csv(self, request, queryset):
     #https://docs.djangoproject.com/en/1.11/howto/outputting-csv/
     #https://stackoverflow.com/questions/18685223/how-to-export-django-model-data-into-csv-file
-    
+
     #setup csv writer
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment;filename=CAM2UserList.csv'
     writer = csv.writer(response)
-    
+
     #opts = queryset.model._meta
     # output field names as first row
     # required_field_names
@@ -127,7 +128,7 @@ class UserAdmin(admin.ModelAdmin):
 class ContactModel(admin.ModelAdmin):
     inlines = [UserInline,]
     actions = [email_users,export_csv]
-	
+
 
 
 admin.site.unregister(User)
@@ -143,5 +144,4 @@ admin.site.register(Sponsor)
 admin.site.register(Location)
 admin.site.register(ReportedCamera)
 admin.site.register(Member, MemberAdmin)
-
-
+admin.site.register(Poster)
