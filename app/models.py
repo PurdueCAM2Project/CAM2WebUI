@@ -138,11 +138,13 @@ class Collab(models.Model):
          collabname: A CharField for the name of the collaborating organization
          collabdescr: A CharField for a brief description of the collaborator
          collablink: A CharField for a link to the collaborator's website, validated as a URL
+         collabimg: A CharField for a link to the collaborator's logo, validated as a URL
 
     """
     collabname = models.CharField(verbose_name='Collaborator', max_length=100)
     collabdescr = models.CharField(verbose_name='Description', max_length=500, blank=True, null=True)
     collablink = models.CharField(verbose_name='Link to Site', max_length=300, blank=True, null=True, validators=[validateURL])
+    collabimg = models.CharField(verbose_name='Collaborator Logo', max_length=300, blank=True, null=True, validators=[validateURL])
     def __str__(self):
         return "{0}".format(self.collabname)
     
