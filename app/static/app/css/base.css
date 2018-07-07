@@ -72,3 +72,16 @@ footer {
     margin-right: 100px;
     width: 100%;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.content {
+  min-height: 100%;
+}
+.content-inside {
+  padding: 20px;
+  padding-bottom: 50px;
+}
+
