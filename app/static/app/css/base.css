@@ -27,9 +27,13 @@ h2 {
   color: white;
 }
 
-a,
+a{
+  color: black;
+}
+
 a:hover,
-a:focus {
+a:focus
+{
   color: #19b9e7;
   text-decoration: none;
   -o-transition: all .3s;
@@ -38,6 +42,8 @@ a:focus {
   -ms-transition: all .3s;
   transition: all .3s;
 }
+
+
 
 .divide-divider {
   margin: 30px 0;
