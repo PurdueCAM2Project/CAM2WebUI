@@ -1,6 +1,6 @@
 {% extends "app/base.html" %}
 
-{% block title %}Team{% endblock %}
+{% block title %}Team Videos{% endblock %}
 
 {% load static %}
 
@@ -10,152 +10,187 @@
 
 {% block content %}
 <div class="container main-content">
-    
-  <div class="row divide">
-
-
+<div class="row divide">
 <div class="main-content">
-  <div class="row divide" style="background-color: #F1F1F1; padding-top: 50px; padding-bottom: 50px; ">
-      
-    <div style="width: 80%; margin: auto">
-      <div class="col-sm-5">
+    
+    <hr class="divide-divider">
+    <hr class="divide-divider">
+    <hr class="divide-divider">
+    <hr class="divide-divider">
+    
+    <!--  The First Video: what is CAM2?  -->
+    <div id="section1" class="container-fluid" style="padding-top:70px;padding-bottom:70px; background-color: #F1F1F1">
+    <div class="row" style="width: 80%; margin: auto">
+
+        <!--  Info  -->
+        <div class="col-sm">
         <h2 class="divide-heading">What is CAM2?</h2>
-        <p class="lead">          
           <ul class="list-unstyled">
             <li><span style="padding:10px" class="fa fa-user"></span>Everett Berrty, Perceive CTO.</li>
             <li><span style="padding:10px" class="fa fa-video-camera"></span>In this video, Everett gives undergraduate researchers advice on how to succeed.</li>
           </ul>
-        </p>
-      </div>
-       <div class="col-sm-5 col-sm-push-2">
-        <div class="embed-responsive embed-responsive-16by9"> 
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lpbFLdf3u3o?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
+        </div>
+    
+    <!--  Video Link  -->
+     <div class="col-sm">
+        <div class="embed-responsive embed-responsive-16by9">
+           <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lpbFLdf3u3o?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
                   allowfullscreen="allowfullscreen"></iframe> 
-
          </div>
       </div>
-    </div>
-  </div>
-  <hr class="divide-divider">
-  <div class="row divide">
-    <div style="width: 80%; margin: auto">
-      <div class="col-sm-5 col-sm-push-7">
+    </div>  
+    </div>  
+      
+    <hr class="divide-divider">
+      
+    <!--  The Second Video: Research and Innovation  -->
+    <div id="section1" class="container-fluid" style="padding-top:70px;padding-bottom:70px; background-color: #F1F1F1">
+    <div class="row" style="width: 80%; margin: auto">
+        <!--  Video Link  -->
+        <div class="col-sm">
+         <div class="embed-responsive embed-responsive-16by9">
+           <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oPeKHUHpU2c?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
+                    allowfullscreen="allowfullscreen"></iframe>  
+         </div>
+        </div>
+        
+        <!--  Info  -->
+        <div class="col-sm">
         <h2 class="divide-heading">Research and Innovation</h2>
-        <p class="lead">
           <ul class="list-unstyled">
             <li><span style="padding:10px" class="fa fa-user"></span>Mrigank Jha, graduated in 2015, joined World Wide Technology.</li>
             <li><span style="padding:10px" class="fa fa-video-camera"></span>Jha outlines his research experience in this video.</li>
           </ul>
-        </p>
-      </div>
-      <div class="col-sm-5 col-sm-pull-5">
-        <div class="embed-responsive embed-responsive-16by9">
-
-           <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oPeKHUHpU2c?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
-                    allowfullscreen="allowfullscreen"></iframe> 
-
-         </div>
-      </div>
-    </div>
-  </div>
-  <hr class="divide-divider">
-  <div class="row divide" style="background-color: #F1F1F1; padding-top: 50px;
-  padding-bottom: 50px;">
-    <div style="width: 80%; margin: auto">
-      <div class="col-sm-5">
-        <h2 class="divide-heading">Innovation Challenges</h2>
-        <ul class="list-unstyled">
-            <li><span style="padding:10px" class="fa fa-user"></span>Jinyi Zhang, graduated in 2016, joined Columbia University as a graduate student.</li>
-            <li><span style="padding:10px" class="fa fa-video-camera"></span>Jinyi explains how doing research helped him in graduate school.</li>
-        </ul>
-      </div>
-      <div class="col-sm-5 col-sm-push-2">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fNZAGS9bj74?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
-                  allowfullscreen="allowfullscreen"></iframe>
         </div>
-      </div>
-    </div>
-  </div>
-  <hr class="divide-divider">
-  <div class="row divide">
-    <div style="width: 80%; margin: auto">
-      <div class="col-sm-5  col-sm-push-7">
-        <h2 class="divide-heading">Unique Work</h2>
-        <ul class="list-unstyled">
-            <li><span style="padding:10px" class="fa fa-user"></span>Joseph Sweeney, graduated in 2017, joined Carnegie Mellon University as a graduate student.</li>
-            <li><span style="padding:10px" class="fa fa-video-camera"></span>Joseph explains how undergraduate research is different from normal classwork.</li>
-        </ul>
-      </div>
-      <div class="col-sm-5 col-sm-pull-5">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/p--yMuGqO-o?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
-                  allowfullscreen="allowfullscreen"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr class="divide-divider">
-  <div class="row divide" style="background-color: #F1F1F1; padding-top: 50px;
-  padding-bottom: 50px;">
-    <div style="width: 80%; margin: auto">
-      <div class="col-sm-5">
+    
+    </div>  
+    </div>  
+    
+    <hr class="divide-divider">
+    
+    <!--  The Third Video: CAM2 Impact  -->
+    <div id="section1" class="container-fluid" style="padding-top:70px;padding-bottom:70px; background-color: #F1F1F1">
+    <div class="row" style="width: 80%; margin: auto">
+
+        <!--  Info  -->
+        <div class="col-sm">
         <h2 class="divide-heading">CAM2 Impact</h2>
-        <ul class="list-unstyled">
+          <ul class="list-unstyled">
             <li><span style="padding:10px" class="fa fa-user"></span>Ali Cataltepe, graduated in 2018, joined California Institute of Technology as a PhD student. Joined CAM2 Camera Discovery team in 2016 summer.</li>
             <li><span style="padding:10px" class="fa fa-video-camera"></span>How CAM2 influnced career deision of Ali Cataltepe</li>
-        </ul>
-      </div>
-      <div class="col-sm-5 col-sm-push-2">
+          </ul>
+        </div>
+    
+    <!--  Video Link  -->
+     <div class="col-sm">
         <div class="embed-responsive embed-responsive-16by9">
-
           <iframe class="embed-responsive-item" src="https://youtube.com/embed/lyFB6Bijxkk"
                   allowfullscreen="allowfullscreen"></iframe>
          </div>
-
-    </div>
-  </div>
-</div>
-    
-  <hr class="divide-divider">
-  <div class="row divide">
-    <div style="width: 80%; margin: auto">
-      <div class="col-sm-5  col-sm-push-7">
-        <h2 class="divide-heading">Travis Continuous Integration</h2>
-            <ul class="list-unstyled">
-			    	 <li><span style="padding:10px" class="fa fa-line-chart"></span>Travis Tutorial</li>
-					 <li><span style="padding:10px" class="fa fa-pie-chart"></span>An overview of Travis CI usage for development</li>
-            </ul>
       </div>
-      <div class="col-sm-5 col-sm-pull-5">
+    </div>  
+    </div>  
+    
+    <hr class="divide-divider">
+    
+    <!--  The Forth Video: Innovation Challenges  -->
+    <div id="section1" class="container-fluid" style="padding-top:70px;padding-bottom:70px; background-color: #F1F1F1">
+    <div class="row" style="width: 80%; margin: auto">
+        <!--  Video Link  -->
+        <div class="col-sm">
+         <div class="embed-responsive embed-responsive-16by9">
+           <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fNZAGS9bj74?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
+                  allowfullscreen="allowfullscreen"></iframe>
+         </div>
+        </div>
+        
+        <!--  Info  -->
+        <div class="col-sm">
+        <h2 class="divide-heading">Innovation Challenges</h2>
+          <ul class="list-unstyled">
+             <li><span style="padding:10px" class="fa fa-user"></span>Jinyi Zhang, graduated in 2016, joined Columbia University as a graduate student.</li>
+            <li><span style="padding:10px" class="fa fa-video-camera"></span>Jinyi explains how doing research helped him in graduate school.</li>
+          </ul>
+        </div>
+    
+    </div>  
+    </div>  
+    
+    <hr class="divide-divider">
+    
+     <!--  The Fifth Video: CAM2 Impact  -->
+    <div id="section1" class="container-fluid" style="padding-top:70px;padding-bottom:70px; background-color: #F1F1F1">
+    <div class="row" style="width: 80%; margin: auto">
+
+        <!--  Info  -->
+        <div class="col-sm">
+        <h2 class="divide-heading">Travis Continuous Integration</h2>
+          <ul class="list-unstyled">
+                <li><span style="padding:10px" class="fa fa-line-chart"></span>Travis Tutorial</li>
+                <li><span style="padding:10px" class="fa fa-pie-chart"></span>An overview of Travis CI usage for development</li>
+          </ul>
+        </div>
+    
+    <!--  Video Link  -->
+     <div class="col-sm">
         <div class="embed-responsive embed-responsive-16by9">
           <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/p2kSN7dDfn0?rel=0&controls=1&showinfo=0&vq=hd720&autohid"
                   allowfullscreen="allowfullscreen"></iframe>
-        </div>
+         </div>
       </div>
-    </div>
-  </div>
+    </div>  
+    </div>  
+    
+    <hr class="divide-divider">
+
+    <!--  The Sixth Video: Unique Work  -->
+    <div id="section1" class="container-fluid" style="padding-top:70px;padding-bottom:70px; background-color: #F1F1F1">
+      <div class="row" style="width: 80%; margin: auto">
+        <!--  Video Link  -->
+        <div class="col-sm">
+         <div class="embed-responsive embed-responsive-16by9">
+           <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/p--yMuGqO-o?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
+                  allowfullscreen="allowfullscreen"></iframe>
+         </div>
+        </div>
+        
+        <!--  Info  -->
+        <div class="col-sm">
+        <h2 class="divide-heading">Unique Work</h2>
+          <ul class="list-unstyled">
+                <li><span style="padding:10px" class="fa fa-user"></span>Joseph Sweeney, graduated in 2017, joined Carnegie Mellon University as a graduate student.</li>
+                <li><span style="padding:10px" class="fa fa-video-camera"></span>Joseph explains how undergraduate research is different from normal classwork.</li>
+          </ul>
+        </div>
+    
+      </div>  
+    </div>  
+
    
-<hr class="divide-divider">
-  <div class="row divide" style="background-color: #F1F1F1; padding-top: 50px;
-  padding-bottom: 50px;">
-    <div style="width: 80%; margin: auto">
-      <div class="col-sm-5">
+    <hr class="divide-divider">
+
+    <!--  The Seventh Video: 2018 Spring Alumni  -->
+    <div id="section1" class="container-fluid" style="padding-top:70px;padding-bottom:70px; background-color: #F1F1F1">
+    <div class="row" style="width: 80%; margin: auto">
+
+        <!--  Info  -->
+        <div class="col-sm">
         <h2 class="divide-heading">2018 Spring Alumni</h2>
-        <ul class="list-unstyled">
+          <ul class="list-unstyled">
             <li><span style="padding:10px" class="fa fa-user"></span>The CAM2 Team Members who graduated in Spring 2018.</li>
             <li><span style="padding:10px" class="fa fa-video-camera"></span>The recent graduates discuss their experience with CAM2.</li>
-        </ul>
-      </div>
-      <div class="col-sm-5 col-sm-push-2">
+          </ul>
+        </div>
+    
+    <!--  Video Link  -->
+     <div class="col-sm">
         <div class="embed-responsive embed-responsive-16by9">
-
           <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1LGjSqQ953A" allowfullscreen="allowfullscreen"></iframe>
          </div>
-
-    </div>
-  </div>
-</div>
+      </div>
+    </div>  
+    </div>  
+    
  
 </div>
 </div>
