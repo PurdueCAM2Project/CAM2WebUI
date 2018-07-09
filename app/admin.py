@@ -9,6 +9,7 @@ from django.contrib.auth.admin import UserAdmin #Important, dont remove
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from django.core import serializers
 import csv
 
 
@@ -86,6 +87,26 @@ def export_csv(self, request, queryset):
     return response
 export_csv.short_description = "Export selected user as csv"
 
+def report_csv(self, request, queryset):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment;filename=ReportedCameras.csv'
+    writer = csv.writer(response)
+    required_field_names = ['cameraID', 'reporttime']
+    field_names = required_field_names.copy()
+    writer.writerow(field_names)
+    for obj in queryset:
+        required_info = [getattr(obj, field) for field in required_field_names]
+        writer.writerow(required_info)
+    return response
+report_csv.short_description = "Export selected cameras as csv"
+
+def report_json(self, request, queryset):
+    data = serializers.serialize("json", queryset)
+    response = HttpResponse(data, content_type='application/json')
+    response['Content-Disposition'] = 'attachment;filename=ReportedCameras.json'
+    return response
+report_json.short_description = "Export selected cameras as json"
+
 
 #model
 class UserAdmin(admin.ModelAdmin):
@@ -129,7 +150,20 @@ class ContactModel(admin.ModelAdmin):
     inlines = [UserInline,]
     actions = [email_users,export_csv]
 
+class ReportAdmin(admin.ModelAdmin):
+    list_display = (
+        'cameraID',
+        'reporttime',
+    )
+    actions = [report_csv, report_json]
+    
+    def cameraID(self, cameraID):
+        return "{}".format(ReportedCamera.objects.get(cameraID=cameraID).cameraID)
+    cameraID.short_description = 'Camera ID'
 
+    def reporttime(self, cameraID):
+        return "{}".format(ReportedCamera.objects.get(cameraID=cameraID).reporttime)
+    reporttime.short_description = 'Report Time'
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
@@ -142,6 +176,6 @@ admin.site.register(Leader)
 admin.site.register(Collab)
 admin.site.register(Sponsor)
 admin.site.register(Location)
-admin.site.register(ReportedCamera)
+admin.site.register(ReportedCamera, ReportAdmin)
 admin.site.register(Member, MemberAdmin)
 admin.site.register(Poster)
