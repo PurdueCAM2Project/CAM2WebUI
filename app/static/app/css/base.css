@@ -84,3 +84,22 @@ html, body {
 }
 
 
+.nav-pills>li>a:hover {
+	background-color: #F1F1F1;
+}
+
+
+a,
+a:hover,
+a:focus {
+  color: #737373;
+  text-decoration: none;
+  -o-transition: all .3s;
+  -moz-transition: all .3s;
+  -webkit-transition: all .3s;
+  -ms-transition: all .3s;
+  transition: all .3s;
+}
+
+
+
