@@ -69,16 +69,17 @@ def get_api_data():
     # Gets Data
     camera_data = list()
     data_request = ApiRequest(MAIN_URL + '/cameras/search', token)
-    offset = int(TOTAL_NO_CAMERAS)
-    # for x in range(0, 1):  # No of reqests per 100 cameras
-    querystring = {'offset': offset}
-    data = data_request.get_Api_Request(querystring)
-    # offset = offset + 100
-    camera_data.append(data)
-    print('offset: ' + str(offset))
-    """ Only use when Script is Failing
-    time.sleep(60)
-    """
+    # offset = int(TOTAL_NO_CAMERAS)
+    offset = 0
+    for x in range(0, math.ceil(TOTAL_NO_CAMERAS/100)):  # No of reqests per 100 cameras
+        querystring = {'offset': offset}
+        data = data_request.get_Api_Request(querystring)
+        offset = offset + 100
+        camera_data.append(data)
+        print('offset: ' + str(offset))
+        """ Only use when Script is Failing
+        time.sleep(60)
+        """
 
     return(camera_data)
 
