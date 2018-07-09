@@ -1,10 +1,7 @@
-/*
 h1 {
   font-weight:bold;
 }
-*/
 
-/*
 .center {
   position: absolute;
   top: 50%;
@@ -42,9 +39,7 @@ h1 {
   margin-right: 5px;
   margin-left: 5px;
 }
-*/
 
 .darker {
     filter: brightness(75%);
 }
-
