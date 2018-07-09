@@ -1,3 +1,4 @@
+/*
 html {
   overflow-y: scroll;
   height: 100%;
@@ -19,14 +20,6 @@ h2 {
   font-weight: normal;
 }
 
-.navbar-inverse .navbar-nav>li>a {
-  color: white;
-}
-
-.navbar-inverse .navbar-brand {
-  color: white;
-}
-
 a,
 a:hover,
 a:focus {
@@ -39,10 +32,7 @@ a:focus {
   transition: all .3s;
 }
 
-.divide-divider {
-  margin: 30px 0;
-  border-top: 1px solid #fff;
-}
+
 
 .embed-responsive-item {
   margin-top: 5px;
@@ -50,15 +40,15 @@ a:focus {
   margin-right: 5px;
   margin-left: 5px;
 }
+*/
 
 
 /*Change the bg color of footer*/
+/*
 footer {
   position: absolute;
   bottom: 0px;
   margin: auto;
-  /*height: 230px;*/
-  /*padding: 20px 100px 20px 100px;*/
   padding: 20px 100px 10px 100px;
   width: 100%;
   background: rgba(255,0,0,.5);
@@ -70,4 +60,27 @@ footer {
   display: table;
   clear: both；
 }
+*/
+
+.divide-divider {
+  margin: 30px 0;
+  border-top: 1px solid #fff;
+}
+
+.break { 
+    background: #F1F1F1;
+    height: 2px;
+    margin: 5px 0 10px 0;
+    margin-right: 100px;
+    width: 100%;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.content {
+  min-height: 70%;
+}
+
 
