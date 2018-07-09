@@ -43,3 +43,7 @@ h1 {
 .darker {
     filter: brightness(75%);
 }
+
+.divide{
+  margin: 15px 10px;
+}
