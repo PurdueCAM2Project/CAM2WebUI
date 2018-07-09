@@ -63,7 +63,7 @@
 
     <!--  Tabs on the left  -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="nav nav-tabs navbar-nav mr-auto ">
+    <ul class="nav nav-pills mr-auto">
         
         <!--  Tab Cameras  -->
         <li class="nav-item dropdown">
@@ -107,8 +107,8 @@
     
     </ul>
         
-    <!--  Tabs on the left  -->
-    <ul class="nav nav-tabs navbar-nav ml-auto">
+    <!--  Tabs on the right  -->
+    <ul class="nav nav-pills ml-auto">
         {% if user.is_authenticated %}
             {% if user.is_staff %}
                 <li id="adminSite"><a class="nav-link" href="/admin/">Admin Site</a></li>
