@@ -67,7 +67,7 @@ footer {
   border-top: 1px solid #fff;
 }
 
-.break { 
+.break {
     background: #F1F1F1;
     height: 2px;
     margin: 5px 0 10px 0;
@@ -89,10 +89,13 @@ html, body {
 }
 
 
-a,
+a{
+  color: black;
+}
+
 a:hover,
 a:focus {
-  color: #737373;
+  color: #1aa3ff;
   text-decoration: none;
   -o-transition: all .3s;
   -moz-transition: all .3s;
@@ -100,6 +103,3 @@ a:focus {
   -ms-transition: all .3s;
   transition: all .3s;
 }
-
-
-
