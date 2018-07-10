@@ -1,5 +1,6 @@
 # Google Fusion Table
 
+This page is created for documenting every feature relevant to Google Fusion Table.
 
 This script is built to fecth cmaera APIs on [cam2-camera-api](https://purduecam2project.github.io/CameraDatabaseAPI/#api-cameras-camById). 
 
