@@ -331,6 +331,13 @@
 
 </div>
 
+<div id="mapModal" class="modal">
+  <div class="modal-content" style="position:fixed;left:50%;top:20%;transform:translate(-50%, -50%);">
+    <span class="modalclose">&times;</span>
+    <div id="mapModalInfo"></div>
+  </div>
+</div>
+
 {% endblock %}
 {% block scripts %}
 <script src="{% static "app/js/cameras.js" %}"></script>
@@ -348,14 +355,12 @@
     $("#city").select2();
 </script>
 <script type="text/javascript">
-    var visible = false;
-    function openReport(){
-        if(visible){
-            document.getElementById('reportForm').style.display = "none";
-            visible = false;
-        } else {
-            document.getElementById('reportForm').style.display = "block";
-            visible = true;
+    document.getElementsByClassName("modalclose")[0].onclick = function() {
+        document.getElementById('mapModal').style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('mapModal')) {
+            document.getElementById('mapModal').style.display = "none";
         }
     }
 </script>
