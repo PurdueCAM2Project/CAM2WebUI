@@ -20,9 +20,22 @@ h2 {
   font-weight: normal;
 }
 
-a,
+
+.navbar-inverse .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-inverse .navbar-brand {
+  color: white;
+}
+
+a{
+  color: black;
+}
+
 a:hover,
-a:focus {
+a:focus
+{
   color: #19b9e7;
   text-decoration: none;
   -o-transition: all .3s;
