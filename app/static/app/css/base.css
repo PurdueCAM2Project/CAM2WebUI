@@ -11,7 +11,6 @@ body {
   line-height: 30px;
   padding-top: 50px;
   padding-bottom: 230px;
-  /*padding-bottom: 40px;*/
   min-height: 100%;
   position: relative;
 }
@@ -28,16 +27,13 @@ h2 {
   color: white;
 }
 
-
-#new_logo {
-  height:25px;
-  width:auto;
+a{
+  color: black;
 }
 
-
-a,
 a:hover,
-a:focus {
+a:focus
+{
   color: #19b9e7;
   text-decoration: none;
   -o-transition: all .3s;
@@ -46,6 +42,8 @@ a:focus {
   -ms-transition: all .3s;
   transition: all .3s;
 }
+
+
 
 .divide-divider {
   margin: 30px 0;
@@ -60,13 +58,8 @@ a:focus {
 }
 
 
-/*.content{*/
-  /*overflow: auto;*/
-/*}*/
-
 /*Change the bg color of footer*/
 footer {
-  /*margin-top: -60px;*/
   position: absolute;
   bottom: 0px;
   margin: auto;
@@ -81,7 +74,6 @@ footer {
 .row:after {
   content: "";
   display: table;
-  clear: both;
-
+  clear: both；
 }
 

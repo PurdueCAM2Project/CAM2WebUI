@@ -1,0 +1,26 @@
+{% extends "app/base.html" %} 
+{% block title %}Sponsors{% endblock %}
+{% load static %} 
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/publications.css" %}"> 
+{% endblock %} 
+{% block content %}
+<div class="container">
+  <hr class="divide-divider">
+  <h1>Sponsors</h1>
+  <hr class="divide-divider">
+  <ol>
+    {% for sponsor in sponsor_list %}
+      <li>
+        <b>{{ sponsor.sponname }}</b>
+        {% if sponsor.spondescr is not None %}
+        , {{ sponsor.spondescr }}
+        {% endif %}
+        {% if sponsor.sponlink is not None %}
+        , <a href="{{ sponsor.sponlink }}">Sponsor's Site</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</div>
+{% endblock %}
