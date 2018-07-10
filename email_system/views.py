@@ -207,7 +207,7 @@ def join(request):
                 join_obj = JoinModel(name=name, from_email=from_email, major=major, gradDate=gradDate, courses=courses, languages=languages, tools=tools, whyCAM2=whyCAM2, anythingElse=anythingElse, date=datetime.date.today())
                 join_obj.save()
 
-                return redirect('email_sent')
+                return redirect('join_email_sent')
             else:
                 messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
                 if 'test' in sys.argv:
@@ -231,3 +231,6 @@ def join(request):
 
 def email_sent(request):
     return render(request, 'email_system/email_sent.html')
+
+def join_email_sent(request):
+    return render(request, 'email_system/join_email_sent.html')
