@@ -106,9 +106,8 @@ a{
   color: black;
 }
 
-a:hover,
-a:focus {
-/*  color: #1aa3ff;*/
+a:hover {
+  color: #1aa3ff;  
   text-decoration: none;
   -o-transition: all .3s;
   -moz-transition: all .3s;
