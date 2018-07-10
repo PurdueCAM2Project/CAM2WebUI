@@ -238,9 +238,11 @@ class ReportedCamera(models.Model):
     Contains information that structures the database for missing cameras
 
     Attributes:
-        
+        cameraID: A CharField for the ID of the reported camera.
+        reporttime: A DateField for the time at which the camera was reported.
     """
     cameraID = models.CharField(verbose_name='Camera ID', max_length=100)
+    reporttime = models.DateTimeField(blank=True, null=True)
     def __str__(self):
         return "{0}".format(self.cameraID)
 
