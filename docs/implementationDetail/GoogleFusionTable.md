@@ -14,7 +14,7 @@ Before writing any code for the project, we need to enable two Google APIs. Both
 
 3. To enable Google Drive API, follow steps below.
 
-    1. Follow [Officical Documentation for Python Version Google Drive API](https://developers.google.com/drive/v3/web/quickstart/python#step_1_turn_on_the_api_name). 
+    1. Follow [Official Documentation for Python Version Google Drive API](https://developers.google.com/drive/v3/web/quickstart/python#step_1_turn_on_the_api_name). 
 
     2. The only field needs to be changed is application name, *e.g.* CAM2 Drive API. 
 
@@ -236,14 +236,170 @@ function onOpen() {
 
 * Reload the spreadsheet and you will see a new menu item next to help. Mine reads "Sync Spreadsheet To Fusion Table." Click the menu item and you will see an option to "Update Fusion Table." Since our file has more than 100 thousand data points in the file, it may cost more than 5 minutes to execute the script. As long as the file is running, you do not need to worry about the script too much. 
 
+## Syncing 100,000 + entries to Fusion table
 
-### Synchronize Spreadsheet
+When trying to sync 100,000+ table entries using [this script](#add-the-script-to-the-spreadsheet), the Google Apps Script exceeds
+its execution time limit (6 minutes). Therefore, another method should be used.
 
-* Click Edit --> Current Project Trigger, then add a new project trigger to the project.
+### Previous script 
 
-Since we would like to sync the fusion table everytime when spreadsheet is changed, so we choose the option: "sync", "from spreadsheet", "on change" those options. Then for everytime the spreadsheet is changed, it will automatically run the script and sync spreadsheet content to the fusion table!
+The previous script's method `replaceRows` replaces all the rows in the fusion table with the rows specified in the 
+spreadsheet. 
 
-Now we can update the camera location file into the google drive. We will update the spreadsheet in the particular google drive folder using google drive api and then use google app script to synchronize google fusion table from google spreadsheet everytime when google spreadsheet is change. 
+### New Script
+
+The following script updates the all the rows in the fusion table using `refetch` which refetches the spreadsheet 
+which was originally linked to the fusion table. This method takes about 40 seconds. 
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To check the execution time go to View -> Execution transcript</p>
+</div>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This script prints to the log in case an error occurs and when it's done. 
+You can check that by going to View -> Logs</p>
+</div>
+
+```
+/**
+ * AppsScript script to run in a Google Spreadsheet that synchronizes its
+ * contents with a Fusion Table by refetching the spreadsheet.
+ * @author WebUI Team @ CAM2
+ */
+
+/**
+ * Add your table ID in File > Project properties > Script Properties in the script editor
+ */
+var TABLE_ID;
+
+/**
+ * This function is only run to check the script is authorized. Call once manually to add triggers.
+ */
+function checkAuthorization()
+{
+    var sheet = SpreadsheetApp.getActive();
+    ScriptApp.newTrigger("myEdit").forSpreadsheet(sheet).onChange().create();
+    ScriptApp.newTrigger("onOpen").forSpreadsheet(sheet).onOpen().create();
+
+    return;
+}
+
+
+/**
+ * Event handler for  opening the spreadsheet
+ * @param e Event object with following attributes:
+ * authMode
+ * source
+ * triggerUid
+ * user
+ * @link https://developers.google.com/apps-script/guides/triggers/events
+ */
+function onOpen(e)
+{
+  init();
+}
+
+
+/**
+ * initializing triggers and menu in spreadsheet
+ */
+function init(){
+  var sheet = SpreadsheetApp.getActive();
+
+
+  var menuEntries = [{
+        name: "Update Fusion Table",
+        functionName: "myEdit"
+    }];
+    sheet.addMenu("Sync Spreadsheet To Fusion Table", menuEntries);
+
+}
+
+
+/**
+ * Event Handler for editing the spreadsheet
+ * @param e Event object has the following attributes:
+ * authMode
+ * oldValue
+ * range
+ * source
+ * triggerUid
+ * user
+ * value
+ * @link https://developers.google.com/apps-script/guides/triggers/events
+ */
+function myEdit(e){
+  Logger.log("change triggered");
+
+  refetch();
+  
+}
+
+
+/**
+ * Refetches the spreadsheet originally linked to the Fusion table
+ * took ~40 secs to refetch 120K records of data
+ */
+function refetch() {
+    try {
+        TABLE_ID = PropertiesService.getScriptProperties().getProperty("TABLE_ID");
+        if (!TABLE_ID) {
+
+            throw new Error("Add table ID under File > Project properties > Script Properties");
+        }
+    }
+    catch (e) {
+        Logger.log(e.message);
+        return;
+    }
+    if (!TABLE_ID) {
+        Logger.log("no table ID");
+    }
+
+
+
+    try {
+        var tasks = FusionTables.Task.list(TABLE_ID);
+    }
+    catch (e) {
+        Logger.log(e.message);
+        return;
+    }
+
+    if (tasks.totalItems == 0) {
+        FusionTables.Table.refetchSheet(TABLE_ID);
+        Logger.log("Done refetching!");
+    }
+    else {
+        Logger.log("Failed to refetch due to having tasks still running");
+    }
+}
+```
+
+### Steps to configure Google Apps Project
+1. Copy and paste the above script in your script editor.
+2. Run `checkAuthorization` function to install the triggers and check that the script is authorized.
+3. Check that triggers have been properly installed. Go to Edit -> Current Project Trigger. It should look like the 
+following :
+ 
+ ![](static/img/triggers.png)
+4. Go to File -> Project properties -> Script Properties and add your `TABLE_ID`.
+5. Refresh your google spreadsheet. You'll see on the top right side of the menu bar `Sync Spreadsheet to Fusion Table`.
+
+Now when a row changes, it will refetch the spreadsheet.
+
+### Potential issues
+* This script works as of 07/10/2018 to update 120,000 entries. As the database grows the Google Apps Script might
+exceed the execution limit again. In this case use [Fusion table API](https://developers.google.com/fusiontables/docs/v2/reference/) to use different methods to update.
+ 
+ 
+### Troubleshooting Google Apps Script
+
+* Use `Logger.log` function to print to the log view of the script.
+* Go to Views -> Executions to see whether a script is running or not and to see if it failed.
+* You can check errors by going to Error Reporting in Google Developer Console.
 
 
 ## Using Google Fusion Tables
