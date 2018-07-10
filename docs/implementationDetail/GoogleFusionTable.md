@@ -115,7 +115,6 @@ run the following code to create or update file.
 python quickstart.py
 ```
 
-
 ## Sync Fusion Table with Google Spreadsheet
 
 ### Export spreadsheet to Google Fusion table
@@ -124,9 +123,9 @@ Since our file is ended with csv, if we upload that CSV file to google drive, it
 
 In google drive, click on new button, and choose "more" option to see if Google Fusion Table already exists in the google drive app. If not, then click on "Connect more apps". Find Google Fusion Table in the apps and add that into the google drive app. Then create new Google Fusion Table, and choose import it from spreadsheet. Then we can create our fusion table in google drive.
 
-### Add the script to the spreadsheet
+### Add the script to the spreadsheet 
 
-* Now we're ready to add our script to our spreadsheet. Back at your spreadsheet, go to Tools --&gt; Script Editor and paste the following code.
+* Now we're ready to add our script to our spreadsheet. Back at your spreadsheet, go to Tools --&gt; Script Editor and paste the following code. 
 
 ```
 /**
