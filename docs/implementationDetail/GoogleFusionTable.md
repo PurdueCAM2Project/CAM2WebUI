@@ -1,6 +1,8 @@
 # Google Fusion Table
 
-This page is created for documenting every feature relevant to Google Fusion Table
+This page is created for documenting every feature relevant to Google Fusion Table.
+
+This script is built to fecth cmaera APIs on [cam2-camera-api](https://purduecam2project.github.io/CameraDatabaseAPI/#api-cameras-camById). 
 
 ## Preparation
 
@@ -17,8 +19,12 @@ Before writing any code for the project, we need to enable two Google APIs. Both
     1. Follow [Official Documentation for Python Version Google Drive API](https://developers.google.com/drive/v3/web/quickstart/python#step_1_turn_on_the_api_name). 
 
     2. The only field needs to be changed is application name, *e.g.* CAM2 Drive API. 
-
-    3. Make sure download and save client_secret.json file. This file will be used later.
+    
+    3. On on the left side bar of your project, go to *Credentials*. Click *Create credentials*, choose *OAuth client ID*. For the type, choose *other*. When OAuth credential is created, you should be able to see the new ID of yours in the list. 
+    
+    4. At the right end of your client ID, click the download icon. A JSON file has name starts with *client_secret...*  will be downloaded to your computer. Change the name to *client_secret.json* and move it to the *gdrive* folder. 
+    
+    5. Done.
 
 ### Install Google Client Library
 
@@ -120,8 +126,7 @@ python quickstart.py
 Instead of running `python quickstart.py`, in the same folder *gdrive*, run `python api_getter.py` instead. 
 
 *api_getter* is created in June 2018 based on the content in the quickstart.py with better functions.
-
-
+ 
 
 ## Sync Fusion Table with Google Spreadsheet
 
