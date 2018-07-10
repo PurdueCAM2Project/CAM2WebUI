@@ -9,18 +9,21 @@
   <hr class="divide-divider">
   <h1>Collaborators</h1>
   <hr class="divide-divider">
-  <ol>
+  <ul style="list-style-type:none;">
     {% for collaborator in collab_list %}
       <li>
+        {% if collaborator.collabimg is not None %}<img src="{{ collaborator.collabimg }}" alt="{{ collaborator.collabname }}" width="125px"><br>{% endif %}
         <b>{{ collaborator.collabname }}</b>
-        {% if collaborator.collabdescr is not None %}
-        , {{ collaborator.collabdescr }}
-        {% endif %}
-        {% if collaborator.collablink is not None %}
-        , <a href="{{ collaborator.collablink }}">Collaborator's Site</a>
-        {% endif %}
+        <ul style="list-style-type:none;">
+          {% if collaborator.collabdescr is not None %}
+          <li>{{ collaborator.collabdescr }}</li>
+          {% endif %}
+          {% if collaborator.collablink is not None %}
+          <li><a href="{{ collaborator.collablink }}">Collaborator's Site</a></li>
+          {% endif %}
+        </ul>
       </li>
     {% endfor %}
-  </ol>
+  </ul>
 </div>
 {% endblock %}

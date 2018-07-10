@@ -9,8 +9,10 @@
 
   <div class="team-posters">
     <h2 class = "title-for-posters">Team Posters </h2>
-    <p><img style="width: 90%; margin-left: auto; margin-right: auto;" src="{% static "app/img/ICRC2016PosterYHLu.jpg" %}"/></p>
-    <p><img style="width: 90%; margin-left: auto; margin-right: auto;" src="{% static "app/img/SI2PI2017PurdueYungHsiangLu.jpg" %}"/></p>
+    {% for poster in poster_images %}
+    <p><img style="width: 90%; margin-left: auto; margin-right: auto;" src="{{poster.posterimg}}"/></p>
+    {% endfor %}
+
   </div>
  
 </div>
