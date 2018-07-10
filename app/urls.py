@@ -37,8 +37,9 @@ urlpatterns = [
 
     #for testing API response
     url(r'^api_access/$', app_views.api_request, name='api_access'),
-    url(r'^videos/$', app_views.videos, name ='videos'), 
+    url(r'^videos/$', app_views.videos, name ='videos'),
     url(r'^collaborators/$', app_views.collaborators, name='collaborators'),
-    url(r'^location/$', app_views.location, name='location'), 
+    url(r'^sponsors/$', app_views.sponsors, name='sponsors'),
+    url(r'^location/$', app_views.location, name='location'),
 
 ]
