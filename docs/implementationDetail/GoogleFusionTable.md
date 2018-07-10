@@ -115,6 +115,14 @@ run the following code to create or update file.
 python quickstart.py
 ```
 
+**Imprtant Update**
+
+Instead of running `python quickstart.py`, in the same folder *gdrive*, run `python api_getter.py` instead. 
+
+*api_getter* is created in June 2018 based on the content in the quickstart.py with better functions.
+
+
+
 ## Sync Fusion Table with Google Spreadsheet
 
 ### Export spreadsheet to Google Fusion table
