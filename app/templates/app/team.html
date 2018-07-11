@@ -2,13 +2,13 @@
 {% block title %}Team{% endblock %}
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{% static "app/css/team.css " %}">
+    <link rel="stylesheet" href="{% static "app/css/team.css" %}">
 {% endblock %}
 {% block content %}
     <div class="container main-content">
 
         <hr class="divide-divider">
-        <h2>The Team</h2>
+        <h1>The Team</h1>
         {% load  custom_tags %}
         {% for team in team_list %}
             {% if forloop.counter0|divisibleby:"3" %}
