@@ -6,16 +6,45 @@
 {% endblock %} 
 {% block content %}
 <div class="container">
-  <hr class="divide-divider">
-  <h1>Sponsors</h1>
-  <hr class="divide-divider">
-  <ol>
+    <hr class="divide-divider">
+    <h1>Sponsors</h1>
+    <hr class="divide-divider">
+
+    <div class="row col-md-12 col-sm-12 col-xs-12 ">
+    <div class="col-md-12 col-sm-12 col-xs-12" style="float: left">
+
     {% for sponsor in sponsor_list %}
-      <li>
-        <b>{{ sponsor.sponname }}</b>
-        {% if sponsor.logolink is not None %}, 
-            <img style="width: 50px; height: 50px; position: relative" src="{{ sponsor.logolink }}">
+        {% if forloop.counter0|divisibleby:"3" %}
+            <div class="row">
         {% endif %}
+                
+        <div class="col-md-4 col-sm-4 col-xs-6" style="float: left">
+        {% if sponsor.logolink is not None %} 
+            <figure style="text-align: center">
+                <img style="width: 80%;" src="{{ sponsor.logolink }}">
+                <figcaption>
+                    <b><a href="{{ sponsor.sponlink }}">{{ sponsor.sponname }}</a></b>
+                    <p>
+                        {% if sponsor.spondescr is not None %}
+                            {{ sponsor.spondescr }}
+                        {% endif %}
+                    </p>
+                </figcaption>
+            </figure>
+
+        {% endif %}
+        </div>
+                
+        {% if forloop.counter|divisibleby:"3" or forloop.last %}
+        </div>
+        {% elif forloop.counter|divisibleby:"2" %}
+            <div class="clearfix visible-xs-block"></div>
+        {% elif forloop.counter|divisibleby:"3" %}
+            <div class="clearfix visible-sm-block"></div>
+        {% endif %}
+      
+<!--
+        <b>{{ sponsor.sponname }}</b>
           
         {% if sponsor.spondescr is not None %}
         , {{ sponsor.spondescr }}
@@ -23,12 +52,18 @@
         {% if sponsor.sponlink is not None %}
         , <a href="{{ sponsor.sponlink }}">Sponsor's Site</a>
         {% endif %}
+      
+-->
+    <hr class="divide-divider">
         
-      </li>
     {% endfor %}
+    </div>
+    </div>
+      
+    <hr class="divide-divider">
     <p>*Note: National Lab, and the owners of the data. Any opinions, findings, and conclusions or
     recommendations expressed in this material are those of the author and do not necessarily reflect
     the views of the sponsors.</p>
-  </ol>
+    
 </div>
 {% endblock %}
