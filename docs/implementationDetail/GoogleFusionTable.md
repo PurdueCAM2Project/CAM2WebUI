@@ -12,7 +12,7 @@ Before writing any code for the project, we need to enable two Google APIs. Both
 
 1. Visit [Google Developer Console](https://console.developers.google.com/).
 
-2. Look at dashboard page and examine whether or not Google Fusion Table and Google Drive API has already been enabled. If not, click on the library, search for Google Fusion Table API, and click on "ENABLE" button 
+2. Look at dashboard page and examine whether or not Google Fusion Table and Google Drive API has already been enabled. If not, click on the library, search for Google Fusion Table API, and click on "ENABLE" button.
 
 3. To enable Google Drive API, follow steps below.
 
@@ -33,6 +33,17 @@ Run the following command to install the library using pip:
 ```
 pip install --upgrade google-api-python-client
 ```
+### Configure environment variables
+Run the ```export env_var_name=env_var_value``` command for each one of the following environment variable: <br>
+
+| env_var_name | env_var_value | 
+|:-----------|:------------|
+| CAM2_CLIENT_ID | Get it from team Slack channel|     
+| CAM2_CLIENT_SECRET |  Get it from team Slack channel |    
+| TOTAL_NO_CAMERAS  |  Number of cameras. *clarify with team Slack channel|     
+| SPREADSHEET_FILE_ID  |  Get it from team Slack channel|      
+
+
 
 ## Authentication and upload files to Google Drive
 
