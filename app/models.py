@@ -160,7 +160,7 @@ class Sponsor(models.Model):
          logolink: An image of the logo of the sponsor
 
     """
-    sponname = models.CharField(verbose_name='Sponsor', max_length=100)
+    sponname = models.CharField(verbose_name='Sponsor', max_length=100, blank=True)
     spondescr = models.CharField(verbose_name='Description', max_length=500, blank=True, null=True)
     sponlink = models.CharField(verbose_name='Link to Site', max_length=300, blank=True, null=True, validators=[validateURL])
     logolink = models.CharField(verbose_name='Link to Logo', max_length=300, blank=True, null=True, validators=[validateURL])
