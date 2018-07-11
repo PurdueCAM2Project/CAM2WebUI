@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.firefox.options import Options
 
 
 from pyvirtualdisplay import Display
@@ -27,6 +28,7 @@ import base64
 import uuid
 import string
 import random
+import time
 
 # test
 
@@ -59,7 +61,10 @@ class AddTestCase(StaticLiveServerTestCase):
 		#d = DesiredCapabilities.CHROME
 		#d['loggingPrefs'] = { 'browser':'ALL' }
 		#self.selenium = webdriver.Chrome(desired_capabilities=d)
-		self.selenium = webdriver.Firefox()
+		options = Options()
+		options.add_argument('--headless')
+		time.sleep(10)
+		self.selenium = webdriver.Firefox(options=options)
 		User.objects.create_superuser(
 			username='admin',
 			password='admin',
