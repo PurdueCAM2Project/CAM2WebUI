@@ -74,8 +74,8 @@ class AddTestCase(StaticLiveServerTestCase):
 		self.port = self.live_server_url.split(":")[2]
 		self.username = os.environ['BASICAUTH_USERNAME']
 		self.password = os.environ['BASICAUTH_PASSWORD']
-		self.test_username = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
-		self.test_password = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+		self.test_username = ''.join(random.sample(string.ascii_uppercase + string.digits, 10))
+		self.test_password = ''.join(random.sample(string.ascii_uppercase + string.digits, 10))
 
 
 	def tearDown(self):
