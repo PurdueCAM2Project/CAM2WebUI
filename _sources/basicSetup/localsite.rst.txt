@@ -81,7 +81,6 @@ The required environment variables are:
  :code:`RECAPTCHA_TEST_PRIVATE_KEY`   Get it from team slack channel 
  :code:`RECAPTCHA_TEST_SITE_KEY`      Get it from team slack channel 
  :code:`IS_PRODUCTION_SITE`           False 
- :code:`MANAGER_EMAIL`                Get it from team slack channel
 ===================================== ========
 
 .. note::

@@ -24,27 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PurdueCAM2Project/CAM2WebUI 1.0 documentation" href="../index.html"/>
-        <link rel="next" title="Email" href="Email.html"/>
-        <link rel="prev" title="User" href="User.html"/> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Email" href="Email.html" />
+    <link rel="prev" title="User" href="User.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -121,7 +113,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">PurdueCAM2Project/CAM2WebUI</a>
@@ -129,9 +121,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -183,7 +176,7 @@
 <p>Before writing any code for the project, we need to enable two Google APIs. Both Google Drive and Google Fusion Table.</p>
 <ol class="simple">
 <li>Visit <a class="reference external" href="https://console.developers.google.com/">Google Developer Console</a>.</li>
-<li>Look at dashboard page and examine whether or not Google Fusion Table and Google Drive API has already been enabled. If not, click on the library, search for Google Fusion Table API, and click on &#8220;ENABLE&#8221; button</li>
+<li>Look at dashboard page and examine whether or not Google Fusion Table and Google Drive API has already been enabled. If not, click on the library, search for Google Fusion Table API, and click on &#8220;ENABLE&#8221; button.</li>
 <li>To enable Google Drive API, follow steps below.<ol>
 <li>Follow <a class="reference external" href="https://developers.google.com/drive/v3/web/quickstart/python#step_1_turn_on_the_api_name">Officical Documentation for Python Version Google Drive API</a>.</li>
 <li>The only field needs to be changed is application name, <em>e.g.</em> CAM2 Drive API.</li>
@@ -198,6 +191,13 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">google</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="n">client</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="configure-environment-variables">
+<span id="configure-environment-variables"></span><h3>Configure environment variables<a class="headerlink" href="#configure-environment-variables" title="Permalink to this headline">¶</a></h3>
+<p>Run the <code class="docutils literal"><span class="pre">export</span> <span class="pre">env_var_name=env_var_value</span></code> command for each one of the following environment variable: <br></p>
+<p>| env_var_name | env_var_value |
+|:&#8212;&#8212;&#8212;&#8211;|:&#8212;&#8212;&#8212;&#8212;|
+| CAM2_CLIENT_ID | Get it from team Slack channel|| CAM2_CLIENT_SECRET |  Get it from team Slack channel || TOTAL_NO_CAMERAS  |  Number of cameras. *clarify with team Slack channel|| SPREADSHEET_FILE_ID  |  Get it from team Slack channel|</p>
 </div>
 </div>
 <div class="section" id="authentication-and-upload-files-to-google-drive">
@@ -492,9 +492,7 @@ The fusion table will have the same visibility as the host google drive folder w
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -516,7 +514,7 @@ The fusion table will have the same visibility as the host google drive folder w
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -535,6 +533,7 @@ The fusion table will have the same visibility as the host google drive folder w
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'1.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -547,19 +546,13 @@ The fusion table will have the same visibility as the host google drive folder w
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>
