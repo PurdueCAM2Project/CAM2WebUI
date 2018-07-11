@@ -216,7 +216,7 @@
          <hr class="divide-divider">
         {% if oldmember_list is not None and oldmember_list|length != 0 %}
             <h2>Former Members</h2>
-            <ul class="list-group row">
+            <ul class="list-inline row">
                 {% for member in oldmember_list %}
                     <li class="list-group-item col-xs-12 col-sm-6 col-md-4">{{ member.membername }}</li>
                 {% endfor %}
