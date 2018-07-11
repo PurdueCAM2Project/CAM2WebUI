@@ -20,7 +20,7 @@ Before writing any code for the project, we need to enable two Google APIs. Both
 
     2. The only field needs to be changed is application name, *e.g.* CAM2 Drive API. 
     
-    3. On on the left side bar of your project, go to *Credentials*. Click *Create credentials*, choose *OAuth client ID*. For the type, choose *other*. When OAuth credential is created, you should be able to see the new ID of yours in the list. 
+    3. On the left side bar of your project, go to *Credentials*. Click *Create credentials*, choose *OAuth client ID*. For the type, choose *other*. When OAuth credential is created, you should be able to see the new ID of yours in the list. 
     
     4. At the right end of your client ID, click the download icon. A JSON file has name starts with *client_secret...*  will be downloaded to your computer. Change the name to *client_secret.json* and move it to the *gdrive* folder. 
     
@@ -36,12 +36,34 @@ pip install --upgrade google-api-python-client
 ### Configure environment variables
 Run the ```export env_var_name=env_var_value``` command for each one of the following environment variable: <br>
 
-| env_var_name | env_var_value | 
-|:-----------|:------------|
-| CAM2_CLIENT_ID | Get it from team Slack channel|     
-| CAM2_CLIENT_SECRET |  Get it from team Slack channel |    
-| TOTAL_NO_CAMERAS  |  Number of cameras. *clarify with team Slack channel|     
-| SPREADSHEET_FILE_ID  |  Get it from team Slack channel|      
+
+
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">env_var_name</th>
+<th class="head">env_var_value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">CAM2_CLIENT_ID</span> </code></td>
+<td>Get it from team Slack channel</td>
+</tr>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">CAM2_CLIENT_SECRET</span></code></td>
+<td>Get it from team Slack channel </td>
+</tr>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">TOTAL_NO_CAMERAS</span></code></td>
+<td>Number of cameras. *clarify with team Slack channel </td>
+</tr>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">SPREADSHEET_FILE_ID</span> </code></td>
+<td>Get it from team Slack channel </td>
+</tr>
+
+</tbody>
+</table>
 
 
 
