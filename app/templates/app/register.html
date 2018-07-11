@@ -7,8 +7,8 @@
 {% endblock %} 
 {% block content %}
 <div class="container">
-  <div class="row">
-    <div class="col-md-offset-2 col-md-8 col-sm-12">
+  <div class="row ">
+    <div class="offset-md-2 col-md-8 col-sm-12">
       <div class="form-box">
         <div class="form-top">
           <div class="form-top-left">
@@ -27,30 +27,32 @@
           {% endif %}
           <form method="post">
             {% csrf_token %}
-            <div class="col-sm-6">
-              {% for field in form1 %}
-              <p>
-                {{ field.label_tag }}<br> {{ field }} 
-                {% for error in field.errors %}
-                  <p id="registererror" style="color: red">{{ error }}</p>
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                {% for field in form1 %}
+                <p>
+                  {{ field.label_tag }}<br> {{ field }}
+                  {% for error in field.errors %}
+                    <p id="registererror" style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </p>
                 {% endfor %}
-              </p>
-              {% endfor %}
-            </div>
-            <div class="col-sm-6">
-              {% for field in form2 %}
-              <p>
-                {{ field.label_tag }}<br> {{ field }} {% for error in field.errors %}
-                <p style="color: red">{{ error }}</p>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                {% for field in form2 %}
+                <p>
+                  {{ field.label_tag }}<br> {{ field }} {% for error in field.errors %}
+                  <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </p>
                 {% endfor %}
-              </p>
-              {% endfor %}
+              </div>
             </div>
             <div class="clearfix"></div>
             <div class="g-recaptcha pull-left recaptcha-btn" data-sitekey={{sitekey}}></div>
             <div class="clearfix"></div>
             <div class="pull-left terms col-sm-7 col-xs-12">By clicking on "Sign Up" below, you are agreeing to the <a href="/terms/">Terms of Service</a> and the <a href="/privacy/">Privacy Policy</a>.</div>
-            <button type="submit" name="registerbutton" class="btn  center-block">Sign Up</button>
+            <button type="submit" name="registerbutton" class="btn  offset-md-1">Sign Up</button>
 
           </form>
         </div>

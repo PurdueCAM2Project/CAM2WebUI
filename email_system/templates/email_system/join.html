@@ -1,10 +1,10 @@
-{% extends "app/base.html" %} 
+{% extends "app/base.html" %}
 {% block title %}Join Us{% endblock %}
-{% load static %} 
+{% load static %}
 {% block css %}
 <link rel="stylesheet" href="{% static "app/css/login.css" %}" />
 <link rel="stylesheet" href="{% static "email_system/css/contact.css" %}" />
-{% endblock %} 
+{% endblock %}
 {% block content %}
 <div class="container">
   <div class="row">
@@ -40,13 +40,13 @@
 		<p><label>Software Engineering Tools Experience: </label><br><input type="text" name="tools" maxlength="1000" id="tools" required="required" placeholder="Git, Travis, Linux Bash, etc.
 "></input></p>
               </div>
-              
+
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
                 <label>Which programming courses/software engineering courses have you already passed? </label><br>
                 <textarea name="courses" maxlength= "1000" id="courses" class="textarea-lg" required="required" placeholder="CS 370 - Software Engineering, ECE 264 - Advanced Programming in C, etc.
 "></textarea>
               </div>
-              
+
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
                 <label>Why are you interested in researching with CAM²?
  </label><br>
@@ -58,15 +58,21 @@
  </label><br>
                 <textarea name="anythingElse" maxlength="1000" id="anythingElse" class="textarea-lg" required="required" placeholder="Clarify anything you want about your survey answers
 "></textarea>
-              </div>       
-              <div class="clearfix"></div>
-              <div class="clearfix"></div>
-              <div class="g-recaptcha pull-left recaptcha-btn" data-sitekey={{sitekey}}></div>
-              <div class="clearfix"></div>
-
-              <div class="relative fullwidth col-xs-12">
-                <button type="submit" id="submit" name="submit" class="btn center-block">Send Message</button>
               </div>
+              <div class="clearfix"></div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="row">
+              <div class="g-recaptcha recaptcha-btn" data-sitekey={{sitekey}}></div>
+
+              <div class="clearfix"></div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <button type="submit" id="submit" name="submit" class="btn btn-dark">Send Message</button>
+              </div>
+              <div class="col-8"></div>
+            </div>
               <div class="clear"></div>
               {% for error in field.errors %}
                   <p id="emailerror" style="color: red">{{ error }}</p>
