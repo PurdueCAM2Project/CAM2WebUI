@@ -9,11 +9,13 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+    <div class="col">
+    </div>
+    <div class="col-sm-6">
       <div class="form-box">
-        <div class="form-top">
+        <div class="row form-top">
           <div class="form-top-left">
-            <h3>Login to CAM2</h3>
+            <h3><b>Login to CAM2</b></h3>
             <p>Enter username and password</p>
           </div>
           <div class="form-top-right"> <i class="fa fa-sign-in"></i> </div>
@@ -28,8 +30,8 @@
               </p>
             {% endfor %}
             <a href="/password_reset/">Forgot username or password?</a>
-            <div class="clearfix"></div>
-            <button type="submit" name="submitbutton" class="btn center-block">Sign in</button><br>
+            <!-- <div class="clearfix"></div> -->
+            <button type="submit" name="submitbutton" class="btn" style="width: 100%">Sign in</button>
             {% if form.non_field_errors %}
               <ul class='list-group'>
                 {% for error in form.non_field_errors %}
@@ -40,20 +42,17 @@
           </form>
         </div>
       </div>
-      <div class="social-login">
         <h4 style="color:black;text-align:center;">- or -</h4>
-        <div class="social-login-buttons">
-          <a class="oauth-btn btn btn-block btn-social btn-md btn-github center-block" id="github_login" href="{% url 'social:begin' 'github' %}">
-            <span class="fa fa-github"></span>Sign in with Github
+          <a class="oauth-btn btn btn-block btn-social btn-md btn-github center-block btn-dark " style="width: 100%" id="github_login" href="{% url 'social:begin' 'github' %}">
+            <span class="fa fa-github"></span> Sign in with Github
           </a>
-          <a class="oauth-btn btn btn-block btn-social btn-md btn-google center-block" href="{% url 'social:begin' 'google-oauth2' %}">
-            <span class="fa fa-google"></span>Sign in with Google
+
+          <a class="oauth-btn btn btn-block btn-social btn-md btn-google center-block btn-danger" style="width: 100%" href="{% url 'social:begin' 'google-oauth2' %}">
+            <span class="fa fa-google"></span> Sign in with Google
           </a>
-        </div>
-      </div>
+    </div>
+    <div class="col">
     </div>
   </div>
 </div>
 {% endblock %}
-
-
