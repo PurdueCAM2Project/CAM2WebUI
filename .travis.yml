@@ -37,7 +37,7 @@ deploy:
     release: cam2webui
 - provider: pages
   skip_cleanup: true
-  local_dir: $PWD/docs/_build/html
+  local_dir: docs/_build/html
   github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
   keep-history: true
   on:
