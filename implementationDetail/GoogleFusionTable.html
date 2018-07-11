@@ -91,7 +91,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#preparation">Preparation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#authentication-and-upload-files-to-google-drive">Authentication and upload files to Google Drive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sync-fusion-table-with-google-spreadsheet">Sync Fusion Table with Google Spreadsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#syncing-100-000-entries-to-fusion-table">Syncing 100,000 + entries to Fusion table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-google-fusion-tables">Using Google Fusion Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#populating-googlesheet-with-metadata-from-cam2-api-database">Populating Googlesheet with metadata from CAM2 API database</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Email.html">Email</a></li>
@@ -168,7 +170,8 @@
             
   <div class="section" id="google-fusion-table">
 <span id="google-fusion-table"></span><h1>Google Fusion Table<a class="headerlink" href="#google-fusion-table" title="Permalink to this headline">¶</a></h1>
-<p>This page is created for documenting every feature relevant to Google Fusion Table</p>
+<p>This page is created for documenting every feature relevant to Google Fusion Table.</p>
+<p>This script is built to fetch camera APIs on <a class="reference external" href="https://purduecam2project.github.io/CameraDatabaseAPI/#api-cameras-camById">cam2-camera-api</a>.</p>
 <div class="section" id="preparation">
 <span id="preparation"></span><h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="enable-google-api">
@@ -178,9 +181,9 @@
 <li>Visit <a class="reference external" href="https://console.developers.google.com/">Google Developer Console</a>.</li>
 <li>Look at dashboard page and examine whether or not Google Fusion Table and Google Drive API has already been enabled. If not, click on the library, search for Google Fusion Table API, and click on &#8220;ENABLE&#8221; button.</li>
 <li>To enable Google Drive API, follow steps below.<ol>
-<li>Follow <a class="reference external" href="https://developers.google.com/drive/v3/web/quickstart/python#step_1_turn_on_the_api_name">Officical Documentation for Python Version Google Drive API</a>.</li>
+<li>Follow <a class="reference external" href="https://developers.google.com/drive/v3/web/quickstart/python#step_1_turn_on_the_api_name">Official Documentation for Python Version Google Drive API</a>.</li>
 <li>The only field needs to be changed is application name, <em>e.g.</em> CAM2 Drive API.</li>
-<li>Make sure download and save client_secret.json file. This file will be used later.</li>
+<li>On the left side bar of your project, go to <em>Credentials</em>. Click <em>Create credentials</em>, choose <em>OAuth client ID</em>. For the type, choose <em>other</em>. When OAuth credential is created, you should be able to see the new ID of yours in the list.</li>
 </ol>
 </li>
 </ol>
@@ -191,13 +194,6 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">google</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="n">client</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="configure-environment-variables">
-<span id="configure-environment-variables"></span><h3>Configure environment variables<a class="headerlink" href="#configure-environment-variables" title="Permalink to this headline">¶</a></h3>
-<p>Run the <code class="docutils literal"><span class="pre">export</span> <span class="pre">env_var_name=env_var_value</span></code> command for each one of the following environment variable: <br></p>
-<p>| env_var_name | env_var_value |
-|:&#8212;&#8212;&#8212;&#8211;|:&#8212;&#8212;&#8212;&#8212;|
-| CAM2_CLIENT_ID | Get it from team Slack channel|| CAM2_CLIENT_SECRET |  Get it from team Slack channel || TOTAL_NO_CAMERAS  |  Number of cameras. *clarify with team Slack channel|| SPREADSHEET_FILE_ID  |  Get it from team Slack channel|</p>
 </div>
 </div>
 <div class="section" id="authentication-and-upload-files-to-google-drive">
@@ -290,7 +286,7 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span>/**
  * appsscript script to run in a google spreadsheet that synchronizes its
  * contents with a fusion table by replacing all rows.
- * based on instructions here: 
+ * based on instructions here:
  * https://htmlpreview.github.io/?https://github.com/fusiontable-gallery/fusion-tables-api-samples/blob/master/FusionTablesSheetSync/docs/reference.html#enabling_advanced_services
  */
 
@@ -390,16 +386,175 @@ function onOpen() {
 <p><img alt="" src="../_images/developer_console_project.png" /></p>
 <ul class="simple">
 <li>Click Resources &#8211;&gt; Advanced Google Service, find Google fusion table API, Google SpreadSheet API and enable them. If you don&#8217;t do that, you will get errors: &#8220;Referenced error: FusionTables is not defined&#8221;</li>
-<li>Reload the spreadsheet and you will see a new menu item next to help. Mine reads &#8220;Sync Spreadsheet To Fusion Table.&#8221; Click the menu item and you will see an option to &#8220;Update Fusion Table.&#8221; Since our file has more than 100 thousand data points in the file, it may cost more than 5 minutes to execute the script. As long as the file is running, you do not need to worry about the script too much.</li>
+<li>Reload the spreadsheet and you will see a new menu item next to help, &#8220;Sync Spreadsheet To Fusion Table.&#8221; Click the menu item and you will see an option to &#8220;Update Fusion Table.&#8221; Since our file has more than 100 thousand data points in the file, it may cost more than 5 minutes to execute the script. As long as the file is running, you do not need to worry about the script too much.</li>
 </ul>
 </div>
-<div class="section" id="synchronize-spreadsheet">
-<span id="synchronize-spreadsheet"></span><h3>Synchronize Spreadsheet<a class="headerlink" href="#synchronize-spreadsheet" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="syncing-100-000-entries-to-fusion-table">
+<span id="syncing-100-000-entries-to-fusion-table"></span><h2>Syncing 100,000 + entries to Fusion table<a class="headerlink" href="#syncing-100-000-entries-to-fusion-table" title="Permalink to this headline">¶</a></h2>
+<p>When trying to sync 100,000+ table entries using <a class="reference external" href="#add-the-script-to-the-spreadsheet">this script</a>, the Google Apps Script exceeds
+its execution time limit (6 minutes). Therefore, another method should be used.</p>
+<div class="section" id="previous-script">
+<span id="previous-script"></span><h3>Previous script<a class="headerlink" href="#previous-script" title="Permalink to this headline">¶</a></h3>
+<p>The previous script&#8217;s method <code class="docutils literal"><span class="pre">replaceRows</span></code> replaces all the rows in the fusion table with the rows specified in the
+spreadsheet.</p>
+</div>
+<div class="section" id="new-script">
+<span id="new-script"></span><h3>New Script<a class="headerlink" href="#new-script" title="Permalink to this headline">¶</a></h3>
+<p>The following script updates the all the rows in the fusion table using <code class="docutils literal"><span class="pre">refetch</span></code> which refetches the spreadsheet
+which was originally linked to the fusion table. This method takes about 40 seconds.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To check the execution time go to View -> Execution transcript</p>
+</div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This script prints to the log in case an error occurs and when it's done.
+You can check that by going to View -> Logs</p>
+</div><div class="highlight-default"><div class="highlight"><pre><span></span>/**
+ * AppsScript script to run in a Google Spreadsheet that synchronizes its
+ * contents with a Fusion Table by refetching the spreadsheet.
+ * @author WebUI Team @ CAM2
+ */
+
+/**
+ * Add your table ID in File &gt; Project properties &gt; Script Properties in the script editor
+ */
+var TABLE_ID;
+
+/**
+ * This function is only run to check the script is authorized. Call once manually to add triggers.
+ */
+function checkAuthorization()
+{
+    var sheet = SpreadsheetApp.getActive();
+    ScriptApp.newTrigger(&quot;myEdit&quot;).forSpreadsheet(sheet).onChange().create();
+    ScriptApp.newTrigger(&quot;onOpen&quot;).forSpreadsheet(sheet).onOpen().create();
+
+    return;
+}
+
+
+/**
+ * Event handler for  opening the spreadsheet
+ * @param e Event object with following attributes:
+ * authMode
+ * source
+ * triggerUid
+ * user
+ * @link https://developers.google.com/apps-script/guides/triggers/events
+ */
+function onOpen(e)
+{
+  init();
+}
+
+
+/**
+ * initializing triggers and menu in spreadsheet
+ */
+function init(){
+  var sheet = SpreadsheetApp.getActive();
+
+
+  var menuEntries = [{
+        name: &quot;Update Fusion Table&quot;,
+        functionName: &quot;myEdit&quot;
+    }];
+    sheet.addMenu(&quot;Sync Spreadsheet To Fusion Table&quot;, menuEntries);
+
+}
+
+
+/**
+ * Event Handler for editing the spreadsheet
+ * @param e Event object has the following attributes:
+ * authMode
+ * oldValue
+ * range
+ * source
+ * triggerUid
+ * user
+ * value
+ * @link https://developers.google.com/apps-script/guides/triggers/events
+ */
+function myEdit(e){
+  Logger.log(&quot;change triggered&quot;);
+
+  refetch();
+
+}
+
+
+/**
+ * Refetches the spreadsheet originally linked to the Fusion table
+ * took ~40 secs to refetch 120K records of data
+ */
+function refetch() {
+    try {
+        TABLE_ID = PropertiesService.getScriptProperties().getProperty(&quot;TABLE_ID&quot;);
+        if (!TABLE_ID) {
+
+            throw new Error(&quot;Add table ID under File &gt; Project properties &gt; Script Properties&quot;);
+        }
+    }
+    catch (e) {
+        Logger.log(e.message);
+        return;
+    }
+    if (!TABLE_ID) {
+        Logger.log(&quot;no table ID&quot;);
+    }
+
+
+
+    try {
+        var tasks = FusionTables.Task.list(TABLE_ID);
+    }
+    catch (e) {
+        Logger.log(e.message);
+        return;
+    }
+
+    if (tasks.totalItems == 0) {
+        FusionTables.Table.refetchSheet(TABLE_ID);
+        Logger.log(&quot;Done refetching!&quot;);
+    }
+    else {
+        Logger.log(&quot;Failed to refetch due to having tasks still running&quot;);
+    }
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="steps-to-configure-google-apps-project">
+<span id="steps-to-configure-google-apps-project"></span><h3>Steps to configure Google Apps Project<a class="headerlink" href="#steps-to-configure-google-apps-project" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li>Copy and paste the above script in your script editor.</li>
+<li>Run <code class="docutils literal"><span class="pre">checkAuthorization</span></code> function to install the triggers and check that the script is authorized.</li>
+<li>Check that triggers have been properly installed. Go to Edit -&gt; Current Project Trigger. It should look like the
+following :</li>
+</ol>
+<p><img alt="" src="../_images/triggers.png" /></p>
+<ol class="simple">
+<li>Go to File -&gt; Project properties -&gt; Script Properties and add your <code class="docutils literal"><span class="pre">TABLE_ID</span></code>.</li>
+<li>Refresh your google spreadsheet. You&#8217;ll see on the top right side of the menu bar <code class="docutils literal"><span class="pre">Sync</span> <span class="pre">Spreadsheet</span> <span class="pre">to</span> <span class="pre">Fusion</span> <span class="pre">Table</span></code>.</li>
+</ol>
+<p>Now when a row changes, it will refetch the spreadsheet.</p>
+</div>
+<div class="section" id="potential-issues">
+<span id="potential-issues"></span><h3>Potential issues<a class="headerlink" href="#potential-issues" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Click Edit &#8211;&gt; Current Project Trigger, then add a new project trigger to the project.</li>
+<li>This script works as of 07/10/2018 to update 120,000 entries. As the database grows the Google Apps Script might
+exceed the execution limit again. In this case use <a class="reference external" href="https://developers.google.com/fusiontables/docs/v2/reference/">Fusion table API</a> to use different methods to update.</li>
 </ul>
-<p>Since we would like to sync the fusion table everytime when spreadsheet is changed, so we choose the option: &#8220;sync&#8221;, &#8220;from spreadsheet&#8221;, &#8220;on change&#8221; those options. Then for everytime the spreadsheet is changed, it will automatically run the script and sync spreadsheet content to the fusion table!</p>
-<p>Now we can update the camera location file into the google drive. We will update the spreadsheet in the particular google drive folder using google drive api and then use google app script to synchronize google fusion table from google spreadsheet everytime when google spreadsheet is change.</p>
+</div>
+<div class="section" id="troubleshooting-google-apps-script">
+<span id="troubleshooting-google-apps-script"></span><h3>Troubleshooting Google Apps Script<a class="headerlink" href="#troubleshooting-google-apps-script" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Use <code class="docutils literal"><span class="pre">Logger.log</span></code> function to print to the log view of the script.</li>
+<li>Go to Views -&gt; Executions to see whether a script is running or not and to see if it failed.</li>
+<li>You can check errors by going to Error Reporting in Google Developer Console.</li>
+</ul>
 </div>
 </div>
 <div class="section" id="using-google-fusion-tables">
@@ -487,6 +642,74 @@ The fusion table will have the same visibility as the host google drive folder w
 <p>By default the markers on the maps have preformatted info window layout: it consists of pairs of all column names and column data for that row on seperate lines. However, the layout of info windows can be customized to a great extent using CSS.</p>
 <p>See <a class="reference external" href="https://support.google.com/fusiontables/answer/1244603?hl=en">this post</a></p>
 </div>
+</div>
+<div class="section" id="populating-googlesheet-with-metadata-from-cam2-api-database">
+<span id="populating-googlesheet-with-metadata-from-cam2-api-database"></span><h2>Populating Googlesheet with metadata from CAM2 API database<a class="headerlink" href="#populating-googlesheet-with-metadata-from-cam2-api-database" title="Permalink to this headline">¶</a></h2>
+<p>CAM2 released an <a class="reference external" href="https://purduecam2project.github.io/CameraDatabaseAPI/">API</a> to access CAM2 camera database. In the <em>gdrive</em> folder, you will find <code class="docutils literal"><span class="pre">api_getter.py</span></code> which was created to ease the process of getting all Cameras. The script can be useful when there is a need to refresh the Googlesheet and Google Fusion Table of the map. You only need to run the script through terminal.</p>
+<div class="admonition note">
+<p class="first admonition-title">Script Process</p>
+<p class="last">The script handles the following:</p><ul class="simple">
+<li>Token authentication process</li>
+<li>running cameras <code>Search</code> request</li>
+<li>writing to spreadsheet locally</li>
+<li>uploading the content of local spreadsheet to Googlesheet</li>
+</ul>
+</div><div class="section" id="configure-environment-variables">
+<span id="configure-environment-variables"></span><h3>Configure environment variables<a class="headerlink" href="#configure-environment-variables" title="Permalink to this headline">¶</a></h3>
+<p>Run the <code class="docutils literal"><span class="pre">export</span> <span class="pre">&lt;env_var_name&gt;=&lt;env_var_value&gt;</span></code> command for each one of the following environment variable: <br></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">env_var_name</th>
+<th class="head">env_var_value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">CAM2_CLIENT_ID</span> </code></td>
+<td>Get it from team Slack channel</td>
+</tr>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">CAM2_CLIENT_SECRET</span></code></td>
+<td>Get it from team Slack channel </td>
+</tr>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">TOTAL_NO_CAMERAS</span></code></td>
+<td>Number of cameras. <em>clarify with team Slack channel</em> </td>
+</tr>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">SPREADSHEET_FILE_ID</span> </code></td>
+<td>The file id of Googlesheet that will be populated. <br>To populate Googlesheet use in production, <br> get the file id from team Slack channel </td>
+</tr></tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Warning</p>
+<p>At the time of this writing, CAM2 API search request had inconsistent number of cameras returned. For example, if the <code>TOTAL_NO_CAMERAS</code> was set to 10000, more than 127000 cameras would be fetched.</p>
+<p>Be aware that exceeding the number of cameras exist in CAM2 API database might caused exception. If exception occur, your spreadsheet might still get populated by the cameras metadata</p>
+</div></div>
+<div class="section" id="google-oauth-for-updating-googlesheet">
+<span id="google-oauth-for-updating-googlesheet"></span><h3>Google Oauth for updating Googlesheet<a class="headerlink" href="#google-oauth-for-updating-googlesheet" title="Permalink to this headline">¶</a></h3>
+<p>You will need an Oauth credential to update a Googlesheet. Do so by <a class="reference external" href="#enable-google-api">enabling Google API</a>. Then, Continue the following step</p>
+<ol class="simple">
+<li>At the right end of your client ID, click the download icon. A JSON file has name starts with <em>client_secret...</em>  will be downloaded to your computer. Change the name to <em>client_secret.json</em> and move it to the <em>gdrive</em> folder.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p> Do not push your <code>client_secret.json</code> to the repository because it contains your personal Google Oauth credentials and <code>cam_data.csv</code>, the local spreadsheet containing cameras metadata</p>
+</div></div>
+<div class="section" id="run-the-script">
+<span id="run-the-script"></span><h3>Run the script<a class="headerlink" href="#run-the-script" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">api_getter</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>The script will run for a few minutes, depends on how big the number of cameras being requested.</p>
+</div>
+<div class="section" id="adding-parameters">
+<span id="adding-parameters"></span><h3>Adding parameters<a class="headerlink" href="#adding-parameters" title="Permalink to this headline">¶</a></h3>
+<p>You might need to populate the spreadsheet with certain parameters that has not been implemented on the script. To do this, you have to adjust the code in <code class="docutils literal"><span class="pre">api_getter.py</span></code> in the <code class="docutils literal"><span class="pre">write_csv()</span></code> function.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For every new parameters added, each parameter needs to be checked for <code>none</code> and to be handled properly. For parameters detail, check the <a href="https://purduecam2project.github.io/CameraDatabaseAPI/#api-cameras-getCamerasByRadius">API documentation</a> </p>
+</div></div>
 </div>
 </div>
 
