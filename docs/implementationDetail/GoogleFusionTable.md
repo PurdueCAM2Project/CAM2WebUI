@@ -56,7 +56,7 @@ Run the ```export env_var_name=env_var_value``` command for each one of the foll
 <td>Get it from team Slack channel </td>
 </tr>
 <tr class="row-even"><td><code class="code docutils literal"><span class="pre">TOTAL_NO_CAMERAS</span></code></td>
-<td>Number of cameras. *clarify with team Slack channel </td>
+<td>Number of cameras. <em>clarify with team Slack channel</em> </td>
 </tr>
 <tr class="row-odd"><td><code class="code docutils literal"><span class="pre">SPREADSHEET_FILE_ID</span> </code></td>
 <td>Get it from team Slack channel </td>
