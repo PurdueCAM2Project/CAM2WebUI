@@ -545,3 +545,11 @@ You will need an Oauth credential to update a Googlesheet. Do so by [enabling Go
 python api_getter.py
 ```
 The script will run for a few minutes, depends on how big the number of cameras being requested.
+
+### Adding parameters
+You might need to populate the spreadsheet with certain parameters that has not been implemented on the script. To do this, you have to adjust the code in ```api_getter.py``` in the ```write_csv()``` function.
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For every new parameters added, each parameter needs to be checked for <code>none</code> and to be handled properly. For parameters detail, check the <a href="https://purduecam2project.github.io/CameraDatabaseAPI/#api-cameras-getCamerasByRadius">API documentation</a> </p>
+</div>
