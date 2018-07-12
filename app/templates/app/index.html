@@ -32,8 +32,9 @@
         
     <div class="carousel-item active">
         <img class="d-block w-100 darker" src="{{ slide.slidelink }}" alt="First slide">
-        <div class="carousel-caption d-none d-md-block" style="top: 35%;">
+        <div class="carousel-caption d-none d-md-block" style="top: 35%; right: 33%; left: auto; text-align: center">
             <h1>{{ slide.slideheader }}</h1>
+            <hr class="divide">
             <h2 id="welcome">{{ slide.slidedescrb }}</h2>
         </div>
         
@@ -52,9 +53,10 @@
     {% else %}
         
     <div class="carousel-item">
-        <img class="d-block w-100" src="{{ slide.slidelink }}" alt="Second slide">
+        <img class="d-block w-100 darker" src="{{ slide.slidelink }}" alt="Second slide">
         <div class="carousel-caption d-none d-md-block">
             <h1>{{ slide.slideheader }}</h1>
+<!--            <hr class="divide">-->
             <h2>{{ slide.slidedescrb }}</h2>
         </div>
         
