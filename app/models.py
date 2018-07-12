@@ -5,30 +5,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from app.validators import validateURL, validateEmail,validateMonth, validateYear, validateName 
 
-class Index(models.Model):
-    """Django model for user registration
-    
-    Used for updating the slide show images on the homepage (index.html). Potential feature - updating videos - will be added in the future
-    
-    Attributes:
-        slide1link, slide2link, slide3link: A CharField for an image URL for the poster.
-    
-    """
-
-    # Slide One
-    slide1link = models.CharField(verbose_name='Slide1 imagelink', max_length=300, validators=[validateURL])
-    slide1head = models.CharField(verbose_name='Slide1 header', max_length=300)
-    slide1descrb = models.CharField(verbose_name='Slide1 description', max_length=300)
-    
-    # Slide Two
-    slide2link = models.CharField(verbose_name='Slide2 imagelink', max_length=300, validators=[validateURL])
-    slide2head = models.CharField(verbose_name='Slide2 header', max_length=300)
-    slide2descrb = models.CharField(verbose_name='Slide2 description', max_length=300)
-    
-    #Slide Three
-    slide3link = models.CharField(verbose_name='Third Slide', max_length=300, validators=[validateURL])
-    slide3head = models.CharField(verbose_name='Slide3 header', max_length=300)
-    slide3descrb = models.CharField(verbose_name='Slide3 description', max_length=300)
 
 class RegisterUser(models.Model):
     """Django model for user registration

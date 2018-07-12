@@ -42,7 +42,18 @@
         {% elif forloop.counter|divisibleby:"3" %}
             <div class="clearfix visible-sm-block"></div>
         {% endif %}
-       
+      
+<!--
+        <b>{{ sponsor.sponname }}</b>
+          
+        {% if sponsor.spondescr is not None %}
+        , {{ sponsor.spondescr }}
+        {% endif %}
+        {% if sponsor.sponlink is not None %}
+        , <a href="{{ sponsor.sponlink }}">Sponsor's Site</a>
+        {% endif %}
+      
+-->
     <hr class="divide-divider">
         
     {% endfor %}
