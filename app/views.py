@@ -4,6 +4,7 @@ import urllib
 import sys
 import requests
 import json
+import datetime
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -53,7 +54,7 @@ def cameras(request):
             #send_mail("Camera with Unavailable Image Reported", content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
 
             #add info to admin database - using cleaned_data
-            cam_obj = ReportedCamera(cameraID=camID)
+            cam_obj = ReportedCamera(cameraID=camID, reporttime=datetime.datetime.now())
             cam_obj.save()
 
             #return redirect('email_sent')
