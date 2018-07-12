@@ -5,6 +5,27 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from app.validators import validateURL, validateEmail,validateMonth, validateYear, validateName 
 
+class Homepage(models.Model):
+    """Django model for the homepage 
+
+    Attributes:
+         slideheader: A CharField for the title of the slide.
+         slidedescrb: A CharField for the content of description of the slide. 
+         slidelink: A CharField for the link of the image used in the slide.
+         slidenum: A IntegerField for the number of the current slide. 
+
+    """
+    slideheader = models.CharField(verbose_name='Slide Header', max_length=500, blank=True)
+    
+    slidedescrb = models.CharField(verbose_name='Slide Description', max_length=100, blank=True, null=True)
+    
+    slidenum = models.IntegerField(verbose_name='Slide Number', blank=False, null=True)
+    
+    slidelink = models.CharField(verbose_name='Image Link', max_length=100, blank=True, null=True)
+    
+    def __str__(self):
+        return "{0}".format(self.slideheader)
+
 
 class RegisterUser(models.Model):
     """Django model for user registration
