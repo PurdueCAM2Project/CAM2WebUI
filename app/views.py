@@ -20,12 +20,14 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm, ReportForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins, send_mail
-from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera
+from .models import Index, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera
 from django.http import HttpResponseNotFound
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 
 def index(request):
-    return render(request, 'app/index.html')
+    slide_list = Index.objects.reverse()
+    context = {"slide_list": slide_list}
+    return render(request, 'app/index.html', context)
 
 def cameras(request):
 #    context = {'google_api_key': settings.GOOGLE_API_KEY,
