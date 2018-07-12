@@ -73,9 +73,33 @@
         google.maps.event.addListener(layer, 'click', function(e){
             //console.log(e);
             var camID = e.row.ID.value;
-            infoWindow.setContent(e.infoWindowHtml + '<input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" value="Report Unavailable Image" />');
+            var camLink = e.row.Image.value;
+            var camLat = e.row.Latitude.value;
+            var camLng = e.row.Longitude.value;
+            var camCity = e.row.City.value;
+            var camState = e.row.State.value;
+            var camCountry = e.row.Country.value;
+            var camPlace = '';
+            if(camCity != null && camCity != "" && camCity != '' && camCity !="Null"){
+                camPlace = camPlace + camCity + ', ';
+            }
+            if(camState != null && camState != "" && camState != '' && camState !="Null"){
+                camPlace = camPlace + camState + ', ';
+            }
+            if(camCountry != null && camCountry != "" && camCountry != '' && camCountry !="Null"){
+                camPlace = camPlace + camCountry;
+            }
+            var expandedcamview = '<div style="margin:auto;"><img src="' + camLink + '" alt="Image Not Available" width="300" style="margin:auto;display:block;width:60%;">' +
+                '<p style="text-align:center;"><b>Camera ID:</b> ' + camID + '</p>' +
+                '<p style="text-align:center;">' + camLat + ', ' + camLng + '</p>' +
+                '<p style="text-align:center;">' + camPlace + '</p>' + 
+                '<input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" style="margin:auto;" value="Report Unavailable Image" />';
+            /*infoWindow.setContent(e.infoWindowHtml + '<input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" value="Report Unavailable Image" />');
             infoWindow.setPosition(e.latLng);
-            infoWindow.open(map);
+            infoWindow.open(map);*/
+            //document.getElementById('mapModalInfo').innerHTML = e.infoWindowHtml + '<input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" value="Report Unavailable Image" />';
+            document.getElementById('mapModalInfo').innerHTML = expandedcamview;
+            document.getElementById('mapModal').style.display = "block"; 
 
             google.maps.event.addDomListener(document.getElementById('reportthiscam'), 'click', function(){
                 document.getElementById('cameraID').value = camID;
