@@ -1,6 +1,6 @@
 # Django Selenium test
 
-Selenium test environment is in the previous guide [Set up selenium test environment](https://purduecam2project.github.io/CAM2WebUI/selenium). If you haven't done that, click on the link and finish building up selenium environment first.
+Selenium test environment is in the previous guide [Set up selenium test environment](https://purduecam2project.github.io/CAM2WebUI/basicSetup/selenium.html). If you haven't done that, click on the link and finish building up selenium environment first.
 
 ## Running Django Test
 
