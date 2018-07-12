@@ -2,13 +2,13 @@
 {% block title %}Team{% endblock %}
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{% static "app/css/team.css" %}">
+    <link rel="stylesheet" href="{% static "app/css/team.css " %}">
 {% endblock %}
 {% block content %}
     <div class="container main-content">
 
         <hr class="divide-divider">
-        <h1>The Team</h1>
+        <h2>The Team</h2>
         {% load  custom_tags %}
         {% for team in team_list %}
             {% if forloop.counter0|divisibleby:"3" %}
@@ -216,7 +216,7 @@
          <hr class="divide-divider">
         {% if oldmember_list is not None and oldmember_list|length != 0 %}
             <h2>Former Members</h2>
-            <ul class="list-inline row">
+            <ul class="list-group row">
                 {% for member in oldmember_list %}
                     <li class="list-group-item col-xs-12 col-sm-6 col-md-4">{{ member.membername }}</li>
                 {% endfor %}
