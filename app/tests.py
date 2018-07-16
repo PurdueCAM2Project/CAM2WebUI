@@ -104,6 +104,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login/'
 		browser.get(url)
+		browser.implicitly_wait(10)
 		un = browser.find_element_by_name('username')
 		un.send_keys("admin")
 		pw = browser.find_element_by_name('password')
@@ -117,6 +118,7 @@ class AddTestCase(StaticLiveServerTestCase):
                 )
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
 		browser.get(url)
+		time.sleep(5)
 		browser.find_element_by_name('appname').send_keys("apple")
 		browser.find_element_by_name('add').click()
 		WebDriverWait(browser, 10).until(
@@ -136,52 +138,63 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/'
 		browser.get(url)
+		time.sleep(5)
 		assert 'CAM²' in browser.title
 
 		# test if login page title is Login
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'
 		browser.get(url)
+		time.sleep(5)
 		assert 'Login' in browser.title
 
 		# test if register page title is Login
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
 		browser.get(url)
+		time.sleep(5)
 		assert 'Register' in browser.title
 
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
+		time.sleep(5)
 		assert 'All Cameras' in browser.title
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/team'
 		browser.get(url)
+		time.sleep(5)
 		assert 'Team' in browser.title
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/history'
 		browser.get(url)
+		time.sleep(5)
 		assert 'History' in browser.title
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/email/contact'
 		browser.get(url)
+		time.sleep(5)
 		assert 'Contact us' in browser.title
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/publications'
 		browser.get(url)
+		time.sleep(5)
 		assert 'Publications' in browser.title
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset'
 		browser.get(url)
+		time.sleep(5)
 		print(self.username, self.password)
 		assert 'Forgot Password?' in browser.title
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset/complete'
 		browser.get(url)
+		time.sleep(5)
 		assert 'Password Reset Completed' in browser.title
 
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset_email_sent'
 		browser.get(url)
+		time.sleep(5)
 		assert 'Password Reset Email Sent' in browser.title
 
 
@@ -211,7 +224,9 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
 		browser.get(url)
-
+		browser.implicitly_wait(90)
+		frame = browser.find_element_by_tag_name('form')
+		browser.switch_to.frame(frame)
 		un = browser.find_element_by_name('username')
 		un.send_keys(self.test_username)
 
@@ -244,7 +259,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'
 
 		browser.get(url)
-
+		time.sleep(5)
 		#Need email confirmation for suscessful login of test_username.
 		#Therefore, use superuser to test login instead.
 		x = browser.find_element_by_name('username') 
@@ -262,6 +277,7 @@ class AddTestCase(StaticLiveServerTestCase):
                 )
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
 		browser.get(url)
+		time.sleep(5)
 		browser.find_element_by_name('appname').send_keys("apples")
 		browser.find_element_by_name('add').click()
 		WebDriverWait(browser, 10).until(
@@ -280,7 +296,8 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium		
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'		
 
-		browser.get(url)		
+		browser.get(url)
+		time.sleep(5)		
 		x = browser.find_element_by_name('username')  # Find the search box		
 		x.send_keys('wrongusername')
 		y = browser.find_element_by_name('password')
@@ -303,7 +320,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium		
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'		
 		browser.get(url)		
-
+		time.sleep(5)
 		un = browser.find_element_by_name('username')		
 		un.send_keys(self.test_username)		
 
@@ -340,7 +357,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
 		browser.get(url)
-
+		time.sleep(5)
 		un = browser.find_element_by_name('username')
 		un.send_keys(self.test_username)
 
@@ -378,7 +395,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
 		browser.get(url)
-
+		time.sleep(5)
 		un = browser.find_element_by_name('username')
 		un.send_keys(self.test_username)
 
@@ -400,7 +417,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser.find_element_by_name('registerbutton').click()
 
 		browser.get(url)
-
+		time.sleep(5)
 		un = browser.find_element_by_name('username')
 		un.send_keys(self.test_username)
 
@@ -455,6 +472,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
+		time.sleep(5)
 		browser.implicitly_wait(10)
 		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='country']")
@@ -484,6 +502,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
+		time.sleep(5)
 		browser.implicitly_wait(5)
 		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='country']")
@@ -521,6 +540,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
+		time.sleep(5)
 		browser.implicitly_wait(5)
 		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='country']")
@@ -557,6 +577,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
+		time.sleep(5)
 		browser.implicitly_wait(5)
 		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='country']")
@@ -592,6 +613,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
 		browser.get(url)
+		time.sleep(5)
 		browser.implicitly_wait(5)
 		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
 		element = browser.find_element_by_xpath("//select[@id='country']")
@@ -620,6 +642,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/admin/'
 		browser.get(url)
+		time.sleep(5)
 		un = browser.find_element_by_name('username')
 		un.send_keys("admin")
 		pw = browser.find_element_by_name('password')
@@ -674,7 +697,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/password_reset'
 		browser.get(url)
-
+		time.sleep(5)
 		email = browser.find_element_by_name('email')
 		email.send_keys('test@case.net')  # input email
 		browser.find_element_by_name('submitEmail').click()
