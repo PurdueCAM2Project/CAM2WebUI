@@ -4,6 +4,7 @@ import urllib
 import sys
 import requests
 import json
+import datetime
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -19,12 +20,14 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm, ReportForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins, send_mail
-from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera
+from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera
 from django.http import HttpResponseNotFound
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 
 def index(request):
-    return render(request, 'app/index.html')
+    slide = Homepage.objects.reverse()
+    context = {'slide_list': slide}
+    return render(request, 'app/index.html', context)
 
 def cameras(request):
 #    context = {'google_api_key': settings.GOOGLE_API_KEY,
@@ -53,7 +56,7 @@ def cameras(request):
             #send_mail("Camera with Unavailable Image Reported", content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
 
             #add info to admin database - using cleaned_data
-            cam_obj = ReportedCamera(cameraID=camID)
+            cam_obj = ReportedCamera(cameraID=camID, reporttime=datetime.datetime.now())
             cam_obj.save()
 
             #return redirect('email_sent')

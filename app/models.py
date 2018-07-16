@@ -5,6 +5,27 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from app.validators import validateURL, validateEmail,validateMonth, validateYear, validateName 
 
+class Homepage(models.Model):
+    """Django model for the homepage 
+
+    Attributes:
+         slideheader: A CharField for the title of the slide.
+         slidedescrb: A CharField for the content of description of the slide. 
+         slidelink: A CharField for the link of the image used in the slide.
+         slidenum: A IntegerField for the number of the current slide. 
+
+    """
+    slideheader = models.CharField(verbose_name='Slide Header', max_length=500, blank=True)
+    
+    slidedescrb = models.CharField(verbose_name='Slide Description', max_length=100, blank=True, null=True)
+    
+    slidenum = models.IntegerField(verbose_name='Slide Number', blank=False, null=True)
+    
+    slidelink = models.CharField(verbose_name='Image Link', max_length=100, blank=True, null=True)
+    
+    def __str__(self):
+        return "{0}".format(self.slideheader)
+
 
 class RegisterUser(models.Model):
     """Django model for user registration
@@ -157,11 +178,13 @@ class Sponsor(models.Model):
          sponname: A CharField for the name of the collaborating organization
          spondescr: A CharField for a brief description of the sponsor
          sponlink: A CharField for a link to the sponsor's website, validated as a URL
+         logolink: An image of the logo of the sponsor
 
     """
-    sponname = models.CharField(verbose_name='Sponsor', max_length=100)
+    sponname = models.CharField(verbose_name='Sponsor', max_length=100, blank=True)
     spondescr = models.CharField(verbose_name='Description', max_length=500, blank=True, null=True)
     sponlink = models.CharField(verbose_name='Link to Site', max_length=300, blank=True, null=True, validators=[validateURL])
+    logolink = models.CharField(verbose_name='Link to Logo', max_length=300, blank=True, null=True, validators=[validateURL])
     def __str__(self):
         return "{0}".format(self.sponname)
 
@@ -238,9 +261,11 @@ class ReportedCamera(models.Model):
     Contains information that structures the database for missing cameras
 
     Attributes:
-        
+        cameraID: A CharField for the ID of the reported camera.
+        reporttime: A DateField for the time at which the camera was reported.
     """
     cameraID = models.CharField(verbose_name='Camera ID', max_length=100)
+    reporttime = models.DateTimeField(blank=True, null=True)
     def __str__(self):
         return "{0}".format(self.cameraID)
 

@@ -35,12 +35,13 @@ deploy:
   app:
     master: cam2webui-staging
     release: cam2webui
-#- provider: pages
-#  skip_cleanup: true
-#  local_dir: $PWD/docs/_build/html
-#  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
-#  on:
-#    branch: master
+- provider: pages
+  skip_cleanup: true
+  local_dir: docs/_build/html
+  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  keep-history: true
+  on:
+    branch: master
 after_deploy:
 - "python manage.py makemigrations"
 - "python manage.py migrate"
