@@ -113,7 +113,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		WebDriverWait(browser, 10).until(
 		    EC.text_to_be_present_in_element(
 			(By.ID,"welcome"),
-		        "the Continuous Analysis of Many CAMeras"
+		        "Continuous Analysis of Many CAMeras"
 		    )
                 )
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
@@ -224,9 +224,10 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser = self.selenium
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
 		browser.get(url)
-		browser.implicitly_wait(90)
-		frame = browser.find_element_by_tag_name('form')
-		browser.switch_to.frame(frame)
+		time.sleep(5)
+		#browser.implicitly_wait(90)
+		#frame = browser.find_element_by_tag_name('form')
+		#browser.switch_to.frame(frame)
 		un = browser.find_element_by_name('username')
 		un.send_keys(self.test_username)
 
@@ -272,7 +273,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		WebDriverWait(browser, 10).until(
 		    EC.text_to_be_present_in_element(
 			(By.ID,"welcome"),
-		        "the Continuous Analysis of Many CAMeras"
+		        "Continuous Analysis of Many CAMeras"
 		    )
                 )
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
@@ -669,7 +670,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		error1 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[1]/ul/li")
 		error2 = browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div/form/div/fieldset/div[2]/ul/li")
 		assert error1.get_attribute("innerHTML") == 'The maximum value is 12'
-		assert error2.get_attribute("innerHTML") == 'The maximum value is 2017'
+		assert error2.get_attribute("innerHTML") == 'The maximum value is 2018'
 		#Test the validation for leader
 		browser.get(currentUrl)
 		WebDriverWait(browser, 10).until(
