@@ -41,5 +41,6 @@ urlpatterns = [
     url(r'^collaborators/$', app_views.collaborators, name='collaborators'),
     url(r'^sponsors/$', app_views.sponsors, name='sponsors'),
     url(r'^location/$', app_views.location, name='location'),
+    url(r'calendar/$', app_views.calendar, name='calendar'),
 
 ]

@@ -20,7 +20,7 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm, ReportForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins, send_mail
-from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera
+from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar
 from django.http import HttpResponseNotFound
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 
@@ -136,6 +136,11 @@ def sponsors(request):
     sponsor = Sponsor.objects.reverse()
     context = {'sponsor_list': sponsor}
     return render(request, 'app/sponsors.html', context)
+
+def calendar(request):
+    cal = Calendar.objects.reverse()
+    context = {'calendar_list': cal}
+    return render(request, 'app/calendar.html', context)
 
 def location(request):
     loc = Location.objects.reverse()
