@@ -6,7 +6,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from selenium.webdriver.firefox.options import Options
+# from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options
 
 
 from pyvirtualdisplay import Display
@@ -47,7 +48,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		password: a password used to access the site, pulled from the environment
 		test_username: a generated username used to test certain functions of the site
 		test_password: a generated password used to test certain functions of the site
-	
+
 	"""
 
 	def setUp(self):
@@ -56,15 +57,15 @@ class AddTestCase(StaticLiveServerTestCase):
 		Sets up an environment that can be used to test the site by initializing the class attributes
 
 		"""
-		#self.display = Display(visible=0, size=(1000, 1200))
-		#self.display.start()
-		#d = DesiredCapabilities.CHROME
-		#d['loggingPrefs'] = { 'browser':'ALL' }
-		#self.selenium = webdriver.Chrome(desired_capabilities=d)
-		options = Options()
-		options.add_argument('--headless')
-		time.sleep(10)
-		self.selenium = webdriver.Firefox(options=options)
+		# self.display = Display(visible=0, size=(1000, 1200))
+		# self.display.start()
+
+		# Firefox was slower than chrome in TravisCI. Avoid using geckodriver (Firefox) in TravisCI unless new updates
+		# were made.
+
+		# self.selenium = webdriver.Firefox()
+		self.selenium = webdriver.Chrome()
+		self.selenium.set_window_size(1920, 1080)
 		User.objects.create_superuser(
 			username='admin',
 			password='admin',
@@ -94,7 +95,7 @@ class AddTestCase(StaticLiveServerTestCase):
 	def test_a_one(self):
 		print("start first test")
 		pass
-	
+
 	def test_profile_admin(self):
 		"""tests the functionality of the profile page and admin sign in
 
@@ -110,10 +111,10 @@ class AddTestCase(StaticLiveServerTestCase):
 		pw = browser.find_element_by_name('password')
 		pw.send_keys("admin")
 		browser.find_element_by_name('submitbutton').click()
-		WebDriverWait(browser, 10).until(
+		WebDriverWait(browser, 20).until(
 		    EC.text_to_be_present_in_element(
-			(By.ID,"welcome"),
-		        "Continuous Analysis of Many CAMeras"
+			(By.ID,"profile_name"),
+		        "admin's Console"
 		    )
                 )
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
@@ -263,7 +264,7 @@ class AddTestCase(StaticLiveServerTestCase):
 		time.sleep(5)
 		#Need email confirmation for suscessful login of test_username.
 		#Therefore, use superuser to test login instead.
-		x = browser.find_element_by_name('username') 
+		x = browser.find_element_by_name('username')
 		#x.send_keys(self.test_username)
 		x.send_keys('admin')
 		y = browser.find_element_by_name('password')
@@ -272,8 +273,8 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser.find_element_by_name('submitbutton').click()
 		WebDriverWait(browser, 10).until(
 		    EC.text_to_be_present_in_element(
-			(By.ID,"welcome"),
-		        "Continuous Analysis of Many CAMeras"
+			(By.ID,"profile_name"),
+		        "admin's Console"
 		    )
                 )
 		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/profile/'
@@ -293,45 +294,45 @@ class AddTestCase(StaticLiveServerTestCase):
 		Tries to login with a non-existent username and password and looks for a
 		response indicating authentication failure
 
-		"""		
-		browser = self.selenium		
-		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'		
+		"""
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/login'
 
 		browser.get(url)
-		time.sleep(5)		
-		x = browser.find_element_by_name('username')  # Find the search box		
+		time.sleep(5)
+		x = browser.find_element_by_name('username')  # Find the search box
 		x.send_keys('wrongusername')
 		y = browser.find_element_by_name('password')
-		y.send_keys('wrongpassword')	
+		y.send_keys('wrongpassword')
 		browser.find_element_by_name('submitbutton').click()
 		browser.implicitly_wait(10)
-		
-		error = browser.find_element(By.ID,value="loginerror")	
-		
-		assert error.get_attribute("innerHTML") == 'Please enter a correct username and password. Note that both fields may be case-sensitive.'		
-		
-		
+
+		error = browser.find_element(By.ID,value="loginerror")
+
+		assert error.get_attribute("innerHTML") == 'Please enter a correct username and password. Note that both fields may be case-sensitive.'
+
+
 	def test_Login_Register_3(self):
 		"""Tests the system's response to mismatched passwords on registration
 
 		Attempts to register a new user, but alters the password given in the confirm password field,
 		then checks for an error response
 
-		"""		
-		browser = self.selenium		
-		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'		
-		browser.get(url)		
+		"""
+		browser = self.selenium
+		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/register'
+		browser.get(url)
 		time.sleep(5)
-		un = browser.find_element_by_name('username')		
-		un.send_keys(self.test_username)		
+		un = browser.find_element_by_name('username')
+		un.send_keys(self.test_username)
 
-		fn = browser.find_element_by_name('first_name')		
-		fn.send_keys('Test')		
+		fn = browser.find_element_by_name('first_name')
+		fn.send_keys('Test')
 
-		ln = browser.find_element_by_name('last_name')		
-		ln.send_keys('Case')		
+		ln = browser.find_element_by_name('last_name')
+		ln.send_keys('Case')
 
-		email = browser.find_element_by_name('email')		
+		email = browser.find_element_by_name('email')
 		email.send_keys('test@case.net')
 
 		p = browser.find_element_by_name('password1')
@@ -341,9 +342,9 @@ class AddTestCase(StaticLiveServerTestCase):
 		cp.send_keys(self.test_password + '123')
 
 		browser.find_element_by_name('registerbutton').click()
-		
+
 		error = browser.find_element(By.ID,value="registererror")
-		
+
 		assert error.get_attribute("innerHTML") == 'The two password fields didn\'t match.'
 
 
@@ -460,112 +461,121 @@ class AddTestCase(StaticLiveServerTestCase):
 		except ValidationError as e:
 			print(e)
 			assert False
-      
 
-	def test_camera_state(self):
-		"""Tests the functionality of the state field on the camera page
+	"""
+	the test below is invalid due to updates in July 2018, options of cities
+	are only shown where cameras exist in the database
+	"""
+	# def test_camera_state(self):
+	# 	"""Tests the functionality of the state field on the camera page
+	#
+	# 	On the camera page, selects the US in the country field,
+	# 	then checks that the state field lists at least 50 options.
+	#
+	# 	"""
+	# 	print("start usa state test")
+	# 	browser = self.selenium
+	# 	url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
+	# 	browser.get(url)
+	# 	time.sleep(5)
+	# 	browser.implicitly_wait(10)
+	# 	#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+	# 	element = browser.find_element_by_xpath("//select[@id='country']")
+	# 	country_options = element.find_elements_by_tag_name("option")
+	# 	for option in country_options:
+	# 		if (option.get_attribute("value") == "USA"):
+	# 			option.click()
+	# 			break
+	# 		#print("Value is: %s" % option.get_attribute("value"))
+	#
+	# 	browser.implicitly_wait(10)
+	#
+	# 	#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+	# 	element = browser.find_element_by_xpath("//select[@id='state']")
+	# 	state_options = element.find_elements_by_tag_name("option")
+	# 	assert (len(state_options) >= 50)
 
-		On the camera page, selects the US in the country field, 
-		then checks that the state field lists at least 50 options.
+	"""
+	the test below is invalid due to updates in July 2018, options of cities
+	are only shown where cameras exist in the database
+	"""
+	# def test_camera_state_city(self):
+	# 	"""Tests the list of cities available in the field on the camera page
+	#
+	# 	Tests the city field by checking the number of choices given for
+	# 	cities in Indiana.
+	#
+	# 	"""
+	# 	print("start usa state city test")
+	# 	browser = self.selenium
+	# 	url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
+	# 	browser.get(url)
+	# 	time.sleep(5)
+	# 	browser.implicitly_wait(5)
+	# 	#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+	# 	element = browser.find_element_by_xpath("//select[@id='country']")
+	# 	country_options = element.find_elements_by_tag_name("option")
+	# 	for option in country_options:
+	# 		if (option.get_attribute("value") == "USA"):
+	# 			option.click()
+	# 			break
+	# 		#print("Value is: %s" % option.get_attribute("value"))
+	#
+	# 	browser.implicitly_wait(10)
+	#
+	# 	#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+	# 	element = browser.find_element_by_xpath("//select[@id='state']")
+	# 	state_options = element.find_elements_by_tag_name("option")
+	#
+	# 	for option in state_options:
+	# 		if (option.get_attribute("value") == "IN"):
+	# 			option.click()
+	#
+	# 	browser.implicitly_wait(10)
+	# 	element = browser.find_element_by_xpath("//select[@id='city']")
+	# 	city_options = element.find_elements_by_tag_name("option")
+	# 	assert (len(city_options) >= 60)
 
-		"""
-		print("start usa state test")
-		browser = self.selenium
-		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
-		browser.get(url)
-		time.sleep(5)
-		browser.implicitly_wait(10)
-		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
-		element = browser.find_element_by_xpath("//select[@id='country']")
-		country_options = element.find_elements_by_tag_name("option")
-		for option in country_options:
-			if (option.get_attribute("value") == "USA"):
-				option.click()
-				break
-			#print("Value is: %s" % option.get_attribute("value"))
-
-		browser.implicitly_wait(10)
-
-		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
-		element = browser.find_element_by_xpath("//select[@id='state']")
-		state_options = element.find_elements_by_tag_name("option")
-		assert (len(state_options) >= 50)
-
-
-	def test_camera_state_city(self):
-		"""Tests the list of cities available in the field on the camera page
-
-		Tests the city field by checking the number of choices given for
-		cities in Indiana.
-
-		"""
-		print("start usa state city test")
-		browser = self.selenium
-		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
-		browser.get(url)
-		time.sleep(5)
-		browser.implicitly_wait(5)
-		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
-		element = browser.find_element_by_xpath("//select[@id='country']")
-		country_options = element.find_elements_by_tag_name("option")
-		for option in country_options:
-			if (option.get_attribute("value") == "USA"):
-				option.click()
-				break
-			#print("Value is: %s" % option.get_attribute("value"))
-
-		browser.implicitly_wait(10)
-
-		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
-		element = browser.find_element_by_xpath("//select[@id='state']")
-		state_options = element.find_elements_by_tag_name("option")
-
-		for option in state_options:
-			if (option.get_attribute("value") == "IN"):
-				option.click()
-
-		browser.implicitly_wait(10)
-		element = browser.find_element_by_xpath("//select[@id='city']")
-		city_options = element.find_elements_by_tag_name("option")
-		assert (len(city_options) >= 60)
-
-
-	def test_camera_state_multiple_states(self):
-		"""Tests querying multiple states in the camera page
-
-		Selects two statws in the list of possible states and checks the number of available
-		city options that can be selected with the two states chosen.
-
-		"""
-		print("start usa multiple states test")
-		browser = self.selenium
-		url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
-		browser.get(url)
-		time.sleep(5)
-		browser.implicitly_wait(5)
-		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
-		element = browser.find_element_by_xpath("//select[@id='country']")
-		country_options = element.find_elements_by_tag_name("option")
-		for option in country_options:
-			if (option.get_attribute("value") == "USA"):
-				option.click()
-				#break
-			#print("Value is: %s" % option.get_attribute("value"))
-
-		browser.implicitly_wait(10)
-
-		#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
-		element = browser.find_element_by_xpath("//select[@id='state']")
-		state_options = element.find_elements_by_tag_name("option")
-
-		for option in state_options:
-			if (option.get_attribute("value") == "IN" or option.get_attribute("value") == "CA"):
-				option.click()
-
-		browser.implicitly_wait(10)
-		element = browser.find_element_by_xpath("//select[@id='city']")
-		city_options = element.find_elements_by_tag_name("option")
-		assert (len(city_options) >= 500)
+	"""
+	the test below is invalid due to updates in July 2018, options of cities
+	are only shown where cameras exist in the database
+	"""
+	# def test_camera_state_multiple_states(self):
+	# 	"""Tests querying multiple states in the camera page
+	#
+	# 	Selects two statws in the list of possible states and checks the number of available
+	# 	city options that can be selected with the two states chosen.
+	#
+	# 	"""
+	# 	print("start usa multiple states test")
+	# 	browser = self.selenium
+	# 	url = 'http://' + self.username + ':' + self.password + '@localhost:' + self.port + '/cameras'
+	# 	browser.get(url)
+	# 	time.sleep(5)
+	# 	browser.implicitly_wait(5)
+	# 	#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+	# 	element = browser.find_element_by_xpath("//select[@id='country']")
+	# 	country_options = element.find_elements_by_tag_name("option")
+	# 	for option in country_options:
+	# 		if (option.get_attribute("value") == "USA"):
+	# 			option.click()
+	# 			#break
+	# 		#print("Value is: %s" % option.get_attribute("value"))
+	#
+	# 	browser.implicitly_wait(10)
+	#
+	# 	#element = browser.find_element_by_xpath("//div[@id='mapCanvas']/div/div/div")
+	# 	element = browser.find_element_by_xpath("//select[@id='state']")
+	# 	state_options = element.find_elements_by_tag_name("option")
+	#
+	# 	for option in state_options:
+	# 		if (option.get_attribute("value") == "IN" or option.get_attribute("value") == "CA"):
+	# 			option.click()
+	#
+	# 	browser.implicitly_wait(10)
+	# 	element = browser.find_element_by_xpath("//select[@id='city']")
+	# 	city_options = element.find_elements_by_tag_name("option")
+	# 	assert (len(city_options) >= 500)
 
 	def test_camera_disable_state(self):
 		"""Tests the list of states for a country that has no states
@@ -598,9 +608,9 @@ class AddTestCase(StaticLiveServerTestCase):
 		#print(len(state_options))
 		assert type(state_options) is list
 
-		element = browser.find_element_by_xpath("//select[@id='city']")
-		city_options = element.find_elements_by_tag_name("option")
-		assert (len(city_options) >= 3000)
+		# element = browser.find_element_by_xpath("//select[@id='city']")
+		# city_options = element.find_elements_by_tag_name("option")
+		# assert (len(city_options) >= 3000)
 
 
 	def test_camera_disable_city(self):
@@ -630,8 +640,8 @@ class AddTestCase(StaticLiveServerTestCase):
 		element = browser.find_element_by_xpath("//select[@id='city']")
 		city_options = element.find_elements_by_tag_name("option")
 		assert len(city_options) == 0
-		
-	
+
+
 	def test_Login_Register_6(self):
 		"""Tests the functionality of the Django admin databases for History and Leaders
 
@@ -724,6 +734,6 @@ class AddTestCase(StaticLiveServerTestCase):
 		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/div[@id='changelist']/form[@id='changelist-form']/div[@class='results']/tbody/tr[@class='row1']/td/input[@class='action-select']").click()
 		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/div[@id='changelist']/form[@id='changelist-form']/div[@class='actions']/select/option[@value='email_users']").click()
 		browser.find_element_by_xpath("//div[@id='container']/div[@id='content']/div[@id='content-main']/div[@id='changelist']/form[@id='changelist-form']/div[@class='actions']/button").click()
-		
-		
+
+
 	'''
