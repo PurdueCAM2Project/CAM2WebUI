@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 img {
   width: 100%;
   height: auto;
@@ -23,3 +24,18 @@ h3 {
 img.leaders {
   padding: 0.7em;
 }
+=======
+img {
+  width: 100%;
+  height: auto;
+}
+
+.divide-divider {
+  margin: 15px 0;
+  border-top: 1px solid #fff;
+}
+
+img.leaders {
+  padding: 0.7em;
+}
+>>>>>>> master
