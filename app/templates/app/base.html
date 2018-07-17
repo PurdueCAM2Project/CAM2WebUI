@@ -1,3 +1,216 @@
+<<<<<<< HEAD
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<!--
+                                                                                 -+yhdhy+`
+                                                                                 mmhyhNMMm`
+            `-+shdddhy+:`        `syyyys.         .oyyyys+`          `+syyyyo`   .`   sMMM.
+          `omNMMMMMMMMMMd        yMMMMMMh         oMMMMMMMh`         hMMMMMMM:       .mMMy
+         -dMMMMdo:--:+ymN       /MMMmMMMM+        oMMMMmMMMo        oMMMdMMMM:     `+mMN+`
+        .mMMMM+`       ..      .NMMM:yMMMN-       oMMMN:MMMM:      :NMMm-MMMM:   `/dMNs.
+        sMMMMs                 hMMMs `mMMMd`      oMMMN oMMMm.    .mMMM:.MMMM:  `hMMNs////:
+        mMMMM-                +MMMm`  /MMMMo      oMMMN `dMMMh    hMMMo .MMMM:  .dmmmmmmmmy     Hey Doc!
+        NMMMM.               -NMMM:    yMMMM:     oMMMN  -NMMM+  oMMMd` .MMMM:   ``````````
+        dMMMM/              `dMMMmoooooyMMMMm`    oMMMN   +MMMN-:MMMN-  .MMMM:
+        +MMMMm.         `   sMMMMMMMMMMMMMMMMs    oMMMN    hMMMmmMMM+   .MMMM:
+         yMMMMmo-.```.:sh` :MMMMo::::::::hMMMM/   oMMMN    .NMMMMMMy    .MMMM:
+         `omMMMMMmmdmNMMN``mMMMh         .NMMMN.  oMMMN     +MMMMMm`    .MMMM:
+           ./ymmNNNNNmds: /mNmm.          +mNNmo  +mNmd      ymNNm:     .mmNm:
+               `..-..`     ```             ````    ```        ```         ```
+-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/png" href="{% static "app/img/new_logo2.png" %}"/>
+    <title>{% block title %}{% endblock %}</title>
+
+    <!--  Bootstrap 4 js links -->
+
+<!--    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    The script above messes up the all cameras functions
+-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    <!--  Bootstrap 4 css link  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!--  Implement base.css  -->
+    <link rel="stylesheet" href="{% static "app/css/base.css" %}">
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="294339896954-gouidbgcpu2cktb5v42qdkelu1d0a9ks.apps.googleusercontent.com">
+
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    {% block nav %}
+    <!--  Navigation Bar  -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+
+    <!--  The Logo on the left  -->
+    <a class="navbar-brand" href="/">
+         <img style="width: 50px; height: 30px; position: relative; left: -10px"
+                 src="{% static "app/img/new_logo2.png" %}">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!--  Tabs on the left  -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="nav nav-pills mr-auto">
+
+        <!--  Tab Cameras  -->
+        <li class="nav-item">
+        <a class="nav-link" href="/cameras/">Cameras</a>
+        </li>
+
+        <!--  Tab Publication  -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Publication
+            </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/publications/">Publications</a>
+            <a class="dropdown-item" href="/team_poster/">Posters</a>
+        </div>
+        </li>
+
+         <!--  Tab About  -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                About
+            </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/team/">Team Members</a>
+            <a class="dropdown-item" href="/videos/">Videos</a>
+            <a class="dropdown-item" href="/history/">History</a>
+            <a class="dropdown-item" href="/email/contact/">Contact Us!</a>
+        </div>
+        </li>
+
+        <!--  Tab Join Us!  -->
+        <li class="nav-item">
+        <a class="nav-link" href="/email/join_us">Join Us!</a>
+        </li>
+
+    </ul>
+
+    <!--  Tabs on the right  -->
+    <ul class="nav nav-pills ml-auto">
+        {% if user.is_authenticated %}
+            {% if user.is_staff %}
+                <li id="adminSite"><a class="nav-link" href="/admin/">Admin Site</a></li>
+            {% endif %}
+                <li class="dropdown"> <a class="nav-link" href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.user.username}}'s Console<span class="caret"></span></a>
+            			<ul class="dropdown-menu">
+                            <li><a class="nav-link" href="/api_access/">My application</a></li>
+                            <li><a class="nav-link" href="/profile/">My Profile</a></li>
+                   		</ul>
+                 </li>
+                <li><a class="nav-link" href="/logout/">Logout</a></li>
+            {% else %}
+                <li><a class="nav-link" href="/login/">Login</a></li>
+                <li><a class="nav-link" href="/register/">Register</a></li>
+            {% endif %}
+    </ul>
+    </div>
+
+    </div>
+    </nav>
+
+    {% endblock %}
+    <!--  End of Navigation Bar  -->
+
+    <!--  Conetent of pages that implements base  -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <!--  End of content  -->
+
+
+    <!--  Footer  -->
+    {% block footer %}
+
+    <div class="footer pt-4 mt-4 bg-light" style="flex-shrink: 0;">
+
+    <div class="container-fluid text-center text-md-left">
+    <div class="row" style="width: 80%; margin: auto">
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+          <div style="float:left;width:50%;">
+
+            <h6 class="text-uppercase">More about us</h6>
+
+            <ul class="list-unstyled">
+                <li><a href="/sponsors/" >Sponsors</a></li>
+                <li><a href="/collaborators/" >Collaborators</a></li>
+                <li>Calendar</li>
+                <li><a href="/location/" >Location</a></li>
+            </ul>
+
+        </div>
+
+        <div style="float:right;width:50%;">
+
+            <h6 class="text-uppercase">Developer</h6>
+
+            <ul class="list-unstyled">
+                <li>API Access</li>
+                <li><a  href="https://purduecam2project.github.io/CameraDatabaseAPI/">API Documentation</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+    </div>
+
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-left py-3" style="width: 80%; margin: auto">
+        <!--  Dividing Line  -->
+        <div class="break"></div>
+
+        <p class="pull-right hidden-xs"><button type="button" class="btn btn-secondary"><a href="#" style="color: white">Back to top</a></button></p>
+        <p>© CAM² Research Group.   ·   <a href="/privacy/">Privacy</a>   ·   <a href="/terms/">Terms of Use</a>   ·   <a  href="/ack/">Acknowledgements</a>   ·   <a  href="/faqs/">FAQs</a></p>
+    </div>
+
+  </div>
+  <!-- End of Footer -->
+
+    {% endblock %}
+
+    {% block scripts %}
+
+<!--
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+-->
+
+    {% endblock %}
+</body>
+
+</html>
+=======
 {% load static %}
 <!DOCTYPE html>
 
@@ -239,3 +452,4 @@
 </div>
 
 </html>
+>>>>>>> master
