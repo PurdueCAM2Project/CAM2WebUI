@@ -128,9 +128,8 @@
             {% if user.is_staff %}
                 <li id="adminSite"><a class="nav-link" href="/admin/">Admin Site</a></li>
             {% endif %}
-                <li class="dropdown"> <a class="nav-link" href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.user.username}}'s Console<span class="caret"></span></a>
+                <li class="dropdown" > <a class="nav-link" href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="profile_name">{{request.user.username}}'s Console<span class="caret"></span></a>
             			<ul class="dropdown-menu">
-                            <li><a class="nav-link" href="/api_access/">My application</a></li>
                             <li><a class="nav-link" href="/profile/">My Profile</a></li>
                    		</ul>
                  </li>
