@@ -46,8 +46,13 @@ class ApiRequest(object):
     def get_Token(self):
         querystring = {'clientID': CLIENT_ID, 'clientSecret': CLIENT_SECRET}
         response = requests.request("GET", self.url, params=querystring)
-        token = (json.loads(str(response.text)))['token']
-        return token
+        try:
+            token = (json.loads(str(response.text)))['token']
+            return token
+        except KeyError:
+            print('\nKeyerror: "token" is raised. \n  Potential reason: invalid CAM2_CLIENT_ID or CAM2_CLIENT_SECRET\n')
+            return
+        
 try:
     import argparse
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
@@ -71,7 +76,8 @@ def get_api_data():
     data_request = ApiRequest(MAIN_URL + '/cameras/search', token)
     # offset = int(TOTAL_NO_CAMERAS)
     offset = 0
-    for x in range(0, math.ceil(TOTAL_NO_CAMERAS/100)):  # No of reqests per 100 cameras
+
+    for x in range(0, int(math.ceil(TOTAL_NO_CAMERAS/100))):  # No of reqests per 100 cameras
         querystring = {'offset': offset}
         data = data_request.get_Api_Request(querystring)
         offset = offset + 100
@@ -112,8 +118,6 @@ def write_csv():
 
 
     """Takes data from the new API and writes it to a CSV file for uploading"""
-
-
     data = get_api_data()
     with open(CSV_FILE, 'w') as camData:
         camData.write('ID, Image, Latitude, Longitude, City, State, Country')
@@ -168,9 +172,14 @@ def upload_csv():
                     'mimeType' : 'application/vnd.google-apps.fusiontable',
                     }
     media = MediaFileUpload('cam_data.csv',mimetype='text/csv',resumable=True)
-    file = service.files().update(body=file_metadata,
+    try:
+        file = service.files().update(body=file_metadata,
                                     fileId=FILE_ID,media_body=media,
-                                    fields='id').execute()
+                                    fields='id').execute()    
+    except Exception:
+        print('\nGoogleclient Error: raised when updating csv data to Google Drive \n  Potential reason: invalid SPREADSHEET_FILE_ID\n')
+        return
+    
     print ('Successful update File ID: %s' % file.get('id'))
 
 def main():

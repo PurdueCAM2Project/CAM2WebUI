@@ -1,3 +1,30 @@
+<<<<<<< HEAD
+img {
+  width: 100%;
+  height: auto;
+}
+
+h2 {
+  color: #424242;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+h3 {
+  color: #424242;
+  font-size: 25px;
+  font-weight: 100;
+}
+
+.divide-divider {
+  margin: 15px 0;
+  border-top: 1px solid #fff;
+}
+
+img.leaders {
+  padding: 0.7em;
+}
+=======
 img {
   width: 100%;
   height: auto;
@@ -11,3 +38,4 @@ img {
 img.leaders {
   padding: 0.7em;
 }
+>>>>>>> master
