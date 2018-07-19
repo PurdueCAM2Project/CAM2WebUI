@@ -51,22 +51,24 @@
         <hr class="divide-divider">
 
         {% if leader_list is not None %}
-            <h2>Team Administrator</h2>
             {% for leader in leader_list %}
                 {% if forloop.counter0|divisibleby:"2" %}
                     <div class="row">
                 {% endif %}
             <div class="col-md-3 col-sm-6">
-                <img class="leaders" src="{{ leader.leaderimg }}" alt="{{ leader.leadername }}">
+                <div class="card p-5" style="width: 400px; height: auto">
+                    <img class="rounded leaders" style=" height: 20rem; object-fit: cover;" src="{{ leader.leaderimg }}" alt="{{ leader.leadername }}">
+                    <hr>
+                    <div class="card-body ">
+                        <h4 class="card-title">{{ leader.leadername }}</h4>
+                        <p class="card-text">{{ leader.leadertitle }}</p>
+                        <a href="{{ leader.leaderpagelink }}" class="btn btn-primary">See Profile</a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3 col-sm-6">
-                <h3><b>{{ leader.leadertitle }}</b></h3>
-                {% if leader.leaderpagelink is not None %}
-                    <h5><a href="{{ leader.leaderpagelink }}">{{ leader.leadername }}</a></h5>
-                {% else %}
-                    <h5>{{ leader.leadername }}</h5>
-                {% endif %}
-            </div>
+                        
+            <div class="col-md-3 col-sm-6"></div>
+                        
             {% if forloop.counter0|divisibleby:"2" and not forloop.last %}
                 <div class="clearfix visible-sm-block"></div>
             {% else %}
@@ -75,6 +77,7 @@
             {% endfor %}
         {% endif %}
 
+        <!--  Current Members  -->
         {% if leader_list is not None %}
             <hr class="divide-divider">
             <h2>Current Members</h2>
