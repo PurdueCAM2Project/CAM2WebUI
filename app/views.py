@@ -54,10 +54,12 @@ def cameras(request):
             #    'cameraID': camID,
             #})
             #send_mail("Camera with Unavailable Image Reported", content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
-
-            #add info to admin database - using cleaned_data
-            cam_obj = ReportedCamera(cameraID=camID, reporttime=datetime.datetime.now())
-            cam_obj.save()
+            #check for existing reported camera
+            camidlist = ReportedCamera.objects.reverse().values_list("cameraID", flat=True)
+            if camID not in camidlist:
+                #add info to admin database - using cleaned_data
+                cam_obj = ReportedCamera(cameraID=camID, reporttime=datetime.datetime.now())
+                cam_obj.save()
 
             #return redirect('email_sent')
             form = ReportForm()
