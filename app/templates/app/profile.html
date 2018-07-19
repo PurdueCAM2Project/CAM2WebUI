@@ -8,9 +8,7 @@
 {% block content %}
 <div class="container main-content">
     
-  <hr class="divide-divider">
-  <h1 class="sub-header">User Information</h1>
-  <hr class="divide-divider">
+  <h1 class="sub-header mt-5 ml-2 mb-4">User Information</h1>
     
     {% if messages %}
       <ul class="messages">
@@ -30,8 +28,7 @@
             {% csrf_token %}
                {% for field in nameForm %}
                <p>
-                 {{ field.label_tag }}<br>
-                 {{ field }}
+                 {{ field.label_tag }} {{ field }}
                  {% for error in field.errors %}
                    <p style="color: red">{{ error }}</p>
                  {% endfor %}
@@ -44,28 +41,32 @@
     {% else %}
         <h3>{{ request.user.get_full_name }}</h3>
     {% endif %}
-
-
-    <hr>
-<!--
-    {% if not github_login %}
-    <div>
-      <a href="/password_reset/">Change my password (Password reset)</a>
-    </div>
-    {% else %}
-    <h3 class="sub-header">GitHub(Under Development)</h3> 
-      <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
-      <div class="social-login-buttons" style="width:30%">
-        <a class="btn btn-block btn-social btn-github" href="/logout">
-          <span class="fa fa-github"></span>Log out Github
-        </a>
-      </div>     
-    {% endif %}
--->
     
-    <hr>
+    <hr class="mb-1">
+    <div class="row">
+<!--  Change Profile Info  -->
+    <span class=" col-6 border-0" style="padding: 15px">
+    <h3>Change Profile Information</h3>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in infoForm %}
+           <p>
+             {{ field.label_tag }}<br>
+             {{ field }}<br>
+             Current: {{ field.value }}
+             {% for error in field.errors %}
+               <p style="color: red">{{ error }}</p>
+             {% endfor %}
+           </p>
+        {% endfor %}
+
+        <button class="btn btn-info" type="submit" name="changeInfo">Change My Info</button>
+    </form>
+    </span>
+        
+<!--  Email  -->
+    <span class="col-6 border-0" style="padding: 15px">
     <h3 class="sub-header">Email</h3>
-    <div class="panel-body">
     {% if user.email %}
         <p><b>Current email:</b> {{ user.email }}</p>
     {% endif %}
@@ -75,24 +76,23 @@
         {% csrf_token %}
         {% for field in emailForm %}
            <p>
-             {{ field.label_tag }}<br>
-             {{ field }}
+             {{ field.label_tag }} {{ field }}
              {% for error in field.errors %}
                <p style="color: red">{{ error }}</p>
              {% endfor %}
            </p>
         {% endfor %}
         {% if user.email %}
-            <button class="btn" type="submit" name="changeEmail">Change My Email</button>
+            <button class="btn btn-info mr-3" type="submit" name="changeEmail" >Change My Email</button>
         {% else %}
-            <button class="btn" type="submit" name="changeEmail">Confirm My Email</button>
+            <button class="btn btn-info" type="submit" name="changeEmail">Confirm My Email</button>
         {% endif %}
         
     <!--  Change password  -->
     {% if not github_login %}
-    <div>
-      <a href="/password_reset/">Change my password (Password reset)</a>
-    </div>
+    <button class="btn btn-info" type="button">
+      <center href="/password_reset/">Change My Password</center>
+    </button>
     {% else %}
     <h3 class="sub-header">GitHub(Under Development)</h3> 
       <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
@@ -103,15 +103,16 @@
       </div>     
     {% endif %}
     </form>
-    </div>
+    
 
+<!--  App List  -->
     <hr>
+    <div>
     <h3 class="sub-header">App Lists</h3>
-    <div class="panel-body">
       {% if apps %}
-      <ul class="apps">
+      <ul class="apps border rounded ">
           {% for app in apps %}
-          <li ID="new_app">{{ app.appname }}</li>
+          <li ID="new_app" class="mt-2 mb-2">{{ app.appname }}</li>
           {% endfor %}
       </ul>
       {% endif %}
@@ -120,34 +121,15 @@
         {% csrf_token %}
         {% for field in app_form %}
            <p>
-             {{ field.label_tag }}<br>
-             {{ field }}
+             {{ field.label_tag }} {{ field }}
            </p>
         {% endfor %}
-        <button class="btn" type="submit" name="add">Add</button>
+        <button class="btn btn-info" type="submit" name="add">Add</button>
       </form>
     </div>
-
-    <hr>
-    <h3>Change Profile Information</h3>
-    <div class="panel-body">
-    <form method="post">
-        {% csrf_token %}
-        {% for field in infoForm %}
-           <p>
-             {{ field.label_tag }}<br>
-             {{ field }}<br>
-             Current: {{ field.value|linebreaks }}
-             {% for error in field.errors %}
-               <p style="color: red">{{ error }}</p>
-             {% endfor %}
-           </p>
-        {% endfor %}
-
-
-        <button class="btn" type="submit" name="changeInfo">Change My Info</button>
-    </form>
-    </div>
+  </span> 
+    
+    </div>    
   </div>
 </div>
 {% endblock %}
