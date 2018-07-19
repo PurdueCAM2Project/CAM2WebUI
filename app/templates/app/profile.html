@@ -7,8 +7,11 @@
 {% endblock %}
 {% block content %}
 <div class="container main-content">
-
-  <h2 class="sub-header">User Information</h2>
+    
+  <hr class="divide-divider">
+  <h1 class="sub-header">User Information</h1>
+  <hr class="divide-divider">
+    
     {% if messages %}
       <ul class="messages">
           {% for message in messages %}
@@ -19,7 +22,9 @@
           {% endfor %}
       </ul>
     {% endif %}
+    
   <div class="container">
+      
     {% if request.user.first_name is None %}
         <form method="post">
             {% csrf_token %}
@@ -41,9 +46,10 @@
     {% endif %}
 
 
-
+    <hr>
+<!--
     {% if not github_login %}
-    <div class="panel-body">
+    <div>
       <a href="/password_reset/">Change my password (Password reset)</a>
     </div>
     {% else %}
@@ -55,12 +61,16 @@
         </a>
       </div>     
     {% endif %}
-
+-->
+    
+    <hr>
     <h3 class="sub-header">Email</h3>
     <div class="panel-body">
     {% if user.email %}
         <p><b>Current email:</b> {{ user.email }}</p>
     {% endif %}
+        
+    <!--  Change email  -->
     <form method="post">
         {% csrf_token %}
         {% for field in emailForm %}
@@ -77,10 +87,25 @@
         {% else %}
             <button class="btn" type="submit" name="changeEmail">Confirm My Email</button>
         {% endif %}
+        
+    <!--  Change password  -->
+    {% if not github_login %}
+    <div>
+      <a href="/password_reset/">Change my password (Password reset)</a>
+    </div>
+    {% else %}
+    <h3 class="sub-header">GitHub(Under Development)</h3> 
+      <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
+      <div class="social-login-buttons" style="width:30%">
+        <a class="btn btn-block btn-social btn-github" href="/logout">
+          <span class="fa fa-github"></span>Log out Github
+        </a>
+      </div>     
+    {% endif %}
     </form>
     </div>
 
-
+    <hr>
     <h3 class="sub-header">App Lists</h3>
     <div class="panel-body">
       {% if apps %}
@@ -103,7 +128,7 @@
       </form>
     </div>
 
-
+    <hr>
     <h3>Change Profile Information</h3>
     <div class="panel-body">
     <form method="post">
