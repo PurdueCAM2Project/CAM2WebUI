@@ -1,0 +1,16 @@
+{
+    [
+        { cameraID: '5ae0ecbd336359291be74c12',
+               timestamp: '2018-07-04T19:52:52.337Z' },
+           { cameraID: '5ae0ecbd336359291be74c12',
+               timestamp: '2018-07-04T20:52:52.337Z' },
+           { cameraID: '5ae0ecbd336359291be74c12',
+               timestamp: '2018-07-04T21:52:52.337Z' },
+           { cameraID: '5ae0ecbd336359291be74c12',
+               timestamp: '2018-07-04T22:52:52.337Z' },
+           { cameraID: '5ae0ecbd336359291be74c12',
+               timestamp: '2018-07-04T23:52:52.337Z' },
+           { cameraID: '5ae0ecbd336359291be74c12',
+               timestamp: '2018-07-04T24:52:52.337Z' }
+    ]
+}
