@@ -52,7 +52,8 @@ class ApiRequest(object):
         except KeyError:
             print('\nKeyerror: "token" is raised. \n  Potential reason: invalid CAM2_CLIENT_ID or CAM2_CLIENT_SECRET\n')
             return
-        
+
+
 try:
     import argparse
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
