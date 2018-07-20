@@ -49,41 +49,6 @@
             <hr class="divide-divider">
         </div>
     </div> 
-
-    {% elif slide.slidenum == 4%}
-    <div class="carousel-item">
-        <div class="row bg-dark">
-            <div class="col">
-                <img class="d-block darker" src="{{ slide.slidelink }}" alt="live stream" style="width: 108.8%">
-            </div>
-            <div class="col">
-                <img class="d-block darker" src="{{ slide.slidelink }}" alt="live stream" style="width: 108.8%">
-            </div>
-            <div class="col">
-                <img class="d-block darker" src="{{ slide.slidelink }}" alt="live stream" style="width: 108.8%">
-            </div>
-        
-        </div>
-        <!--  Slide Text  -->
-        <div class="carousel-caption d-none d-md-block" style="left: 10%; right: auto; text-align: left; padding: 30px">
-            <h1>{{ slide.slideheader }} 
-                <button class="btn btn-success"><a href="http://128.210.129.12/axis-cgi/mjpg/video.cgi">Camera</a></button>
-            </h1>
-            <hr class="divide-divider">
-            <h2>{{ slide.slidedescrb }}</h2>
-        </div>
-        
-        <!--  Show on small screen  -->
-        <div class="d-lg-none d-sm-block d-md-none bg-secondary">
-            <center><a><b class="text-white">
-                {{ slide.slideheader }}
-            </b>
-            <p id="welcome" class="text-white">
-                {{slide.slidedescrb }}
-            </p></a></center>
-            <hr class="divide-divider">
-        </div>
-    </div> 
         
     {% else %}
         
