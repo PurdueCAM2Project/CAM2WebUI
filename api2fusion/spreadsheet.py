@@ -83,15 +83,22 @@ class CAM2sheet(object):
         self.gs = None
         self.wks = None
 
-        if(name):
-            self.name = name
-            self.gs = self._gc.open(name)
-            self.wks = self.gs.worksheet1
-        elif(id):
-            self.id = id
-            self.gs = self._gc.open_by_key(id)
-            self.wks = self.gs.worksheet1
 
+        if(name):
+            try:
+                self.name = name
+                self.gs = self._gc.open(name)
+                self.wks = self.gs.worksheet1
+            except pygsheets.AuthenticationError:
+                print("Error Authenticating. Make sure service.json is in the same directory")
+
+        elif(id):
+            try:
+                self.id = id
+                self.gs = self._gc.open_by_key(id)
+                self.wks = self.gs.worksheet1
+            except pygsheets.AuthenticationError:
+                print("Error Authenticating. Make sure service.json is in the same directory")
 
         return self.wks
 
