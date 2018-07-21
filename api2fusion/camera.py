@@ -148,15 +148,77 @@ class IPCamera(Camera):
         """
         self.__dict__.update(**dictentries)
 
+    def __str__(self):
+        """
 
-def __str__(self):
-    """
+        Returns str
+        -------
+            string representation of the dict storing the camera parameters.
+        """
+        return str(self.__dict__)
 
-    Returns str
-    -------
-        string representation of the dict storing the camera parameters.
-    """
-    return str(self.__dict__)
+    @property
+    def ip(self):
+        """
+
+        Returns  str
+        -------
+             ip of the camera
+        """
+        return str(self.__dict__.pop('ip', None))
+
+    @property
+    def port(self):
+        """
+
+        Returns  str
+        -------
+             port of the camera
+        """
+        return str(self.__dict__.pop('port', None))
+
+    @property
+    def brand(self):
+        """
+
+        Returns  str
+        -------
+             brand of the camera
+        """
+        return str(self.__dict__.pop('brand', None))
+
+    @property
+    def model(self):
+        """
+
+        Returns  str
+        -------
+             model of the camera
+        """
+        return str(self.__dict__.pop('model', None))
+
+    @property
+    def image_path(self):
+        """
+
+        Returns  str
+        -------
+             image path of the camera
+        """
+        return str(self.__dict__.pop('image_path', None))
+
+    @property
+    def video_path(self):
+        """
+
+        Returns  str
+        -------
+             video path of the camera
+        """
+        return str(self.__dict__.pop('video_path', None))
+
+
+
 
 
 class NonIPCamera(Camera):
@@ -187,6 +249,16 @@ class NonIPCamera(Camera):
         """
         return str(self.__dict__)
 
+    @property
+    def snapshot_url(self):
+        """
+
+        Returns  str
+        -------
+             snapshort url of the camera
+        """
+        return str(self.__dict__.pop('snapshot_url', None))
+
 
 class StreamCamera(Camera):
     """Represent a single stream camera.
@@ -215,3 +287,13 @@ class StreamCamera(Camera):
             string representation of the dict storing the camera parameters.
         """
         return str(self.__dict__)
+
+    @property
+    def m3u8_url(self):
+        """
+
+        Returns  str
+        -------
+             m3u8 url of camera
+        """
+        return str(self.__dict__.pop('m3u8_url', None))
