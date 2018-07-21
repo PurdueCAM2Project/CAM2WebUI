@@ -20,12 +20,14 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm, ReportForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins, send_mail
-from .models import FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera
+from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar
 from django.http import HttpResponseNotFound
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 
 def index(request):
-    return render(request, 'app/index.html')
+    slide = Homepage.objects.reverse()
+    context = {'slide_list': slide}
+    return render(request, 'app/index.html', context)
 
 def cameras(request):
 #    context = {'google_api_key': settings.GOOGLE_API_KEY,
@@ -52,10 +54,12 @@ def cameras(request):
             #    'cameraID': camID,
             #})
             #send_mail("Camera with Unavailable Image Reported", content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
-
-            #add info to admin database - using cleaned_data
-            cam_obj = ReportedCamera(cameraID=camID, reporttime=datetime.datetime.now())
-            cam_obj.save()
+            #check for existing reported camera
+            camidlist = ReportedCamera.objects.reverse().values_list("cameraID", flat=True)
+            if camID not in camidlist:
+                #add info to admin database - using cleaned_data
+                cam_obj = ReportedCamera(cameraID=camID, reporttime=datetime.datetime.now())
+                cam_obj.save()
 
             #return redirect('email_sent')
             form = ReportForm()
@@ -134,6 +138,11 @@ def sponsors(request):
     sponsor = Sponsor.objects.reverse()
     context = {'sponsor_list': sponsor}
     return render(request, 'app/sponsors.html', context)
+
+def calendar(request):
+    cal = Calendar.objects.reverse()
+    context = {'calendar_list': cal}
+    return render(request, 'app/calendar.html', context)
 
 def location(request):
     loc = Location.objects.reverse()

@@ -103,14 +103,26 @@
             <a class="dropdown-item" href="/team/">Team Members</a>
             <a class="dropdown-item" href="/videos/">Videos</a>
             <a class="dropdown-item" href="/history/">History</a>
-            <a class="dropdown-item" href="/email/contact/">Contact Us!</a>
+            <a class="dropdown-item" href="/email/join_us">Join Us!</a>
+            <a class="dropdown-item" href="/email/contact/">Contact Us</a>
         </div>
         </li>
 
-        <!--  Tab Join Us!  -->
-        <li class="nav-item">
-        <a class="nav-link" href="/email/join_us">Join Us!</a>
+        <!--  Tab Developer  -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Developer
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% if user.is_authenticated %}
+              <a class="dropdown-item" href="" data-toggle="modal" data-target="#APIcontact-authenticated">API access</a>
+            {% else %}
+              <a class="dropdown-item" href="" data-toggle="modal" data-target="#APIcontact-not-authenticated">API access</a>
+            {% endif %}
+              <a class="dropdown-item" href="https://purduecam2project.github.io/CameraDatabaseAPI/">API Documentation</a>
+          </div>
         </li>
+
 
     </ul>
 
@@ -120,9 +132,8 @@
             {% if user.is_staff %}
                 <li id="adminSite"><a class="nav-link" href="/admin/">Admin Site</a></li>
             {% endif %}
-                <li class="dropdown"> <a class="nav-link" href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.user.username}}'s Console<span class="caret"></span></a>
+                <li class="dropdown" > <a class="nav-link" href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="profile_name">{{request.user.username}}'s Console<span class="caret"></span></a>
             			<ul class="dropdown-menu">
-                            <li><a class="nav-link" href="/api_access/">My application</a></li>
                             <li><a class="nav-link" href="/profile/">My Profile</a></li>
                    		</ul>
                  </li>
@@ -163,19 +174,16 @@
             <ul class="list-unstyled">
                 <li><a href="/sponsors/" >Sponsors</a></li>
                 <li><a href="/collaborators/" >Collaborators</a></li>
-                <li>Calendar</li>
-                <li><a href="/location/" >Location</a></li>
+
             </ul>
 
         </div>
 
         <div style="float:right;width:50%;">
-
-            <h6 class="text-uppercase">Developer</h6>
-
+          <br>
             <ul class="list-unstyled">
-                <li>API Access</li>
-                <li><a  href="https://purduecam2project.github.io/CameraDatabaseAPI/">API Documentation</a></li>
+              <li><a href="/calendar/">Calendar</a></li>
+              <li><a href="/location/" >Location</a></li>
             </ul>
 
         </div>
@@ -207,5 +215,55 @@
 
     {% endblock %}
 </body>
+
+<!-- The Modal (authenticated information) -->
+<div class="modal" id="APIcontact-authenticated">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">API Access</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        To request CAM2 API credentials, please contact <a href="mailto:cam2proj@ecn.purdue.edu" style="color: #1aa3ff;">cam2proj@ecn.purdue.edu</a>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- The Modal (not authenticated information) -->
+<div class="modal" id="APIcontact-not-authenticated">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">API Access</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Please log in to your account.
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 </html>
