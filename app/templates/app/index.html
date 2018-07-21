@@ -34,7 +34,7 @@
         <img class="d-block w-100 darker" src="{{ slide.slidelink }}" alt="First slide">
         <div class="carousel-caption d-none d-md-block" style="top: 35%">
             <h1>{{ slide.slideheader }}</h1>
-            <hr class="divide">
+            <hr>
             <h2 id="welcome">{{ slide.slidedescrb }}</h2>
         </div>
         
@@ -46,17 +46,17 @@
             <p id="welcome" class="text-white">
                 {{slide.slidedescrb }}
             </p></a></center>
-            <hr class="divide">
+            <hr class="divide-divider">
         </div>
     </div> 
-
+        
     {% else %}
         
     <div class="carousel-item">
-        <img class="d-block w-100 darker" src="{{ slide.slidelink }}" alt="Second slide">
+        <img class="d-block w-100 darker" src="{{ slide.slidelink }}" alt="other slides">
         <div class="carousel-caption d-none d-md-block" style="left: 10%; right: auto; text-align: left; padding: 30px">
             <h1>{{ slide.slideheader }}</h1>
-            <hr class="divide">
+            <hr class="divide-divider">
             <h2>{{ slide.slidedescrb }}</h2>
         </div>
         
@@ -68,14 +68,13 @@
             <p id="welcome" class="text-white">
                 {{slide.slidedescrb }}
             </p></a></center>
-            <hr class="divide">
+            <hr class="divide-divider">
         </div>
     </div> 
         
     {% endif %}
         
 {% endfor %}
-
     </div>
 
     <!--  Arrows for next/previous slide  -->
@@ -111,7 +110,7 @@
     <!--  Video Link  -->
      <div class="col-sm">
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/jtoQ5eB-GCE?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
+          <iframe class="embed-responsive-item shadow" src="https://www.youtube.com/embed/jtoQ5eB-GCE?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
                   allowfullscreen="allowfullscreen"></iframe>
          </div>
       </div>
@@ -125,7 +124,7 @@
     <!--  Video Link  -->
     <div class="col-sm">
         <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/D3BPxbGa4lo?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
+            <iframe class="embed-responsive-item shadow" src="https://www.youtube.com/embed/D3BPxbGa4lo?rel=0&controls=1&showinfo=0&vq=hd720&autohide=1"
                    allowfullscreen="allowfullscreen"></iframe>
         </div>
     </div>
