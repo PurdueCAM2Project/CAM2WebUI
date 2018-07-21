@@ -8,6 +8,7 @@ li.paper {
   padding-bottom: 0.2em;
 }
 
-.divide-divider {
-  margin: 15px 0;
+hr {
+    clear: both;
+    visibility: hidden;
 }

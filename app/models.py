@@ -187,6 +187,14 @@ class Sponsor(models.Model):
     logolink = models.CharField(verbose_name='Link to Logo', max_length=300, blank=True, null=True, validators=[validateURL])
     def __str__(self):
         return "{0}".format(self.sponname)
+    
+class Calendar(models.Model):
+    """Django model for group claendar
+    
+    Content to be decided.
+    
+    """
+    calendarinfo = models.CharField(verbose_name="Calendar Information", max_length=100)
 
 class Location(models.Model):
     """Django model for the office locations relevant to CAM2
