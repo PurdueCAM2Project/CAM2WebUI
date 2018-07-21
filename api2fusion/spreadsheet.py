@@ -3,6 +3,28 @@ Represents spreadsheet
 """
 import pygsheets
 
+
+SHEET_HEADERS = {
+        'Time Zone': None,
+        'Time Zone ID': None,
+        'Resolution Height': None,
+        'Resolution Width': None,
+        'City': None,
+        'State': None,
+        'Country': None,
+        'Longitude': None,
+        'Latitude': None,
+        'Source': None,
+        'Is Active Active Video': None,
+        'Is Active Image': None,
+        'ID': None,
+        'Type': None,
+        'Reference Logo': None,
+        'Reference URl': None,
+        'UTC offset': None
+    }
+
+
 class CAM2sheet(object):
     """Spreadsheet class to represent cam2 spreadsheet
 
@@ -22,36 +44,24 @@ class CAM2sheet(object):
         stores name of the spreadsheet
     gs : Spreadsheet
         underlying spreadsheet object
-
+    wks: Worksheet
+        underlying worksheet object
     _gc : Google Client
         underlying client. User shouldn't adjust that
 
+    Note
+    ----
+    Assumptions:
+        1. First worksheet only is used
+
 
     """
 
 
     """
-        A dictionary the maps the header names to a boolean that determines whether it should be on the sheets
+        A dictionary the maps the header names to a name of parameter in the API. If None then it won't be updated on sheet.
+        It has to be the same order as the columns in the spreadsheet
     """
-    _sheet_headers = {
-        'Time Zone': False,
-        'Time Zone ID': False,
-        'Resolution Height': False,
-        'Resolution Width': False,
-        'City': False,
-        'State': False,
-        'Country': False,
-        'Longitude': False,
-        'Latitude': False,
-        'Source': False,
-        'Is Active Active Video': False,
-        'Is Active Image': False,
-        'ID': False,
-        'Type': False,
-        'Reference Logo': False,
-        'Reference URl': False,
-        'UTC offset': False
-    }
 
     #TODO  error handling for invalid args
     #TODO  error handling for failed authorization
@@ -71,15 +81,19 @@ class CAM2sheet(object):
         self.id = None
         self.name = None
         self.gs = None
-
+        self.wks = None
 
         if(name):
             self.name = name
             self.gs = self._gc.open(name)
+            self.wks = self.gs.worksheet1
         elif(id):
             self.id = id
-            gs = self._gc.open_by_key(id)
-        return self.gs
+            self.gs = self._gc.open_by_key(id)
+            self.wks = self.gs.worksheet1
+
+
+        return self.wks
 
     #TODO error handling for invalid args
     #TODO error handling for failed auth
@@ -99,9 +113,11 @@ class CAM2sheet(object):
             gs = self._gc.open(kwargs.get('name'))
         elif 'id' in kwargs:
             gs = self._gc.open_by_key(kwargs.get('id'))
-        self.gs = gs
 
-        return self.gs
+        self.gs = gs
+        self.wks = self.gs.worksheet1
+
+        return self.wks
 
 
     def create(self):
@@ -120,24 +136,48 @@ class CAM2sheet(object):
 
         Parameters
         ----------
-        log :
+        camera : Camera
+            a camera object that has all its parameters stored in __dict___
 
         Returns
         -------
 
         """
+        ids = self.get_ids()
+        if(camera.id in ids):
+            idx = ids.index(camera.id)
+            self.wks.update_cells((idx, 1), [camera.__dict__[v] for (k, v) in SHEET_HEADERS.items() if(v != None) ])
+
+        else:
+            self.wks.insert_rows(ids[-1], 1, [camera.__dict__[v] for (k, v) in SHEET_HEADERS.items() if(v != None) ])
 
 
 
-    def worksheet(self, num):
+
+    def delete(self, **kwargs):
         """
 
         Parameters
         ----------
-        num :
+        kwargs :
 
         Returns
         -------
 
         """
+
+    def get_ids(self):
+        """
+
+        Returns List
+        -------
+            list of all IDs in the sheet
+        """
+        return self.wks.get_col(col=1)
+
+
+
+
+
+
 
