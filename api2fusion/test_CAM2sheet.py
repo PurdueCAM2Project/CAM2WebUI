@@ -1,8 +1,11 @@
-from unittest import TestCase
+import unittest
 from camera import *
 
 
-class TestCAM2sheet(TestCase):
+class TestCAM2sheet(unittest.Testcase):
+    def setUp(self):
+        pass
+
     def test_open(self):
         self.fail()
 
@@ -17,3 +20,10 @@ class TestCAM2sheet(TestCase):
 
     def test_get_ids(self):
         self.fail()
+
+
+
+
+if __name__ == '__main__':
+    unittest.main()
+
