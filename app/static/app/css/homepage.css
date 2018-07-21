@@ -1,3 +1,25 @@
+h1 {
+  font-weight:bold;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+}
+
+.splash {
+  position: relative;
+  height: 500px;
+  vertical-align: middle;
+  text-align: center;
+  overflow: hidden;
+  background-color: black;
+}
+
 .divide-heading {
   color: #424242;
   font-size: 35px;
@@ -6,30 +28,22 @@
   letter-spacing: -1px;
 }
 
+.lead {
+  color: #5a5a5a;
+  font-size: 17px;
+}
+
+.embed-responsive-item {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
 .darker {
     filter: brightness(75%);
 }
 
 .divide{
   margin: 15px 10px;
-}
-
-
-/* Typegraphy for homepage */
-
-h1 {
-	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-	font-size: 40px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 500;
-	line-height: 28.4px;
-}
-h2 {
-	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-	font-size: 28px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 500;
-	line-height: 20.4px;
 }
