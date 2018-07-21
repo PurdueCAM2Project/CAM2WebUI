@@ -1,13 +1,14 @@
 """
 Represents a CAM2 client application.
 """
-import json
+import json, os
 import requests
 from .error import AuthenticationError, InternalError, InvalidClientIdError, \
     InvalidClientSecretError, ResourceNotFoundError, FormatError, \
     AuthorizationError, ResourceConflictError
 from .camera import Camera
 
+IS_RPODUCTION_SITE = bool(os.environ['IS_PRODUCTION_SITE'] == "True")
 
 class Client(object):
     """Class representing a CAM2 client application.
@@ -39,12 +40,16 @@ class Client(object):
         we raise an Authentication error.
 
     """
-
-    base_URL = 'https://cam2-api.herokuapp.com/'
+    if IS_RPODUCTION_SITE:
+        base_URL = 'https://cam2-api.herokuapp.com/'
+    else:
+        base_URL = 'https://cam2-api-test.herokuapp.com'
 
     """str: Static variable to store the base URL.
 
     This is the URL of CAM2 Database API. User is able to send API calls directly to this URL.
+    If this was the production site the base url will be set to actual API, otherwise it will be set to the testing API
+    for development purposes.
 
     """
 
