@@ -101,7 +101,6 @@ def write_csv(cams, filename):
 
     df = pd.DataFrame(all_cams, columns= [k for (k,v) in SHEET_HEADERS.items() if(v != None)])
     df.set_index('ID', inplace=True)
-    print(df)
     df.to_csv(filename)
 
 
