@@ -8,7 +8,7 @@ from .error import AuthenticationError, InternalError, InvalidClientIdError, \
     AuthorizationError, ResourceConflictError
 from .camera import Camera
 
-IS_RPODUCTION_SITE = bool(os.environ['IS_PRODUCTION_SITE'] == "True")
+IS_PRODUCTION_SITE = bool(os.environ['IS_PRODUCTION_SITE'] == "True")
 
 class Client(object):
     """Class representing a CAM2 client application.
@@ -40,10 +40,10 @@ class Client(object):
         we raise an Authentication error.
 
     """
-    if IS_RPODUCTION_SITE:
+    if IS_PRODUCTION_SITE:
         base_URL = 'https://cam2-api.herokuapp.com/'
     else:
-        base_URL = 'https://cam2-api-test.herokuapp.com'
+        base_URL = 'https://cam2-api-test.herokuapp.com/'
 
     """str: Static variable to store the base URL.
 
@@ -151,10 +151,12 @@ class Client(object):
             Client secret should have a length of at least 71 characters.
 
         """
-        if len(clientID) != 96:
-            raise InvalidClientIdError
-        if len(clientSecret) < 71:
-            raise InvalidClientSecretError
+        if(IS_PRODUCTION_SITE == True):
+            if len(clientID) != 96:
+                raise InvalidClientIdError
+            if len(clientSecret) < 71:
+                raise InvalidClientSecretError
+
         self.clientID = clientID
         self.clientSecret = clientSecret
         self.token = None
