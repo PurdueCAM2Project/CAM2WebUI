@@ -1,29 +1,51 @@
-import unittest
-from camera import *
+import unittest, os
+from unittest import *
+from spreadsheet import *
+import pygsheets
 
 
-class TestCAM2sheet(unittest.Testcase):
+class TestCAM2sheet(unittest.TestCase):
     def setUp(self):
-        pass
+        self.service_file = 'service.json'
+        self.assertTrue(os.path.isfile(self.service_file), \
+                        msg='Service file is not in same directory or not named properly')
+
+
+    def test___init__(self):
+
+        #invalid service file name
+        self.assertRaises(FileNotFoundError, CAM2sheet, service_file='service1', operation='open')
+
+        #invlaid ID
+        self.assertRaises(TypeError, CAM2sheet, id=123)
+
+        #invalid name
+        self.assertRaises(TypeError, CAM2sheet, name=[])
+
+
+
 
     def test_open(self):
-        self.fail()
+
+        # gc = pygsheets.authorize(service_file=self.service_file)
+
+        # wks = sheet.open()
+
+        pass
 
     def test_create(self):
-        self.fail()
+        pass
 
     def test_update(self):
-        self.fail()
+        pass
 
     def test_delete(self):
-        self.fail()
+        pass
 
     def test_get_ids(self):
-        self.fail()
+        pass
 
+# if __name__ == '__main__':
+#     unittest.main()
 
-
-
-if __name__ == '__main__':
-    unittest.main()
 

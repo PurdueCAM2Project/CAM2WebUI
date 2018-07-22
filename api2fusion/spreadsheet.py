@@ -63,49 +63,63 @@ class CAM2sheet(object):
         It has to be the same order as the columns in the spreadsheet
     """
 
-    #TODO  error handling for invalid args
-    #TODO  error handling for failed authorization
+    #TODO Refactor errors raised
 
-    def __init__(self, service_file, id=None, name=None):
+    def __init__(self, service_file, id=None, name=None, operation='create'):
         """
 
         Parameters
         ----------
-        service_file :
-        id :
-        name :
+        service_file : str
+            service file path
+        id : str (optional)
+            id of spreadsheet. Must be provided if operation = 'open'
+        name : str (optional if operation = 'open')
+            name of spreadsheet. Must be provided if operation = 'create', optional otherwise.
+        operation : str
+            must be either 'create' or 'open'. default is create
+
+        Raises
+        ------
+        TypeError
+            if any of the provided arguments aren't strings
         """
 
-        try:
-            self._gc = pygsheets.authorize(service_file=service_file)
-            self.id = None
-            self.name = None
-            self.gs = None
-            self.wks = None
-        except pygsheets.AuthenticationError:
-            print("Error Authenticating.")
+        if(not isinstance(service_file, str)):
+            raise TypeError('service file should be string')
 
+        self._gc = pygsheets.authorize(service_file=service_file)
+        self.id = None
+        self.name = None
+        self.gs = None
+        self.wks = None
 
-        if(name):
-            try:
+        if(operation == 'open'):
+            if(name):
+                if (not isinstance(name, str)):
+                    raise TypeError('name should be string ')
                 self.name = name
                 self.gs = self._gc.open(name)
                 self.wks = self.gs.worksheet1
-            except pygsheets.SpreadsheetNotFound:
-                print("Spreadsheet name is incorrect.")
-        elif(id):
-            try:
+            elif(id):
+                if (not isinstance(id, str)):
+                    raise TypeError('id should be a string')
                 self.id = id
                 self.gs = self._gc.open_by_key(id)
                 self.wks = self.gs.worksheet1
-            except:
-                print("Spreadsheet ID is incorrect")
+            else:
+                raise Exception('Must provide either id or name')
+        elif(operation == 'create'):
+            if (not isinstance(name, str)):
+                raise TypeError('name should be string ')
+            self.name = name
+            self.gs = self.__create(name)
+            self.wks = self.gs.worksheet1
+            self.id = self.gs.id
+        else:
+            raise Exception('operation parameter can be either \'create\' or \'open\'')
 
-        return self.wks
-
-    #TODO error handling for invalid args
-    #TODO error handling for failed auth
-    def open(self, **kwargs):
+    def __open(self, **kwargs):
         """
 
         Parameters
@@ -117,9 +131,13 @@ class CAM2sheet(object):
 
         """
         gs = None
-        if 'name' in kwargs:
+        if ('name' in kwargs and kwargs['name']):
+            if(not isinstance(kwargs['name'], str)):
+                raise TypeError('name should be string ')
             gs = self._gc.open(kwargs.get('name'))
-        elif 'id' in kwargs:
+        elif ('id' in kwargs and kwargs['id']):
+            if (not isinstance(kwargs['id'], str)):
+                raise TypeError('id should be a string')
             gs = self._gc.open_by_key(kwargs.get('id'))
 
         self.gs = gs
@@ -128,13 +146,19 @@ class CAM2sheet(object):
         return self.wks
 
 
-    def create(self):
+    def __create(self, title):
         """
+
+        Parameters
+        ----------
+        title : str
+            title of spreadsheet
 
         Returns
         -------
 
         """
+        return self._gc.create(title=title)
 
 
 
