@@ -52,7 +52,7 @@ class CAM2sheet(object):
         underlying spreadsheet object
     wks: Worksheet
         underlying worksheet object
-    _gc : Google Client
+    __gc : Google Client
         underlying client. User shouldn't adjust that
 
     Note
@@ -91,7 +91,7 @@ class CAM2sheet(object):
         if(not isinstance(service_file, str)):
             raise TypeError('service file should be string')
 
-        self._gc = pygsheets.authorize(service_file=service_file)
+        self.__gc = pygsheets.authorize(service_file=service_file)
         self.id = None
         self.name = None
         self.gs = None
@@ -102,13 +102,13 @@ class CAM2sheet(object):
                 if (not isinstance(name, str)):
                     raise TypeError('name should be string ')
                 self.name = name
-                self.gs = self._gc.open(name)
+                self.gs = self.__gc.open(name)
                 self.wks = self.gs.worksheet1
             elif(id):
                 if (not isinstance(id, str)):
                     raise TypeError('id should be a string')
                 self.id = id
-                self.gs = self._gc.open_by_key(id)
+                self.gs = self.__gc.open_by_key(id)
                 self.wks = self.gs.worksheet1
             else:
                 raise Exception('Must provide either id or name')
@@ -137,11 +137,11 @@ class CAM2sheet(object):
         if ('name' in kwargs and kwargs['name']):
             if(not isinstance(kwargs['name'], str)):
                 raise TypeError('name should be string ')
-            gs = self._gc.open(kwargs.get('name'))
+            gs = self.__gc.open(kwargs.get('name'))
         elif ('id' in kwargs and kwargs['id']):
             if (not isinstance(kwargs['id'], str)):
                 raise TypeError('id should be a string')
-            gs = self._gc.open_by_key(kwargs.get('id'))
+            gs = self.__gc.open_by_key(kwargs.get('id'))
 
         self.gs = gs
         self.wks = self.gs.worksheet1
@@ -161,7 +161,7 @@ class CAM2sheet(object):
         -------
 
         """
-        return self._gc.create(title=title)
+        return self.__gc.create(title=title)
 
 
 
