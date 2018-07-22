@@ -76,12 +76,14 @@ class CAM2sheet(object):
         name :
         """
 
-
-        self._gc = pygsheets.authorize(service_file=service_file)
-        self.id = None
-        self.name = None
-        self.gs = None
-        self.wks = None
+        try:
+            self._gc = pygsheets.authorize(service_file=service_file)
+            self.id = None
+            self.name = None
+            self.gs = None
+            self.wks = None
+        except pygsheets.AuthenticationError:
+            print("Error Authenticating.")
 
 
         if(name):
@@ -89,16 +91,15 @@ class CAM2sheet(object):
                 self.name = name
                 self.gs = self._gc.open(name)
                 self.wks = self.gs.worksheet1
-            except pygsheets.AuthenticationError:
-                print("Error Authenticating. Make sure service.json is in the same directory")
-
+            except pygsheets.SpreadsheetNotFound:
+                print("Spreadsheet name is incorrect.")
         elif(id):
             try:
                 self.id = id
                 self.gs = self._gc.open_by_key(id)
                 self.wks = self.gs.worksheet1
-            except pygsheets.AuthenticationError:
-                print("Error Authenticating. Make sure service.json is in the same directory")
+            except:
+                print("Spreadsheet ID is incorrect")
 
         return self.wks
 
