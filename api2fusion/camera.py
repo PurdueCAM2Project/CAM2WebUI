@@ -70,7 +70,7 @@ class Camera(object):
         -------
             returns string representation of the camera id
         """
-        return self.__dict__.pop('cameraID', None)
+        return self.__dict__.get('cameraID', None)
 
     @property
     def legacy_id(self):
@@ -81,7 +81,7 @@ class Camera(object):
             returns string representation of the camera's legacy id
 
         """
-        return self.__dict__.pop('legacy_cameraID', None)
+        return self.__dict__.get('legacy_cameraID', None)
 
     @property
     def is_active_image(self):
@@ -91,7 +91,7 @@ class Camera(object):
         -------
             returns whether the camera has active image.
         """
-        return bool(self.__dict__.pop('is_active_image'))
+        return bool(self.__dict__.get('is_active_image'))
 
     @property
     def city(self):
@@ -101,7 +101,7 @@ class Camera(object):
         -------
             city of the camera
         """
-        return str(self.__dict__.pop('city', None))
+        return str(self.__dict__.get('city', None))
 
     @property
     def state(self):
@@ -111,7 +111,7 @@ class Camera(object):
         -------
             state of the camera
         """
-        return str(self.__dict__.pop('state', None))
+        return str(self.__dict__.get('state', None))
 
     @property
     def country(self):
@@ -121,7 +121,7 @@ class Camera(object):
         -------
              country of the camera
         """
-        return str(self.__dict__.pop('country', None))
+        return str(self.__dict__.get('country', None))
 
 
 class IPCamera(Camera):
@@ -147,7 +147,10 @@ class IPCamera(Camera):
              dictionary contatining all the cameras parameters
         """
 
-        #TODO should I store both video and image?
+        if(dictentries['is_active_video'] == True):
+            dictentries['url'] = 'http://' + dictentries['ip'] + dictentries['video_path']
+        else: #image path url
+            dictentries['url'] = 'http://' + dictentries['ip'] + dictentries['image_path']
 
         self.__dict__.update(**dictentries)
 
@@ -160,6 +163,16 @@ class IPCamera(Camera):
             string representation of the dict storing the camera parameters.
         """
         return str(self.__dict__)
+
+    @property
+    def url(self):
+        """
+
+        Returns  str
+        -------
+              url of camera
+        """
+        return str(self.__dict__.get('url', None))
 
     @property
     def ip(self):
@@ -242,7 +255,7 @@ class NonIPCamera(Camera):
        dictentries : dict
             dictionary contatining all the cameras parameters
        """
-        dictentries['url'] = dictentries.pop('snapshot_url', None)
+        dictentries['url'] = dictentries.get('snapshot_url', None)
         self.__dict__.update(**dictentries)
 
     def __str__(self):
@@ -253,6 +266,16 @@ class NonIPCamera(Camera):
             string representation of the dict storing the camera parameters.
         """
         return str(self.__dict__)
+
+    @property
+    def snapshot(self):
+        """
+
+        Returns
+        -------
+
+        """
+        return str(self.__dict__.get('snapshot_url', None))
 
     @property
     def url(self):
@@ -272,6 +295,7 @@ class StreamCamera(Camera):
     Attributes
     ----------
     m3u8_url : str
+    ur: str
     """
 
     def __init__(self, **dictentries):
@@ -282,7 +306,7 @@ class StreamCamera(Camera):
        dictentries : dict
             dictionary contatining all the cameras parameters
        """
-        dictentries['url'] = dictentries.pop('m3u8_url', None)
+        dictentries['url'] = dictentries.get('m3u8_url', None)
         self.__dict__.update(**dictentries)
 
     def __str__(self):
@@ -295,11 +319,21 @@ class StreamCamera(Camera):
         return str(self.__dict__)
 
     @property
+    def m3u8(self):
+        """
+
+        Returns str
+        -------
+            m3u8 url of camera
+        """
+        return str(self.__dict__.get('m3u8_url', None))
+
+    @property
     def url(self):
         """
 
         Returns  str
         -------
-             m3u8 url of camera
+              url of camera
         """
         return str(self.__dict__.get('url', None))
