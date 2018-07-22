@@ -146,7 +146,11 @@ class IPCamera(Camera):
         dictentries : dict
              dictionary contatining all the cameras parameters
         """
+
+        #TODO should I store both video and image?
+
         self.__dict__.update(**dictentries)
+
 
     def __str__(self):
         """
@@ -165,7 +169,7 @@ class IPCamera(Camera):
         -------
              ip of the camera
         """
-        return str(self.__dict__.pop('ip', None))
+        return str(self.__dict__.get('ip', None))
 
     @property
     def port(self):
@@ -175,7 +179,7 @@ class IPCamera(Camera):
         -------
              port of the camera
         """
-        return str(self.__dict__.pop('port', None))
+        return str(self.__dict__.get('port', None))
 
     @property
     def brand(self):
@@ -185,7 +189,7 @@ class IPCamera(Camera):
         -------
              brand of the camera
         """
-        return str(self.__dict__.pop('brand', None))
+        return str(self.__dict__.get('brand', None))
 
     @property
     def model(self):
@@ -195,7 +199,7 @@ class IPCamera(Camera):
         -------
              model of the camera
         """
-        return str(self.__dict__.pop('model', None))
+        return str(self.__dict__.get('model', None))
 
     @property
     def image_path(self):
@@ -205,7 +209,7 @@ class IPCamera(Camera):
         -------
              image path of the camera
         """
-        return str(self.__dict__.pop('image_path', None))
+        return str(self.__dict__.get('image_path', None))
 
     @property
     def video_path(self):
@@ -215,7 +219,7 @@ class IPCamera(Camera):
         -------
              video path of the camera
         """
-        return str(self.__dict__.pop('video_path', None))
+        return str(self.__dict__.get('video_path', None))
 
 
 
@@ -238,6 +242,7 @@ class NonIPCamera(Camera):
        dictentries : dict
             dictionary contatining all the cameras parameters
        """
+        dictentries['url'] = dictentries.pop('snapshot_url', None)
         self.__dict__.update(**dictentries)
 
     def __str__(self):
@@ -250,14 +255,14 @@ class NonIPCamera(Camera):
         return str(self.__dict__)
 
     @property
-    def snapshot_url(self):
+    def url(self):
         """
 
         Returns  str
         -------
              snapshort url of the camera
         """
-        return str(self.__dict__.pop('snapshot_url', None))
+        return str(self.__dict__.get('url', None))
 
 
 class StreamCamera(Camera):
@@ -277,6 +282,7 @@ class StreamCamera(Camera):
        dictentries : dict
             dictionary contatining all the cameras parameters
        """
+        dictentries['url'] = dictentries.pop('m3u8_url', None)
         self.__dict__.update(**dictentries)
 
     def __str__(self):
@@ -289,11 +295,11 @@ class StreamCamera(Camera):
         return str(self.__dict__)
 
     @property
-    def m3u8_url(self):
+    def url(self):
         """
 
         Returns  str
         -------
              m3u8 url of camera
         """
-        return str(self.__dict__.pop('m3u8_url', None))
+        return str(self.__dict__.get('url', None))
