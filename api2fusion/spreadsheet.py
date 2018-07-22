@@ -4,6 +4,12 @@ Represents spreadsheet
 import pygsheets
 
 
+
+"""
+A dictionary the maps the header names to a name of parameter in the API. If None then it won't be updated on sheet.
+It has to be the same order as the columns in the spreadsheet.
+"""
+
 SHEET_HEADERS = {
         'Time Zone': None,
         'Time Zone ID': None,
@@ -58,10 +64,7 @@ class CAM2sheet(object):
     """
 
 
-    """
-        A dictionary the maps the header names to a name of parameter in the API. If None then it won't be updated on sheet.
-        It has to be the same order as the columns in the spreadsheet
-    """
+
 
     #TODO Refactor errors raised
 
