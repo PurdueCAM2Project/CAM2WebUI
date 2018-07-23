@@ -3,12 +3,12 @@ Represents a CAM2 client application.
 """
 import json, os
 import requests
-from .error import AuthenticationError, InternalError, InvalidClientIdError, \
+from error import AuthenticationError, InternalError, InvalidClientIdError, \
     InvalidClientSecretError, ResourceNotFoundError, FormatError, \
     AuthorizationError, ResourceConflictError
-from .camera import Camera
+from camera import Camera
 
-IS_PRODUCTION_SITE = bool(os.environ['IS_PRODUCTION_SITE'] == "True")
+IS_PRODUCTION_API = bool(os.environ['IS_PRODUCTION_API'] == "True\r")
 
 class Client(object):
     """Class representing a CAM2 client application.
@@ -40,7 +40,7 @@ class Client(object):
         we raise an Authentication error.
 
     """
-    if IS_PRODUCTION_SITE:
+    if IS_PRODUCTION_API:
         base_URL = 'https://cam2-api.herokuapp.com/'
     else:
         base_URL = 'https://cam2-api-test.herokuapp.com/'
@@ -151,7 +151,7 @@ class Client(object):
             Client secret should have a length of at least 71 characters.
 
         """
-        if(IS_PRODUCTION_SITE == True):
+        if(IS_PRODUCTION_API == True):
             if len(clientID) != 96:
                 raise InvalidClientIdError
             if len(clientSecret) < 71:
