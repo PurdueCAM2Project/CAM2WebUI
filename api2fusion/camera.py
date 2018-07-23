@@ -147,12 +147,8 @@ class IPCamera(Camera):
              dictionary contatining all the cameras parameters
         """
 
-        if (dictentries.get('video_path', None) == True):
-            dictentries['url'] = 'http://' + dictentries['ip'] + dictentries['video_path']
-        elif (dictentries.get('image_path', None) == True):  # image path url
-            dictentries['url'] = 'http://' + dictentries['ip'] + dictentries['image_path']
-        else:
-            dictentries['url'] = ''  # no path is valid
+
+        dictentries['url'] = 'http://' + dictentries['ip'] + (dictentries['video_path'] or dictentries['image_path'] or '')
 
         self.__dict__.update(**dictentries)
 

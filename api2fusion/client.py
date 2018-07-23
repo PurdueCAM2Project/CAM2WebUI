@@ -8,7 +8,7 @@ from error import AuthenticationError, InternalError, InvalidClientIdError, \
     AuthorizationError, ResourceConflictError
 from camera import Camera
 
-IS_PRODUCTION_API = bool(os.environ['IS_PRODUCTION_API'] == "True\r")
+IS_PRODUCTION_API = bool(os.environ['IS_PRODUCTION_API'] == "True")
 
 class Client(object):
     """Class representing a CAM2 client application.
