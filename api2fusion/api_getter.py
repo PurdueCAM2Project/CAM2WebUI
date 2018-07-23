@@ -76,9 +76,9 @@ def get_cams():
     cams = []
     try:
 
-        for x in range(0, 10):  # No of reqests per 100 cameras
+        for x in range(0, int(math.ceil(TOTAL_NO_CAMERAS / 100))):  # No of reqests per 100 cameras
             cams.extend(client.search_camera(offset=offset))
-            offset = offset + 10
+            offset = offset + 100
             print('Got {0}'.format(offset))
     except Exception as e:
         print("Exception while searching: " + str(e))
