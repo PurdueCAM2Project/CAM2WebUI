@@ -11,10 +11,10 @@ import pandas as pd
 """Global Variables"""
 
 """API"""
-CLIENT_ID = os.environ['CLIENT_ID']
-CLIENT_SECRET = os.environ['CLIENT_SECRET']
-EMAIL_ADDRESS = os.environ['EMAIL_ADDRESS']
-TOTAL_NO_CAMERAS = os.environ['TOTAL_NO_CAMERAS']
+CLIENT_ID = str(os.environ['CLIENT_ID'])[:-1]   #for extra \r TODO check if that is also the case on heroku
+CLIENT_SECRET = str(os.environ['CLIENT_SECRET'])[:-1]
+EMAIL_ADDRESS = os.environ['EMAIL_ADDRESS'][:-1]
+TOTAL_NO_CAMERAS = int(os.environ['TOTAL_NO_CAMERAS'])
 
 
 """Google Credentials"""
@@ -73,11 +73,15 @@ def get_cams():
     client = Client(clientID=CLIENT_ID, clientSecret=CLIENT_SECRET)
     offset = 0
     cams = []
+    try:
 
-    for x in range(0, int(math.ceil(TOTAL_NO_CAMERAS / 100))):  # No of reqests per 100 cameras
-        cams.extend(client.search_camera(offset=offset))
-        offset = offset + 100
-        print('Got {0}'.format(offset))
+        for x in range(0, int(math.ceil(TOTAL_NO_CAMERAS / 100))):  # No of reqests per 100 cameras
+            cams.extend(client.search_camera(offset=offset))
+            offset = offset + 100
+            print('Got {0}'.format(offset))
+    except Exception as e:
+        print("Exception while searching: " + str(e))
+        raise(e)
 
     return (cams)
 
@@ -150,7 +154,8 @@ def upload_csv(csv_file, title):
 
 
     except Exception as e:
-       print(e)
+       print('Exception while uploading: ' + str(e))
+       raise(e)
 
     print('Successful update File ID: {0}'.format(file.get('id')))
 
