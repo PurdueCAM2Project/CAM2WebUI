@@ -11,9 +11,9 @@ import pandas as pd
 """Global Variables"""
 
 """API"""
-CLIENT_ID = str(os.environ['CLIENT_ID'])[:-1]   #for extra \r TODO check if that is also the case on heroku
-CLIENT_SECRET = str(os.environ['CLIENT_SECRET'])[:-1]
-EMAIL_ADDRESS = os.environ['EMAIL_ADDRESS'][:-1]
+CLIENT_ID = str(os.environ['CLIENT_ID'])   #for extra \r TODO check if that is also the case on heroku
+CLIENT_SECRET = str(os.environ['CLIENT_SECRET'])
+EMAIL_ADDRESS = os.environ['EMAIL_ADDRESS']
 TOTAL_NO_CAMERAS = int(os.environ['TOTAL_NO_CAMERAS'])
 FILE_ID = os.environ['FILE_ID']
 
