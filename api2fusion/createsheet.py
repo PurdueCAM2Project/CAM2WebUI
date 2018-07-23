@@ -27,7 +27,7 @@ def main():
     cam2sheet = sheetService.spreadsheets().create(body=spreadsheet, fields='spreadsheetId').execute()
     spreadsheetId = cam2sheet.get('spreadsheetId')
 
-    print('Successful update File ID: {0}'.format(spreadsheetId))
+    print('Run \nexport FILE_ID={0}'.format(spreadsheetId))
 
 
 if __name__ == '__main__':
