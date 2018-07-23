@@ -15,18 +15,19 @@ CLIENT_ID = str(os.environ['CLIENT_ID'])[:-1]   #for extra \r TODO check if that
 CLIENT_SECRET = str(os.environ['CLIENT_SECRET'])[:-1]
 EMAIL_ADDRESS = os.environ['EMAIL_ADDRESS'][:-1]
 TOTAL_NO_CAMERAS = int(os.environ['TOTAL_NO_CAMERAS'])
+FILE_ID = os.environ['FILE_ID']
 
 
 """Google Credentials"""
 SCOPES = [
     'https://www.googleapis.com/auth/drive',
-    'https://www.googleapis.com/auth/spreadsheets',
 ]
 SERVICE_ACCOUNT_FILE = 'service.json'
 
 """Other"""
 CSV_FILE = 'cam_data.csv'
 SHEET_TITLE = 'cam2'
+
 
 
 """
@@ -75,9 +76,9 @@ def get_cams():
     cams = []
     try:
 
-        for x in range(0, int(math.ceil(TOTAL_NO_CAMERAS / 100))):  # No of reqests per 100 cameras
+        for x in range(0, 10):  # No of reqests per 100 cameras
             cams.extend(client.search_camera(offset=offset))
-            offset = offset + 100
+            offset = offset + 10
             print('Got {0}'.format(offset))
     except Exception as e:
         print("Exception while searching: " + str(e))
@@ -108,7 +109,7 @@ def write_csv(cams, filename):
     df.to_csv(filename)
 
 
-def upload_csv(csv_file, title):
+def upload_csv(csv_file, title, id):
     """
     Uploads the csv file to Google Drive.
 
@@ -131,18 +132,10 @@ def upload_csv(csv_file, title):
                      }
     media = MediaFileUpload(csv_file, mimetype='text/csv', resumable=True)
 
-    sheetService = discovery.build('sheets', 'v4', credentials=credentials)
-    spreadsheet = {
-        'properties': {
-            'title': title
-        }
-    }
-    cam2sheet = sheetService.spreadsheets().create(body=spreadsheet, fields='spreadsheetId').execute()
-    spreadsheetId = cam2sheet.get('spreadsheetId')
 
     try:
         file = driveService.files().update(body=file_metadata,
-                                           fileId=spreadsheetId, media_body=media,
+                                           fileId=id, media_body=media,
                                            fields='id').execute()
         permission ={
             'type': 'user',
@@ -150,7 +143,7 @@ def upload_csv(csv_file, title):
             'emailAddress': EMAIL_ADDRESS
         }
 
-        print(driveService.permissions().create(fileId=spreadsheetId, body=permission).execute())
+        print(driveService.permissions().create(fileId=id, body=permission).execute())
 
 
     except Exception as e:
@@ -164,7 +157,7 @@ def main():
     start_time = time.time()
 
     write_csv(get_cams(), CSV_FILE)
-    upload_csv(CSV_FILE, title=SHEET_TITLE)
+    upload_csv(CSV_FILE, title=SHEET_TITLE, id=FILE_ID)
 
     end_time = time.time()
     print("--- {0} seconds ---" .format(end_time - start_time))
