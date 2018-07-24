@@ -35,24 +35,25 @@ It has to be the same order as the columns in the spreadsheet. The only exceptio
 """
 
 SHEET_HEADERS = {
-    'Time Zone': None,
-    'Time Zone ID': None,
-    'Resolution Height': None,
-    'Resolution Width': None,
+    'ID': 'cameraID',
+    'Image': 'url',  # hardcoded in camera.py
     'Longitude': 'longitude',
     'Latitude': 'latitude',
     'City': 'city',
     'State': 'state',
     'Country': 'country',
-    'Source': None,
     'Is Active Video': 'is_active_video',
     'Is Active Image': 'is_active_image',
-    'ID': 'cameraID',
+    'Time Zone': None,
+    'Time Zone ID': None,
+    'Resolution Height': None,
+    'Resolution Width': None,
+    'Source': None,
     'Type': None,
     'Reference Logo': None,
     'Reference URl': None,
     'UTC offset': None,
-    'Image': 'url'  # hardcoded in camera.py
+
 }
 
 
