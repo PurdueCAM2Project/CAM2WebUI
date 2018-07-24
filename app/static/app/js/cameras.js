@@ -147,7 +147,7 @@
         $.ajax({
             'async': false,
             'global': false,
-            'url': "/static/app/js/countries_viewport.json",
+            'url': "/static/app/json/countries_viewport.json",
             'dataType': "json",
             'success': function (data) {
                 countries_viewport = data;
@@ -158,7 +158,7 @@
         $.ajax({
             'async': false,
             'global': false,
-            'url': "/static/app/js/states_viewport.json",
+            'url': "/static/app/json/states_viewport.json",
             'dataType': "json",
             'success': function (data) {
                 states_viewport = data;
