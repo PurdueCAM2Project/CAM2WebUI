@@ -296,7 +296,7 @@
 
         for (var i = 1; i < selected_states.length; i++) {
             var state = selected_states[i];
-            curr_state = countries_viewport[state];
+            curr_state = states_viewport[state];
 
             var currNorthEastLat = curr_state.northeast.lat;
             var currNorthEastLng = curr_state.northeast.lng;
