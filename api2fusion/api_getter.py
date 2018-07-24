@@ -26,7 +26,7 @@ SERVICE_ACCOUNT_FILE = 'service.json'
 
 """Other"""
 CSV_FILE = 'cam_data.csv'
-SHEET_TITLE = 'cam2'
+SHEET_TITLE = 'web-API All Cameras'
 
 
 
@@ -46,8 +46,8 @@ SHEET_HEADERS = {
     'City': 'city',
     'State': 'state',
     'Country': 'country',
-    'Longitude': None,
-    'Latitude': None,
+    'Longitude': 'longitude',
+    'Latitude': 'latitude',
     'Source': None,
     'Is Active Video': 'is_active_video',
     'Is Active Image': 'is_active_image',
@@ -56,11 +56,11 @@ SHEET_HEADERS = {
     'Reference Logo': None,
     'Reference URl': None,
     'UTC offset': None,
-    'URL' : 'url'             #hardcoded in camera.py
+    'Image' : 'url'             #hardcoded in camera.py
 }
 
 
-def get_cams():
+def get_cams(start_time):
     """
     Calls the CAM2 API and returns the camera data as a
     list of dictionaries in Json format.
@@ -77,6 +77,9 @@ def get_cams():
     try:
 
         for x in range(0, int(math.ceil(TOTAL_NO_CAMERAS / 100))):  # No of reqests per 100 cameras
+            curr_time = time.time()
+            diff_time = curr_time - start_time
+            print("getting cameras --- {0:.3f} seconds".format(diff_time))
             cams.extend(client.search_camera(offset=offset))
             offset = offset + 100
             print('Got {0}'.format(offset))
@@ -105,7 +108,7 @@ def write_csv(cams, filename):
         all_cams.append([cam.__dict__[v] for (k,v) in SHEET_HEADERS.items() if(v != None)])
 
     df = pd.DataFrame(all_cams, columns= [k for (k,v) in SHEET_HEADERS.items() if(v != None)])
-    df.set_index('ID', inplace=True)
+    df.set_index(['ID', 'Image', 'Latitude', 'Longitude', 'City', 'State', 'Country', 'Is Active Image', 'Is Active Video' ], inplace=True)
     df.to_csv(filename)
 
 
@@ -156,7 +159,7 @@ def upload_csv(csv_file, title, id):
 def main():
     start_time = time.time()
 
-    write_csv(get_cams(), CSV_FILE)
+    write_csv(get_cams(start_time), CSV_FILE)
     upload_csv(CSV_FILE, title=SHEET_TITLE, id=FILE_ID)
 
     end_time = time.time()
