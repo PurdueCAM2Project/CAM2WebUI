@@ -11,12 +11,11 @@ import pandas as pd
 """Global Variables"""
 
 """API"""
-CLIENT_ID = str(os.environ['CLIENT_ID'])   #for extra \r TODO check if that is also the case on heroku
+CLIENT_ID = str(os.environ['CLIENT_ID'])  # for extra \r TODO check if that is also the case on heroku
 CLIENT_SECRET = str(os.environ['CLIENT_SECRET'])
 EMAIL_ADDRESS = os.environ['EMAIL_ADDRESS']
 TOTAL_NO_CAMERAS = int(os.environ['TOTAL_NO_CAMERAS'])
 FILE_ID = os.environ['FILE_ID']
-
 
 """Google Credentials"""
 SCOPES = [
@@ -28,8 +27,6 @@ SERVICE_ACCOUNT_FILE = 'service.json'
 CSV_FILE = 'cam_data.csv'
 SHEET_TITLE = 'web-API All Cameras'
 
-
-
 """
 A dictionary the maps the header names to a name of parameter in the API. If None then it won't be updated on sheet.
 It has to be the same order as the columns in the spreadsheet. The only exception is URL whose corresponding name would be
@@ -37,17 +34,16 @@ It has to be the same order as the columns in the spreadsheet. The only exceptio
 
 """
 
-
 SHEET_HEADERS = {
     'Time Zone': None,
     'Time Zone ID': None,
     'Resolution Height': None,
     'Resolution Width': None,
+    'Longitude': 'longitude',
+    'Latitude': 'latitude',
     'City': 'city',
     'State': 'state',
     'Country': 'country',
-    'Longitude': 'longitude',
-    'Latitude': 'latitude',
     'Source': None,
     'Is Active Video': 'is_active_video',
     'Is Active Image': 'is_active_image',
@@ -56,7 +52,7 @@ SHEET_HEADERS = {
     'Reference Logo': None,
     'Reference URl': None,
     'UTC offset': None,
-    'Image' : 'url'             #hardcoded in camera.py
+    'Image': 'url'  # hardcoded in camera.py
 }
 
 
@@ -85,10 +81,9 @@ def get_cams(start_time):
             print('Got {0}'.format(offset))
     except Exception as e:
         print("Exception while searching: " + str(e))
-        raise(e)
+        raise (e)
 
     return (cams)
-
 
 
 def write_csv(cams, filename):
@@ -105,10 +100,10 @@ def write_csv(cams, filename):
 
     all_cams = []
     for cam in cams:
-        all_cams.append([cam.__dict__[v] for (k,v) in SHEET_HEADERS.items() if(v != None)])
+        all_cams.append([cam.__dict__[v] for (k, v) in SHEET_HEADERS.items() if (v != None)])
 
-    df = pd.DataFrame(all_cams, columns= [k for (k,v) in SHEET_HEADERS.items() if(v != None)])
-    df.set_index(['ID', 'Image', 'Latitude', 'Longitude', 'City', 'State', 'Country', 'Is Active Image', 'Is Active Video' ], inplace=True)
+    df = pd.DataFrame(all_cams, columns=[k for (k, v) in SHEET_HEADERS.items() if (v != None)])
+    df.set_index('ID', inplace=True)
     df.to_csv(filename)
 
 
@@ -135,12 +130,11 @@ def upload_csv(csv_file, title, id):
                      }
     media = MediaFileUpload(csv_file, mimetype='text/csv', resumable=True)
 
-
     try:
         file = driveService.files().update(body=file_metadata,
                                            fileId=id, media_body=media,
                                            fields='id').execute()
-        permission ={
+        permission = {
             'type': 'user',
             'role': 'writer',
             'emailAddress': EMAIL_ADDRESS
@@ -150,8 +144,8 @@ def upload_csv(csv_file, title, id):
 
 
     except Exception as e:
-       print('Exception while uploading: ' + str(e))
-       raise(e)
+        print('Exception while uploading: ' + str(e))
+        raise (e)
 
     print('Successful update File ID: {0}'.format(file.get('id')))
 
@@ -163,7 +157,7 @@ def main():
     upload_csv(CSV_FILE, title=SHEET_TITLE, id=FILE_ID)
 
     end_time = time.time()
-    print("--- {0} seconds ---" .format(end_time - start_time))
+    print("--- {0} seconds ---".format(end_time - start_time))
 
 
 if __name__ == '__main__':
