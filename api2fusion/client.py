@@ -89,7 +89,7 @@ class Client(object):
     def _check_token(self, response, flag, url, data=None, params=None):
         counter = 0
         while response.status_code == 401 and \
-                response.json()['message'] == 'Token expired' and counter < 2:
+                response.json()['message'] == 'Token expired.' and counter < 2:
             self._request_token()
             header = self.header_builder()
             if flag == 'GET':
