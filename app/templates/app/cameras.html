@@ -335,6 +335,7 @@
   <div class="modal-content" style="position:fixed;float:left;left:50%;top:50%;transform:translate(-50%, -50%);margin-top:0px;">
     <span class="modalclose">&times;</span>
     <div id="mapModalInfo"></div>
+    {% if request.user.is_authenticated %}<div id="mapModalButton"><input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" style="margin:auto;white-space:normal;" value="Report Unavailable Image" /></div>{% endif %}
   </div>
 </div>
 
