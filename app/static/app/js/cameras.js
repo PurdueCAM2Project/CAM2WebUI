@@ -13,7 +13,7 @@
 
     'use strict';
 
-    var tableId = "1tDogwfdIRtJ1lOWd1OeW5_RDjmntbIiVUMHh6yG-";//all cameras
+    var tableId = "1MtAPEmSd6BQxuDYo_KYePrBxg-SOA-JiGloEcz6i";//all cameras
     //var tableId = "115-UUNvnJHw2abJinqa2CcRIY2mX7uAC4MhTcPYF";//only good cameras
     var locationColumn = "col2";
     var queryUrlHead = 'https://www.googleapis.com/fusiontables/v2/query?sql=';
@@ -26,6 +26,7 @@
     var center_of_world, maxNorthEastLat, maxNorthEastLng, maxSouthWestLat, maxSouthWestLng;
     var countries_viewport;
     var states_viewport;
+    var actives = false;
 
 
     //Initialize a layer on map with markers for all cameras in database
@@ -101,6 +102,57 @@
             });
         });
 
+        document.getElementById('activeFilter').onchange = function () {
+            // Use the Select Drop-down menu to filter out cameras that are active and cameras that are not.
+            //console.log(this.children[this.selectedIndex].value);
+
+            var city = getdata_dropdown("#city");
+            var state = getdata_dropdown("#state");
+            var country = getdata_dropdown("#country");
+
+            if(this.children[this.selectedIndex].value == "active"){
+                actives = true;
+                if(country != "('undefined')"){
+                    if (city != "('')" && city != "('undefined')") {
+                        if (state != "('')" && state != "('undefined')") {
+                            updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state + " AND  " + "'City' IN " + city + " AND  " + "'Is Active Video' IN 'TRUE'");
+                        }
+                        else {
+                            updateLayer(layer, "'Country' IN" + country + " AND  " + "'City' IN " + city + " AND  " + "'Is Active Video' IN 'TRUE'");
+                        }
+                    }
+                    else if (state != "('')" && state != "('undefined')"){
+                        updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state + " AND  " + "'Is Active Video' IN 'TRUE'");
+                    }
+                    else {
+                        updateLayer(layer, "'Country' IN " + country + " AND  " + "'Is Active Video' IN 'TRUE'");
+                    }
+                } else {
+                    updateLayer(layer, "'Is Active Video' IN 'TRUE'");
+                }
+            } else {
+                actives = false;
+                if(country != "('undefined')"){
+                    if (city != "('')" && city != "('undefined')") {
+                        if (state != "('')" && state != "('undefined')") {
+                            updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state + " AND  " + "'City' IN " + city);
+                        }
+                        else {
+                            updateLayer(layer, "'Country' IN" + country + " AND  " + "'City' IN " + city);
+                        }
+                    }
+                    else if (state != "('')" && state != "('undefined')"){
+                        updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state);
+                    }
+                    else {
+                        updateLayer(layer, "'Country' IN " + country);
+                    }
+                } else {
+                    updateLayer(layer, "");
+                }
+            }
+        }
+
         google.maps.event.addDomListener($("#country").on("change", function () {
             updateMap_Country(layer, map);
         }));
@@ -163,14 +215,22 @@
         var country = getdata_dropdown("#country");
 
         if (country != "('undefined')") {
-            updateLayer(layer, "'Country' IN " + country);
+            var countryQuery = "'Country' IN " + country;
+            if (actives) {
+                countryQuery = countryQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
+            }
+            updateLayer(layer, countryQuery);
             center_on_selected_countries(map);
             getStateNames();
         }
         else {
+            var countryQuery = "";
+            if (actives) {
+                countryQuery = "'Is Active Video' IN 'TRUE'";
+            }
             set_dropdown_null("state");
             set_dropdown_null("city");
-            updateLayer(layer, "");
+            updateLayer(layer, countryQuery);
             center_on_world(map);
         }
     }
@@ -179,14 +239,22 @@
         var state = getdata_dropdown("#state");
 
         if (state != "('')" && state != "('undefined')") {
-            updateLayer(layer, "'State' IN " + state);
+            var stateQuery = "'State' IN " + state;
+            if (actives) {
+                stateQuery = stateQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
+            }
+            updateLayer(layer, stateQuery);
             center_on_selected_states(map)
             getCityNames();
         }
         else {
             set_dropdown_null("city");
             var country = getdata_dropdown("#country");
-            updateLayer(layer, "'Country' IN " + country);
+            var stateQuery = "'Country' IN " + country;
+            if (actives) {
+                stateQuery = stateQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
+            }
+            updateLayer(layer, stateQuery);
             center_on_world(map);
         }
     }
@@ -198,15 +266,27 @@
 
         if (city != "('')" && city != "('undefined')") {
             if (state != "('')" && state != "('undefined')") {
-                updateLayer(layer, "'State' IN " + state + " AND  " + "'City' IN " + city);
+                var citystateQuery = "'State' IN " + state + " AND  " + "'City' IN " + city;
+                if (actives) {
+                    citystateQuery = citystateQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
+                }
+                updateLayer(layer, citystateQuery);
 
             }
             else {
-                updateLayer(layer, "'Country' IN" + country + " AND  " + "'City' IN " + city);
+                var citycountryQuery = "'Country' IN" + country + " AND  " + "'City' IN " + city;
+                if (actives) {
+                    citycountryQuery = citycountryQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
+                }
+                updateLayer(layer, citycountryQuery);
             }
         }
         else {
-            updateLayer(layer, "'Country' IN " + country);
+            var cityQuery = "'Country' IN " + country;
+            if (actives) {
+                cityQuery = cityQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
+            }
+            updateLayer(layer, cityQuery);
         }
     }
 
