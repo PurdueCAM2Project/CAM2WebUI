@@ -1,3 +1,8 @@
+"""
+Script to download all cameras from API. Check https://purduecam2project.github.io/CAM2WebUI/ for implementation details.
+CAM2 WebUI team.
+"""
+
 import os
 import time
 import math
