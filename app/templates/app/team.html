@@ -9,7 +9,10 @@
       
 
         <hr class="divide-divider">
-        <h2>The Team</h2>
+        <h1>CAM<sup>2</sup> Reasearch Team</h1>
+        <hr class="divide-divider">
+        <hr>
+        
         {% load  custom_tags %}
         {% for team in team_list %}
             {% if forloop.counter0|divisibleby:"3" %}
@@ -17,27 +20,27 @@
             {% endif %}
 
         {% if forloop.revcounter > 2 or team_list|length|modulo:3 == 0 %}
-            <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="col-md-4 col-sm-6 col-xs-12 shadow">
                 <img src="{{ team.teamimg }}" alt="team image" class="team">
             </div>
 
 
         {% elif forloop.revcounter <= 2 and forloop.counter|divisibleby:"3" is False and team_list|length|modulo:3 == 2 %}
-            <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12 shadow">
                 <img src="{{ team.teamimg }}" alt="team image" class="team">
             </div>
 
 
         {% elif forloop.revcounter <= 2 and team_list|length|modulo:3 == 1 %}
             {% if forloop.counter|divisibleby:"3" %}
-                <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="col-md-4 col-sm-6 col-xs-12 shadow">
                     <img src="{{ team.teamimg }}" alt="team image" class="team">
                 </div>
 
 
             {% else %}
 
-                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-12 col-sm-12 col-xs-12 shadow">
                     <img src="{{ team.teamimg }}" alt="team image" class="team">
                 </div>
             {% endif %}
@@ -47,24 +50,28 @@
         {% endif %}
         {% endfor %}
         <hr class="divide-divider">
+        <h3>Team Leaders</h3>
+        <hr>
 
         {% if leader_list is not None %}
-            <h2>Team Administrator</h2>
             {% for leader in leader_list %}
                 {% if forloop.counter0|divisibleby:"2" %}
                     <div class="row">
                 {% endif %}
             <div class="col-md-3 col-sm-6">
-                <img class="leaders" src="{{ leader.leaderimg }}" alt="{{ leader.leadername }}">
+                <div class="card p-5 shadow" style="width: 400px; height: auto">
+                    <img class="rounded leaders" style=" height: 20rem; object-fit: cover;" src="{{ leader.leaderimg }}" alt="{{ leader.leadername }}">
+                    <hr>
+                    <div class="card-body ">
+                        <h4 class="card-title">{{ leader.leadername }}</h4>
+                        <p class="card-text">{{ leader.leadertitle }}</p>
+                        <a href="{{ leader.leaderpagelink }}" class="btn btn-primary">See Profile</a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3 col-sm-6">
-                <h3><b>{{ leader.leadertitle }}</b></h3>
-                {% if leader.leaderpagelink is not None %}
-                    <h5><a href="{{ leader.leaderpagelink }}">{{ leader.leadername }}</a></h5>
-                {% else %}
-                    <h5>{{ leader.leadername }}</h5>
-                {% endif %}
-            </div>
+                        
+            <div class="col-md-3 col-sm-6"></div>
+                        
             {% if forloop.counter0|divisibleby:"2" and not forloop.last %}
                 <div class="clearfix visible-sm-block"></div>
             {% else %}
@@ -73,21 +80,28 @@
             {% endfor %}
         {% endif %}
 
+        <!--  Current Members  -->
         {% if leader_list is not None %}
             <hr class="divide-divider">
-            <h2>Current Members</h2>
+            <h3>Current Members</h3>
+            <hr>
             <div class="col-md-12" style="background-color: white">
 
                 <div class="row">
+                    <!--  Image Team  -->
                     <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
                         <h3>Image Team</h3>
                         {% for member in image_list %}
                             {% if forloop.counter0|divisibleby:"2" %}
                                 <div class="row">
                             {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6" style="float: left">
-                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}" class="rounded-circle">
-                            <h5>{{ member.membername }}</h5>
+                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-items-stretch" style="float: left">
+                            <div class="card shadow">
+                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
+                                <div class="card-body">
+                                    <h5>{{ member.membername }}</h5>
+                                </div>
+                            </div>
                         </div>
                         {% if forloop.counter|divisibleby:"2" or forloop.last %}
                             </div>
@@ -99,16 +113,20 @@
                         {% endfor %}
                     </div>
 
-
+                    <!--  Web UI Team  -->
                     <div class="col-md-6 col-sm-12 col-xs-12" style="float: right">
                         <h3>Web UI Team</h3>
                         {% for member in webui_list %}
                             {% if forloop.counter0|divisibleby:"2" %}
                                 <div class="row">
                             {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6" style="float: left">
-                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}" class="rounded-circle">
-                            <h5>{{ member.membername }}</h5>
+                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
+                            <div class="card shadow">
+                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
+                                <div class="card-body">
+                                    <h5>{{ member.membername }}</h5>
+                                </div>
+                            </div>
                         </div>
                         {% if forloop.counter|divisibleby:"2" or forloop.last %}
                             </div>
@@ -121,16 +139,22 @@
                     </div>
                 </div>
 
+                <hr class="divide-divider">
                 <div class="row">
+                    <!--  Embedded Computer Vision Team  -->
                     <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
                         <h3>Embedded Computer Vision Team</h3>
                         {% for member in intel_list %}
                             {% if forloop.counter0|divisibleby:"2" %}
                                 <div class="row">
                             {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6" style="float: left">
-                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}" class="rounded-circle">
-                            <h5>{{ member.membername }}</h5>
+                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
+                            <div class="card shadow">
+                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
+                                <div class="card-body">
+                                    <h5>{{ member.membername }}</h5>
+                                </div>
+                            </div>
                         </div>
                         {% if forloop.counter|divisibleby:"2" or forloop.last %}
                             </div>
@@ -142,16 +166,20 @@
                         {% endfor %}
                     </div>
 
-
+                    <!--  1 Billion Images Team  -->
                     <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
                         <h3>One Billion Images Team</h3>
                         {% for member in billion_list %}
                             {% if forloop.counter0|divisibleby:"2" %}
                                 <div class="row">
                             {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6" style="float: left">
-                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}" class="rounded-circle">
-                            <h5>{{ member.membername }}</h5>
+                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
+                            <div class="card shadow">
+                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
+                                <div class="card-body">
+                                    <h5>{{ member.membername }}</h5>
+                                </div>
+                            </div>
                         </div>
                         {% if forloop.counter|divisibleby:"2" or forloop.last %}
                             </div>
@@ -162,18 +190,24 @@
                         {% endif %}
                         {% endfor %}
                     </div>
-
-
-                    <div class="row col-md-12 col-sm-12 col-xs-12 " >
-                        <div class="col-md-6 col-sm-12 col-xs-12 offset-md-4" style="float: left">
+                </div>
+                
+                <hr class="divide-divider">
+                <div class="row">
+                    <!--  Embedded Computer Vision Team  -->
+                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
                         <h3>Camera API Team</h3>
                         {% for member in api_list %}
                             {% if forloop.counter0|divisibleby:"2" %}
                                 <div class="row">
                             {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6" style="float: left">
-                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}" class="rounded-circle">
-                            <h5>{{ member.membername }}</h5>
+                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
+                            <div class="card shadow">
+                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
+                                <div class="card-body">
+                                    <h5>{{ member.membername }}</h5>
+                                </div>
+                            </div>
                         </div>
                         {% if forloop.counter|divisibleby:"2" or forloop.last %}
                             </div>
@@ -183,20 +217,29 @@
                             <div class="clearfix visible-sm-block"></div>
                         {% endif %}
                         {% endfor %}
-                        </div>
                     </div>
 
+                </div>    
+                
+                
+                    <!--  Active Members  -->
+                    <hr class="divide-divider">
                     <div class="row col-md-12 col-sm-12 col-xs-12 ">
                         <div class="col-md-12 col-sm-12 col-xs-12" style="float: left">
 
                         <h3>Active Team members</h3>
+                        <hr>
                         {% for member in active_list %}
                             {% if forloop.counter0|divisibleby:"6" %}
                                 <div class="row">
                             {% endif %}
-                        <div class="col-md-2 col-sm-4 col-xs-6" style="float: left">
-                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}" class="rounded-circle">
-                            <h5>{{ member.membername }}</h5>
+                        <div class="col-md-2 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
+                            <div class="card shadow">
+                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
+                                <div class="card-body">
+                                    <h5>{{ member.membername }}</h5>
+                                </div>
+                            </div>
                         </div>
                         {% if forloop.counter|divisibleby:"6" or forloop.last %}
                             </div>
@@ -211,13 +254,16 @@
                     </div>
 
                 </div>
-            </div>
+
         {% endif %}
 
          <hr class="divide-divider">
+
+        <!--  Former Members  -->
         {% if oldmember_list is not None and oldmember_list|length != 0 %}
-            <h2>Former Members</h2>
-            <div class="row">
+            <h3>Former Members</h3>
+            <hr>
+            <div class="row container">
               <table class="table table-bordered">
                 <thead>
                   <tr>
