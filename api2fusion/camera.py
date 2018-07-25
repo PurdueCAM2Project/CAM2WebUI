@@ -62,66 +62,47 @@ class Camera(object):
             return NonIPCamera(**dict_entries)
         return StreamCamera(**dict_entries)
 
-    @property
-    def id(self):
+
+    def __getitem__(self, item):
         """
 
-        Returns str
+        Parameters
+        ----------
+        item :
+
+        Returns
         -------
-            returns string representation of the camera id
-        """
-        return self.__dict__.get('cameraID', None)
 
-    @property
-    def legacy_id(self):
+        """
+        return self.__dict__.get(item, None)
+
+    def __setitem__(self, key, value):
         """
 
-        Returns str
+        Parameters
+        ----------
+        key :
+        value :
+
+        Returns
         -------
-            returns string representation of the camera's legacy id
 
         """
-        return self.__dict__.get('legacy_cameraID', None)
+        self.__dict__[key] = value
 
-    @property
-    def is_active_image(self):
+    def __delitem__(self, key):
         """
 
-        Returns bool
+        Parameters
+        ----------
+        key :
+
+        Returns
         -------
-            returns whether the camera has active image.
-        """
-        return bool(self.__dict__.get('is_active_image'))
 
-    @property
-    def city(self):
         """
+        del self.__dict__[key]
 
-        Returns str
-        -------
-            city of the camera
-        """
-        return str(self.__dict__.get('city', None))
-
-    @property
-    def state(self):
-        """
-
-        Returns str
-        -------
-            state of the camera
-        """
-        return str(self.__dict__.get('state', None))
-
-    @property
-    def country(self):
-        """
-
-        Returns  str
-        -------
-             country of the camera
-        """
-        return str(self.__dict__.get('country', None))
 
 
 class IPCamera(Camera):
@@ -153,85 +134,6 @@ class IPCamera(Camera):
         self.__dict__.update(**dictentries)
 
 
-    def __str__(self):
-        """
-
-        Returns str
-        -------
-            string representation of the dict storing the camera parameters.
-        """
-        return str(self.__dict__)
-
-    @property
-    def url(self):
-        """
-
-        Returns  str
-        -------
-              url of camera
-        """
-        return str(self.__dict__.get('url', None))
-
-    @property
-    def ip(self):
-        """
-
-        Returns  str
-        -------
-             ip of the camera
-        """
-        return str(self.__dict__.get('ip', None))
-
-    @property
-    def port(self):
-        """
-
-        Returns  str
-        -------
-             port of the camera
-        """
-        return str(self.__dict__.get('port', None))
-
-    @property
-    def brand(self):
-        """
-
-        Returns  str
-        -------
-             brand of the camera
-        """
-        return str(self.__dict__.get('brand', None))
-
-    @property
-    def model(self):
-        """
-
-        Returns  str
-        -------
-             model of the camera
-        """
-        return str(self.__dict__.get('model', None))
-
-    @property
-    def image_path(self):
-        """
-
-        Returns  str
-        -------
-             image path of the camera
-        """
-        return str(self.__dict__.get('image_path', None))
-
-    @property
-    def video_path(self):
-        """
-
-        Returns  str
-        -------
-             video path of the camera
-        """
-        return str(self.__dict__.get('video_path', None))
-
 
 
 
@@ -256,34 +158,7 @@ class NonIPCamera(Camera):
         dictentries['url'] = dictentries.get('snapshot_url', None)
         self.__dict__.update(**dictentries)
 
-    def __str__(self):
-        """
 
-        Returns str
-        -------
-            string representation of the dict storing the camera parameters.
-        """
-        return str(self.__dict__)
-
-    @property
-    def snapshot(self):
-        """
-
-        Returns
-        -------
-
-        """
-        return str(self.__dict__.get('snapshot_url', None))
-
-    @property
-    def url(self):
-        """
-
-        Returns  str
-        -------
-             snapshort url of the camera
-        """
-        return str(self.__dict__.get('url', None))
 
 
 class StreamCamera(Camera):
@@ -307,31 +182,4 @@ class StreamCamera(Camera):
         dictentries['url'] = dictentries.get('m3u8_url', None)
         self.__dict__.update(**dictentries)
 
-    def __str__(self):
-        """
 
-        Returns str
-        -------
-            string representation of the dict storing the camera parameters.
-        """
-        return str(self.__dict__)
-
-    @property
-    def m3u8(self):
-        """
-
-        Returns str
-        -------
-            m3u8 url of camera
-        """
-        return str(self.__dict__.get('m3u8_url', None))
-
-    @property
-    def url(self):
-        """
-
-        Returns  str
-        -------
-              url of camera
-        """
-        return str(self.__dict__.get('url', None))
