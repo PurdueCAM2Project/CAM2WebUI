@@ -63,45 +63,69 @@ class Camera(object):
         return StreamCamera(**dict_entries)
 
 
-    def __getitem__(self, item):
-        """
+    def __getitem__(self, key):
+        """Overrides indexing operator.
 
         Parameters
         ----------
-        item :
-
-        Returns
+        key :  str
+            the key of the camera parameter required.
+        Returns str
         -------
+            value corresponding the key given.
 
         """
-        return self.__dict__.get(item, None)
+        return self.__dict__.get(key, None)
 
     def __setitem__(self, key, value):
-        """
+        """Overrides the assignment operator.
 
         Parameters
         ----------
-        key :
-        value :
-
-        Returns
-        -------
+        key : str
+            parameter to set in __dict__
+        value : str
+            new value of the parameter.
 
         """
         self.__dict__[key] = value
 
     def __delitem__(self, key):
-        """
+        """Overrides 'del' operator
 
         Parameters
         ----------
-        key :
-
-        Returns
-        -------
+        key : str
+            key to delete from __dict__.
 
         """
         del self.__dict__[key]
+
+    def __len__(self):
+        """Overrides len() method.
+
+        Returns int
+        -------
+            number of items in __dict__
+
+        """
+        return len(self.__dict__)
+
+    def __contains__(self, item):
+        """Overrides 'in' operator.
+
+        Parameters
+        ----------
+        item : str
+            item to check if it's in __dict__.
+
+        Returns bool
+        -------
+            True if item exists.
+            False if item doesn't exist
+
+        """
+        return (item in self.__dict__)
 
 
 
