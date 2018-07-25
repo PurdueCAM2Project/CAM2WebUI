@@ -11,9 +11,8 @@ import pandas as pd
 """Global Variables"""
 
 """API"""
-CLIENT_ID = str(os.environ['CLIENT_ID'])  # for extra \r TODO check if that is also the case on heroku
+CLIENT_ID = str(os.environ['CLIENT_ID'])
 CLIENT_SECRET = str(os.environ['CLIENT_SECRET'])
-EMAIL_ADDRESS = os.environ['EMAIL_ADDRESS']
 TOTAL_NO_CAMERAS = int(os.environ['TOTAL_NO_CAMERAS'])
 FILE_ID = os.environ['FILE_ID']
 
@@ -57,7 +56,7 @@ SHEET_HEADERS = {
 }
 
 
-def get_cams(start_time):
+def get_cams():
     """
     Calls the CAM2 API and returns the camera data as a
     list of dictionaries in Json format.
@@ -71,16 +70,13 @@ def get_cams(start_time):
     client = Client(clientID=CLIENT_ID, clientSecret=CLIENT_SECRET)
     offset = 0
     cams = []
-
     try:
 
         for x in range(0, int(math.ceil(TOTAL_NO_CAMERAS / 100))):  # No of reqests per 100 cameras
-            curr_time = time.time()
-            diff_time = curr_time - start_time
-            print("getting cameras --- {0:.3f} seconds".format(diff_time))
+            print(".", end='', flush=True)
             cams.extend(client.search_camera(offset=offset))
             offset = offset + 100
-            print('Got {0}'.format(offset))
+        print('')
     except Exception as e:
         print("Exception while searching: " + str(e))
         raise (e)
@@ -106,6 +102,7 @@ def write_csv(cams, filename):
 
     df = pd.DataFrame(all_cams, columns=[k for (k, v) in SHEET_HEADERS.items() if (v != None)])
     df.set_index('ID', inplace=True)
+    print("Retrieved {0} cameras.".format(len(df.index)))
     df.to_csv(filename)
 
 
@@ -123,6 +120,8 @@ def upload_csv(csv_file, title, id):
 
     """
 
+
+
     credentials = service_account.Credentials.from_service_account_file(
         SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 
@@ -136,14 +135,6 @@ def upload_csv(csv_file, title, id):
         file = driveService.files().update(body=file_metadata,
                                            fileId=id, media_body=media,
                                            fields='id').execute()
-        permission = {
-            'type': 'user',
-            'role': 'writer',
-            'emailAddress': EMAIL_ADDRESS
-        }
-
-        print(driveService.permissions().create(fileId=id, body=permission).execute())
-
 
     except Exception as e:
         print('Exception while uploading: ' + str(e))
@@ -155,7 +146,10 @@ def upload_csv(csv_file, title, id):
 def main():
     start_time = time.time()
 
-    write_csv(get_cams(start_time), CSV_FILE)
+    if(os.path.isfile(SERVICE_ACCOUNT_FILE) == False):
+        raise Exception('Service file is missing or not named properly. Should be in same directory and called service.json')
+
+    write_csv(get_cams(), CSV_FILE)
     upload_csv(CSV_FILE, title=SHEET_TITLE, id=FILE_ID)
 
     end_time = time.time()
