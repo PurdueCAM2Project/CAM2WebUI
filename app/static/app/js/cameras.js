@@ -90,10 +90,10 @@
                 camPlace = camPlace + camCountry;
             }
             var expandedcamview = '<div style="margin:auto;"><img src="' + camLink + '" alt="Image Not Available" width="300" style="margin:auto;display:block;width:60%;">' +
-                '<p style="text-align:center;"><b>Camera ID:</b> ' + camID + '</p>' +
+                '<p style="text-align:center;word-wrap:break-word;"><b>Camera ID:</b> ' + camID + '</p>' +
                 '<p style="text-align:center;">' + camLat + ', ' + camLng + '</p>' +
                 '<p style="text-align:center;">' + camPlace + '</p>' + 
-                '<input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" style="margin:auto;" value="Report Unavailable Image" />';
+                '<input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" style="margin:auto;white-space:normal;" value="Report Unavailable Image" />';
             /*infoWindow.setContent(e.infoWindowHtml + '<input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" value="Report Unavailable Image" />');
             infoWindow.setPosition(e.latLng);
             infoWindow.open(map);*/
