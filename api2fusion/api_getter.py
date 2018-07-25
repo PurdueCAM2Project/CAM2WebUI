@@ -71,6 +71,7 @@ def get_cams(start_time):
     client = Client(clientID=CLIENT_ID, clientSecret=CLIENT_SECRET)
     offset = 0
     cams = []
+
     try:
 
         for x in range(0, int(math.ceil(TOTAL_NO_CAMERAS / 100))):  # No of reqests per 100 cameras
@@ -101,7 +102,7 @@ def write_csv(cams, filename):
 
     all_cams = []
     for cam in cams:
-        all_cams.append([cam.__dict__[v] for (k, v) in SHEET_HEADERS.items() if (v != None)])
+        all_cams.append([cam[v] for (k, v) in SHEET_HEADERS.items() if (v != None)])
 
     df = pd.DataFrame(all_cams, columns=[k for (k, v) in SHEET_HEADERS.items() if (v != None)])
     df.set_index('ID', inplace=True)
