@@ -13,13 +13,13 @@
 
 ## Overview
 
-webUI development was significantly adapted by CAM2 API database that was released around mid 2018. webUI team developed a system that automatically updated WebUI Google Fusion Table based on change log in the CAM2 API. Other than that, interface improvement was done based on updating libraries and frameworks used by the web application and preparing the visualization interfaces for running computer vision module. More details of the development was written on this document.
+webUI development was significantly adapted by CAM2 API database that was released around mid 2018. webUI team intended to develop a system that automatically updated WebUI Google Fusion Table based on change log in the CAM2 API but due to consideration under [subject#4](#subject-4) the manual method was implemented instead. Other than that, interface improvement was done based on updating libraries and frameworks used by the web application and preparing the visualization interfaces for running computer vision module. More details of the development was written on this document.
 
 ### API Camera Database & Google Maps Display:
 
-**Initial Problem**: 
+**Initial Problem**:
 
-When the project was first inherited this summer, the website had a google maps page that displayed cameras from the older database (database that was not on MongoDB and the original version of the CAM2 API database). It did not check for updates to the database and was not able to display live camera footage. A lot had changed since this was last updated, as the research team now has an accessible API. 
+When the project was first inherited this summer, the website had a google maps page that displayed cameras from the older database (database that was not on MongoDB and the original version of the CAM2 API database). It did not check for updates to the database and was not able to display live camera footage. A lot had changed since this was last updated, as the research team now has an accessible API.
 
 ## Accomplishment
 
@@ -37,7 +37,7 @@ When the project was first inherited this summer, the website had a google maps 
 ## Long-Term Goals
 
 The following Goals were established during this period :
-* Display real time metrics of the cameras current location including local time and weather 
+* Display real time metrics of the cameras current location including local time and weather
 * Running Computer Vision Module to Analyze image (and videos) in real time while providing metrics output on the Modal dialog box.
 
 ## Encountered Issues and Decision Making
@@ -56,15 +56,15 @@ Explanation: it was stated in the [webUI documentation](https://purduecam2projec
 
 **Google Fusion Table and GoogleSheet**
 
-Problem: Updating a google fusion tables is a little complicated because you can’t directly update a fusion table without a google account. Therefore the only to update the camera fusion table was by uploading a csv file to google drive and from there converting it into a fusion table. 
+Problem: Updating a google fusion tables is a little complicated because you can’t directly update a fusion table without a google account. Therefore the only to update the camera fusion table was by uploading a csv file to google drive and from there converting it into a fusion table.
 
-Explanation:  Google Fusion Table was built to be integrated with GoogleSheet. Thus, the way to update Fusion Table is by updating a GoogleSheet. This way is also efficient because there would be no need to write a script for handling Google Oauth. 
+Explanation:  Google Fusion Table was built to be integrated with GoogleSheet. Thus, the way to update Fusion Table is by updating a GoogleSheet. This way is also efficient because there would be no need to write a script for handling Google Oauth.
 
 ### Subject 3
 
 **ChromeDriver for Travis CI**
 
-Problem: When testing the application using `python manage.py test app`, local test will run on multithreading (at least on most computers) while Travis will run it asyncrohonously due to spare resources. During trial and error, it was found that chromedriver perform faster on Travis than geckodriver (Firefox). 
+Problem: When testing the application using `python manage.py test app`, local test will run on multithreading (at least on most computers) while Travis will run it asyncrohonously due to spare resources. During trial and error, it was found that chromedriver perform faster on Travis than geckodriver (Firefox).
 Using geckodriver, some test would receive `webdriverexception` or `broken pipe error`. One of possible cause would be caused by loading/closing browser by the webdriver
 
 Solution: use chromedriver at all time. If you would like to use geckodriver, then use it locally. Expect inconsistent errors when you have geckodriver on TravisCI.
@@ -87,7 +87,15 @@ There were 3 methods of implementation:
   * Cons: required additional cost, potentially miss work schedule
 * Configuring CRON Manually by code
   * Pros: reduce the risk of missing work schedule
-  * Cons: 
+  * Cons: required additional cost, extra work needs to be done
+* Configuring CRON on the HELPS Machine
+  * Pros: no extra cost required
+  * Cons: needs continuous run on HELPS machine, HELPS maintenance might cause extra problems.
+
+*Manual Update with single command line*
+  To have a script that interface the API client and populate Googlesheet with the cameras metadata from the CAM2 API.
+
+  The team decided to implement manual update until there is a need for automation, mainly due to the infrequent updates from the CAM2 API.
 
 
 ## Major Bug Fixing
@@ -121,8 +129,8 @@ There were 3 methods of implementation:
 
 **Issue: deleting a recent commit that is not pushed**
 
-Solution: 
-1. Run `git log` and determine SHA key you want to revert to 
+Solution:
+1. Run `git log` and determine SHA key you want to revert to
 2. Run `git reset --hard SHA`
 
 **Issue: Postgress connection reached maximum limit.**
@@ -130,7 +138,7 @@ Solution:
 Description: The postgressSQL that you use in development is usually the one used for the staging site. If many people involved in the webUI development, most likely you will reach the maximum connection limit of the DATABASE_URL.
 
 Solution: (must be done by someone who has access to heroku staging site)
-1. Go to Heroku dashboard. 
+1. Go to Heroku dashboard.
 2. Find the associated postgresSQL that you are using in development to get the application name
 3. Do the following:
 
