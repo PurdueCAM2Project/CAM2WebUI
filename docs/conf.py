@@ -49,7 +49,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'PurdueCAM2Project/CAM2WebUI'
-copyright = '2017, Purdue CAM2 Project Developers'
+copyright = '2018, Purdue CAM2 Project Developers'
 author = 'Purdue CAM2 Project Developers'
 
 github_doc_root = 'https://purduecam2project.github.io/CAM2WebUI/'
@@ -98,6 +98,8 @@ html_theme_options = {
     'display_version': False,
     'navigation_depth': 2,
 }
+
+html_last_updated_fmt = '%b %d, %Y'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
