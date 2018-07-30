@@ -13,7 +13,7 @@
 
     'use strict';
 
-    var tableId = "1tDogwfdIRtJ1lOWd1OeW5_RDjmntbIiVUMHh6yG-";//all cameras
+    var tableId = "1MtAPEmSd6BQxuDYo_KYePrBxg-SOA-JiGloEcz6i";//all cameras
     //var tableId = "115-UUNvnJHw2abJinqa2CcRIY2mX7uAC4MhTcPYF";//only good cameras
     var locationColumn = "col2";
     var queryUrlHead = 'https://www.googleapis.com/fusiontables/v2/query?sql=';
@@ -26,6 +26,7 @@
     var center_of_world, maxNorthEastLat, maxNorthEastLng, maxSouthWestLat, maxSouthWestLng;
     var countries_viewport;
     var states_viewport;
+    var actives = false;
 
 
     //Initialize a layer on map with markers for all cameras in database
@@ -71,7 +72,6 @@
             }
         });
         google.maps.event.addListener(layer, 'click', function(e){
-            //console.log(e);
             var camID = e.row.ID.value;
             var camLink = e.row.Image.value;
             var camLat = e.row.Latitude.value;
@@ -92,21 +92,66 @@
             var expandedcamview = '<div style="margin:auto;"><img src="' + camLink + '" alt="Image Not Available" width="300" style="margin:auto;display:block;width:60%;">' +
                 '<p style="text-align:center;word-wrap:break-word;"><b>Camera ID:</b> ' + camID + '</p>' +
                 '<p style="text-align:center;">' + camLat + ', ' + camLng + '</p>' +
-                '<p style="text-align:center;">' + camPlace + '</p>' + 
-                '<input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" style="margin:auto;white-space:normal;" value="Report Unavailable Image" />';
-            /*infoWindow.setContent(e.infoWindowHtml + '<input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" value="Report Unavailable Image" />');
-            infoWindow.setPosition(e.latLng);
-            infoWindow.open(map);*/
-            //document.getElementById('mapModalInfo').innerHTML = e.infoWindowHtml + '<input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" value="Report Unavailable Image" />';
+                '<p style="text-align:center;">' + camPlace + '</p>';
             document.getElementById('mapModalInfo').innerHTML = expandedcamview;
             document.getElementById('mapModal').style.display = "block"; 
 
             google.maps.event.addDomListener(document.getElementById('reportthiscam'), 'click', function(){
                 document.getElementById('cameraID').value = camID;
-                //document.getElementById('contact-us').submit();
                 document.getElementById('submit').click();
             });
         });
+
+        document.getElementById('activeFilter').onchange = function () {
+            // Use the Select Drop-down menu to filter out cameras that are active and cameras that are not.
+            //console.log(this.children[this.selectedIndex].value);
+
+            var city = getdata_dropdown("#city");
+            var state = getdata_dropdown("#state");
+            var country = getdata_dropdown("#country");
+
+            if(this.children[this.selectedIndex].value == "active"){
+                actives = true;
+                if(country != "('undefined')"){
+                    if (city != "('')" && city != "('undefined')") {
+                        if (state != "('')" && state != "('undefined')") {
+                            updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state + " AND  " + "'City' IN " + city + " AND  " + "'Is Active Video' IN 'TRUE'");
+                        }
+                        else {
+                            updateLayer(layer, "'Country' IN" + country + " AND  " + "'City' IN " + city + " AND  " + "'Is Active Video' IN 'TRUE'");
+                        }
+                    }
+                    else if (state != "('')" && state != "('undefined')"){
+                        updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state + " AND  " + "'Is Active Video' IN 'TRUE'");
+                    }
+                    else {
+                        updateLayer(layer, "'Country' IN " + country + " AND  " + "'Is Active Video' IN 'TRUE'");
+                    }
+                } else {
+                    updateLayer(layer, "'Is Active Video' IN 'TRUE'");
+                }
+            } else {
+                actives = false;
+                if(country != "('undefined')"){
+                    if (city != "('')" && city != "('undefined')") {
+                        if (state != "('')" && state != "('undefined')") {
+                            updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state + " AND  " + "'City' IN " + city);
+                        }
+                        else {
+                            updateLayer(layer, "'Country' IN" + country + " AND  " + "'City' IN " + city);
+                        }
+                    }
+                    else if (state != "('')" && state != "('undefined')"){
+                        updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state);
+                    }
+                    else {
+                        updateLayer(layer, "'Country' IN " + country);
+                    }
+                } else {
+                    updateLayer(layer, "");
+                }
+            }
+        }
 
         google.maps.event.addDomListener($("#country").on("change", function () {
             updateMap_Country(layer, map);
@@ -147,7 +192,7 @@
         $.ajax({
             'async': false,
             'global': false,
-            'url': "/static/app/js/countries_viewport.json",
+            'url': "/static/app/json/countries_viewport.json",
             'dataType': "json",
             'success': function (data) {
                 countries_viewport = data;
@@ -158,7 +203,7 @@
         $.ajax({
             'async': false,
             'global': false,
-            'url': "/static/app/js/states_viewport.json",
+            'url': "/static/app/json/states_viewport.json",
             'dataType': "json",
             'success': function (data) {
                 states_viewport = data;
@@ -170,14 +215,22 @@
         var country = getdata_dropdown("#country");
 
         if (country != "('undefined')") {
-            updateLayer(layer, "'Country' IN " + country);
+            var countryQuery = "'Country' IN " + country;
+            if (actives) {
+                countryQuery = countryQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
+            }
+            updateLayer(layer, countryQuery);
             center_on_selected_countries(map);
             getStateNames();
         }
         else {
+            var countryQuery = "";
+            if (actives) {
+                countryQuery = "'Is Active Video' IN 'TRUE'";
+            }
             set_dropdown_null("state");
             set_dropdown_null("city");
-            updateLayer(layer, "");
+            updateLayer(layer, countryQuery);
             center_on_world(map);
         }
     }
@@ -186,14 +239,22 @@
         var state = getdata_dropdown("#state");
 
         if (state != "('')" && state != "('undefined')") {
-            updateLayer(layer, "'State' IN " + state);
+            var stateQuery = "'State' IN " + state;
+            if (actives) {
+                stateQuery = stateQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
+            }
+            updateLayer(layer, stateQuery);
             center_on_selected_states(map)
             getCityNames();
         }
         else {
             set_dropdown_null("city");
             var country = getdata_dropdown("#country");
-            updateLayer(layer, "'Country' IN " + country);
+            var stateQuery = "'Country' IN " + country;
+            if (actives) {
+                stateQuery = stateQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
+            }
+            updateLayer(layer, stateQuery);
             center_on_world(map);
         }
     }
@@ -205,15 +266,27 @@
 
         if (city != "('')" && city != "('undefined')") {
             if (state != "('')" && state != "('undefined')") {
-                updateLayer(layer, "'State' IN " + state + " AND  " + "'City' IN " + city);
+                var citystateQuery = "'State' IN " + state + " AND  " + "'City' IN " + city;
+                if (actives) {
+                    citystateQuery = citystateQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
+                }
+                updateLayer(layer, citystateQuery);
 
             }
             else {
-                updateLayer(layer, "'Country' IN" + country + " AND  " + "'City' IN " + city);
+                var citycountryQuery = "'Country' IN" + country + " AND  " + "'City' IN " + city;
+                if (actives) {
+                    citycountryQuery = citycountryQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
+                }
+                updateLayer(layer, citycountryQuery);
             }
         }
         else {
-            updateLayer(layer, "'Country' IN " + country);
+            var cityQuery = "'Country' IN " + country;
+            if (actives) {
+                cityQuery = cityQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
+            }
+            updateLayer(layer, cityQuery);
         }
     }
 
@@ -296,7 +369,7 @@
 
         for (var i = 1; i < selected_states.length; i++) {
             var state = selected_states[i];
-            curr_state = countries_viewport[state];
+            curr_state = states_viewport[state];
 
             var currNorthEastLat = curr_state.northeast.lat;
             var currNorthEastLng = curr_state.northeast.lng;
