@@ -294,7 +294,7 @@
   <div id="filterMenu" style="padding-bottom:5px;">
     <select id="activeFilter" class="custom-select" style="width:20%;">
       <option value="all">All Cameras</option>
-      <option value="active">Active Cameras</option>
+      <option value="active">Active Video Cameras</option>
     </select>
   </div>
 
@@ -309,14 +309,14 @@
   </div>
 
   <div id="mapCanvas"></div>
-  
+
   <!-- <input type="button" class="btn btn-info" name="report" value="Report Unavailable Images" onclick="openReport()" /> -->
- 
+
   <div id="reportForm" style="display:none;">
   <p>Howdy! The button Worked!</p>
 
         <div class="form-bottom">
-          
+
           <form id="contact-us" method="post" action="/cameras/">
             {% csrf_token %}
             <div class="row">
