@@ -19,6 +19,7 @@ Welcome to PurdueCAM2Project/CAM2WebUI's documentation!
    
    implementationDetail/User.md
    implementationDetail/GoogleFusionTable.md
+   implementationDetail/CameraPopUpView.md
    implementationDetail/Email.md
    implementationDetail/Admin.md
    implementationDetail/AppList.md
