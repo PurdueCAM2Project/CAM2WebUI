@@ -1,0 +1,372 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Camera Pop Up View &mdash; PurdueCAM2Project/CAM2WebUI 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Email" href="Email.html" />
+    <link rel="prev" title="Google Fusion Table" href="GoogleFusionTable.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PurdueCAM2Project/CAM2WebUI
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Basic Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/git.html">Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/localsite.html">Viewing Website Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/selenium.html">Selenium Test Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/sphinx.html">Sphinx-generated Github Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/travis.html">Travis CI Setup</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Implementation Details</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="User.html">User</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GoogleFusionTable.html">Google Fusion Table</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Camera Pop Up View</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-modal-box-cameras-html">The Modal Box - cameras.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#styling-the-box-cameras-css">Styling the Box - cameras.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opening-and-closing-the-modal-cameras-js-and-cameras-html">Opening and Closing the Modal - cameras.js and cameras.html</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Admin.html">Admin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppList.html">App List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="load_latlngJSON.html">load_latlngJSON</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Test Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../test/test.html">Django Selenium test</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PurdueCAM2Project/CAM2WebUI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Camera Pop Up View</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/implementationDetail/CameraPopUpView.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="camera-pop-up-view">
+<span id="camera-pop-up-view"></span><h1>Camera Pop Up View<a class="headerlink" href="#camera-pop-up-view" title="Permalink to this headline">¶</a></h1>
+<p>This page is created for documenting how to display the camera metadata stored in the Google Fusion Table and how to format and create a layout for displaying information about a selected camera.</p>
+<p>This assumes that a Google Fusion Table and a Fusion Table Layer for the map on the Cameras page is set up already as per the <a class="reference external" href="https://purduecam2project.github.io/CAM2WebUI/implementationDetail/GoogleFusionTable.html">Google Fusion Tables</a> documentation page.</p>
+<p>This view uses a feature in HTML/CSS called a <a class="reference external" href="https://www.w3schools.com/howto/howto_css_modals.asp">Modal Box</a> that allows for information to be displayed over a page in a box that can be opened by a button press and closed either by a button or by clicking outside of the modal box.</p>
+<p>This page will detail the process of creating the Modal Box currently deployed on the live site.</p>
+<div class="section" id="the-modal-box-cameras-html">
+<span id="the-modal-box-cameras-html"></span><h2>The Modal Box - cameras.html<a class="headerlink" href="#the-modal-box-cameras-html" title="Permalink to this headline">¶</a></h2>
+<p>Create a div below the div marked with the ID &#8220;content&#8221;. Give this new div an id tag with a descriptive name, and a unique class for styling purposes.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;mapModal&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;modal&quot;</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Within this div create a nested structure for the modal box content. This doesn&#8217;t need an ID but should have a unique class for styling purposes.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;mapModal&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;modal&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;modal-content&quot;</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Within this nested div any desired content or formatting can be placed. Just be sure that within this nested div is another div with a unique ID. This is where the camera information will end up. In the example below, a span intended for use as a &#8220;close&#8221; button is placed above the div where the camera information will be located.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;mapModal&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;modal&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;modal-content&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;modalclose&quot;</span><span class="o">&gt;&amp;</span><span class="n">close</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="n">mapModalInfo</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="styling-the-box-cameras-css">
+<span id="styling-the-box-cameras-css"></span><h2>Styling the Box - cameras.css<a class="headerlink" href="#styling-the-box-cameras-css" title="Permalink to this headline">¶</a></h2>
+<p>With the modal set up, we can style it in such a way that it takes on a certain appearence. First, the outer div with class &#8220;modal&#8221;. The below style will hide the modal from view (until changed) and fix it&#8217;s position and sizing to fill the entire window. It also changes its background to be a somewhat transparent black color. This is used to give the modal box the appearance of being an overlay and is what causes the content &#8220;underneath&#8221; to appear greyed out or darkened.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">modal</span> <span class="p">{</span>
+  <span class="n">display</span><span class="p">:</span> <span class="n">none</span><span class="p">;</span>
+  <span class="n">position</span><span class="p">:</span> <span class="n">fixed</span><span class="p">;</span>
+  <span class="n">z</span><span class="o">-</span><span class="n">index</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">width</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span>
+  <span class="n">height</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span>
+  <span class="n">overflow</span><span class="p">:</span> <span class="n">auto</span><span class="p">;</span>
+  <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.4</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Next, the first nested div. The below style is used for the white box about the size of 50% of the full window that contains the real content of the modal. The lines from <code class="docutils literal"><span class="pre">position:</span> <span class="pre">fixed;</span></code> to <code class="docutils literal"><span class="pre">margin-top:</span> <span class="pre">0px;</span></code> are used to center the modal box and ensure that its positioning is consistent and pleasant for devices of variable window sizes. Lastly, this css class uses a very simple animation to make the modal box appear smoothly from the top of the screen whenever it appears.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">modal</span><span class="o">-</span><span class="n">content</span> <span class="p">{</span>
+  <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="c1">#fefefe;</span>
+  <span class="n">margin</span><span class="p">:</span> <span class="mi">15</span><span class="o">%</span> <span class="n">auto</span><span class="p">;</span>
+  <span class="n">padding</span><span class="p">:</span> <span class="mi">20</span><span class="n">px</span><span class="p">;</span>
+  <span class="n">border</span><span class="p">:</span> <span class="mi">1</span><span class="n">px</span> <span class="n">solid</span> <span class="c1">#888;</span>
+  <span class="n">width</span><span class="p">:</span> <span class="mi">50</span><span class="o">%</span><span class="p">;</span>
+  <span class="n">position</span><span class="p">:</span> <span class="n">fixed</span><span class="p">;</span>
+  <span class="nb">float</span><span class="p">:</span> <span class="n">left</span><span class="p">;</span>
+  <span class="n">left</span><span class="p">:</span> <span class="mi">50</span><span class="o">%</span><span class="p">;</span>
+  <span class="n">top</span><span class="p">:</span> <span class="mi">50</span><span class="o">%</span><span class="p">;</span>
+  <span class="n">transform</span><span class="p">:</span> <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="o">%</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="o">%</span><span class="p">);</span>
+  <span class="n">margin</span><span class="o">-</span><span class="n">top</span><span class="p">:</span> <span class="mi">0</span><span class="n">px</span><span class="p">;</span>
+  <span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">4</span><span class="n">px</span> <span class="mi">8</span><span class="n">px</span> <span class="mi">0</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">),</span><span class="mi">0</span> <span class="mi">6</span><span class="n">px</span> <span class="mi">20</span><span class="n">px</span> <span class="mi">0</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.19</span><span class="p">);</span>
+  <span class="n">animation</span><span class="o">-</span><span class="n">name</span><span class="p">:</span> <span class="n">animatetop</span><span class="p">;</span>
+  <span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="p">:</span> <span class="mf">0.4</span><span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nd">@keyframes</span> <span class="n">animatetop</span> <span class="p">{</span>
+  <span class="kn">from</span> <span class="p">{</span><span class="n">top</span><span class="p">:</span> <span class="o">-</span><span class="mi">300</span><span class="n">px</span><span class="p">;</span> <span class="n">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+  <span class="n">to</span> <span class="p">{</span><span class="n">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span> <span class="n">opacity</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Lastly, the close button. The style below makes the span lightly colored until it is hovered over by a user, at which point it takes on a darker appearance. Note that this is simply for style and not for any functionality.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">modalclose</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="c1">#aaa;</span>
+  <span class="nb">float</span><span class="p">:</span> <span class="n">right</span><span class="p">;</span>
+  <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="mi">28</span><span class="n">px</span><span class="p">;</span>
+  <span class="n">font</span><span class="o">-</span><span class="n">weight</span><span class="p">:</span> <span class="n">bold</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">.</span><span class="n">modalclose</span><span class="p">:</span><span class="n">hover</span><span class="p">,</span> <span class="o">.</span><span class="n">modalclose</span><span class="p">:</span><span class="n">focus</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="n">black</span><span class="p">;</span>
+  <span class="n">text</span><span class="o">-</span><span class="n">decoration</span><span class="p">:</span> <span class="n">none</span><span class="p">;</span>
+  <span class="n">cursor</span><span class="p">:</span> <span class="n">pointer</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="opening-and-closing-the-modal-cameras-js-and-cameras-html">
+<span id="opening-and-closing-the-modal-cameras-js-and-cameras-html"></span><h2>Opening and Closing the Modal - cameras.js and cameras.html<a class="headerlink" href="#opening-and-closing-the-modal-cameras-js-and-cameras-html" title="Permalink to this headline">¶</a></h2>
+<p>Either add this block below the body of the html or add the code within to a connected JavaScript file to create functionality for closing the modal and returning to the base page. The first anonymous function activates after clicking the span that acts as a close button, and the second activates after clicking the translucent black background around the modal box. Both hide the background and the modal box from view, effectively &#8220;closing&#8221; the box.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span>
+    <span class="n">document</span><span class="o">.</span><span class="n">getElementsByClassName</span><span class="p">(</span><span class="s2">&quot;modalclose&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">onclick</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;mapModal&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">display</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">onclick</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;mapModal&#39;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;mapModal&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">display</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Assuming that the Fusion Table Layer is properly set up, add this line below where the layer is instantiated. This will cause the modal to open whenever a marker on the map is clicked.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">layer</span><span class="p">,</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mapModal&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s2">&quot;block&quot;</span><span class="p">;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Of course, all that does is open the modal, but there&#8217;s still no actual content within the box. To place content within the modal, use the additions to the listener from the previous step shown below. Note that to extract information from a specific column for a given row corresponding to the clicked marker, you can use e.row.{COLUMN ID}.value, where {COLUMN ID} should match the name of whatever column contains the desired information. Also, pay close attention to the line starting with <code class="docutils literal"><span class="pre">var</span> <span class="pre">expandedcamview</span></code>. This is where any customized layouts for displaying camera information should be written.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">layer</span><span class="p">,</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+            <span class="kd">var</span> <span class="nx">camID</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">ID</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">camLink</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">Image</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">camLat</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">Latitude</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">camLng</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">Longitude</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">camCity</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">City</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">camState</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">State</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">camCountry</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">Country</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">camPlace</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">camCity</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">camCity</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">camCity</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">camCity</span> <span class="o">!=</span><span class="s2">&quot;Null&quot;</span><span class="p">){</span>
+                <span class="nx">camPlace</span> <span class="o">=</span> <span class="nx">camPlace</span> <span class="o">+</span> <span class="nx">camCity</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">camState</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">camState</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">camState</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">camState</span> <span class="o">!=</span><span class="s2">&quot;Null&quot;</span><span class="p">){</span>
+                <span class="nx">camPlace</span> <span class="o">=</span> <span class="nx">camPlace</span> <span class="o">+</span> <span class="nx">camState</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">camCountry</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">camCountry</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">camCountry</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">camCountry</span> <span class="o">!=</span><span class="s2">&quot;Null&quot;</span><span class="p">){</span>
+                <span class="nx">camPlace</span> <span class="o">=</span> <span class="nx">camPlace</span> <span class="o">+</span> <span class="nx">camCountry</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="kd">var</span> <span class="nx">expandedcamview</span> <span class="o">=</span> <span class="s1">&#39;&lt;div style=&quot;margin:auto;&quot;&gt;&lt;img src=&quot;&#39;</span> <span class="o">+</span> <span class="nx">camLink</span> <span class="o">+</span> <span class="s1">&#39;&quot; alt=&quot;Image Not Available&quot; width=&quot;300&quot; style=&quot;margin:auto;display:block;width:60%;&quot;&gt;&#39;</span> <span class="o">+</span>
+                <span class="s1">&#39;&lt;p style=&quot;text-align:center;word-wrap:break-word;&quot;&gt;&lt;b&gt;Camera ID:&lt;/b&gt; &#39;</span> <span class="o">+</span> <span class="nx">camID</span> <span class="o">+</span> <span class="s1">&#39;&lt;/p&gt;&#39;</span> <span class="o">+</span>
+                <span class="s1">&#39;&lt;p style=&quot;text-align:center;&quot;&gt;&#39;</span> <span class="o">+</span> <span class="nx">camLat</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nx">camLng</span> <span class="o">+</span> <span class="s1">&#39;&lt;/p&gt;&#39;</span> <span class="o">+</span>
+                <span class="s1">&#39;&lt;p style=&quot;text-align:center;&quot;&gt;&#39;</span> <span class="o">+</span> <span class="nx">camPlace</span> <span class="o">+</span> <span class="s1">&#39;&lt;/p&gt;&#39;</span><span class="p">;</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mapModalInfo&#39;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">expandedcamview</span><span class="p">;</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mapModal&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s2">&quot;block&quot;</span><span class="p">;</span> 
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Once the JavaScript for the modal has been written, deploy the site locally to test the functionality of the modal and ensure that information from the Fusion Table is being displayed properly within the modal box.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Email.html" class="btn btn-neutral float-right" title="Email" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="GoogleFusionTable.html" class="btn btn-neutral" title="Google Fusion Table" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Purdue CAM2 Project Developers.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
