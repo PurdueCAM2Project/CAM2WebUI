@@ -10,15 +10,64 @@
   <hr class="divide-divider">
   <h1>Publications</h1>
   <hr class="divide-divider">
+
+  <div class="input-group mb-3" style='width: 40%;'>
+      <input type="text" class="shadow-sm form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1" >  
+      &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="shadow-sm btn btn-outline-info">Search</button>
+    </div>
+    
   <ol>
+
+    <div class="row">
+      <!-- <div class="col" style="width: 10%;">
+        <h4>Categories</h4>
+      </div> -->
+
+    
     {% for publication in publication_list %}
-      <li>
-        {{ publication.paperinfo }} 
-        {% if publication.paperlink is not None %}
-        [<a href="{{ publication.paperlink }}" style="color:#1aa3ff;">PDF</a>]
-        {% endif %}
-      </li>
+      {% if forloop.counter|divisibleby:4 %}
+        </div>
+        <br>
+        <div class="row">
+      {% endif %}
+      <!-- <li> -->
+        <div class="col">
+          <div class="shadow-sm card" style="width: 18rem;">
+              <div class="card-body">
+                <!-- {{ publication.paperinfo }}  -->
+                <h5 class="card-title">Image-Based Geographical Location Estimation Using Web Cameras</h5>
+                <hr/>
+                <h6 class="card-subtitle mb-2 text-muted">Southwest Symposium on Image Analysis and Interpretation 2014 </h6>
+                <p class="card-text">Jeehyun Choe, Thitiporn Pramoun, Thumrongrat Amornraksa, Yung-Hsiang Lu, and Edward J. Delp</p>
+                {% if publication.paperlink is not None %}
+                <br>
+                <a href="{{ publication.paperlink }}" class="btn btn-primary" style="width: 100%;">PDF</a>
+          <!-- [<a href="{{ publication.paperlink }}" style="color:#1aa3ff;">PDF</a>] -->
+          <!-- <img src="{{ publication.paperlink }}" width="300px" height="300px"/> -->
+          
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+      <!-- </li> -->
     {% endfor %}
+    </div>
   </ol>
+  <nav aria-label="Page navigation example">
+      <ul class="pagination">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active">
+            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+    </nav>
 </div>
 {% endblock %}
