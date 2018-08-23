@@ -19,11 +19,11 @@
       <i class="fa fa-caret-down"></i>
       <div class="btn-group" role="group" aria-label="Basic example">
           <a href="/publications">
-          <button type="button" class="btn btn-light"><i class="fa fa-th"></i></button>
+            <button type="button" class="btn btn-light"><i class="fa fa-th"></i></button>
+            </a>
+            <a href="/publications_list">
+            <button action="/publications_list"type="button" class="btn btn-light"><i class="fa fa-list-ul"></i></button>
           </a>
-          <a href="/publications_list">
-          <button action="/publications_list"type="button" class="btn btn-light"><i class="fa fa-list-ul"></i></button>
-        </a>
           </div>
     </div>
     
@@ -38,41 +38,15 @@
       </nav>
   <ol>
 
-    <div class="row">
-      <!-- <div class="col" style="width: 10%;">
-        <h4>Categories</h4>
-      </div> -->
-
-    
-    {% for publication in publication_list %}
-      {% if forloop.counter|divisibleby:4 %}
-        </div>
-        <br>
-        <div class="row">
-      {% endif %}
-      <!-- <li> -->
-        <div class="col">
-          <div class="shadow-sm card" style="width: 18rem;">
-              <div class="card-body">
-                <!-- {{ publication.paperinfo }}  -->
-                <h5 class="card-title">Image-Based Geographical Location Estimation Using Web Cameras</h5>
-                <hr/>
-                <h6 class="card-subtitle mb-2 text-muted">Southwest Symposium on Image Analysis and Interpretation 2014 </h6>
-                <p class="card-text">Jeehyun Choe, Thitiporn Pramoun, Thumrongrat Amornraksa, Yung-Hsiang Lu, and Edward J. Delp</p>
+            {% for publication in publication_list %}
+              <li>
+                {{ publication.paperinfo }} 
                 {% if publication.paperlink is not None %}
-                <br>
-                <a href="{{ publication.paperlink }}" class="btn btn-primary" style="width: 100%;">PDF</a>
-          <!-- [<a href="{{ publication.paperlink }}" style="color:#1aa3ff;">PDF</a>] -->
-          <!-- <img src="{{ publication.paperlink }}" width="300px" height="300px"/> -->
-          
+                <a href="{{ publication.paperlink }}" style="color:#1aa3ff;">PDF</a>
                 {% endif %}
-            </div>
-          </div>
-        </div>
+              </li>
+            {% endfor %}
 
-      <!-- </li> -->
-    {% endfor %}
-    </div>
   </ol>
   <nav aria-label="Page navigation example">
       <ul class="pagination">
