@@ -17,7 +17,9 @@ class Homepage(models.Model):
     """
     slideheader = models.CharField(verbose_name='Slide Header', max_length=500, blank=True)
     
-    slidedescrb = models.CharField(verbose_name='Slide Description', max_length=100, blank=True, null=True)
+    slidedescrb = models.CharField(verbose_name='Slide Description', max_length=300, blank=True, null=True)
+
+    slidedescrb1 = models.CharField(verbose_name='Slide Description', max_length=300, blank=True, null=True)
     
     slidenum = models.IntegerField(verbose_name='Slide Number', blank=False, null=True)
     
