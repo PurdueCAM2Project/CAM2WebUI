@@ -35,7 +35,16 @@
         <div class="carousel-caption d-none d-md-block" style="top: 35%">
             <h1>{{ slide.slideheader }}</h1>
             <hr>
-            <h2 id="welcome">{{ slide.slidedescrb }}</h2>
+            {% if slide.slidedescrb is not none %}
+            <h3 id="welcome">{{ slide.slidedescrb }}</h3>
+                {% if slide.slidedescrb1 is not none %}
+                <br>
+                <hr class="divide-divider">
+                {% endif %}
+            {% endif %}
+            {% if slide.slidedescrb1 is not none %}
+            <h2 id="details">{{ slide.slidedescrb1 }}</h2>
+            {% endif %}
         </div>
         
         <!--  Show on small screen  -->
