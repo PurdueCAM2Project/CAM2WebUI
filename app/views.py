@@ -508,3 +508,8 @@ def api_request(request):
 
 def videos(request):
     return render(request, 'app/videos.html')
+
+def publications_list(request):
+    publication_list = Publication.objects.reverse()
+    context = {'publication_list': publication_list}
+    return render(request, 'app/publications_list.html', context)
