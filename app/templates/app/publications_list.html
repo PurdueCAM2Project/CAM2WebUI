@@ -42,16 +42,21 @@
   <ol>
             <!-- card is wrapped with a javascript check static/app/js/publication.js -->
             {% for publication in publication_list %}
-                <div class="card shadow card-deck-wrapper pointer">
+              {% if publication.paperlink %}
+                <div class="card shadow pointer" onclick="location.href='{{ publication.paperlink }}';">
+              {% else %}
+                <div class="card shadow pointer">
+              {% endif %}
+                
                   <div class="container">
                     <!-- {{ publication.paperinfo }} 
                     {% if publication.paperlink is not None %}
                     <a href="{{ publication.paperlink }}" style="color:#1aa3ff;">PDF</a>
                     {% endif %} -->
 
-                    <h6 class="card-title">Image-Based Geographical Location Estimation Using Web Cameras</h6>
-                    <h6 class="card-subtitle mb-2 text-muted" style="font-size: 70%;">Southwest Symposium on Image Analysis and Interpretation 2014 </h6>
-                    <p class="card-text" style="font-size: 80%;"><span class="badge badge-dark">Authors</span>: Jeehyun Choe, Thitiporn Pramoun, Thumrongrat Amornraksa, Yung-Hsiang Lu, and Edward J. Delp</p>
+                    <h6 class="card-title">{{ publication.paperinfo }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted" style="font-size: 70%;">{{ publication.conference }} </h6>
+                    <p class="card-text" style="font-size: 80%;"><span class="badge badge-dark">Authors</span>: {{ publication.authors }}</p>
                 
                   </div>
                 </div>

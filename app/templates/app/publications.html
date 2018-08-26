@@ -55,10 +55,10 @@
           <div class="shadow-sm card" style="width: 18rem;">
               <div class="card-body">
                 <!-- {{ publication.paperinfo }}  -->
-                <h5 class="card-title">Image-Based Geographical Location Estimation Using Web Cameras</h5>
+                <h5 class="card-title">{{ publication.paperinfo }}</h5>
                 <hr/>
-                <h6 class="card-subtitle mb-2 text-muted">Southwest Symposium on Image Analysis and Interpretation 2014 </h6>
-                <p class="card-text">Jeehyun Choe, Thitiporn Pramoun, Thumrongrat Amornraksa, Yung-Hsiang Lu, and Edward J. Delp</p>
+                <h6 class="card-subtitle mb-2 text-muted">{{ publication.conference }}</h6>
+                <p class="card-text">{{ publication.authors }}</p>
                 {% if publication.paperlink is not None %}
                 <br>
                 <a href="{{ publication.paperlink }}" class="btn btn-primary" style="width: 100%;">PDF</a>
@@ -90,4 +90,7 @@
         </ul>
     </nav>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static "app/js/publication.js" %}"></script>
 {% endblock %}
