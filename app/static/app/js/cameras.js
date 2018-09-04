@@ -90,7 +90,7 @@
                 camPlace = camPlace + camCountry;
             }
             var expandedcamview = '<div style="margin:auto;"><img src="' + camLink + '" alt="Image Not Available" width="300" style="margin:auto;display:block;width:60%;">' +
-                '<p style="text-align:center;word-wrap:break-word;"><button type="button" class="btn btn-primary" onclick="toggleID()">Camera ID:</button><div id="toggleID"> ' +  camID +  '</div></p>' +
+                '<p style="text-align:center;word-wrap:break-word;"><div class="row"> <button type="button" class="btn btn-primary mx-auto"  data-toggle="collapse" data-target="#toggleID">Camera ID</button></div><div id="toggleID" class="collapse colentered"><p style="text-align:center;word-wrap:break-word;"> ' +  camID +  '</p></div></p>' +
                 '<p style="text-align:center;">' + camLat + ',' + camLng + '</p>' +
                 '<p style="text-align:center;">' + camPlace + '</p>';
             document.getElementById('mapModalInfo').innerHTML = expandedcamview;
@@ -101,14 +101,7 @@
                 document.getElementById('submit').click();
             });
 
-            function toggleID(){
-                var x = document.getElementById("toggleID");
-                if (x.style.display === "none") {
-                    x.style.display = "block";
-                } else {
-                    x.style.display = "none";
-                }
-            }
+
 
 
         });
