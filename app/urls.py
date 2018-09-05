@@ -16,7 +16,6 @@ urlpatterns = [
     url(r'^faqs/$', app_views.faqs, name='faqs'),
     url(r'^terms/$', app_views.terms, name='terms'),
     url(r'^profile/$', app_views.profile, name='profile'),
-    #url(r'^login/$',auth_views.LoginView.as_view(template_name="useraccounts/login.html"), name='login'),
     url(r'^login/$', auth_views.login, {'template_name': 'app/login.html'}, name='login'),
 	url(r'^register/$', app_views.register, name='register'),
     url(r'^oauthinfo/$', app_views.oauthinfo, name='more info'),
