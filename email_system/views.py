@@ -108,6 +108,10 @@ def admin_send_email(request):
 
 
 def contact(request):
+    cname = ""
+    cemail = ""
+    csub = ""
+    msg = ""
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -142,6 +146,11 @@ def contact(request):
 
                 return redirect('email_sent')
             else:
+                #keep the unsubmitted data that user type before
+                cname = request.POST.get('name')
+                cemail = request.POST.get('from_email')
+                csub = request.POST.get('subject')
+                msg = request.POST.get('message')
                 messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
                 if 'test' in sys.argv:
                     sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
@@ -155,12 +164,13 @@ def contact(request):
 
     else:
         form = ContactForm()
+        
         if 'test' in sys.argv:
             sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
         else:
             sitekey = os.environ['RECAPTCHA_SITE_KEY']
-
-    return render(request, "email_system/contact.html", {'form': form, 'sitekey': sitekey})
+    
+    return render(request, "email_system/contact.html", {'form': form, 'sitekey': sitekey, 'cname': cname, 'cemail' : cemail, 'csub' : csub, 'msg' : msg, })
 
 def join(request):
     if request.method == 'POST':
