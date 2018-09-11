@@ -23,6 +23,11 @@ from django.core.mail import mail_admins, send_mail
 from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar
 from django.http import HttpResponseNotFound
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
 
 def index(request):
     slide = Homepage.objects.reverse()
@@ -56,10 +61,27 @@ def cameras(request):
             #send_mail("Camera with Unavailable Image Reported", content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
             #check for existing reported camera
             camidlist = ReportedCamera.objects.reverse().values_list("cameraID", flat=True)
+            user = None
+            if (request.user.is_authenticated):
+                user = request.user.username
+
             if camID not in camidlist:
                 #add info to admin database - using cleaned_data
-                cam_obj = ReportedCamera(cameraID=camID, reporttime=datetime.datetime.now())
+
+
+                cam_obj = ReportedCamera(username=user, cameraID=camID, reporttime=datetime.datetime.now())
                 cam_obj.save()
+
+            else:
+                cams = ReportedCamera.objects.filter(cameraID__exact=camID)
+                logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+                logging.debug('This is the user : ' + str(cams))
+                if(cams):
+                    for c in cams:
+                        if (not user in str(c.username)):
+                            c.username = str(c.username) + ', ' +  user
+                            c.save()
+
 
             #return redirect('email_sent')
             form = ReportForm()

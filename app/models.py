@@ -276,6 +276,7 @@ class ReportedCamera(models.Model):
     """
     cameraID = models.CharField(verbose_name='Camera ID', max_length=100)
     reporttime = models.DateTimeField(blank=True, null=True)
+    username = models.CharField(verbose_name='Username', blank=True, null=True, max_length=100)
     def __str__(self):
         return "{0}".format(self.cameraID)
 
