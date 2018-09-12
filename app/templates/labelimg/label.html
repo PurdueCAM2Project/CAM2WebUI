@@ -8,7 +8,7 @@
 {% endblock %}
 {% block content %}
 
-<div class="container" style="padding-top: 30px">
+<div class="container">
 
 	<div class="my-image-selector">
 		<button class="push-new-image btn-primary">Push a new image!</button>
@@ -17,13 +17,13 @@
 		<button class="remove-image btn-danger">Remove Image</button>
 	</div>
 	<div class="row">
-		<div class="col-sm-8">
-			<div style="margin-top:50px;">
-				<div id="myCanvas" style="position:relative"></div>
+		<div class="col-sm-8 canvas">
+			<div>
+				<div id="myCanvas"></div>
 			</div>
 		</div>
 		<div class="col-sm-4">
-			<ul class="nav nav-pills nav-stacked" style="margin-top:50px;">
+			<ul class="nav nav-pills nav-stacked">
 				<li class="active" id="human"><a href="#">Human</a></li>
 				<li id="car"><a href="#" >Car</a></li>
 				<li id="sign"><a href="#" >Street Sign</a></li>

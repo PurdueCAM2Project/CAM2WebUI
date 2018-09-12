@@ -1,3 +1,15 @@
+.container {
+  padding-top: 30px;
+}
+.row .canvas {
+  margin-top:50px;
+}
+.row > div ul {
+  margin-top: 50px;
+}
+#myCanvas {
+  position: relative;
+}
 .nav-pills>li.active#human>a{
    background-color: red !important;
 }
