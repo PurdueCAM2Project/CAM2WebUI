@@ -55,6 +55,7 @@
 </head>
 
 <body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
     {% block nav %}
     <!--  Navigation Bar  -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -72,7 +73,7 @@
 
     <!--  Tabs on the left  -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="nav nav-pills mr-auto">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
         <!--  Tab Cameras  -->
         <li class="nav-item">
@@ -123,7 +124,7 @@
     </ul>
 
     <!--  Tabs on the right  -->
-    <ul class="nav nav-pills ml-auto">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         {% if user.is_authenticated %}
             {% if user.is_staff %}
                 <li id="adminSite"><a class="nav-link" href="/admin/">Admin Site</a></li>
@@ -193,7 +194,8 @@
         <!--  Dividing Line  -->
         <div class="break"></div>
 
-        <p class="pull-right hidden-xs"><button type="button" class="btn btn-secondary"><a href="#" style="color: white">Back to top</a></button></p>
+        <!-- <p class="pull-right hidden-xs"><button type="button" class="btn btn-secondary"><a href="/" style="color: white">Back to top</a></button></p> -->
+        
         <p>© CAM² Research Group.   ·   <a href="/privacy/">Privacy</a>   ·   <a href="/terms/">Terms of Use</a>   ·   <a  href="/ack/">Acknowledgements</a>   ·   <a  href="/faqs/">FAQs</a></p>
     </div>
 
@@ -210,6 +212,24 @@
 -->
 
     {% endblock %}
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
 </body>
 
 <!-- The Modal (authenticated information) -->
