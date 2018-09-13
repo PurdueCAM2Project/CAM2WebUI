@@ -233,8 +233,8 @@ function topFunction() {
 </body>
 
 <!-- The Modal (authenticated information) -->
-<div class="modal" id="APIcontact-authenticated">
-  <div class="modal-dialog">
+<div class="modal fade" id="APIcontact-authenticated">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
 
       <!-- Modal Header -->
@@ -245,7 +245,34 @@ function topFunction() {
 
       <!-- Modal body -->
       <div class="modal-body">
+        <div class="container-fluid">
         To request CAM2 API credentials, please contact <a href="mailto:cam2proj@ecn.purdue.edu" style="color: #1aa3ff;">cam2proj@ecn.purdue.edu</a>
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">First and last name</span>
+                    </div>
+                    <input type="text" aria-label="First name" class="form-control" placeholder="First name">
+                    <input type="text" aria-label="Last name" class="form-control" placeholder="Last name">
+                  </div>
+                  <br>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                            <span class="input-group-text">Email</span>
+                        </div>
+                        <input type="text" aria-label="First name" class="form-control" placeholder="Organization/Company email">
+                  </div>    
+                  <div class="container-fluid">
+                   <div class="input-group-prepend">
+                        <div class="col-md-3 ml-auto">
+                            <span class="input-group-text">Email</span>
+                        </div>
+                        </div>
+                  </div>
+        </form>
+        </div>
       </div>
 
       <!-- Modal footer -->
