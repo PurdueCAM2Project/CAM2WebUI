@@ -37,7 +37,7 @@ li, a{
 
 a:hover {
   color: #1aa3ff;
-  text-decoration: none;
+  text-decoration: underline;
   -o-transition: all .3s;
   -moz-transition: all .3s;
   -webkit-transition: all .3s;
@@ -80,4 +80,38 @@ h2 {
 
 #myBtn:hover {
   background-color: #555;
+}
+
+.widget {
+  .card-header {
+    background: #fff;
+    a {
+      width: 100%;
+      display: block;
+      &:after {
+        content: "+";
+        position: absolute;
+        right: 40px;
+        top: .9rem;
+        transition: transform .25s ease-in-out;
+      }
+      &:hover,
+      &:focus {
+      text-decoration: none;
+      }
+      &[aria-expanded="true"] {
+        &:after {
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+  .card-block {
+    padding: 0 1.3rem;
+    .widget-list {
+      li {
+        margin-bottom: 4px;
+      }
+    }
+  }
 }

@@ -1,0 +1,67 @@
+h3,
+a,
+p {
+  color: #1f2124;
+}
+h4 {
+  font-size: 1rem !important;
+  line-height: 1rem;
+}
+.widget-list {
+  li {
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.widget {
+  .card-header {
+    background: #fff;
+    a {
+      width: 100%;
+      display: block;
+      &:after {
+        content: "+";
+        position: absolute;
+        right: 40px;
+        top: .9rem;
+        transition: transform .15s ease-in-out;
+      }
+      &:hover,
+      &:focus {
+      text-decoration: none;
+      }
+      &[aria-expanded="true"] {
+        &:after {
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+  .card-block {
+    padding: 0 1.3rem;
+    .widget-list {
+      li {
+        margin-bottom: 4px;
+      }
+    }
+  }
+}
+
+.ftr__list {
+  border:1px solid #ddd;
+}
+
+
+@media only screen and (max-width : 767px) {
+    
+/**nav-expand for footer with head and ul**/
+.nav-folderized .nav h4 { cursor: pointer; }
+.nav-folderized ul { max-height: 0; overflow:hidden; transition: max-height 1s ease-out; }
+.nav-folderized .nav h4:after { content: "+"; float: right; }
+.nav-folderized .nav.open h4:after { content: "-"; }
+.nav-folderized .nav.open ul { height:auto; max-height: 500px; transition: max-height 1s ease-in !important; }
+/**nav-expand for footer with head and ul**/
+}
