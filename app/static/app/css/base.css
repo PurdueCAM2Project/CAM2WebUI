@@ -82,36 +82,56 @@ h2 {
   background-color: #555;
 }
 
-.widget {
-  .card-header {
-    background: #fff;
-    a {
-      width: 100%;
-      display: block;
-      &:after {
-        content: "+";
-        position: absolute;
-        right: 40px;
-        top: .9rem;
-        transition: transform .25s ease-in-out;
-      }
-      &:hover,
-      &:focus {
-      text-decoration: none;
-      }
-      &[aria-expanded="true"] {
-        &:after {
-          transform: rotate(45deg);
-        }
-      }
-    }
-  }
-  .card-block {
-    padding: 0 1.3rem;
-    .widget-list {
-      li {
-        margin-bottom: 4px;
-      }
-    }
-  }
+
+#heck {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 24px;
+    color: black;
+}
+
+#heck:hover {
+    color: #1aa3ff;
+    text-decoration: underline;
+    -o-transition: all .3s;
+  -moz-transition: all .3s;
+  -webkit-transition: all .3s;
+  -ms-transition: all .3s;
+  transition: all .3s;
+}
+
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+.accordion .card-header a{
+    font-size: 22px;
+}
+
+
+.accordion .card-header a:after {
+  content: '-';
+  font-size: 34px;
+  position: absolute;
+  right: 20px;
+  top:15px;
+}
+
+.accordion .card-header a.collapsed:after {
+  content: '+';
+}
+
+.accordion .list-unstyled li,a{
+    padding: 14px;
+    font-size: 18px;
 }

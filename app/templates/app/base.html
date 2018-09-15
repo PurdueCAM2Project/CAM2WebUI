@@ -154,36 +154,48 @@
     </div>
     <!--  End of content  -->
 
-
+    
+    
     <!--  Footer  -->
+    
     {% block footer %}
+    
+    
 
     <div class="footer pt-4 mt-4 bg-light" style="flex-shrink: 0;">
-
+    
+        
     <div class="container-fluid text-center text-md-left">
-    <div class="row" style="width: 80%; margin: auto">
+        
+    
+        
+        
+    <div align="center" class="row" style="width: 80%; margin: auto">
         <hr class="clearfix w-100 d-md-none pb-3">
-
-          <div style="float:left;width:50%;">
-
-            <h5 class="text-uppercase"><b>More about us</b></h5>
-
-            <ul class="list-unstyled">
+            
+            <div align="center" class="accordion" id="accordionExample">
+                <div class="card bg-light" style="border: none">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><b>More About Us</b>
+                     </a>
+                        </h5>
+                    </div>  
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <ul class="list-unstyled">
                 <li><a href="/sponsors/" >Sponsors</a></li>
                 <li><a href="/collaborators/" >Collaborators</a></li>
+                <li><a href="/calendar/">Calendar</a></li>
+                <li><a href="/location/" >Location</a></li>
 
-            </ul>
-
+        </ul>
+      </div>
+    </div>
+  </div>
         </div>
-
-        <div style="float:right;width:50%;">
-          <br>
-            <ul class="list-unstyled">
-              <li><a href="/calendar/">Calendar</a></li>
-              <li><a href="/location/" >Location</a></li>
-            </ul>
-
-        </div>
+        <br>
+          
 
     </div>
     </div>

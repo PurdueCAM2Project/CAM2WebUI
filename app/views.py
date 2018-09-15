@@ -27,7 +27,7 @@ from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 def index(request):
     slide = Homepage.objects.reverse()
     context = {'slide_list': slide}
-    return render(request, 'app/ftc.html', context)
+    return render(request, 'app/index.html', context)
 
 def cameras(request):
 #    context = {'google_api_key': settings.GOOGLE_API_KEY,
