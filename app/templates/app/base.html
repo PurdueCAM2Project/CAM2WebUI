@@ -73,7 +73,7 @@
 
     <!--  Tabs on the left  -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav-pills">
 
         <!--  Tab Cameras  -->
         <li class="nav-item">
@@ -124,7 +124,7 @@
     </ul>
 
     <!--  Tabs on the right  -->
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav-pills">
         {% if user.is_authenticated %}
             {% if user.is_staff %}
                 <li id="adminSite"><a class="nav-link" href="/admin/">Admin Site</a></li>
