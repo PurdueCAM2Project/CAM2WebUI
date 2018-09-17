@@ -48,3 +48,12 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 600px) {
+  .modal-content {
+    width: 80%;
+  }
+  #mapModalInfo > div > p {
+    margin: 0;
+  }
+}
