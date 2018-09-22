@@ -12,7 +12,7 @@
   <hr class="divide-divider">
 
   <div class="input-group mb-3" style='width: 40%;'>
-      <input type="text" class="shadow-sm form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1" >  
+      <input type="text" id="search_criteria" class="shadow-sm form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1" >
       &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="shadow-sm btn btn-outline-info">Search</button>
     </div>
     <div align="right">
@@ -74,21 +74,40 @@
     {% endfor %}
     </div>
   </ol>
+  {% if publication_list.has_other_pages %}
   <nav aria-label="Page navigation example">
       <ul class="pagination">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active">
-            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          {% if publication_list.has_previous %}
           <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+              <a class="page-link" href="?page={{ publication_list.previous_page_number }}">Previous</a>
           </li>
-        </ul>
+          {% else %}
+          <li class="page-item disabled">
+              <a class="page-link" tabindex="-1">Previous</a>
+          </li>
+          {% endif %}
+          {% for i in publication_list.paginator.page_range %}
+              {% if publication_list.number == i %}
+                  <li class="page-item active">
+                    <a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a>
+                  </li>
+              {% else %}
+                  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+
+          {% endfor %}
+          {% if publication_list.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ publication_list.next_page_number }}">Next</a>
+              </li>
+          {% else %}
+          <li class="page-item disabled">
+              <a class="page-link" tabindex="-1">Next</a>
+          </li>
+          {% endif %}
+
     </nav>
+   {% endif %}
 </div>
 {% endblock %}
 {% block scripts %}
