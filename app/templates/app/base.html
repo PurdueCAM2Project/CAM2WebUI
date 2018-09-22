@@ -55,6 +55,7 @@
 </head>
 
 <body>
+    
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
     {% block nav %}
     <!--  Navigation Bar  -->
@@ -153,17 +154,24 @@
         {% block content %}{% endblock %}
     </div>
     <!--  End of content  -->
-
-
+    
+    
+    
+    <!-- {% include "app/ftc.html" %} -->
     <!--  Footer  -->
     {% block footer %}
-
+    
+    
+    
+    
     <div class="footer pt-4 mt-4 bg-light" style="flex-shrink: 0;">
-
+        
+        
     <div class="container-fluid text-center text-md-left">
-    <div class="row" style="width: 80%; margin: auto">
+        {% include "app/ftc.html" %}
+    <!--<div class="row" style="width: 80%; margin: auto">
         <hr class="clearfix w-100 d-md-none pb-3">
-
+        
           <div style="float:left;width:50%;">
 
             <h5 class="text-uppercase"><b>More about us</b></h5>
@@ -185,7 +193,7 @@
 
         </div>
 
-    </div>
+    </div> -->
     </div>
 
 

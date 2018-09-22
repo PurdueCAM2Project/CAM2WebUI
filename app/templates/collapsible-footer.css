@@ -1,0 +1,36 @@
+h3, a, p {
+  color: #1f2124;
+}
+h4 {
+  font-size: 1rem !important;
+  line-height: 1rem;
+}
+.widget-list li a:hover {
+  text-decoration: underline;
+}
+.widget .card-header {
+  background: #fff;
+}
+.widget .card-header a {
+  width: 100%;
+  display: block;
+}
+.widget .card-header a:after {
+  content: "+";
+  position: absolute;
+  right: 40px;
+  top: 0.9rem;
+  transition: transform 0.25s ease-in-out;
+}
+.widget .card-header a:hover, .widget .card-header a:focus {
+  text-decoration: none;
+}
+.widget .card-header a[aria-expanded="true"]:after {
+  transform: rotate(45deg);
+}
+.widget .card-block {
+  padding: 0 1.3rem;
+}
+.widget .card-block .widget-list li {
+  margin-bottom: 4px;
+}

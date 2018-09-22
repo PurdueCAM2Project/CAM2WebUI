@@ -1,0 +1,54 @@
+{% load static %}
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="{% static "app/css/collapsible-footer.css" %}" rel="stylesheet">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+
+
+<footer class="footer-collapse px-1 py-3">
+    <div class="col-lg-9 mx-auto">
+            <h2 class="sr-only">CAM2FOOTER</h2>
+            <div class="row" style="width: 80%; margin: auto">
+                <hr class="clearfix w-100 d-md-none pb-3">
+                    <div class="widget hidden-sm-down">
+                        <h4 class="text-uppercase text-bold"><b>More About Us</b></h4>
+                        <div style="float:left;width:5%;">
+                            <ul class="widget-list list-unstyled p-0">
+                                <li><a href="/sponsors/" >Sponsors</a></li>
+                                <li><a href="/collaborators/" >Collaborators</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div style="float:right;width:5%;">
+                            <ul class="widget-list list-unstyled p-0">
+                                <li><a href="/calendar/">Calendar</a></li>
+                                <li><a href="/location/" >Location</a></li>
+                            </ul>
+                        </div>
+                    
+                    </div>
+                    <div id="accordion" role="tablist" aria-multiselectable="true" class="widget hidden-md-up">
+                    <div role="tab" id="headingOne">
+                        <h4 class="card-header py-3 border-0 text-uppercase text-bold">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            <b>More About Us</b>
+                        </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="card-block">
+                        <ul class="widget-list list-unstyled p-0">
+                            <li><a href="https://www.solodev.com/product/create.stml">Create Websites</a></li>
+                            <li><a href="https://www.solodev.com/product/host.stml">Secure Cloud Hosting</a></li>
+                            <li><a href="https://www.solodev.com/product/engage.stml">Engage Your Audience</a></li>
+                            <li><a href="https://www.solodev.com/product/support.stml">Website Support</a></li>
+                        </ul>
+                        </div>
+                    </div>
+                    </div>
+                
+                
+            </div>
+        </div>
+</footer>
+    
