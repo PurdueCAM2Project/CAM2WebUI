@@ -246,7 +246,19 @@ class Member(models.Model):
         ('I', "Image Analysis"),
         ('UI', "Web UI"),
         ('D+API', "API team"),
-        ('One B', "One Billion Images Team"),
+        ('PP', "Parrellel Perforamce"),
+        ('RM', "Reserouce Management"),
+        ('SE', "Software Engineering"),
+        ('MA', "Mobile App"),
+        ('CR', "Camera Reliability"),
+        ('CD', "Camera Discovery"),
+        ('TL', "Transfer Learning"),
+        ('AT', "Active Training"),
+        ('ID', "Image Database"),
+        ('DV', "Drone Video"),
+        ('FIA', "Forest Inventory Analysis"),   
+        ('HB', "Human Behavior"),
+        ('CS', "Crowdsourcing"),
         ('Intel', "Embedded Computer Vision")
     )
 
