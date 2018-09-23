@@ -91,10 +91,24 @@ def team(request):
     leader_list = Leader.objects.reverse()
     curmember_list = Member.objects.filter(iscurrentmember=True).order_by("membername")
     oldmember_list = Member.objects.filter(iscurrentmember=False).order_by("membername")
+    
+    # Sub team
     image_list = Member.objects.filter(subteam__exact='I').order_by("membername")
     webui_list = Member.objects.filter(subteam__exact='UI').order_by("membername")
     api_list = Member.objects.filter(subteam__exact='D+API').order_by("membername")
-    billion_list = Member.objects.filter(subteam__exact='One B').order_by("membername")
+    parallel_list = Member.objects.filter(subteam__exact='PP').order_by("membername")
+    resource_list = Member.objects.filter(subteam__exact='RM').order_by("membername")
+    software_list = Member.objects.filter(subteam__exact='SE').order_by("membername")
+    mobile_list = Member.objects.filter(subteam__exact='MA').order_by("membername")
+    cameraRelia_list = Member.objects.filter(subteam__exact='CR').order_by("membername")
+    cameraDisco_list = Member.objects.filter(subteam__exact='CD').order_by("membername")
+    transfer_list = Member.objects.filter(subteam__exact='TL').order_by("membername")
+    activeTraining_list = Member.objects.filter(subteam__exact='AT').order_by("membername")
+    imageData_list = Member.objects.filter(subteam__exact='ID').order_by("membername")
+    drone_list = Member.objects.filter(subteam__exact='DV').order_by("membername")
+    forest_list = Member.objects.filter(subteam__exact='FIA').order_by("membername")
+    human_list = Member.objects.filter(subteam__exact='HB').order_by("membername")
+    crowd_list = Member.objects.filter(subteam__exact='CS').order_by("membername")
     intel_list = Member.objects.filter(subteam__exact='Intel').order_by("membername")
     active_list = Member.objects.filter(subteam__exact='').filter(iscurrentmember=True).order_by("membername")
 
@@ -106,7 +120,19 @@ def team(request):
         "image_list": image_list,
         "api_list": api_list,
         "webui_list": webui_list,
-        "billion_list": billion_list,
+        "parallel_list": parallel_list,
+        "resource_list": resource_list,
+        "software_list": software_list,
+        "mobile_list": mobile_list,
+        "cameraRelia_list": cameraRelia_list,
+        "cameraDisco_list": cameraDisco_list,
+        "transfer_list": transfer_list,
+        "activeTraining_list": activeTraining_list,
+        "imageData_list": imageData_list,
+        "drone_list": drone_list,
+        "forest_list": forest_list,
+        "human_list": human_list,
+        "crowd_list": crowd_list,
         "intel_list": intel_list,
         "active_list": active_list
     }
