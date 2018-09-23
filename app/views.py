@@ -198,7 +198,7 @@ def publications(request):
         A render that displays the page publications.html, complete with information from the Publications database.
     """
     publication_list = Publication.objects.reverse()
-    paginator = Paginator(publication_list, 3)
+    paginator = Paginator(publication_list, 6)
     page = request.GET.get('page')
 
     try:
@@ -209,11 +209,13 @@ def publications(request):
         publication_paginator = paginator.page(paginator.num_pages)
 
 
-    # index = publication_paginator.number - 1
-    # max_index = len(paginator.page_range)
+    index = publication_paginator.number - 1
+    max_index = len(paginator.page_range)
+    start_index = index - 5 if index >= 5 else 0
+    end_index = index + 5 if index <= max_index - 5 else max_index
+    page_range = paginator.page_range[start_index:end_index]
 
-
-    context = {'publication_list': publication_paginator}
+    context = {'publication_list': publication_paginator, 'page_range':page_range}
     return render(request, 'app/publications.html', context)
 
 def new_map(request):

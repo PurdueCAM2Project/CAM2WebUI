@@ -21,6 +21,7 @@ $("#search_criteria").on("keyup", function () {
         }
         else{
              $(this).parent().parent().show();
+             // $(this).parent().parent().toggle("highlight");
         }
     })
 
