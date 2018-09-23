@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 
-from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar
+from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar, Videos
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin #Important, dont remove
 from django.contrib.auth.models import User
