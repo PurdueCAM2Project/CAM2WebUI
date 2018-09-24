@@ -252,6 +252,7 @@ class Member(models.Model):
         ('MA', "Mobile App"),
         ('CR', "Camera Reliability"),
         ('CD', "Camera Discovery"),
+        ('CData', "Camera Database"),
         ('TL', "Transfer Learning"),
         ('AT', "Active Training"),
         ('ID', "Image Database"),

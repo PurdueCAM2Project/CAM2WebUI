@@ -102,6 +102,7 @@ def team(request):
     mobile_list = Member.objects.filter(subteam__exact='MA').order_by("membername")
     cameraRelia_list = Member.objects.filter(subteam__exact='CR').order_by("membername")
     cameraDisco_list = Member.objects.filter(subteam__exact='CD').order_by("membername")
+    cameraData_list = Member.objects.filter(subteam__exact='CData').order_by("membername")
     transfer_list = Member.objects.filter(subteam__exact='TL').order_by("membername")
     activeTraining_list = Member.objects.filter(subteam__exact='AT').order_by("membername")
     imageData_list = Member.objects.filter(subteam__exact='ID').order_by("membername")
@@ -126,6 +127,7 @@ def team(request):
         "mobile_list": mobile_list,
         "cameraRelia_list": cameraRelia_list,
         "cameraDisco_list": cameraDisco_list,
+        "cameraData_list": cameraData_list,
         "transfer_list": transfer_list,
         "activeTraining_list": activeTraining_list,
         "imageData_list": imageData_list,
