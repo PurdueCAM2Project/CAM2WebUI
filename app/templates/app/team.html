@@ -85,7 +85,70 @@
             <hr class="divide-divider">
             <h3>Current Members</h3>
             <hr>
+            
+            <!--  Active Training Team  -->
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>Active Training Team</h3>
+                </div>
+                <div class="card-body">
+                    
+                    <div class="card-deck">
+                    {% for member in activeTraining_list %}
+                        <div class="card shadow">
+                            <div class="view overlay">
+                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
+                            </div>
+                            <div class="card-body">
+                                <div class="card0title">
+                                    <h5>{{ member.membername }}</h5>
+                                </div>
+                            </div>
+<!--
+                            <button class="btn btn-indigo btn-rounded btn-md bg-primary">
+                                <a style="color: white">Read more</a>
+                            </button>
+-->
+                    </div>
+                    {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+            
+            <hr class="divide-divider">
+            <!--  Active Training Team  -->
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>Active Training Team</h3>
+                </div>
+                <div class="card-body">
+                    
+                    <div class="card-deck">
+                    {% for member in activeTraining_list %}
+                        <div class="card shadow">
+                            <div class="view overlay">
+                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
+                            </div>
+                            <div class="card-body">
+                                <div class="card0title">
+                                    <h5>{{ member.membername }}</h5>
+                                </div>
+                            </div>
+<!--
+                            <button class="btn btn-indigo btn-rounded btn-md bg-primary">
+                                <a style="color: white">Read more</a>
+                            </button>
+-->
+                    </div>
+                    {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+
             <div class="col-md-12" style="background-color: white">
+                
                 <div class="row">
                     <!--  Forest Inventory Analysis Team  -->
                     <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
