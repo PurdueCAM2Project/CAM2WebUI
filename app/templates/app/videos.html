@@ -2,70 +2,63 @@
 
 {% block title %}Team Videos{% endblock %}
 
-{% load static %}
-
-{% block css %}
-<link rel="stylesheet" href="{% static "app/css/team.css " %}">
-{% endblock %}
-
+{% load staticfiles %}
 
 {% block content %}
 <div class="container main-content">
-<div class="row divide">
-<div class="main-content">
-    <hr class="divide-divider">
-    {% for video in object_list %}
-    {% if forloop.counter0|divisibleby:"2" %}
-  <!--  Video Title -->
-      <div id="section1" class="container-fluid shadow" style="padding-top:70px;padding-bottom:70px; background-color: #F1F1F1">
-      <div class="row" style="width: 80%; margin: auto">
+	<div class="row divide">
+		<div class="main-content">
+    		<hr class="divide-divider">
+			{% for video in videos_list %}
+	    		{% if forloop.counter0|divisibleby:"2" %}
+	  			<!--  Video Title -->
+	      		<div id="section1" class="container-fluid shadow" style="padding-top:70px;padding-bottom:70px; background-color: #F1F1F1">
+	      			<div class="row" style="width: 80%; margin: auto">
 
-          <!--  Info  -->
-          <div class="col-sm">
-          <h2 class="divide-heading"> {{video.title}} </h2>
-            <ul class="list-unstyled">
-              <li><span style="padding:10px" class="fa fa-user"></span> {{video.user}} </li>
-              <li><span style="padding:10px" class="fa fa-video-camera"></span> {{video.description}} </li>
-            </ul>
-          </div>
-      
-      <!--  Video Link  -->
-       <div class="col-sm">
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src= {{video.link}} allowfullscreen="allowfullscreen"> </iframe>
-           </div>
-        </div>
-   </div>  
-   </div>  
-      
-    <hr class="divide-divider">
-    {% else %}
-    <div id="section1" class="container-fluid shadow" style="padding-top:70px;padding-bottom:70px; background-color: #F1F1F1">
-    <div class="row" style="width: 80%; margin: auto">
-        <!--  Video Link  -->
-        <div class="col-sm">
-         <div class="embed-responsive embed-responsive-16by9">
-           <iframe class="embed-responsive-item" src={{video.link}} allowfullscreen="allowfullscreen"></iframe>  
-         </div>
-        </div>
-        
-        <!--  Info  -->
-        <div class="col-sm">
-        <h2 class="divide-heading"> {{video.title}} </h2>
-          <ul class="list-unstyled">
-            <li><span style="padding:10px" class="fa fa-user"></span> {{video.user}} </li>
-            <li><span style="padding:10px" class="fa fa-video-camera"></span> {{video.description}} </li>
-          </ul>
-        </div>
-    
-    </div>  
-    </div>  
-    
-    <hr class="divide-divider">
-    {% endif %}
-  {% endfor %}
-</div>
-</div>
+		          	<!--  Info  -->
+			          	<div class="col-sm">
+			          		<h2 class="divide-heading"> {{video.title}} </h2>
+			            	<ul class="list-unstyled">
+			              		<li><span style="padding:10px" class="fa fa-user"></span> {{video.user}} </li>
+			              		<li><span style="padding:10px" class="fa fa-video-camera"></span> {{video.description}} </li>
+			            	</ul>
+			          	</div>
+			      
+			      		<!--  Video Link  -->
+			       		<div class="col-sm">
+			          		<div class="embed-responsive embed-responsive-16by9">
+			            		<iframe class="embed-responsive-item" src= {{video.link}} allowfullscreen="allowfullscreen"> </iframe>
+			           		</div>
+			        	</div>
+		   			</div>  
+		   		</div>  
+	      		<hr class="divide-divider">
+
+			    {% else %}
+			    <div id="section1" class="container-fluid shadow" style="padding-top:70px;padding-bottom:70px; background-color: #F1F1F1">
+				    <div class="row" style="width: 80%; margin: auto">
+				        <!--  Video Link  -->
+				        <div class="col-sm">
+				         <div class="embed-responsive embed-responsive-16by9">
+				           <iframe class="embed-responsive-item" src={{video.link}} allowfullscreen="allowfullscreen"></iframe>  
+				         </div>
+				        </div>
+				        
+				        <!--  Info  -->
+				        <div class="col-sm">
+				        <h2 class="divide-heading"> {{video.title}} </h2>
+				          <ul class="list-unstyled">
+				            <li><span style="padding:10px" class="fa fa-user"></span> {{video.user}} </li>
+				            <li><span style="padding:10px" class="fa fa-video-camera"></span> {{video.description}} </li>
+				          </ul>
+				        </div>
+				    </div>  
+				</div>  
+				<hr class="divide-divider">
+			    {% endif %}
+		  {% endfor %}
+		</div>
+	</div>
 </div>
 {% endblock %}
 
