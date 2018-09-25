@@ -264,6 +264,7 @@ class Member(models.Model):
     )
 
     subteam = models.CharField(verbose_name='Subteam', blank=True, max_length=50, choices=TEAM, default='blank')
+    
     def __str__(self):
         return "{0}".format(self.membername)
 
