@@ -533,6 +533,6 @@ def api_request(request):
     return render(request, template_name)
 
 def videos(request):
-    videos = Video.objects.reverse()
-    context = {'videos_list': videos}
+    video = Video.objects.all()
+    context = {'videos_list': video}
     return render(request, 'app/videos.html', context)
