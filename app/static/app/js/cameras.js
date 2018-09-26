@@ -35,7 +35,6 @@
     //Note: code to initialize map and populate markers on map is obtained using the 'publish' tool from fusiontables
 
     window.initialize = function () {
-
         google.maps.visualRefresh = true;
         center_of_world = new google.maps.LatLng(0, 0);
 
@@ -89,6 +88,7 @@
             if(camCountry != null && camCountry != "" && camCountry != '' && camCountry !="Null"){
                 camPlace = camPlace + camCountry;
             }
+            alert(comPlace);
             var expandedcamview = '<div style="margin:auto;"><img src="' + camLink + '" alt="Image Not Available" width="300" style="margin:auto;display:block;width:60%;">' +
                 '<p style="text-align:center;word-wrap:break-word;"><div class="row"> <button type="button" class="btn btn-primary mx-auto"  data-toggle="collapse" data-target="#toggleID">Camera ID</button></div><div id="toggleID" class="collapse colentered"><p style="text-align:center;word-wrap:break-word;"> ' +  camID +  '</p></div></p>' +
                 '<p style="text-align:center;">' + camLat + ',' + camLng + '</p>' +
@@ -105,7 +105,8 @@
 
 
         });
-
+        
+        //active filter implementation
         document.getElementById('activeFilter').onchange = function () {
             // Use the Select Drop-down menu to filter out cameras that are active and cameras that are not.
             //console.log(this.children[this.selectedIndex].value);
@@ -203,6 +204,7 @@
             }
         });
     }
+    
     function initialize_states_viewport() {
         $.ajax({
             'async': false,
@@ -219,16 +221,22 @@
         var country = getdata_dropdown("#country");
 
         if (country != "('undefined')") {
+            //if the user type in and chooose at least 1 country from the search bar
             var countryQuery = "'Country' IN " + country;
             if (actives) {
                 countryQuery = countryQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
             }
+            
+            //update the current layer for country based on user selected;
             updateLayer(layer, countryQuery);
             center_on_selected_countries(map);
+            //start try to fetch state/subdivision names, if there is no state names then it should start fetch cities name
             getStateNames();
         }
         else {
+            //there is no country selected at any time, removed all three search bars
             var countryQuery = "";
+            alert("No country is selected!");
             if (actives) {
                 countryQuery = "'Is Active Video' IN 'TRUE'";
             }
@@ -241,14 +249,15 @@
 
     function updateMap_State(layer, map) {
         var state = getdata_dropdown("#state");
-
+        //for USA only since it is the only country that has state.
         if (state != "('')" && state != "('undefined')") {
             var stateQuery = "'State' IN " + state;
             if (actives) {
                 stateQuery = stateQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
             }
             updateLayer(layer, stateQuery);
-            center_on_selected_states(map)
+            center_on_selected_states(map);
+            //get city names based on selected states.
             getCityNames();
         }
         else {
@@ -414,8 +423,9 @@
 
     function getStateNames() {
         var country = getdata_dropdown("#country");
+        alert("country names for getting state: " + country);
         var countrylist = $("#country").select2('val');
-
+        //speacial case for USA state
         if ($.inArray("USA", countrylist) != -1) {
             document.getElementById('state').isDisabled = false;
             document.getElementById('city').isDisabled = true;
@@ -423,6 +433,7 @@
             var encodedQuery = get_encodedQuery('State');
             sendRequest(encodedQuery);
         }
+        //for other countries just get the cities names
         else {
             set_dropdown_null("state");
             document.getElementById('state').isDisabled = true;
@@ -464,10 +475,12 @@
             }
         });
     }
-
+    
+    //set the data name from fusion table;
     function populate_dropdown(response) {
         //if the returnedP JSON object doesn't have a rows keys then it means that an error has occurred
         if (!response.rows) {
+            alert("there is an error occured, please refresh this page");
             return;
         }
 
