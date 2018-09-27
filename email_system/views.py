@@ -108,6 +108,10 @@ def admin_send_email(request):
 
 
 def contact(request):
+    cname = ""
+    cemail = ""
+    csub = ""
+    msg = ""
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -142,6 +146,11 @@ def contact(request):
 
                 return redirect('email_sent')
             else:
+                #keep the unsubmitted data that user type before
+                cname = request.POST.get('name')
+                cemail = request.POST.get('from_email')
+                csub = request.POST.get('subject')
+                msg = request.POST.get('message')
                 messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
                 if 'test' in sys.argv:
                     sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
@@ -155,14 +164,25 @@ def contact(request):
 
     else:
         form = ContactForm()
+        
         if 'test' in sys.argv:
             sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
         else:
             sitekey = os.environ['RECAPTCHA_SITE_KEY']
-
-    return render(request, "email_system/contact.html", {'form': form, 'sitekey': sitekey})
+    
+    return render(request, "email_system/contact.html", {'form': form, 'sitekey': sitekey, 'cname': cname, 'cemail' : cemail, 'csub' : csub, 'msg' : msg, })
 
 def join(request):
+    jname = ""
+    jemail = ""
+    jmajor = ""
+    jgradDate = ""
+    jcourses = ""
+    jlang = ""
+    jtools = ""
+    jy = ""
+    jelse = ""
+
     if request.method == 'POST':
         form = JoinForm(request.POST)
         if form.is_valid():
@@ -210,6 +230,16 @@ def join(request):
 
                 return redirect('join_email_sent')
             else:
+                jname = request.POST.get('name')
+                jemail = request.POST.get('from_email')
+                jmajor = request.POST.get('major')
+                jgradDate = request.POST.get('gradDate')
+                jcourses = request.POST.get('courses')
+                jlang = request.POST.get('languages')
+                jtools = request.POST.get('tools')
+                jy = request.POST.get('whyCAM2')
+                jelse = request.POST.get('anythingElse')
+
                 messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
                 if 'test' in sys.argv:
                     sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
@@ -228,7 +258,7 @@ def join(request):
         else:
             sitekey = os.environ['RECAPTCHA_SITE_KEY']
 
-    return render(request, "email_system/join.html", {'form': form, 'sitekey': sitekey})
+    return render(request, "email_system/join.html", {'form': form, 'sitekey': sitekey, 'jname' : jname, 'jemail' : jemail, 'jmajor' : jmajor, 'jgradDate' : jgradDate, 'jcourses' : jcourses, 'jlang' : jlang, 'jtools' : jtools, 'jy' : jy, 'jelse' : jelse})
 
 def email_sent(request):
     return render(request, 'email_system/email_sent.html')
