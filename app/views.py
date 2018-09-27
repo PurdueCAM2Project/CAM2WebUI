@@ -20,7 +20,7 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm, ReportForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins, send_mail
-from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar
+from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar, Video
 from django.http import HttpResponseNotFound
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 
@@ -533,4 +533,6 @@ def api_request(request):
     return render(request, template_name)
 
 def videos(request):
-    return render(request, 'app/videos.html')
+    video = Video.objects.all()
+    context = {'videos_list': video}
+    return render(request, 'app/videos.html', context)
