@@ -154,6 +154,7 @@ class ReportAdmin(admin.ModelAdmin):
     list_display = (
         'cameraID',
         'reporttime',
+        'username'
     )
     actions = [report_csv, report_json]
     
@@ -163,6 +164,9 @@ class ReportAdmin(admin.ModelAdmin):
 
     def reporttime(self, cameraID):
         return "{}".format(ReportedCamera.objects.get(cameraID=cameraID).reporttime)
+
+    def username(self, cameraID):
+        return "{}".format(ReportedCamera.objects.get(cameraID=cameraID).username)
     reporttime.short_description = 'Report Time'
 
 admin.site.unregister(User)
