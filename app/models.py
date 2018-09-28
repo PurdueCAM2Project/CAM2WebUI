@@ -288,6 +288,16 @@ class ReportedCamera(models.Model):
     """
     cameraID = models.CharField(verbose_name='Camera ID', max_length=100)
     reporttime = models.DateTimeField(blank=True, null=True)
+    username = models.CharField(verbose_name='Username', blank=True, null=True, max_length=100)
     def __str__(self):
         return "{0}".format(self.cameraID)
+
+class Video(models.Model):
+    """Django Model for all CAM2 team videos"""
+    title = models.TextField()
+    user = models.TextField()
+    link = models.URLField()
+    description = models.TextField()
+    def __str__(self):
+        return self.title
 

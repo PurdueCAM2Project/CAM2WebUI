@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 
-from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar
+from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar, Video
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin #Important, dont remove
 from django.contrib.auth.models import User
@@ -154,6 +154,7 @@ class ReportAdmin(admin.ModelAdmin):
     list_display = (
         'cameraID',
         'reporttime',
+        'username'
     )
     actions = [report_csv, report_json]
     
@@ -163,6 +164,9 @@ class ReportAdmin(admin.ModelAdmin):
 
     def reporttime(self, cameraID):
         return "{}".format(ReportedCamera.objects.get(cameraID=cameraID).reporttime)
+
+    def username(self, cameraID):
+        return "{}".format(ReportedCamera.objects.get(cameraID=cameraID).username)
     reporttime.short_description = 'Report Time'
 
 admin.site.unregister(User)
@@ -181,3 +185,4 @@ admin.site.register(Location)
 admin.site.register(ReportedCamera, ReportAdmin)
 admin.site.register(Member, MemberAdmin)
 admin.site.register(Poster)
+admin.site.register(Video)
