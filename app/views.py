@@ -20,9 +20,14 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm, ReportForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins, send_mail
-from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar
+from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar, Video
 from django.http import HttpResponseNotFound
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
 
 def index(request):
     slide = Homepage.objects.reverse()
@@ -56,10 +61,27 @@ def cameras(request):
             #send_mail("Camera with Unavailable Image Reported", content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
             #check for existing reported camera
             camidlist = ReportedCamera.objects.reverse().values_list("cameraID", flat=True)
+            user = None
+            if (request.user.is_authenticated):
+                user = request.user.username
+
             if camID not in camidlist:
                 #add info to admin database - using cleaned_data
-                cam_obj = ReportedCamera(cameraID=camID, reporttime=datetime.datetime.now())
+
+
+                cam_obj = ReportedCamera(username=user, cameraID=camID, reporttime=datetime.datetime.now())
                 cam_obj.save()
+
+            else:
+                cams = ReportedCamera.objects.filter(cameraID__exact=camID)
+                logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+                logging.debug('This is the user : ' + str(cams))
+                if(cams):
+                    for c in cams:
+                        if (not user in str(c.username)):
+                            c.username = str(c.username) + ', ' +  user
+                            c.save()
+
 
             #return redirect('email_sent')
             form = ReportForm()
@@ -91,10 +113,24 @@ def team(request):
     leader_list = Leader.objects.reverse()
     curmember_list = Member.objects.filter(iscurrentmember=True).order_by("membername")
     oldmember_list = Member.objects.filter(iscurrentmember=False).order_by("membername")
+    
+    # Sub team
     image_list = Member.objects.filter(subteam__exact='I').order_by("membername")
     webui_list = Member.objects.filter(subteam__exact='UI').order_by("membername")
     api_list = Member.objects.filter(subteam__exact='D+API').order_by("membername")
-    billion_list = Member.objects.filter(subteam__exact='One B').order_by("membername")
+    parallel_list = Member.objects.filter(subteam__exact='PP').order_by("membername")
+    resource_list = Member.objects.filter(subteam__exact='RM').order_by("membername")
+    software_list = Member.objects.filter(subteam__exact='SE').order_by("membername")
+    mobile_list = Member.objects.filter(subteam__exact='MA').order_by("membername")
+    cameraRelia_list = Member.objects.filter(subteam__exact='CR').order_by("membername")
+    cameraDisco_list = Member.objects.filter(subteam__exact='CD').order_by("membername")
+    transfer_list = Member.objects.filter(subteam__exact='TL').order_by("membername")
+    activeTraining_list = Member.objects.filter(subteam__exact='AT').order_by("membername")
+    imageData_list = Member.objects.filter(subteam__exact='ID').order_by("membername")
+    drone_list = Member.objects.filter(subteam__exact='DV').order_by("membername")
+    forest_list = Member.objects.filter(subteam__exact='FIA').order_by("membername")
+    human_list = Member.objects.filter(subteam__exact='HB').order_by("membername")
+    crowd_list = Member.objects.filter(subteam__exact='CS').order_by("membername")
     intel_list = Member.objects.filter(subteam__exact='Intel').order_by("membername")
     active_list = Member.objects.filter(subteam__exact='').filter(iscurrentmember=True).order_by("membername")
 
@@ -106,7 +142,19 @@ def team(request):
         "image_list": image_list,
         "api_list": api_list,
         "webui_list": webui_list,
-        "billion_list": billion_list,
+        "parallel_list": parallel_list,
+        "resource_list": resource_list,
+        "software_list": software_list,
+        "mobile_list": mobile_list,
+        "cameraRelia_list": cameraRelia_list,
+        "cameraDisco_list": cameraDisco_list,
+        "transfer_list": transfer_list,
+        "activeTraining_list": activeTraining_list,
+        "imageData_list": imageData_list,
+        "drone_list": drone_list,
+        "forest_list": forest_list,
+        "human_list": human_list,
+        "crowd_list": crowd_list,
         "intel_list": intel_list,
         "active_list": active_list
     }
@@ -507,4 +555,6 @@ def api_request(request):
     return render(request, template_name)
 
 def videos(request):
-    return render(request, 'app/videos.html')
+    video = Video.objects.all()
+    context = {'videos_list': video}
+    return render(request, 'app/videos.html', context)
