@@ -55,10 +55,12 @@
 </head>
 
 <body>
+    
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
     {% block nav %}
     <!--  Navigation Bar  -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        
     <div class="container">
 
     <!--  The Logo on the left  -->
@@ -124,7 +126,7 @@
     </ul>
 
     <!--  Tabs on the right  -->
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <ul class="navbar-nav mt-2 mt-lg-0">
         {% if user.is_authenticated %}
             {% if user.is_staff %}
                 <li id="adminSite"><a class="nav-link" href="/admin/">Admin Site</a></li>
@@ -140,8 +142,9 @@
                 <li><a class="nav-link" href="/register/">Register</a></li>
             {% endif %}
     </ul>
+        
     </div>
-
+        
     </div>
     </nav>
 
@@ -230,6 +233,7 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 </script>
+        
 </body>
 
 <!-- API Access Form !Need modification! -->
