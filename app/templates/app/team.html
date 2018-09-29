@@ -80,63 +80,53 @@
             {% endfor %}
         {% endif %}
 
+        
+
         <!--  Current Members  -->
         {% if leader_list is not None %}
             <hr class="divide-divider">
             <h3>Current Members</h3>
             <hr>
-             
+
             <!--  Active Training Team  -->
-            <div class="card text-center w-70 h-50">
-                <div class="card-header">
+            <div class="card">
+                <div class="card-header text-center">
                     <h3>Active Training Team</h3>
                 </div>
+                
                 <div class="card-body">
-                    <div class="container-fluid">
-                        <div class="col">
-                            
-                        </div>
-                    </div>
-                    
-                    <div class="card-deck">
-                    {% for member in activeTraining_list %}
+                    <div class="row justify-content-center align-self-center">
+                        {% for member in activeTraining_list %}
+                        <div class="col-sm-2">
                         <div class="card shadow">
-                            <div class="view overlay">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                            </div>
+                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
                             <div class="card-body">
-                                <div class="card0title">
+                                <div class="card-title">
                                     <h5>{{ member.membername }}</h5>
                                 </div>
                             </div>
-<!--
-                            <button class="btn btn-indigo btn-rounded btn-md bg-primary">
-                                <a style="color: white">Read more</a>
-                            </button>
--->
-                    </div>
-                    {% endfor %}
+                        </div>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-
             </div>
-            
+
             <!--  Camera Database Team  -->
             <hr class="divide-divider">
-            <div class="card h-20 text-center ">
-                <div class="card-header">
+            <div class="card">
+                <div class="card-header text-center">
                     <h3>Camera Database Team</h3>
                 </div>
-                <div class="card-body">
-                    
-                    <div class="card-deck">
-                    {% for member in cameraData_list %}
+                
+                <div class="card-body text-center">
+                    <div class="row justify-content-center align-self-center">
+                        {% for member in cameraData_list %}
+                        <div class="col-sm-2">
                         <div class="card shadow">
-                            <div class="view overlay">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                            </div>
+                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
                             <div class="card-body">
-                                <div class="card0title">
+                                <div class="card-title">
                                     <h5>{{ member.membername }}</h5>
                                 </div>
                             </div>
@@ -146,458 +136,12 @@
                             </button>
 -->
                         </div>
-                    {% endfor %}
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-
             </div>
-
-            <div class="col-md-12" style="background-color: white">
-                
-                <div class="row">
-                    <!--  Forest Inventory Analysis Team  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Forest Inventory Analysis Team</h3>
-                        {% for member in forest_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-
-                
-                    <!--  Web UI Team  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>WebUI Team</h3>
-                        {% for member in webui_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <hr class="divide-divider">
-                <div class="row">
-                    <!--  Embedded Computer Vision Team  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Embedded Vision Team</h3>
-                        {% for member in intel_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-
-                    <!--  Parrallel Performance  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Parallel Performance Team</h3>
-                        {% for member in parallel_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-                
-                <hr class="divide-divider">
-                <div class="row">
-                    
-                    <!--  Human Behavior Team  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Human Behavior Team</h3>
-                        {% for member in human_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                    
-                    <!--  Resource Management Team  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Resource Management Team</h3>
-                        {% for member in resource_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-
-                </div>    
-                
-                <hr class="divide-divider">
-                <div class="row">
-                    <!--  Software Engineering  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Software Engineering Team</h3>
-                        {% for member in software_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                    
-                    <!--  Mobile App Team  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Mobile App Team</h3>
-                        {% for member in mobile_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>    
-                
-                <hr class="divide-divider">
-                <div class="row">
-                    <!--  Camera Reliability Team  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Camera Reliability Team</h3>
-                        {% for member in cameraRelia_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                    
-                    <!--  Camera Discovery Team  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Camera Discovery Team</h3>
-                        {% for member in cameraDisco_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>                
-                </div>    
-                
-                <hr class="divide-divider">
-                <div class="row">
-                    <!--  Transfer Learning Team  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Transfer Learning Team</h3>
-                        {% for member in transfer_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                    
-                    <!--  Active Training Team  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Active Training Team</h3>
-                        {% for member in activeTraining_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                    
-                </div>    
-                
-                
-                <hr class="divide-divider">
-                <div class="row">
-                    <!--  Image Database Team  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Image Database Team</h3>
-                        {% for member in imageData_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                    
-                    <!--  Drone Video Team  -->
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Drone Video Team</h3>
-                        {% for member in drone_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                    
-                </div>    
-                
-                <hr class="divide-divider">
-                <!--  Crowdsroucing Team  -->
-<!--
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
-                        <h3>Crowdsroucing Team</h3>
-                        {% for member in crowd_list %}
-                            {% if forloop.counter0|divisibleby:"2" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                    
-                </div>    
--->
-                
-                
-<!--                      Active Members  -->
-<!--
-                    <hr class="divide-divider">
-                    <div class="row col-md-12 col-sm-12 col-xs-12 ">
-                        <div class="col-md-12 col-sm-12 col-xs-12" style="float: left">
-
-                        <h3>Active Team members</h3>
-                        <hr>
-                        {% for member in active_list %}
-                            {% if forloop.counter0|divisibleby:"6" %}
-                                <div class="row">
-                            {% endif %}
-                        <div class="col-md-2 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
-                            <div class="card shadow">
-                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                                <div class="card-body">
-                                    <h5>{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:"6" or forloop.last %}
-                            </div>
-                        {% elif forloop.counter|divisibleby:"2" %}
-                            <div class="clearfix visible-xs-block"></div>
-                        {% elif forloop.counter|divisibleby:"3" %}
-                            <div class="clearfix visible-sm-block"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-
-                    </div>
--->
-
-                </div>
-
         {% endif %}
-
          <hr class="divide-divider">
 
         <!--  Former Members  -->
