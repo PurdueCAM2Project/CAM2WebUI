@@ -241,6 +241,7 @@ class Member(models.Model):
     membername = models.CharField(verbose_name='Member Name', max_length=50, validators=[validateName])
     memberimg = models.CharField(verbose_name='Member Image', max_length=300, blank=True, null=True, validators=[validateURL])
     iscurrentmember = models.BooleanField(verbose_name='Is Current Member')
+    hasdirector = models.BooleanField(verbose_name='The team he/she is in has director')
 
     TEAM = (
         ('I', "Image Analysis"),

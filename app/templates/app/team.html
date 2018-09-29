@@ -13,7 +13,7 @@
         <hr class="divide-divider">
         <hr>
         
-        {% load  custom_tags %}
+        {% load custom_tags %}
         {% for team in team_list %}
             {% if forloop.counter0|divisibleby:"3" %}
                 <div class="row">
@@ -49,6 +49,7 @@
             </div>
         {% endif %}
         {% endfor %}
+        
         <hr class="divide-divider">
         <h3>Team Leaders</h3>
         <hr>
@@ -88,24 +89,48 @@
             <h3>Current Members</h3>
             <hr>
 
-            <!--  Active Training Team  -->
+            <!-- Check the following list before any modification -->
+            <!-- Teams having more than SEVEN members -->
+                <!-- Active Training Team -->
+                <!-- Parallel Performance -->
+                <!-- Camera Discovery -->
+                <!-- Transfer Learning -->
+                <!-- Image Database (New) -->
+                <!-- Forest Inventory Analysis (New) -->
+                <!-- Crowdsourcing (New) -->
+
+            <!-- Teams having advisors -->
+                <!-- Active Training -->
+                <!-- Drone Video (New) -->
+                <!-- Forest Inventory Analysis (New) -->
+                <!-- Human Behavior (New) -->
+                <!-- Crowdsourcing (New) -->
+
             <div class="card">
                 <div class="card-header text-center">
                     <h3>Active Training Team</h3>
                 </div>
                 
                 <div class="card-body">
-                    <div class="row justify-content-center align-self-center">
-                        {% for member in activeTraining_list %}
-                        <div class="col-sm-2">
-                        <div class="card shadow">
-                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
+                    <div class="card-deck">
+                        {% if member.hasdirector == none %}
+                        <div class="card shadow border-primary">
+                            <img src="https://orig00.deviantart.net/4e54/f/2016/326/6/8/avi_logo___messi_by_enihal-dap9bo9.png">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h5>{{ member.membername }}</h5>
+                                    <h5 style="font-size:1vw"><i class="fa fa-user"></i> Lionel Messi</h5>
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
+                        {% for member in activeTraining_list %}
+                        <div class="card shadow ">
+                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h5 style="font-size:1vw">{{ member.membername }}</h5>
+                                </div>
+                            </div>
                         </div>
                         {% endfor %}
                     </div>
@@ -119,24 +144,33 @@
                     <h3>Camera Database Team</h3>
                 </div>
                 
-                <div class="card-body text-center">
+                <div class="card-body justify-content-center align-self-center">
                     <div class="row justify-content-center align-self-center">
+                        
+                        {% if member.hasdirector == none %}
+                        <div class="col-sm-2">
+                        <div class="card shadow border-primary">
+                            <img src="https://orig00.deviantart.net/4e54/f/2016/326/6/8/avi_logo___messi_by_enihal-dap9bo9.png">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h5 style="font-size:1vw"><i class="fa fa-user"></i> Lionel Messi</h5>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        {% endif %}
+                        
                         {% for member in cameraData_list %}
                         <div class="col-sm-2">
                         <div class="card shadow">
                             <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h5>{{ member.membername }}</h5>
+                                    <h5 style="font-size:1vw">{{ member.membername }}</h5>
                                 </div>
                             </div>
-<!--
-                            <button class="btn btn-indigo btn-rounded btn-md bg-primary">
-                                <a style="color: white">Read more</a>
-                            </button>
--->
                         </div>
-                        </div>
+                        </div>                        
                         {% endfor %}
                     </div>
                 </div>
