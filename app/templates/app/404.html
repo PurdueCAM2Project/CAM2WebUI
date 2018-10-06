@@ -4,28 +4,29 @@
 {% block title %}Page Not Found{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{% static "app/css/login.css " %}">
+<link rel="stylesheet" href="{% static "app/css/404.css " %}">
 {% endblock %}
 {% block content %}
-<div class="top-content">
-  <div class="inner-bg">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
-          <div class="form-box">
-            <div class="form-top">
-              <div class="form-top-left">
-                <h4 id="SystemError">Page Not Found</h4>
-              </div>
-              <div class="form-top-right fa fa-exclamation-triangle"></div>
-            <div class="form-bottom">
-                <p>The page you are looking for does not exist.</p>
-                <p><a style="color: deepskyblue" href="/">Go back to home page</a></p>
-            </div>
-          </div>
-          </div>
-        </div>
+<div class="wrapper row2">
+  <div id="container" class="clear">
+    <!-- ####################################################################################################### -->
+    <!-- ####################################################################################################### -->
+    <!-- ####################################################################################################### -->
+    <!-- ####################################################################################################### -->
+    <section id="fof" class="clear">
+      <!-- ####################################################################################################### -->
+      <a class="go-back" href="javascript:history.go(-1)">Back<br>&laquo;</a>
+      <div class="positioned">
+        <h1>404 Not Found !</h1>
+        <p><br>The page you requested might not exist</p>
       </div>
-    </div>
+      <a class="go-home" href="/">Home<br>&raquo;</a>
+      <!-- ####################################################################################################### -->
+    </section>
+    <!-- ####################################################################################################### -->
+    <!-- ####################################################################################################### -->
+    <!-- ####################################################################################################### -->
+    <!-- ####################################################################################################### -->
   </div>
 </div>
 {% endblock %}
