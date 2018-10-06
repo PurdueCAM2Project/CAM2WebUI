@@ -3,8 +3,8 @@ $('.card-deck-wrapper').on('click', function(event) {
 });
 
 
-$("#search_criteria").on("keyup", function () {
-    var criterion = $(this).val().toLowerCase();
+$("#search-button").on("click", function () {
+    var criterion = $("#search_criteria").val().toLowerCase();
     $(".card .card-body").each(function () {
         var paperInfo = $(this).find(".card-title").text().toLowerCase();
         var conference = $(this).find(".card-subtitle").text().toLowerCase();
