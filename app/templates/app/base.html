@@ -62,20 +62,24 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         
     <div class="container">
-
+        
+        
     <!--  The Logo on the left  -->
     <a class="navbar-brand" href="/">
          <img style="width: 50px; height: 30px; position: relative; left: -10px"
                  src="{% static "app/img/new_logo2.png" %}">
     </a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>    
+        
 
     <!--  Tabs on the left  -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <ul class="nav nav-pills mr-auto">
 
         <!--  Tab Cameras  -->
         <li class="nav-item">
@@ -126,7 +130,7 @@
     </ul>
 
     <!--  Tabs on the right  -->
-    <ul class="navbar-nav mt-2 mt-lg-0">
+    <ul class="nav nav-pills ml-auto">
         {% if user.is_authenticated %}
             {% if user.is_staff %}
                 <li id="adminSite"><a class="nav-link" href="/admin/">Admin Site</a></li>
@@ -232,6 +236,17 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+    
+//Stack menu when collapsed
+$('#navbarSupportedContent').on('show.bs.collapse', function() {
+    $('.nav-pills').addClass('flex-column');
+});
+
+//Unstack menu when not collapsed
+$('#navbarSupportedContent').on('hide.bs.collapse', function() {
+    $('.nav-pills').removeClass('flex-column');
+});
+    
 </script>
         
 </body>

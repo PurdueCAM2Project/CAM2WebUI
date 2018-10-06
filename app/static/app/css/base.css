@@ -81,3 +81,7 @@ h2 {
 #myBtn:hover {
   background-color: #555;
 }
+
+@media (max-width: 768px) {
+  #navbar li { width:100%; }
+}
