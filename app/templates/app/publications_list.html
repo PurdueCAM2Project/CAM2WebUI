@@ -1,0 +1,86 @@
+{% extends "app/base.html" %} 
+{% block title %}Publications{% endblock %}
+{% load static %} 
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/publications.css" %}"> 
+<style>
+.pointer {cursor: pointer;}
+</style>
+{% endblock %} 
+{% block content %}
+
+<div class="container">
+  <hr class="divide-divider">
+  <h1>Publications</h1>
+  <hr class="divide-divider">
+
+  <div class="input-group mb-3" style='width: 40%;'>
+      <input type="text" class="shadow-sm form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1" >  
+      &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="shadow-sm btn btn-outline-info">Search</button>
+    </div>
+    <div align="right">
+      <i class="fa fa-caret-down"></i>
+      <div class="btn-group" role="group" aria-label="Basic example">
+          <a href="/publications">
+            <button type="button" class="btn btn-light"><i class="fa fa-th"></i></button>
+            </a>
+            <a href="/publications_list">
+            <button action="/publications_list"type="button" class="btn btn-light"><i class="fa fa-list-ul"></i></button>
+          </a>
+          </div>
+    </div>
+    
+    <nav aria-label="breadcrumb">
+      <div style="text-align: center;">
+        <h4>Categories</h4>
+      </div>
+      <hr/>
+      <h6>Special Session on Low-Power Image Recognition Challenges</h6>
+      
+      <p></p>
+      </nav>
+  <ol>
+            <!-- card is wrapped with a javascript check static/app/js/publication.js -->
+            {% for publication in publication_list %}
+              {% if publication.paperlink %}
+                <div class="card shadow pointer" onclick="location.href='{{ publication.paperlink }}';">
+              {% else %}
+                <div class="card shadow pointer">
+              {% endif %}
+                
+                  <div class="container">
+                    <!-- {{ publication.paperinfo }} 
+                    {% if publication.paperlink is not None %}
+                    <a href="{{ publication.paperlink }}" style="color:#1aa3ff;">PDF</a>
+                    {% endif %} -->
+
+                    <h6 class="card-title">{{ publication.paperinfo }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted" style="font-size: 70%;">{{ publication.conference }} </h6>
+                    <p class="card-text" style="font-size: 80%;"><span class="badge badge-dark">Authors</span>: {{ publication.authors }}</p>
+                
+                  </div>
+                </div>
+                <br>
+            {% endfor %}
+
+  </ol>
+  <nav aria-label="Page navigation example">
+      <ul class="pagination">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active">
+            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+    </nav>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static "app/js/publication.js" %}"></script>
+{% endblock %}
