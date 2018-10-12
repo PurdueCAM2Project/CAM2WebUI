@@ -5,37 +5,29 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static "app/css/team.css" %}"> 
+<link rel="stylesheet" href="{% static " app/css/team.css" %}"> 
 {% endblock %}
 
 {% block content %}
 <br>
 <div class="container">
-	<div class="row">
-		{% for video in videos_list %}
-
-				<div class="col">
-			      <div class = "jumbotron" style="height: 500px">
-			        <!div class="col-sm">
-			          <h2 class="divide-heading" style="line-height: 25px; padding-top: 0px"> {{video.title}} </h2>
-			          <ul class="list-unstyled">
-			            <li><span style = "padding: 10px" class="fa fa-user"></span> {{video.user}} </li>
-			            <li><span style = "padding: 10px" class="fa fa-video-camera"></span> {{video.description}} </li>
-			          </ul>
-			        <!/div>
-			                
-			                <!--  Video Link  -->
-			        <div style="padding-top: 20px; margin-bottom: 0px">
-			          <div class="embed-responsive embed-responsive-16by9">
-			            <iframe class="embed-responsive-item" src= {{video.link}} allowfullscreen="allowfullscreen"> </iframe>
-			          </div>
-			        </div>
-			      </div>
-			    </div>	
-			   {% if forloop.counter|divisibleby:"3" %}
-			</div>	
-			{% endif %}
-			  {% endfor %}
-			</div>
+<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+	{% for video in videos_list %}
+			<div class="jumbotron" style="width: 300px; margin: 10px 10px">
+		          <h2 class="divide-heading" style="line-height: 25px; padding-top: 0px"> {{video.title}} </h2>
+		          <ul class="list-unstyled">
+		            <li><span style = "padding: 10px" class="fa fa-user"></span> {{video.user}} </li>
+		            <li><span style = "padding: 10px" class="fa fa-video-camera"></span> {{video.description}} </li>
+		          </ul>
+		                
+		                <!--  Video Link  -->
+		        <div style="padding-top: 20px; margin-bottom: 0px">
+		          <div class="embed-responsive embed-responsive-16by9">
+		            <iframe class="embed-responsive-item" src= {{video.link}} allowfullscreen="allowfullscreen"> </iframe>
+		          </div>
+		        </div>
+		    </div>
+	{% endfor %}
 	</div>
+</div>
 {% endblock %}
