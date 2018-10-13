@@ -108,7 +108,7 @@ def write_csv(cams, filename):
     df = pd.DataFrame(all_cams, columns=[k for (k, v) in SHEET_HEADERS.items() if (v != None)])
     df.set_index('ID', inplace=True)
     print("Retrieved {0} cameras.".format(len(df.index)))
-    df.to_csv(filename)
+    df.to_csv(filename, encoding='utf-8')
 
 
 def upload_csv(csv_file, title, id):
