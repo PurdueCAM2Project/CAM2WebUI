@@ -108,7 +108,7 @@ def write_csv(cams, filename):
     df = pd.DataFrame(all_cams, columns=[k for (k, v) in SHEET_HEADERS.items() if (v != None)])
     df.set_index('ID', inplace=True)
     print("Retrieved {0} cameras.".format(len(df.index)))
-    df.to_csv(filename, encoding='utf-8')
+    df.to_csv(filename, encoding='utf-8-sig')
 
 
 def upload_csv(csv_file, title, id):
@@ -153,7 +153,8 @@ def main():
 
     if(os.path.isfile(SERVICE_ACCOUNT_FILE) == False):
         raise Exception('Service file is missing or not named properly. Should be in same directory and called service.json')
-
+    print("ready to start the project")
+    print ("Clientid is:", CLIENT_ID)
     write_csv(get_cams(), CSV_FILE)
     #upload_csv(CSV_FILE, title=SHEET_TITLE, id=FILE_ID)
 
