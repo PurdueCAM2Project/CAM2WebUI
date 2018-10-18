@@ -251,11 +251,23 @@ $('#navbarSupportedContent').on('show.bs.collapse', function() {
 $('#navbarSupportedContent').on('hide.bs.collapse', function() {
     $('.nav-pills').removeClass('flex-column');
 });
+
+$(function(){ // this replaces document.ready
+  setTimeout(function(){
+    $('#loading').fadeOut('slow', function() {
+      $(this).remove();
+    });
+   }, 1500);
+});
     
 </script>
         
 </body>
-
+<!-- Loading Animation for loading page -->
+<div id="loading">
+  <img id="loading-image" src="{% static "app/img/loading.gif" %}" alt="Loading..." />
+</div>
+    
 <!-- API Access Form !Need modification! -->
 <!-- The Modal (authenticated information) -->
 <div class="modal fade" id="APIcontact-authenticated">
