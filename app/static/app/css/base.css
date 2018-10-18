@@ -89,17 +89,18 @@ h2 {
 #loading {
    width: 100%;
    height: 100%;
+   overflow-x: hidden;
+   overflow-y: hidden;
    top: 0;
    left: 0;
    position: fixed;
    display: block;
    opacity: 1;
-   background-color: #347fc3;
+   background: #fff;
    z-index: 99;
    text-align: center;
-   overflow-x: hidden;
-   overflow-y: hidden;
 }
+
 
 #loading-image {
   position: absolute;
@@ -113,31 +114,42 @@ h2 {
 
 .bar {
   position: relative;
-  height: 2px;
-  width: 500px;
+  height: 8px;
+  width: 620px;
   margin: 0 auto;
-  background: #fff;
-  margin-top: 150px;
+  background: #347fc3;
+  margin-top: 400px;
+}
+
+.bar1 {
+    position: absolute;
+    top: -545px;
+    left: -100px;
+    height: 200px;
+    width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-top: 550px;
 }
 
 .circle {
   position: absolute;
-  top: -30px;
-  margin-left: -30px;
-  height: 60px;
-  width: 60px;
-  left: 0;
-  background: #fff;
+  top: -25px;
+  margin-left: -80px;
+  height: 30px;
+  width: 30px;
+  left: 75px;
+  background: #347fc3;
   border-radius: 30%;
   -webkit-animation: move 5s infinite;
 }
 
-p {
+.loadhi {
   position: absolute;
-  top: -35px;
-  right: -85px;
+  top: -20px;
+  right: -40px;
   text-transform: uppercase;
-  color: #347fc3;
+  color: #fff;
   font-family: helvetica, sans-serif;
   font-weight: bold;
 }
