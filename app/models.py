@@ -248,7 +248,19 @@ class Member(models.Model):
         ('I', "Image Analysis"),
         ('UI', "Web UI"),
         ('D+API', "API team"),
-        ('One B', "One Billion Images Team"),
+        ('PP', "Parrellel Perforamce"),
+        ('RM', "Reserouce Management"),
+        ('SE', "Software Engineering"),
+        ('MA', "Mobile App"),
+        ('CR', "Camera Reliability"),
+        ('CD', "Camera Discovery"),
+        ('TL', "Transfer Learning"),
+        ('AT', "Active Training"),
+        ('ID', "Image Database"),
+        ('DV', "Drone Video"),
+        ('FIA', "Forest Inventory Analysis"),   
+        ('HB', "Human Behavior"),
+        ('CS', "Crowdsourcing"),
         ('Intel', "Embedded Computer Vision")
     )
 
@@ -278,6 +290,16 @@ class ReportedCamera(models.Model):
     """
     cameraID = models.CharField(verbose_name='Camera ID', max_length=100)
     reporttime = models.DateTimeField(blank=True, null=True)
+    username = models.CharField(verbose_name='Username', blank=True, null=True, max_length=100)
     def __str__(self):
         return "{0}".format(self.cameraID)
+
+class Video(models.Model):
+    """Django Model for all CAM2 team videos"""
+    title = models.TextField()
+    user = models.TextField()
+    link = models.URLField()
+    description = models.TextField()
+    def __str__(self):
+        return self.title
 
