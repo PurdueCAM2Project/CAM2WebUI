@@ -55,33 +55,24 @@
 </head>
 
 <body>
-    
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-    {% block nav %}
+     {% block nav %}
     <!--  Navigation Bar  -->
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        
-
     <div class="container">
-        
-        
+
     <!--  The Logo on the left  -->
     <a class="navbar-brand" href="/">
          <img style="width: 50px; height: 30px; position: relative; left: -10px"
                  src="{% static "app/img/new_logo2.png" %}">
     </a>
 
-    <div class="navbar-header">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>    
-        
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
 
     <!--  Tabs on the left  -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="nav nav-pills mr-auto">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
         <!--  Tab Cameras  -->
         <li class="nav-item">
@@ -91,14 +82,11 @@
         <!--  Tab Publication  -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Resources
+                Publication
             </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/publications/">Publications</a>
-            <a class="dropdown-item" href="/">Webinars</a>
-            <a class="dropdown-item" href="/">Case Studies</a>
             <a class="dropdown-item" href="/team_poster/">Posters</a>
-            <a class="dropdown-item" href="/">Tutorial Videos</a>
         </div>
         </li>
 
@@ -123,7 +111,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             {% if user.is_authenticated %}
-              <a class="dropdown-item" href="" data-toggle="modal" data-target="#APIcontact-authenticated">API access</a>
+              <a class="dropdown-item js-api-access" href="" >API access</a>
             {% else %}
               <a class="dropdown-item" href="" data-toggle="modal" data-target="#APIcontact-not-authenticated">API access</a>
             {% endif %}
@@ -135,7 +123,7 @@
     </ul>
 
     <!--  Tabs on the right  -->
-    <ul class="nav nav-pills ml-auto">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         {% if user.is_authenticated %}
             {% if user.is_staff %}
                 <li id="adminSite"><a class="nav-link" href="/admin/">Admin Site</a></li>
@@ -151,15 +139,13 @@
                 <li><a class="nav-link" href="/register/">Register</a></li>
             {% endif %}
     </ul>
-        
     </div>
-        
+
     </div>
     </nav>
 
     {% endblock %}
     <!--  End of Navigation Bar  -->
-
     <!--  Conetent of pages that implements base  -->
     <div class="content">
         {% block content %}{% endblock %}
@@ -206,8 +192,7 @@
         <!--  Dividing Line  -->
         <div class="break"></div>
 
-        <!-- <p class="pull-right hidden-xs"><button type="button" class="btn btn-secondary"><a href="/" style="color: white">Back to top</a></button></p> -->
-        
+        <p class="pull-right hidden-xs"><button type="button" class="btn btn-secondary"><a href="#" style="color: white">Back to top</a></button></p>
         <p>© CAM² Research Group.   ·   <a href="/privacy/">Privacy</a>   ·   <a href="/terms/">Terms of Use</a>   ·   <a  href="/ack/">Acknowledgements</a>   ·   <a  href="/faqs/">FAQs</a></p>
     </div>
 
@@ -224,42 +209,11 @@
 -->
 
     {% endblock %}
-<script>
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("myBtn").style.display = "block";
-    } else {
-        document.getElementById("myBtn").style.display = "none";
-    }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-    
-//Stack menu when collapsed
-$('#navbarSupportedContent').on('show.bs.collapse', function() {
-    $('.nav-pills').addClass('flex-column');
-});
-
-//Unstack menu when not collapsed
-$('#navbarSupportedContent').on('hide.bs.collapse', function() {
-    $('.nav-pills').removeClass('flex-column');
-});
-    
-</script>
-        
 </body>
 
-<!-- API Access Form !Need modification! -->
 <!-- The Modal (authenticated information) -->
-<div class="modal fade" id="APIcontact-authenticated">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<div class="modal" id="APIcontact-authenticated">
+  <div class="modal-dialog">
     <div class="modal-content">
 
       <!-- Modal Header -->
@@ -270,37 +224,12 @@ $('#navbarSupportedContent').on('hide.bs.collapse', function() {
 
       <!-- Modal body -->
       <div class="modal-body">
-        <div class="container-fluid">
         To request CAM2 API credentials, please contact <a href="mailto:cam2proj@ecn.purdue.edu" style="color: #1aa3ff;">cam2proj@ecn.purdue.edu</a>
-<!--
-        <form method="post">
-            {% csrf_token %}
-            <div class="input-group">
-                
-                <div class="input-group-prepend">
-                    <span class="input-group-text">First and last name</span>
-                </div>
-                <input type="text" aria-label="First name" class="form-control" placeholder="First name">
-                <input type="text" aria-label="Last name" class="form-control" placeholder="Last name">
-            </div>
-            <br>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Email</span>
-                </div>
-                <input type="text" aria-label="First name" class="form-control" placeholder="Organization/Company email">
-            </div>    
-            
-
-        </form>
--->
-        </div>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-<!--        <input  type="submit" class="btn btn-success btn-send" value="Send message">-->
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
 
     </div>
