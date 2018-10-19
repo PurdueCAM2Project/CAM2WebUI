@@ -115,8 +115,8 @@ class Publication(models.Model):
 
     """
     paperinfo = models.CharField(verbose_name='Publication Details', max_length=1500)
-    conference = models.CharField(verbose_name='Publication Conference', max_length=1500)
-    authors = models.CharField(verbose_name='Publication Authors', max_length=1500)
+    conference = models.CharField(verbose_name='Publication Conference', blank=True, null=True, max_length=1500)
+    authors = models.CharField(verbose_name='Publication Authors',  blank=True, null=True, max_length=1500)
     paperlink = models.CharField(verbose_name='Publication Paper Link (Optional)', max_length=300, blank=True, null=True, validators=[validateURL])
     def __str__(self):
         paperinfo = self.paperinfo[:100] if len(self.paperinfo) > 100 else self.paperinfo
