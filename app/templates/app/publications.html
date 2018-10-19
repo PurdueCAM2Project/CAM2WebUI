@@ -10,106 +10,15 @@
   <hr class="divide-divider">
   <h1>Publications</h1>
   <hr class="divide-divider">
-
-  <div class="input-group mb-3" style='width: 40%;'>
-      <input type="text" id="search_criteria" class="shadow-sm form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1" >
-      &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="shadow-sm btn btn-outline-info" id="search-button">Search</button>
-    </div>
-    <div align="right">
-      <i class="fa fa-caret-down"></i>
-      <div class="btn-group" role="group" aria-label="Basic example">
-          <a href="/publications">
-          <button type="button" class="btn btn-light"><i class="fa fa-th"></i></button>
-          </a>
-          <a href="/publications_list">
-          <button action="/publications_list"type="button" class="btn btn-light"><i class="fa fa-list-ul"></i></button>
-        </a>
-          </div>
-    </div>
-    
-    <nav aria-label="breadcrumb">
-      <div style="text-align: center;">
-        <h4>Categories</h4>
-      </div>
-      <hr/>
-      <h6>Special Session on Low-Power Image Recognition Challenges</h6>
-      
-      <p></p>
-      </nav>
   <ol>
-
-    <div class="row">
-      <!-- <div class="col" style="width: 10%;">
-        <h4>Categories</h4>
-      </div> -->
-
-    
     {% for publication in publication_list %}
-      {% if forloop.counter|divisibleby:4 %}
-        </div>
-        <br>
-        <div class="row">
-      {% endif %}
-      <!-- <li> -->
-        <div class="col">
-          <div class="shadow-sm card" style="width: 18rem;">
-              <div class="card-body">
-                <!-- {{ publication.paperinfo }}  -->
-                <h5 class="card-title">{{ publication.paperinfo }}</h5>
-                <hr/>
-                <h6 class="card-subtitle mb-2 text-muted">{{ publication.conference }}</h6>
-                <p class="card-text">{{ publication.authors }}</p>
-                {% if publication.paperlink is not None %}
-                <br>
-                <a href="{{ publication.paperlink }}" class="btn btn-primary" style="width: 100%;">PDF</a>
-          <!-- [<a href="{{ publication.paperlink }}" style="color:#1aa3ff;">PDF</a>] -->
-          <!-- <img src="{{ publication.paperlink }}" width="300px" height="300px"/> -->
-          
-                {% endif %}
-            </div>
-          </div>
-        </div>
-
-      <!-- </li> -->
+      <li>
+        {{ publication.paperinfo }} 
+        {% if publication.paperlink is not None %}
+        [<a href="{{ publication.paperlink }}">PDF</a>]
+        {% endif %}
+      </li>
     {% endfor %}
-    </div>
   </ol>
-  {% if publication_list.has_other_pages %}
-  <nav aria-label="Page navigation example">
-      <ul class="pagination">
-          {% if publication_list.has_previous %}
-          <li class="page-item">
-              <a class="page-link" href="?page={{ publication_list.previous_page_number }}">Previous</a>
-          </li>
-          {% else %}
-          <li class="page-item disabled">
-              <a class="page-link" tabindex="-1">Previous</a>
-          </li>
-          {% endif %}
-          {% for i in page_range %}
-              {% if publication_list.number == i %}
-                  <li class="page-item active">
-                    <a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a>
-                  </li>
-              {% else %}
-                  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-              {% endif %}
-
-          {% endfor %}
-          {% if publication_list.has_next %}
-              <li class="page-item">
-                <a class="page-link" href="?page={{ publication_list.next_page_number }}">Next</a>
-              </li>
-          {% else %}
-          <li class="page-item disabled">
-              <a class="page-link" tabindex="-1">Next</a>
-          </li>
-          {% endif %}
-      </ul>
-    </nav>
-   {% endif %}
 </div>
-{% endblock %}
-{% block scripts %}
-<script src="{% static "app/js/publication.js" %}"></script>
 {% endblock %}
