@@ -301,3 +301,15 @@ class Video(models.Model):
     def __str__(self):
         return self.title
 
+
+class ApiRequest(models.Model):
+    """ Django model for storing information about users requesting access to CAM2 database API.
+    """
+
+    first_name = models.CharField(verbose_name='First name',max_length=30)
+    last_name = models.CharField(verbose_name='Last name', max_length=30)
+    email = models.EmailField(verbose_name='Email',max_length=40)
+    usage = models.CharField(verbose_name='Usage', max_length=150, blank=True, null=True)
+    def __str__(self):
+        return "{} {}".format(self.first_name, self.last_name)
+

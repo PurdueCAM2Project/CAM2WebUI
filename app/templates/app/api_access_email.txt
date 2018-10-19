@@ -1,0 +1,8 @@
+User name:
+{{ name }}
+
+Email:
+{{ email }}
+
+The user has requested access to API for the following reason:
+{{ usage|safe|striptags }}

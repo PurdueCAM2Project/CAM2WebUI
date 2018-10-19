@@ -12,16 +12,16 @@ from django.contrib.auth import login, update_session_auth_hash
 from django.contrib import messages
 from django.conf import settings
 from django.shortcuts import render, redirect
-from django.template.loader import render_to_string
+from django.template.loader import render_to_string, get_template
 from social_django.models import UserSocialAuth
 from django.utils.encoding import force_text, force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .tokens import account_activation_token
-from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm, ReportForm
+from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm, ReportForm, ApiRequestForm
 from django.contrib.auth.models import User
-from django.core.mail import mail_admins, send_mail
+from django.core.mail import mail_admins, send_mail, EmailMessage
 from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar, Video
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, JsonResponse
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 import logging
 
@@ -29,10 +29,55 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+
+
 def index(request):
     slide = Homepage.objects.reverse()
-    context = {'slide_list': slide}
+
+    if request.method == 'POST':
+        form = ApiRequestForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            name = request.POST.get('first_name', '') + " " + request.POST.get('last_name', '')
+            email = request.POST.get('email', '')
+            usage = request.POST.get('usage')
+            template = get_template('app/api_access_email.txt')
+            context = {
+                'email': email,
+                'name' : name,
+                'usage': usage,
+            }
+
+            content = template.render(context)
+
+            email_message = EmailMessage (
+                'CAM2 API access request',
+                content,
+                to=[EMAIL_HOST_USER],
+                headers={'Reply-To' : email}
+            )
+            email_message.send()
+
+
+
+    else:
+        form = ApiRequestForm()
+
+    context = {'slide_list': slide, 'form': form}
     return render(request, 'app/index.html', context)
+
+
+def api_request(request):
+
+    form = ApiRequestForm()
+    context = {'form': form}
+
+    # render the base.html which contains the modal
+    html_form = render_to_string('app/api_access.html', context, request=request)
+
+    return JsonResponse({'html_form': html_form})
+
 
 def cameras(request):
 #    context = {'google_api_key': settings.GOOGLE_API_KEY,
@@ -550,9 +595,7 @@ def error500(request):
 def error404(request, exception, template_name='app/404.html'):
     return render(request, 'app/404.html')
 
-def api_request(request):
-    template_name = 'app/api_access.html'
-    return render(request, template_name)
+
 
 def videos(request):
     video = Video.objects.all()

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm #username, password
 from django.contrib.auth.models import User
-from .models import RegisterUser, CAM2dbApi
+from .models import RegisterUser, CAM2dbApi, ApiRequest
 
 class RegistrationForm(UserCreationForm):
     """Django form for new user registration
@@ -166,3 +166,29 @@ class ReportForm(forms.Form):
         
     """
     cameraID = forms.CharField(required=True)
+
+
+class ApiRequestForm(forms.ModelForm):
+    """Django form for entering information about users who've requested access to CAM2 Database API
+
+        Attributes:
+
+    """
+    first_name = forms.CharField(max_length=30, required=True)
+    last_name = forms.CharField(max_length=30, required=True)
+    email = forms.EmailField(max_length=40)
+    usage = forms.CharField(max_length=150)
+    class Meta:
+        """Includes additional fields based on fields found within .models.RegisterUser
+
+        Adds information needed to create a form for registrating a user using Django's admin system.
+
+        Attributes:
+            model: the Django Model the added information is based on
+            exclude: a tuple of fields drawn from model to be excluded from the form
+        """
+        model = ApiRequest
+        fields = ('first_name', 'last_name', 'email', 'usage')
+
+
+

@@ -1,0 +1,54 @@
+{% load widget_tweaks %}
+<!-- API Access Form !Need modification! -->
+<!-- The Modal (authenticated information) -->
+    <form method="post" >
+        {% csrf_token %}
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">API Access</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="container-fluid">
+        To request CAM2 API credentials, please contact <a href="mailto:cam2proj@ecn.purdue.edu" style="color: #1aa3ff;">cam2proj@ecn.purdue.edu</a>
+
+            <div class="form-row input-group">
+
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Name</span>
+                </div>
+
+                <input type="text"  class="form-control {% if form.first_name.errors %} is-invalid{% endif %}" name="first_name" placeholder="First name">
+
+                <input type="text"  class="form-control {% if form.last_name.errors %} is-invalid{% endif %}" name="last_name"  placeholder="Last name">
+
+            </div>
+            <br>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Email</span>
+                </div>
+                <input type="text"  class="form-control {% if form.email.errors %} is-invalid{% endif %}" name="email" placeholder="Organization/Company email">
+            </div>
+             <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Usage</span>
+                </div>
+                <input type="text"  class="form-control {% if form.usage.errors %} is-invalid{% endif %}" name="usage" placeholder="Why do you want access? 150 chars">
+            </div>
+
+
+
+
+        </div>
+      </div>
+
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+     <input  type="submit" class="btn btn-success btn-send js-send-request" value="Send message">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </form>
