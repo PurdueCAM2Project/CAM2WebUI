@@ -55,9 +55,9 @@
 </head>
 
 <body>
-    {% block nav %}
+     {% block nav %}
     <!--  Navigation Bar  -->
-    <nav class="shadow navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container">
 
     <!--  The Logo on the left  -->
@@ -72,7 +72,7 @@
 
     <!--  Tabs on the left  -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="nav nav-pills mr-auto">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
         <!--  Tab Cameras  -->
         <li class="nav-item">
@@ -82,14 +82,11 @@
         <!--  Tab Publication  -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Resources
+                Publication
             </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/publications/">Publications</a>
-            <a class="dropdown-item" href="/">Webinars</a>
-            <a class="dropdown-item" href="/">Case Studies</a>
             <a class="dropdown-item" href="/team_poster/">Posters</a>
-            <a class="dropdown-item" href="/">Tutorial Videos</a>
         </div>
         </li>
 
@@ -114,7 +111,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             {% if user.is_authenticated %}
-              <a class="dropdown-item" href="" data-toggle="modal" data-target="#APIcontact-authenticated">API access</a>
+              <a class="dropdown-item js-api-access" href="" >API access</a>
             {% else %}
               <a class="dropdown-item" href="" data-toggle="modal" data-target="#APIcontact-not-authenticated">API access</a>
             {% endif %}
@@ -126,7 +123,7 @@
     </ul>
 
     <!--  Tabs on the right  -->
-    <ul class="nav nav-pills ml-auto">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         {% if user.is_authenticated %}
             {% if user.is_staff %}
                 <li id="adminSite"><a class="nav-link" href="/admin/">Admin Site</a></li>
@@ -149,7 +146,6 @@
 
     {% endblock %}
     <!--  End of Navigation Bar  -->
-
     <!--  Conetent of pages that implements base  -->
     <div class="content">
         {% block content %}{% endblock %}
