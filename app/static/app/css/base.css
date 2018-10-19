@@ -61,3 +61,27 @@ h2 {
 	font-weight: 500;
 	line-height: 15.4px;
 }
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 25px;
+  right: 30px;viewport
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: lightblue;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+
+@media (max-width: 768px) {
+  #navbar li { width:100%; }
+}
