@@ -114,7 +114,9 @@ class Publication(models.Model):
         paperlink: A CharField for a link to the paper, validated as a URL
 
     """
-    paperinfo = models.CharField(verbose_name='Publication Details', max_length=500)
+    paperinfo = models.CharField(verbose_name='Publication Details', max_length=1500)
+    conference = models.CharField(verbose_name='Publication Conference', max_length=1500)
+    authors = models.CharField(verbose_name='Publication Authors', max_length=1500)
     paperlink = models.CharField(verbose_name='Publication Paper Link (Optional)', max_length=300, blank=True, null=True, validators=[validateURL])
     def __str__(self):
         paperinfo = self.paperinfo[:100] if len(self.paperinfo) > 100 else self.paperinfo
