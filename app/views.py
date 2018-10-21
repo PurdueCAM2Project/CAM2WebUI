@@ -266,6 +266,26 @@ def publications(request):
     context = {'publication_list': publication_paginator, 'page_range':page_range}
     return render(request, 'app/publications.html', context)
 
+def publications_list(request):
+    publication_list = Publication.objects.reverse()
+    paginator = Paginator(publication_list, 10)
+    page = request.GET.get('page')
+    try:
+        publication_paginator = paginator.page(page)
+    except PageNotAnInteger:
+        publication_paginator = paginator.page(1)
+    except EmptyPage:
+        publication_paginator = paginator.page(paginator.num_pages)
+
+    index = publication_paginator.number - 1
+    max_index = len(paginator.page_range)
+    start_index = index - 5 if index >= 5 else 0
+    end_index = index + 5 if index <= max_index - 5 else max_index
+    page_range = paginator.page_range[start_index:end_index]
+
+    context = {'publication_list': publication_paginator, 'page_range': page_range}
+    return render(request, 'app/publications_list.html', context)
+
 def new_map(request):
     #client = '34b9eb8afc032098bc96174ec38ca2dba940a401d03c311251af4d8b609f7272c91ed0aaef1ee4eddb4783bcaa3ead7d'
     #secret = 'b0eaea176c29331149557b1c2fe54b82d335c8c30dbed9a50c5e4aa141b15dbefbbfd69'
@@ -578,10 +598,7 @@ def videos(request):
     return render(request, 'app/videos.html', context)
     return render(request, 'app/videos.html')
 
-def publications_list(request):
-    publication_list = Publication.objects.reverse()
-    context = {'publication_list': publication_list}
-    return render(request, 'app/publications_list.html', context)
+
 
    
 
