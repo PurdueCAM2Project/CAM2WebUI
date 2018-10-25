@@ -217,7 +217,15 @@
 
     function updateMap_Country(layer, map) {
         var country = getdata_dropdown("#country");
-
+        if (country != "('USA')"){
+            $('#states').fadeOut('slow', function(){
+                $(this).hide();
+            });
+        }
+        else{
+            //alert(country + " is a free country");
+            $('#states').show();
+        }
         if (country != "('undefined')") {
             var countryQuery = "'Country' IN " + country;
             if (actives) {
@@ -248,11 +256,11 @@
                 stateQuery = stateQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
             }
             updateLayer(layer, stateQuery);
-            center_on_selected_states(map)
+            center_on_selected_states(map);
             getCityNames();
         }
         else {
-            set_dropdown_null("city");
+            //set_dropdown_null("city");
             var country = getdata_dropdown("#country");
             var stateQuery = "'Country' IN " + country;
             if (actives) {
@@ -415,13 +423,17 @@
     function getStateNames() {
         var country = getdata_dropdown("#country");
         var countrylist = $("#country").select2('val');
-
-        if ($.inArray("USA", countrylist) != -1) {
+        
+        if ($.inArray("USA", countrylist) != -1 && countrylist.length == 1) {
             document.getElementById('state').isDisabled = false;
             document.getElementById('city').isDisabled = true;
             region = 'state';
             var encodedQuery = get_encodedQuery('State');
             sendRequest(encodedQuery);
+        }
+        else if($.inArray("USA", countrylist) != -1 && countrylist.length != 1){
+            document.getElementById('state').isDisabled = true;
+            getCityNames();
         }
         else {
             set_dropdown_null("state");
