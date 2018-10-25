@@ -223,7 +223,6 @@
             });
         }
         else{
-            //alert(country + " is a free country");
             $('#states').show();
         }
         if (country != "('undefined')") {
