@@ -226,8 +226,8 @@ class Location(models.Model):
         return "{0}".format(self.officename)
 
 
-class Member(models.Model):
-    """Django model for team members
+"""class Member(models.Model): 
+    Django model for team members
     
     Contains information that structures the database for CAM2 team members, both active and inactive
 
@@ -236,9 +236,7 @@ class Member(models.Model):
         memberimg: A CharField for an image URL for the team member. Should be blank if iscurrentmember is False.
         iscurrentmember: A BooleanField that indicates whether or not this team member is a current member
         subteam: A CharField that indicates which subteam this member belongs to. Default is blank
-
-    """
-    membername = models.CharField(verbose_name='Member Name', max_length=50, validators=[validateName])
+        membername = models.CharField(verbose_name='Member Name', max_length=50, validators=[validateName])
     memberimg = models.CharField(verbose_name='Member Image', max_length=300, blank=True, null=True, validators=[validateURL])
     iscurrentmember = models.BooleanField(verbose_name='Is Current Member')
     hasdirector = models.BooleanField(verbose_name='The team he/she is in has director')
@@ -267,7 +265,7 @@ class Member(models.Model):
     subteam = models.CharField(verbose_name='Subteam', blank=True, max_length=50, choices=TEAM, default='blank')
     
     def __str__(self):
-        return "{0}".format(self.membername)
+        return "{0}".format(self.membername) """
 
 class Poster(models.Model):
     """Django model for Posters
@@ -293,4 +291,23 @@ class ReportedCamera(models.Model):
     reporttime = models.DateTimeField(blank=True, null=True)
     def __str__(self):
         return "{0}".format(self.cameraID)
+
+class Subteam(models.Model):
+    name = models.TextField()
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+class Member(models.Model):
+    name = models.TextField()
+    image_url = models.URLField()
+    subteam = models.ForeignKey(Subteam)
+    iscurrentmember = models.BooleanField(default=True,verbose_name='Is Current Member')
+    isdirector = models.BooleanField(default=False,verbose_name='Is he/she a Director?')
+
+
+    def __str__(self):
+        return self.name 
 

@@ -6,8 +6,6 @@
 {% endblock %}
 {% block content %}
     <div class="container main-content">
-      
-
         <hr class="divide-divider">
         <h1>CAM<sup>2</sup> Research Team</h1>
         <hr class="divide-divider">
@@ -49,16 +47,17 @@
             </div>
         {% endif %}
         {% endfor %}
-        
+
         <hr class="divide-divider">
         <h3>Team Leaders</h3>
         <hr>
-
+        <div class ="container" style="justify-content: center;">
         {% if leader_list is not None %}
             {% for leader in leader_list %}
                 {% if forloop.counter0|divisibleby:"2" %}
                     <div class="row">
                 {% endif %}
+
             <div class="col-md-3 col-sm-6">
                 <div class="card p-5 shadow" style="width: 400px; height: auto">
                     <img class="rounded leaders" style=" height: 20rem; object-fit: cover;" src="{{ leader.leaderimg }}" alt="{{ leader.leadername }}">
@@ -70,7 +69,7 @@
                     </div>
                 </div>
             </div>
-                        
+
             <div class="col-md-3 col-sm-6"></div>
                         
             {% if forloop.counter0|divisibleby:"2" and not forloop.last %}
@@ -80,135 +79,74 @@
             {% endif %}
             {% endfor %}
         {% endif %}
+        </div>
+        <br>
 
-        
-
-        <!--  Current Members  -->
-        {% if leader_list is not None %}
             <hr class="divide-divider">
-            <h3>Current Members</h3>
-            <hr>
-
-            <!-- Check the following list before any modification -->
-            <!-- Teams having more than SEVEN members -->
-                <!-- Active Training Team -->
-                <!-- Parallel Performance -->
-                <!-- Camera Discovery -->
-                <!-- Transfer Learning -->
-                <!-- Image Database (New) -->
-                <!-- Forest Inventory Analysis (New) -->
-                <!-- Crowdsourcing (New) -->
-
-            <!-- Teams having advisors -->
-                <!-- Active Training -->
-                <!-- Drone Video (New) -->
-                <!-- Forest Inventory Analysis (New) -->
-                <!-- Human Behavior (New) -->
-                <!-- Crowdsourcing (New) -->
-
-            <div class="card">
-                <div class="card-header">
-                    <h3>Active Training Team</h3>
-                </div>
-                
-                <div class="card-body">
-                    <div class="card-deck">
-                        {% if member.hasdirector == none %}
-                        <div class="card shadow border-primary">
-                            <img src="https://orig00.deviantart.net/4e54/f/2016/326/6/8/avi_logo___messi_by_enihal-dap9bo9.png">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <h5 style="font-size:1vw"><i class="fa fa-user"></i> Lionel Messi</h5>
-                                </div>
-                            </div> 
-                        </div>
-                        {% endif %}
-                        {% for member in activeTraining_list %}
-                        <div class="card shadow ">
-                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <h5 style="font-size:1vw">{{ member.membername }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-
-            <!--  Camera Database Team  -->
-            <hr class="divide-divider">
-            <div class="card">
+            {% for subteams in subteams_list %}
+            {% ifnotequal subteams|stringformat:"s" "None" %}
+            <div class="card" style ="flex-wrap: wrap; justify-content: flex-start;">
                 <div class="card-header text-center">
-                    <h3>Camera Database Team</h3>
-                </div>
-                
+                    <h3> {{ subteams.name }}</h3>
+                    <p> {{ subteams.description }}</p>
+                </div>                 
                 <div class="card-body justify-content-center align-self-center">
-                    <div class="row justify-content-center align-self-center">
-                        
-                        {% if member.hasdirector == none %}
-                        <div class="col-sm-2">
-                        <div class="card shadow border-primary">
-                            <img src="https://orig00.deviantart.net/4e54/f/2016/326/6/8/avi_logo___messi_by_enihal-dap9bo9.png">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <h5 style="font-size:1vw"><i class="fa fa-user"></i> Lionel Messi</h5>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        {% endif %}
-                        
-                        {% for member in cameraData_list %}
-                        <div class="col-sm-2">
+                    <div class="row">
+                        {% for members in director_list %}
+                        {% if members.subteam == subteams and members.iscurrentmember %} 
+                        <div class="col-sm-2" style = "padding: 0px 0px">
                         <div class="card shadow">
-                            <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
+                            <img src="{{ members.image_url }}" alt="{{ members.name }}">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h5 style="font-size:1vw">{{ member.membername }}</h5>
+                                    <h5 style="font-size:1vw; text-align: center;"><i class="fa fa-user"></i> {{ members.name }} </h5>
                                 </div>
-                            </div>
+                            </div>                     
                         </div>
-                        </div>                        
+                        </div> 
+                        {% endif %}
                         {% endfor %}
-                    </div>
+                        {% for members in members_list %}
+                        {% if members.subteam == subteams and members.iscurrentmember and not members.isdirector %} 
+                        <div class="col-sm-2" style = "padding: 0px 0px">
+                        <div class="card shadow">
+                            <img src="{{ members.image_url }}" alt="{{ members.name }}">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h5 style="font-size:1vw; text-align: center;"> {{ members.name }} </h5>
+                                </div>
+                            </div>                     
+                        </div>
+                        </div> 
+                        {% endif %}
+                        {% endfor %}                           
+                   </div>
                 </div>
-            </div>
-        {% endif %}
-         <hr class="divide-divider">
+        </div>
+        {% endifnotequal %} 
+        {% endfor %}
 
-        <!--  Former Members  -->
-        {% if oldmember_list is not None and oldmember_list|length != 0 %}
-            <h3>Former Members</h3>
-            <hr>
-            <div class="row container">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                {% for member in oldmember_list %}
+        <!--One way to display the old members format would be to set their subteam to none.  -->
 
-                  <td style="width: 33%;">{{ member.membername }}</td>
-                  {% if forloop.counter|divisibleby:3 %}
-                    </tr>
+
+        <h3 style="text-align: center;"> Former Members</h3>
+        <hr>
+        <div class="row container">
+            <table class="table table-bordered">        
+            <tr>
+            {% for members in oldmember_list %}
+                <td style="width: 33%;">
+                    {{ members.name }}
+                </td>
+                {% if forloop.counter|divisibleby:3 %}
+                </tr>
                     <tr>
                   {% endif %}
                 {% endfor %}
                   </tr>
-                  <tr>
-
-                </thead>
-              </table>
-            </div>
-
-        {% endif %}
-        </hr>
-
-
-
-
-
-    </div>
-    </div>
+            </table>
+        </div>
+        </div>
 
 {% endblock %}
+

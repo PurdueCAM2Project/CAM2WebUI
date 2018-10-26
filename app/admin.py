@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 
-from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar
+from .models import Homepage, FAQ, History, Publication, Team, Leader, Member,RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar, Subteam
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin #Important, dont remove
 from django.contrib.auth.models import User
@@ -179,5 +179,6 @@ admin.site.register(Sponsor)
 admin.site.register(Calendar)
 admin.site.register(Location)
 admin.site.register(ReportedCamera, ReportAdmin)
-admin.site.register(Member, MemberAdmin)
 admin.site.register(Poster)
+admin.site.register(Subteam)
+admin.site.register(Member)
