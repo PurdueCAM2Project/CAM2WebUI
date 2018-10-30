@@ -23,7 +23,7 @@ FILE_ID = os.environ['FILE_ID']
 
 """Google Credentials"""
 SCOPES = [
-    'https://www.googleapis.com/auth/drive',
+    'https://www.googleapis.com/auth/fusiontables',
 ]
 SERVICE_ACCOUNT_FILE = 'service.json'
 
@@ -59,6 +59,48 @@ SHEET_HEADERS = {
     'UTC offset': None,
 
 }
+
+"""Temporary correction dictionary"""
+loc = {
+	"Devil?sglen": "Devil's Glen",
+	"Bed?ichov": "Bedřichov",
+	"Pecpodsne?kou": "Pec pod Sněžkou",
+	"?agarkalns": "Žagarkalns",
+	"Bia?katatrza?ska": "Białka Tatrzańska",
+	"????????(slavsko)": "Славське (Slavsko)",
+	"????????(bukovel)": "Букавель (Bukovel)",
+	"?????????(pamporovo)": "Пампорово (Pamporovo)",
+	"????????(chepelare)": "Чепеларе (Chepelare)",
+	"???????(borovets)": "Боровец (Borovets)",
+	"?????????(kalavrita)": "Καλάβρυτα (Kalavryta)",
+	"?????????????(krasnayapolyana)": "Красная Поляна (Krasnaya Polyana)",
+	"Lesmontsd?olmes": "Les Monts d'Olmes",
+	"?enkovice": "Čenkovice",
+	"Novém?stonamorav?": "Nové Město na Moravě",
+	"Pet?íkov": "Petříkov",
+	"P?emyslov": "Přemyslov",
+	"Bjela?nica": "Bjelašnica",
+	"?trbsképleso": "Štrbské Pleso",
+	"????(séli)": "Κάτω Βέρμιο-Σέλι (Kato Vermio-Seli)",
+	"Vy?náboca": "Vyšná Boca",
+	"De?tné": "Deštné",
+	"Kola?in": "Kolašin",
+	"?pi?ák": "Špičák",
+	"Je?t?d": "Ještěd",
+	"Ve?kára?a": "Veľká Rača",
+	"Ciudad Acu\\\\%ufffda": "Ciudad Acuña",
+	"Le Val Sain-p\\%ufffdre": "Le Val-Saint-Père",
+	"H%ufffdrtgenwald-vossenack": "Hürtgenwald-Vossenack",
+	"%u0410%u043d%u0430%u043f%u0430": "Анапа (Anapa)",
+	"Vall%ufffda": "Vallåkra",
+	"C%ufffdsa%u0159ov": "Císařov",
+	"Pol?ana": "Poľana",
+	"?aclé?-prkennýd?l": "Žacléř-Prkenný Důl",
+	"http%3A//": "http://",
+}
+
+"""Compile a regex to find all incorrect data"""
+pattern = re.compile("|".join(re.escape(k) for k in loc.keys()))
 
 
 def get_cams():
@@ -103,7 +145,7 @@ def write_csv(cams, filename):
 
     all_cams = []
     for cam in cams:
-        all_cams.append([cam[v] for (k, v) in SHEET_HEADERS.items() if (v != None)])
+        all_cams.append([pattern.sub(lambda m: loc[m.group(0)], cam[v]) if v == 'city' else cam[v] for (k, v) in SHEET_HEADERS.items() if (v != None)])
 
     df = pd.DataFrame(all_cams, columns=[k for (k, v) in SHEET_HEADERS.items() if (v != None)])
     df.set_index('ID', inplace=True)
@@ -130,16 +172,18 @@ def upload_csv(csv_file, title, id):
     credentials = service_account.Credentials.from_service_account_file(
         SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 
-    driveService = discovery.build('drive', 'v3', credentials=credentials)
+    driveService = discovery.build('fusiontables', 'v2', credentials=credentials)
+    """ deprecated json data that used only in google drive upload, now we directly upload from csv to fusion table.
     file_metadata = {'name': title,
-                     'mimeType': 'application/vnd.google-apps.fusiontable',
+                     'mimeType': 'application/octet-stream',
                      }
-    media = MediaFileUpload(csv_file, mimetype='text/csv', resumable=True)
+    """
+    media = MediaFileUpload(csv_file, mimetype='application/octet-stream', resumable=True)
 
     try:
-        file = driveService.files().update(body=file_metadata,
-                                           fileId=id, media_body=media,
-                                           fields='id').execute()
+        file = driveService.table().importRows(tableId=id,
+                                           media_body=media, startLine=0, isStrict=True, encoding='utf-8',delimiter=None,
+                                           media_mime_type='application/octet-stream').execute()
 
     except Exception as e:
         print('Exception while uploading: ' + str(e))
