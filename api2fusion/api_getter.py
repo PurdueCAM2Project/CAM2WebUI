@@ -200,7 +200,7 @@ def main():
         raise Exception('Service file is missing or not named properly. Should be in same directory and called service.json')
     #print ("Clientid is:", CLIENT_ID)
     write_csv(get_cams(), CSV_FILE)
-    #upload_csv(CSV_FILE, title=SHEET_TITLE, id=FILE_ID)
+    upload_csv(CSV_FILE, title=SHEET_TITLE, id=FILE_ID)
 
     end_time = time.time()
     print("--- {0} seconds ---".format(end_time - start_time))
