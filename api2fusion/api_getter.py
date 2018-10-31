@@ -146,7 +146,7 @@ def write_csv(cams, filename):
 
     all_cams = []
     for cam in cams:
-        all_cams.append([pattern.sub(lambda m: loc[m.group(0)], cam[v]) if v == 'city' else cam[v] for (k, v) in SHEET_HEADERS.items() if (v != None)])
+        all_cams.append([pattern.sub(lambda m: loc[m.group(0)], str(cam[v])) if v == 'city' else cam[v] for (k, v) in SHEET_HEADERS.items() if (v != None)])
 
     df = pd.DataFrame(all_cams, columns=[k for (k, v) in SHEET_HEADERS.items() if (v != None)])
     df.set_index('ID', inplace=True)
