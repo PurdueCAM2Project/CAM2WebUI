@@ -100,5 +100,9 @@ ENV/
 # Rope project settings
 .ropeproject
 
+<<<<<<< HEAD
 # .json file
 *.json
+=======
+.DS_Store
+>>>>>>> a6b8b82b9f0eff046aeff4ffff54eba5453b0d8c
