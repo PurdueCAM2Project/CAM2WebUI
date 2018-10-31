@@ -85,13 +85,13 @@
             <hr class="divide-divider">
             {% for subteams in subteams_list %}
             {% ifnotequal subteams|stringformat:"s" "None" %}
-            <div class="card" style ="flex-wrap: wrap; justify-content: flex-start;">
+            <div class="card" style ="flex-wrap: wrap; justify-content: center;">
                 <div class="card-header text-center">
                     <h3> {{ subteams.name }}</h3>
                     <p> {{ subteams.description }}</p>
                 </div>                 
                 <div class="card-body justify-content-center align-self-center">
-                    <div class="row">
+                    <div class="row" style="flex-wrap: wrap; justify-content: center;">
                         {% for members in director_list %}
                         {% if members.subteam == subteams and members.iscurrentmember %} 
                         <div class="col-sm-2" style = "padding: 0px 0px">
@@ -146,7 +146,6 @@
                   </tr>
             </table>
         </div>
-        </div>
-
+</div>
 {% endblock %}
 
