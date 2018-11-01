@@ -176,7 +176,7 @@ def upload_csv(csv_file, title, id):
     driveService = discovery.build('fusiontables', 'v2', credentials=credentials)
     """ deprecated json data that used only in google drive upload, now we directly upload from csv to fusion table.
     file_metadata = {'name': title,
-                     'mimeType': 'application/octet-stream',
+                     'mimeType': 'application/vnd.google-apps.fusiontable',
                      }
     """
     media = MediaFileUpload(csv_file, mimetype='application/octet-stream', resumable=True)
