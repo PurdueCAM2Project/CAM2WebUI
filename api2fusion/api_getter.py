@@ -62,7 +62,7 @@ SHEET_HEADERS = {
 }
 
 """Temporary correction dictionary"""
-loc = {
+issues = {
 	"Devil?sglen": "Devil's Glen",
 	"Bed?ichov": "Bedřichov",
 	"Pecpodsne?kou": "Pec pod Sněžkou",
@@ -100,9 +100,6 @@ loc = {
 	"http%3A//": "http://",
 }
 
-"""Compile a regex to find all incorrect data"""
-pattern = re.compile("|".join(re.escape(k) for k in loc.keys()))
-
 
 def get_cams():
     """
@@ -121,10 +118,10 @@ def get_cams():
     try:
 
         for x in range(0, int(math.ceil(TOTAL_NO_CAMERAS / 100))):  # No of reqests per 100 cameras
-            print(".", end='', flush=True)
+            print('Fetching cameras: %i of %i' % (offset, TOTAL_NO_CAMERAS), end='\r', flush='True')
             cams.extend(client.search_camera(offset=offset))
             offset = offset + 100
-        print('')
+        print('Fetching cameras: Done                   ')
     except Exception as e:
         print("Exception while searching: " + str(e))
         raise (e)
@@ -144,9 +141,18 @@ def write_csv(cams, filename):
         file name of the csv file
     """
 
+    # Compile a regex to find all incorrect data
+    pattern = re.compile("|".join(re.escape(k) for k in issues.keys()))
+
     all_cams = []
     for cam in cams:
-        all_cams.append([pattern.sub(lambda m: loc[m.group(0)], str(cam[v])) if v == 'city' else cam[v] for (k, v) in SHEET_HEADERS.items() if (v != None)])
+        all_cams.append([
+            # If iterating over the city, apply the temporary remapping to correct broken city names.
+            #    Once the data is properly and formally corrected in the database, please remove the below line.
+            pattern.sub(lambda m: issues[m.group(0)], str(cam[v])) if v == 'city' else
+            # Otherwise, leave it be.
+            cam[v] for (k, v) in SHEET_HEADERS.items() if (v != None)
+        ])
 
     df = pd.DataFrame(all_cams, columns=[k for (k, v) in SHEET_HEADERS.items() if (v != None)])
     df.set_index('ID', inplace=True)
