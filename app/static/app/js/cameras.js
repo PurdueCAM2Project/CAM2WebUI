@@ -13,7 +13,7 @@
 
     'use strict';
 
-    var tableId = "1MtAPEmSd6BQxuDYo_KYePrBxg-SOA-JiGloEcz6i";//all cameras
+    var tableId = "1MtAPEmSd6BQxuDYo_KYePrBxg-SOA-JiGloEcz6i";//all cameras fusion table production ID
     //var tableId = "115-UUNvnJHw2abJinqa2CcRIY2mX7uAC4MhTcPYF";//only good cameras
     var locationColumn = "col2";
     var queryUrlHead = 'https://www.googleapis.com/fusiontables/v2/query?sql=';
@@ -35,7 +35,9 @@
     //Note: code to initialize map and populate markers on map is obtained using the 'publish' tool from fusiontables
 
     window.initialize = function () {
-
+        $('#states').fadeOut('slow', function(){
+                $(this).hide();
+            });
         google.maps.visualRefresh = true;
         center_of_world = new google.maps.LatLng(0, 0);
 
@@ -188,7 +190,7 @@
                 legendOpenButton.style.display = 'block';
             }
         }
-
+        
         google.maps.event.addDomListener(window, 'load', initialize);
     }
 
