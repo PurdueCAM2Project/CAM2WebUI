@@ -311,3 +311,12 @@ class Member(models.Model):
     def __str__(self):
         return self.name 
 
+class Video(models.Model):
+    """Django Model for all CAM2 team videos"""
+    title = models.TextField()
+    user = models.TextField()
+    link = models.URLField()
+    description = models.TextField()
+    def __str__(self):
+        return self.title
+
