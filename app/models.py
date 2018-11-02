@@ -114,7 +114,9 @@ class Publication(models.Model):
         paperlink: A CharField for a link to the paper, validated as a URL
 
     """
-    paperinfo = models.CharField(verbose_name='Publication Details', max_length=500)
+    paperinfo = models.CharField(verbose_name='Publication Details', max_length=1500)
+    conference = models.CharField(verbose_name='Publication Conference', blank=True, null=True, max_length=1500)
+    authors = models.CharField(verbose_name='Publication Authors',  blank=True, null=True, max_length=1500)
     paperlink = models.CharField(verbose_name='Publication Paper Link (Optional)', max_length=300, blank=True, null=True, validators=[validateURL])
     def __str__(self):
         paperinfo = self.paperinfo[:100] if len(self.paperinfo) > 100 else self.paperinfo
@@ -288,6 +290,7 @@ class ReportedCamera(models.Model):
     """
     cameraID = models.CharField(verbose_name='Camera ID', max_length=100)
     reporttime = models.DateTimeField(blank=True, null=True)
+    username = models.CharField(verbose_name='Username', blank=True, null=True, max_length=100)
     def __str__(self):
         return "{0}".format(self.cameraID)
 

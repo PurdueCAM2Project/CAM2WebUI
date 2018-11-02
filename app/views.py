@@ -13,6 +13,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from social_django.models import UserSocialAuth
 from django.utils.encoding import force_text, force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
@@ -23,6 +24,11 @@ from django.core.mail import mail_admins, send_mail
 from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar, Video
 from django.http import HttpResponseNotFound
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
 
 def index(request):
     slide = Homepage.objects.reverse()
@@ -56,10 +62,27 @@ def cameras(request):
             #send_mail("Camera with Unavailable Image Reported", content, EMAIL_HOST_USER, [MANAGER_EMAIL])#email admin
             #check for existing reported camera
             camidlist = ReportedCamera.objects.reverse().values_list("cameraID", flat=True)
+            user = None
+            if (request.user.is_authenticated):
+                user = request.user.username
+
             if camID not in camidlist:
                 #add info to admin database - using cleaned_data
-                cam_obj = ReportedCamera(cameraID=camID, reporttime=datetime.datetime.now())
+
+
+                cam_obj = ReportedCamera(username=user, cameraID=camID, reporttime=datetime.datetime.now())
                 cam_obj.save()
+
+            else:
+                cams = ReportedCamera.objects.filter(cameraID__exact=camID)
+                logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+                logging.debug('This is the user : ' + str(cams))
+                if(cams):
+                    for c in cams:
+                        if (not user in str(c.username)):
+                            c.username = str(c.username) + ', ' +  user
+                            c.save()
+
 
             #return redirect('email_sent')
             form = ReportForm()
@@ -223,7 +246,24 @@ def publications(request):
         A render that displays the page publications.html, complete with information from the Publications database.
     """
     publication_list = Publication.objects.reverse()
-    context = {'publication_list': publication_list}
+    paginator = Paginator(publication_list, 6)
+    page = request.GET.get('page')
+
+    try:
+        publication_paginator = paginator.page(page)
+    except PageNotAnInteger:
+        publication_paginator = paginator.page(1)
+    except EmptyPage:
+        publication_paginator = paginator.page(paginator.num_pages)
+
+
+    index = publication_paginator.number - 1
+    max_index = len(paginator.page_range)
+    start_index = index - 5 if index >= 5 else 0
+    end_index = index + 5 if index <= max_index - 5 else max_index
+    page_range = paginator.page_range[start_index:end_index]
+
+    context = {'publication_list': publication_paginator, 'page_range':page_range}
     return render(request, 'app/publications.html', context)
 
 def new_map(request):
@@ -536,3 +576,12 @@ def videos(request):
     video = Video.objects.all()
     context = {'videos_list': video}
     return render(request, 'app/videos.html', context)
+    return render(request, 'app/videos.html')
+
+def publications_list(request):
+    publication_list = Publication.objects.reverse()
+    context = {'publication_list': publication_list}
+    return render(request, 'app/publications_list.html', context)
+
+   
+
