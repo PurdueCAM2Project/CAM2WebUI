@@ -13,7 +13,7 @@
 
     'use strict';
 
-    var tableId = "1MtAPEmSd6BQxuDYo_KYePrBxg-SOA-JiGloEcz6i";//all cameras
+    var tableId = "1MtAPEmSd6BQxuDYo_KYePrBxg-SOA-JiGloEcz6i";//all cameras fusion table production ID
     //var tableId = "115-UUNvnJHw2abJinqa2CcRIY2mX7uAC4MhTcPYF";//only good cameras
     var locationColumn = "col2";
     var queryUrlHead = 'https://www.googleapis.com/fusiontables/v2/query?sql=';
@@ -35,7 +35,9 @@
     //Note: code to initialize map and populate markers on map is obtained using the 'publish' tool from fusiontables
 
     window.initialize = function () {
-
+        $('#states').fadeOut('slow', function(){
+                $(this).hide();
+            });
         google.maps.visualRefresh = true;
         center_of_world = new google.maps.LatLng(0, 0);
 
@@ -188,7 +190,7 @@
                 legendOpenButton.style.display = 'block';
             }
         }
-
+        
         google.maps.event.addDomListener(window, 'load', initialize);
     }
 
@@ -217,7 +219,14 @@
 
     function updateMap_Country(layer, map) {
         var country = getdata_dropdown("#country");
-
+        if (country != "('USA')"){
+            $('#states').fadeOut('slow', function(){
+                $(this).hide();
+            });
+        }
+        else{
+            $('#states').show();
+        }
         if (country != "('undefined')") {
             var countryQuery = "'Country' IN " + country;
             if (actives) {
@@ -248,11 +257,11 @@
                 stateQuery = stateQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
             }
             updateLayer(layer, stateQuery);
-            center_on_selected_states(map)
+            center_on_selected_states(map);
             getCityNames();
         }
         else {
-            set_dropdown_null("city");
+            //set_dropdown_null("city");
             var country = getdata_dropdown("#country");
             var stateQuery = "'Country' IN " + country;
             if (actives) {
@@ -415,13 +424,17 @@
     function getStateNames() {
         var country = getdata_dropdown("#country");
         var countrylist = $("#country").select2('val');
-
-        if ($.inArray("USA", countrylist) != -1) {
+        
+        if ($.inArray("USA", countrylist) != -1 && countrylist.length == 1) {
             document.getElementById('state').isDisabled = false;
             document.getElementById('city').isDisabled = true;
             region = 'state';
             var encodedQuery = get_encodedQuery('State');
             sendRequest(encodedQuery);
+        }
+        else if($.inArray("USA", countrylist) != -1 && countrylist.length != 1){
+            document.getElementById('state').isDisabled = true;
+            getCityNames();
         }
         else {
             set_dropdown_null("state");
