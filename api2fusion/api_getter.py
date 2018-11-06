@@ -118,13 +118,13 @@ def get_cams():
     try:
 
         for x in range(0, int(math.ceil(TOTAL_NO_CAMERAS / 100))):  # No of reqests per 100 cameras
-            print('Fetching cameras: %i of %i' % (offset, TOTAL_NO_CAMERAS), end='\r', flush='True')
+            print(f'Fetching cameras: {offset} of {TOTAL_NO_CAMERAS}', end='\r', flush=True)
             cams.extend(client.search_camera(offset=offset))
             offset = offset + 100
         print('Fetching cameras: Done                   ')
     except Exception as e:
-        print("Exception while searching: " + str(e))
-        raise (e)
+        print(f"Exception while searching: {e}")
+        raise
 
     return (cams)
 
@@ -193,10 +193,10 @@ def upload_csv(csv_file, title, id):
                                            media_mime_type='application/octet-stream').execute()
 
     except Exception as e:
-        print('Exception while uploading: ' + str(e))
-        raise (e)
+        print(f'Exception while uploading: {e}')
+        raise
 
-    print('Successful update File ID: {0}'.format(file.get('id')))
+    print(f'Successful update File ID: {file.get("id")}')
 
 
 def main():
