@@ -12,3 +12,20 @@ img.leaders {
   padding: 0.7em;
 }
 
+
+.video-container {
+	background-color: red;
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: row-reverse;
+}
+
+.video-block {
+	display: flex;
+	width: 300px;
+}
+
+
+.test-style{
+	color: red;
+}
