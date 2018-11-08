@@ -1,0 +1,45 @@
+h3, a, p {
+  color: #1f2124;
+}
+h4 {
+  font-size: 20px !important;
+  line-height: 18px;
+  font-weight: bold;
+}
+.widget-list li a:hover {
+    color: #1aa3ff;
+  text-decoration: none;
+  -o-transition: all .3s;
+  -moz-transition: all .3s;
+  -webkit-transition: all .3s;
+  -ms-transition: all .3s;
+  transition: all .3s;
+  
+}
+.widget .card-header {
+  background: bg-light;
+}
+.widget .card-header a {
+  width: 100%;
+  display: block;
+}
+.widget .card-header a:after {
+  content: "+";
+  position: absolute;
+  right: 40px;
+  top: 4rem;
+  transition: transform 0.25s ease-in-out;
+  color: black;
+}
+.widget .card-header a:hover, .widget .card-header a:focus {
+  text-decoration: none;
+}
+.widget .card-header a[aria-expanded="true"]:after {
+  transform: rotate(45deg);
+}
+.widget .card-block {
+  padding: 0 1.3rem;
+}
+.widget .card-block .widget-list li {
+  margin-bottom: 4px;
+}
