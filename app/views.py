@@ -113,7 +113,8 @@ def team(request):
     team_list = Team.objects.reverse()
     leader_list = Leader.objects.reverse()
     curmember_list = Member.objects.filter(iscurrentmember=True).order_by("membername")
-    oldmember_list = Member.objects.filter(iscurrentmember=False).order_by("membername")
+    oldmember_list = TeamMember.objects.filter(iscurrentmember=False).order_by("name")
+    director_list = TeamMember.objects.filter(isdirector=True).order_by("name")
     subteam = Subteam.objects.all()
     members = TeamMember.objects.all()
     
@@ -161,6 +162,7 @@ def team(request):
         "intel_list": intel_list,
         'subteams_list': subteam,
         "members_list": members,
+        "director_list": director_list,
         "active_list": active_list
     } 
     return render(request, 'app/team.html', context) 
