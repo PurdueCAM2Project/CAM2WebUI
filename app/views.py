@@ -21,7 +21,7 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm, ReportForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins, send_mail
-from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar, Video, Subteam
+from .models import Homepage, FAQ, History, Publication, Team, Leader, TeamMember, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar, Video, Subteam
 from django.http import HttpResponseNotFound
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 import logging
@@ -164,10 +164,10 @@ def good_cameras(request):
 def team(request):
     team_list = Team.objects.reverse()
     leader_list = Leader.objects.reverse()
-    oldmember_list = Member.objects.filter(iscurrentmember=False).order_by("name")
-    director_list = Member.objects.filter(isdirector=True).order_by("name")
+    oldmember_list = TeamMember.objects.filter(iscurrentmember=False).order_by("name")
+    director_list = TeamMember.objects.filter(isdirector=True).order_by("name")
     subteam = Subteam.objects.all()
-    members = Member.objects.all()
+    members = TeamMember.objects.all()
     context = {'subteams_list': subteam, "team_list": team_list,"leader_list": leader_list, "members_list": members, "oldmember_list": oldmember_list, "director_list": director_list}
     return render(request, 'app/team.html', context)
 

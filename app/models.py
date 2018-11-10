@@ -311,7 +311,7 @@ class Subteam(models.Model):
         return self.name
 
 
-class Member(models.Model):
+class TeamMember(models.Model):
     name = models.TextField()
     image_url = models.URLField(blank=True)
     subteam = models.ForeignKey(Subteam)
