@@ -314,7 +314,7 @@ class Subteam(models.Model):
 class Member(models.Model):
     name = models.TextField()
     image_url = models.URLField(blank=True)
-    subteam = models.ForeignKey(Subteam)
+    subteam = models.ForeignKey('Subteam', on_delete=models.PROTECT)
     iscurrentmember = models.BooleanField(default=True,verbose_name='Is Current Member')
     isdirector = models.BooleanField(default=False,verbose_name='Is he/she a Director?')
 
