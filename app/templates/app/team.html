@@ -147,4 +147,32 @@
             </table>
         </div>
 </div>
+
+
+            <div class="col-md-12" style="background-color: white">
+                <div class="row">
+                    <!--  Forest Inventory Analysis Team  -->
+                    <div class="col-md-6 col-sm-12 col-xs-12" style="float: left">
+                        <h3>Forest Inventory Analysis Team</h3>
+                        {% for member in forest_list %}
+                            {% if forloop.counter0|divisibleby:"2" %}
+                                <div class="row">
+                            {% endif %}
+                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-itmes-stretch" style="float: left">
+                            <div class="card shadow">
+                                <img src="{{ member.memberimg }}" alt="{{ member.membername }}">
+                                <div class="card-body">
+                                    <h5>{{ member.membername }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:"2" or forloop.last %}
+                            </div>
+                        {% elif forloop.counter|divisibleby:"2" %}
+                            <div class="clearfix visible-xs-block"></div>
+                        {% elif forloop.counter|divisibleby:"3" %}
+                            <div class="clearfix visible-sm-block"></div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
 {% endblock %}
