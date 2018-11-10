@@ -33,3 +33,14 @@ h2 {
 	font-weight: 500;
 	line-height: 20.4px;
 }
+
+/* Cropping for live slides on homepage */
+
+.liveslide {
+	float: left;
+	position: relative;
+	border: none;
+	overflow: hidden;
+	background: transparent fixed;
+	height: 100%;
+}

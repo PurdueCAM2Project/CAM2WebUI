@@ -62,10 +62,16 @@
     {% else %}
         
     <div class="carousel-item">
-        <img class="d-block w-100 darker" src="{{ slide.slidelink }}" alt="other slides">
+		<div style='width:100vw; height:25.75vw'>
+			<div class=liveslide dx=206 dy=426 name="Cleveland Skyline"><img src="http://206.140.121.226/axis-cgi/mjpg/video.cgi"></div>
+			<div class=liveslide dx=296 dy=380 name="Purdue Memorial Union"><img src="http://128.210.129.12/mjpg/video.mjpg"></div>
+			<div class=liveslide dx=320 dy=300 name="National Naval Association Museum"><img src="http://97.64.145.7/axis-cgi/mjpg/video.cgi"></div>
+		</div>
         <div class="carousel-caption d-none d-md-block" style="left: 10%; right: auto; text-align: left; padding: 30px">
+            {% if slide.slideheader is not none %}
             <h1>{{ slide.slideheader }}</h1>
             <hr class="divide-divider">
+            {% endif %}
             <h2>{{ slide.slidedescrb }}</h2>
         </div>
         
@@ -150,4 +156,7 @@
     </div>
 </div>
 
+{% endblock %}
+{% block scripts %}
+<script src="{% static "app/js/liveslides.js" %}"></script>
 {% endblock %}
