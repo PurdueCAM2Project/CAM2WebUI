@@ -52,7 +52,7 @@
             <center><a><b class="text-white">
                 {{ slide.slideheader }}
             </b>
-            <p id="welcome" class="text-white">
+            <p id="welcome{{ slide.slidenum }}" class="text-white">
                 {{slide.slidedescrb }}
             </p></a></center>
             <hr class="divide-divider">
@@ -62,11 +62,7 @@
     {% else %}
         
     <div class="carousel-item">
-		<div style='width:100vw; height:25.75vw'>
-			<div class=liveslide dx=206 dy=426 name="Cleveland Skyline"><img src="http://206.140.121.226/axis-cgi/mjpg/video.cgi"></div>
-			<div class=liveslide dx=296 dy=380 name="Purdue Memorial Union"><img src="http://128.210.129.12/mjpg/video.mjpg"></div>
-			<div class=liveslide dx=320 dy=300 name="National Naval Association Museum"><img src="http://97.64.145.7/axis-cgi/mjpg/video.cgi"></div>
-		</div>
+		<div id=livebox style='width:100vw; height:25.75vw'></div>
         <div class="carousel-caption d-none d-md-block" style="left: 10%; right: auto; text-align: left; padding: 30px">
             {% if slide.slideheader is not none %}
             <h1>{{ slide.slideheader }}</h1>
@@ -80,7 +76,7 @@
             <center><a><b class="text-white">
                 {{ slide.slideheader }}
             </b>
-            <p id="welcome" class="text-white">
+            <p id="welcome{{ slide.slidenum }}" class="text-white">
                 {{slide.slidedescrb }}
             </p></a></center>
             <hr class="divide-divider">
