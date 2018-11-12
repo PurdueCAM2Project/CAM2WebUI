@@ -13,9 +13,9 @@
     <ol class="carousel-indicators">
 {% for slide in slide_list %}
     {% if slide.slidenum == 0 %}
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="{{ slide.slidenum }}" class="active"></li>
     {% else %}
-       <li data-target="#carouselExampleIndicators" data-slide-to="{{ slide.slidenum }}"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="{{ slide.slidenum }}"></li>
     {% endif %}
 {% endfor %}
     </ol> 
@@ -62,7 +62,7 @@
     {% else %}
         
     <div class="carousel-item">
-		<div id=livebox style='width:100vw; height:25.75vw'></div>
+        <img class="d-block w-100 darker" src="{{ slide.slidelink }}" alt="other slides">
         <div class="carousel-caption d-none d-md-block" style="left: 10%; right: auto; text-align: left; padding: 30px">
             {% if slide.slideheader is not none %}
             <h1>{{ slide.slideheader }}</h1>
