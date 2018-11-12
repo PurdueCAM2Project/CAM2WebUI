@@ -14,6 +14,19 @@
   margin: 15px 0;
 }
 
+.container-fluid {
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+
+.container-fluid .row {
+	width: 80%;
+	margin: auto;
+}
+
+.fa {
+	padding: 10px;
+}
 
 /* Typegraphy for homepage */
 
