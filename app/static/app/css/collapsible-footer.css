@@ -1,7 +1,7 @@
-h3, a, p {
+.footer-collapse h3, a, p {
   color: #1f2124;
 }
-h4 {
+.footer-collapse h4 {
   font-size: 20px !important;
   line-height: 18px;
   font-weight: bold;
