@@ -57,3 +57,8 @@ h2 {
 	background: transparent fixed;
 	height: 100%;
 }
+
+#livebox {
+	width:100vw;
+	height:25.75vw;
+}

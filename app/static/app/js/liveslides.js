@@ -1,9 +1,17 @@
 //Javascript code to allow for dynamic, responsive live slides for the homepage slideshow
 //Author: Anirudh Vegesana
 
-// Note slideId and slideNum are different. slideNum is the database column. slideId is the JS location in the carousel.
-!function(slideId, slideNum, maxSlides) {
+//Willing to drop IE support: document.currentScript.getAttribute("slides")
+$.getJSON(document.scripts[document.scripts.length-1].getAttribute("slides"), function(clf) {
 	"use strict";
+	
+	/////////////////
+	// Configuration
+	/////////////////
+	// Note slideId and slideNum are different. slideNum is the database column. slideId is the JS location in the carousel.
+	var slideId = 1;
+	var slideNum = 1;
+	var maxStreams = 3;
 	
 	// Build livebox element
 	var lb = document.createElement("div");
@@ -37,19 +45,11 @@
 		return a;
 	}
 
-	// Build image JSON
-	var clf = [
-{dx:206, dy:426, sx:600, sy:800, src:"http://206.140.121.226/axis-cgi/mjpg/video.cgi", still:"http://images.opentopia.com/cams/4472/big.jpg",  name:"Cleveland Skyline"},
-{dx:296, dy:380, sx:600, sy:800, src:"http://128.210.129.12/mjpg/video.mjpg",          still:"http://128.210.129.12/jpg/1/image.jpg",          name:"Purdue Memorial Union"},
-{dx:320, dy:300, sx:600, sy:800, src:"http://97.64.145.7/axis-cgi/mjpg/video.cgi",     still:"http://images.opentopia.com/cams/15904/big.jpg", name:"National Naval Association Museum"},
-{dx:320, dy:200, sx:450, sy:800, src:"http://199.20.14.240/axis-cgi/mjpg/video.cgi",   still:"http://images.opentopia.com/cams/12609/big.jpg", name:"Schaumburg Lake"},
-{dx:132, dy:120, sx:251, sy:447, src:"http://128.206.143.98/axis-cgi/mjpg/video.cgi",  still:"http://images.opentopia.com/cams/11358/big.jpg", name:"Mizzou School of Journalism"},
 //{dx:320, dy:740, sx:450, sy:800, src:"http://69.167.204.51/axis-cgi/mjpg/video.cgi",   still:"http://69.167.204.51/jpg/1/image.jpg",           name:"West Virginia University"},
-	];
 
 	// Display random images on the screen and build captions (captions not yet working)
 	var lb = document.getElementById("livebox");
-	var cl = shuffle(clf).slice(0, maxSlides);
+	var cl = shuffle(clf).slice(0, maxStreams);
 	var captEl = slide.getElementsByClassName("carousel-caption")[0];
 	captEl.class += " container";
 	// No IE: String.raw`<div class="row"><div class="col"></div><div class="col"></div><div class="col"></div></div>`
@@ -96,4 +96,4 @@
 		}
 	});
 
-}(1, 1, 3);
+});
