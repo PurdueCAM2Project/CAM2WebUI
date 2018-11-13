@@ -228,8 +228,8 @@ class Location(models.Model):
         return "{0}".format(self.officename)
 
 
-"""class Member(models.Model):
-    Django model for team members
+class Member(models.Model):
+    """Django model for team members
     
     Contains information that structures the database for CAM2 team members, both active and inactive
 
@@ -237,7 +237,7 @@ class Location(models.Model):
         membername: A CharField for the team member's full name.
         memberimg: A CharField for an image URL for the team member. Should be blank if iscurrentmember is False.
         iscurrentmember: A BooleanField that indicates whether or not this team member is a current member
-        subteam: A CharField that indicates which subteam this member belongs to. Default is blank
+        subteam: A CharField that indicates which subteam this member belongs to. Default is blank """
 
     
     membername = models.CharField(verbose_name='Member Name', max_length=50, validators=[validateName])
@@ -266,7 +266,7 @@ class Location(models.Model):
 
     subteam = models.CharField(verbose_name='Subteam', blank=True, max_length=50, choices=TEAM, default='blank')
     def __str__(self):
-        return "{0}".format(self.membername) """
+        return "{0}".format(self.membername) 
 
 class Poster(models.Model):
     """Django model for Posters
@@ -311,7 +311,7 @@ class Subteam(models.Model):
         return self.name
 
 
-class Member(models.Model):
+class TeamMember(models.Model):
     name = models.TextField()
     image_url = models.URLField(blank=True)
     subteam = models.ForeignKey(Subteam)
