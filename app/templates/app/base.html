@@ -27,7 +27,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" type="image/png" href="{% static "app/img/new_logo2.png" %}"/>
+    
     <title>{% block title %}{% endblock %}</title>
+    
 
     <!--  Bootstrap 4 js links -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -35,6 +37,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
     <!--  Bootstrap 4 css link  -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
 
@@ -46,7 +49,9 @@
 
 
     <!--  Implement base.css  -->
+    <link href="{% static "app/css/collapsible-footer.css" %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static "app/css/base.css" %}">
+    
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id" content="294339896954-gouidbgcpu2cktb5v42qdkelu1d0a9ks.apps.googleusercontent.com">
@@ -169,7 +174,53 @@
     
     
     <div class="footer pt-4 mt-4 bg-light" style="flex-shrink: 0;">
-        {% include "app/ftc.html" %}
+      <!-- {% include "app/ftc.html" %} -->
+        <footer class="footer-collapse px-1 py-3">
+    <div class="col-lg-12 mx-auto">
+            <h2 class="sr-only">CAM2FOOTER</h2>
+            <div class="row" style="width: 80%; margin: auto">
+                <hr class="clearfix w-100 d-md-none pb-3">
+                    <div class="widget hidden-md-down">
+                        <h4 class="text-uppercase text-bold"><b>More About Us</b></h4>
+                        <div style="float:left;width:5%;margin-left:20px;">
+                            <ul class="widget-list list-unstyled p-0">
+                                <li><a href="/sponsors/" >Sponsors</a></li>
+                                <li><a href="/collaborators/" >Collaborators</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div style="float:right;width:5%;margin-left:250px;">
+                            <ul class="widget-list list-unstyled p-0">
+                                <li><a href="/calendar/">Calendar</a></li>
+                                <li><a href="/location/" >Location</a></li>
+                            </ul>
+                        </div>
+                    
+                    </div>
+                    <div id="accordion" role="tablist" aria-multiselectable="true" class="widget hidden-lg-up">
+                    <div role="tab" id="headingOne">
+                        <h4 class="card-header py-3 border-0 text-uppercase text-bold">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            <b>More About Us</b>
+                        </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="card-block">
+                        <ul class="widget-list list-unstyled p-0">
+                            <li><a href="/sponsors/" >Sponsors</a></li>
+                            <li><a href="/collaborators/" >Collaborators</a></li>
+                            <li><a href="/calendar/">Calendar</a></li>
+                            <li><a href="/location/" >Location</a></li>
+                        </ul>
+                        </div>
+                    </div>
+                    </div>
+                
+                
+            </div>
+        </div>
+</footer>
     <div class="container-fluid text-center text-md-left">
         
     </div>

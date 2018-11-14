@@ -27,7 +27,7 @@ h4 {
   content: "+";
   position: absolute;
   right: 40px;
-  top: 4rem;
+  top: 1rem;
   transition: transform 0.25s ease-in-out;
   color: black;
 }

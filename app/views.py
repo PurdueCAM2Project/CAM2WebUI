@@ -21,7 +21,7 @@ from .tokens import account_activation_token
 from .forms import RegistrationForm, AdditionalForm, AppForm, ProfileEmailForm, NameForm, ReportForm
 from django.contrib.auth.models import User
 from django.core.mail import mail_admins, send_mail
-from .models import Homepage, FAQ, History, Publication, Team, Leader, Member, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar, Video
+from .models import Homepage, FAQ, History, Publication, Team, Leader, TeamMember, CAM2dbApi, RegisterUser, Collab, Location, Sponsor, Poster, ReportedCamera, Calendar, Video, Subteam, Member
 from django.http import HttpResponseNotFound
 from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 import logging
@@ -108,12 +108,15 @@ def team(request):
         request: the HttpRequest corresponding to the page to be accessed.
 
     Returns:
-        A render that displays the page team.html, complete with information from the Team database.
-    """
+        A render that displays the page team.html, complete with information from the Team database. """
+    
     team_list = Team.objects.reverse()
     leader_list = Leader.objects.reverse()
     curmember_list = Member.objects.filter(iscurrentmember=True).order_by("membername")
-    oldmember_list = Member.objects.filter(iscurrentmember=False).order_by("membername")
+    oldmember_list = TeamMember.objects.filter(iscurrentmember=False).order_by("name")
+    director_list = TeamMember.objects.filter(isdirector=True).order_by("name")
+    subteam = Subteam.objects.all()
+    members = TeamMember.objects.all()
     
     # Sub team
     image_list = Member.objects.filter(subteam__exact='I').order_by("membername")
@@ -133,7 +136,7 @@ def team(request):
     human_list = Member.objects.filter(subteam__exact='HB').order_by("membername")
     crowd_list = Member.objects.filter(subteam__exact='CS').order_by("membername")
     intel_list = Member.objects.filter(subteam__exact='Intel').order_by("membername")
-    active_list = Member.objects.filter(subteam__exact='').filter(iscurrentmember=True).order_by("membername")
+    active_list = Member.objects.filter(subteam__exact='').filter(iscurrentmember=True).order_by("membername") 
 
     context = {
         "team_list": team_list,
@@ -157,9 +160,22 @@ def team(request):
         "human_list": human_list,
         "crowd_list": crowd_list,
         "intel_list": intel_list,
+        'subteams_list': subteam,
+        "members_list": members,
+        "director_list": director_list,
         "active_list": active_list
-    }
-    return render(request, 'app/team.html', context)
+    } 
+    return render(request, 'app/team.html', context) 
+
+"""def team(request):
+    team_list = Team.objects.reverse()
+    leader_list = Leader.objects.reverse()
+    oldmember_list = TeamMember.objects.filter(iscurrentmember=False).order_by("name")
+    director_list = TeamMember.objects.filter(isdirector=True).order_by("name")
+    subteam = Subteam.objects.all()
+    members = TeamMember.objects.all()
+    context = {'subteams_list': subteam, "team_list": team_list,"leader_list": leader_list, "members_list": members, "oldmember_list": oldmember_list, "director_list": director_list}
+    return render(request, 'app/team.html', context)"""
 
 def team_poster(request):
     poster_images = Poster.objects.reverse()
