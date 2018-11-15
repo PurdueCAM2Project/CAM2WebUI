@@ -62,3 +62,7 @@ h2 {
 	width:100vw;
 	height:25.75vw;
 }
+
+.carousel-caption .row .col {
+  font-size: 1vw;
+}
