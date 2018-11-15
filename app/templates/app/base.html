@@ -145,7 +145,7 @@
     </div>
     </nav>
 
-     <!-- Message window for API email confirmation -->
+     <!-- Message window for API email confirmation
      <div id="APIMessageWindow">
             {% if messages %}
             <ul class="list-group">
@@ -157,7 +157,7 @@
         
     </div>
 
-    {% endblock %}
+    {% endblock %} -->
     <!--  End of Navigation Bar  -->
 
    
@@ -242,45 +242,8 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <!-- <div class="container-fluid">
-        To request CAM2 API credentials, please contact <a href="mailto:cam2proj@ecn.purdue.edu" style="color: #1aa3ff;">cam2proj@ecn.purdue.edu</a>
-
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-row input-group">
-
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Name</span>
-                </div>
-
-                <input type="text"  class="form-control {% if form.first_name.errors %} is-invalid{% endif %}" name="first_name" placeholder="First name">
-
-                <input type="text"  class="form-control {% if form.last_name.errors %} is-invalid{% endif %}" name="last_name"  placeholder="Last name">
-
-            </div>
-            <br>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Email</span>
-                </div>
-                <input type="text"  class="form-control {% if form.email.errors %} is-invalid{% endif %}" name="email" placeholder="Organization/Company email">
-            </div>
-             <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Usage</span>
-                </div>
-                <input type="text"  class="form-control {% if form.usage.errors %} is-invalid{% endif %}" name="usage" placeholder="Why do you want access? 150 chars">
-            </div>
-        </form>
-
-        </div> -->
+        <!-- Populated by api_access.html -->
       </div>
-
-      <!-- Modal footer
-      <div class="modal-footer">
-        <input  type="submit" class="btn btn-success btn-send" value="Send message">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div> -->
 
     </div>
   </div>
@@ -310,8 +273,6 @@
     </div>
   </div>
 </div>
-<!-- <script src="{% static "app/js/api_request.js" %}"></script>#} -->
-
 <script>
 
 
@@ -326,7 +287,7 @@ $("#APIcontact-authenticated").on("submit", ".js-api-access-form", function () {
       dataType: 'json',
       success: function (data) {
         if (data.form_is_valid) {
-          alert("Book created!");  // <-- This is just a placeholder for now for testing
+          alert("Email Sent!");  // <-- This is just a placeholder for now for testing
           $("#APIcontact-authenticated").modal("hide");
         //   $("#APIMessageWindow").html(data.html_mssg);
         }
