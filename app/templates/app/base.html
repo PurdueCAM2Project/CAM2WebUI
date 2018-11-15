@@ -145,10 +145,24 @@
     </div>
     </nav>
 
+     <!-- Message window for API email confirmation -->
+     <div id="APIMessageWindow">
+            {% if messages %}
+            <ul class="list-group">
+                {% for message in messages %}
+                <li {% if message.tags %} class="list-group-item list-group-item-danger" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        
+    </div>
+
     {% endblock %}
     <!--  End of Navigation Bar  -->
 
-    <!--  Conetent of pages that implements base  -->
+   
+
+    <!--  Content of pages that implements base  -->
     <div class="content">
         {% block content %}{% endblock %}
     </div>
@@ -227,7 +241,7 @@
       </div>
 
       <!-- Modal body -->
-      <div class="modal-body" id="api-access-form">
+      <div class="modal-body">
         <!-- <div class="container-fluid">
         To request CAM2 API credentials, please contact <a href="mailto:cam2proj@ecn.purdue.edu" style="color: #1aa3ff;">cam2proj@ecn.purdue.edu</a>
 
@@ -301,8 +315,8 @@
 <script>
 
 
-$("#api-access-form").on("submit", ".js-api-access-form", function () {
-    console.log("submitted")
+$("#APIcontact-authenticated").on("submit", ".js-api-access-form", function () {
+    // console.log("submitted")
 
     var form = $(this);
     $.ajax({
@@ -313,6 +327,8 @@ $("#api-access-form").on("submit", ".js-api-access-form", function () {
       success: function (data) {
         if (data.form_is_valid) {
           alert("Book created!");  // <-- This is just a placeholder for now for testing
+          $("#APIcontact-authenticated").modal("hide");
+        //   $("#APIMessageWindow").html(data.html_mssg);
         }
         else {
           $("#APIcontact-authenticated .modal-content .modal-body").html(data.html_form);
@@ -333,11 +349,11 @@ $(function () {
             $("#APIcontact-authenticated").modal("show");
           },
           error: function(){
-              console.log("error");
+            //   console.log("error");
           },
           success: function (data) {
             $("#APIcontact-authenticated .modal-content .modal-body").html(data.html_form);
-            console.log("success");
+            // console.log("success");
 
           }
         });

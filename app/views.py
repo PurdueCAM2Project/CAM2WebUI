@@ -39,14 +39,11 @@ def index(request):
 
 
 def api_request(request):
-    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-    # logging.debug('in api_request ')
 
     data = {}
 
     if request.method == 'POST':
         form = ApiRequestForm(request.POST)
-        logging.debug('in api_request after form submission ')
 
         if form.is_valid():
             form.save(commit=True)
@@ -81,6 +78,9 @@ def api_request(request):
 
     # render the base.html which contains the modal
     data['html_form'] = render_to_string('app/api_access.html', context, request=request)
+    # mssgs = {'messages': 'Your request has been sent. Thank you!'}
+
+    # data['html_mssg'] = render_to_string('app/api_acces_confirm_mssg.html', mssgs, request=request)
 
     
 
