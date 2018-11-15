@@ -277,7 +277,7 @@
 
 
 $("#APIcontact-authenticated").on("submit", ".js-api-access-form", function () {
-    // console.log("submitted")
+    console.log("submitted")
 
     var form = $(this);
     $.ajax({
@@ -310,11 +310,11 @@ $(function () {
             $("#APIcontact-authenticated").modal("show");
           },
           error: function(){
-            //   console.log("error");
+              console.log("error");
           },
           success: function (data) {
             $("#APIcontact-authenticated .modal-content .modal-body").html(data.html_form);
-            // console.log("success");
+            console.log("success");
 
           }
         });

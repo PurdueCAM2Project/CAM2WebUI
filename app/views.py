@@ -81,9 +81,6 @@ def api_request(request):
     # mssgs = {'messages': 'Your request has been sent. Thank you!'}
 
     # data['html_mssg'] = render_to_string('app/api_acces_confirm_mssg.html', mssgs, request=request)
-
-    
-
     return JsonResponse(data)
 
 
