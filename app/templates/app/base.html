@@ -110,9 +110,9 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Developer
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             {% if user.is_authenticated %}
-              <a class="dropdown-item js-api-access" href="" >API access</a>
+              <a class="dropdown-item  js-api-access" href="" data-toggle="modal" data-target="#APIcontact-authenticated">API access</a>
             {% else %}
               <a class="dropdown-item" href="" data-toggle="modal" data-target="#APIcontact-not-authenticated">API access</a>
             {% endif %}
@@ -220,7 +220,56 @@
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
 
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">API Access</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
 
+      <!-- Modal body -->
+      <div class="modal-body" id="api-access-form">
+        <!-- <div class="container-fluid">
+        To request CAM2 API credentials, please contact <a href="mailto:cam2proj@ecn.purdue.edu" style="color: #1aa3ff;">cam2proj@ecn.purdue.edu</a>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-row input-group">
+
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Name</span>
+                </div>
+
+                <input type="text"  class="form-control {% if form.first_name.errors %} is-invalid{% endif %}" name="first_name" placeholder="First name">
+
+                <input type="text"  class="form-control {% if form.last_name.errors %} is-invalid{% endif %}" name="last_name"  placeholder="Last name">
+
+            </div>
+            <br>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Email</span>
+                </div>
+                <input type="text"  class="form-control {% if form.email.errors %} is-invalid{% endif %}" name="email" placeholder="Organization/Company email">
+            </div>
+             <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Usage</span>
+                </div>
+                <input type="text"  class="form-control {% if form.usage.errors %} is-invalid{% endif %}" name="usage" placeholder="Why do you want access? 150 chars">
+            </div>
+        </form>
+
+        </div> -->
+      </div>
+
+      <!-- Modal footer
+      <div class="modal-footer">
+        <input  type="submit" class="btn btn-success btn-send" value="Send message">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div> -->
+
+    </div>
+  </div>
 </div>
 
 <!-- The Modal (not authenticated information) -->
@@ -247,8 +296,57 @@
     </div>
   </div>
 </div>
-<script src="{% static "app/js/api_request.js" %}"></script>
+<!-- <script src="{% static "app/js/api_request.js" %}"></script>#} -->
+
 <script>
+
+
+$("#api-access-form").on("submit", ".js-api-access-form", function () {
+    console.log("submitted")
+
+    var form = $(this);
+    $.ajax({
+      url: form.attr("action"),
+      data: form.serialize(),
+      type: form.attr("method"),
+      dataType: 'json',
+      success: function (data) {
+        if (data.form_is_valid) {
+          alert("Book created!");  // <-- This is just a placeholder for now for testing
+        }
+        else {
+          $("#APIcontact-authenticated .modal-content .modal-body").html(data.html_form);
+        }
+      }
+    });
+    return false;
+  });   
+
+$(function () {
+
+    $(".js-api-access").click(function () {
+        $.ajax({
+          url: '/api_access/',
+          type: 'get',
+          dataType: 'json',
+          beforeSend: function () {
+            $("#APIcontact-authenticated").modal("show");
+          },
+          error: function(){
+              console.log("error");
+          },
+          success: function (data) {
+            $("#APIcontact-authenticated .modal-content .modal-body").html(data.html_form);
+            console.log("success");
+
+          }
+        });
+        
+    });
+
+});
+
+
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
 

@@ -34,8 +34,19 @@ logger = logging.getLogger(__name__)
 def index(request):
     slide = Homepage.objects.reverse()
 
+    context = {'slide_list': slide}
+    return render(request, 'app/index.html', context)
+
+
+def api_request(request):
+    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+    # logging.debug('in api_request ')
+
+    data = {}
+
     if request.method == 'POST':
         form = ApiRequestForm(request.POST)
+        logging.debug('in api_request after form submission ')
 
         if form.is_valid():
             form.save(commit=True)
@@ -58,25 +69,22 @@ def index(request):
                 headers={'Reply-To' : email}
             )
             email_message.send()
+            data['form_is_valid'] = True
 
-
+        else:   
+            data['form_is_valid'] = False
 
     else:
         form = ApiRequestForm()
 
-    context = {'slide_list': slide, 'form': form}
-    return render(request, 'app/index.html', context)
-
-
-def api_request(request):
-
-    form = ApiRequestForm()
     context = {'form': form}
 
     # render the base.html which contains the modal
-    html_form = render_to_string('app/api_access.html', context, request=request)
+    data['html_form'] = render_to_string('app/api_access.html', context, request=request)
 
-    return JsonResponse({'html_form': html_form})
+    
+
+    return JsonResponse(data)
 
 
 def cameras(request):
