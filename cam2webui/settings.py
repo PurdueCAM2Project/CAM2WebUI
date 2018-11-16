@@ -50,7 +50,7 @@ except KeyError as e:
     exit()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not IS_RPODUCTION_SITE
+# DEBUG = not IS_RPODUCTION_SITE
 
 # Defines which sites are allowed to display the site
 ALLOWED_HOSTS = [
