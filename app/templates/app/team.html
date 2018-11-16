@@ -94,7 +94,7 @@
                     <div class="row" style="flex-wrap: wrap; justify-content: center;">
                         {% for members in director_list %}
                         {% if members.subteam == subteams and members.iscurrentmember %} 
-                        <div class="col-sm-2" style = "padding: 0px 0px">
+                        <div class="col-sm-2" style = "padding: 10px 10px">
                         <div class="card shadow">
                             <img src="{{ members.image_url }}" alt="{{ members.name }}">
                             <div class="card-body">
@@ -108,7 +108,7 @@
                         {% endfor %}
                         {% for members in members_list %}
                         {% if members.subteam == subteams and members.iscurrentmember and not members.isdirector %} 
-                        <div class="col-sm-2" style = "padding: 0px 0px">
+                        <div class="col-sm-2" style = "padding: 10px 10px">
                         <div class="card shadow">
                             <img src="{{ members.image_url }}" alt="{{ members.name }}">
                             <div class="card-body">
@@ -121,8 +121,10 @@
                         {% endif %}
                         {% endfor %}                           
                    </div>
+                    <br>
                 </div>
         </div>
+        <br>
         {% endifnotequal %} 
         {% endfor %}
 
