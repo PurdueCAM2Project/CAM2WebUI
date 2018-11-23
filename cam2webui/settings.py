@@ -17,7 +17,7 @@ BASE_DIR =  os.path.dirname(PROJECT_ROOT)
 # Environment Variables Import
 try:
     # Does the site runs on production site or tested locally
-    IS_RPODUCTION_SITE = bool(os.environ['IS_PRODUCTION_SITE'] == "True")
+    IS_PRODUCTION_SITE = bool(os.environ['IS_PRODUCTION_SITE'] == "True")
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
     # Database URLS
@@ -28,7 +28,7 @@ try:
     else:
         GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
     # Development Site Protection
-    if not IS_RPODUCTION_SITE:
+    if not IS_PRODUCTION_SITE:
         BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
         BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
     # Github Auth
@@ -50,7 +50,7 @@ except KeyError as e:
     exit()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = not IS_RPODUCTION_SITE
+DEBUG = not IS_PRODUCTION_SITE
 
 # Defines which sites are allowed to display the site
 ALLOWED_HOSTS = [
@@ -108,7 +108,7 @@ MIDDLEWARE = [
 # Basic auth
 # https://djangosnippets.org/snippets/2468/
 
-if not IS_RPODUCTION_SITE:
+if not IS_PRODUCTION_SITE:
     MIDDLEWARE.extend(['app.middleware.basicauth.BasicAuthMiddleware'])
 
 ROOT_URLCONF = 'cam2webui.urls'
@@ -228,7 +228,7 @@ SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/oauthinfo/'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 #Email system
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' if IS_RPODUCTION_SITE \
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' if IS_PRODUCTION_SITE \
                 else 'django.core.mail.backends.console.EmailBackend'
 EMAIL_USE_SSL = True
 SERVER_EMAIL = EMAIL_HOST_USER
@@ -236,6 +236,6 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Release settings
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') if IS_RPODUCTION_SITE else None
-SECURE_BROWSER_XSS_FILTER = IS_RPODUCTION_SITE
-SECURE_SSL_REDIRECT = IS_RPODUCTION_SITE
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') if IS_PRODUCTION_SITE else None
+SECURE_BROWSER_XSS_FILTER = IS_PRODUCTION_SITE
+SECURE_SSL_REDIRECT = IS_PRODUCTION_SITE
