@@ -1,6 +1,8 @@
 from ..forms import ReportForm
 from ..models import ReportedCamera
+from django.contrib import messages
 from django.shortcuts import render
+import datetime
 
 # Get an instance of a logger
 import logging

@@ -8,7 +8,7 @@ docs/_static/
 docs/_templates/
 
 # Django collect static folders
-cam2webui/static/
+cam2/webui/static/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -100,9 +100,7 @@ ENV/
 # Rope project settings
 .ropeproject
 
-<<<<<<< HEAD
 # .json file
 *.json
-=======
+
 .DS_Store
->>>>>>> a6b8b82b9f0eff046aeff4ffff54eba5453b0d8c

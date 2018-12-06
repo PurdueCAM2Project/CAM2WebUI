@@ -19,7 +19,7 @@ import sys
 import os
 import urllib
 import requests
-import datetime
+import json
 
 def register(request):
     """Renders content for the Registration form page

@@ -4,7 +4,6 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
-from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 from email_system.forms import MailForm, ContactForm, JoinForm
 from email_system.models import ContactModel, JoinModel
 from django.contrib.admin.views.decorators import staff_member_required
@@ -15,6 +14,9 @@ import urllib
 import sys
 import datetime
 from django.conf import settings
+
+EMAIL_HOST_USER = settings.EMAIL_HOST_USER
+MANAGER_EMAIL = settings.MANAGER_EMAIL
 
 @staff_member_required
 def admin_send_email(request):

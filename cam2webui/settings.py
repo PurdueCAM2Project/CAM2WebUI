@@ -23,10 +23,7 @@ try:
     # Database URLS
     DATABASE_URL = os.environ["DATABASE_URL"]
     # Recaptcha Keys
-    if 'test' in sys.argv:
-        GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_TEST_PRIVATE_KEY']
-    else:
-        GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
+    GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
     # Development Site Protection
     if not IS_PRODUCTION_SITE:
         BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
@@ -111,7 +108,7 @@ MIDDLEWARE = [
 if not IS_PRODUCTION_SITE:
     MIDDLEWARE.extend(['app.middleware.basicauth.BasicAuthMiddleware'])
 
-ROOT_URLCONF = 'cam2webui.urls'
+ROOT_URLCONF = __package__+'.urls'
 
 TEMPLATES = [
     {
@@ -142,7 +139,7 @@ STATICFILES_DIRS = (
 )
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
-WSGI_APPLICATION = 'cam2webui.wsgi.application'
+WSGI_APPLICATION = __package__+'.wsgi.application'
 
 # Logging
 LOGGING = {
@@ -168,7 +165,7 @@ LOGGING = {
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 # Update database configuration with $DATABASE_URL.
 
-if 'test' in sys.argv:
+if 'postgres://' not in DATABASE_URL:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
