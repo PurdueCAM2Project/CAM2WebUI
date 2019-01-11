@@ -73,9 +73,7 @@ class AdditionalForm(forms.ModelForm):
         super(AdditionalForm, self).__init__(*args, **kwargs)
 
         for key in self.fields:
-            print("K"+key)
             if key not in self.optional_fields:
-                print(key)
                 self.fields[key].required = True
 
 class LoginForm(forms.Form):
