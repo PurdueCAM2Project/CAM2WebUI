@@ -49,7 +49,7 @@
         {% endfor %}
 
         <hr class="divide-divider">
-        <h3>Team Leaders</h3>
+        <h3 style="text-align: center;">Team Leaders</h3>
         <hr>
         <div class ="container" style="justify-content: center;">
         {% if leader_list is not None %}
@@ -58,11 +58,11 @@
                     <div class="row">
                 {% endif %}
 
-            <div class="col-md-3 col-sm-6">
+            <div class="col-md-3 col-sm-6" style="justify-content: center;">
                 <div class="card p-5 shadow" style="width: 400px; height: auto">
                     <img class="rounded leaders" style=" height: 20rem; object-fit: cover;" src="{{ leader.leaderimg }}" alt="{{ leader.leadername }}">
                     <hr>
-                    <div class="card-body ">
+                    <div class="card-body">
                         <h4 class="card-title">{{ leader.leadername }}</h4>
                         <p class="card-text">{{ leader.leadertitle }}</p>
                         <a href="{{ leader.leaderpagelink }}" class="btn btn-primary">See Profile</a>
@@ -82,7 +82,9 @@
         </div>
         <br>
 
-            <hr class="divide-divider">
+        <hr class="divide-divider">
+        <h3 style="text-align: center;">Current Team Members</h3>
+		<hr>
             {% for subteams in subteams_list %}
             {% ifnotequal subteams|stringformat:"s" "None" %}
             <div class="card border-light shadow" style ="flex-wrap: wrap; justify-content: center;">
