@@ -542,6 +542,7 @@ def change_password(request):
     return render(request, 'app/change_password.html', {'passwordform': passwordform})
 """
 
+@login_required
 def oauthinfo(request):
     """Renders a form for additional content for users authenticated with Github or Google
 
@@ -565,8 +566,6 @@ def oauthinfo(request):
             save_it = form.save(commit = False)
             save_it.user = user
             save_it.save()
-            user.is_active = True
-            user.save()
             return redirect('index')
         else:
             return render(request, 'app/oauthinfo.html', {'form2': form})
@@ -576,8 +575,6 @@ def oauthinfo(request):
             optional = RegisterUser.objects.get(user=user)
             return redirect('index')
         except:# If cannot find RegisterUser object(social login users), create one
-            user.is_active = False
-            user.save()
             form2 = AdditionalForm()
             return render(request, 'app/oauthinfo.html', {'form2': form2})
 
