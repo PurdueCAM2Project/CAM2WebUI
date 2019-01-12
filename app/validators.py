@@ -4,7 +4,9 @@ from django.core.validators import validate_email
 from django.core.validators import MaxValueValidator
 import re
 from datetime import datetime
+import warnings
 
+# Deprecated. Use URLField instead.
 def validateURL (value):
 	"""Checks a value and determines if it is valid as a URL
 
@@ -22,6 +24,7 @@ def validateURL (value):
 		ValidationError: value does not match a valid URL pattern
 	
 	"""
+	warnings.warn("validateURL is deprecated, use URLField instead", DeprecationWarning)
 	url_validator = URLValidator()
 	try:
 		url_validator(value)

@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from app.validators import validateURL, validateEmail,validateMonth, validateYear, validateName 
+from .validators import validateURL, validateEmail,validateMonth, validateYear, validateName 
 
 class Homepage(models.Model):
     """Django model for the homepage 
@@ -15,11 +15,14 @@ class Homepage(models.Model):
          slidenum: A IntegerField for the number of the current slide. 
 
     """
+    class Meta:
+        verbose_name = 'homepage slide'
+        ordering = ['slidenum']
     slideheader = models.CharField(verbose_name='Slide Header', max_length=500, blank=True)
     
     slidedescrb = models.CharField(verbose_name='Slide Description', max_length=300, blank=True, null=True)
 
-    slidedescrb1 = models.CharField(verbose_name='Slide Description', max_length=300, blank=True, null=True)
+    slidedescrb1 = models.CharField(verbose_name='Slide Subdescription', max_length=300, blank=True, null=True)
     
     slidenum = models.IntegerField(verbose_name='Slide Number', blank=False, null=True)
     
@@ -79,8 +82,8 @@ class FAQ(models.Model):
         answer: A CharField for the answer to that question
 
     """
-    question = models.CharField(verbose_name='FAQ question', max_length=200)
-    answer = models.CharField(verbose_name='FAQ answer', max_length=500)
+    question = finput(models.CharField(verbose_name='FAQ question', max_length=200), AdminTextareaWidget)
+    answer = finput(models.CharField(verbose_name='FAQ answer', max_length=500), AdminTextareaWidget)
     def __str__(self):
         return "{0}".format(self.question)
 
@@ -96,9 +99,12 @@ class History(models.Model):
         event: A CharField for a description of the event
 
     """
+    class Meta:
+        verbose_name = 'past event'
+        ordering = ['-year', '-month']
     month = models.PositiveIntegerField(validators=[validateMonth])
     year = models.PositiveIntegerField(validators=[validateYear])
-    event = models.CharField(verbose_name='History Details', max_length=500)
+    event = finput(models.CharField(verbose_name='History Details', max_length=500), AdminTextareaWidget)
     def __str__(self):
         event = self.event[:50] if len(self.event) > 50 else self.event
         return "{0}/{1} {2}...".format(self.month, self.year, event)
@@ -114,10 +120,10 @@ class Publication(models.Model):
         paperlink: A CharField for a link to the paper, validated as a URL
 
     """
-    paperinfo = models.CharField(verbose_name='Publication Details', max_length=1500)
+    paperinfo = finput(models.CharField(verbose_name='Publication Details', max_length=1500), AdminTextareaWidget)
     conference = models.CharField(verbose_name='Publication Conference', blank=True, null=True, max_length=1500)
-    authors = models.CharField(verbose_name='Publication Authors',  blank=True, null=True, max_length=1500)
-    paperlink = models.CharField(verbose_name='Publication Paper Link (Optional)', max_length=300, blank=True, null=True, validators=[validateURL])
+    authors = models.CharField(verbose_name='Publication Authors', blank=True, null=True, max_length=1500)
+    paperlink = finput(models.CharField(verbose_name='Publication Paper Link', max_length=300, blank=True, null=True), AdminURLFieldWidget)
     def __str__(self):
         paperinfo = self.paperinfo[:100] if len(self.paperinfo) > 100 else self.paperinfo
         return "{0}...".format(paperinfo)
@@ -132,7 +138,9 @@ class Team(models.Model):
         teamimg: A CharField for a link to an image, validated as an URL
 
     """
-    teamimg = models.CharField(verbose_name='Team Image', max_length=300, validators=[validateURL])
+    class Meta:
+        verbose_name = 'team image'
+    teamimg = finput(models.CharField(verbose_name='Team Image', max_length=300), AdminURLFieldWidget)
 
 
 class Leader(models.Model):
@@ -147,10 +155,10 @@ class Leader(models.Model):
         leaderpagelink: A CharField for a link to the leader's website, validated as an URL
 
     """
-    leaderimg = models.CharField(verbose_name='Leader Image', max_length=300, validators=[validateURL])
+    leaderimg = finput(models.CharField(verbose_name='Leader Image', max_length=300), AdminURLFieldWidget)
     leadertitle = models.CharField(verbose_name='Leader Title', max_length=50)
     leadername = models.CharField(verbose_name='Leader Name', max_length=50, validators=[validateName])
-    leaderpagelink = models.CharField(verbose_name='Leader Page Link (Optional)', max_length=300, blank=True, null=True, validators=[validateURL])
+    leaderpagelink = finput(models.CharField(verbose_name='Leader Page Link', max_length=300, blank=True, null=True), AdminURLFieldWidget)
     def __str__(self):
         return "{0}".format(self.leadername)
 
@@ -168,8 +176,8 @@ class Collab(models.Model):
     """
     collabname = models.CharField(verbose_name='Collaborator', max_length=100)
     collabdescr = models.CharField(verbose_name='Description', max_length=500, blank=True, null=True)
-    collablink = models.CharField(verbose_name='Link to Site', max_length=300, blank=True, null=True, validators=[validateURL])
-    collabimg = models.CharField(verbose_name='Collaborator Logo', max_length=300, blank=True, null=True, validators=[validateURL])
+    collablink = finput(models.CharField(verbose_name='Link to Site', max_length=300, blank=True, null=True), AdminURLFieldWidget)
+    collabimg = finput(models.CharField(verbose_name='Collaborator Logo', max_length=300, blank=True, null=True), AdminURLFieldWidget)
     def __str__(self):
         return "{0}".format(self.collabname)
     
@@ -187,8 +195,8 @@ class Sponsor(models.Model):
     """
     sponname = models.CharField(verbose_name='Sponsor', max_length=100, blank=True)
     spondescr = models.CharField(verbose_name='Description', max_length=500, blank=True, null=True)
-    sponlink = models.CharField(verbose_name='Link to Site', max_length=300, blank=True, null=True, validators=[validateURL])
-    logolink = models.CharField(verbose_name='Link to Logo', max_length=300, blank=True, null=True, validators=[validateURL])
+    sponlink = finput(models.CharField(verbose_name='Link to Site', max_length=300, blank=True, null=True), AdminURLFieldWidget)
+    logolink = finput(models.CharField(verbose_name='Link to Logo', max_length=300, blank=True, null=True), AdminURLFieldWidget)
     def __str__(self):
         return "{0}".format(self.sponname)
     
@@ -227,7 +235,7 @@ class Location(models.Model):
     def __str__(self):
         return "{0}".format(self.officename)
 
-
+# Deprecated. Use TeamMember instead.
 class Member(models.Model):
     """Django model for team members
     
@@ -241,7 +249,7 @@ class Member(models.Model):
 
     
     membername = models.CharField(verbose_name='Member Name', max_length=50, validators=[validateName])
-    memberimg = models.CharField(verbose_name='Member Image', max_length=300, blank=True, null=True, validators=[validateURL])
+    memberimg = finput(models.CharField(verbose_name='Member Image', max_length=300, blank=True, null=True), AdminURLFieldWidget)
     iscurrentmember = models.BooleanField(verbose_name='Is Current Member')
 
     TEAM = (
@@ -277,7 +285,7 @@ class Poster(models.Model):
         posterimg: A CharField for an image URL for the poster.
     """
 
-    posterimg = models.CharField(verbose_name='Poster Image', max_length=300, validators=[validateURL])
+    posterimg = finput(models.CharField(verbose_name='Poster Image', max_length=300), AdminURLFieldWidget)
 
 class ReportedCamera(models.Model):
     """Django model for cameras reported as having missing images
@@ -289,7 +297,7 @@ class ReportedCamera(models.Model):
         reporttime: A DateField for the time at which the camera was reported.
     """
     cameraID = models.CharField(verbose_name='Camera ID', max_length=100)
-    reporttime = models.DateTimeField(blank=True, null=True)
+    reporttime = models.DateTimeField(verbose_name='Report Time', blank=True, null=True)
     username = models.CharField(verbose_name='Username', blank=True, null=True, max_length=100)
     def __str__(self):
         return "{0}".format(self.cameraID)

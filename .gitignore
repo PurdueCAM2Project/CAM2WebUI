@@ -1,5 +1,5 @@
 # Custom ignores
-db.sqlite3
+*.sqlite3
 .idea/
 
 # sphinx document build folders
@@ -8,7 +8,7 @@ docs/_static/
 docs/_templates/
 
 # Django collect static folders
-cam2/webui/static/
+cam2webui/static/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -99,8 +99,5 @@ ENV/
 
 # Rope project settings
 .ropeproject
-
-# .json file
-*.json
 
 .DS_Store

@@ -1,0 +1,119 @@
+[
+    {
+        "model": "app.homepage",
+        "pk": 1,
+        "fields": {
+            "slideheader": "Welcome to CAM\u00b2",
+            "slidedescrb": "Continuous Analysis of Many CAMeras",
+            "slidedescrb1": "Discover, Present, Analyze Real-Time Data from Worldwide Sources",
+            "slidenum": 0,
+            "slidelink": "https://drive.google.com/uc?id=1r-h52QCLjSeZNRENMzaRKav1dQqtr4A3"
+        }
+    },
+    {
+        "model": "app.faq",
+        "pk": 1,
+        "fields": {
+            "question": "Do you retrieve data from password-protected cameras?",
+            "answer": "Only if the camera owner gives us the password. We will not guess the password of any camera."
+        }
+    },
+    {
+        "model": "app.faq",
+        "pk": 2,
+        "fields": {
+            "question": "Are you recording all data continuously?",
+            "answer": "No."
+        }
+    },
+    {
+        "model": "app.faq",
+        "pk": 3,
+        "fields": {
+            "question": "What do the cameras see?",
+            "answer": "Most cameras observe traffic or outdoor scenes."
+        }
+    },
+    {
+        "model": "app.faq",
+        "pk": 4,
+        "fields": {
+            "question": "Will you send me any email?",
+            "answer": "We intend to keep the email traffic low."
+        }
+    },
+    {
+        "model": "app.faq",
+        "pk": 5,
+        "fields": {
+            "question": "If I register, what do you do my data (such as my email address)?",
+            "answer": "Please read the privacy policy."
+        }
+    },
+    {
+        "model": "app.faq",
+        "pk": 6,
+        "fields": {
+            "question": "What do you do with the data? Are you tracking where I go?",
+            "answer": "We do not intend to indentify any individual. Thus, we do not know where you are."
+        }
+    },
+    {
+        "model": "app.faq",
+        "pk": 7,
+        "fields": {
+            "question": "I have cameras. Can I add my cameras to your site?",
+            "answer": "Not yet. We will add that feature soon."
+        }
+    },
+    {
+        "model": "app.faq",
+        "pk": 8,
+        "fields": {
+            "question": "What is the frame rate?",
+            "answer": "The frame rates, as well as the resolutions, vary based on the cameras."
+        }
+    },
+    {
+        "model": "app.faq",
+        "pk": 9,
+        "fields": {
+            "question": "Where do you get the data?",
+            "answer": "Universities, governments, and some other web sites."
+        }
+    },
+    {
+        "model": "app.team",
+        "pk": 1,
+        "fields": {
+            "teamimg": "https://drive.google.com/uc?id=1uKDeHx6FMIVY4uyQibGOpyG3UmUJ4emJ"
+        }
+    },
+    {
+        "model": "app.team",
+        "pk": 2,
+        "fields": {
+            "teamimg": "https://drive.google.com/uc?id=184Iq_VZS8cTnrTpS3TeLb1DdY-Zy3_ON"
+        }
+    },
+    {
+        "model": "app.leader",
+        "pk": 1,
+        "fields": {
+            "leaderimg": "https://drive.google.com/uc?id=1F4Cjrc2SxyyiBDSRBwdGs24Gy0DrfCU0",
+            "leadertitle": "Team Manager",
+            "leadername": "George K. Thiruvathukal",
+            "leaderpagelink": "http://luc.edu/cs/people/ftfaculty/gkt.shtml"
+        }
+    },
+    {
+        "model": "app.leader",
+        "pk": 2,
+        "fields": {
+            "leaderimg": "https://drive.google.com/uc?id=13qE7JxFwB2xuVEEDDvoMK9oEkOf5DWNU",
+            "leadertitle": "Project Director",
+            "leadername": "Yung Hsiang Lu",
+            "leaderpagelink": "https://engineering.purdue.edu/HELPS/Faculty/yunglu.html"
+        }
+    }
+]

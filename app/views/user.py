@@ -163,6 +163,10 @@ def profile(request):
         github_login = user.social_auth.get(provider='github')
     except UserSocialAuth.DoesNotExist:
         github_login = None
+    try:
+        google_login = user.social_auth.get(provider='google-oauth2')
+    except UserSocialAuth.DoesNotExist:
+        google_login = None
 
     #initialize forms
     app_form = AppForm()
@@ -228,6 +232,7 @@ def profile(request):
         #messages.error(request, 'Something went wrong. Please try again or contact us!')
     return render(request, 'app/profile.html', {
         'github_login': github_login,
+        'google_login': google_login,
         'app_form': app_form,
         'apps': apps,
         'infoForm': infoForm,

@@ -78,8 +78,6 @@ IGNORABLE_404_URLS = [
 INSTALLED_APPS = [
 
 	'admin_view_permission',
-    'email_system',
-    'app.apps.AppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -87,7 +85,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'email_system',
     'social_django',
+    'app',
 ]
 
 # Middleware definition
@@ -165,7 +165,7 @@ LOGGING = {
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 # Update database configuration with $DATABASE_URL.
 
-if 'postgres://' not in DATABASE_URL:
+if len(sys.argv) > 1 and sys.argv[1] == 'test':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -174,13 +174,8 @@ if 'postgres://' not in DATABASE_URL:
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': "django.db.backends.postgresql",
-            'client_encoding': 'UTF8',
-            'default_transaction_isolation': 'read committed'
-        }
+        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     }
-    DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
 
 
 # Password validation
