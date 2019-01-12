@@ -175,10 +175,7 @@ def profile(request):
     try:
         optional = RegisterUser.objects.get(user=user)
     except:# If cannot find RegisterUser object(social login users), create one
-        add_form = AdditionalForm({})
-        optional = add_form.save(commit=False)
-        optional.user = user
-        optional.save()
+        return redirect('/oauthinfo')
     infoForm = AdditionalForm(instance=optional)#get form with info of a specific instance
 
 
@@ -239,6 +236,7 @@ def profile(request):
         'emailForm': emailForm,
     })
 
+@login_required
 def oauthinfo(request):
     """Renders a form for additional content for users authenticated with Github or Google
 
@@ -254,19 +252,23 @@ def oauthinfo(request):
     Returns:
         A render that displays the page for externally authenticated users to add information about themselves.
     """
-    if request.method == 'POST':
-        return redirect('index')
+    user = request.user
 
-    else:
-        user = request.user
-        if user.is_active:
+    if request.method == 'POST':
+        form = AdditionalForm(request.POST, request.FILES)
+        if form.is_valid():
+            save_it = form.save(commit = False)
+            save_it.user = user
+            save_it.save()
             return redirect('index')
         else:
-            try:
-                github_login = user.social_auth.get(provider='github')
-            except UserSocialAuth.DoesNotExist:
-                github_login = None
+            return render(request, 'app/oauthinfo.html', {'form2': form})
 
+    else:
+        try:
+            optional = RegisterUser.objects.get(user=user)
+            return redirect('index')
+        except:# If cannot find RegisterUser object(social login users), create one
             form2 = AdditionalForm()
 
             return render(request, 'app/oauthinfo.html', {'form2': form2})

@@ -64,6 +64,18 @@ class AdditionalForm(forms.ModelForm):
         model = RegisterUser
         exclude = ('user', 'email_confirmed')
 
+    optional_fields = ('about',)
+
+    # Make all fields that are meant to be required, required to prevent fake account creation
+    # This was done here instead of in the models to prevent existing accounts without this information
+    # From being unusable, giving them a buffer window to enter the information in themselves.
+    def __init__(self, *args, **kwargs):
+        super(AdditionalForm, self).__init__(*args, **kwargs)
+
+        for key in self.fields:
+            if key not in self.optional_fields:
+                self.fields[key].required = True
+
 class LoginForm(forms.Form):
     """Django form for user login
     

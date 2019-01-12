@@ -115,5 +115,19 @@
             "leadername": "Yung Hsiang Lu",
             "leaderpagelink": "https://engineering.purdue.edu/HELPS/Faculty/yunglu.html"
         }
+    },
+    {
+        "model": "app.location",
+        "pk": 1,
+        "fields": {
+            "officename": "CAM2 Lab",
+            "officeroom": "220C",
+            "officebldg": "Electrical Engineering",
+            "officeaddr": "465 Northwestern Ave",
+            "officecity": "West Lafayette",
+            "officestate": "IN",
+            "officezip": "47906",
+            "officenum": "765-494-5298"
+        }
     }
 ]
