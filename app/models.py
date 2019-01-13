@@ -6,10 +6,10 @@ from django.dispatch import receiver
 from .validators import validateURL, validateEmail,validateMonth, validateYear, validateName 
 
 def finput(field, form_class):
+    mf = field.formfield
     def formfield(**kwargs):
-        if (kwargs['widget'] is AdminTextInputWidget):
-            kwargs['widget'] = form_class
-        return models.CharField.formfield(field, **kwargs)
+        kwargs['widget'] = form_class
+        return mf(**kwargs)
     field.formfield = formfield
     return field
 
@@ -312,8 +312,8 @@ class ReportedCamera(models.Model):
 
 class Video(models.Model):
     """Django Model for all CAM2 team videos"""
-    title = models.TextField()
-    user = models.TextField()
+    title = finput(models.TextField(), AdminTextInputWidget)
+    user = finput(models.TextField(), AdminTextInputWidget)
     link = models.URLField()
     description = models.TextField()
     def __str__(self):
@@ -328,7 +328,7 @@ class Subteam(models.Model):
 
 
 class TeamMember(models.Model):
-    name = models.TextField()
+    name = finput(models.TextField(), AdminTextInputWidget)
     image_url = models.URLField(blank=True)
     subteam = models.ForeignKey('Subteam', on_delete=models.CASCADE)
     iscurrentmember = models.BooleanField(default=True,verbose_name='Is Current Member')
