@@ -154,23 +154,11 @@ def contact(request):
                 csub = request.POST.get('subject')
                 msg = request.POST.get('message')
                 messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
-                if 'test' in sys.argv:
-                    sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-                else:
-                    sitekey = os.environ['RECAPTCHA_SITE_KEY']
-        else:
-            if 'test' in sys.argv:
-                sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-            else:
-                sitekey = os.environ['RECAPTCHA_SITE_KEY']
 
     else:
         form = ContactForm()
-        
-        if 'test' in sys.argv:
-            sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-        else:
-            sitekey = os.environ['RECAPTCHA_SITE_KEY']
+
+    sitekey = settings.RECAPTCHA_SITE_KEY
     
     return render(request, "email_system/contact.html", {'form': form, 'sitekey': sitekey, 'cname': cname, 'cemail' : cemail, 'csub' : csub, 'msg' : msg, })
 
@@ -243,22 +231,11 @@ def join(request):
                 jelse = request.POST.get('anythingElse')
 
                 messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
-                if 'test' in sys.argv:
-                    sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-                else:
-                    sitekey = os.environ['RECAPTCHA_SITE_KEY']
-        else:
-            if 'test' in sys.argv:
-                sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-            else:
-                sitekey = os.environ['RECAPTCHA_SITE_KEY']
 
     else:
         form = JoinForm()
-        if 'test' in sys.argv:
-            sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-        else:
-            sitekey = os.environ['RECAPTCHA_SITE_KEY']
+
+    sitekey = settings.RECAPTCHA_SITE_KEY
 
     return render(request, "email_system/join.html", {'form': form, 'sitekey': sitekey, 'jname' : jname, 'jemail' : jemail, 'jmajor' : jmajor, 'jgradDate' : jgradDate, 'jcourses' : jcourses, 'jlang' : jlang, 'jtools' : jtools, 'jy' : jy, 'jelse' : jelse})
 

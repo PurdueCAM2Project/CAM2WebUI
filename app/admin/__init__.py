@@ -4,6 +4,10 @@ from django.contrib import admin
 from social_django.models import Association, Nonce, UserSocialAuth
 
 
+# Name the site
+admin.site.site_header = 'CAM² Website Administration'
+admin.site.site_title = 'CAM² Website Administration'
+
 # Hide irrelevent Social Django models
 admin.site.unregister(Association)
 admin.site.unregister(Nonce)

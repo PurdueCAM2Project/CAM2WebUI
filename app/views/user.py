@@ -77,22 +77,12 @@ def register(request):
                 return redirect('email_confirmation_sent')
             else:
                 messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
-                if 'test' in sys.argv:
-                    sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-                else:
-                    sitekey = os.environ['RECAPTCHA_SITE_KEY']
-        else:
-            if 'test' in sys.argv:
-                sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-            else:
-                sitekey = os.environ['RECAPTCHA_SITE_KEY']
+
     else:
         form1 = RegistrationForm()
         form2 = AdditionalForm()
-        if 'test' in sys.argv:
-            sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-        else:
-            sitekey = os.environ['RECAPTCHA_SITE_KEY']
+
+    sitekey = settings.RECAPTCHA_SITE_KEY
 
     return render(request, 'app/register.html', {'form1': form1, 'form2': form2, 'sitekey': sitekey})
 

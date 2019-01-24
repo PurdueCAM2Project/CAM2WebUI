@@ -9,38 +9,56 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 """
 import os, sys, dj_database_url, re
+import configparser
+from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR =  os.path.dirname(PROJECT_ROOT)
 
+# Get Environment Variables from .env
+my_env = os.environ.copy()
+parser = configparser.ConfigParser({k: v.replace('$', '$$') for k, v in os.environ.items()},
+         interpolation=configparser.ExtendedInterpolation())
+def defaultSect(fp): yield '[DEFAULT]\n'; yield from fp
+settingsFile = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(settingsFile):
+    with open(settingsFile) as stream:
+        parser.read_file(defaultSect(stream))
+        for k, v in parser["DEFAULT"].items():
+            my_env.setdefault(k.upper(), v)
+
 # Environment Variables Import
 try:
     # Does the site runs on production site or tested locally
-    IS_PRODUCTION_SITE = bool(os.environ['IS_PRODUCTION_SITE'] == "True")
+    IS_PRODUCTION_SITE = bool(my_env['IS_PRODUCTION_SITE'] == "True")
     # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+    SECRET_KEY = my_env['DJANGO_SECRET_KEY']
     # Database URLS
-    DATABASE_URL = os.environ["DATABASE_URL"]
+    DATABASE_URL = my_env["DATABASE_URL"]
     # Recaptcha Keys
-    GOOGLE_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
+    GOOGLE_RECAPTCHA_SECRET_KEY = my_env['RECAPTCHA_PRIVATE_KEY']
     # Development Site Protection
     if not IS_PRODUCTION_SITE:
-        BASICAUTH_USERNAME = os.environ['BASICAUTH_USERNAME']
-        BASICAUTH_PASSWORD = os.environ['BASICAUTH_PASSWORD']
+        BASICAUTH_USERNAME = my_env['BASICAUTH_USERNAME']
+        BASICAUTH_PASSWORD = my_env['BASICAUTH_PASSWORD']
     # Github Auth
-    SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_KEY']
-    SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_SECRET']
+    SOCIAL_AUTH_GITHUB_KEY = my_env['GITHUB_KEY']
+    SOCIAL_AUTH_GITHUB_SECRET = my_env['GITHUB_SECRET']
     # Google API KEY and Auth
-    GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
-    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['GOOGLE_LOGIN_KEY']
-    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['GOOGLE_LOGIN_SECRET']
+    GOOGLE_API_KEY = my_env['GOOGLE_API_KEY']
+    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = my_env['GOOGLE_LOGIN_KEY']
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = my_env['GOOGLE_LOGIN_SECRET']
     # Email Smtp Settings
-    EMAIL_HOST = os.environ['EMAIL_HOST']
-    EMAIL_PORT = os.environ['EMAIL_PORT']
-    EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
-    EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
-    MANAGER_EMAIL = os.environ['MANAGER_EMAIL']
+    EMAIL_HOST = my_env['EMAIL_HOST']
+    EMAIL_PORT = my_env['EMAIL_PORT']
+    EMAIL_HOST_USER = my_env['EMAIL_HOST_USER']
+    EMAIL_HOST_PASSWORD = my_env['EMAIL_HOST_PASSWORD']
+    MANAGER_EMAIL = my_env['MANAGER_EMAIL']
+    if 'test' in sys.argv:
+        RECAPTCHA_SITE_KEY = my_env['RECAPTCHA_TEST_SITE_KEY']
+    else:
+        RECAPTCHA_SITE_KEY = my_env['RECAPTCHA_SITE_KEY']
 except KeyError as e:
     print('Lacking Environment Variables: ' + str(e))
     print('Visit https://purduecam2project.github.io/CAM2WebUI/basicSetup/localsite.html#exporting-config-vars for details')
