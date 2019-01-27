@@ -167,12 +167,12 @@
            <div itemprop="articleBody">
             
   <div class="section" id="admin">
-<span id="admin"></span><h1>Admin<a class="headerlink" href="#admin" title="Permalink to this headline">¶</a></h1>
+<h1>Admin<a class="headerlink" href="#admin" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="redefine-user-admin">
-<span id="redefine-user-admin"></span><h2>1. Redefine User Admin<a class="headerlink" href="#redefine-user-admin" title="Permalink to this headline">¶</a></h2>
+<h2>1. Redefine User Admin<a class="headerlink" href="#redefine-user-admin" title="Permalink to this headline">¶</a></h2>
 <p>In order to add more admin actions related to User object, we need to redefine the User Admin model.</p>
 <div class="section" id="inline">
-<span id="inline"></span><h3>Inline<a class="headerlink" href="#inline" title="Permalink to this headline">¶</a></h3>
+<h3>Inline<a class="headerlink" href="#inline" title="Permalink to this headline">¶</a></h3>
 <p>model inline combines 2 model so that info from RegisterUser can be modified and displayed with user info
 first, create a class for inline model in <code class="docutils literal"><span class="pre">app/admin.py</span></code></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserInline</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">TabularInline</span><span class="p">):</span>
@@ -220,20 +220,20 @@ And add the action to <code class="docutils literal"><span class="pre">actions</
 </div>
 </div>
 <div class="section" id="admin-action-of-send-email-from-admin">
-<span id="admin-action-of-send-email-from-admin"></span><h2>2. Admin action of Send Email from Admin<a class="headerlink" href="#admin-action-of-send-email-from-admin" title="Permalink to this headline">¶</a></h2>
+<h2>2. Admin action of Send Email from Admin<a class="headerlink" href="#admin-action-of-send-email-from-admin" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="goal">
-<span id="goal"></span><h3>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h3>
+<h3>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h3>
 <p>Allow admin to send email to specific users.
 procedure:</p>
 <ol class="simple">
 <li>Log in as admin, and in the main page, go to Users.</li>
 <li>Using checkbox to choose recipient</li>
-<li>Select &#8220;Email Users&#8221; in action</li>
-<li>Click &#8220;Go&#8221; to direct to a web page for admin to input subject and message, and pass a list of user id through session.</li>
+<li>Select &#8220;Email Users&#8220; in action</li>
+<li>Click &#8220;Go&#8220; to direct to a web page for admin to input subject and message, and pass a list of user id through session.</li>
 </ol>
 </div>
 <div class="section" id="approach">
-<span id="approach"></span><h3>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h3>
+<h3>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h3>
 <p>We will add a new action to User admin called <code class="docutils literal"><span class="pre">email</span> <span class="pre">user</span></code> to redirect the page to our <code class="docutils literal"><span class="pre">admin_send_email</span></code> page, and pass the id of selected user to <code class="docutils literal"><span class="pre">admin_send_email</span></code> page.</p>
 <p>In <code class="docutils literal"><span class="pre">app/admin.py</span></code>
 First we write the action. An admin action takes 3 parameters, self, request and queryset.
@@ -246,7 +246,7 @@ The queryset contains every user object we selected under User admin page.</p>
         <span class="n">user_id_selected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>we will then use a &#8220;request.session](https://docs.djangoproject.com/en/1.11/topics/http/sessions/)&#8221;
+<p>we will then use a &#8220;request.session](https://docs.djangoproject.com/en/1.11/topics/http/sessions/)&#8220;
 to pass the <code class="docutils literal"><span class="pre">email_selected</span></code> and redirect admin to <code class="docutils literal"><span class="pre">admin_send_email</span></code> page:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#open a session and render the email_selected to admin_send_email view</span>
     <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;user_id_selected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_id_selected</span>
@@ -262,19 +262,19 @@ to pass the <code class="docutils literal"><span class="pre">email_selected</spa
 </div>
 </div>
 <div class="section" id="export-user-data-to-csv">
-<span id="export-user-data-to-csv"></span><h2>3. Export User Data to CSV<a class="headerlink" href="#export-user-data-to-csv" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="goal">
-<span id="id1"></span><h3>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h3>
+<h2>3. Export User Data to CSV<a class="headerlink" href="#export-user-data-to-csv" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Goal<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>To create an admin action that download a CSV file containing info of selected user(s).</p>
 </div>
 <div class="section" id="useradmin-class-and-admin-action">
-<span id="useradmin-class-and-admin-action"></span><h3>UserAdmin class and Admin action<a class="headerlink" href="#useradmin-class-and-admin-action" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://docs.djangoproject.com/en/1.11/howto/outputting-csv/">Django Documentation on &#8220;Outputting CSV with Django&#8221;</a></p>
+<h3>UserAdmin class and Admin action<a class="headerlink" href="#useradmin-class-and-admin-action" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://docs.djangoproject.com/en/1.11/howto/outputting-csv/">Django Documentation on &#8220;Outputting CSV with Django&#8220;</a></p>
 <p>To see how to add actions to Model and how to modify<code class="docutils literal"><span class="pre">UserAdmin</span></code>,
 see <a class="reference external" href="https://purduecam2project.github.io/CAM2WebUI/implementationDetail/Email.html#admin-action">here</a>.</p>
 </div>
 <div class="section" id="action-function">
-<span id="action-function"></span><h3>Action Function<a class="headerlink" href="#action-function" title="Permalink to this headline">¶</a></h3>
+<h3>Action Function<a class="headerlink" href="#action-function" title="Permalink to this headline">¶</a></h3>
 <p>Go to <code class="docutils literal"><span class="pre">app/admin.py</span></code>, find <code class="docutils literal"><span class="pre">actions</span></code> in class <code class="docutils literal"><span class="pre">UserAdmin</span></code>, add the new function <code class="docutils literal"><span class="pre">export_csv</span></code>.</p>
 <p>And create the function <strong>before</strong> class <code class="docutils literal"><span class="pre">UserAdmin</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">export_csv</span><span class="p">(</span><span class="n">modeladmin</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
@@ -347,7 +347,7 @@ see <a class="reference external" href="https://purduecam2project.github.io/CAM2
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Purdue CAM2 Project Developers
-      Last updated on Nov 29, 2018.
+      Last updated on Jan 27, 2019.
 
     </p>
   </div>

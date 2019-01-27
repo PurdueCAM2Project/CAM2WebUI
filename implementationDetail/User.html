@@ -169,11 +169,11 @@
            <div itemprop="articleBody">
             
   <div class="section" id="user">
-<span id="user"></span><h1>User<a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h1>
+<h1>User<a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="user-registration">
-<span id="user-registration"></span><h2>1. User Registration<a class="headerlink" href="#user-registration" title="Permalink to this headline">¶</a></h2>
+<h2>1. User Registration<a class="headerlink" href="#user-registration" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="routing-the-urls">
-<span id="routing-the-urls"></span><h3>Routing the URLS<a class="headerlink" href="#routing-the-urls" title="Permalink to this headline">¶</a></h3>
+<h3>Routing the URLS<a class="headerlink" href="#routing-the-urls" title="Permalink to this headline">¶</a></h3>
 <p>Add the URL in <code class="docutils literal"><span class="pre">urlpatterns</span></code> in <code class="docutils literal"><span class="pre">app/urls.py</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span> 
     <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^register/$&#39;</span><span class="p">,</span> <span class="n">app_views</span><span class="o">.</span><span class="n">register</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;register&#39;</span><span class="p">),</span>
@@ -182,17 +182,17 @@
 </div>
 </div>
 <div class="section" id="creating-a-form">
-<span id="creating-a-form"></span><h3>Creating a form<a class="headerlink" href="#creating-a-form" title="Permalink to this headline">¶</a></h3>
+<h3>Creating a form<a class="headerlink" href="#creating-a-form" title="Permalink to this headline">¶</a></h3>
 <p>Create a file <code class="docutils literal"><span class="pre">forms.py</span></code> in <code class="docutils literal"><span class="pre">app</span></code> and import <code class="docutils literal"><span class="pre">forms</span></code> from Django.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django</span> <span class="k">import</span> <span class="n">forms</span>
 </pre></div>
 </div>
-<p>We are going to use the form <code class="docutils literal"><span class="pre">UserCreationForm</span></code> provided by Django as our <code class="docutils literal"><span class="pre">form1</span></code>, the form contains basic information we must know about our users. The form also needs a model called &#8220;<a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/contrib/auth/#user-model">User</a>&#8221;:</p>
+<p>We are going to use the form <code class="docutils literal"><span class="pre">UserCreationForm</span></code> provided by Django as our <code class="docutils literal"><span class="pre">form1</span></code>, the form contains basic information we must know about our users. The form also needs a model called &#8220;<a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/contrib/auth/#user-model">User</a>&#8220;:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib.auth.forms</span> <span class="k">import</span> <span class="n">UserCreationForm</span>
 <span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="k">import</span> <span class="n">User</span>
 </pre></div>
 </div>
-<p>We could simply use <code class="docutils literal"><span class="pre">UserCreationForm</span></code> and we don&#8217;t need to write the <code class="docutils literal"><span class="pre">forms.py</span></code> file. But it only comes with username and password and we do want to know more about our users. Therefore, we are going to extend the <code class="docutils literal"><span class="pre">UserCreationForm</span></code> by creating a form of our own:</p>
+<p>We could simply use <code class="docutils literal"><span class="pre">UserCreationForm</span></code> and we don&#8216;t need to write the <code class="docutils literal"><span class="pre">forms.py</span></code> file. But it only comes with username and password and we do want to know more about our users. Therefore, we are going to extend the <code class="docutils literal"><span class="pre">UserCreationForm</span></code> by creating a form of our own:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">RegistrationForm</span><span class="p">(</span><span class="n">UserCreationForm</span><span class="p">):</span>
     <span class="n">first_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
     <span class="n">last_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
@@ -210,33 +210,33 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">254</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>when we define a field, it will be a required information by default, and it will produce an error if users do not enter in an acceptable format(such as &#8220;12345&#8221; in <code class="docutils literal"><span class="pre">EmailField</span></code>).</p>
+<p>when we define a field, it will be a required information by default, and it will produce an error if users do not enter in an acceptable format(such as &#8220;12345&#8220; in <code class="docutils literal"><span class="pre">EmailField</span></code>).</p>
 <p>If we want to put some <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/forms/fields/#help-text">help text</a> next to it, we can do</p>
-<div class="highlight-"><div class="highlight"><pre><span></span>email = forms.EmailField(max_length=254, help_text=&#39;Blah blah blah.&#39;)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">254</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s1">&#39;Blah blah blah.&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>and then add the following in the template:</p>
-<div class="highlight-"><div class="highlight"><pre><span></span>{% if field.help_text %}
-  {{ field.help_text }}
-{% endif %}
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">field</span><span class="o">.</span><span class="n">help_text</span> <span class="o">%</span><span class="p">}</span>
+  <span class="p">{{</span> <span class="n">field</span><span class="o">.</span><span class="n">help_text</span> <span class="p">}}</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <hr class="docutils" />
 <div class="section" id="creating-a-model">
-<span id="creating-a-model"></span><h3>Creating a model<a class="headerlink" href="#creating-a-model" title="Permalink to this headline">¶</a></h3>
+<h3>Creating a model<a class="headerlink" href="#creating-a-model" title="Permalink to this headline">¶</a></h3>
 <p>Good! We are done with the required field, now we will use a different approach to recording optional information.
-Go to app/models.py and create our own model, `RegisterUser&#8217; for optional information:</p>
-<div class="highlight-"><div class="highlight"><pre><span></span>from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+Go to app/models.py and create our own model, `RegisterUser&#8216; for optional information:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="k">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">django.db.models.signals</span> <span class="k">import</span> <span class="n">post_save</span>
 
-class RegisterUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    department = models.CharField(verbose_name=&#39;Department(Optional)&#39;, max_length=100, blank=True, null=True)
-    organization = models.CharField(verbose_name=&#39;Organization(Optional)&#39;, max_length=100, blank=True, null=True)
-    title = models.CharField(verbose_name=&#39;Title(Optional)&#39;, max_length=100, blank=True, null=True)
-    country = models.CharField(verbose_name=&#39;Country(Optional)&#39;, max_length=50, blank=True, null=True)
-    about= models.TextField(verbose_name=&#39;About(Optional)&#39;, max_length=500, blank=True, null=True)
+<span class="k">class</span> <span class="nc">RegisterUser</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
+    <span class="n">department</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;Department(Optional)&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">organization</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;Organization(Optional)&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;Title(Optional)&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">country</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;Country(Optional)&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">about</span><span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;About(Optional)&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You may notice that we have 2 more parameters here: <a class="reference external" href="https://docs.djangoproject.com/en/1.10/ref/models/fields/#blank">blank</a> and <a class="reference external" href="https://docs.djangoproject.com/en/1.10/ref/models/fields/#null">null</a>. They tell the database to accept empty or blank value. If you want more information, please click on the link to read Django Documentation.</p>
@@ -250,10 +250,10 @@ class RegisterUser(models.Model):
         <span class="n">exclude</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Because we will use exactly the RegisterUser model we just created, so we don&#8217;t need to define any other fields. However, we do want to exclude the &#8216;user&#8217; object that relates the <code class="docutils literal"><span class="pre">RegisterUser</span></code> model to the user, but we don&#8217;t want to create a new user object with the same information in the database. Recall that this model is to store optional information, and all the crucial information is in our first form <code class="docutils literal"><span class="pre">RegistrationForm</span></code>.</p>
+<p>Because we will use exactly the RegisterUser model we just created, so we don&#8216;t need to define any other fields. However, we do want to exclude the &#8216;user&#8216; object that relates the <code class="docutils literal"><span class="pre">RegisterUser</span></code> model to the user, but we don&#8216;t want to create a new user object with the same information in the database. Recall that this model is to store optional information, and all the crucial information is in our first form <code class="docutils literal"><span class="pre">RegistrationForm</span></code>.</p>
 </div>
 <div class="section" id="writing-a-register-view">
-<span id="writing-a-register-view"></span><h3>Writing a register view:<a class="headerlink" href="#writing-a-register-view" title="Permalink to this headline">¶</a></h3>
+<h3>Writing a register view:<a class="headerlink" href="#writing-a-register-view" title="Permalink to this headline">¶</a></h3>
 <p>Now, we are going to create a view for or user registration. Go to <code class="docutils literal"><span class="pre">app/views.py</span></code> and add the following:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
@@ -274,7 +274,7 @@ class RegisterUser(models.Model):
 <p>The reason we have <code class="docutils literal"><span class="pre">commit=False</span></code> in <code class="docutils literal"><span class="pre">model2</span> <span class="pre">=</span> <span class="pre">form2.save(commit=False)</span></code> is that we do not want <code class="docutils literal"><span class="pre">form2</span></code> to create a new user, so when we create <code class="docutils literal"><span class="pre">form2</span></code>, it does not sync to the database, it allows us to make changes before we sync them. After we assign the <code class="docutils literal"><span class="pre">form1.user</span></code> to <code class="docutils literal"><span class="pre">form2.user</span></code>, we call <code class="docutils literal"><span class="pre">model2.save()</span></code> and the data of <code class="docutils literal"><span class="pre">form1</span></code> and <code class="docutils literal"><span class="pre">form2</span></code> goes under the same user in the database. After registration, we will redirect the user to our home page(<code class="docutils literal"><span class="pre">redirect('index')</span></code>).</p>
 </div>
 <div class="section" id="templates">
-<span id="templates"></span><h3>Templates:<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h3>
+<h3>Templates:<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h3>
 <p>We used 2 <code class="docutils literal"><span class="pre">{%</span> <span class="pre">for</span> <span class="pre">%}</span></code> loops to display the required information and optional information as 2 columns:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>{% for field in form1 %} &lt;!-- or for field in form2 --&gt;
   &lt;p&gt;
@@ -288,26 +288,26 @@ class RegisterUser(models.Model):
 </pre></div>
 </div>
 <hr class="docutils" />
-<p><a class="reference external" href="https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html">Useful tutorial from &#8220;SIMPLE IS BETTER THAN COMPLEX&#8221;</a></p>
+<p><a class="reference external" href="https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html">Useful tutorial from &#8220;SIMPLE IS BETTER THAN COMPLEX&#8220;</a></p>
 </div>
 </div>
 <div class="section" id="user-login-and-logout">
-<span id="user-login-and-logout"></span><h2>2. User Login and Logout<a class="headerlink" href="#user-login-and-logout" title="Permalink to this headline">¶</a></h2>
+<h2>2. User Login and Logout<a class="headerlink" href="#user-login-and-logout" title="Permalink to this headline">¶</a></h2>
 <p>We are using login and logout views written by Django, imported from django.contrib.auth.view.Login, this view does basic authentication such as verify username and password when users logging in.</p>
 <p>To better distinguish the imported views and views written by ourselves, we imported <code class="docutils literal"><span class="pre">auth.view</span></code> (views from Django) as “auth_view” and <code class="docutils literal"><span class="pre">app.view</span></code> (Our views) as “app_view”.</p>
-<div class="highlight-"><div class="highlight"><pre><span></span>from . import views as app_views
-from django.contrib.auth import views as auth_views
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">views</span> <span class="k">as</span> <span class="n">app_views</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth</span> <span class="k">import</span> <span class="n">views</span> <span class="k">as</span> <span class="n">auth_views</span>
 </pre></div>
 </div>
-<div class="section" id="routing-the-urls">
-<span id="id1"></span><h3>Routing the URLS<a class="headerlink" href="#routing-the-urls" title="Permalink to this headline">¶</a></h3>
-<p>Since all of the links related to login and register is in app “app”, so we will put our URLs in app.urls(If there isn&#8217;t such a file, create one) and include them in our project URLs (inside the folder that has settings.py).</p>
+<div class="section" id="id1">
+<h3>Routing the URLS<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Since all of the links related to login and register is in app “app”, so we will put our URLs in app.urls(If there isn&#8216;t such a file, create one) and include them in our project URLs (inside the folder that has settings.py).</p>
 <p>cam2webui/urls.py</p>
-<div class="highlight-"><div class="highlight"><pre><span></span>from django.conf.urls import url,include
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="k">import</span> <span class="n">url</span><span class="p">,</span><span class="n">include</span>
 
-urlpatterns = [ 
-    url(r&#39;^&#39;, include(&#39;app.urls&#39;)),
-]
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span> 
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;app.urls&#39;</span><span class="p">)),</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 <p>app/urls.py:</p>
@@ -325,7 +325,7 @@ urlpatterns = [
 </pre></div>
 </div>
 <p>Besides, after users logged out, we want them to go back to home page, so we use <code class="docutils literal"><span class="pre">next_page</span></code> parameter to redirect:</p>
-<div class="highlight-"><div class="highlight"><pre><span></span>url(r&#39;^logout/$&#39;, auth_views.logout, {&#39;next_page&#39;: &#39;/&#39;}),
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^logout/$&#39;</span><span class="p">,</span> <span class="n">auth_views</span><span class="o">.</span><span class="n">logout</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;next_page&#39;</span><span class="p">:</span> <span class="s1">&#39;/&#39;</span><span class="p">}),</span>
 </pre></div>
 </div>
 <p>The Django login view implements a redirect function, all we need to do is to go to <code class="docutils literal"><span class="pre">settings.py</span></code> and add:</p>
@@ -335,7 +335,7 @@ urlpatterns = [
 <p>(We use the names we defined for our URLs. For here, <code class="docutils literal"><span class="pre">index</span></code> is the home page.)</p>
 </div>
 <div class="section" id="login-template">
-<span id="login-template"></span><h3>Login template<a class="headerlink" href="#login-template" title="Permalink to this headline">¶</a></h3>
+<h3>Login template<a class="headerlink" href="#login-template" title="Permalink to this headline">¶</a></h3>
 <p>The website design will not be covered in this documentation. Apart from that, we simply use for loops to display all the field necessary for login and any error corresponding to each field:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">block</span> <span class="n">content</span> <span class="o">%</span><span class="p">}</span>
     <span class="o">&lt;</span><span class="n">form</span> <span class="n">role</span><span class="o">=</span><span class="s2">&quot;form&quot;</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;login-form&quot;</span><span class="o">&gt;</span>
@@ -371,19 +371,19 @@ Therefore, we will use an <code class="docutils literal"><span class="pre">{%</s
 </div>
 <p><code class="docutils literal"><span class="pre">User.is.authenticated</span></code> returns <code class="docutils literal"><span class="pre">True</span></code> if a user has logged in, then the website will display the name of the user with the links to their profile and logout. If it returns <code class="docutils literal"><span class="pre">False</span></code>, then the website will show the links to login and register.</p>
 <hr class="docutils" />
-<p><a class="reference external" href="https://simpleisbetterthancomplex.com/tutorial/2016/06/27/how-to-use-djangos-built-in-login-system.html">Useful tutorial from &#8220;SIMPLE IS BETTER THAN COMPLEX&#8221;</a></p>
+<p><a class="reference external" href="https://simpleisbetterthancomplex.com/tutorial/2016/06/27/how-to-use-djangos-built-in-login-system.html">Useful tutorial from &#8220;SIMPLE IS BETTER THAN COMPLEX&#8220;</a></p>
 </div>
 </div>
 <div class="section" id="forgot-password-password-reset">
-<span id="forgot-password-password-reset"></span><h2>3. Forgot Password (Password Reset)<a class="headerlink" href="#forgot-password-password-reset" title="Permalink to this headline">¶</a></h2>
+<h2>3. Forgot Password (Password Reset)<a class="headerlink" href="#forgot-password-password-reset" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="goal">
-<span id="goal"></span><h3>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h3>
+<h3>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h3>
 <p>Allow users to reset their password through email.</p>
 <p>The user will go to the password reset page and enter their email. When the email is inside our database, we send a confirmation
 with a link to reset the password.</p>
 </div>
 <div class="section" id="approach">
-<span id="approach"></span><h3>approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h3>
+<h3>approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h3>
 <p>Django has its own password reset views. We just need to create templates and link the urls.</p>
 <p>add the following to <code class="docutils literal"><span class="pre">urls.py</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^password_reset/$&#39;</span><span class="p">,</span> <span class="n">auth_views</span><span class="o">.</span><span class="n">password_reset</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;password_reset&#39;</span><span class="p">),</span>
@@ -403,10 +403,10 @@ with a link to reset the password.</p>
 </div>
 </div>
 <div class="section" id="user-third-party-login">
-<span id="user-third-party-login"></span><h2>4. User Third party login<a class="headerlink" href="#user-third-party-login" title="Permalink to this headline">¶</a></h2>
+<h2>4. User Third party login<a class="headerlink" href="#user-third-party-login" title="Permalink to this headline">¶</a></h2>
 <p>This page will walk you through some guides on writing third party login including google login and github login on the login page.</p>
 <div class="section" id="installation">
-<span id="installation"></span><h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
 <p>For the django third party login, there is a django app called social-auth-app-django already built for us. So we can simply download this library to make third party login easier to build. We can use python pip to install the app.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">social</span><span class="o">-</span><span class="n">auth</span><span class="o">-</span><span class="n">app</span><span class="o">-</span><span class="n">django</span>
 </pre></div>
@@ -432,7 +432,7 @@ with a link to reset the password.</p>
 </div>
 </div>
 <div class="section" id="configuration">
-<span id="configuration"></span><h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
+<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
 <p>Back to the settings.py, we have several more things to modify.</p>
 <p>The first one is Middleware, we need to add one more thing:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>
@@ -471,7 +471,7 @@ with a link to reset the password.</p>
 <span class="p">]</span>
 </pre></div>
 </div>
-<p>Next we will add authentication backend in settings, since we need google and github login, we add github oauth and google oauth. If you would like to add something like facebook login, you can add &#8216;social_core.backends.facebook.FacebookOAuth2&#8217; in this model backend if you want.</p>
+<p>Next we will add authentication backend in settings, since we need google and github login, we add github oauth and google oauth. If you would like to add something like facebook login, you can add &#8216;social_core.backends.facebook.FacebookOAuth2&#8216; in this model backend if you want.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>
 <span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
     <span class="s1">&#39;social_core.backends.github.GithubOAuth2&#39;</span><span class="p">,</span>
@@ -496,7 +496,7 @@ with a link to reset the password.</p>
 </div>
 </div>
 <div class="section" id="github-authentication">
-<span id="github-authentication"></span><h3>GitHub Authentication<a class="headerlink" href="#github-authentication" title="Permalink to this headline">¶</a></h3>
+<h3>GitHub Authentication<a class="headerlink" href="#github-authentication" title="Permalink to this headline">¶</a></h3>
 <p>Log in to your GitHub account, go to Settings. In the left menu you will see Developer settings. Click on OAuth applications.</p>
 <p>In the OAuth applications screen click on Register a new application.</p>
 <p>Fill in the form with any name, url or description. The only important one is Authorization callback URL:</p>
@@ -506,8 +506,8 @@ with a link to reset the password.</p>
 <li>client id</li>
 <li>client secret</li>
 </ul>
-<p>Copy and paste those items and send them into the environment. Don&#8217;t make it public!!</p>
-<p>Then in settings.py, add two varialbes called &#8216;SOCIAL_AUTH_GITHUB_KEY&#8217; and &#8216;SOCIAL_AUTH_GITHUB_SECRET&#8217;</p>
+<p>Copy and paste those items and send them into the environment. Don&#8216;t make it public!!</p>
+<p>Then in settings.py, add two varialbes called &#8216;SOCIAL_AUTH_GITHUB_KEY&#8216; and &#8216;SOCIAL_AUTH_GITHUB_SECRET&#8216;</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SOCIAL_AUTH_GITHUB_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;GITHUB_KEY&#39;</span><span class="p">]</span>
 <span class="n">SOCIAL_AUTH_GITHUB_SECRET</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;GITHUB_SECRET&#39;</span><span class="p">]</span>
 </pre></div>
@@ -515,10 +515,10 @@ with a link to reset the password.</p>
 <p>Settings for github login is finished!</p>
 </div>
 <div class="section" id="google-authentication">
-<span id="google-authentication"></span><h3>Google Authentication<a class="headerlink" href="#google-authentication" title="Permalink to this headline">¶</a></h3>
+<h3>Google Authentication<a class="headerlink" href="#google-authentication" title="Permalink to this headline">¶</a></h3>
 <p>For google authentication, it is similar to github authentication. This time we need to acquire google credentials.</p>
 <p>Visit <a class="reference external" href="https://console.developers.google.com/apis/credentials">https://console.developers.google.com/apis/credentials</a></p>
-<p>Click on &#8216;create credentials&#8217; -&gt; &#8216;oauth client id&#8217; -&gt; &#8216;web application&#8217; -&gt; Fill in the form</p>
+<p>Click on &#8216;create credentials&#8216; -&gt; &#8216;oauth client id&#8216; -&gt; &#8216;web application&#8216; -&gt; Fill in the form</p>
 <p>The same as before, the only important one is Authorized redirect URIs:</p>
 <p>Notice that I’m putting a localhost URL. <strong>http://localhost:8000/oauth/complete/google-oauth2/. You must use this url to accomplish oauth login for google.</strong></p>
 <p>After you create the app, you can get:</p>
@@ -526,17 +526,17 @@ with a link to reset the password.</p>
 <li>client id</li>
 <li>client secret</li>
 </ul>
-<p>Copy and paste those items and send them into the environment. Don&#8217;t make it public!!</p>
-<p>Then in settings.py, add two varialbes called &#8216;SOCIAL_AUTH_GOOGLE_OAUTH2_KEY&#8217; and &#8216;SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET&#8217;</p>
+<p>Copy and paste those items and send them into the environment. Don&#8216;t make it public!!</p>
+<p>Then in settings.py, add two varialbes called &#8216;SOCIAL_AUTH_GOOGLE_OAUTH2_KEY&#8216; and &#8216;SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET&#8216;</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SOCIAL_AUTH_GOOGLE_OAUTH2_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;GOOGLE_LOGIN_KEY&#39;</span><span class="p">]</span>
 <span class="n">SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;GOOGLE_LOGIN_SECRET&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Google oauth has one more step than github login. If you just finish this step, you will still get an error. You need to enable Google+ API</p>
-<p>On the same page left side, choose &#8216;library&#8217;, in Social APIs column choose Google+ API: click on enable to enable google+ API.</p>
+<p>On the same page left side, choose &#8216;library&#8216;, in Social APIs column choose Google+ API: click on enable to enable google+ API.</p>
 </div>
 <div class="section" id="add-url-in-page">
-<span id="add-url-in-page"></span><h3>Add url in page<a class="headerlink" href="#add-url-in-page" title="Permalink to this headline">¶</a></h3>
+<h3>Add url in page<a class="headerlink" href="#add-url-in-page" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span>
 <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;social-login&quot;</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">h4</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;color:black;text-align:center;&quot;</span><span class="o">&gt;-</span> <span class="ow">or</span> <span class="o">-&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
@@ -556,11 +556,11 @@ with a link to reset the password.</p>
 </div>
 </div>
 <div class="section" id="user-profile">
-<span id="user-profile"></span><h2>5. User Profile<a class="headerlink" href="#user-profile" title="Permalink to this headline">¶</a></h2>
+<h2>5. User Profile<a class="headerlink" href="#user-profile" title="Permalink to this headline">¶</a></h2>
 <p>allow user to modify their profile information</p>
 <div class="section" id="relate-submit-button-with-forms">
-<span id="relate-submit-button-with-forms"></span><h3>Relate submit button with forms<a class="headerlink" href="#relate-submit-button-with-forms" title="Permalink to this headline">¶</a></h3>
-<p>There are several submit button in our profile page, and we don&#8217;t want to submit the different form. therefore, we will specify the name of each submit button for each form:
+<h3>Relate submit button with forms<a class="headerlink" href="#relate-submit-button-with-forms" title="Permalink to this headline">¶</a></h3>
+<p>There are several submit button in our profile page, and we don&#8216;t want to submit the different form. therefore, we will specify the name of each submit button for each form:
 in template:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">button</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;btn&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;changeInfo&quot;</span><span class="o">&gt;</span><span class="n">Change</span> <span class="n">My</span> <span class="n">Info</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
 </pre></div>
@@ -572,7 +572,7 @@ in template:</p>
 <p>note that we use the name of the button in the view.</p>
 </div>
 <div class="section" id="obtain-data-of-user-specified-by-fields-in-the-form">
-<span id="obtain-data-of-user-specified-by-fields-in-the-form"></span><h3>Obtain data of user specified by fields in the form<a class="headerlink" href="#obtain-data-of-user-specified-by-fields-in-the-form" title="Permalink to this headline">¶</a></h3>
+<h3>Obtain data of user specified by fields in the form<a class="headerlink" href="#obtain-data-of-user-specified-by-fields-in-the-form" title="Permalink to this headline">¶</a></h3>
 <p>To get the data specified in the form, take the <a class="reference external" href="https://purduecam2project.github.io/CAM2WebUI/implementationDetail/User.html#creating-a-model"><code class="docutils literal"><span class="pre">AdditionalForm</span></code></a>
 we are using as an example, it has 5 fields: <code class="docutils literal"><span class="pre">&quot;department&quot;</span> <span class="pre">,</span> <span class="pre">&quot;organization&quot;,</span> <span class="pre">&quot;title&quot;,</span> <span class="pre">&quot;country&quot;,</span> <span class="pre">&quot;about&quot;</span></code>
 we can easily grab these 5 fields of a user from database by specify the <code class="docutils literal"><span class="pre">instance</span></code>:</p>
@@ -584,9 +584,9 @@ we can easily grab these 5 fields of a user from database by specify the <code c
 model of current user who is using the website, simply use <code class="docutils literal"><span class="pre">request.user</span></code></p>
 </div>
 <div class="section" id="views">
-<span id="views"></span><h3>Views<a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h3>
+<h3>Views<a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h3>
 <p>If a user login with social oauth such as google or github, they will not have a RegisterUser model created in the database.
-Therefore, <code class="docutils literal"><span class="pre">RegisterUser.objects.get(user=request.user)</span></code> will return error. So when the user go to &#8220;Profile&#8221; page, we create one first.</p>
+Therefore, <code class="docutils literal"><span class="pre">RegisterUser.objects.get(user=request.user)</span></code> will return error. So when the user go to &#8220;Profile&#8220; page, we create one first.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span> <span class="k">try</span><span class="p">:</span>
         <span class="n">optional</span> <span class="o">=</span> <span class="n">RegisterUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span><span class="c1"># If cannot find RegisterUser object(social login users), create one</span>
@@ -613,7 +613,7 @@ Therefore, <code class="docutils literal"><span class="pre">RegisterUser.objects
 </div>
 </div>
 <div class="section" id="template">
-<span id="template"></span><h3>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h3>
+<h3>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">Change</span> <span class="n">Profile</span> <span class="n">Information</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;panel-body&quot;</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="n">form</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="o">&gt;</span>
@@ -661,7 +661,7 @@ Therefore, <code class="docutils literal"><span class="pre">RegisterUser.objects
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Purdue CAM2 Project Developers
-      Last updated on Nov 29, 2018.
+      Last updated on Jan 27, 2019.
 
     </p>
   </div>

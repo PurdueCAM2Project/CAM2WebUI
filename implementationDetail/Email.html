@@ -167,12 +167,12 @@
            <div itemprop="articleBody">
             
   <div class="section" id="email">
-<span id="email"></span><h1>Email<a class="headerlink" href="#email" title="Permalink to this headline">¶</a></h1>
+<h1>Email<a class="headerlink" href="#email" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="user-email-confirmation">
-<span id="user-email-confirmation"></span><h2>1. User Email Confirmation<a class="headerlink" href="#user-email-confirmation" title="Permalink to this headline">¶</a></h2>
+<h2>1. User Email Confirmation<a class="headerlink" href="#user-email-confirmation" title="Permalink to this headline">¶</a></h2>
 <p>Email user to confirm registration and notify administrator after user registered.</p>
 <div class="section" id="approach">
-<span id="approach"></span><h3>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h3>
+<h3>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h3>
 <p>Useful <a class="reference external" href="https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html">tutorial</a></p>
 <p>After the code of register, add the following to email user and admin:
 Under <code class="docutils literal"><span class="pre">model1</span> <span class="pre">=</span> <span class="pre">form1.save(commit=False)</span></code>, add</p>
@@ -181,7 +181,7 @@ Under <code class="docutils literal"><span class="pre">model1</span> <span class
 </div>
 <p>so that the account will be inactive until users confirm their email.</p>
 <p>And the body of email user and admin is the following:</p>
-<p>We will use a template to email users, and the template will have username, a link to confirm adn activate user&#8217;s account, and some content.</p>
+<p>We will use a template to email users, and the template will have username, a link to confirm adn activate user&#8216;s account, and some content.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#Email user</span>
 <span class="n">current_site</span> <span class="o">=</span> <span class="n">get_current_site</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="c1">#will be used in website signiture</span>
 <span class="n">subject</span> <span class="o">=</span> <span class="s1">&#39;Activate Your CAM2 Account&#39;</span>
@@ -208,7 +208,7 @@ Under <code class="docutils literal"><span class="pre">model1</span> <span class
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;email_confirmation_sent&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">token</span></code> in email template will be randomly generated based on user&#8217;s information.
+<p>The <code class="docutils literal"><span class="pre">token</span></code> in email template will be randomly generated based on user&#8216;s information.
 Create a new file called <code class="docutils literal"><span class="pre">tokens.py</span></code> and add the following:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib.auth.tokens</span> <span class="k">import</span> <span class="n">PasswordResetTokenGenerator</span>
 <span class="kn">from</span> <span class="nn">django.utils</span> <span class="k">import</span> <span class="n">six</span>
@@ -254,7 +254,7 @@ go to <code class="docutils literal"><span class="pre">urls.py</span></code> and
 <p>We will get the user based on the link and activate user if the user exist. The link will be invalid a short time after the user is activated.</p>
 </div>
 <div class="section" id="related-templates">
-<span id="related-templates"></span><h3>Related Templates<a class="headerlink" href="#related-templates" title="Permalink to this headline">¶</a></h3>
+<h3>Related Templates<a class="headerlink" href="#related-templates" title="Permalink to this headline">¶</a></h3>
 <p>The web page that user is redirected to after they register:</p>
 <p>email_confirmation_sent.html:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">block</span> <span class="n">content</span> <span class="o">%</span><span class="p">}</span>
@@ -303,14 +303,14 @@ http://{{ domain }}
 </div>
 </div>
 <div class="section" id="contact-us">
-<span id="contact-us"></span><h2>2.Contact Us<a class="headerlink" href="#contact-us" title="Permalink to this headline">¶</a></h2>
+<h2>2.Contact Us<a class="headerlink" href="#contact-us" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="goal">
-<span id="goal"></span><h3>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h3>
+<h3>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h3>
 <p>Under email_system app, creating a page for user to contact our website.</p>
 </div>
-<div class="section" id="approach">
-<span id="id1"></span><h3>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h3>
-<p>Using a form that requires user to input &#8220;Name, email, subject and message&#8221; and the content into an email template. And then email admin.
+<div class="section" id="id1">
+<h3>Approach<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Using a form that requires user to input &#8220;Name, email, subject and message&#8220; and the content into an email template. And then email admin.
 In <code class="docutils literal"><span class="pre">forms.py</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ContactForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -360,8 +360,8 @@ First we get everything user input and add them into our email template. And the
 </pre></div>
 </div>
 </div>
-<div class="section" id="related-templates">
-<span id="id2"></span><h3>Related Templates<a class="headerlink" href="#related-templates" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>Related Templates<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Email template:
 <code class="docutils literal"><span class="pre">contact_email_template.html</span></code></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Contact</span> <span class="n">Name</span><span class="p">:</span>
@@ -377,22 +377,22 @@ First we get everything user input and add them into our email template. And the
 </div>
 </div>
 <div class="section" id="send-email-from-admin">
-<span id="send-email-from-admin"></span><h2>3. Send Email from Admin<a class="headerlink" href="#send-email-from-admin" title="Permalink to this headline">¶</a></h2>
+<h2>3. Send Email from Admin<a class="headerlink" href="#send-email-from-admin" title="Permalink to this headline">¶</a></h2>
 <p>See <a class="reference external" href="https://purduecam2project.github.io/CAM2WebUI/implementationDetail/Admin.html#admin-action-of-send-email-from-admin">here</a>
-for admin action of &#8220;send email from admin&#8221; that direct admin to this view.</p>
-<div class="section" id="goal">
-<span id="id3"></span><h3>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h3>
+for admin action of &#8220;send email from admin&#8220; that direct admin to this view.</p>
+<div class="section" id="id3">
+<h3>Goal<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Receive a list of user id from previous page, and allow admin to input subject and message to send email to users in the list.
-The admin can also add other recipient by adding email addresses into the &#8220;additional email&#8221; box.</p>
+The admin can also add other recipient by adding email addresses into the &#8220;additional email&#8220; box.</p>
 </div>
 <div class="section" id="decorator">
-<span id="decorator"></span><h3>decorator<a class="headerlink" href="#decorator" title="Permalink to this headline">¶</a></h3>
+<h3>decorator<a class="headerlink" href="#decorator" title="Permalink to this headline">¶</a></h3>
 <p>To make sure only admin can use this view, we need to add a django decorator <code class="docutils literal"><span class="pre">&#64;staff_member_required</span></code> before our function.</p>
 </div>
 <div class="section" id="send-email-page">
-<span id="send-email-page"></span><h3>Send Email Page<a class="headerlink" href="#send-email-page" title="Permalink to this headline">¶</a></h3>
+<h3>Send Email Page<a class="headerlink" href="#send-email-page" title="Permalink to this headline">¶</a></h3>
 <p>we use a form to obtain the subject, message and additional email:
-In `forms.py&#8217;:</p>
+In `forms.py&#8216;:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="kn">from</span> <span class="nn">django</span> <span class="k">import</span> <span class="n">forms</span>
     <span class="kn">from</span> <span class="nn">django.core.validators</span> <span class="k">import</span> <span class="n">validate_email</span>
     
@@ -428,7 +428,7 @@ See <a class="reference external" href="https://docs.djangoproject.com/en/1.11/r
 </div>
 <p>The MultiEmailField will accept a list of email addresses that is split by <code class="docutils literal"><span class="pre">,</span></code> or <code class="docutils literal"><span class="pre">;</span></code> aas well as a list copy and paste from the user info table that we will create later.</p>
 <p>Now go to <code class="docutils literal"><span class="pre">views.py</span></code>. We will use <code class="docutils literal"><span class="pre">request.session</span></code> to pass the user id list from another web page.</p>
-<p>And we want to show the info of selected user at the bottom of the view for admin&#8217;s convenience.</p>
+<p>And we want to show the info of selected user at the bottom of the view for admin&#8216;s convenience.</p>
 <p>Therefore, we will first get the <code class="docutils literal"><span class="pre">User</span></code> object from user id, and form a list containing the information we need.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@staff_member_required</span>
 <span class="k">def</span> <span class="nf">admin_send_email</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
@@ -490,7 +490,7 @@ See <a class="reference external" href="https://docs.djangoproject.com/en/1.11/r
 </div>
 </div>
 <div class="section" id="template">
-<span id="template"></span><h3>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h3>
+<h3>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h3>
 <p>Email template:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Hi</span> <span class="p">{{</span> <span class="n">username</span> <span class="p">}},</span>
 <span class="p">{{</span> <span class="n">message</span> <span class="p">}}</span>
@@ -597,7 +597,7 @@ See <a class="reference external" href="https://docs.djangoproject.com/en/1.11/r
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Purdue CAM2 Project Developers
-      Last updated on Nov 29, 2018.
+      Last updated on Jan 27, 2019.
 
     </p>
   </div>

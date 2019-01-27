@@ -168,18 +168,18 @@
            <div itemprop="articleBody">
             
   <div class="section" id="django-selenium-test">
-<span id="django-selenium-test"></span><h1>Django Selenium test<a class="headerlink" href="#django-selenium-test" title="Permalink to this headline">¶</a></h1>
-<p>Selenium test environment is in the previous guide <a class="reference external" href="https://purduecam2project.github.io/CAM2WebUI/basicSetup/selenium.html">Set up selenium test environment</a>. If you haven&#8217;t done that, click on the link and finish building up selenium environment first.</p>
+<h1>Django Selenium test<a class="headerlink" href="#django-selenium-test" title="Permalink to this headline">¶</a></h1>
+<p>Selenium test environment is in the previous guide <a class="reference external" href="https://purduecam2project.github.io/CAM2WebUI/basicSetup/selenium.html">Set up selenium test environment</a>. If you haven&#8216;t done that, click on the link and finish building up selenium environment first.</p>
 <div class="section" id="running-django-test">
-<span id="running-django-test"></span><h2>Running Django Test<a class="headerlink" href="#running-django-test" title="Permalink to this headline">¶</a></h2>
-<p>For every django app in the project, we can create a test for the app. Here in our project, visit CAM2WebUI/app folder and you can find file called tests.py. This is the file that we use to run testcase for &#8220;app&#8221; app. Go back to the main folder and run</p>
+<h2>Running Django Test<a class="headerlink" href="#running-django-test" title="Permalink to this headline">¶</a></h2>
+<p>For every django app in the project, we can create a test for the app. Here in our project, visit CAM2WebUI/app folder and you can find file called tests.py. This is the file that we use to run testcase for &#8220;app&#8220; app. Go back to the main folder and run</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">test</span> <span class="n">app</span>
 </pre></div>
 </div>
-<p>You can run several testcases which are already created for the &#8220;app&#8221; app in the tests.py file.</p>
+<p>You can run several testcases which are already created for the &#8220;app&#8220; app in the tests.py file.</p>
 </div>
 <div class="section" id="setting-up-liveserver-testcases">
-<span id="setting-up-liveserver-testcases"></span><h2>Setting up Liveserver testcases<a class="headerlink" href="#setting-up-liveserver-testcases" title="Permalink to this headline">¶</a></h2>
+<h2>Setting up Liveserver testcases<a class="headerlink" href="#setting-up-liveserver-testcases" title="Permalink to this headline">¶</a></h2>
 <p>Since we are going to create selenium test which needs to test in a live server environment, so we will use django LiveServerTestClass to create the project.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.test</span> <span class="k">import</span> <span class="n">LiveServerTestCase</span>
 </pre></div>
@@ -191,65 +191,65 @@
 <p>Then we can create all the test cases within the addTestCase class.</p>
 </div>
 <div class="section" id="setup-and-teardown">
-<span id="setup-and-teardown"></span><h2>Setup and TearDown<a class="headerlink" href="#setup-and-teardown" title="Permalink to this headline">¶</a></h2>
+<h2>Setup and TearDown<a class="headerlink" href="#setup-and-teardown" title="Permalink to this headline">¶</a></h2>
 <p>For independent testcase, we all need to set up the browser driver and the display before the test and tear down them after the test, so django test have two created superclasses for us: setUp() and tearDown().</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1200</span><span class="p">))</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">selenium</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
-    <span class="nb">super</span><span class="p">(</span><span class="n">AddTestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1200</span><span class="p">))</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">selenium</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+	<span class="nb">super</span><span class="p">(</span><span class="n">AddTestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>To make the test run faster, everytime, we make the display visible=0. If there exists an error, then we can set the display visible=1.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">selenium</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-    <span class="nb">super</span><span class="p">(</span><span class="n">AddTestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">tearDown</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-    <span class="k">return</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">selenium</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+	<span class="nb">super</span><span class="p">(</span><span class="n">AddTestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">tearDown</span><span class="p">()</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+	<span class="k">return</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="creating-testcases">
-<span id="creating-testcases"></span><h2>Creating testcases<a class="headerlink" href="#creating-testcases" title="Permalink to this headline">¶</a></h2>
-<p>Now we can test the app by creating all the testcases. Note that all the test function should begin with &#8220;test_&#8221; and all the testcases run in alphabetical order. So if you would like to test the function in order, create test case name wisely.</p>
+<h2>Creating testcases<a class="headerlink" href="#creating-testcases" title="Permalink to this headline">¶</a></h2>
+<p>Now we can test the app by creating all the testcases. Note that all the test function should begin with &#8220;test_&#8220; and all the testcases run in alphabetical order. So if you would like to test the function in order, create test case name wisely.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_one</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">pass</span>
+	<span class="k">pass</span>
 </pre></div>
 </div>
 <p>This is our first testcase which only uses to test if test function works.</p>
 </div>
 <div class="section" id="webdriver-api">
-<span id="webdriver-api"></span><h2>Webdriver API<a class="headerlink" href="#webdriver-api" title="Permalink to this headline">¶</a></h2>
+<h2>Webdriver API<a class="headerlink" href="#webdriver-api" title="Permalink to this headline">¶</a></h2>
 <p>You can use webdriver API to control your browser to direct to a particular url, to find element on a page or fill in a form etc. More details of web-driver API is on the page <a class="reference external" href="http://selenium-python.readthedocs.io/api.html">Selenium Python Webdriver API</a></p>
 <p>The following are some our usages of web-driver API for testing</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">browser</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selenium</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_server_url</span>
-    <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="s1">&#39;CAM²&#39;</span> <span class="ow">in</span> <span class="n">browser</span><span class="o">.</span><span class="n">title</span>
+	<span class="n">browser</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selenium</span>
+	<span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_server_url</span>
+	<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+	<span class="k">assert</span> <span class="s1">&#39;CAM²&#39;</span> <span class="ow">in</span> <span class="n">browser</span><span class="o">.</span><span class="n">title</span>
 </pre></div>
 </div>
 <p>In this case, we use web-driver to get the home page of the live server url. So in this testcase, we can test if the title of our homepage is CAM². If we can find our CAM² title, then that means we connect successfully to our server.</p>
-<p>Note that since our django app requires basic authentication, so our URL needs to become something like: &#8220;https://username:password&#64;localhost:port/&#8221;, so in our real test cases, we need to separate our self.live_server_url to allow username and password come into the URL string.</p>
+<p>Note that since our django app requires basic authentication, so our URL needs to become something like: &#8220;https://username:password&#64;localhost:port/&#8220;, so in our real test cases, we need to separate our self.live_server_url to allow username and password come into the URL string.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">browser</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selenium</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_server_url</span>
-    <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="s1">&#39;CAM²&#39;</span> <span class="ow">in</span> <span class="n">browser</span><span class="o">.</span><span class="n">title</span>
+	<span class="n">browser</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selenium</span>
+	<span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_server_url</span>
+	<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+	<span class="k">assert</span> <span class="s1">&#39;CAM²&#39;</span> <span class="ow">in</span> <span class="n">browser</span><span class="o">.</span><span class="n">title</span>
 </pre></div>
 </div>
 <div class="highlight-default"><div class="highlight"><pre><span></span>
 <span class="k">def</span> <span class="nf">test_Login_Register_2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">browser</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selenium</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_server_url</span> <span class="o">+</span> <span class="s1">&#39;/login&#39;</span>
-    <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_name</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>  <span class="c1"># Find the search box</span>
-    <span class="n">x</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s1">&#39;wrongusername&#39;</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_name</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
-    <span class="n">y</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s1">&#39;wrongpassword&#39;</span><span class="p">)</span>
-    <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_name</span><span class="p">(</span><span class="s1">&#39;submitbutton&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
-    <span class="n">error</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;loginerror&quot;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">error</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s2">&quot;innerHTML&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Please enter a correct username and password. Note that both fields may be case-sensitive.&#39;</span>
+	<span class="n">browser</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selenium</span>
+	<span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_server_url</span> <span class="o">+</span> <span class="s1">&#39;/login&#39;</span>
+	<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+	<span class="n">x</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_name</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>  <span class="c1"># Find the search box</span>
+	<span class="n">x</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s1">&#39;wrongusername&#39;</span><span class="p">)</span>
+	<span class="n">y</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_name</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+	<span class="n">y</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s1">&#39;wrongpassword&#39;</span><span class="p">)</span>
+	<span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_name</span><span class="p">(</span><span class="s1">&#39;submitbutton&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+	<span class="n">error</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;loginerror&quot;</span><span class="p">)</span>
+	<span class="k">assert</span> <span class="n">error</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s2">&quot;innerHTML&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Please enter a correct username and password. Note that both fields may be case-sensitive.&#39;</span>
 </pre></div>
 </div>
 <p>In this testcase, we first direct to the login page, and then we find the input box: username and password box and send text into the box. Then we click on the submitbutton of the browser by finding the element. Since the browser stays on the same page, we do not need to change our redirect url, we can just simply find the error mesage on the page. If we can see the error message, then that means our test cases pass!</p>
@@ -265,17 +265,17 @@
 <span class="c1">#test if register can work</span>
 
 <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">browser</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
-    <span class="n">EC</span><span class="o">.</span><span class="n">text_to_be_present_in_element</span><span class="p">(</span>
-    <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;emailconfirm&#39;</span><span class="p">),</span>
-     <span class="s1">&#39;Email confirmation sent&#39;</span>
-    <span class="p">)</span>
+	<span class="n">EC</span><span class="o">.</span><span class="n">text_to_be_present_in_element</span><span class="p">(</span>
+	<span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;emailconfirm&#39;</span><span class="p">),</span>
+	 <span class="s1">&#39;Email confirmation sent&#39;</span>
+	<span class="p">)</span>
 <span class="p">)</span>
 
 <span class="o">....</span>
 
 </pre></div>
 </div>
-<p>This testcase is something different from the previous ones. Since after we click on the register button, we will direct to a new url automatically and may cost some time to direct to the new url. So we are going to use the above method. We will wait the browser for 10 seconds and wait to see if there exist an element which id called &#8216;emailconfirm&#8217; on the page. If there exists an element, then the test pass. Else if the webpage cannot find the element called &#8216;emailconfirm&#8217; on the page for more than 10 seconds, then we can assume that the testcase does not pass.</p>
+<p>This testcase is something different from the previous ones. Since after we click on the register button, we will direct to a new url automatically and may cost some time to direct to the new url. So we are going to use the above method. We will wait the browser for 10 seconds and wait to see if there exist an element which id called &#8216;emailconfirm&#8216; on the page. If there exists an element, then the test pass. Else if the webpage cannot find the element called &#8216;emailconfirm&#8216; on the page for more than 10 seconds, then we can assume that the testcase does not pass.</p>
 <hr class="docutils" />
 <p>That is almost everything for our testcases. If you would like to create more testcases, you can use <a class="reference external" href="http://selenium-python.readthedocs.io/api.html">Selenium Python Webdriver API</a> as reference to test something new.</p>
 </div>
@@ -300,7 +300,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Purdue CAM2 Project Developers
-      Last updated on Nov 29, 2018.
+      Last updated on Jan 27, 2019.
 
     </p>
   </div>

@@ -167,24 +167,24 @@
            <div itemprop="articleBody">
             
   <div class="section" id="camera-pop-up-view">
-<span id="camera-pop-up-view"></span><h1>Camera Pop Up View<a class="headerlink" href="#camera-pop-up-view" title="Permalink to this headline">¶</a></h1>
+<h1>Camera Pop Up View<a class="headerlink" href="#camera-pop-up-view" title="Permalink to this headline">¶</a></h1>
 <p>This page is created for documenting how to display the camera metadata stored in the Google Fusion Table and how to format and create a layout for displaying information about a selected camera.</p>
 <p>This assumes that a Google Fusion Table and a Fusion Table Layer for the map on the Cameras page is set up already as per the <a class="reference external" href="https://purduecam2project.github.io/CAM2WebUI/implementationDetail/GoogleFusionTable.html">Google Fusion Tables</a> documentation page.</p>
 <p>This view uses a feature in HTML/CSS called a <a class="reference external" href="https://www.w3schools.com/howto/howto_css_modals.asp">Modal Box</a> that allows for information to be displayed over a page in a box that can be opened by a button press and closed either by a button or by clicking outside of the modal box.</p>
 <p>This page will detail the process of creating the Modal Box currently deployed on the live site.</p>
 <div class="section" id="the-modal-box-cameras-html">
-<span id="the-modal-box-cameras-html"></span><h2>The Modal Box - cameras.html<a class="headerlink" href="#the-modal-box-cameras-html" title="Permalink to this headline">¶</a></h2>
-<p>Create a div below the div marked with the ID &#8220;content&#8221;. Give this new div an id tag with a descriptive name, and a unique class for styling purposes.</p>
+<h2>The Modal Box - cameras.html<a class="headerlink" href="#the-modal-box-cameras-html" title="Permalink to this headline">¶</a></h2>
+<p>Create a div below the div marked with the ID &#8220;content&#8220;. Give this new div an id tag with a descriptive name, and a unique class for styling purposes.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;mapModal&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;modal&quot;</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>Within this div create a nested structure for the modal box content. This doesn&#8217;t need an ID but should have a unique class for styling purposes.</p>
+<p>Within this div create a nested structure for the modal box content. This doesn&#8216;t need an ID but should have a unique class for styling purposes.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;mapModal&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;modal&quot;</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;modal-content&quot;</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>Within this nested div any desired content or formatting can be placed. Just be sure that within this nested div is another div with a unique ID. This is where the camera information will end up. In the example below, a span intended for use as a &#8220;close&#8221; button is placed above the div where the camera information will be located.</p>
+<p>Within this nested div any desired content or formatting can be placed. Just be sure that within this nested div is another div with a unique ID. This is where the camera information will end up. In the example below, a span intended for use as a &#8220;close&#8220; button is placed above the div where the camera information will be located.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;mapModal&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;modal&quot;</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;modal-content&quot;</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;modalclose&quot;</span><span class="o">&gt;&amp;</span><span class="n">close</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
@@ -195,8 +195,8 @@
 </div>
 </div>
 <div class="section" id="styling-the-box-cameras-css">
-<span id="styling-the-box-cameras-css"></span><h2>Styling the Box - cameras.css<a class="headerlink" href="#styling-the-box-cameras-css" title="Permalink to this headline">¶</a></h2>
-<p>With the modal set up, we can style it in such a way that it takes on a certain appearence. First, the outer div with class &#8220;modal&#8221;. The below style will hide the modal from view (until changed) and fix it&#8217;s position and sizing to fill the entire window. It also changes its background to be a somewhat transparent black color. This is used to give the modal box the appearance of being an overlay and is what causes the content &#8220;underneath&#8221; to appear greyed out or darkened.</p>
+<h2>Styling the Box - cameras.css<a class="headerlink" href="#styling-the-box-cameras-css" title="Permalink to this headline">¶</a></h2>
+<p>With the modal set up, we can style it in such a way that it takes on a certain appearence. First, the outer div with class &#8220;modal&#8220;. The below style will hide the modal from view (until changed) and fix it&#8216;s position and sizing to fill the entire window. It also changes its background to be a somewhat transparent black color. This is used to give the modal box the appearance of being an overlay and is what causes the content &#8220;underneath&#8220; to appear greyed out or darkened.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">modal</span> <span class="p">{</span>
   <span class="n">display</span><span class="p">:</span> <span class="n">none</span><span class="p">;</span>
   <span class="n">position</span><span class="p">:</span> <span class="n">fixed</span><span class="p">;</span>
@@ -252,8 +252,8 @@
 </div>
 </div>
 <div class="section" id="opening-and-closing-the-modal-cameras-js-and-cameras-html">
-<span id="opening-and-closing-the-modal-cameras-js-and-cameras-html"></span><h2>Opening and Closing the Modal - cameras.js and cameras.html<a class="headerlink" href="#opening-and-closing-the-modal-cameras-js-and-cameras-html" title="Permalink to this headline">¶</a></h2>
-<p>Either add this block below the body of the html or add the code within to a connected JavaScript file to create functionality for closing the modal and returning to the base page. The first anonymous function activates after clicking the span that acts as a close button, and the second activates after clicking the translucent black background around the modal box. Both hide the background and the modal box from view, effectively &#8220;closing&#8221; the box.</p>
+<h2>Opening and Closing the Modal - cameras.js and cameras.html<a class="headerlink" href="#opening-and-closing-the-modal-cameras-js-and-cameras-html" title="Permalink to this headline">¶</a></h2>
+<p>Either add this block below the body of the html or add the code within to a connected JavaScript file to create functionality for closing the modal and returning to the base page. The first anonymous function activates after clicking the span that acts as a close button, and the second activates after clicking the translucent black background around the modal box. Both hide the background and the modal box from view, effectively &#8220;closing&#8220; the box.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span>
     <span class="n">document</span><span class="o">.</span><span class="n">getElementsByClassName</span><span class="p">(</span><span class="s2">&quot;modalclose&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">onclick</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;mapModal&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">display</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">;</span>
@@ -272,7 +272,7 @@
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>Of course, all that does is open the modal, but there&#8217;s still no actual content within the box. To place content within the modal, use the additions to the listener from the previous step shown below. Note that to extract information from a specific column for a given row corresponding to the clicked marker, you can use e.row.{COLUMN ID}.value, where {COLUMN ID} should match the name of whatever column contains the desired information. Also, pay close attention to the line starting with <code class="docutils literal"><span class="pre">var</span> <span class="pre">expandedcamview</span></code>. This is where any customized layouts for displaying camera information should be written.</p>
+<p>Of course, all that does is open the modal, but there&#8216;s still no actual content within the box. To place content within the modal, use the additions to the listener from the previous step shown below. Note that to extract information from a specific column for a given row corresponding to the clicked marker, you can use e.row.{COLUMN ID}.value, where {COLUMN ID} should match the name of whatever column contains the desired information. Also, pay close attention to the line starting with <code class="docutils literal"><span class="pre">var</span> <span class="pre">expandedcamview</span></code>. This is where any customized layouts for displaying camera information should be written.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">layer</span><span class="p">,</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
             <span class="kd">var</span> <span class="nx">camID</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">ID</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
             <span class="kd">var</span> <span class="nx">camLink</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">Image</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
@@ -325,7 +325,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Purdue CAM2 Project Developers
-      Last updated on Nov 29, 2018.
+      Last updated on Jan 27, 2019.
 
     </p>
   </div>

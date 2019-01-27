@@ -167,9 +167,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="app-list">
-<span id="app-list"></span><h1>App List<a class="headerlink" href="#app-list" title="Permalink to this headline">¶</a></h1>
+<h1>App List<a class="headerlink" href="#app-list" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="build-up-the-new-model">
-<span id="build-up-the-new-model"></span><h2>Build up the new model<a class="headerlink" href="#build-up-the-new-model" title="Permalink to this headline">¶</a></h2>
+<h2>Build up the new model<a class="headerlink" href="#build-up-the-new-model" title="Permalink to this headline">¶</a></h2>
 <p>Add class <code class="docutils literal"><span class="pre">app_list</span></code> in <code class="docutils literal"><span class="pre">app/models.py</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="k">class</span> <span class="nc">AppList</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
         <span class="n">applist</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -179,7 +179,7 @@
 <p>The apps is in the <a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/db/examples/many_to_one/">many-to-one</a> relationship with the User. User in the <code class="docutils literal"><span class="pre">app_list</span></code> model keeps the foreign key of user from <code class="docutils literal"><span class="pre">django.contrib.auth.models</span></code>. Applist in the <code class="docutils literal"><span class="pre">app_list</span></code> model records the app name which the user puts in.</p>
 </div>
 <div class="section" id="creating-forms">
-<span id="creating-forms"></span><h2>Creating forms<a class="headerlink" href="#creating-forms" title="Permalink to this headline">¶</a></h2>
+<h2>Creating forms<a class="headerlink" href="#creating-forms" title="Permalink to this headline">¶</a></h2>
 <p>We are going to use the form <code class="docutils literal"><span class="pre">ModelForm</span></code> provided by Django. ModelForms render Model fields as HTML. The form needs a model called <code class="docutils literal"><span class="pre">AppList</span></code>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AppForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
     <span class="n">applist</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">()</span>
@@ -192,7 +192,7 @@
 <p>We specify the <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/forms/fields/#charfield">CharField</a>. Once we are done with defining the field, we need to add it into <code class="docutils literal"><span class="pre">Meta</span></code> so the forms know what we want to put in.</p>
 </div>
 <div class="section" id="writing-a-view">
-<span id="writing-a-view"></span><h2>Writing a view:<a class="headerlink" href="#writing-a-view" title="Permalink to this headline">¶</a></h2>
+<h2>Writing a view:<a class="headerlink" href="#writing-a-view" title="Permalink to this headline">¶</a></h2>
 <p>Now, we are going to create a view for our user applist adding. Go to <code class="docutils literal"><span class="pre">app/views.py</span></code> and add the following in the <code class="docutils literal"><span class="pre">profile</span></code> function definition:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="n">app_form</span> <span class="o">=</span> <span class="n">AppForm</span><span class="p">()</span>
 
@@ -217,8 +217,8 @@
 </div>
 <p><code class="docutils literal"><span class="pre">commit=False</span></code> is to get the form from memoery, not in database. You can make changes before save it. After we assign the applist.user to current user, we call <code class="docutils literal"><span class="pre">applist.save()</span></code> and the data from form goes under the current user in database. After adding the apps, we will redirect the webpage to <code class="docutils literal"><span class="pre">profile</span></code>.</p>
 <div class="section" id="template">
-<span id="template"></span><h3>Template:<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h3>
-<p>We use the for loop to display the curret user&#8217;s apps.</p>
+<h3>Template:<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h3>
+<p>We use the for loop to display the curret user&#8216;s apps.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="o">&lt;</span><span class="n">h3</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;sub-header&quot;</span><span class="o">&gt;</span><span class="n">App</span> <span class="n">Lists</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
 
       <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">apps</span> <span class="o">%</span><span class="p">}</span>
@@ -266,7 +266,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Purdue CAM2 Project Developers
-      Last updated on Nov 29, 2018.
+      Last updated on Jan 27, 2019.
 
     </p>
   </div>

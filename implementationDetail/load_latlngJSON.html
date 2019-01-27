@@ -168,24 +168,24 @@
            <div itemprop="articleBody">
             
   <div class="section" id="load-latlngjson">
-<span id="load-latlngjson"></span><h1>load_latlngJSON<a class="headerlink" href="#load-latlngjson" title="Permalink to this headline">¶</a></h1>
+<h1>load_latlngJSON<a class="headerlink" href="#load-latlngjson" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-is-it">
-<span id="what-is-it"></span><h2>What is it<a class="headerlink" href="#what-is-it" title="Permalink to this headline">¶</a></h2>
+<h2>What is it<a class="headerlink" href="#what-is-it" title="Permalink to this headline">¶</a></h2>
 <p>It is a custom Django command to execute the load_latlngJSON.py script.</p>
 <p>Main purpose of this script is to create a dictionary in the form a JSON object to proivde O(1) lookup for latitudinal and longitudinal information of  northeast and southwest corners of a country. This information is needed to dynamically adjust viewport of map as multiple countries are selected.</p>
-<p>This command is used to execute a scripts that parses all countries listed on our project&#8217;s cameras webpage, uses geocode API to obtain viewport of each country, and then creates a JSON file of country codes mapped to country viewports.</p>
+<p>This command is used to execute a scripts that parses all countries listed on our project&#8216;s cameras webpage, uses geocode API to obtain viewport of each country, and then creates a JSON file of country codes mapped to country viewports.</p>
 </div>
 <div class="section" id="why-it-was-needed">
-<span id="why-it-was-needed"></span><h2>Why it was needed<a class="headerlink" href="#why-it-was-needed" title="Permalink to this headline">¶</a></h2>
+<h2>Why it was needed<a class="headerlink" href="#why-it-was-needed" title="Permalink to this headline">¶</a></h2>
 <p>See <a class="reference external" href="https://github.com/PurdueCAM2Project/CAM2WebUI/issues/95">this issue</a> for an in-depth explanation.</p>
 <p>A brief summary: this script is a necessary solution to</p>
 <ol class="simple">
-<li>Limit calls to geocode API: there&#8217;s a limit to number of free requests to geocode API which would have been undoubtedly exceeded in times of relatively heavy traffic to our website.</li>
-<li>Increase speed performace of our website&#8217;s cameras page: geocoder API requests may take several hundered milliseconds and this results in a subpar user experience when multiple countries are selected, in fact, dynaymically adjusting viewport when more than 3 countries are selected becomes infeasbile</li>
+<li>Limit calls to geocode API: there&#8216;s a limit to number of free requests to geocode API which would have been undoubtedly exceeded in times of relatively heavy traffic to our website.</li>
+<li>Increase speed performace of our website&#8216;s cameras page: geocoder API requests may take several hundered milliseconds and this results in a subpar user experience when multiple countries are selected, in fact, dynaymically adjusting viewport when more than 3 countries are selected becomes infeasbile</li>
 </ol>
 </div>
 <div class="section" id="executing-the-script">
-<span id="executing-the-script"></span><h2>Executing the script<a class="headerlink" href="#executing-the-script" title="Permalink to this headline">¶</a></h2>
+<h2>Executing the script<a class="headerlink" href="#executing-the-script" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">load_latlngJSON</span>
 </pre></div>
 </div>
@@ -196,7 +196,7 @@
 <p>The script can run for potentially more than 2 minutes, due to reasons explained <a class="reference external" href="#delay_reason">here</a> and <a class="reference external" href="https://github.com/PurdueCAM2Project/CAM2WebUI/commit/b725343182ae964cbd2a3a44cb72d379a11b4c2e">here</a>.</p>
 </div>
 <div class="section" id="documentation">
-<span id="documentation"></span><h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
 <p>The script was setup as per the <a class="reference external" href="https://docs.djangoproject.com/en/dev/howto/custom-management-commands/">official tutorial</a> on how to create a custom Django command.</p>
 <p>The path to the script: /app/management/commands/load_latlngJSON.py</p>
 <div class="admonition note">
@@ -213,9 +213,9 @@
 </pre></div>
 </div>
 <div class="section" id="using-beautiful-soup-to-parse-webpage">
-<span id="using-beautiful-soup-to-parse-webpage"></span><h3>Using Beautiful Soup to parse webpage<a class="headerlink" href="#using-beautiful-soup-to-parse-webpage" title="Permalink to this headline">¶</a></h3>
-<p>As explained in the <a class="reference external" href="https://github.com/PurdueCAM2Project/Training#introduction-to-beautiful-soup-and-selenium">CAM2 Training docs</a>, Beautiful Soup was used to parse the list of countries for our website&#8217;s cameras page.</p>
-<p><a class="reference external" href="http://web.stanford.edu/~zlotnick/TextAsData/Web_Scraping_with_Beautiful_Soup.html">This</a> webpage from stanford.edu is also an excellent quick guide to Beautiful Soup</p>
+<h3>Using Beautiful Soup to parse webpage<a class="headerlink" href="#using-beautiful-soup-to-parse-webpage" title="Permalink to this headline">¶</a></h3>
+<p>As explained in the <a class="reference external" href="https://github.com/PurdueCAM2Project/Training#introduction-to-beautiful-soup-and-selenium">CAM2 Training docs</a>, Beautiful Soup was used to parse the list of countries for our website&#8216;s cameras page.</p>
+<p><a class="reference external" href="http://web.stanford.edu/%7Ezlotnick/TextAsData/Web_Scraping_with_Beautiful_Soup.html">This</a> webpage from stanford.edu is also an excellent quick guide to Beautiful Soup</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span><span class="o">,</span> <span class="nn">urllib.parse</span><span class="o">,</span> <span class="nn">urllib.error</span>
 <span class="kn">import</span> <span class="nn">ssl</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="k">import</span> <span class="n">BeautifulSoup</span>
@@ -243,11 +243,11 @@
 </div>
 </div>
 <div class="section" id="using-geocode-api">
-<span id="using-geocode-api"></span><h3>Using geocode API<a class="headerlink" href="#using-geocode-api" title="Permalink to this headline">¶</a></h3>
-<p>Google&#8217;s geocode API was used to obtain viewports of countries listed on our website&#8217;s drop down menu.</p>
+<h3>Using geocode API<a class="headerlink" href="#using-geocode-api" title="Permalink to this headline">¶</a></h3>
+<p>Google&#8216;s geocode API was used to obtain viewports of countries listed on our website&#8216;s drop down menu.</p>
 <p>These viewports are nested dictionaries containing information about the latitudinal and longitudinal positions of the northwest and southwest corners of a country.</p>
 <p><a class="reference external" href="https://gist.github.com/pnavarrc/5379521">This</a> tutorial on Github was referred to as a guide to use geocode API in python.</p>
-<p>The geocoding function takes a dictionary of country codes mapped to country names as inputs and makes requests using country names to obtain viewports. Each country&#8217;s code is then mapped to country&#8217;s viewport. The resulting dictionary is then returned.</p>
+<p>The geocoding function takes a dictionary of country codes mapped to country names as inputs and makes requests using country names to obtain viewports. Each country&#8216;s code is then mapped to country&#8216;s viewport. The resulting dictionary is then returned.</p>
 <ul class="simple">
 <li>It is necessary for the script to sleep for 0.01 secounds before making a request to geocode API in order to ensure that the 50 queries per second limit is not exceeded.</li>
 <li><a name="delay_reason">Initially not all countries were geocoded properly, each time geocoding randomly failed for a number of consecutively listed countries. This was solved by waiting for 1 second in the event of failure and then sending the same request to geocode API again. Now 100% of the countries are geocoded each time the script is executed. However, as a consequence, the script may take more than 2 minutes to run.</a></li>
@@ -293,8 +293,8 @@
 </div>
 </div>
 <div class="section" id="creating-json-file">
-<span id="creating-json-file"></span><h3>Creating JSON file<a class="headerlink" href="#creating-json-file" title="Permalink to this headline">¶</a></h3>
-<p>Once the nested dictionary of country codes mapped to country viewports is obtained, &#8216;json&#8217; library is used to create a JSON file of this dictionary in the appropriate directory:</p>
+<h3>Creating JSON file<a class="headerlink" href="#creating-json-file" title="Permalink to this headline">¶</a></h3>
+<p>Once the nested dictionary of country codes mapped to country viewports is obtained, &#8216;json&#8216; library is used to create a JSON file of this dictionary in the appropriate directory:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 </pre></div>
 </div>
@@ -327,7 +327,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Purdue CAM2 Project Developers
-      Last updated on Nov 29, 2018.
+      Last updated on Jan 27, 2019.
 
     </p>
   </div>
