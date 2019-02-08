@@ -1,4 +1,4 @@
-from ..models import Homepage, FAQ, History, Publication, Team, Leader, TeamMember, Collab, Location, Sponsor, Poster, Calendar, Video, Member
+from ..models import Homepage, FAQ, History, Publication, Team, Faculty, TeamMember, Collab, Location, Sponsor, Poster, Calendar, Video, Member
 from django.contrib.auth.models import User
 from django.contrib import admin
 from social_django.models import Association, Nonce, UserSocialAuth
@@ -22,6 +22,7 @@ admin.site.register(History)
 admin.site.register(Publication)
 admin.site.register(Team)
 admin.site.register(Sponsor)
+admin.site.register(Faculty)
 admin.site.register(TeamMember)
 admin.site.register(Poster)
 admin.site.register(Video)
@@ -32,5 +33,4 @@ admin.site.register(Video)
 # admin.site.register(Member)
 
 # Stagnant
-# admin.site.register(Leader)
 # admin.site.register(Location)

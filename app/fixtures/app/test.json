@@ -709,22 +709,24 @@
         }
     },
     {
-        "model": "app.leader",
+        "model": "app.faculty",
         "pk": 1,
         "fields": {
             "leaderimg": "https://drive.google.com/uc?id=13qE7JxFwB2xuVEEDDvoMK9oEkOf5DWNU",
             "leadertitle": "Project Director",
-            "leadername": "Yung Hsiang Lu",
+            "leadername": "Yung Hsiang",
+            "leadernamelast": "Lu",
             "leaderpagelink": "https://engineering.purdue.edu/HELPS/Faculty/yunglu.html"
         }
     },
     {
-        "model": "app.leader",
+        "model": "app.faculty",
         "pk": 2,
         "fields": {
             "leaderimg": "https://drive.google.com/uc?id=1F4Cjrc2SxyyiBDSRBwdGs24Gy0DrfCU0",
             "leadertitle": "Team Manager",
-            "leadername": "George K. Thiruvathukal",
+            "leadername": "George K.",
+            "leadernamelast": "Thiruvathukal",
             "leaderpagelink": "http://luc.edu/cs/people/ftfaculty/gkt.shtml"
         }
     },
