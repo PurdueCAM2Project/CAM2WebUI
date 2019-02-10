@@ -17,10 +17,12 @@ import pandas as pd
 """Global Variables"""
 
 """API"""
-CLIENT_ID = str(os.environ['CLIENT_ID'])
-CLIENT_SECRET = str(os.environ['CLIENT_SECRET'])
-TOTAL_NO_CAMERAS = int(os.environ['TOTAL_NO_CAMERAS'])
-FILE_ID = os.environ['FILE_ID']
+if __name__ == '__main__':
+    CLIENT_ID = str(os.environ['CLIENT_ID'])
+    CLIENT_SECRET = str(os.environ['CLIENT_SECRET'])
+    TOTAL_NO_CAMERAS = int(os.environ['TOTAL_NO_CAMERAS'])
+    FILE_ID = os.environ['FILE_ID']
+    main()
 
 """Google Credentials"""
 SCOPES = [
@@ -210,7 +212,3 @@ def main():
 
     end_time = time.time()
     print("--- {0} seconds ---".format(end_time - start_time))
-
-
-if __name__ == '__main__':
-    main()

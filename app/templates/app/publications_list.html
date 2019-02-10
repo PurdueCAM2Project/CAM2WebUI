@@ -55,8 +55,12 @@
                     {% endif %} -->
 
                     <h6 class="card-title">{{ publication.paperinfo }}</h6>
+                    {% if publication.conference is not None %}
                     <h6 class="card-subtitle mb-2 text-muted" style="font-size: 70%;">{{ publication.conference }} </h6>
+                    {% endif %}
+                    {% if publication.authors is not None %}
                     <p class="card-text" style="font-size: 80%;"><span class="badge badge-dark">Authors</span>: {{ publication.authors }}</p>
+                    {% endif %}
                 
                   </div>
                 </div>

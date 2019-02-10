@@ -1,9 +1,8 @@
 from django.db import models
-from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from app.validators import validateURL, validateEmail,validateMonth, validateYear, validateName 
+from .validators import validateURL, validateEmail,validateMonth, validateYear, validateName 
 
 class Homepage(models.Model):
     """Django model for the homepage 
@@ -15,11 +14,14 @@ class Homepage(models.Model):
          slidenum: A IntegerField for the number of the current slide. 
 
     """
+    class Meta:
+        verbose_name = 'homepage slide'
+        ordering = ['slidenum']
     slideheader = models.CharField(verbose_name='Slide Header', max_length=500, blank=True)
     
     slidedescrb = models.CharField(verbose_name='Slide Description', max_length=300, blank=True, null=True)
 
-    slidedescrb1 = models.CharField(verbose_name='Slide Description', max_length=300, blank=True, null=True)
+    slidedescrb1 = models.CharField(verbose_name='Slide Subdescription', max_length=300, blank=True, null=True)
     
     slidenum = models.IntegerField(verbose_name='Slide Number', blank=False, null=True)
     
@@ -79,8 +81,8 @@ class FAQ(models.Model):
         answer: A CharField for the answer to that question
 
     """
-    question = models.CharField(verbose_name='FAQ question', max_length=200)
-    answer = models.CharField(verbose_name='FAQ answer', max_length=500)
+    question = models.TextField(verbose_name='FAQ question', max_length=200)
+    answer = models.TextField(verbose_name='FAQ answer', max_length=500)
     def __str__(self):
         return "{0}".format(self.question)
 
@@ -96,9 +98,12 @@ class History(models.Model):
         event: A CharField for a description of the event
 
     """
+    class Meta:
+        verbose_name = 'past event'
+        ordering = ['-year', '-month']
     month = models.PositiveIntegerField(validators=[validateMonth])
     year = models.PositiveIntegerField(validators=[validateYear])
-    event = models.CharField(verbose_name='History Details', max_length=500)
+    event = models.TextField(verbose_name='History Details', max_length=500)
     def __str__(self):
         event = self.event[:50] if len(self.event) > 50 else self.event
         return "{0}/{1} {2}...".format(self.month, self.year, event)
@@ -114,10 +119,10 @@ class Publication(models.Model):
         paperlink: A CharField for a link to the paper, validated as a URL
 
     """
-    paperinfo = models.CharField(verbose_name='Publication Details', max_length=1500)
+    paperinfo = models.TextField(verbose_name='Publication Details', max_length=1500)
     conference = models.CharField(verbose_name='Publication Conference', blank=True, null=True, max_length=1500)
-    authors = models.CharField(verbose_name='Publication Authors',  blank=True, null=True, max_length=1500)
-    paperlink = models.CharField(verbose_name='Publication Paper Link (Optional)', max_length=300, blank=True, null=True, validators=[validateURL])
+    authors = models.CharField(verbose_name='Publication Authors', blank=True, null=True, max_length=1500)
+    paperlink = models.URLField(verbose_name='Publication Paper Link', max_length=300, blank=True, null=True)
     def __str__(self):
         paperinfo = self.paperinfo[:100] if len(self.paperinfo) > 100 else self.paperinfo
         return "{0}...".format(paperinfo)
@@ -132,27 +137,35 @@ class Team(models.Model):
         teamimg: A CharField for a link to an image, validated as an URL
 
     """
-    teamimg = models.CharField(verbose_name='Team Image', max_length=300, validators=[validateURL])
+    class Meta:
+        verbose_name = 'team image'
+    teamimg = models.TextField(verbose_name='Team Image', max_length=300)
 
 
-class Leader(models.Model):
-    """Django model for the team leaders' information
+class Faculty(models.Model):
+    """Django model for the faculty members' information
     
-    Contains information that structures the database for the team leaders and advisors
+    Contains information that structures the database for the faculty members and advisors
 
     Attributes:
-        leaderimg: A CharField for a link to an image, validated as an URL
-        leadertitle: A CharField for the leader's Job Title
-        leadername: A CharField for the leader's full name
-        leaderpagelink: A CharField for a link to the leader's website, validated as an URL
+        img: A CharField for a link to an image, validated as an URL
+        title: A CharField for the faculty member's Job Title
+        name: A CharField for the faculty member's first and middle names
+        lastname: A CharField for the faculty member's last name
+        pagelink: A CharField for a link to the faculty member's website, validated as an URL
 
     """
-    leaderimg = models.CharField(verbose_name='Leader Image', max_length=300, validators=[validateURL])
-    leadertitle = models.CharField(verbose_name='Leader Title', max_length=50)
-    leadername = models.CharField(verbose_name='Leader Name', max_length=50, validators=[validateName])
-    leaderpagelink = models.CharField(verbose_name='Leader Page Link (Optional)', max_length=300, blank=True, null=True, validators=[validateURL])
+    class Meta:
+        verbose_name = 'faculty member'
+        verbose_name_plural = 'faculty'
+        ordering = ['lastname']
+    img = models.URLField(verbose_name="Faculty Member's Image", max_length=300)
+    title = models.TextField(verbose_name="Faculty Member's Title", blank=True, null=True)
+    name = models.CharField(verbose_name="Faculty Member's First and Middle Name", max_length=50)
+    lastname = models.CharField(verbose_name="Faculty Member's Last Name", max_length=50)
+    pagelink = models.URLField(verbose_name="Faculty Member's Page Link", max_length=300, blank=True, null=True)
     def __str__(self):
-        return "{0}".format(self.leadername)
+        return "{0} {1}".format(self.name, self.lastname)
 
 class Collab(models.Model):
     """Django model for the team collaborators' information
@@ -168,8 +181,8 @@ class Collab(models.Model):
     """
     collabname = models.CharField(verbose_name='Collaborator', max_length=100)
     collabdescr = models.CharField(verbose_name='Description', max_length=500, blank=True, null=True)
-    collablink = models.CharField(verbose_name='Link to Site', max_length=300, blank=True, null=True, validators=[validateURL])
-    collabimg = models.CharField(verbose_name='Collaborator Logo', max_length=300, blank=True, null=True, validators=[validateURL])
+    collablink = models.URLField(verbose_name='Link to Site', max_length=300, blank=True, null=True)
+    collabimg = models.URLField(verbose_name='Collaborator Logo', max_length=300, blank=True, null=True)
     def __str__(self):
         return "{0}".format(self.collabname)
     
@@ -187,8 +200,8 @@ class Sponsor(models.Model):
     """
     sponname = models.CharField(verbose_name='Sponsor', max_length=100, blank=True)
     spondescr = models.CharField(verbose_name='Description', max_length=500, blank=True, null=True)
-    sponlink = models.CharField(verbose_name='Link to Site', max_length=300, blank=True, null=True, validators=[validateURL])
-    logolink = models.CharField(verbose_name='Link to Logo', max_length=300, blank=True, null=True, validators=[validateURL])
+    sponlink = models.URLField(verbose_name='Link to Site', max_length=300, blank=True, null=True)
+    logolink = models.URLField(verbose_name='Link to Logo', max_length=300, blank=True, null=True)
     def __str__(self):
         return "{0}".format(self.sponname)
     
@@ -227,7 +240,7 @@ class Location(models.Model):
     def __str__(self):
         return "{0}".format(self.officename)
 
-
+# Deprecated. Use TeamMember instead.
 class Member(models.Model):
     """Django model for team members
     
@@ -241,7 +254,7 @@ class Member(models.Model):
 
     
     membername = models.CharField(verbose_name='Member Name', max_length=50, validators=[validateName])
-    memberimg = models.CharField(verbose_name='Member Image', max_length=300, blank=True, null=True, validators=[validateURL])
+    memberimg = models.URLField(verbose_name='Member Image', max_length=300, blank=True, null=True)
     iscurrentmember = models.BooleanField(verbose_name='Is Current Member')
 
     TEAM = (
@@ -277,7 +290,7 @@ class Poster(models.Model):
         posterimg: A CharField for an image URL for the poster.
     """
 
-    posterimg = models.CharField(verbose_name='Poster Image', max_length=300, validators=[validateURL])
+    posterimg = models.URLField(verbose_name='Poster Image', max_length=300)
 
 class ReportedCamera(models.Model):
     """Django model for cameras reported as having missing images
@@ -289,7 +302,7 @@ class ReportedCamera(models.Model):
         reporttime: A DateField for the time at which the camera was reported.
     """
     cameraID = models.CharField(verbose_name='Camera ID', max_length=100)
-    reporttime = models.DateTimeField(blank=True, null=True)
+    reporttime = models.DateTimeField(verbose_name='Report Time', blank=True, null=True)
     username = models.CharField(verbose_name='Username', blank=True, null=True, max_length=100)
     def __str__(self):
         return "{0}".format(self.cameraID)
@@ -312,7 +325,9 @@ class Subteam(models.Model):
 
 
 class TeamMember(models.Model):
-    name = models.TextField()
+    class Meta:
+        ordering = ['name']
+    name = models.CharField(max_length = 50)
     image_url = models.URLField(blank=True)
     subteam = models.ForeignKey('Subteam', on_delete=models.CASCADE)
     iscurrentmember = models.BooleanField(default=True,verbose_name='Is Current Member')

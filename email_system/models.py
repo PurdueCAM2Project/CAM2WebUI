@@ -3,6 +3,8 @@ from django.db import models
 
 
 class ContactModel(models.Model):
+    class Meta:
+        verbose_name = 'contact'
     name=models.CharField(verbose_name='Name', max_length=100, blank=True, null=True)
     from_email=models.EmailField()
     subject=models.CharField(verbose_name='Subject', max_length=100, blank=True, null=True)
@@ -12,6 +14,8 @@ class ContactModel(models.Model):
         return "{0}".format(self.subject)
 
 class JoinModel(models.Model):
+    class Meta:
+        verbose_name = 'join request'
     name=models.CharField(verbose_name='Name', max_length=100, blank=True, null=True)
     from_email=models.EmailField()
     major=models.CharField(verbose_name='Major', max_length=1000, blank=True, null=True)

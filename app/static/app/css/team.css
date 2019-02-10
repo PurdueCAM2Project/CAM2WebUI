@@ -12,6 +12,10 @@ img.leaders {
   padding: 0.7em;
 }
 
+img.members {
+  object-fit: cover;
+  max-height: 161px;
+}
 
 .video-container {
 	background-color: red;
