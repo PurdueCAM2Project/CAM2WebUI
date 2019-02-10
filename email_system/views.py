@@ -4,7 +4,6 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
-from cam2webui.settings import EMAIL_HOST_USER, MANAGER_EMAIL
 from email_system.forms import MailForm, ContactForm, JoinForm
 from email_system.models import ContactModel, JoinModel
 from django.contrib.admin.views.decorators import staff_member_required
@@ -15,6 +14,9 @@ import urllib
 import sys
 import datetime
 from django.conf import settings
+
+EMAIL_HOST_USER = settings.EMAIL_HOST_USER
+MANAGER_EMAIL = settings.MANAGER_EMAIL
 
 @staff_member_required
 def admin_send_email(request):
@@ -152,23 +154,11 @@ def contact(request):
                 csub = request.POST.get('subject')
                 msg = request.POST.get('message')
                 messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
-                if 'test' in sys.argv:
-                    sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-                else:
-                    sitekey = os.environ['RECAPTCHA_SITE_KEY']
-        else:
-            if 'test' in sys.argv:
-                sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-            else:
-                sitekey = os.environ['RECAPTCHA_SITE_KEY']
 
     else:
         form = ContactForm()
-        
-        if 'test' in sys.argv:
-            sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-        else:
-            sitekey = os.environ['RECAPTCHA_SITE_KEY']
+
+    sitekey = settings.RECAPTCHA_SITE_KEY
     
     return render(request, "email_system/contact.html", {'form': form, 'sitekey': sitekey, 'cname': cname, 'cemail' : cemail, 'csub' : csub, 'msg' : msg, })
 
@@ -241,22 +231,11 @@ def join(request):
                 jelse = request.POST.get('anythingElse')
 
                 messages.error(request, 'Invalid reCAPTCHA. Please confirm you are not a robot and try again.')
-                if 'test' in sys.argv:
-                    sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-                else:
-                    sitekey = os.environ['RECAPTCHA_SITE_KEY']
-        else:
-            if 'test' in sys.argv:
-                sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-            else:
-                sitekey = os.environ['RECAPTCHA_SITE_KEY']
 
     else:
         form = JoinForm()
-        if 'test' in sys.argv:
-            sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-        else:
-            sitekey = os.environ['RECAPTCHA_SITE_KEY']
+
+    sitekey = settings.RECAPTCHA_SITE_KEY
 
     return render(request, "email_system/join.html", {'form': form, 'sitekey': sitekey, 'jname' : jname, 'jemail' : jemail, 'jmajor' : jmajor, 'jgradDate' : jgradDate, 'jcourses' : jcourses, 'jlang' : jlang, 'jtools' : jtools, 'jy' : jy, 'jelse' : jelse})
 

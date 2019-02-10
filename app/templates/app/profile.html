@@ -64,14 +64,15 @@
     </form>
     </span>
         
-<!--  Email  -->
+<!--  Authentication  -->
     <span class="col-6 border-0" style="padding: 15px">
-    <h3 class="sub-header">Email</h3>
+    <h3 class="sub-header">Authentication</h3>
+        
+    <!--  Change email  -->
+    <h4 class="sub-header">Email</h4>
     {% if user.email %}
         <p><b>Current email:</b> {{ user.email }}</p>
     {% endif %}
-        
-    <!--  Change email  -->
     <form method="post">
         {% csrf_token %}
         {% for field in emailForm %}
@@ -87,22 +88,46 @@
         {% else %}
             <button class="btn btn-info" type="submit" name="changeEmail">Confirm My Email</button>
         {% endif %}
+    <p></p>
+    </form>
         
     <!--  Change password  -->
-    {% if not github_login %}
-    <button class="btn btn-info" type="button">
-      <center href="/password_reset/">Change My Password</center>
+    <h4 class="sub-header">Password</h4>
+    <button class="btn btn-info" type="button" onclick="location.href='/password_change/'">
+      <center>Change My Password</center>
     </button>
+    <p></p>
+        
+    <h4 class="sub-header">GitHub</h4> 
+    {% if not github_login %}
+      <a class="oauth-btn btn btn-block btn-social btn-md btn-github center-block btn-dark " style="width: 100%" id="github_login" href="{% url 'social:begin' 'github' %}?next={% url 'profile'%}">
+        <span class="fa fa-github"></span> Sign into Github
+      </a>{# <br> #}
     {% else %}
-    <h3 class="sub-header">GitHub(Under Development)</h3> 
+      <form action="{% url 'social:disconnect_individual' 'github' github_login.id %}?next={% url 'profile'%}" method="POST">
+        {% csrf_token %}
+        <button class="oauth-btn btn btn-block btn-social btn-md btn-github center-block btn-dark" type="submit">
+          <span class="fa fa-github"></span> Sign out of Github
+        </button>
+      </form>
       <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
-      <div class="social-login-buttons" style="width:30%">
-        <a class="btn btn-block btn-social btn-github" href="/logout">
-          <span class="fa fa-github"></span>Log out Github
-        </a>
-      </div>     
     {% endif %}
-    </form>
+
+    {% comment %}<h4 class="sub-header">Google</h4> 
+    {% if not google_login %}
+      <a class="oauth-btn btn btn-block btn-social btn-md btn-github center-block btn-danger " style="width: 100%" id="google_login" href="{% url 'social:begin' 'google-oauth2' %}?next={% url 'profile'%}">
+        <span class="fa fa-google"></span> Sign into Google
+      </a>
+    {% else %}
+      <form action="{% url 'social:disconnect_individual' 'google-oauth2' google_login.id %}?next={% url 'profile'%}" method="POST">
+        {% csrf_token %}
+        <button class="oauth-btn btn btn-block btn-social btn-md btn-google center-block btn-danger" type="submit">
+          <span class="fa fa-google"></span> Sign out of Google
+        </button>
+      </form>
+      <p>Connected as <a href="https://google.com/{{ google_login.extra_data.login }}/" target="_blank">{{ google_login.extra_data.login }}</a></p>
+    {% endif %}
+    {% endcomment %}
     
 
 <!--  App List  -->
