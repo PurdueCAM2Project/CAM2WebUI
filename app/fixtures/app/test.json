@@ -712,22 +712,22 @@
         "model": "app.faculty",
         "pk": 1,
         "fields": {
-            "leaderimg": "https://drive.google.com/uc?id=13qE7JxFwB2xuVEEDDvoMK9oEkOf5DWNU",
-            "leadertitle": "Project Director",
-            "leadername": "Yung Hsiang",
-            "leadernamelast": "Lu",
-            "leaderpagelink": "https://engineering.purdue.edu/HELPS/Faculty/yunglu.html"
+            "img": "https://drive.google.com/uc?id=13qE7JxFwB2xuVEEDDvoMK9oEkOf5DWNU",
+            "title": "Project Director",
+            "name": "Yung Hsiang",
+            "namelast": "Lu",
+            "pagelink": "https://engineering.purdue.edu/HELPS/Faculty/yunglu.html"
         }
     },
     {
         "model": "app.faculty",
         "pk": 2,
         "fields": {
-            "leaderimg": "https://drive.google.com/uc?id=1F4Cjrc2SxyyiBDSRBwdGs24Gy0DrfCU0",
-            "leadertitle": "Team Manager",
-            "leadername": "George K.",
-            "leadernamelast": "Thiruvathukal",
-            "leaderpagelink": "http://luc.edu/cs/people/ftfaculty/gkt.shtml"
+            "img": "https://drive.google.com/uc?id=1F4Cjrc2SxyyiBDSRBwdGs24Gy0DrfCU0",
+            "title": "Team Manager",
+            "name": "George K.",
+            "namelast": "Thiruvathukal",
+            "pagelink": "http://luc.edu/cs/people/ftfaculty/gkt.shtml"
         }
     },
     {
