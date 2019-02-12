@@ -13,21 +13,24 @@
 
     'use strict';
 
+    var SQL_FILTERS = {
+        "all": "",
+        "active": "'Is Active Video' IN ('True')"
+    };
+
     var tableId = "1MtAPEmSd6BQxuDYo_KYePrBxg-SOA-JiGloEcz6i";//all cameras fusion table production ID
     //var tableId = "115-UUNvnJHw2abJinqa2CcRIY2mX7uAC4MhTcPYF";//only good cameras
     var locationColumn = "col2";
     var queryUrlHead = 'https://www.googleapis.com/fusiontables/v2/query?sql=';
     var queryUrlTail = '&key=AIzaSyBAJ63zPG5FpAJV9KXBJ6Y1bLKkvzYmhAg&callback=?';
 
-    //a variable to track whether state or city data has been queried from fusiontable
-    var region = '';
-
     var minZoom = 2;
     var center_of_world, maxNorthEastLat, maxNorthEastLng, maxSouthWestLat, maxSouthWestLng;
     var countries_viewport;
     var states_viewport;
-    var actives = false;
 
+    var sql = '';
+    var postSql = '';
 
     //Initialize a layer on map with markers for all cameras in database
     //Add DOM listeners for inputs on cameras html page
@@ -65,7 +68,8 @@
             heatmap: {enabled: false},
             query: {
                 select: locationColumn,
-                from: tableId
+                from: tableId,
+                where: SQL_FILTERS[document.getElementById('activeFilter').value]
             },
             options: {
                 styleId: 2,
@@ -73,7 +77,9 @@
                 suppressInfoWindows: true
             }
         });
-        google.maps.event.addListener(layer, 'click', function(e){
+
+        google.maps.event.addListener(layer, 'click', showMapDialog);
+        function showMapDialog(e){
             var camID = e.row.ID.value;
             var camLink = e.row.Image.value;
             var camLat = e.row.Latitude.value;
@@ -106,57 +112,15 @@
 
 
 
-        });
+        }
 
         document.getElementById('activeFilter').onchange = function () {
             // Use the Select Drop-down menu to filter out cameras that are active and cameras that are not.
-            //console.log(this.children[this.selectedIndex].value);
 
-            var city = getdata_dropdown("#city");
-            var state = getdata_dropdown("#state");
-            var country = getdata_dropdown("#country");
+            sql = SQL_FILTERS[this.children[this.selectedIndex].value];
+            postSql = sql == "" ? sql : " AND  " + sql;
 
-            if(this.children[this.selectedIndex].value == "active"){
-                actives = true;
-                if(country != "('undefined')"){
-                    if (city != "('')" && city != "('undefined')") {
-                        if (state != "('')" && state != "('undefined')") {
-                            updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state + " AND  " + "'City' IN " + city + " AND  " + "'Is Active Video' IN 'TRUE'");
-                        }
-                        else {
-                            updateLayer(layer, "'Country' IN" + country + " AND  " + "'City' IN " + city + " AND  " + "'Is Active Video' IN 'TRUE'");
-                        }
-                    }
-                    else if (state != "('')" && state != "('undefined')"){
-                        updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state + " AND  " + "'Is Active Video' IN 'TRUE'");
-                    }
-                    else {
-                        updateLayer(layer, "'Country' IN " + country + " AND  " + "'Is Active Video' IN 'TRUE'");
-                    }
-                } else {
-                    updateLayer(layer, "'Is Active Video' IN 'TRUE'");
-                }
-            } else {
-                actives = false;
-                if(country != "('undefined')"){
-                    if (city != "('')" && city != "('undefined')") {
-                        if (state != "('')" && state != "('undefined')") {
-                            updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state + " AND  " + "'City' IN " + city);
-                        }
-                        else {
-                            updateLayer(layer, "'Country' IN" + country + " AND  " + "'City' IN " + city);
-                        }
-                    }
-                    else if (state != "('')" && state != "('undefined')"){
-                        updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state);
-                    }
-                    else {
-                        updateLayer(layer, "'Country' IN " + country);
-                    }
-                } else {
-                    updateLayer(layer, "");
-                }
-            }
+            updateMap(layer, map);
         }
 
         google.maps.event.addDomListener($("#country").on("change", function () {
@@ -192,6 +156,26 @@
         }
         
         google.maps.event.addDomListener(window, 'load', initialize);
+
+        // If hash present, click on the camera
+        function showCameraDialog() {
+            if (window.location.hash != "")
+                $.ajax({
+                    url: queryUrlHead + encodeURIComponent("SELECT 'ID', 'Image', 'Latitude', 'Longitude', 'City', 'State', 'Country' " + "FROM " + tableId + " WHERE 'ID' IN '" + window.location.hash.substring(1) + "'") + queryUrlTail,
+                    dataType: 'jsonp',
+                    success: function (response) {
+                        var numCols = response.columns.length;
+                        var out = {};
+                        for (var i = 0; i < numCols; i++) {
+                            var name = response.rows[0][i];
+                            out[response.columns[i]] = {value:name};
+                        }
+                       showMapDialog({row:out});
+                   }
+               });
+        }
+        showCameraDialog();
+        window.addEventListener("hashchange", showCameraDialog, false);
     }
 
     function initialize_countries_viewport() {
@@ -217,6 +201,34 @@
         });
     }
 
+    function updateMap(layer, map) {
+        var city = getdata_dropdown("#city");
+        var state = getdata_dropdown("#state");
+        var country = getdata_dropdown("#country");
+
+        if(country != "('undefined')"){
+            getStateNames();
+            if (city != "('')" && city != "('undefined')") {
+                getCityNames();
+                if (state != "('')" && state != "('undefined')") {
+                    updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state + " AND  " + "'City' IN " + city + postSql);
+                }
+                else {
+                    updateLayer(layer, "'Country' IN" + country + " AND  " + "'City' IN " + city + postSql);
+                }
+            }
+            else if (state != "('')" && state != "('undefined')"){
+                getCityNames();
+                updateLayer(layer, "'Country' IN " + country + " AND  " + "'State' IN " + state + postSql);
+            }
+            else {
+                updateLayer(layer, "'Country' IN " + country + postSql);
+            }
+        } else {
+            updateLayer(layer, sql);
+        }
+    }
+
     function updateMap_Country(layer, map) {
         var country = getdata_dropdown("#country");
         if (country != "('USA')"){
@@ -228,19 +240,13 @@
             $('#states').show();
         }
         if (country != "('undefined')") {
-            var countryQuery = "'Country' IN " + country;
-            if (actives) {
-                countryQuery = countryQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
-            }
+            var countryQuery = "'Country' IN " + country + postSql;
             updateLayer(layer, countryQuery);
-            center_on_selected_countries(map);
+            center_on_selection(map, $("#country").select2('val'), countries_viewport);
             getStateNames();
         }
         else {
-            var countryQuery = "";
-            if (actives) {
-                countryQuery = "'Is Active Video' IN 'TRUE'";
-            }
+            var countryQuery = sql;
             set_dropdown_null("state");
             set_dropdown_null("city");
             updateLayer(layer, countryQuery);
@@ -252,21 +258,15 @@
         var state = getdata_dropdown("#state");
 
         if (state != "('')" && state != "('undefined')") {
-            var stateQuery = "'State' IN " + state;
-            if (actives) {
-                stateQuery = stateQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
-            }
+            var stateQuery = "'State' IN " + state + postSql;
             updateLayer(layer, stateQuery);
-            center_on_selected_states(map);
+            center_on_selection(map, $("#state").select2('val'), states_viewport);
             getCityNames();
         }
         else {
-            //set_dropdown_null("city");
+            set_dropdown_null("city");
             var country = getdata_dropdown("#country");
-            var stateQuery = "'Country' IN " + country;
-            if (actives) {
-                stateQuery = stateQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
-            }
+            var stateQuery = "'Country' IN " + country + postSql;
             updateLayer(layer, stateQuery);
             center_on_world(map);
         }
@@ -277,30 +277,17 @@
         var state = getdata_dropdown("#state");
         var country = getdata_dropdown("#country");
 
-        if (city != "('')" && city != "('undefined')") {
-            if (state != "('')" && state != "('undefined')") {
-                var citystateQuery = "'State' IN " + state + " AND  " + "'City' IN " + city;
-                if (actives) {
-                    citystateQuery = citystateQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
-                }
-                updateLayer(layer, citystateQuery);
+        var query;
 
-            }
-            else {
-                var citycountryQuery = "'Country' IN" + country + " AND  " + "'City' IN " + city;
-                if (actives) {
-                    citycountryQuery = citycountryQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
-                }
-                updateLayer(layer, citycountryQuery);
-            }
-        }
-        else {
-            var cityQuery = "'Country' IN " + country;
-            if (actives) {
-                cityQuery = cityQuery + " AND  " + "'Is Active Video' IN 'TRUE'";
-            }
-            updateLayer(layer, cityQuery);
-        }
+        if (state != "('')" && state != "('undefined')")
+            query = "'State' IN " + state;
+        else
+            query = "'Country' IN" + country;
+
+        if (city != "('')" && city != "('undefined')")
+            query += " AND  " + "'City' IN " + city;
+
+        updateLayer(layer, query + postSql);
     }
 
     //return string of selected inputs from drop down menu in the required format for a query to fusion table
@@ -329,86 +316,47 @@
 
     //using geocoder to center map on country selected - see link below to for documentation and example
     //https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?csw=1
-    function center_on_selected_countries(map) {
-        var selected_countries = $("#country").select2('val');
+    function center_on_selection(map, selection, viewport) {
+        try {
+            //initiliaze with corners of first country
+            var curr = viewport[selection[0]];
+            maxNorthEastLat = curr.northeast.lat;
+            maxNorthEastLng = curr.northeast.lng;
+            maxSouthWestLat = curr.southwest.lat;
+            maxSouthWestLng = curr.southwest.lng;
 
-        //initiliaze with corners of first country
-        var curr_country = countries_viewport[selected_countries[0]];
-        maxNorthEastLat = curr_country.northeast.lat;
-        maxNorthEastLng = curr_country.northeast.lng;
-        maxSouthWestLat = curr_country.southwest.lat;
-        maxSouthWestLng = curr_country.southwest.lng;
 
+            for (var i = 1; i < selection.length; i++) {
+                var country = selection[i];
+                curr = viewport[country];
 
-        for (var i = 1; i < selected_countries.length; i++) {
-            var country = selected_countries[i];
-            curr_country = countries_viewport[country];
+                var currNorthEastLat = curr.northeast.lat;
+                var currNorthEastLng = curr.northeast.lng;
+                var currSouthWestLat = curr.southwest.lat;
+                var currSouthWestLng = curr.southwest.lng;
 
-            var currNorthEastLat = curr_country.northeast.lat;
-            var currNorthEastLng = curr_country.northeast.lng;
-            var currSouthWestLat = curr_country.southwest.lat;
-            var currSouthWestLng = curr_country.southwest.lng;
+                if (maxNorthEastLat < currNorthEastLat)
+                    maxNorthEastLat = currNorthEastLat;
 
-            if (maxNorthEastLat < currNorthEastLat)
-                maxNorthEastLat = currNorthEastLat;
+                if (maxNorthEastLng < currNorthEastLng)
+                    maxNorthEastLng = currNorthEastLng;
 
-            if (maxNorthEastLng < currNorthEastLng)
-                maxNorthEastLng = currNorthEastLng;
+                if (maxSouthWestLat > currSouthWestLat)
+                    maxSouthWestLat = currSouthWestLat;
 
-            if (maxSouthWestLat > currSouthWestLat)
-                maxSouthWestLat = currSouthWestLat;
+                if (maxSouthWestLng > currSouthWestLng)
+                    maxSouthWestLng = currSouthWestLng;
+            }
 
-            if (maxSouthWestLng > currSouthWestLng)
-                maxSouthWestLng = currSouthWestLng;
-        }
+            var bounds = new google.maps.LatLngBounds();
 
-        var bounds = new google.maps.LatLngBounds();
+            bounds.extend(new google.maps.LatLng(maxNorthEastLat, maxNorthEastLng));
+            bounds.extend(new google.maps.LatLng(maxSouthWestLat, maxSouthWestLng));
 
-        bounds.extend(new google.maps.LatLng(maxNorthEastLat, maxNorthEastLng));
-        bounds.extend(new google.maps.LatLng(maxSouthWestLat, maxSouthWestLng));
-
-        map.fitBounds(bounds);
+            map.fitBounds(bounds);
+        } catch(e) {}
     }
     //https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?csw=1
-    function center_on_selected_states(map) {
-        var selected_states = $("#state").select2('val');
-
-        //initiliaze with corners of first country
-        var curr_state = states_viewport[selected_states[0]];
-        maxNorthEastLat = curr_state.northeast.lat;
-        maxNorthEastLng = curr_state.northeast.lng;
-        maxSouthWestLat = curr_state.southwest.lat;
-        maxSouthWestLng = curr_state.southwest.lng;
-
-        for (var i = 1; i < selected_states.length; i++) {
-            var state = selected_states[i];
-            curr_state = states_viewport[state];
-
-            var currNorthEastLat = curr_state.northeast.lat;
-            var currNorthEastLng = curr_state.northeast.lng;
-            var currSouthWestLat = curr_state.southwest.lat;
-            var currSouthWestLng = curr_state.southwest.lng;
-
-            if (maxNorthEastLat < currNorthEastLat)
-                maxNorthEastLat = currNorthEastLat;
-
-            if (maxNorthEastLng < currNorthEastLng)
-                maxNorthEastLng = currNorthEastLng;
-
-            if (maxSouthWestLat > currSouthWestLat)
-                maxSouthWestLat = currSouthWestLat;
-
-            if (maxSouthWestLng > currSouthWestLng)
-                maxSouthWestLng = currSouthWestLng;
-        }
-
-        var bounds = new google.maps.LatLngBounds();
-
-        bounds.extend(new google.maps.LatLng(maxNorthEastLat, maxNorthEastLng));
-        bounds.extend(new google.maps.LatLng(maxSouthWestLat, maxSouthWestLng));
-
-        map.fitBounds(bounds);
-    }
 
     function center_on_world(map) {
         map.setCenter(center_of_world);
@@ -428,9 +376,8 @@
         if ($.inArray("USA", countrylist) != -1 && countrylist.length == 1) {
             document.getElementById('state').isDisabled = false;
             document.getElementById('city').isDisabled = true;
-            region = 'state';
             var encodedQuery = get_encodedQuery('State');
-            sendRequest(encodedQuery);
+            sendRequest('state', encodedQuery);
         }
         else if($.inArray("USA", countrylist) != -1 && countrylist.length != 1){
             document.getElementById('state').isDisabled = true;
@@ -445,9 +392,8 @@
 
     function getCityNames() {
         document.getElementById('city').isDisabled = false;
-        region = 'city';
         var encodedQuery = get_encodedQuery('City');
-        sendRequest(encodedQuery);
+        sendRequest('city', encodedQuery);
     }
 
     //See 'Querying data from fusion tables using Javascript' section of Google Fusion Table docs by CAM2WebUI
@@ -458,33 +404,39 @@
 
         var FT_Query = "SELECT '" + data + "' " + "FROM " + tableId;
 
-        if (state != "('undefined')" && state != "('')")
+        if (state != "('undefined')" && state != "('')" && data != "State")
             FT_Query += " WHERE 'State' IN " + state;
         else if (country != "('undefined')" && country != "('')")
             FT_Query += " WHERE 'Country' IN " + country;
+
+        if (postSql != '')
+            FT_Query += postSql;
 
         FT_Query += " group by '" + data + "'";
 
         return encodeURIComponent(FT_Query);
     }
 
-    function sendRequest(encodedQuery) {
+    function sendRequest(region, encodedQuery) {
         $.ajax({
             url: queryUrlHead + encodedQuery + queryUrlTail,
             dataType: 'jsonp',
             success: function (response) {
-                populate_dropdown(response);
+                populate_dropdown(region, response);
             }
         });
     }
 
-    function populate_dropdown(response) {
+    function populate_dropdown(region, response) {
         //if the returnedP JSON object doesn't have a rows keys then it means that an error has occurred
+        //Really. Are you sure? I think that would cause more problems than it solves. Just put an empty box on the screen.
         if (!response.rows) {
+            document.getElementById(region).innerHTML = "<select name='data_select' onchange='handleSelected(this)'></select>";
             return;
         }
 
         var numRows = response.rows.length;
+        var data = $("#"+region).select2("val");
 
         var Names = {};
         for (var i = 0; i < numRows; i++) {
@@ -494,10 +446,12 @@
 
         var dropdown_list = "<select name='data_select' onchange='handleSelected(this)'>"
         for (name in Names) {
-            dropdown_list += "<option value='" + name + "'>" + name + "</option>"
+            dropdown_list += "<option value='" + name + "'" + (data && data.includes(name) ? " selected" : "") + ">" + name + "</option>"
         }
         dropdown_list += "</select>"
+
         document.getElementById(region).innerHTML = dropdown_list;
+        $("#"+region).trigger('change');
     }
  
     /*function report_camera(cameraID) {

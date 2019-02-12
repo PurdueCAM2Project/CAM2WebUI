@@ -4,6 +4,7 @@
 {% block css %}
 <link rel="stylesheet" href="{% static "app/css/cameras.css" %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css">
 {% endblock %}
 {% block content %}
 <div class="container">
@@ -310,6 +311,14 @@
 
   <div id="mapCanvas"></div>
 
+  <hr>
+  <div id="why">
+    <h2>Why is camera health checking hard?</h2>
+    <p><br>The Camera Health Checker is used to ensurse the validty of the cameras' data in the database. We are currently working on detecting if a camera is active or not; one problem we are facing is detecting cameras with dark feed. Our detection works by comparing the frame rate of a set of two images between an interval of time.  However, if the camera's feed is dark (nighttime) the frame rate difference may not be significant.</p><p>
+Another difficulty we are facing is ensuring if a user provided the correct coordinates of the camera. As of now, we trust that the user input is accurate. Detecting the accuracy of a camera's coordinates depends on factors such as the type of the camera, the data provided by the user, and/or the data on the website of the camera. In addition, two of the same cameras could have two different IPs; this results in duplicate cameras in the database. We are trying to find a fast and efficient way to detect and prevent duplication in the database.</p>
+  </div>
+
+
   <!-- <input type="button" class="btn btn-info" name="report" value="Report Unavailable Images" onclick="openReport()" /> -->
 
   <div id="reportForm" style="display:none;">
@@ -342,7 +351,7 @@
   <div class="modal-content" style="position:fixed;float:left;left:50%;top:50%;transform:translate(-50%, -50%);margin-top:0px;">
     <span class="modalclose">&times;</span>
     <div id="mapModalInfo"></div>
-    {% if request.user.is_authenticated %}<div id="mapModalButton"><input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" style="margin:auto;white-space:normal;" value="Report Unavailable Image" /></div>{% endif %}
+    {% if request.user.is_authenticated %}<div id="mapModalButton"><input type="button" class="btn btn-info" id="reportthiscam" name="reportcam" style="margin:auto;white-space:normal;" value="Report Unavailable Image" /></div>{% else %}<input type="hidden" id="reportthiscam">{% endif %}
   </div>
 </div>
 
@@ -358,17 +367,33 @@
     google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
 </script>
 <script type="text/javascript">
-    $("#country").select2();
-    $("#state").select2();
-    $("#city").select2();
+    $("#country").select2({
+        theme: "bootstrap"
+    });
+    $("#state").select2({
+        theme: "bootstrap"
+    });
+    $("#city").select2({
+        theme: "bootstrap"
+    });
 </script>
 <script type="text/javascript">
     document.getElementsByClassName("modalclose")[0].onclick = function() {
         document.getElementById('mapModal').style.display = "none";
+        if (window.location.href.toString().includes("#")) {
+            window.location.replace("#close");
+            if (typeof window.history.replaceState == 'function')
+                history.replaceState({}, '', window.location.href.slice(0, -6));
+        }
     }
     window.onclick = function(event) {
         if (event.target == document.getElementById('mapModal')) {
             document.getElementById('mapModal').style.display = "none";
+            if (window.location.href.toString().includes("#")) {
+                window.location.replace("#close");
+                if (typeof window.history.replaceState == 'function')
+                    history.replaceState({}, '', window.location.href.slice(0, -6));
+            }
         }
     }
     setTimeout(function(){document.getElementById('messageWindow').style.display="none";}, 3000);
