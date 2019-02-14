@@ -1,6 +1,17 @@
+import app.models
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
+
+class OrderedManyToManyField(models.ManyToManyField):
+    def value_from_object(self, object):
+        rel = getattr(object, self.attname)
+        qry = {self.related.var_name: object}
+        qs = rel.through.objects.filter(**qry).order_by('id')
+        aids = qs.values_list('agent_id', flat=True)
+        agents = dict((a.pk, a) for a in Agent.objects.filter(pk__in=aids))
+        return [agents[aid] for aid in aids if aid in agents]
 
 class ContactModel(models.Model):
     class Meta:
@@ -16,16 +27,21 @@ class ContactModel(models.Model):
 class JoinModel(models.Model):
     class Meta:
         verbose_name = 'join request'
-    name=models.CharField(verbose_name='Name', max_length=100, blank=True, null=True)
+    name=models.CharField(verbose_name='Name', max_length=100)
     from_email=models.EmailField()
-    major=models.CharField(verbose_name='Major', max_length=1000, blank=True, null=True)
-    gradDate=models.CharField(verbose_name='Graduation Date', max_length=1000, blank=True, null=True)
+    major=models.CharField(verbose_name='Major', max_length=1000)
+    gradDate=models.CharField(verbose_name='Graduation Date', max_length=1000)
     courses=models.CharField(verbose_name='Courses Taken', max_length=1000, blank=True, null=True)
-    languages=models.CharField(verbose_name='Programming Languages', max_length=1000, blank=True, null=True)
+    languages=models.CharField(verbose_name='Programming Languages', max_length=1000)
     tools=models.CharField(verbose_name='Development Tools', max_length=1000, blank=True, null=True)
-    whyCAM2=models.CharField(verbose_name='Reason to Join', max_length=1000, blank=True, null=True)
+    whyCAM2=models.CharField(verbose_name='Reason to Join', max_length=1000)
     anythingElse=models.CharField(verbose_name='Additional Information', max_length=1000, blank=True, null=True)
-    date=models.DateField(blank=True, null=True)
+    date=models.DateTimeField(auto_now_add=True)
+    favoriteTeams=models.CharField(verbose_name='4 Favorite Teams', max_length=100, blank=True, null=True)#models.ManyToManyField(app.models.Subteam, verbose_name='Favorite Teams', blank=True)
+    knowledge=models.CharField(verbose_name='Knowledge in Various Fields', max_length=1000, blank=True, null=True)
+    teamwork=models.CharField(verbose_name='Expirience in Teamwork', max_length=1000, blank=True, null=True)
+    problem=models.CharField(verbose_name='Explain Problem', max_length=1000, blank=True, null=True)
+    futureLeader=models.BooleanField(verbose_name='Wants to be a Leader', blank=True)
     def __str__(self):
         return "{0}".format(self.name)
 

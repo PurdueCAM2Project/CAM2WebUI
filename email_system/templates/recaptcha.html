@@ -1,0 +1,11 @@
+<div class="g-recaptcha recaptcha-btn"
+  {% for key, value in widget.attrs.items %}
+    {% if value is not None %}
+      {{ key }}
+      {% if value is not True %}
+        = "{{ value|stringformat:'s' }}"
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+></div>
+<script src="//www.google.com/recaptcha/api.js" async defer></script>
