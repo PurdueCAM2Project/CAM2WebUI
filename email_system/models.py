@@ -3,16 +3,6 @@ from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
-
-class OrderedManyToManyField(models.ManyToManyField):
-    def value_from_object(self, object):
-        rel = getattr(object, self.attname)
-        qry = {self.related.var_name: object}
-        qs = rel.through.objects.filter(**qry).order_by('id')
-        aids = qs.values_list('agent_id', flat=True)
-        agents = dict((a.pk, a) for a in Agent.objects.filter(pk__in=aids))
-        return [agents[aid] for aid in aids if aid in agents]
-
 class ContactModel(models.Model):
     class Meta:
         verbose_name = 'contact'
