@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
+from app.models import Subteam
+from django.db.models import Q
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ValidationError
@@ -172,3 +174,8 @@ class JoinView(FormView):#BaseCreateView,
         join_obj.save()
 
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(JoinView, self).get_context_data(**kwargs)
+        context['subteams'] = Subteam.objects.filter(~Q(name="None"))
+        return context

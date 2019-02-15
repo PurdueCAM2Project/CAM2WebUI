@@ -16,7 +16,10 @@
 CAM² requires students to stay for longer than a semester. If you graduate in a semester, you will not be considered for CAM². CAM² also requires every new member to take research credit. Please make sure you are capable of taking research credit from your department of college. For instance, ECE students are capable of taking ECE 279, 379, and 479 as research credit for CAM². CS students can take CS 490. If you are a new member and you do not take any research credit, you will not be allowed to join the team. The reason is that you will definitely leave the team when your coursework becomes heavy. This creates disruption to the team and wastes everyone's time (including your own).</p><p>
 We receive several applications each week, and so processing your application can take some time. Please do not email Dr Lu about the status of your application, he has enough emails each day. If your questions are not answered in the FAQ section, contact the CAM² leader and cc Dr Lu. All emails are forwarded to the CAM² leader.</p><p>
 Please have a look at the team description section, to get an idea of what each team is working on. Do your research in the team’s topic, and choose teams you want to work with wisely.</p><p>
-Please Answer the following questions. You do not need to know everything listed here. However, if you choose 1 or 2 for all questions, you are not ready. This is a research team, not an amusement park. We do not host tourists. We are busy solving research problems and have no time entertaining visitors. If you want to join, you must be serious solving research problems.
+Please answer the following questions. You do not need to know everything listed here. However, if you choose 1 or 2 for all questions, you are not ready. This is a research team, not an amusement park. We do not host tourists. We are busy solving research problems and have no time entertaining visitors. If you want to join, you must be serious solving research problems.</p><p>
+If you have any questions, please contact:</p><p>
+Team Leader : Damini K Rijhwani<br>
+Email: <a href="mailto:drijhwan@purdue.edu">drijhwan@purdue.edu</a>
 </p><hr>
     </div>
   </div>
@@ -59,7 +62,14 @@ Please Answer the following questions. You do not need to know everything listed
                 <p><label><abbr title="You must be able to be part of the team for at least two semesters. If you are graduating in the fall, consider participating over the summer semester.">Graduation Month</abbr>: </label><br><input value="{{ form.gradDate.value }}" type="month" name="gradDate" maxlength="500" id="gradDate" required="required"></input></p>
               </div>
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
-                <label>Rank your preference choices from <a href="/team/">CAM² teams</a>.</label><br>{{ form.favoriteTeams }}<p style="color: red">{{ form.favoriteTeams.errors.as_text }}</p>
+                <label>Rank your preference choices from <a href="/team/">CAM² teams</a>. Here is a list of the current CAM² teams:</label>
+                <ul>
+                  {% for subteam in subteams %}
+                  {% if subteam.tostring != 'None' %}
+                  <li style="font-size: 80%;">{{ subteam }}</li>
+                  {% endif %}
+                  {% endfor %}
+                </ul>{{ form.favoriteTeams }}<p style="color: red">{{ form.favoriteTeams.errors.as_text }}</p>
               </div>
             </div>
             </fieldset>
