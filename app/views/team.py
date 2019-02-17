@@ -1,3 +1,4 @@
+from django.db.models import Case, When, Value, IntegerField
 from django.shortcuts import render
 from ..models import Team, Faculty, Member, TeamMember, Subteam
 
@@ -16,7 +17,11 @@ def team(request):
     faculty_list = Faculty.objects.all()
     oldmember_list = TeamMember.objects.filter(iscurrentmember=False)
     director_list = TeamMember.objects.filter(isdirector=True)
-    subteam = Subteam.objects.all()
+    subteam = Subteam.objects.annotate(weight=Case(
+        When(name="Graduate Students", then=Value(0)),
+        default=Value(1),
+        output_field=IntegerField()
+    )).order_by("weight", "name")
     members = TeamMember.objects.all()
 
     context = {
