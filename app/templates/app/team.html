@@ -51,32 +51,21 @@
         <hr class="divide-divider">
         <h3 style="text-align: center;">Faculty</h3>
         <hr>
-        <div class ="container" style="justify-content: center;">
-            {% for faculty in faculty_list %}
-                {% if forloop.counter0|divisibleby:"2" %}
-                    <div class="row">
-                {% endif %}
-
-            <div class="col-md-3 col-sm-6" style="justify-content: center;">
-                <div class="card p-5 shadow" style="width: 400px; height: auto">
-                    <img class="rounded leaders" style=" height: 20rem; object-fit: cover;" src="{{ faculty.img }}" alt="{{ faculty }}">
-                    <hr>
-                    <div class="card-body">
-                        <h4 class="card-title">{{ faculty }}</h4>
-                        {% if faculty.title %}<p class="card-text">{{ faculty.title|linebreaksbr }}</p>{% endif %}
-                        {% if faculty.pagelink %}<a href="{{ faculty.pagelink }}" class="btn btn-primary">See Profile</a>{% endif %}
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6"></div>
-                        
-            {% if forloop.counter0|divisibleby:"2" and not forloop.last %}
-                <div class="clearfix visible-sm-block"></div>
-            {% else %}
-                </div><br>
-            {% endif %}
-            {% endfor %}
+        <div class="row" style="flex-wrap: wrap; justify-content: center;">
+          {% for faculty in faculty_list %}
+          <div class="col-5ths" style = "padding: 10px 10px; width:20%;">
+          <div class="card shadow">
+              <img class="faculty" src="{{ faculty.img }}" alt="{{ members.name }}">
+              <div class="card-body">
+                  <div class="card-title">
+                      <h6 style="text-align: center;">{{ faculty }}</h6>
+                      {% if faculty.title %}<p class="card-text">{{ faculty.title|safe|linebreaksbr }}</p>{% endif %}
+                      {% if faculty.pagelink %}<a href="{{ faculty.pagelink }}" class="btn btn-primary">See Profile</a>{% endif %}
+                  </div>
+              </div>
+          </div>
+          </div>
+          {% endfor %}
         </div>
         <br>
 
@@ -85,7 +74,7 @@
 		<hr>
             {% for subteams in subteams_list %}
             {% ifnotequal subteams|stringformat:"s" "None" %}
-            <div class="card border-light shadow" style ="flex-wrap: wrap; justify-content: center;">
+            <div id="{{ subteams.name|slugify }}" class="card border-light shadow" style ="flex-wrap: wrap; justify-content: center;">
                 <div class="card-header text-center">
                     <h3> {{ subteams.name }}</h3>
                     <p> {{ subteams.description }}</p>
@@ -99,7 +88,7 @@
                             <img class="members" src="{{ members.image_url }}" alt="{{ members.name }}">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h5 style="font-size:1vw; text-align: center;"><i class="fa fa-user"></i> {{ members.name }} </h5>
+                                    <h6 style="text-align: center;"><i class="fa fa-user"></i> {{ members.name }} </h6>
                                 </div>
                             </div>                     
                         </div>
@@ -113,7 +102,7 @@
                             <img class="members" src="{{ members.image_url }}" alt="{{ members.name }}">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h5 style="font-size:1vw; text-align: center;"> {{ members.name }} </h5>
+                                    <h6 style="text-align: center;"> {{ members.name }} </h6>
                                 </div>
                             </div>                     
                         </div>

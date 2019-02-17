@@ -177,5 +177,5 @@ class JoinView(FormView):#BaseCreateView,
 
     def get_context_data(self, **kwargs):
         context = super(JoinView, self).get_context_data(**kwargs)
-        context['subteams'] = Subteam.objects.filter(~Q(name="None"))
+        context['subteams'] = Subteam.objects.filter(~(Q(name="None") | Q(name="Graduate Students")))
         return context

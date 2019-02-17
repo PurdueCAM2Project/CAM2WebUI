@@ -94,18 +94,17 @@ IGNORABLE_404_URLS = [
 
 # Application definition
 INSTALLED_APPS = [
-
 	'admin_view_permission',
-    'django.contrib.admin',
     'django.contrib.auth',
+    'social_django',
+    'app',
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
     'email_system',
-    'social_django',
-    'app',
 ]
 
 # Middleware definition
