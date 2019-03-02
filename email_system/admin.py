@@ -1,3 +1,4 @@
+import ast
 from django.contrib import admin
 from .models import ContactModel, JoinModel
 from django.contrib import admin
@@ -22,25 +23,8 @@ def export_csv1(self, request, queryset):
     response['Content-Disposition'] = 'attachement;filename=CAM2ContactList.csv'
     writer = csv.writer(response)
     
-    #opts = queryset.model._meta
-    # output field names as first row
-    # required_field_names
-    # ['id', 'password', 'last_login', 'is_superuser', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'date_joined']
-    # required_field_names = queryset #all fields in User model
-	
-    required_field_names = ['name', 'from_email', 'subject', 'message', 'date']
-
-    # optional_field_names
-    # ['id', 'user', 'department', 'organization', 'title', 'country', 'about', 'email_confirmed']
-    #optional_field_names = [field.name for field in RegisterUser._meta.fields] #all fields in RegisterUser model
-	
-	
-    
-	#optional_field_names = ['department', 'organization', 'title', 'country', 'about']
-
-    field_names = required_field_names.copy()
-    writer.writerow(field_names)
-
+    required_field_names = ContactModelAdmin.list_display
+    writer.writerow(required_field_names)
 
     # output data
     for obj in queryset:
@@ -58,38 +42,35 @@ def export_csv(self, request, queryset):  #added diff_char
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachement;filename=CAM2JoinList.csv'
     writer = csv.writer(response)
-    
-    #opts = queryset.model._meta
-    # output field names as first row
-    # required_field_names
-    # ['id', 'password', 'last_login', 'is_superuser', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'date_joined']
-    # required_field_names = queryset #all fields in User model
-	
-    required_field_names = ['name', 'from_email', 'major', 'gradDate','courses', 'languages', 'tools', 'whyCAM2', 'anythingElse', 'date']
 
-    # optional_field_names
-    # ['id', 'user', 'department', 'organization', 'title', 'country', 'about', 'email_confirmed']
-    #optional_field_names = [field.name for field in RegisterUser._meta.fields] #all fields in RegisterUser model
-	
-	
-    # optional_field_names = ['department', 'organization', 'title', 'country', 'about']
+    # replace the 'favoriteTeams' field with four individual team columns
+    required_field_names = list(JoinModelAdmin.list_display)
+    rf_teams = required_field_names.index('favoriteTeams')
+    required_field_names[rf_teams:rf_teams+1] = ['topTeam', 'secondTeam', 'thirdTeam', 'lastTeam']
 
-    field_names = required_field_names.copy()
-    # for field in optional_field_names:
-        # field_names.append(field)
-    writer.writerow(field_names)
-
+    writer.writerow(required_field_names)
 
     # output data
     for obj in queryset:
-        required_info = [getattr(obj, field) for field in required_field_names]
-        # try:
-            # optional = RegisterUser.objects.get(user=obj)  # get optional info of user
-            # optional_info = [getattr(optional, field) for field in optional_field_names]
-        # except:
-            # optional_info = ['' for field in optional_field_names]
-        # for data in optional_info:
-            # required_info.append(data)
+        required_info = []
+        for field in JoinModelAdmin.list_display:
+            if field == 'favoriteTeams':
+                teams = getattr(obj, field)
+                if teams:
+                    teams = teams.split('\n')
+                    del teams[5:]
+                    teams += ['']*(4 - len(teams))
+                else:
+                    teams = ('', '', '', '')
+                required_info.extend(teams)
+            elif field == 'courses':
+                classes = getattr(obj, field)
+                try:
+                    required_info.append(', '.join(ast.literal_eval(classes)))
+                except:
+                    required_info.append(classes)
+            else:
+                required_info.append(getattr(obj, field))
         writer.writerow(required_info)
     return response
 export_csv.short_description = "Export selected user as csv"
