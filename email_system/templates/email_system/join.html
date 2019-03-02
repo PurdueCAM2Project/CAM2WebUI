@@ -49,7 +49,7 @@ Email: <a href="mailto:drijhwan@purdue.edu" target="_blank">drijhwan@purdue.edu<
             <div class="row">
               <div class="col-xs-12 col-sm-5 wow animated slideInLeft" data-wow-delay=".5s" style="width: 50%;">
                 <p><label>Name: </label><br><input value="{{ form.name.value }}" type="text" name="name" maxlength="100" id="name" required="required" placeholder="Your Name"></p>
-                <p><label>Email: </label><br><input value="{{ form.from_email.value }}" type="email" name="from_email" maxlength="500" id="from_email" required="required" placeholder="Your Email" /></p>
+                <p><label>Email: </label><br><input value="{{ form.from_email.value }}" type="email" name="from_email" maxlength="500" id="from_email" required="required" placeholder="Your Email" pattern=".+@purdue.edu$" title="Purdue email addresses only."/></p>
               </div>
               <div class="col-xs-12 col-sm-5 wow animated slideInRight" data-wow-delay=".5s" style="width: 50%;">
                 <p><label><abbr title="If you can't find your major in the dropdown list, type it out in the box.">Major</abbr>: </label><br>{{ form.major }}</p>
@@ -177,7 +177,7 @@ Email: <a href="mailto:drijhwan@purdue.edu" target="_blank">drijhwan@purdue.edu<
         <hr><h3 style="text-align:center">FAQ</h3><br>
 <dl>
 <dt>Q: I am a new member and want to join CAM2, but I am graduating next semester, can I join CAM2?</dt>
-<dd>A: No, we do not accept anyone who cannot stay for a semester. </dd>
+<dd>A: No, we do not accept anyone who cannot stay for longer than one semester. </dd>
 <dt>Q: Do I have to take credit for doing CAM2 research?</dt>
 <dd>A: Yes. If you are a new member, you must take CAM2 as research credit (VIP, CS etc..). Every new member has to take credit to be a part of this research. This is to enforce students to commit to a project.</dd>
 <dt>Q: What do I do to prepare for an interview? </dt>
