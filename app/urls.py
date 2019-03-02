@@ -16,9 +16,10 @@ urlpatterns = [
     url(r'^ack/$', TemplateView.as_view(template_name='app/ack.html'), name='acknowledgement'),
     url(r'^faqs/$', app_views.faqs, name='faqs'),
     url(r'^terms/$', TemplateView.as_view(template_name='app/terms.html'), name='terms'),
+
+    #user authentication
     url(r'^profile/$', app_views.profile, name='profile'),
-    url(r'^login/$', auth_views.LoginView.as_view(template_name='app/login.html'), name='login'),
-	url(r'^register/$', app_views.register, name='register'),
+    url(r'^register/$', app_views.register, name='register'),
     url(r'^oauthinfo/$', app_views.oauthinfo, name='more info'),
     url(r'^logout/$', auth_views.LogoutView.as_view(next_page='/')),
     url(r'^oauth/', include('social_django.urls', namespace='social')),#don't add $ after oauth/
@@ -27,12 +28,7 @@ urlpatterns = [
         app_views.activate, name='activate'),
     url(r'^email_confirmation_invalid/$', TemplateView.as_view(template_name='app/email_confirmation_invalid.html'), name='email_confirmation_invalid'),
     url(r'^account_activated/$', TemplateView.as_view(template_name='app/account_activated.html'), name='account_activated'),
-
-    url(r'^password_reset/$', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    url(r'^password_reset_email_sent/$', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    url(r'^password_reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    url(r'^password_reset/complete/$', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    url(r'', include('django.contrib.auth.urls')),
 
     #for testing API response
     url(r'^api_access/$', TemplateView.as_view(template_name='app/api_access.html'), name='api_access'),
@@ -43,4 +39,5 @@ urlpatterns = [
     url(r'calendar/$', app_views.calendar, name='calendar'),
     url(r'publications_list/$', app_views.publications_list, name='publications_list'),
 
+    #things for current members
 ]

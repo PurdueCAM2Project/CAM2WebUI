@@ -100,7 +100,7 @@ class ContactModelAdmin(admin.ModelAdmin):
 	
 
 class JoinModelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'from_email', 'major', 'gradDate','courses', 'languages', 'tools', 'whyCAM2', 'anythingElse', 'date')
+    list_display = ('name', 'from_email', 'major', 'gradDate', 'favoriteTeams', 'courses', 'languages', 'knowledge', 'teamwork', 'problem', 'futureLeader', 'whyCAM2', 'anythingElse', 'date')
     actions = [export_csv]
 
 
