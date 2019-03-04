@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 from . import views as app_views
 from django.contrib.auth import views as auth_views
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, RedirectView
 
 urlpatterns = [
     url(r'^$', app_views.index, name="index"),
@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^advice/$', TemplateView.as_view(template_name='app/advice.html'), name='advice'),
     url(r'^history/$', app_views.history, name='history'),
     url(r'^publications/$', app_views.publications, name='publications'),
+    url(r'^publications_list/$', RedirectView.as_view(url='/publications/?list=true'), name='publications_list'),
     url(r'^privacy/$', TemplateView.as_view(template_name='app/privacy.html'), name='privacy'),
     url(r'^ack/$', TemplateView.as_view(template_name='app/ack.html'), name='acknowledgement'),
     url(r'^faqs/$', app_views.faqs, name='faqs'),
@@ -37,7 +38,6 @@ urlpatterns = [
     url(r'^sponsors/$', app_views.sponsors, name='sponsors'),
     url(r'^location/$', app_views.location, name='location'),
     url(r'calendar/$', app_views.calendar, name='calendar'),
-    url(r'publications_list/$', app_views.publications_list, name='publications_list'),
 
     #things for current members
 ]

@@ -1,4 +1,5 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Q
 from django.shortcuts import render
 from ..models import Publication
 
@@ -13,7 +14,18 @@ def publications(request):
     Returns:
         A render that displays the page publications.html, complete with information from the Publications database.
     """
-    publication_list = Publication.objects.reverse()
+
+    if request.GET.get('list') == "true":
+        publication_list = Publication.objects.all()
+        return render(request, 'app/publications_list.html', {'publication_list': publication_list})
+
+    query = request.GET.get('q')
+    if query:
+        query = query.strip()
+        publication_list = Publication.objects.filter(Q(paperinfo__contains=query) | Q(conference__contains=query) | Q(authors__contains=query))
+    else:
+        publication_list = Publication.objects.all()
+
     paginator = Paginator(publication_list, 6)
     page = request.GET.get('page')
 
@@ -31,5 +43,5 @@ def publications(request):
     end_index = index + 5 if index <= max_index - 5 else max_index
     page_range = paginator.page_range[start_index:end_index]
 
-    context = {'publication_list': publication_paginator, 'page_range':page_range}
+    context = {'publication_list': publication_paginator, 'page_range':page_range, "query":query}
     return render(request, 'app/publications.html', context)

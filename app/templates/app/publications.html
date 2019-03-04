@@ -11,22 +11,29 @@
   <h1>Publications</h1>
   <hr class="divide-divider">
 
-  <div class="input-group mb-3" style='width: 40%;'>
-      <input type="text" id="search_criteria" class="shadow-sm form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1" >
-      &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="shadow-sm btn btn-outline-info" id="search-button">Search</button>
-    </div>
+  <form action="" method="get" style="width:100%">
+  <div class="row">
+    <div class="col-sm">
+  <div class="input-group mb-3">
+      <input type="text" id="search_criteria" name="q" class="shadow-sm form-control" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon1" value="{% if query %}{{ query }}{% endif %}" >
+      &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="shadow-sm btn btn-outline-info" id="search-button">Search</button>
+  </div>
+  </div>
+  <div class="col-sm">
     <div align="right">
-      <i class="fa fa-caret-down"></i>
       <div class="btn-group" role="group" aria-label="Basic example">
-          <a href="/publications">
-          <button type="button" class="btn btn-light"><i class="fa fa-th"></i></button>
+          <a href="#">
+            <button type="button" class="btn btn-light"><i class="fa fa-th"></i></button>
+            </a>
+            <a href="?list=true">
+            <button action="?list=true" type="button" class="btn btn-light"><i class="fa fa-list-ul"></i></button>
           </a>
-          <a href="/publications_list">
-          <button action="/publications_list"type="button" class="btn btn-light"><i class="fa fa-list-ul"></i></button>
-        </a>
           </div>
     </div>
-    
+  </div></div>
+  </form>
+    <hr>
+    <!--
     <nav aria-label="breadcrumb">
       <div style="text-align: center;">
         <h4>Categories</h4>
@@ -37,7 +44,7 @@
       <p></p>
       </nav>
   <ol>
-
+-->
     <div class="row">
       <!-- <div class="col" style="width: 10%;">
         <h4>Categories</h4>
@@ -74,6 +81,7 @@
     {% endfor %}
     </div>
   </ol>
+  <hr>
   {% if publication_list.has_other_pages %}
   <nav aria-label="Page navigation example">
       <ul class="pagination">
@@ -92,7 +100,7 @@
                     <a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a>
                   </li>
               {% else %}
-                  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                  <li class="page-item"><a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}page={{ i }}">{{ i }}</a></li>
               {% endif %}
 
           {% endfor %}
@@ -109,8 +117,4 @@
     </nav>
    {% endif %}
 </div>
-{% endblock %}
-{% block scripts %}
-<script src="{% static "app/js/publication.js" %}"></script>
-
 {% endblock %}

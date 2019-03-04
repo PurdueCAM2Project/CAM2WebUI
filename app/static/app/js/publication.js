@@ -1,11 +1,13 @@
-$('.card-deck-wrapper').on('click', function(event) {
-    alert('You clicked the Bootstrap Card');
+$("#search_criteria").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#search-button").click();
+    }
 });
 
 
 $("#search-button").on("click", function () {
     var criterion = $("#search_criteria").val().toLowerCase();
-    $(".card .card-body").each(function () {
+    $(".card").each(function () {
         var paperInfo = $(this).find(".card-title").text().toLowerCase();
         var conference = $(this).find(".card-subtitle").text().toLowerCase();
         var authors = $(this).find(".card-text").text().toLowerCase();
@@ -17,16 +19,11 @@ $("#search-button").on("click", function () {
 
         if(!existsInAuthors && !existsInConference && !existsInPaperInfo)
         {
-            $(this).parent().parent().hide();
+            $(this).parent().hide();
         }
         else{
-             $(this).parent().parent().show();
-             // $(this).parent().parent().toggle("highlight");
+             $(this).parent().show();
         }
     })
 
 });
-
-
-
-
