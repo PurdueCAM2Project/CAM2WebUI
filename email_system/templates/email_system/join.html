@@ -19,7 +19,7 @@ Please have a look at the team description section, to get an idea of what each 
 Please answer the following questions. You do not need to know everything listed here. However, if you choose 1 or 2 for all questions, you are not ready. This is a research team, not an amusement park. We do not host tourists. We are busy solving research problems and have no time entertaining visitors. If you want to join, you must be serious solving research problems.</p><p>
 If you have any questions, please contact:</p><p>
 Team Leader : Damini K Rijhwani<br>
-Email: <a href="mailto:drijhwan@purdue.edu">drijhwan@purdue.edu</a>
+Email: <a href="mailto:drijhwan@purdue.edu" target="_blank">drijhwan@purdue.edu</a>
 </p><hr>
     </div>
   </div>
@@ -49,7 +49,7 @@ Email: <a href="mailto:drijhwan@purdue.edu">drijhwan@purdue.edu</a>
             <div class="row">
               <div class="col-xs-12 col-sm-5 wow animated slideInLeft" data-wow-delay=".5s" style="width: 50%;">
                 <p><label>Name: </label><br><input value="{{ form.name.value }}" type="text" name="name" maxlength="100" id="name" required="required" placeholder="Your Name"></p>
-                <p><label>Email: </label><br><input value="{{ form.from_email.value }}" type="email" name="from_email" maxlength="500" id="from_email" required="required" placeholder="Your Email" /></p>
+                <p><label>Email: </label><br><input value="{{ form.from_email.value }}" type="email" name="from_email" maxlength="500" id="from_email" required="required" placeholder="Your Email" pattern=".+@purdue.edu$" title="Purdue email addresses only."/></p>
               </div>
               <div class="col-xs-12 col-sm-5 wow animated slideInRight" data-wow-delay=".5s" style="width: 50%;">
                 <p><label><abbr title="If you can't find your major in the dropdown list, type it out in the box.">Major</abbr>: </label><br>{{ form.major }}</p>
@@ -62,14 +62,16 @@ Email: <a href="mailto:drijhwan@purdue.edu">drijhwan@purdue.edu</a>
                 <p><label><abbr title="You must be able to be part of the team for at least two semesters. If you are graduating in the fall, consider participating over the summer semester.">Graduation Month</abbr>: </label><br><input value="{{ form.gradDate.value }}" type="month" name="gradDate" maxlength="500" id="gradDate" required="required"></input></p>
               </div>
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
-                <label>Rank your preference choices from <a href="/team/">CAM² teams</a>. Here is a list of the current CAM² teams:</label>
-                <ul>
+                <label>Rank your preference choices from <a href="/team/" target="_blank">CAM² teams</a>. Please select your most wanted choice as 1 and your least wanted choice as 4.</label>
+                <table>
+                  <tr><th style="width: 250%;">Subteam</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>
                   {% for subteam in subteams %}
                   {% if subteam.tostring != 'None' %}
-                  <li style="font-size: 80%;">{{ subteam }}</li>
+                  <tr style="font-size: 80%;"><td><a href="/team/#{{ subteam|slugify }}" target="_blank">{{ subteam }}</a></td>
+                  <td><input type="radio" name="favoriteTeams1" value="{{ subteam }}" style="width:auto;" required></td><td><input type="radio" name="favoriteTeams2" value="{{ subteam }}" style="width:auto;" required></td><td><input type="radio" name="favoriteTeams3" value="{{ subteam }}" style="width:auto;" required></td><td><input type="radio" name="favoriteTeams4" value="{{ subteam }}" style="width:auto;" required></td></tr>
                   {% endif %}
                   {% endfor %}
-                </ul>{{ form.favoriteTeams }}<p style="color: red">{{ form.favoriteTeams.errors.as_text }}</p>
+                </table><input type="hidden" name="favoriteTeams"><p style="color: red" id="subteamErrors">{{ form.favoriteTeams.errors.as_text }}</p>
               </div>
             </div>
             </fieldset>
@@ -175,7 +177,7 @@ Email: <a href="mailto:drijhwan@purdue.edu">drijhwan@purdue.edu</a>
         <hr><h3 style="text-align:center">FAQ</h3><br>
 <dl>
 <dt>Q: I am a new member and want to join CAM2, but I am graduating next semester, can I join CAM2?</dt>
-<dd>A: No, we do not accept anyone who cannot stay for a semester. </dd>
+<dd>A: No, we do not accept anyone who cannot stay for longer than one semester. </dd>
 <dt>Q: Do I have to take credit for doing CAM2 research?</dt>
 <dd>A: Yes. If you are a new member, you must take CAM2 as research credit (VIP, CS etc..). Every new member has to take credit to be a part of this research. This is to enforce students to commit to a project.</dd>
 <dt>Q: What do I do to prepare for an interview? </dt>
@@ -214,6 +216,7 @@ Make sure you provide details of your technical experience</dd>
 {% block scripts %}
 <!--[if lt IE 9]><script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.0.8/es5-shim.min.js"></script><![endif]-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.AreYouSure/1.9.0/jquery.are-you-sure.js"></script>
 <script>
 $(function(){
     function getNdays(month, day, week) {
@@ -278,6 +281,22 @@ $(function(){
         tags: true,
         tokenSeparators: [',', ';'],
         theme: "bootstrap"
+    });
+    
+    $('#contact-us').areYouSure();
+
+    $('#contact-us').submit(function() {
+        var ft1 = $('#contact-us').find('input[name="favoriteTeams1"]:checked').val();
+        var ft2 = $('#contact-us').find('input[name="favoriteTeams2"]:checked').val();
+        var ft3 = $('#contact-us').find('input[name="favoriteTeams3"]:checked').val();
+        var ft4 = $('#contact-us').find('input[name="favoriteTeams4"]:checked').val();
+        var ft = [ft1, ft2, ft3, ft4];
+        if (new Set(ft).size !== ft.length) {
+            alert(document.getElementById("subteamErrors").innerText = "You must select 4 different subteams.");
+            return false;
+        }
+        $('#contact-us').find('input[name="favoriteTeams"]').val(ft1+"\r\n"+ft2+"\r\n"+ft3+"\r\n"+ft4);
+        return true;
     });
 });
 </script>

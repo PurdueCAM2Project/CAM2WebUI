@@ -13,23 +13,27 @@
   <hr class="divide-divider">
   <h1>Publications</h1>
   <hr class="divide-divider">
-
-  <div class="input-group mb-3" style='width: 40%;'>
-      <input type="text" class="shadow-sm form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1" >  
-      &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="shadow-sm btn btn-outline-info">Search</button>
+  <div class="row">
+    <div class="col-sm">
+  <div class="input-group mb-3">
+      <input type="text" id="search_criteria" class="shadow-sm form-control" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon1" >
+      &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="shadow-sm btn btn-outline-info" id="search-button">Search</button>
     </div>
+  </div>
+  <div class="col-sm">
     <div align="right">
-      <i class="fa fa-caret-down"></i>
       <div class="btn-group" role="group" aria-label="Basic example">
-          <a href="/publications">
-            <button type="button" class="btn btn-light"><i class="fa fa-th"></i></button>
+          <a href="?">
+            <button action="?" type="button" class="btn btn-light"><i class="fa fa-th"></i></button>
             </a>
-            <a href="/publications_list">
-            <button action="/publications_list"type="button" class="btn btn-light"><i class="fa fa-list-ul"></i></button>
+            <a href="#">
+            <button type="button" class="btn btn-light"><i class="fa fa-list-ul"></i></button>
           </a>
           </div>
     </div>
-    
+  </div></div>
+    <hr>
+    <!--
     <nav aria-label="breadcrumb">
       <div style="text-align: center;">
         <h4>Categories</h4>
@@ -42,6 +46,7 @@
   <ol>
             <!-- card is wrapped with a javascript check static/app/js/publication.js -->
             {% for publication in publication_list %}
+              <div>
               {% if publication.paperlink %}
                 <div class="card shadow pointer" onclick="location.href='{{ publication.paperlink }}';">
               {% else %}
@@ -65,6 +70,7 @@
                   </div>
                 </div>
                 <br>
+              </div>
             {% endfor %}
 
   </ol>

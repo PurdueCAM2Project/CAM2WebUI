@@ -27,7 +27,7 @@ class JoinModel(models.Model):
     whyCAM2=models.CharField(verbose_name='Reason to Join', max_length=1000)
     anythingElse=models.CharField(verbose_name='Additional Information', max_length=1000, blank=True, null=True)
     date=models.DateTimeField(auto_now_add=True)
-    favoriteTeams=models.CharField(verbose_name='4 Favorite Teams', max_length=100, blank=True, null=True)#models.ManyToManyField(app.models.Subteam, verbose_name='Favorite Teams', blank=True)
+    favoriteTeams=models.CharField(verbose_name='4 Favorite Teams', max_length=150, blank=True, null=True)
     knowledge=models.CharField(verbose_name='Knowledge in Various Fields', max_length=1000, blank=True, null=True)
     teamwork=models.CharField(verbose_name='Expirience in Teamwork', max_length=1000, blank=True, null=True)
     problem=models.CharField(verbose_name='Explain Problem', max_length=1000, blank=True, null=True)

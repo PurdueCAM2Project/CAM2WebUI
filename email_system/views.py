@@ -1,6 +1,5 @@
 ﻿# -*- coding: utf-8 -*-
 from app.models import Subteam
-from django.db.models import Q
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ValidationError
@@ -123,8 +122,10 @@ class ContactView(FormView):
     
     def get(self, *args, **kwargs):
         try:
+            self.initial['name'] = self.request.user.first_name + ' ' + self.request.user.last_name
             self.initial['from_email'] = self.request.user.email
         except:
+            self.initial['name'] = ''
             self.initial['from_email'] = ''
         return super().get(*args, **kwargs)
 
@@ -151,6 +152,15 @@ class JoinView(FormView):#BaseCreateView,
     form_class = JoinForm
     initial = {'name': '', 'from_email': '', 'major': '', 'courses': '', 'languages': '', 'tools': '', 'whyCAM2': '', 'anythingElse': ''}
     success_url = 'join_email_sent'
+    
+    def get(self, *args, **kwargs):
+        try:
+            self.initial['name'] = self.request.user.first_name + ' ' + self.request.user.last_name
+            self.initial['from_email'] = self.request.user.email
+        except:
+            self.initial['name'] = ''
+            self.initial['from_email'] = ''
+        return super().get(*args, **kwargs)
 
     def form_valid(self, form):
         #get info from form and add to email template
@@ -177,5 +187,5 @@ class JoinView(FormView):#BaseCreateView,
 
     def get_context_data(self, **kwargs):
         context = super(JoinView, self).get_context_data(**kwargs)
-        context['subteams'] = Subteam.objects.filter(~Q(name="None"))
+        context['subteams'] = Subteam.objects.exclude(name__in=("None", "Graduate Students"))
         return context
