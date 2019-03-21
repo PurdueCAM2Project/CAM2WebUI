@@ -8,8 +8,9 @@ img {
   border-top: 1px solid #fff;
 }
 
-img.leaders {
-  padding: 0.7em;
+img.faculty {
+  object-fit: cover;
+  max-height: 206px;
 }
 
 img.members {

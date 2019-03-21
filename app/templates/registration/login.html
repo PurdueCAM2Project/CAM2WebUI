@@ -31,7 +31,7 @@
             {% endfor %}
             <a href="/password_reset/">Forgot username or password?</a>
             <!-- <div class="clearfix"></div> -->
-            <button type="submit" name="submitbutton" class="btn" style="width: 100%">Sign in</button>
+            <button type="submit" name="submitbutton" id="submit" class="btn" style="width: 100%">Sign in</button>
             {% if form.non_field_errors %}
               <ul class='list-group'>
                 {% for error in form.non_field_errors %}

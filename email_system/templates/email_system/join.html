@@ -4,16 +4,32 @@
 {% block css %}
 <link rel="stylesheet" href="{% static "app/css/login.css" %}" />
 <link rel="stylesheet" href="{% static "email_system/css/contact.css" %}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css">
 {% endblock %}
 {% block content %}
 <div class="container">
+  <div class="row">
+    <div class="col-md-12 col-sx-12">
+      <br><h2 style="text-align:center">The Process of Getting into CAM²</h2><br>
+<p>In order to join CAM²’s growing research base, we require some information from you. This information will help us pair you with one or two of CAM² members for an interview. The interview process lasts up to half an hour, in which you will be asked technical questions with some soft skill assessments. Once you complete your interview, you will be notified with a decision and further information.</p><p>
+CAM² requires students to stay for longer than a semester. If you graduate in a semester, you will not be considered for CAM². CAM² also requires every new member to take research credit. Please make sure you are capable of taking research credit from your department of college. For instance, ECE students are capable of taking ECE 279, 379, and 479 as research credit for CAM². CS students can take CS 490. If you are a new member and you do not take any research credit, you will not be allowed to join the team. The reason is that you will definitely leave the team when your coursework becomes heavy. This creates disruption to the team and wastes everyone's time (including your own).</p><p>
+We receive several applications each week, and so processing your application can take some time. Please do not email Dr Lu about the status of your application, he has enough emails each day. If your questions are not answered in the FAQ section, contact the CAM² leader and cc Dr Lu. All emails are forwarded to the CAM² leader.</p><p>
+Please have a look at the team description section, to get an idea of what each team is working on. Do your research in the team’s topic, and choose teams you want to work with wisely.</p><p>
+Please answer the following questions. You do not need to know everything listed here. However, if you choose 1 or 2 for all questions, you are not ready. This is a research team, not an amusement park. We do not host tourists. We are busy solving research problems and have no time entertaining visitors. If you want to join, you must be serious solving research problems.</p><p>
+If you have any questions, please contact:</p><p>
+Team Leader : Damini K Rijhwani<br>
+Email: <a href="mailto:drijhwan@purdue.edu" target="_blank">drijhwan@purdue.edu</a>
+</p><hr>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-offset-1 col-md-10 col-sx-12">
       <div class="form-box">
         <div class="form-top">
           <div class="form-top-left">
-            <h3>Join Us</h3>
-            <p>Leave your message if you're interested in joining!</p>
+            <h3>Application</h3>
+            <p>Fill out this application if you're interested in joining!</p>
           </div>
           <div class="form-top-right"> <i class="fa fa-envelope"></i> </div>
         </div>
@@ -25,51 +41,124 @@
                 {% endfor %}
             </ul>
           {% endif %}
-          <form id="contact-us" method="post" action="/email/join_us/">
+          <form id="contact-us" method="post" action="/email/join_us/" enctype='multipart/form-data'>
+          {% autoescape on %}
             {% csrf_token %}
+            <fieldset>
+              <legend>Basic Information</legend>
             <div class="row">
               <div class="col-xs-12 col-sm-5 wow animated slideInLeft" data-wow-delay=".5s" style="width: 50%;">
-                <p><label>Name: </label><br><input value="{{ jname }}" type="text" name="name" maxlength="100" id="name" required="required" placeholder="Your Name"></p>
-                <p><label>Email: </label><br><input value="{{ jemail }}" type="email" name="from_email" maxlength="500" id="from_email" required="required" placeholder="Your Email" /></p>
-		<p><label>Major: </label><br><input value="{{ jmajor }}" type="text" name="major" maxlength="500" id="major" required="required" placeholder="CS,CmpE,etc."></input></p>
+                <p><label>Name: </label><br><input value="{{ form.name.value }}" type="text" name="name" maxlength="100" id="name" required="required" placeholder="Your Name"></p>
+                <p><label>Email: </label><br><input value="{{ form.from_email.value }}" type="email" name="from_email" maxlength="500" id="from_email" required="required" placeholder="Your Email" pattern=".+@purdue.edu$" title="Purdue email addresses only."/></p>
               </div>
-	      <div class="col-xs-12 col-sm-5 wow animated slideInRight" data-wow-delay=".5s" style="width: 50%;">
-                <p><label>Graduation Date: </label><br><input value="{{ jgradDate }}" type="text" name="gradDate" maxlength="500" id="gradDate" required="required" placeholder="Example: 10/21/2015"></input></p>
-                <p><label>Programming Languages: </label><br><input value="{{ jlang }}" type="text" name="languages" maxlength="1000" id="languages" required="required" placeholder="HTML, C, Python, JavaScript, etc.
-"></input></p>
-		<p><label>Software Engineering Tools Experience: </label><br><input value="{{ jtools }}" type="text" name="tools" maxlength="1000" id="tools" required="required" placeholder="Git, Travis, Linux Bash, etc.
-"></input></p>
+              <div class="col-xs-12 col-sm-5 wow animated slideInRight" data-wow-delay=".5s" style="width: 50%;">
+                <p><label><abbr title="If you can't find your major in the dropdown list, type it out in the box.">Major</abbr>: </label><br>{{ form.major }}</p>
+                <datalist id="majors">
+                  <option value="CS">Computer Science</option>
+                  <option value="CmpE">Computer Engineering</option>
+                  <option value="EE">Electrical Engineering</option>
+                  <option value="FYE">First Year Engineering</option>
+                </datalist>
+                <p><label><abbr title="You must be able to be part of the team for at least two semesters. If you are graduating in the fall, consider participating over the summer semester.">Graduation Month</abbr>: </label><br><input value="{{ form.gradDate.value }}" type="month" name="gradDate" maxlength="500" id="gradDate" required="required"></input></p>
+              </div>
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>Rank your preference choices from <a href="/team/" target="_blank">CAM² teams</a>. Please select your most wanted choice as 1 and your least wanted choice as 4.</label>
+                <table>
+                  <tr><th style="width: 250%;">Subteam</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>
+                  {% for subteam in subteams %}
+                  {% if subteam.tostring != 'None' %}
+                  <tr style="font-size: 80%;"><td><a href="/team/#{{ subteam|slugify }}" target="_blank">{{ subteam }}</a></td>
+                  <td><input type="radio" name="favoriteTeams1" value="{{ subteam }}" style="width:auto;" required></td><td><input type="radio" name="favoriteTeams2" value="{{ subteam }}" style="width:auto;" required></td><td><input type="radio" name="favoriteTeams3" value="{{ subteam }}" style="width:auto;" required></td><td><input type="radio" name="favoriteTeams4" value="{{ subteam }}" style="width:auto;" required></td></tr>
+                  {% endif %}
+                  {% endfor %}
+                </table><input type="hidden" name="favoriteTeams"><p style="color: red" id="subteamErrors">{{ form.favoriteTeams.errors.as_text }}</p>
+              </div>
+            </div>
+            </fieldset>
+            <fieldset>
+              <legend>Skill Level</legend>
+            <div class="row">
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>Which programming courses/software engineering courses have you already passed? </label><br>{{ form.courses }}<p style="color: red">{{ form.courses.errors.as_text }}</p>
               </div>
 
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
-                <label>Which programming courses/software engineering courses have you already passed? </label><br>
-                <textarea name="courses" maxlength= "1000" id="courses" class="textarea-lg" required="required" placeholder="CS 370 - Software Engineering, ECE 264 - Advanced Programming in C, etc.
-">{{ jcourses }}</textarea>
+                <label>List all programming languages you how and rate your skill level in each of them. 1 is the weakest and 5 is the strongest.</label><br>{% comment %}
+                <ul class="list-group" id="lang-list">
+                   <li class="list-group-item" id="lang-list-more"><button class="btn btn-link" type="button" onclick="javascript:addLanguage('lang-list')">Add Language...</button></li>
+                   <datalist id="languages">
+                     <option>C</option>
+                     <option>C++</option>
+                     <option>Java</option>
+                     <option>Python</option>
+                     <option>Perl</option>
+                     <option>Shell</option>
+                     <option>Javascript</option>
+                   </datalist>
+                 </ul>
+                 <input id="languages" name="languages"/>{% endcomment %}
+                 {{ form.languages }}<p style="color: red">{{ form.courses.errors.as_text }}</p>
               </div>
 
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>How is your knowledge in the following concepts? </label>
+                <ul>
+                  <li style="font-size: 80%;">machine learning and deep learning theory</li>
+                  <li style="font-size: 80%;">deep learning software</li>
+                  <li style="font-size: 80%;">computer vision</li>
+                </ul>
+                {{ form.knowledge }}<p style="color: red">{{ form.knowledge.errors.as_text }}</p>
+              </div>
+
+            </div>
+            </fieldset>
+            <fieldset>
+              <legend>Teaming</legend>
+            <div class="row">
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>Most research projects require teamwork. Please briefly describe your experience working in teams.
+ </label><br>{{ form.teamwork }}<p style="color: red">{{ form.teamwork.errors.as_text }}</p>
+              </div>
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>Briefly explain the problems you want to solve. Assume you (and your team) have the skills and resources to solve the problems.
+ </label><br>{{ form.problem }}<p style="color: red">{{ form.problem.errors.as_text }}</p>
+              </div>
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label style="display: inline;" for="id_futureLeader">Would you be interested leading a team of several students?
+{{ form.futureLeader }} </label><br><p style="color: red">{{ form.futureLeader.errors.as_text }}</p>
+              </div>
+            </div>
+            </fieldset>
+            <fieldset>
+              <legend>Additional Information</legend>
+            <div class="row">
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
                 <label>Why are you interested in researching with CAM²?
- </label><br>
-                <textarea name="whyCAM2" maxlength="1000" id="whyCAM2" class="textarea-lg" required="required" placeholder="Just a couple sentences will suffice.
-">{{ jy }}</textarea>
+ </label><br>{{ form.whyCAM2 }}<p style="color: red">{{ form.whyCAM2.errors.as_text }}</p>
               </div>
+
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
                 <label>Anything else?
  </label><br>
-                <textarea name="anythingElse" maxlength="1000" id="anythingElse" class="textarea-lg" required="required" placeholder="Clarify anything you want about your survey answers
-">{{ jelse }}</textarea>
+                {{ form.anythingElse }}<p style="color: red">{{ form.anythingElse.errors.as_text }}</p>
               </div>
               <div class="clearfix"></div>
+              <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
+                <label>Resume (in PDF)</label>
+                {{ form.resume }}<p style="color: red">{{ form.resume.errors.as_text }}</p>
+              </div>
               <div class="clearfix"></div>
             </div>
+            </fieldset>
             <div class="row">
-              <div class="g-recaptcha recaptcha-btn" data-sitekey={{sitekey}}></div>
-
+              {{ form.captcha }}<p style="color: red">{{ form.captcha.errors.as_text }}</p>
               <div class="clearfix"></div>
             </div>
             <div class="row">
               <div class="col">
-                <button type="submit" id="submit" name="submit" class="btn btn-dark">Send Message</button>
+                <button type="submit" id="submit" name="submit" class="btn btn-dark">Send Application</button>
               </div>
               <div class="col-8"></div>
             </div>
@@ -78,13 +167,137 @@
                   <p id="emailerror" style="color: red">{{ error }}</p>
               {% endfor %}
             </div>
+         {% endautoescape %}
           </form>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sx-12">
+        <hr><h3 style="text-align:center">FAQ</h3><br>
+<dl>
+<dt>Q: I am a new member and want to join CAM2, but I am graduating next semester, can I join CAM2?</dt>
+<dd>A: No, we do not accept anyone who cannot stay for longer than one semester. </dd>
+<dt>Q: Do I have to take credit for doing CAM2 research?</dt>
+<dd>A: Yes. If you are a new member, you must take CAM2 as research credit (VIP, CS etc..). Every new member has to take credit to be a part of this research. This is to enforce students to commit to a project.</dd>
+<dt>Q: What do I do to prepare for an interview? </dt>
+<dd>A: Make sure you apply to teams you can contribute to.
+Make sure you provide details of your technical experience</dd>
+<dt>Q: When will I be contacted for an interview?</dt>
+<dd>A: Your interviewer will be a CAM2 member(s). You will be notified when you have filled this form.</dd>
+<dt>Q: Since I was rejected from the interview, does it mean that I won’t be able to join any cam2 team even if I have signed up for research credit in current semester?</dt>
+<dd>A: Correct, if you do not pass the interview round, you will be required to drop from CAM2 affiliated research section under the course or change to another research project if any. For instance ECE 279, 379, 479 all have multiple research projects. You could change sections and pursue any other research project which are not under Dr Lu’s sections.</dd>
+<dt>Q: If I got rejected once, can I apply again?</dt>
+<dd>A: Yes! You can apply later when you are ready.</dd>
+<dt>Q: Why is this team so restrictive?</dt>
+<dd>A: This is a research team and everyone must have certain levels of knowledge and skills. If you are not ready, you cannot understand the discussion and will not enjoy the experience.</dd>
+<dt>Q: What is the benefits of joining this team?</dt>
+<dd>A: You have opportunities working with people that want to solve research problems. You may be an author on one (or several) research paper. You may present a paper in a conference. You may get a chance to lead a research team. You get opportunities working with the team's collaborators (other universities or companies).</dd>
+<dt>Q: I have an idea and want to join this team to pursue my idea.</dt>
+<dd>A: We do not want your ideas, not from a new member. This team solve research problems that require many months' efforts. Before you join the team, the team has already decided which problems to solve and will not change directions because of you. If you become a team leader (usually after one year in the team), you may have the opportunity to set the team's direction.</dd>
+<dt>Q: I want to apply for graduate schools. May I join the team and get recommendation letters? </dt>
+<dd>A: If you have substantial contributions to solving the research problems, yes.</dd>
+<dt>Q: I want to come and learn. </dt>
+<dd>A: This is a research team. You join this team in order to solve research problems. If your sole purpose is to learn, please go to take courses. You will learn better that way.</dd>
+<dt>Q: Your team seem incredibly arrogant. Why? </dt>
+<dd>A: We are not arrogant. We are simply too busy solving research problems and have no time entertaining tourists. If you are serious solving research problems, you are welcome. If you are looking for entertainment, there are many options outside this research team.</dd>
+<dt>Q: How much time do I need to spend? </dt>
+<dd>A: What do you want to accomplish? Your accomplishments depend on your efforts. If you want to accomplish something great, you need to spend a lot of time.</dd>
+<dt>Q: It seems this team is very stressful. Why should I even bother to consider joining your team?</dt>
+<dd>A: It is the opposite. People really enjoy the experience in the team. Many people stay for 2 or 3 years.</dd>
+<dt>Q: Do I get paid? </dt>
+<dd>A: Usually no. Occasionally, the team has funding but you should not expect any financial rewards.</dd>
+</dl>
       </div>
     </div>
   </div>
 </div>
 {% endblock %}
 {% block scripts %}
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<!--[if lt IE 9]><script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.0.8/es5-shim.min.js"></script><![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.AreYouSure/1.9.0/jquery.are-you-sure.js"></script>
+<script>
+$(function(){
+    function getNdays(month, day, week) {
+        var d = new Date(),
+            ndays = [];
+    
+        d.setMonth(month - 1);
+        d.setDate(1);
+        d.setHours(23,59,59,999);
+    
+        // Get the first Nday in the month
+        while (d.getDay() !== day) {
+            d.setDate(d.getDate() + 1);
+        }
+    
+        // Get all the other Ndays in the month
+        while (d.getMonth() === month-1) {
+            ndays.push(new Date(d.getTime()));
+            d.setDate(d.getDate() + 7);
+        }
+    
+        if (week === void(0))
+            return ndays;
+        else
+            return ndays[week-1];
+    }
+
+    var dtToday = new Date();
+    
+    // Get today's month and year
+    var month = dtToday.getMonth() + 1;
+    var year = dtToday.getFullYear();
+    
+    // Define course registration deadlines
+    var dtSpringCutoff = getNdays(1, 1, 4);
+    var dtSummerCutoff = getNdays(6, 1, 2);
+    var dtFallCutoff = getNdays(9, 1, 1);
+    
+    // Dear god. Thanks Edge.
+    var maxDate = (year + 10) + '-12';
+    
+    // Progress a semester
+    if(dtToday.getTime() <= dtSpringCutoff.getTime())
+        month = 8;
+    else if(dtToday.getTime() <= dtSummerCutoff.getTime())
+        month = 12;
+    else if(dtToday.getTime() <= dtFallCutoff.getTime())
+        month = 5;
+    else {
+        month = 8;
+        year++;
+    }
+    
+    if(month < 10)
+        month = '0' + month.toString();
+    
+    var minDate = year + '-' + month;
+    $('#gradDate').attr('min', minDate);
+    $('#gradDate').attr('max', maxDate);
+    
+    $("#id_courses").select2({
+        tags: true,
+        tokenSeparators: [',', ';'],
+        theme: "bootstrap"
+    });
+    
+    $('#contact-us').areYouSure();
+
+    $('#contact-us').submit(function() {
+        var ft1 = $('#contact-us').find('input[name="favoriteTeams1"]:checked').val();
+        var ft2 = $('#contact-us').find('input[name="favoriteTeams2"]:checked').val();
+        var ft3 = $('#contact-us').find('input[name="favoriteTeams3"]:checked').val();
+        var ft4 = $('#contact-us').find('input[name="favoriteTeams4"]:checked').val();
+        var ft = [ft1, ft2, ft3, ft4];
+        if (new Set(ft).size !== ft.length) {
+            alert(document.getElementById("subteamErrors").innerText = "You must select 4 different subteams.");
+            return false;
+        }
+        $('#contact-us').find('input[name="favoriteTeams"]').val(ft1+"\r\n"+ft2+"\r\n"+ft3+"\r\n"+ft4);
+        return true;
+    });
+});
+</script>
 {% endblock %}

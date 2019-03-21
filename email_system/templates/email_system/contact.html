@@ -29,17 +29,17 @@
             {% csrf_token %}
             <div class="row">
               <div class="col-xs-12 col-sm-5 wow animated slideInLeft" data-wow-delay=".5s">
-                <p><label>Name: </label><br><input value="{{ cname }}" type="text" name="name" id="name" required="required" placeholder= "Your Name"></p>
-                <p><label>Email: </label><br><input value="{{ cemail }}" type="email" name="from_email" id="from_email" required="required" placeholder="Your Email" /></p>
-                <p><label>Subject: </label><br><input value="{{ csub }}" type="text" name="subject" id="subject" required="required" placeholder="Subject"></p>
+                <p><label>Name: </label><br><input value="{{ form.name.value }}" type="text" name="name" id="name" required="required" placeholder= "Your Name"></p>
+                <p><label>Email: </label><br><input value="{{ form.from_email.value }}" type="email" name="from_email" id="from_email" required="required" placeholder="Your Email" /></p>
+                <p><label>Subject: </label><br><input value="{{ form.subject.value }}" type="text" name="subject" id="subject" required="required" placeholder="Subject"></p>
               </div>
               <div class="col-xs-12 col-sm-7 wow animated slideInRight" data-wow-delay=".5s">
-                <label>Messages: </label><br>
-                <textarea name="message" id="message" class="textarea-lg" required="required" placeholder="Message">{{ msg }}</textarea>
+                <label>Message: </label><br>
+                <textarea name="message" id="message" class="textarea-lg" required="required" placeholder="Message">{{ form.message.value }}</textarea>
               </div>
               <div class="clearfix"></div>
               <div class="clearfix"></div>
-              <div class="g-recaptcha pull-left recaptcha-btn" data-sitekey={{sitekey}}></div>
+              {{ form.captcha }}
               <div class="clearfix"></div>
             </div>
             <div class="row">

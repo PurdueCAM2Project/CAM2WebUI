@@ -15,7 +15,6 @@ location = pure('app/location.html', loc_list=models.Location)
 faqs = pure('app/faq.html', question_list=models.FAQ)
 history = pure('app/history.html', history_list=models.History)
 videos = pure('app/videos.html', videos_list=models.Video)
-publications_list = pure('app/publications_list.html', publication_list=models.Publication)
 
 error404 = pure('app/404.html')
 error500 = pure('app/500.html')
