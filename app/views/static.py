@@ -1,12 +1,19 @@
 from django.shortcuts import render
 from django.apps import apps
+import requests
 from ..apps import AppConfig as a
 from .. import models
 
 def pure(template, **models):
     return lambda request: render(request, template, {k: v.objects.all() for (k, v) in models.items()})
 
-index = pure('app/index.html', slide_list=models.Homepage)
+def index(request):
+    try:
+        news = requests.get('http://www.purduehelps.org/assets/json/news.json').json()
+    except:
+        news = None
+    return render(request, 'app/index.html', {'slide_list': models.Homepage.objects.all(), 'news': news})
+
 team_poster = pure('app/team_poster.html', poster_images=models.Poster)
 collaborators = pure('app/collaborators.html', collab_list=models.Collab)
 sponsors = pure('app/sponsors.html', sponsor_list=models.Sponsor)
