@@ -33,3 +33,12 @@ h2 {
 	font-weight: 500;
 	line-height: 20.4px;
 }
+
+.main-content {
+  padding-top: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
