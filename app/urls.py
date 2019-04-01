@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^advice/$', TemplateView.as_view(template_name='app/advice.html'), name='advice'),
     url(r'^history/$', app_views.history, name='history'),
     url(r'^publications/$', app_views.publications, name='publications'),
-    url(r'^publications_list/$', RedirectView.as_view(url='/publications/?list=true'), name='publications_list'),
+    url(r'^publications_list/$', RedirectView.as_view(url='/publications/?list=true', permanent=True), name='publications_list'),
     url(r'^privacy/$', TemplateView.as_view(template_name='app/privacy.html'), name='privacy'),
     url(r'^ack/$', TemplateView.as_view(template_name='app/ack.html'), name='acknowledgement'),
     url(r'^faqs/$', app_views.faqs, name='faqs'),
@@ -31,13 +31,10 @@ urlpatterns = [
     url(r'^account_activated/$', TemplateView.as_view(template_name='app/account_activated.html'), name='account_activated'),
     url(r'', include('django.contrib.auth.urls')),
 
-    #for testing API response
-    url(r'^api_access/$', TemplateView.as_view(template_name='app/api_access.html'), name='api_access'),
     url(r'^videos/$', app_views.videos, name ='videos'),
     url(r'^collaborators/$', app_views.collaborators, name='collaborators'),
     url(r'^sponsors/$', app_views.sponsors, name='sponsors'),
     url(r'^location/$', app_views.location, name='location'),
-    url(r'calendar/$', app_views.calendar, name='calendar'),
 
     #things for current members
 ]

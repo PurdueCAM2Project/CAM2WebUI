@@ -1,6 +1,6 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from ..models import Publication
 
 def publications(request):
@@ -15,10 +15,12 @@ def publications(request):
         A render that displays the page publications.html, complete with information from the Publications database.
     """
 
+    # Test if the contents are supposed to be cards or a list
     if request.GET.get('list') == "true":
         publication_list = Publication.objects.all()
         return render(request, 'app/publications_list.html', {'publication_list': publication_list})
 
+    # Use the current query to filter results shown to the user
     query = request.GET.get('q')
     if query:
         query = query.strip()
@@ -26,9 +28,11 @@ def publications(request):
     else:
         publication_list = Publication.objects.all()
 
+    # Pagnate the publications
     paginator = Paginator(publication_list, 6)
     page = request.GET.get('page')
 
+    # Get publications on the current page
     try:
         publication_paginator = paginator.page(page)
     except PageNotAnInteger:
@@ -36,7 +40,7 @@ def publications(request):
     except EmptyPage:
         publication_paginator = paginator.page(paginator.num_pages)
 
-
+    # Create buttons at the bottom of the page that let you change pages
     index = publication_paginator.number - 1
     max_index = len(paginator.page_range)
     start_index = index - 5 if index >= 5 else 0

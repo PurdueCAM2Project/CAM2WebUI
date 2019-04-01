@@ -1,4 +1,5 @@
 cachetools==2.1.0
+CAM2CameraDatabaseClient
 certifi==2018.4.16
 chardet==3.0.4
 google-api-python-client==1.7.4
