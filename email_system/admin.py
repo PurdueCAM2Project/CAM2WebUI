@@ -1,6 +1,6 @@
 import ast
 from django.contrib import admin
-from .models import ContactModel, JoinModel
+from .models import ContactModel, JoinModel, ApplicationDeadline
 from django.contrib import admin
 from app.admin.actions import download_csv
 
@@ -70,3 +70,4 @@ class JoinModelAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(ContactModel, ContactModelAdmin)
 admin.site.register(JoinModel, JoinModelAdmin)
+admin.site.register(ApplicationDeadline)

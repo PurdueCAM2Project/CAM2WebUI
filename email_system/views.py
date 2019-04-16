@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from .forms import MailForm, ContactForm, JoinForm
-from .models import ContactModel, JoinModel
+from .models import ContactModel, JoinModel, ApplicationDeadline
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.mail import send_mass_mail, send_mail
 import os
@@ -188,4 +188,5 @@ class JoinView(FormView):#BaseCreateView,
     def get_context_data(self, **kwargs):
         context = super(JoinView, self).get_context_data(**kwargs)
         context['subteams'] = Subteam.objects.exclude(name__in=("None", "Graduate Students"))
+        context['semesters'] = ApplicationDeadline.objects.all()
         return context

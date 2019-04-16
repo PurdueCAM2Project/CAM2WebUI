@@ -16,7 +16,7 @@ class ContactModel(models.Model):
 
 class JoinModel(models.Model):
     class Meta:
-        verbose_name = 'join request'
+        verbose_name = 'application'
     name=models.CharField(verbose_name='Name', max_length=100)
     from_email=models.EmailField()
     major=models.CharField(verbose_name='Major', max_length=1000)
@@ -32,6 +32,16 @@ class JoinModel(models.Model):
     teamwork=models.CharField(verbose_name='Expirience in Teamwork', max_length=1000, blank=True, null=True)
     problem=models.CharField(verbose_name='Explain Problem', max_length=1000, blank=True, null=True)
     futureLeader=models.BooleanField(verbose_name='Wants to be a Leader', blank=True)
+    semester=models.ForeignKey('ApplicationDeadline', verbose_name='Application Semester', on_delete=models.CASCADE)
     def __str__(self):
         return "{0}".format(self.name)
 
+class ApplicationDeadline(models.Model):
+    name=models.CharField(verbose_name='Application Period', max_length=6)
+    show=models.BooleanField(verbose_name='Show the Deadline to the User?')
+    date=models.DateTimeField(verbose_name='Cutoff Date')
+    def __str__(self):
+        return "{0} - {1}{2}".format(self.date, self.name, '' if self.show else ' (hidden)')
+    def display_time():
+        eastern = timezone('US/Eastern')
+        return '{}'.format(date.astimezone(eastern).isoformat())
