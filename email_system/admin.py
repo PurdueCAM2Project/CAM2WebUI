@@ -1,7 +1,8 @@
 import ast
 from django.contrib import admin
-from .models import ContactModel, JoinModel
+from .models import ContactModel, JoinModel, ApplicationDeadline
 from django.contrib import admin
+from app.admin.actions import download_csv
 
 # Register your models here.
 
@@ -14,27 +15,7 @@ from django.http import HttpResponse
 import csv
 
 
-def export_csv1(self, request, queryset):
-    #https://docs.djangoproject.com/en/1.11/howto/outputting-csv/
-    #https://stackoverflow.com/questions/18685223/how-to-export-django-model-data-into-csv-file
-    
-    #setup csv writer
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachement;filename=CAM2ContactList.csv'
-    writer = csv.writer(response)
-    
-    required_field_names = ContactModelAdmin.list_display
-    writer.writerow(required_field_names)
-
-    # output data
-    for obj in queryset:
-        required_info = [getattr(obj, field) for field in required_field_names]
-        writer.writerow(required_info)
-    return response
-export_csv1.short_description = "Export selected user as csv"
-
-
-def export_csv(self, request, queryset):  #added diff_char
+def export_joins(self, request, queryset):  #added diff_char
     #https://docs.djangoproject.com/en/1.11/howto/outputting-csv/
     #https://stackoverflow.com/questions/18685223/how-to-export-django-model-data-into-csv-file
     
@@ -73,25 +54,20 @@ def export_csv(self, request, queryset):  #added diff_char
                 required_info.append(getattr(obj, field))
         writer.writerow(required_info)
     return response
-export_csv.short_description = "Export selected user as csv"
+export_joins.short_description = "Export selected %(verbose_name_plural)s as csv"
 
 class ContactModelAdmin(admin.ModelAdmin):
     list_display = ('name', 'from_email', 'subject','message', 'date')
-    actions = [export_csv1]
+    actions = [download_csv]
 	
 
 class JoinModelAdmin(admin.ModelAdmin):
     list_display = ('name', 'from_email', 'major', 'gradDate', 'favoriteTeams', 'courses', 'languages', 'knowledge', 'teamwork', 'problem', 'futureLeader', 'whyCAM2', 'anythingElse', 'date')
-    actions = [export_csv]
-
-
-	
-	
-
+    actions = [export_joins]
 
 
 
 # Register your models here.
 admin.site.register(ContactModel, ContactModelAdmin)
 admin.site.register(JoinModel, JoinModelAdmin)
-#admin.site.register()
+admin.site.register(ApplicationDeadline)

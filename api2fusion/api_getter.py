@@ -10,7 +10,7 @@ import re
 
 from apiclient import discovery
 from apiclient.http import MediaFileUpload
-from client import Client
+from CAM2CameraDatabaseAPIClient import Client
 from google.oauth2 import service_account
 import pandas as pd
 

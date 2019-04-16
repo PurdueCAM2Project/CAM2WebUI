@@ -2,7 +2,7 @@ from ..models import TeamMember, RegisterUser, ReportedCamera, Subteam, CAM2dbAp
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin #Important, dont remove
 from django.contrib.auth.models import User
-from .actions import email_users, export_csv, report_csv, report_json
+from .actions import email_users, export_users, download_csv, download_json
 from social_django.models import UserSocialAuth
 
 # Override Django UserAdmin class
@@ -36,7 +36,7 @@ class UserAdmin(UserAdmin):
         'is_staff',
         'date_joined',
     )
-    actions = [email_users,export_csv]
+    actions = [email_users,export_users]
 
     def department(self, user):
         return "{}".format(RegisterUser.objects.get(user=user).department)
@@ -60,7 +60,7 @@ class UserAdmin(UserAdmin):
 
 @admin.register(ReportedCamera)
 class ReportAdmin(admin.ModelAdmin):
-    actions = [report_csv, report_json]
+    actions = [download_csv, download_json]
 
 @admin.register(Subteam)
 class SubteamAdmin(admin.ModelAdmin):

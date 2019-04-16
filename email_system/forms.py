@@ -5,6 +5,8 @@ from django.core.validators import validate_email
 import requests
 from .models import ContactModel, JoinModel
 from .validators import GraduationValidator
+from pytz import timezone
+from datetime import datetime
 
 class MultiEmailField(forms.Field):
     def to_python(self, value):
@@ -142,3 +144,10 @@ class JoinForm(forms.ModelForm):
             raise ValidationError("File is not a PDF.")
         return resume
 
+    def clean_semester(self):
+        """Tests if the application is not lates."""
+        eastern = timezone('US/Eastern')
+        semester = self.cleaned_data['semester']
+        if datetime.now(tz=eastern) > semester.date:
+            raise ValidationError("The application deadline has passed. Try another semester.")
+        return semester
