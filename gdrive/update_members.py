@@ -1,7 +1,7 @@
 #############################
 # Member Picture Updating Script
 #
-# Execuate "python -m gdrive.update_members" to run this script.
+# Execute "python -m gdrive.update_members" to run this script.
 #
 # NOTE: Needs modification before it is possible to correctly run.
 # You mostly need to change the constants below to update the subteams,

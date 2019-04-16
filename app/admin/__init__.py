@@ -27,10 +27,5 @@ admin.site.register(TeamMember)
 admin.site.register(Poster)
 admin.site.register(Video)
 
-# WIP / Deprecated
-# admin.site.register(Calendar)
-# admin.site.register(Collab)
-# admin.site.register(Member)
-
 # Stagnant
 # admin.site.register(Location)

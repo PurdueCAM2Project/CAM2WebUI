@@ -240,10 +240,10 @@ class Location(models.Model):
     def __str__(self):
         return "{0}".format(self.officename)
 
-# Deprecated. Use TeamMember instead.
 class Member(models.Model):
     """Django model for team members
-    
+
+    Deprecated. Use TeamMember instead.
     Contains information that structures the database for CAM2 team members, both active and inactive
 
     Attributes:
@@ -317,6 +317,7 @@ class Video(models.Model):
         return self.title
 
 class Subteam(models.Model):
+    """Django Model for all CAM2 team videos"""
     name = models.TextField()
     description = models.TextField()
 
@@ -325,6 +326,16 @@ class Subteam(models.Model):
 
 
 class TeamMember(models.Model):
+    """Django model for team members
+
+    Contains information that structures the database for CAM2 team members, both active and inactive
+
+    Attributes:
+        name: A CharField for the team member's full name.
+        image_url: A CharField for an image URL for the team member. Should be blank if iscurrentmember is False.
+        subteam: A Key that indicates which subteam this member belongs to. Default is blank
+        iscurrentmember: A BooleanField that indicates whether or not this team member is a current member
+        isdirector: A BooleanField that indicates whether or not this team member is a current team leader """
     class Meta:
         ordering = ['name']
     name = models.CharField(max_length = 50)
@@ -332,7 +343,6 @@ class TeamMember(models.Model):
     subteam = models.ForeignKey('Subteam', on_delete=models.CASCADE)
     iscurrentmember = models.BooleanField(default=True,verbose_name='Is Current Member')
     isdirector = models.BooleanField(default=False,verbose_name='Is he/she a Director?')
-
 
     def __str__(self):
         return self.name 
