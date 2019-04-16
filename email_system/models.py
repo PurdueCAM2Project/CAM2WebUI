@@ -4,6 +4,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 class ContactModel(models.Model):
+    """Model to store backups of the emails sent to the CAM2 email address"""
     class Meta:
         verbose_name = 'contact'
     name=models.CharField(verbose_name='Name', max_length=100, blank=True, null=True)
@@ -15,6 +16,7 @@ class ContactModel(models.Model):
         return "{0}".format(self.subject)
 
 class JoinModel(models.Model):
+    """Model to store backups of the applications sent to the CAM2 email address"""
     class Meta:
         verbose_name = 'application'
     name=models.CharField(verbose_name='Name', max_length=100)
@@ -37,6 +39,7 @@ class JoinModel(models.Model):
         return "{0}".format(self.name)
 
 class ApplicationDeadline(models.Model):
+    """Model to store deadlines for each of the semesters that an applicant can apply to."""
     name=models.CharField(verbose_name='Application Period', max_length=6)
     show=models.BooleanField(verbose_name='Show the Deadline to the User?')
     date=models.DateTimeField(verbose_name='Cutoff Date')

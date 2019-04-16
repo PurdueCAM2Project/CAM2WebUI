@@ -59,7 +59,6 @@ export_joins.short_description = "Export selected %(verbose_name_plural)s as csv
 class ContactModelAdmin(admin.ModelAdmin):
     list_display = ('name', 'from_email', 'subject','message', 'date')
     actions = [download_csv]
-	
 
 class JoinModelAdmin(admin.ModelAdmin):
     list_display = ('name', 'from_email', 'major', 'gradDate', 'favoriteTeams', 'courses', 'languages', 'knowledge', 'teamwork', 'problem', 'futureLeader', 'whyCAM2', 'anythingElse', 'date')
