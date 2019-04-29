@@ -1,0 +1,21 @@
+---
+extends: base.j2
+title: Frequently Asked Questions
+---
+
+{% block css %}
+<link rel="stylesheet" href="/assets/css/faq.css">
+{% endblock %}
+{% block content %}
+<div class="container">
+  <hr class="divide-divider">
+  <h1>Frequency Asked Questions</h1>
+  <hr class="divide-divider">
+  <dl>
+    {% for entry in question_list %}
+      <dt>{{ entry.question }}</dt>
+      <dd>{{ entry.answer }}</dd>
+    {% endfor %}
+  </dl>
+</div>
+{% endblock %}

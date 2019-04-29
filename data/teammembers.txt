@@ -1,0 +1,896 @@
+
+- image_url: https://drive.google.com/uc?id=1Q_qhjdZrOgbnq4EMwjJDGLzH-8AIkVAV
+  iscurrentmember: true
+  isdirector: false
+  name: Roopasree Naidu
+  subteam: 2
+- image_url: https://drive.google.com/uc?id=1C3jQYpkav8xVx80COdNjevix5kJ6kovh
+  iscurrentmember: true
+  isdirector: true
+  name: Alex Xu
+  subteam: 6
+- image_url: https://drive.google.com/uc?id=1u0hs8wV5hGHbV2zi13bykIF6D_HIvtd1
+  iscurrentmember: false
+  isdirector: false
+  name: Karan Oberoi
+  subteam: 2
+- image_url: https://drive.google.com/uc?id=14sT5M8m-iicBuLkr8je1Wx9vs_6NSHPO
+  iscurrentmember: true
+  isdirector: false
+  name: Caleb Tung
+  subteam: 6
+- image_url: https://drive.google.com/uc?id=1MLJc0w2BzHPjLbjZrAKiBlozVcQwQ5Ob
+  iscurrentmember: false
+  isdirector: false
+  name: Sai Sravan Putikam
+  subteam: 2
+- image_url: https://drive.google.com/uc?id=10Ul1fEiyP4mQ2dwKtL_HhTRrOHFstAVm
+  iscurrentmember: false
+  isdirector: false
+  name: Matt Kelleher
+  subteam: 4
+- image_url: https://drive.google.com/uc?id=18p6ZZHGHAKROa0pNebn2_eolbCqcAhXF
+  iscurrentmember: false
+  isdirector: false
+  name: Sunghy Lee
+  subteam: 2
+- image_url: https://drive.google.com/uc?id=140ZVCHRJVUj5kxjlBK-LfQp38CJHL2zm
+  iscurrentmember: true
+  isdirector: false
+  name: Haoran Wang
+  subteam: 2
+- image_url: https://drive.google.com/uc?id=1q-2I-r9juAEWI93B-Ke0ZreufkTBo_kc
+  iscurrentmember: false
+  isdirector: false
+  name: Myeongsu Kim
+  subteam: 4
+- image_url: https://drive.google.com/uc?id=1bZxvHiZ-H7ACq55FpJQqbJgj8NZjZlcb
+  iscurrentmember: true
+  isdirector: false
+  name: Peter Huang
+  subteam: 6
+- image_url: https://drive.google.com/uc?id=1BgdG9XYcrmdMtdSbePpp324jwdnwl_7p
+  iscurrentmember: true
+  isdirector: true
+  name: Xiao Hu
+  subteam: 1
+- image_url: https://drive.google.com/uc?id=1b09VaAM9nvznANP8iNg-_v-T0zrf06hM
+  iscurrentmember: true
+  isdirector: true
+  name: Noureldin Hendy
+  subteam: 10
+- image_url: https://drive.google.com/uc?id=1O4BZ8HwIiwSzgxW9CKk9zJVEl0JIirSb
+  iscurrentmember: false
+  isdirector: false
+  name: Wenzhong Duan
+  subteam: 11
+- image_url: https://drive.google.com/uc?id=1kIYIrkXnICIb2odq5WWGlsdCYv4fTpVU
+  iscurrentmember: true
+  isdirector: true
+  name: Ryan Dailey
+  subteam: 16
+- image_url: https://drive.google.com/uc?id=1R7VBmTzGzmVL6snPYEMwtZjPeS56aIrQ
+  iscurrentmember: false
+  isdirector: false
+  name: Shreya Ilango
+  subteam: 1
+- image_url: https://drive.google.com/uc?id=1t-krvZinKrSk1YT8MRl8R6xoPUHpF8H7
+  iscurrentmember: true
+  isdirector: false
+  name: Haobo Wang
+  subteam: 1
+- image_url: https://docs.google.com/uc?id=1VBRo4-fnfTBJez8oG-z1_dCdOtRizcs2
+  iscurrentmember: true
+  isdirector: true
+  name: Sripath Mishra
+  subteam: 3
+- image_url: https://drive.google.com/uc?id=1pYD-kWtEJ-nuw-UFwPP6dDZdEJXpDBlo
+  iscurrentmember: true
+  isdirector: false
+  name: Nikita Rajaneesh
+  subteam: 10
+- image_url: https://drive.google.com/uc?id=1VTQQ4q5Mbbjcozp19NpkodQzi71gtMOh
+  iscurrentmember: false
+  isdirector: false
+  name: "Neil\tV. Adi"
+  subteam: 11
+- image_url: https://drive.google.com/uc?id=14FxQ_dr9836vXFBx1YknDQ0rn-QVZHWy
+  iscurrentmember: true
+  isdirector: true
+  name: Mohamad Alani
+  subteam: 8
+- image_url: https://drive.google.com/uc?id=1RZBZpPLvoQCPb_m3Ia28XqYgWf8hJF_X
+  iscurrentmember: false
+  isdirector: false
+  name: Jiaen Chua
+  subteam: 8
+- image_url: https://drive.google.com/uc?id=1p5Ad8doE42SN57LXYTdsDtKOjmgGbPfG
+  iscurrentmember: true
+  isdirector: true
+  name: Noah Curran
+  subteam: 5
+- image_url: https://docs.google.com/uc?id=1irzO3jgSb5iq01MduFSZ8XukKlLsI5cS
+  iscurrentmember: true
+  isdirector: true
+  name: Krishna Kumar
+  subteam: 3
+- image_url: https://drive.google.com/uc?id=1dctzqD0o4Xy7Zc-PC-lUyBedtpOGktZI
+  iscurrentmember: false
+  isdirector: false
+  name: Yu Cai
+  subteam: 5
+- image_url: https://drive.google.com/uc?id=1ybuoG-i8RxX9ykDHKkWVd4nPkSVKNTBi
+  iscurrentmember: false
+  isdirector: false
+  name: Shubham Bhokare
+  subteam: 6
+- image_url: https://docs.google.com/uc?id=1CWTub_9dC8sMDOnw-kRCBuLy5ZWWUurt
+  iscurrentmember: false
+  isdirector: false
+  name: Dimple Dhawan
+  subteam: 8
+- image_url: https://drive.google.com/uc?id=1LXq4qQzwsMglS0ydl5OEjdetuqqnCIky
+  iscurrentmember: false
+  isdirector: false
+  name: Amol Jha
+  subteam: 6
+- image_url: https://docs.google.com/uc?id=15G0Ca-P3tg0ratigNCmEJKzMiPaYEGjH
+  iscurrentmember: false
+  isdirector: false
+  name: Paras R. Adhikary
+  subteam: 6
+- image_url: https://drive.google.com/uc?id=16hdkwA_FNp0wbvI3d2Y-O3k7BVdwR9-h
+  iscurrentmember: true
+  isdirector: true
+  name: Ling Zhang
+  subteam: 2
+- image_url: https://docs.google.com/uc?id=1LTU7ruQEgMk-LcJH7EcWl_g7PNX7VzTL
+  iscurrentmember: false
+  isdirector: false
+  name: Rahul Kartick
+  subteam: 6
+- image_url: https://drive.google.com/uc?id=1sDwK_664kLdKIQI9Q0K3KJHhOSAuJKh4
+  iscurrentmember: true
+  isdirector: false
+  name: Aniesh Chawla
+  subteam: 16
+- image_url: https://drive.google.com/uc?id=1d4vxJfJAb4V7WO-bk6eA2R2lTAQ9lmuT
+  iscurrentmember: true
+  isdirector: false
+  name: Zohar Kapach
+  subteam: 9
+- image_url: https://docs.google.com/uc?id=1DAhufVhmfUyFSYVy_PHB7viWnIXpzu4r
+  iscurrentmember: false
+  isdirector: false
+  name: Zhaoya Sun
+  subteam: 3
+- image_url: https://docs.google.com/uc?id=1zLClekgLCLvk4A4U1QryqttcSBhsb_13
+  iscurrentmember: true
+  isdirector: false
+  name: Andrew Liu
+  subteam: 3
+- image_url: https://drive.google.com/uc?id=1Tbnsqq3Ln6e2PpUv1NqSaRrosMTEev1M
+  iscurrentmember: false
+  isdirector: false
+  name: Arshad Alikhan
+  subteam: 9
+- image_url: https://docs.google.com/uc?id=1wfM2p9c5-q420lJWnaDOBZzpU8sW0heQ
+  iscurrentmember: false
+  isdirector: false
+  name: Yuefan Zu
+  subteam: 3
+- image_url: https://docs.google.com/uc?id=1p4NKAGHJA4DhktkpYed-5ZTrreUBF1D5
+  iscurrentmember: false
+  isdirector: false
+  name: David Dang
+  subteam: 9
+- image_url: https://drive.google.com/uc?id=1P4IGcIF0uAkcsAy4znptkzb72niC8dU4
+  iscurrentmember: false
+  isdirector: false
+  name: Qiwei Ye
+  subteam: 11
+- image_url: https://docs.google.com/uc?id=1RTChXIjEGFyz7Jsxp3heYDOikWpPrSnq
+  iscurrentmember: false
+  isdirector: false
+  name: Abhay Sasidharan
+  subteam: 9
+- image_url: https://drive.google.com/uc?id=1QerVKIreOrBjZdoANEm4D0PlNcoyv79Q
+  iscurrentmember: true
+  isdirector: true
+  name: Karthik Maiya
+  subteam: 4
+- image_url: https://drive.google.com/uc?id=1zsGHrvBtmTyEG4Cnwr5NMvBuaekgccGj
+  iscurrentmember: true
+  isdirector: true
+  name: Nathan M. Gizaw
+  subteam: 11
+- image_url: https://drive.google.com/uc?id=1FlXnG5kluVRy8gEJXtlMS9F9r0J46TBJ
+  iscurrentmember: true
+  isdirector: true
+  name: Daniel Merrick
+  subteam: 4
+- image_url: https://drive.google.com/uc?id=12SisTM9GQIoLfkseJoZb5Wm2ERCBPlWV
+  iscurrentmember: true
+  isdirector: false
+  name: Andrew Ulmer
+  subteam: 9
+- image_url: https://drive.google.com/uc?id=1luXV_WElpGmIqfVaqGUMi5qAOzoqaERI
+  iscurrentmember: true
+  isdirector: false
+  name: Jiahao Sun
+  subteam: 15
+- image_url: https://drive.google.com/uc?id=101Pna366JB6pM1Q1rSGiW6wipCg2Uf8U
+  iscurrentmember: true
+  isdirector: false
+  name: Runjia Shen
+  subteam: 12
+- image_url: https://drive.google.com/uc?id=1jbwSbygK8x49KyiAwTwDGtpD6vz-mvKa
+  iscurrentmember: true
+  isdirector: true
+  name: Damini Rijhwani
+  subteam: 10
+- image_url: https://drive.google.com/uc?id=1yUr73JBTlTG0LMew8pqVXA5csNggmuOX
+  iscurrentmember: true
+  isdirector: true
+  name: Ashley Kim
+  subteam: 15
+- image_url: https://drive.google.com/uc?id=1QE0RJBLacv9q-zbAvMf5JrZiHTx2htl_
+  iscurrentmember: true
+  isdirector: false
+  name: Nobelle Tay
+  subteam: 10
+- image_url: https://drive.google.com/uc?id=1MRUUneBL0BF9z0zbUIeUAzbMfDqQavQW
+  iscurrentmember: true
+  isdirector: false
+  name: Shijin Wang
+  subteam: 10
+- image_url: https://drive.google.com/uc?id=1WrLZtXkzgHDQbCC0XLX92C8a8rgS6yMd
+  iscurrentmember: true
+  isdirector: false
+  name: Yezhi Shen
+  subteam: 12
+- image_url: https://drive.google.com/uc?id=1hGayS955bNTIcHguXCoRk00b_Dcw3oTZ
+  iscurrentmember: true
+  isdirector: true
+  name: Rohan Prabhu
+  subteam: 13
+- image_url: https://drive.google.com/uc?id=1Ky37lYMYl3cUfubfzGZLT8ZNSGFyHCLr
+  iscurrentmember: true
+  isdirector: true
+  name: Paul B. Zhang
+  subteam: 13
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Zhi Kai Tan
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Spencer Huston
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Meera Haridasa
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Cailey Farrell
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Christopher Jovanovic
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Robert Gitau
+  subteam: 14
+- image_url: https://drive.google.com/uc?id=18S6_4smJGdXMWpSCHQfali90go6Zw43C
+  iscurrentmember: true
+  isdirector: false
+  name: Weiqing Huang
+  subteam: 5
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Vadim Nikiforov
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Sihao Yin
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Mehmet Alp Aysan
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Matthew Fitzgerald
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Hussni Mohd Zakir
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Hanwen Huang
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Changyu Li
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Wengyan Chan
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Aparna Pidaparthi
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Deepika Aggrawal
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Ehren Marschall
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Hao Zou
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Jiancheng Wang
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Kyle Martin
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Milos Malesevic
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Mina Guo
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Nanxin Jin
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Ramyak Singh
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Yash Pundlik
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Ryan Schlueter
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Weizhi Li
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Sam Yellin
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Wenzhong Duan
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Deeptanshu Malik
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Juncheng Tang
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Daniel Dilger
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Yukun An
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Andrew Green
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Bolun Zhang
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Erik Rozolis
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Everett Berry
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Youngsol Koh
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Lucas Neumann
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Subhav Ramachandran
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Pranjit Kalita
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Seth Bontrager
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Kyle Mcnulty
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: James Tay
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Sriram Rangaramanujan
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Borui Chen
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Yuhao Chen
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Qingshuang Chen
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Anthony Kang
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Zhenming Zhao
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Jeanne Deng
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Huanyi Guo
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Jiaju Yue
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Zaiwei Zhang
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Zhenming Zhang
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Anthony Fennell
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: He Li
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Zhifan Zeng
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Zhanxiang Hua
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Yuxiang Zi
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Yutong Huang
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Yifan Li
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Yexin Wang
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Woojin Kim
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Shengli Sui
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Sanghyun Cho
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Nirmal Asokan
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: John Laiman
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Jenil Patel
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: James Lee
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Hanyang Liu
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Ajay Gopakumar
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Ahmed Kaseb
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Achinthya Soordelu
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Sitian Lu
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Fengjian Pan
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Jay Patel
+  subteam: 14
+- image_url: ''
+  iscurrentmember: false
+  isdirector: false
+  name: Joseph Sweeney
+  subteam: 14
+- image_url: https://drive.google.com/uc?id=14niEmt3s3tqMru1QSgz3KhYU_IKpnzmB
+  iscurrentmember: true
+  isdirector: false
+  name: Yuting Guo
+  subteam: 5
+- image_url: https://drive.google.com/uc?id=1u5dbejyw-62y5x6UPKEtPo3DFd4AtYCc
+  iscurrentmember: true
+  isdirector: true
+  name: Anirudh Vegesana
+  subteam: 8
+- image_url: https://drive.google.com/uc?id=1ZkOiB1E21C8kp4avD_tFhaWRosg0CbeR
+  iscurrentmember: true
+  isdirector: false
+  name: Ruihong Lyu
+  subteam: 5
+- image_url: https://docs.google.com/uc?id=1q4b4YhD0SodisvVfcFexzAqQhfOGEhua
+  iscurrentmember: false
+  isdirector: false
+  name: Sayali Nilangekar
+  subteam: 12
+- image_url: https://docs.google.com/uc?id=1wpzBgSmGln1eZ1J_FqL0RkRws4b0QwH1
+  iscurrentmember: false
+  isdirector: false
+  name: Sehajbir Randhawa
+  subteam: 1
+- image_url: https://docs.google.com/uc?id=124hs5hxVMwDS9_IpNxWebNSVUFKanMMS
+  iscurrentmember: true
+  isdirector: false
+  name: Zicong Wang
+  subteam: 3
+- image_url: https://drive.google.com/uc?id=1NX_X368N3TfYEd71PjRfXN_CUwllVQf1
+  iscurrentmember: true
+  isdirector: false
+  name: Josh Majors
+  subteam: 3
+- image_url: https://drive.google.com/uc?id=1QRzGA66rF1EN6eAeDNEAMD0p84WVi0-Y
+  iscurrentmember: true
+  isdirector: false
+  name: Xinlue Liu
+  subteam: 11
+- image_url: https://drive.google.com/uc?id=1AsM83PcpjiRJxgIOoRiOJZnF-Rwx8dvq
+  iscurrentmember: true
+  isdirector: false
+  name: Yanjun Chen
+  subteam: 11
+- image_url: https://drive.google.com/uc?id=1Apy6EAMI-6A4dUSWqpB0pRtFuYOp7nnj
+  iscurrentmember: true
+  isdirector: false
+  name: Yiming Li
+  subteam: 11
+- image_url: https://drive.google.com/uc?id=1jyMQ-ihz2SRGT0vMnX0NXeGGEqoq29jG
+  iscurrentmember: true
+  isdirector: false
+  name: Alex Brachet-Mialot
+  subteam: 11
+- image_url: https://drive.google.com/uc?id=1D8OV_bJFofpA__1YD8LQU2Ix0az3uqZ6
+  iscurrentmember: true
+  isdirector: false
+  name: Minghao Sun
+  subteam: 11
+- image_url: https://drive.google.com/uc?id=1T-j3DBVf0dd27pGbqTsqSr5GaL-4NNsu
+  iscurrentmember: true
+  isdirector: false
+  name: Blessie Tandon
+  subteam: 11
+- image_url: https://drive.google.com/uc?id=1sOXlQgFXDsQjCg9KaAmH8ZmXhRy5EPi9
+  iscurrentmember: true
+  isdirector: false
+  name: Yunjin Cho
+  subteam: 11
+- image_url: https://drive.google.com/uc?id=1aJlfnORl0G7SSfHIOOs_sIXjOD7ghQME
+  iscurrentmember: true
+  isdirector: false
+  name: Andrew Beutler
+  subteam: 5
+- image_url: https://drive.google.com/uc?id=1GSO6wVspOBuu881yg-5Bg2E5xEA1gSMJ
+  iscurrentmember: true
+  isdirector: false
+  name: Kaiwen Yu
+  subteam: 8
+- image_url: https://drive.google.com/uc?id=1tHJOFU6b6cDRAEQvZ9CC34nRT5ccZJy8
+  iscurrentmember: true
+  isdirector: false
+  name: Yi Xie
+  subteam: 12
+- image_url: https://drive.google.com/uc?id=1OTo6VLEg6JVsoJ3kbyLZG0JJZN40vJV9
+  iscurrentmember: true
+  isdirector: false
+  name: Yoon Sung Kim
+  subteam: 12
+- image_url: https://drive.google.com/uc?id=1H9JpKjC86xcI3a78HJzRNNtuMV5X9B6B
+  iscurrentmember: true
+  isdirector: false
+  name: Younggil Chang
+  subteam: 12
+- image_url: https://drive.google.com/uc?id=1GeeVgSnl4Fwf-rlIFlG5LuSohcMMIpTi
+  iscurrentmember: true
+  isdirector: false
+  name: Nick Eliopoulos
+  subteam: 12
+- image_url: https://drive.google.com/uc?id=1C4YoQuMmzT5KjqI4_vqqO1albg62iaTT
+  iscurrentmember: true
+  isdirector: false
+  name: Zijun Lin Lin
+  subteam: 12
+- image_url: https://drive.google.com/uc?id=1YunKydNN7OS_vvBubbME4UykfjNh1CgA
+  iscurrentmember: true
+  isdirector: false
+  name: Abhinav Goel
+  subteam: 16
+- image_url: https://drive.google.com/uc?id=1GzpDueX6W2e4sx0OGfKm51cru34jyEvp
+  iscurrentmember: true
+  isdirector: false
+  name: Sara Aghajanzadeh
+  subteam: 16
+- image_url: https://avatars3.githubusercontent.com/u/13396493?s=460&v=4
+  iscurrentmember: true
+  isdirector: false
+  name: Kent Gauen
+  subteam: 16
+- image_url: https://drive.google.com/uc?id=12nTwWesC8BUGYZwcx6rVjGtC0HGruioY
+  iscurrentmember: true
+  isdirector: false
+  name: Altug Gemalmaz
+  subteam: 1
+- image_url: https://drive.google.com/uc?id=1RNsEJtGiIwYLJRdmMgzUj3s4vQKBgab_
+  iscurrentmember: true
+  isdirector: false
+  name: Gore Kao
+  subteam: 1
+- image_url: https://drive.google.com/uc?id=1nv73nuQkAXWd29RL4S1bH3RNc29Usn7U
+  iscurrentmember: true
+  isdirector: false
+  name: Pranjali Raturi
+  subteam: 1
+- image_url: https://drive.google.com/uc?id=1Qu7L33SNwQtBw8Qx-4s-Fm9oIUq9v7G-
+  iscurrentmember: true
+  isdirector: false
+  name: Kirthi Shankar Sivamani
+  subteam: 4
+- image_url: https://drive.google.com/uc?id=1qEGaz7a6Los7dfKiZMAqjyXvNgh4h31e
+  iscurrentmember: true
+  isdirector: false
+  name: Rui Wang
+  subteam: 4
+- image_url: https://drive.google.com/uc?id=1ofpDJFHlQy3a0RRSRauFfqf7sat-Kv-3
+  iscurrentmember: true
+  isdirector: false
+  name: Isha Ghodgaonkar
+  subteam: 10
+- image_url: https://drive.google.com/uc?id=1OSe2uGly1GM3WApaUfHl4df0dcmzKH1O
+  iscurrentmember: true
+  isdirector: false
+  name: Li Yon Tan
+  subteam: 10
+- image_url: https://drive.google.com/uc?id=182zv9F3EfHBJOTDOR3lQ8x5I2SOoIS6a
+  iscurrentmember: true
+  isdirector: false
+  name: Jack Hyslop
+  subteam: 10
+- image_url: https://drive.google.com/uc?id=1iT1e98N7OH3tkDnYybz1Lgjz3-BRuRAl
+  iscurrentmember: true
+  isdirector: false
+  name: Jacob Harmon
+  subteam: 10
+- image_url: https://drive.google.com/uc?id=1s9Wqao1RSAVDhrtJA3rx0srQysCliQgb
+  iscurrentmember: true
+  isdirector: false
+  name: Moiz Rasheed
+  subteam: 13
+- image_url: https://drive.google.com/uc?id=16pHB8NGmpCt8W6cnogTKsL8MDJcNbSsS
+  iscurrentmember: true
+  isdirector: false
+  name: Ethan Glaser
+  subteam: 13
+- image_url: https://drive.google.com/uc?id=1vZ7qm0nmQrBTrjDEnh-RCAXH5VQomyUF
+  iscurrentmember: true
+  isdirector: false
+  name: Ian Haggerty
+  subteam: 13
+- image_url: https://drive.google.com/uc?id=13QEeDdUAvBekEd1Y-ZSGo7psi3LbrGf_
+  iscurrentmember: true
+  isdirector: false
+  name: Ashita Bawankule
+  subteam: 13
+- image_url: https://drive.google.com/uc?id=1khtGvIjw4bKrp45-bwueGRva0DvFmcwf
+  iscurrentmember: true
+  isdirector: false
+  name: Sumati Gupta
+  subteam: 13
+- image_url: https://drive.google.com/uc?id=1964iXlodJe4gZOlqdn89_vn7fDi6Pyrm
+  iscurrentmember: true
+  isdirector: false
+  name: Juanda He
+  subteam: 13
+- image_url: https://drive.google.com/uc?id=1NgQdhu79u0NQt2xrQPMTrQOpAt-szvi4
+  iscurrentmember: true
+  isdirector: true
+  name: Matthew Kelleher
+  subteam: 6
+- image_url: https://drive.google.com/uc?id=1vmEXOq6zdNxUMFQPZbvmBS4zEMZFzX5U
+  iscurrentmember: true
+  isdirector: false
+  name: Mridul Arora
+  subteam: 6
+- image_url: https://drive.google.com/uc?id=10YPCl-M6Ytt7PwZv_j9PIjEu_4CSr4pD
+  iscurrentmember: true
+  isdirector: false
+  name: Youngsik Yoon
+  subteam: 2
+- image_url: https://drive.google.com/uc?id=1CK9eAfqcpzMU-ULGn2vnY0E8fF37UZC3
+  iscurrentmember: true
+  isdirector: false
+  name: Lakshya Goyal
+  subteam: 2
+- image_url: https://drive.google.com/uc?id=1AJ4xI3s0hvde6MS0yzuKDt_VolCWrV5z
+  iscurrentmember: true
+  isdirector: false
+  name: Ayushi Gupta
+  subteam: 2
+- image_url: https://drive.google.com/uc?id=1RWw0U_QwKhY8ZioiPdDmlN2_VEros3Zt
+  iscurrentmember: true
+  isdirector: false
+  name: Shunqiao Huang
+  subteam: 2
+- image_url: https://drive.google.com/uc?id=1BJ5kz_3z1-l5R19xyvNRwGymDvNYIZJk
+  iscurrentmember: true
+  isdirector: false
+  name: Menna Hassan
+  subteam: 15
+- image_url: https://drive.google.com/uc?id=1Y7Ew3_OUSKDagQ7nOkRKOpYV1DhrPdi7
+  iscurrentmember: true
+  isdirector: false
+  name: Fischer Bordwell
+  subteam: 15
+- image_url: https://drive.google.com/uc?id=1I8VuUa3lphW5Qvun6IYXhqtMiQ-AB0J7
+  iscurrentmember: true
+  isdirector: false
+  name: Arjun Balasubramanian
+  subteam: 15

@@ -1,0 +1,122 @@
+---
+extends: base.j2
+title: Publications
+---
+
+{% block css %}
+<link rel="stylesheet" href="/assets/css/publications.css" %}"> 
+{% endblock %} 
+{% block content %}
+
+<div class="container">
+  <hr class="divide-divider">
+  <h1>Publications</h1>
+  <hr class="divide-divider">
+
+  <form action="" method="get" style="width:100%">
+  <div class="row">
+    <div class="col-sm">
+  <div class="input-group mb-3">
+      <input type="text" id="search_criteria" name="q" class="shadow-sm form-control" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon1" value="{% if query %}{{ query }}{% endif %}" >
+      &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="shadow-sm btn btn-outline-info" id="search-button">Search</button>
+  </div>
+  </div>
+  <div class="col-sm">
+    <div align="right">
+      <div class="btn-group" role="group" aria-label="Basic example">
+          <a href="#">
+            <button type="button" class="btn btn-light"><i class="fa fa-th"></i></button>
+            </a>
+            <a href="list.html">
+            <button action="list.html" type="button" class="btn btn-light"><i class="fa fa-list-ul"></i></button>
+          </a>
+          </div>
+    </div>
+  </div></div>
+  </form>
+    <hr>
+    <!--
+    <nav aria-label="breadcrumb">
+      <div style="text-align: center;">
+        <h4>Categories</h4>
+      </div>
+      <hr/>
+      <h6>Special Session on Low-Power Image Recognition Challenges</h6>
+      
+      <p></p>
+      </nav>
+  <ol>
+-->
+    <div class="row">
+      <!-- <div class="col" style="width: 10%;">
+        <h4>Categories</h4>
+      </div> -->
+
+    
+    {% for publication in publication_list %}
+      {% if loop.index % 4 == 0 %}
+        </div>
+        <br>
+        <div class="row">
+      {% endif %}
+      <!-- <li> -->
+        <div class="col">
+          <div class="shadow-sm card" style="width: 18rem;">
+              <div class="card-body">
+                <!-- {{ publication.paperinfo }}  -->
+                <h5 class="card-title">{{ publication.paperinfo }}</h5>
+                <hr/>
+                <h6 class="card-subtitle mb-2 text-muted">{{ publication.conference }}</h6>
+                <p class="card-text">{{ publication.authors }}</p>
+                {% if publication.paperlink is not none %}
+                <br>
+                <a href="{{ publication.paperlink }}" class="btn btn-primary" style="width: 100%;">PDF</a>
+          <!-- [<a href="{{ publication.paperlink }}" style="color:#1aa3ff;">PDF</a>] -->
+          <!-- <img src="{{ publication.paperlink }}" width="300px" height="300px"/> -->
+          
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+      <!-- </li> -->
+    {% endfor %}
+    </div>
+  </ol>
+  <hr>
+  {% if publication_list.has_other_pages %}
+  <nav aria-label="Page navigation example">
+      <ul class="pagination">
+          {% if publication_list.has_previous %}
+          <li class="page-item">
+              <a class="page-link" href="?page={{ publication_list.previous_page_number }}">Previous</a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+              <a class="page-link" tabindex="-1">Previous</a>
+          </li>
+          {% endif %}
+          {% for i in page_range %}
+              {% if publication_list.number == i %}
+                  <li class="page-item active">
+                    <a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a>
+                  </li>
+              {% else %}
+                  <li class="page-item"><a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+
+          {% endfor %}
+          {% if publication_list.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ publication_list.next_page_number }}">Next</a>
+              </li>
+          {% else %}
+          <li class="page-item disabled">
+              <a class="page-link" tabindex="-1">Next</a>
+          </li>
+          {% endif %}
+      </ul>
+    </nav>
+   {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+.divide-heading {
+  color: #424242;
+  font-size: 35px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.darker {
+    filter: brightness(75%);
+}
+
+.divide-divider {
+  margin: 15px 0;
+}
+
+
+/* Typegraphy for homepage */
+
+h1 {
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+	font-size: 40px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 28.4px;
+}
+h2 {
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+	font-size: 28px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 20.4px;
+}

@@ -1,0 +1,20 @@
+- answer: Universities, governments, and some other web sites.
+  question: Where do you get the data?
+- answer: The frame rates, as well as the resolutions, vary based on the cameras.
+  question: What is the frame rate?
+- answer: Not yet. We will add that feature soon.
+  question: I have cameras. Can I add my cameras to your site?
+- answer: We do not intend to indentify any individual. Thus, we do not know where
+    you are.
+  question: What do you do with the data? Are you tracking where I go?
+- answer: Please read the privacy policy.
+  question: If I register, what do you do my data (such as my email address)?
+- answer: We intend to keep the email traffic low.
+  question: Will you send me any email?
+- answer: Most cameras observe traffic or outdoor scenes.
+  question: What do the cameras see?
+- answer: No.
+  question: Are you recording all data continuously?
+- answer: Only if the camera owner gives us the password. We will not guess the password
+    of any camera.
+  question: Do you retrieve data from password-protected cameras?

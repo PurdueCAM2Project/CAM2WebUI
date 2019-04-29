@@ -1,0 +1,19 @@
+---
+extends: base.j2
+title: History
+---
+
+<link rel="stylesheet" href="/assets/css/history.css">
+{% block content %}
+<div class="container">
+  <hr class="divide-divider">
+  <h1>History</h1>
+  <hr class="divide-divider">
+  <dl>
+    {% for history in history_list %}
+      <dt>{{ history.year }}/{{ history.month }}</dt>
+      <dd>{{ history.event }}</dd>
+    {% endfor %}
+  </dl>
+</div>
+{% endblock %}

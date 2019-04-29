@@ -1,0 +1,29 @@
+---
+extends: base.j2
+title: Location
+---
+
+{% block css %}
+<link rel="stylesheet" href="/assets/css/publications.css"> 
+{% endblock %} 
+{% block content %}
+<div class="container">
+  <hr class="divide-divider">
+  <h1>Location</h1>
+  <hr class="divide-divider">
+  {% for loc in loc_list %}
+    <h2>{{ loc.officename }}</h2>
+    {% if loc.officeroom is not none %}
+    <p>Room {{ loc.officeroom }}</p>
+    {% endif %}
+    {% if loc.officebldg is not none %}
+    <p>{{ loc.officebldg }}</p>
+    {% endif %}
+    <p>{{ loc.officeaddr }}</p>
+    <p>{{ loc.officecity}}, {{ loc.officestate }}, {{ loc.officezip }}</p>
+    {% if loc.officenum is not none %}
+    <p>TEL: {{ loc.officenum }}</p>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}

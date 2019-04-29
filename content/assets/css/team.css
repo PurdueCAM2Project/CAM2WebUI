@@ -1,0 +1,36 @@
+img {
+  width: 100%;
+  height: auto;
+}
+
+.divide-divider {
+  margin: 15px 0;
+  border-top: 1px solid #fff;
+}
+
+img.faculty {
+  object-fit: cover;
+  max-height: 206px;
+}
+
+img.members {
+  object-fit: cover;
+  max-height: 161px;
+}
+
+.video-container {
+	background-color: red;
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: row-reverse;
+}
+
+.video-block {
+	display: flex;
+	width: 300px;
+}
+
+
+.test-style{
+	color: red;
+}

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--
+                                                                                 -+yhdhy+`
+                                                                                 mmhyhNMMm`
+            `-+shdddhy+:`        `syyyys.         .oyyyys+`          `+syyyyo`   .`   sMMM.
+          `omNMMMMMMMMMMd        yMMMMMMh         oMMMMMMMh`         hMMMMMMM:       .mMMy
+         -dMMMMdo:--:+ymN       /MMMmMMMM+        oMMMMmMMMo        oMMMdMMMM:     `+mMN+`
+        .mMMMM+`       ..      .NMMM:yMMMN-       oMMMN:MMMM:      :NMMm-MMMM:   `/dMNs.
+        sMMMMs                 hMMMs `mMMMd`      oMMMN oMMMm.    .mMMM:.MMMM:  `hMMNs////:
+        mMMMM-                +MMMm`  /MMMMo      oMMMN `dMMMh    hMMMo .MMMM:  .dmmmmmmmmy     Hey Doc!
+        NMMMM.               -NMMM:    yMMMM:     oMMMN  -NMMM+  oMMMd` .MMMM:   ``````````
+        dMMMM/              `dMMMmoooooyMMMMm`    oMMMN   +MMMN-:MMMN-  .MMMM:
+        +MMMMm.         `   sMMMMMMMMMMMMMMMMs    oMMMN    hMMMmmMMM+   .MMMM:
+         yMMMMmo-.```.:sh` :MMMMo::::::::hMMMM/   oMMMN    .NMMMMMMy    .MMMM:
+         `omMMMMMmmdmNMMN``mMMMh         .NMMMN.  oMMMN     +MMMMMm`    .MMMM:
+           ./ymmNNNNNmds: /mNmm.          +mNNmo  +mNmd      ymNNm:     .mmNm:
+               `..-..`     ```             ````    ```        ```         ```
+-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/png" href="/assets/img/new_logo2.png"/>
+    
+    <title>Location</title>
+    
+
+    <!--  Bootstrap 4 js links -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    <!--  Bootstrap 4 css link  -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!--  Implement base.css  -->
+    <link href="/assets/css/collapsible-footer.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="294339896954-gouidbgcpu2cktb5v42qdkelu1d0a9ks.apps.googleusercontent.com">
+
+    <link rel="stylesheet" href="/assets/css/publications.css"> 
+</head>
+
+<body>
+    
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+        <!--  Navigation Bar  -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
+        
+    <div class="container">
+        
+        
+    <!--  The Logo on the left  -->
+    <a class="navbar-brand" href="/">
+         <img style="width: 50px; height: 30px; position: relative; left: -10px"
+                 src="/assets/img/new_logo2.png">
+    </a>
+
+    <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>    
+        
+
+    <!--  Tabs on the left  -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="nav nav-pills mr-auto">
+
+        <!--  Tab Camera Map  -->
+        <li class="nav-item">
+        <a class="nav-link" href="/cameras/">Camera Map</a>
+        </li>
+
+        <!--  Tab Publications  -->
+        <li class="nav-item">
+            <a class="nav-link" href="/publications/">Publications</a>
+        </li>
+
+        <!--  Tab Posters  -->
+        <li class="nav-item">
+            <a class="nav-link" href="/team_poster/">Posters</a>
+        </li>
+
+         <!--  Tab About  -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                About
+            </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/team/">Team Members</a>
+            <a class="dropdown-item" href="/videos/">Videos</a>
+            <a class="dropdown-item" href="/history/">History</a>
+            <!--<hr>
+            <a class="dropdown-item" href="/email/contact/">Contact Us</a>-->
+        </div>
+        </li>
+
+        <!--  Tab Documentation  -->
+        <li class="nav-item">
+          <a class="nav-link" href="https://purduecam2project.github.io/CameraDatabaseAPI/">Documentation</a>
+        </li>
+
+        <!--  Tab Join Us  --><!--
+        <li class="nav-item">
+          <a class="nav-link" href="/email/join_us">Join Us!</a>
+        </li>-->
+
+
+    </ul>
+
+    <!--  Tabs on the right  -->
+    <ul class="nav nav-pills ml-auto">
+        <!--                <li><a class="nav-link" href="/login/">Login</a></li>
+                <li><a class="nav-link" href="/register/">Register</a></li>
+            -->
+    </ul>
+        
+    </div>
+        
+    </div>
+    </nav>
+
+        <!--  End of Navigation Bar  -->
+
+    <!--  Conetent of pages that implements base  -->
+    <div class="content">
+        <div class="container">
+  <hr class="divide-divider">
+  <h1>Location</h1>
+  <hr class="divide-divider">
+      <h2>CAM2 Lab</h2>
+        <p>Room 220C</p>
+            <p>Electrical Engineering</p>
+        <p>465 Northwestern Ave</p>
+    <p>West Lafayette, IN, 47906</p>
+        <p>TEL: 765-494-5298</p>
+      </div>
+    </div>
+    <!--  End of content  -->
+
+
+    <!--  Footer  -->
+        
+    
+    
+    <div class="footer pt-4 mt-4 bg-light" style="flex-shrink: 0;">
+        <footer class="footer-collapse px-1 py-3">
+    <div class="col-lg-12 mx-auto">
+            <h2 class="sr-only">CAM2FOOTER</h2>
+            <div class="row" style="width: 80%; margin: auto">
+                <hr class="clearfix w-100 d-md-none pb-3">
+                    <div class="widget hidden-md-down">
+                        <h4 class="text-uppercase text-bold"><b>More About Us</b></h4>
+                        <div style="float:left;width:5%;margin-left:20px;">
+                            <ul class="widget-list list-unstyled p-0">
+                                <li><a href="/sponsors/" >Sponsors</a></li>
+                                <li><a href="/collaborators/" >Collaborators</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div style="float:right;width:5%;margin-left:250px;">
+                            <ul class="widget-list list-unstyled p-0">
+                                <!--<li><a href="/calendar/">Calendar</a></li>-->
+                                <li><a href="/location/" >Location</a></li>
+                            </ul>
+                        </div>
+                    
+                    </div>
+                    <div id="accordion" role="tablist" aria-multiselectable="true" class="widget hidden-lg-up">
+                    <div role="tab" id="headingOne">
+                        <h4 class="card-header py-3 border-0 text-uppercase text-bold">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            <b>More About Us</b>
+                        </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="card-block">
+                        <ul class="widget-list list-unstyled p-0">
+                            <li><a href="/sponsors/" >Sponsors</a></li>
+                            <li><a href="/collaborators/" >Collaborators</a></li>
+                            <!--<li><a href="/calendar/">Calendar</a></li>-->
+                            <li><a href="/location/" >Location</a></li>
+                        </ul>
+                        </div>
+                    </div>
+                    </div>
+                
+                
+            </div>
+        </div>
+</footer>
+    <div class="container-fluid text-center text-md-left">
+        
+    </div>
+
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-left py-3" style="width: 80%; margin: auto">
+        <!--  Dividing Line  -->
+        <div class="break"></div>
+
+        <!-- <p class="pull-right hidden-xs"><button type="button" class="btn btn-secondary"><a href="/" style="color: white">Back to top</a></button></p> -->
+        
+        <p>© CAM² Research Group.   ·   <a href="/privacy/">Privacy</a>   ·   <a href="/terms/">Terms of Use</a>   ·   <a  href="/ack/">Acknowledgements</a>   ·   <a  href="/faqs/">FAQs</a></p>
+    </div>
+
+  </div>
+  <!-- End of Footer -->
+
+    
+    
+<!--
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+--> 
+    
+    <script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+    
+//Stack menu when collapsed
+$('#navbarSupportedContent').on('show.bs.collapse', function() {
+    $('.nav-pills').addClass('flex-column');
+});
+
+//Unstack menu when not collapsed
+$('#navbarSupportedContent').on('hide.bs.collapse', function() {
+    $('.nav-pills').removeClass('flex-column');
+});
+    
+</script>
+
+</body>
+
+<!-- API Access Form !Need modification! -->
+<!-- The Modal (authenticated information) -->
+<div class="modal fade" id="APIcontact-authenticated">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">API Access</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="container-fluid">
+        To request CAM2 API credentials, please contact <a href="mailto:cam2proj@ecn.purdue.edu" style="color: #1aa3ff;">cam2proj@ecn.purdue.edu</a>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+<!--        <input  type="submit" class="btn btn-success btn-send" value="Send message">-->
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</html>

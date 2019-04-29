@@ -1,0 +1,59 @@
+---
+extends: base.j2
+title: Collaborators
+---
+
+{% block css %}
+<link rel="stylesheet" href="/assets/css/publications.css"> 
+{% endblock %} 
+{% block content %}
+<div class="container">
+    <hr class="divide-divider">
+    <h1>Collaborators</h1>
+    <hr class="divide-divider">
+
+    <div class="row col-md-12 col-sm-12 col-xs-12 ">
+    <div class="col-md-12 col-sm-12 col-xs-12" style="float: left">
+
+    {% for collaborator in collab_list %}
+        {% if loop.index0 % 3 == 0 %}
+            <div class="row">
+        {% endif %}
+                
+        <div class="col-md-4 col-sm-4 col-xs-6" style="float: left">
+        {% if collaborator.collabimg is not none %} 
+            <figure style="text-align: center">
+                <img style="width: 80%;" src="{{ collaborator.collabimg }}">
+                <figcaption>
+                    <b><a href="{{ collaborator.collablink }}">{{ collaborator.collabname }}</a></b>
+                    <p>
+                        {% if collaborator.collabdescr is not none %}
+                            {{ collaborator.collabdescr }}
+                        {% endif %}
+                    </p>
+                </figcaption>
+            </figure>
+
+        {% endif %}
+        </div>
+                
+        {% if loop.index % 3 == 0 or loop.last %}
+        </div>
+        {% elif loop.index % 2 == 0 %}
+            <div class="clearfix visible-xs-block"></div>
+        {% elif loop.index % 3 == 0 %}
+            <div class="clearfix visible-sm-block"></div>
+        {% endif %}
+      
+    <hr class="divide-divider">
+        
+    {% endfor %}
+    </div>
+    </div>
+      
+    <hr class="divide-divider">
+    <p>*Note: National Lab, and the owners of the data. Any opinions, findings, and conclusions or
+    recommendations expressed in this material are those of the author and do not necessarily reflect
+    the views of the collaborators.</p>
+</div>
+{% endblock %}
