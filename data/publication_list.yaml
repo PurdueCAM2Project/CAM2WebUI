@@ -1,3 +1,13 @@
+# Publication List data
+#
+# List of publications (papers and presentations) submitted by CAM2.
+#
+# Fields:
+#   authors: people who authored the paper
+#   conference: conference in which the paper was submitted
+#   paperinfo: name of the paper that was submitted
+#   paperlink: link to the paper
+
 - authors: Ryan Dailey, Ahmed S Kaseb, Chandler Brown, Sam Jenkins, Sam Yellin, Fengjian
     Pan, Yung-Hsiang Lu
   conference: Imaging and Multimedia Analytics in a Web and Mobile World 2017

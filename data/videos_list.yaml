@@ -1,3 +1,13 @@
+# Video List data
+#
+# This dataset stores the videos that are displayed on the video page of the website.
+#
+# Fields:
+#   description: description of the video
+#   link: embed link to the video on YouTube (to get, right click on a video on YouTube
+#         and click "Copy embed link")
+#   title: title of video
+#   user: name of person in the video
 
 - description: Everett shares his experience of doing research and how it becomes
     his passion and career.

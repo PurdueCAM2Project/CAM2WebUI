@@ -1,3 +1,12 @@
+# History Data for CAM2
+#
+# This dataset stores the important events in the history of CAM2.
+#
+# Fields:
+#   event: name of the event
+#   month: month that the event took place
+#   year: year that the event took place
+
 - event: Third Low-Power Image Recognition Challenge was held at the Annual Conference
     on Computer Vision and Pattern Recognition
   month: 7

@@ -1,3 +1,15 @@
+# Faculty List data
+#
+# This dataset stores the names, pages, and pictures of the faculty members that make
+# CAM2 a reality.
+#
+# Fields:
+#   img: url of the faculty's photo
+#   lastname: last name of the faculty
+#   name: first and middle name of the faculty
+#   pagelink: link to the page of the faculty
+#   title: position of the faculty member within the university system and within CAM2
+
 - img: https://drive.google.com/uc?id=1F4Cjrc2SxyyiBDSRBwdGs24Gy0DrfCU0
   lastname: Thiruvathukal
   name: George K.
@@ -56,4 +68,4 @@
   name: Vinayak
   pagelink: http://www.stat.purdue.edu/people/faculty/varao
   title: "Assistant Professor in Statistics (Purdue)\r\n\r\nTeam Advisor (<a href=\"\
-    #active-learning\">Active Learning</a>)"
+    \#active-learning\">Active Learning</a>)"

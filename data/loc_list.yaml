@@ -1,8 +1,20 @@
-- officeaddr: 465 Northwestern Ave
+# Addresses of Rooms that belong to CAM2
+#
+# Fields:
+#   officename: name of the room
+#   officebldg: the name of the building
+#   officeroom: room number
+#   officeaddr: address of the building
+#   officecity: the city the building is in
+#   officestate: the state the building is in
+#   officezip: the ZIP code the building is in
+#   officenum: the phone number for the room
+
+- officename: CAM2 Lab
   officebldg: Electrical Engineering
-  officecity: West Lafayette
-  officename: CAM2 Lab
-  officenum: 765-494-5298
   officeroom: 220C
+  officeaddr: 465 Northwestern Ave
+  officecity: West Lafayette
   officestate: IN
   officezip: '47906'
+  officenum: 765-494-5298
