@@ -1,3 +1,11 @@
--
-    collabname: Me
-    collabdescr: Hello
+# Collaborators data
+#
+# This dataset stores the data for the collaborators of CAM2.
+#
+# Fields:
+#   collabname: name of collaborator
+#   collabdescr: description of collaborator (optional)
+#   collabimg: image of collaborator (optional)
+#   collablink: link to collaborator's page (optional)
+
+[]

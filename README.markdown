@@ -9,7 +9,6 @@ Most of the data, however, is not hardcoded into the templates, but is instead s
 In order for this site to be run on your computer, Python 2.7 must be installed on your computer and Hyde must be PIP-installed on top of that. Unfortunately, Hyde does not yet work for Python 3, so this is the only way for the site to be run. After installing Hyde, you can launch the webserver to display the content by running the "runSite.py" file in the repository. This will display the site to the user. The site will be displayed on "http://localhost:8080" and can be hard-reloaded by adding "?refresh" to the end of any url on the site.
 
 Things to do:
-- Complete reimplementation of the team page
 - Rename unintuitively named fields in the "data" folder
 - Convert commonly used pieces of the site to Markdown
 - Make publishing script to GitHub Pages using Travis

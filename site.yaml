@@ -8,11 +8,16 @@ plugins:
     - hyde.ext.plugins.text.TextlinksPlugin
 context:
     providers:
+        collab_list: data/collab_list.yaml
+        faculty_list: data/faculty_list.yaml
+        history_list: data/history_list.yaml
+        loc_list: data/loc_list.yaml
+        oldmember_list: data/oldmember_list.yaml
+        poster_images: data/poster_images.yaml
         publication_list: data/publication_list.yaml
         question_list: data/question_list.yaml
-        history_list: data/history_list.yaml
-        collab_list: data/collab_list.yaml
-        loc_list: data/loc_list.yaml
+        slides_list: data/slides_list.yaml
         sponsor_list: data/sponsor_list.yaml
-        poster_images: data/poster_images.yaml
+        subteams_list: data/subteams_list.yaml
+        teamimg_list: data/teamimg_list.yaml
         question_list: data/question_list.yaml

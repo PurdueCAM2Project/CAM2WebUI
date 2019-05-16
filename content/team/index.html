@@ -12,40 +12,39 @@ title: Team
         <h1>CAM<sup>2</sup> Research Team</h1>
         <hr class="divide-divider">
         <hr>
-        
-        {% load custom_tags %}
-        {% for team in team_list %}
-            {% if forloop.counter0|divisibleby:"3" %}
+
+        {% for team in teamimg_list %}
+            {% if loop.index0 is divisibleby 3 %}
                 <div class="row">
             {% endif %}
 
-        {% if forloop.revcounter > 2 or team_list|length|modulo:3 == 0 %}
+        {% if loop.revindex > 2 or team_list|length % 3 == 0 %}
             <div class="col-md-4 col-sm-6 col-xs-12 shadow">
-                <img src="{{ team.teamimg }}" alt="team image" class="team">
+                <img src="{{ team }}" alt="team image" class="team">
             </div>
 
 
-        {% elif forloop.revcounter <= 2 and forloop.counter|divisibleby:"3" is False and team_list|length|modulo:3 == 2 %}
+        {% elif loop.revindex <= 2 and loop.index is not divisibleby 3 and team_list|length % 3 == 2 %}
             <div class="col-md-6 col-sm-6 col-xs-12 shadow">
-                <img src="{{ team.teamimg }}" alt="team image" class="team">
+                <img src="{{ team }}" alt="team image" class="team">
             </div>
 
 
-        {% elif forloop.revcounter <= 2 and team_list|length|modulo:3 == 1 %}
-            {% if forloop.counter|divisibleby:"3" %}
+        {% elif loop.revindex <= 2 and team_list|length % 3 == 1 %}
+            {% if loop.index is divisibleby 3 %}
                 <div class="col-md-4 col-sm-6 col-xs-12 shadow">
-                    <img src="{{ team.teamimg }}" alt="team image" class="team">
+                    <img src="{{ team }}" alt="team image" class="team">
                 </div>
 
 
             {% else %}
 
                 <div class="col-md-12 col-sm-12 col-xs-12 shadow">
-                    <img src="{{ team.teamimg }}" alt="team image" class="team">
+                    <img src="{{ team }}" alt="team image" class="team">
                 </div>
             {% endif %}
         {% endif %}
-        {% if forloop.counter|divisibleby:"3" or forloop.last %}
+        {% if loop.index is divisibleby 3 or loop.last %}
             </div>
         {% endif %}
         {% endfor %}
@@ -57,11 +56,11 @@ title: Team
           {% for faculty in faculty_list %}
           <div class="col-5ths" style = "padding: 10px 10px; width:20%;">
           <div class="card shadow">
-              <img class="faculty" src="{{ faculty.img }}" alt="{{ members.name }}">
+              <img class="faculty" src="{{ faculty.img }}" alt="{{ faculty.fmname }} {{ faculty.lastname }}">
               <div class="card-body">
                   <div class="card-title">
-                      <h6 style="text-align: center;">{{ faculty }}</h6>
-                      {% if faculty.title %}<p class="card-text">{{ faculty.title|safe|linebreaksbr }}</p>{% endif %}
+                      <h6 style="text-align: center;">{{ faculty.fmname }} {{ faculty.lastname }}</h6>
+                      {% if faculty.title %}<p class="card-text">{{ faculty.title|safe }}</p>{% endif %}
                       {% if faculty.pagelink %}<a href="{{ faculty.pagelink }}" class="btn btn-primary">See Profile</a>{% endif %}
                   </div>
               </div>
@@ -75,16 +74,14 @@ title: Team
         <h3 style="text-align: center;">Current Team Members</h3>
 		<hr>
             {% for subteams in subteams_list %}
-            {% ifnotequal subteams|stringformat:"s" "None" %}
-            <div id="{{ subteams.name|slugify }}" class="card border-light shadow" style ="flex-wrap: wrap; justify-content: center;">
+            <div id="{{ subteams.name }}" class="card border-light shadow" style ="flex-wrap: wrap; justify-content: center;">
                 <div class="card-header text-center">
                     <h3> {{ subteams.name }}</h3>
                     <p> {{ subteams.description }}</p>
                 </div>                 
                 <div class="card-body justify-content-center align-self-center">
                     <div class="row" style="flex-wrap: wrap; justify-content: center;">
-                        {% for members in director_list %}
-                        {% if members.subteam == subteams and members.iscurrentmember %} 
+                        {% for members in subteams.leaders %}
                         <div class="col-sm-2" style = "padding: 10px 10px">
                         <div class="card shadow">
                             <img class="members" src="{{ members.image_url }}" alt="{{ members.name }}">
@@ -92,13 +89,11 @@ title: Team
                                 <div class="card-title">
                                     <h6 style="text-align: center;"><i class="fa fa-user"></i> {{ members.name }} </h6>
                                 </div>
-                            </div>                     
+                            </div>
                         </div>
                         </div> 
-                        {% endif %}
                         {% endfor %}
-                        {% for members in members_list %}
-                        {% if members.subteam == subteams and members.iscurrentmember and not members.isdirector %} 
+                        {% for members in subteams.members %}
                         <div class="col-sm-2" style = "padding: 10px 10px">
                         <div class="card shadow">
                             <img class="members" src="{{ members.image_url }}" alt="{{ members.name }}">
@@ -108,15 +103,13 @@ title: Team
                                 </div>
                             </div>                     
                         </div>
-                        </div> 
-                        {% endif %}
+                        </div>
                         {% endfor %}                           
                    </div>
                     <br>
                 </div>
         </div>
         <br>
-        {% endifnotequal %} 
         {% endfor %}
 
         <!--One way to display the old members format would be to set their subteam to none.  -->
@@ -129,9 +122,9 @@ title: Team
             <tr>
             {% for members in oldmember_list %}
                 <td style="width: 33%;">
-                    {{ members.name }}
+                    {{ members }}
                 </td>
-                {% if forloop.counter|divisibleby:3 %}
+                {% if loop.index is divisibleby 3 %}
                 </tr>
                     <tr>
                   {% endif %}

@@ -4,68 +4,68 @@
 # CAM2 a reality.
 #
 # Fields:
-#   img: url of the faculty's photo
+#   fmname: first and middle name of the faculty
 #   lastname: last name of the faculty
-#   name: first and middle name of the faculty
-#   pagelink: link to the page of the faculty
 #   title: position of the faculty member within the university system and within CAM2
+#   img: url of the faculty's photo
+#   pagelink: link to the page of the faculty
 
-- img: https://drive.google.com/uc?id=1F4Cjrc2SxyyiBDSRBwdGs24Gy0DrfCU0
+- fmname: George K.
   lastname: Thiruvathukal
-  name: George K.
-  pagelink: http://luc.edu/cs/people/ftfaculty/gkt.shtml
   title: "Professor of Computer Science (Loyola)\r\n\r\nTeam Manager"
-- img: https://drive.google.com/uc?id=13qE7JxFwB2xuVEEDDvoMK9oEkOf5DWNU
+  img: https://drive.google.com/uc?id=1F4Cjrc2SxyyiBDSRBwdGs24Gy0DrfCU0
+  pagelink: http://luc.edu/cs/people/ftfaculty/gkt.shtml
+- fmname: Yung Hsiang
   lastname: Lu
-  name: Yung Hsiang
-  pagelink: https://engineering.purdue.edu/HELPS/Faculty/yunglu.html
   title: "Professor of Electrical and Computer Engineering (Purdue)\r\n\r\nProject\
     \ Director"
-- img: https://ag.purdue.edu/ProfileImages/dbarbara.jpg
+  img: https://drive.google.com/uc?id=13qE7JxFwB2xuVEEDDvoMK9oEkOf5DWNU
+  pagelink: https://engineering.purdue.edu/HELPS/Faculty/yunglu.html
+- fmname: David Michael
   lastname: Barbarash
-  name: David Michael
-  pagelink: https://ag.purdue.edu/hla/LA/Pages/Profile.aspx?strAlias=dbarbara&intDirDeptID=24
   title: "Associate Professor of Landscape Architecture (Purdue)\r\n\r\nTeam Adviser\
     \ (<a href=\"#human-behavior-in-video\">Human Behavior in Video</a>)"
-- img: https://drive.google.com/uc?id=19_-2sKwLTcjoBvjclB8tqlIA56k5QwUq
+  img: https://ag.purdue.edu/ProfileImages/dbarbara.jpg
+  pagelink: https://ag.purdue.edu/hla/LA/Pages/Profile.aspx?strAlias=dbarbara&intDirDeptID=24
+- fmname: Guofan
   lastname: Shao
-  name: Guofan
-  pagelink: https://ag.purdue.edu/fnr/Pages/profile.aspx?strAlias=shao
   title: "Professor of Forestry and Natural Resources (Purdue)\r\n\r\nTeam Advisor\
     \ (<a href=\"#forest-inventory-analysis\">Forest Inventory Analysis</a>)"
-- img: https://shuohanchen.files.wordpress.com/2019/02/shuohan-eps-converted-to.png?w=220&h=300
+  img: https://drive.google.com/uc?id=19_-2sKwLTcjoBvjclB8tqlIA56k5QwUq
+  pagelink: https://ag.purdue.edu/fnr/Pages/profile.aspx?strAlias=shao
+- fmname: Shuo-Han
   lastname: Chen
-  name: Shuo-Han
-  pagelink: https://shuohanchen.com/
   title: "Postdoctoral Fellow (Academia Sinica)\r\n\r\nTeam Advisor (<a href=\"#image-database\"\
     >Image Database</a>)"
-- img: https://ag.purdue.edu/ProfileImages/woeste.jpg
+  img: https://shuohanchen.files.wordpress.com/2019/02/shuohan-eps-converted-to.png?w=220&h=300
+  pagelink: https://shuohanchen.com/
+- fmname: Keith E.
   lastname: Woeste
-  name: Keith E.
-  pagelink: https://ag.purdue.edu/fnr/Pages/profile.aspx?strAlias=woeste
   title: "Professor of Forestry and Natural Resources (Purdue)\r\n\r\nTeam Advisor\
     \ (<a href=\"#forest-inventory-analysis\">Forest Inventory Analysis</a>)"
-- img: https://www.cs.purdue.edu/people/images/small/faculty/mingyin.jpg
+  img: https://ag.purdue.edu/ProfileImages/woeste.jpg
+  pagelink: https://ag.purdue.edu/fnr/Pages/profile.aspx?strAlias=woeste
+- fmname: Ming
   lastname: Yin
-  name: Ming
-  pagelink: https://www.cs.purdue.edu/people/mingyin
   title: "Assistant Professor of Computer Science (Purdue)\r\n\r\nTeam Advisor (<a\
     \ href=\"#crowdsourcing\">Crowdsourcing</a>)"
-- img: https://engineering.purdue.edu/ResourceDB/ResourceFiles/image92690
+  img: https://www.cs.purdue.edu/people/images/small/faculty/mingyin.jpg
+  pagelink: https://www.cs.purdue.edu/people/mingyin
+- fmname: Dave
   lastname: Capperlleri
-  name: Dave
-  pagelink: https://engineering.purdue.edu/ME/People/ptProfile?id=92669
   title: "Associate Professor of Mechanical Engineering (Purdue)\r\n\r\nTeam Advisor\
     \ (<a href=\"#drone-video\">Drone Video</a>)"
-- img: http://www.stat.purdue.edu/~mdw/images/WardMFO.jpg
+  img: https://engineering.purdue.edu/ResourceDB/ResourceFiles/image92690
+  pagelink: https://engineering.purdue.edu/ME/People/ptProfile?id=92669
+- fmname: Mark Daniel
   lastname: Ward
-  name: Mark Daniel
-  pagelink: http://www.stat.purdue.edu/~mdw/
   title: "Professor in Statistics (Purdue)\r\n\r\nTeam Advisor (<a href=\"#active-learning\"\
     >Active Learning</a>)"
-- img: http://www.stat.purdue.edu/images/Faculty/thumbnail/varao-t.jpg
+  img: http://www.stat.purdue.edu/~mdw/images/WardMFO.jpg
+  pagelink: http://www.stat.purdue.edu/~mdw/
+- fmname: Vinayak
   lastname: Rao
-  name: Vinayak
-  pagelink: http://www.stat.purdue.edu/people/faculty/varao
   title: "Assistant Professor in Statistics (Purdue)\r\n\r\nTeam Advisor (<a href=\"\
-    \#active-learning\">Active Learning</a>)"
+    #active-learning\">Active Learning</a>)"
+  img: http://www.stat.purdue.edu/images/Faculty/thumbnail/varao-t.jpg
+  pagelink: http://www.stat.purdue.edu/people/faculty/varao

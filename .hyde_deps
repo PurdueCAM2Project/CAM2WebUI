@@ -68,6 +68,7 @@
 !!python/unicode 'publications\index.html': [!!python/unicode 'base.j2']
 !!python/unicode 'publications\list.html': [!!python/unicode 'base.j2']
 !!python/unicode 'sponsors\index.html': [!!python/unicode 'base.j2']
+!!python/unicode 'team\index.html': [!!python/unicode 'base.j2']
 !!python/unicode 'team_poster\index.html': [!!python/unicode 'base.j2']
 !!python/unicode 'terms\index.html': [!!python/unicode 'base.j2']
 !!python/unicode 'videos\index.html': [!!python/unicode 'base.j2']

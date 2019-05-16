@@ -1,13 +1,3 @@
-# Sponsor List data
-#
-# This dataset stores the list of organizations who sponsor CAM2.
-#
-# Fields:
-#   logolink: link to the logo of the sponsor
-#   spondescr: description of the sponsorship provided
-#   sponlink: link ot the website of the sponsor
-#   sponname: name of the sponsor
-
 - logolink: https://www.nsf.gov/images/logos/NSF_4-Color_bitmap_Logo.png
   spondescr: ACI-1535108, IIP-1530914, OISE-1427808, CNS-0958487
   sponlink: https://www.nsf.gov/awardsearch/showAward?AWD_ID=0958487

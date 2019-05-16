@@ -1,0 +1,253 @@
+# Subteams data
+#
+# This dataset stores the data for the subteams and current members of CAM2.
+#
+# Fields:
+#   fmname: first and middle name of the faculty
+#   lastname: last name of the faculty
+#   title: position of the faculty member within the university system and within CAM2
+#   img: url of the faculty's photo
+#   pagelink: link to the page of the faculty
+
+- name: Crowdsourcing
+  description: 'Reduce the biased results in incorrectly trained image processing
+    classifiers by utilizing the power of crowdsourcing. '
+  leaders:
+  - name: Xiao Hu
+    image_url: https://drive.google.com/uc?id=1BgdG9XYcrmdMtdSbePpp324jwdnwl_7p
+  members:
+  - name: Haobo Wang
+    image_url: https://drive.google.com/uc?id=1t-krvZinKrSk1YT8MRl8R6xoPUHpF8H7
+  - name: Altug Gemalmaz
+    image_url: https://drive.google.com/uc?id=12nTwWesC8BUGYZwcx6rVjGtC0HGruioY
+  - name: Gore Kao
+    image_url: https://drive.google.com/uc?id=1RNsEJtGiIwYLJRdmMgzUj3s4vQKBgab_
+  - name: Pranjali Raturi
+    image_url: https://drive.google.com/uc?id=1nv73nuQkAXWd29RL4S1bH3RNc29Usn7U
+
+- name: Image Database
+  description: To aggregate all scattered data in a centralized location and add general
+    functionality to it. We want to design a database that can retrieve data(image
+    or video), build index by object detection and store the data and index.
+  leaders:
+  - name: Ling Zhang
+    image_url: https://drive.google.com/uc?id=16hdkwA_FNp0wbvI3d2Y-O3k7BVdwR9-h
+  members:
+  - name: Roopasree Naidu
+    image_url: https://drive.google.com/uc?id=1Q_qhjdZrOgbnq4EMwjJDGLzH-8AIkVAV
+  - name: Haoran Wang
+    image_url: https://drive.google.com/uc?id=140ZVCHRJVUj5kxjlBK-LfQp38CJHL2zm
+  - name: Youngsik Yoon
+    image_url: https://drive.google.com/uc?id=10YPCl-M6Ytt7PwZv_j9PIjEu_4CSr4pD
+  - name: Lakshya Goyal
+    image_url: https://drive.google.com/uc?id=1CK9eAfqcpzMU-ULGn2vnY0E8fF37UZC3
+  - name: Ayushi Gupta
+    image_url: https://drive.google.com/uc?id=1AJ4xI3s0hvde6MS0yzuKDt_VolCWrV5z
+  - name: Shunqiao Huang
+    image_url: https://drive.google.com/uc?id=1RWw0U_QwKhY8ZioiPdDmlN2_VEros3Zt
+
+- name: Camera Discovery + Reliability
+  description: Find factors to identify useful cameras for emergency responses.
+  leaders:
+  - name: Sripath Mishra
+    image_url: https://docs.google.com/uc?id=1VBRo4-fnfTBJez8oG-z1_dCdOtRizcs2
+  - name: Krishna Kumar
+    image_url: https://docs.google.com/uc?id=1irzO3jgSb5iq01MduFSZ8XukKlLsI5cS
+  members:
+  - name: Andrew Liu
+    image_url: https://docs.google.com/uc?id=1zLClekgLCLvk4A4U1QryqttcSBhsb_13
+  - name: Zicong Wang
+    image_url: https://docs.google.com/uc?id=124hs5hxVMwDS9_IpNxWebNSVUFKanMMS
+  - name: Josh Majors
+    image_url: https://drive.google.com/uc?id=1NX_X368N3TfYEd71PjRfXN_CUwllVQf1
+
+- name: Adaptive Object Detection
+  description: Our team is focused on developing adaptive object detection software
+    that improves object detection on night time image data.
+  leaders:
+  - name: Karthik Maiya
+    image_url: https://drive.google.com/uc?id=1QerVKIreOrBjZdoANEm4D0PlNcoyv79Q
+  - name: Daniel Merrick
+    image_url: https://drive.google.com/uc?id=1FlXnG5kluVRy8gEJXtlMS9F9r0J46TBJ
+  members:
+  - name: Kirthi Shankar Sivamani
+    image_url: https://drive.google.com/uc?id=1Qu7L33SNwQtBw8Qx-4s-Fm9oIUq9v7G-
+  - name: Rui Wang
+    image_url: https://drive.google.com/uc?id=1qEGaz7a6Los7dfKiZMAqjyXvNgh4h31e
+
+- name: Software Engineering
+  description: Developing a software engineering process for the all teams in CAM2.
+  leaders:
+  - name: Noah Curran
+    image_url: https://drive.google.com/uc?id=1p5Ad8doE42SN57LXYTdsDtKOjmgGbPfG
+  members:
+  - name: Weiqing Huang
+    image_url: https://drive.google.com/uc?id=18S6_4smJGdXMWpSCHQfali90go6Zw43C
+  - name: Yuting Guo
+    image_url: https://drive.google.com/uc?id=14niEmt3s3tqMru1QSgz3KhYU_IKpnzmB
+  - name: Ruihong Lyu
+    image_url: https://drive.google.com/uc?id=1ZkOiB1E21C8kp4avD_tFhaWRosg0CbeR
+  - name: Andrew Beutler
+    image_url: https://drive.google.com/uc?id=1aJlfnORl0G7SSfHIOOs_sIXjOD7ghQME
+
+- name: Parallel Computing for Vision
+  description: Use camera parameters (time of the day, location) to increase the confidence
+    of object detection in real time analysis.
+  leaders:
+  - name: Alex Xu
+    image_url: https://drive.google.com/uc?id=1C3jQYpkav8xVx80COdNjevix5kJ6kovh
+  - name: Matthew Kelleher
+    image_url: https://drive.google.com/uc?id=1NgQdhu79u0NQt2xrQPMTrQOpAt-szvi4
+  members:
+  - name: Caleb Tung
+    image_url: https://drive.google.com/uc?id=14sT5M8m-iicBuLkr8je1Wx9vs_6NSHPO
+  - name: Peter Huang
+    image_url: https://drive.google.com/uc?id=1bZxvHiZ-H7ACq55FpJQqbJgj8NZjZlcb
+  - name: Mridul Arora
+    image_url: https://drive.google.com/uc?id=1vmEXOq6zdNxUMFQPZbvmBS4zEMZFzX5U
+
+- name: Web UI + Camera API
+  description: Maintain, update and improve the content and user interface at cam2project.net.
+    Build the new website for helps site. Ensure easily accessibility of the camera
+    database. Ensure the correctness of data in the database.
+  leaders:
+  - name: Mohamad Alani
+    image_url: https://drive.google.com/uc?id=14FxQ_dr9836vXFBx1YknDQ0rn-QVZHWy
+  - name: Anirudh Vegesana
+    image_url: https://drive.google.com/uc?id=1u5dbejyw-62y5x6UPKEtPo3DFd4AtYCc
+  members:
+  - name: Kaiwen Yu
+    image_url: https://drive.google.com/uc?id=1GSO6wVspOBuu881yg-5Bg2E5xEA1gSMJ
+
+- name: Technology Commercialization
+  description: Enter into the Burton D. Morgan Business Model Competition.
+  leaders: []
+  members:
+  - name: Zohar Kapach
+    image_url: https://drive.google.com/uc?id=1d4vxJfJAb4V7WO-bk6eA2R2lTAQ9lmuT
+  - name: Andrew Ulmer
+    image_url: https://drive.google.com/uc?id=12SisTM9GQIoLfkseJoZb5Wm2ERCBPlWV
+
+- name: Active Learning
+  description: Exploiting statistical understanding between source and target domain
+    dataset, the Active Learning team strives to query data that is a subset of the
+    target domain by engineering novel transfer and active learning metrics to eliminate
+    redundancies within datasets.
+  leaders:
+  - name: Noureldin Hendy
+    image_url: https://drive.google.com/uc?id=1b09VaAM9nvznANP8iNg-_v-T0zrf06hM
+  - name: Damini Rijhwani
+    image_url: https://drive.google.com/uc?id=1jbwSbygK8x49KyiAwTwDGtpD6vz-mvKa
+  members:
+  - name: Nikita Rajaneesh
+    image_url: https://drive.google.com/uc?id=1pYD-kWtEJ-nuw-UFwPP6dDZdEJXpDBlo
+  - name: Nobelle Tay
+    image_url: https://drive.google.com/uc?id=1QE0RJBLacv9q-zbAvMf5JrZiHTx2htl_
+  - name: Shijin Wang
+    image_url: https://drive.google.com/uc?id=1MRUUneBL0BF9z0zbUIeUAzbMfDqQavQW
+  - name: Isha Ghodgaonkar
+    image_url: https://drive.google.com/uc?id=1ofpDJFHlQy3a0RRSRauFfqf7sat-Kv-3
+  - name: Li Yon Tan
+    image_url: https://drive.google.com/uc?id=1OSe2uGly1GM3WApaUfHl4df0dcmzKH1O
+  - name: Jack Hyslop
+    image_url: https://drive.google.com/uc?id=182zv9F3EfHBJOTDOR3lQ8x5I2SOoIS6a
+  - name: Jacob Harmon
+    image_url: https://drive.google.com/uc?id=1iT1e98N7OH3tkDnYybz1Lgjz3-BRuRAl
+
+- name: Drone Video
+  description: 'Develop autonomous solution for a drone to detect doors and handles.
+    We are looking into different approaches: point cloud library(PCL), Tensorflow
+    object-detection API, SIFT & SURF.'
+  leaders:
+  - name: Nathan M. Gizaw
+    image_url: https://drive.google.com/uc?id=1zsGHrvBtmTyEG4Cnwr5NMvBuaekgccGj
+  members:
+  - name: Xinlue Liu
+    image_url: https://drive.google.com/uc?id=1QRzGA66rF1EN6eAeDNEAMD0p84WVi0-Y
+  - name: Yanjun Chen
+    image_url: https://drive.google.com/uc?id=1AsM83PcpjiRJxgIOoRiOJZnF-Rwx8dvq
+  - name: Yiming Li
+    image_url: https://drive.google.com/uc?id=1Apy6EAMI-6A4dUSWqpB0pRtFuYOp7nnj
+  - name: Alex Brachet-Mialot
+    image_url: https://drive.google.com/uc?id=1jyMQ-ihz2SRGT0vMnX0NXeGGEqoq29jG
+  - name: Minghao Sun
+    image_url: https://drive.google.com/uc?id=1D8OV_bJFofpA__1YD8LQU2Ix0az3uqZ6
+  - name: Blessie Tandon
+    image_url: https://drive.google.com/uc?id=1T-j3DBVf0dd27pGbqTsqSr5GaL-4NNsu
+  - name: Yunjin Cho
+    image_url: https://drive.google.com/uc?id=1sOXlQgFXDsQjCg9KaAmH8ZmXhRy5EPi9
+
+- name: Forest Inventory Analysis
+  description: Use an optical lens to detect the diameter at breast height of each
+    tree in a forest.
+  leaders: []
+  members:
+  - name: Runjia Shen
+    image_url: https://drive.google.com/uc?id=101Pna366JB6pM1Q1rSGiW6wipCg2Uf8U
+  - name: Yezhi Shen
+    image_url: https://drive.google.com/uc?id=1WrLZtXkzgHDQbCC0XLX92C8a8rgS6yMd
+  - name: Yi Xie
+    image_url: https://drive.google.com/uc?id=1tHJOFU6b6cDRAEQvZ9CC34nRT5ccZJy8
+  - name: Yoon Sung Kim
+    image_url: https://drive.google.com/uc?id=1OTo6VLEg6JVsoJ3kbyLZG0JJZN40vJV9
+  - name: Younggil Chang
+    image_url: https://drive.google.com/uc?id=1H9JpKjC86xcI3a78HJzRNNtuMV5X9B6B
+  - name: Nick Eliopoulos
+    image_url: https://drive.google.com/uc?id=1GeeVgSnl4Fwf-rlIFlG5LuSohcMMIpTi
+  - name: Zijun Lin Lin
+    image_url: https://drive.google.com/uc?id=1C4YoQuMmzT5KjqI4_vqqO1albg62iaTT
+
+- name: Human Behavior in Video
+  description: To detect and map pedestrian traffic in targeted areas for land development
+    through consistent re-identification. The data for analysis will be collected
+    through twenty-four hour live feeds.
+  leaders:
+  - name: Rohan Prabhu
+    image_url: https://drive.google.com/uc?id=1hGayS955bNTIcHguXCoRk00b_Dcw3oTZ
+  - name: Paul B. Zhang
+    image_url: https://drive.google.com/uc?id=1Ky37lYMYl3cUfubfzGZLT8ZNSGFyHCLr
+  members:
+  - name: Moiz Rasheed
+    image_url: https://drive.google.com/uc?id=1s9Wqao1RSAVDhrtJA3rx0srQysCliQgb
+  - name: Ethan Glaser
+    image_url: https://drive.google.com/uc?id=16pHB8NGmpCt8W6cnogTKsL8MDJcNbSsS
+  - name: Ian Haggerty
+    image_url: https://drive.google.com/uc?id=1vZ7qm0nmQrBTrjDEnh-RCAXH5VQomyUF
+  - name: Ashita Bawankule
+    image_url: https://drive.google.com/uc?id=13QEeDdUAvBekEd1Y-ZSGo7psi3LbrGf_
+  - name: Sumati Gupta
+    image_url: https://drive.google.com/uc?id=1khtGvIjw4bKrp45-bwueGRva0DvFmcwf
+  - name: Juanda He
+    image_url: https://drive.google.com/uc?id=1964iXlodJe4gZOlqdn89_vn7fDi6Pyrm
+
+- name: Dataset Bias
+  description: Improve the performance of transfer learning by utilizing how the concentration
+    of objects of interest in training data change how well the model transfers to
+    a new dataset with objects of interest concentrated in a different region.
+  leaders:
+  - name: Ashley Kim
+    image_url: https://drive.google.com/uc?id=1yUr73JBTlTG0LMew8pqVXA5csNggmuOX
+  members:
+  - name: Jiahao Sun
+    image_url: https://drive.google.com/uc?id=1luXV_WElpGmIqfVaqGUMi5qAOzoqaERI
+  - name: Menna Hassan
+    image_url: https://drive.google.com/uc?id=1BJ5kz_3z1-l5R19xyvNRwGymDvNYIZJk
+  - name: Fischer Bordwell
+    image_url: https://drive.google.com/uc?id=1Y7Ew3_OUSKDagQ7nOkRKOpYV1DhrPdi7
+  - name: Arjun Balasubramanian
+    image_url: https://drive.google.com/uc?id=1I8VuUa3lphW5Qvun6IYXhqtMiQ-AB0J7
+
+- name: Graduate Students
+  description: ''
+  leaders:
+  - name: Ryan Dailey
+    image_url: https://drive.google.com/uc?id=1kIYIrkXnICIb2odq5WWGlsdCYv4fTpVU
+  members:
+  - name: Aniesh Chawla
+    image_url: https://drive.google.com/uc?id=1sDwK_664kLdKIQI9Q0K3KJHhOSAuJKh4
+  - name: Abhinav Goel
+    image_url: https://drive.google.com/uc?id=1YunKydNN7OS_vvBubbME4UykfjNh1CgA
+  - name: Sara Aghajanzadeh
+    image_url: https://drive.google.com/uc?id=1GzpDueX6W2e4sx0OGfKm51cru34jyEvp
+  - name: Kent Gauen
+    image_url: https://avatars3.githubusercontent.com/u/13396493?s=460&v=4
