@@ -119,7 +119,7 @@ def validateName (value):
 
 	return value
 	
-
-
+def currentYear():
+    return datetime.now().year
 
 		
