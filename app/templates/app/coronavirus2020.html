@@ -1,0 +1,22 @@
+{% extends "app/base.html" %}
+{% block title %}Coronavirus 2020{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "app/css/cameras.css" %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <hr class="divide-divider">
+    <h1>COVID-19</h1>
+    <hr>
+    <h2>The world is changing, views from worldwide network cameras.</h2>
+<!--    <hr class="divide-divider">-->
+
+    <div id="mapCanvas">
+        <iframe src="https://www.google.com/maps/d/embed?mid=1ZlFNZmL13S3tRvXBMfcMyUcezI4LY5bM" width="1000" height="480" style="border:0"></iframe>
+    </div>
+
+</div>
+{% endblock %}
