@@ -168,11 +168,11 @@ class JoinView(FormView):#BaseCreateView,
         content = render_to_string('email_system/join_email_template.html', form.cleaned_data)
         email = EmailMessage(subject, content, EMAIL_HOST_USER, [MANAGER_EMAIL])
         
-        file = form.cleaned_data['resume']
-        file.open()
-        email.attach(file.name, file.read(), file.content_type)
-        file.close()
-        email.send()
+        # file = form.cleaned_data['resume']
+        # file.open()
+        # email.attach(file.name, file.read(), file.content_type)
+        # file.close()
+        # email.send()
 
         #get info from form 
         data = dict(form.cleaned_data)
