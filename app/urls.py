@@ -22,7 +22,7 @@ urlpatterns = [
 
     #user authentication
     url(r'^profile/$', app_views.profile, name='profile'),
-    url(r'^register/$', app_views.register, name='register'),
+#     url(r'^register/$', app_views.register, name='register'),
     url(r'^oauthinfo/$', app_views.oauthinfo, name='more info'),
     url(r'^logout/$', auth_views.LogoutView.as_view(next_page='/')),
     url(r'^oauth/', include('social_django.urls', namespace='social')),#don't add $ after oauth/
