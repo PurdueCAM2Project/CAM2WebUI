@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^ack/$', TemplateView.as_view(template_name='app/ack.html'), name='acknowledgement'),
     url(r'^faqs/$', app_views.faqs, name='faqs'),
     url(r'^terms/$', TemplateView.as_view(template_name='app/terms.html'), name='terms'),
-    url(r'^coronavirus2020/$', TemplateView.as_view(template_name='app/coronavirus2020.html'), name='coronavirus2020'),
+#     url(r'^coronavirus2020/$', TemplateView.as_view(template_name='app/coronavirus2020.html'), name='coronavirus2020'),
     url(r'^contact/$', TemplateView.as_view(template_name='app/contact.html'), name='contact'),
 
     #user authentication
