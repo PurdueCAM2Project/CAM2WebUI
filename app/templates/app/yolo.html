@@ -1,0 +1,51 @@
+<html>
+<body onload="load_app()">
+<script>
+/**
+ * Determine the mobile operating system.
+ * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
+ *
+ * @returns {String}
+ */
+function getMobileOperatingSystem() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // Windows Phone must come first because its UA also contains "Android"
+    if (/windows phone/i.test(userAgent)) {
+        return "Windows Phone";
+    }
+
+    if (/android/i.test(userAgent)) {
+        return "Android";
+    }
+
+    // iOS detection from: http://stackoverflow.com/a/9039885/177710
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "iOS";
+    }
+
+    return "unknown";
+}
+function postAndRedirect() {
+  var f = document.forms.redirect;
+  f.submit();
+}
+function load_app() {
+  if (getMobileOperatingSystem() == "Android")
+    window.location.replace("https://ioair.link/knctx7");
+  else if (getMobileOperatingSystem() == "iOS")
+    window.location.replace("");
+  else
+    postAndRedirect();
+}
+</script>
+<p>CAM<sup>2</sup> YOLO in TensorFlow Demo</p>
+<div id="manual_downloads">
+  <p>iOS: Coming Soon<br>Android: <a href='https://ioair.link/knctx7'>https://ioair.link/knctx7</a></p>
+</div>
+<form action="/yolo" name="redirect" method="POST">
+{% csrf_token %}
+<input type="hidden" name="all_links" value="1">
+</form>
+</body>
+</html>

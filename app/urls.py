@@ -37,6 +37,8 @@ urlpatterns = [
     url(r'^collaborators/$', app_views.collaborators, name='collaborators'),
     url(r'^sponsors/$', app_views.sponsors, name='sponsors'),
     url(r'^location/$', app_views.location, name='location'),
+    url(r'^yolo$', app_views.yolo, name='yolo'),
+    url(r'^yolo/$', RedirectView.as_view(pattern_name='yolo', permanent=True)),
 
     #things for current members
 ]

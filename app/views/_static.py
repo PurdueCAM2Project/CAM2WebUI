@@ -8,7 +8,7 @@ def pure(template, **models):
     """ Helper method for automatically generating static template views in one line.
     This reduces boilerplate code for the programmer by allowing them to easily read
     what models are used on each page.
-    
+
     These two pieces of code are equivalent:
     team_poster = pure('app/team_poster.html', poster_images=models.Poster)
 
@@ -45,3 +45,8 @@ videos = pure('app/videos.html', videos_list=models.Video)
 
 error404 = pure('app/404.html')
 error500 = pure('app/500.html')
+
+def yolo(request):
+    if request.POST.get('all_links'):
+        return render(request, 'app/yolo-info.html')
+    return render(request, 'app/yolo.html')
