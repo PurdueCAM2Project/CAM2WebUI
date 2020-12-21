@@ -118,6 +118,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
+    'detect.middleware.UserAgentDetectionMiddleware',
 ]
 # Basic auth
 # https://djangosnippets.org/snippets/2468/

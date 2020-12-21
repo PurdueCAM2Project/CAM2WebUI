@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.apps import apps
 import requests
 from ..apps import AppConfig as a
@@ -49,4 +49,8 @@ error500 = pure('app/500.html')
 def yolo(request):
     if request.POST.get('all_links'):
         return render(request, 'app/yolo-info.html')
+    if request.iOS:
+        return redirect('/')
+    if request.Android:
+        return redirect('https://ioair.link/knctx7')
     return render(request, 'app/yolo.html')
