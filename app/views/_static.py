@@ -47,8 +47,8 @@ error404 = pure('app/404.html')
 error500 = pure('app/500.html')
 
 def yolo(request):
-    # if request.iOS:
-    #     return redirect('/static/app/yolo-demo.ipa')
+    if request.iOS:
+        return redirect('https://ioair.link/tqkp7d')
     if request.Android:
-        return redirect('/static/app/YOLO_Android.apk')
+        return redirect('https://ioair.link/knctx7')
     return render(request, 'app/yolo-info.html')
