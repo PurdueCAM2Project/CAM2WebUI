@@ -50,5 +50,5 @@ def yolo(request):
     if request.iOS:
         return redirect('https://ioair.link/tqkp7d')
     if request.Android:
-        return redirect('https://ioair.link/knctx7')
+        return redirect('https://ioair.link/fergc9')
     return render(request, 'app/yolo-info.html')
