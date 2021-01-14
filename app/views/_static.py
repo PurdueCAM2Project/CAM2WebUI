@@ -47,8 +47,8 @@ error404 = pure('app/404.html')
 error500 = pure('app/500.html')
 
 def yolo(request):
-    # if request.iOS:
-    #     return redirect('https://ioair.link/tqkp7d')
+    if request.iOS:
+        return redirect('itms-services://?action=download-manifest&url=https://ee220cpc22.ecn.purdue.edu/tf/YoloDemo/app.plist')
     if request.Android:
-        return redirect('https://ioair.link/fergc9')
+        return redirect('https://ee220cpc22.ecn.purdue.edu/tf/yolo-demo.apk')
     return render(request, 'app/yolo-info.html')
